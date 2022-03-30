@@ -1,2 +1,2 @@
-# guitar-hero-2-deluxe-360
+# guitar-hero-II-deluxe-360
 cause why not
