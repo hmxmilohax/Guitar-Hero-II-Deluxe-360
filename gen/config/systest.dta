@@ -1,0 +1,188 @@
+#include macros.dta
+(system
+   (xbox_map_file
+      "../../system/run/systest_%s.map"))
+(rnd
+   (overlays
+      (camtest
+         (lines 1)
+         (showing FALSE))
+      (camera
+         (lines 3)
+         (showing FALSE)
+         (color 0 0 0 0.5)))
+   (force_hd TRUE))
+(objects
+   #include objects.dta)
+(quick_cheats
+   #include cheats.dta)
+(systest
+   (char_test
+      (meshes
+         "char/og/guitars/")
+      (chars
+         "char/crowd/og/crowd_female01.milo"
+         "char/crowd/og/crowd_female02.milo"
+         "char/crowd/og/crowd_female03.milo"
+         "char/crowd/og/crowd_female04.milo"
+         "char/crowd/og/crowd_male01.milo"
+         "char/crowd/og/crowd_male02.milo"
+         "char/crowd/og/crowd_male03.milo"
+         "char/crowd/og/crowd_male04.milo"
+         "char/female_singer/og/female_singer.milo"
+         "char/metal_singer/og/metal_singer.milo"
+         "char/metal_bass/og/metal_bass.milo"
+         "char/metal_keyboard/og/metal_keyboard.milo"
+         "char/metal_drummer/og/metal_drummer.milo"
+         "char/alterna1/og/alterna1.milo"
+         "char/alterna2/og/alterna2.milo"
+         "char/classic/og/classic.milo"
+         "char/deathmetal1/og/deathmetal1.milo"
+         "char/deathmetal2/og/deathmetal2.milo"
+         "char/funk1/og/funk1.milo"
+         "char/glam1/og/glam1.milo"
+         "char/glam2/og/glam2.milo"
+         "char/goth1/og/goth1.milo"
+         "char/goth2/og/goth2.milo"
+         "char/grim/og/grim.milo"
+         "char/metal1/og/metal1.milo"
+         "char/metal2/og/metal2.milo"
+         "char/punk1/og/punk1.milo"
+         "char/punk2/og/punk2.milo"
+         "char/rock1/og/rock1.milo"
+         "char/rock2/og/rock2.milo"
+         "char/rockabill1/og/rockabill1.milo"
+         "char/rockabill2/og/rockabill2.milo")
+      (songfile ironman))
+   (venue_test
+      (venues
+         "world/arena/arena.milo"
+         "world/arena/arena_mp.milo"
+         "world/arena/arena_coop.milo"
+         "world/big/big.milo"
+         "world/big/big_mp.milo"
+         "world/big/big_coop.milo"
+         "world/battle/battle.milo"
+         "world/battle/battle_mp.milo"
+         "world/battle/battle_coop.milo"
+         "world/fest/fest.milo"
+         "world/fest/fest_mp.milo"
+         "world/fest/fest_coop.milo"
+         "world/small1/small1.milo"
+         "world/small1/small1_mp.milo"
+         "world/small1/small1_coop.milo"
+         "world/small2/small2.milo"
+         "world/small2/small2_mp.milo"
+         "world/small2/small2_coop.milo"
+         "world/stone/stone.milo"
+         "world/stone/stone_mp.milo"
+         "world/stone/stone_coop.milo"
+         "world/theatre/theatre.milo"
+         "world/theatre/theatre_mp.milo"
+         "world/theatre/theatre_coop.milo")
+      (gs_overhead 3.1 3.4)
+      (cpu_overhead 3.0 5.2)
+      (vram_budget_blocks 9000)
+      (extra_venue_columns Guitarist0 Guitarist1)
+      (extra_shot_columns CameraDistance CameraFacing)
+      (tracked_drawables guitarist0 guitarist1 bassist drummer singer keyboard)
+      (replacements
+         (guitarist0
+            "char/grim/og/grim.milo")
+         (guitarist1
+            "char/deathmetal1/og/deathmetal1.milo"))
+      (walkers guitarist0)
+      (no_overhead LOSE WIN WIN_ENCORE WIN_GAME WIN_ENCORE_SONG INTRO INTRO_ENCORE INTRO_FAST)
+      (init
+         {func
+            init_venue
+            ($dir $is_multiplayer $option)
+            {handle
+               ($dir excitement_great)}
+            {handle
+               ($dir excitement kExcitementGreat)}
+            {{$dir find guitarist0}
+               hand_flames
+               TRUE}
+            {if
+               {$dir exists guitarist1}
+               {{$dir find guitarist1}
+                  hand_flames
+                  TRUE}}
+            {if_else
+               {== $is_multiplayer 1}
+               {do
+                  {print
+                     "multiplayer\n"}
+                  {handle
+                     ($dir start)}
+                  {handle
+                     ($dir intro_skip)}}
+               {do
+                  {print
+                     "singleplayer\n"}
+                  {handle
+                     ($dir skip_encore_fx)}
+                  {handle
+                     ($dir peak_on)}}}}
+         {func
+            get_venue_column_value
+            ($dir $column)
+            {do
+               ($output)
+               {switch
+                  $column
+                  (0
+                     {if_else
+                        {$dir exists guitarist0}
+                        {set
+                           $output
+                           {{$dir find guitarist0}
+                              get
+                              proxy_file}}
+                        {set
+                           $output
+                           "(none)"}})
+                  (1
+                     {if_else
+                        {$dir exists guitarist1}
+                        {set
+                           $output
+                           {{$dir find guitarist1}
+                              get
+                              proxy_file}}
+                        {set
+                           $output
+                           "(none)"}})}
+               $output}}
+         {func
+            get_shot_column_value
+            ($shot $column)
+            {do
+               ($output)
+               {switch
+                  $column
+                  (0
+                     {set
+                        $output
+                        {sprint
+                           {$shot get distance}}})
+                  (1
+                     {set
+                        $output
+                        {sprint
+                           {$shot get facing}}})}
+               $output}}
+         {func
+            check_waypoint
+            ($shot $waypoint $walker)
+            {do
+               ($ok TRUE)
+               {foreach
+                  $spot
+                  {$shot get_array bad_waypoints}
+                  {if
+                     {== $spot $waypoint}
+                     {set $ok FALSE}}}
+               $ok}})))
+#merge ../../../system/run/config/systest.dta

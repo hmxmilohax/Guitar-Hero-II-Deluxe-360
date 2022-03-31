@@ -1,0 +1,94 @@
+{tut_part.lbl set_text tut3_3_part}
+{$this size_left_box TUT3_3_BOX}
+{$this size_right_box TUT3_3_TASK}
+{tut_info.lbl set_showing FALSE}
+{tut_task.lbl set_showing FALSE}
+{tut_score.lbl set_showing FALSE}
+{tut_box_right.view set_showing FALSE}
+{tut_header.lbl set_showing FALSE}
+{tut_banner.lbl set_showing FALSE}
+{tut_top_text.view set_showing TRUE}
+{t1_guitar.view set_showing FALSE}
+{track_panel animate_track_out_fast}
+{track_panel set_showing TRUE}
+{$this play_vo hammeron_real_intro}
+WAIT_FOR_VO
+LONG_VO_GAP
+{stop_sfx bkgd_music}
+#define HOPOS_TO_HIT
+(8)
+{tut_box_right.view set_showing TRUE}
+{tut_header.lbl set_showing TRUE}
+{tut_task.lbl set_text tut3_3_task}
+{tut_task.lbl set_showing TRUE}
+{$this
+   update_tut_score
+   {localize tut3_3_score}
+   0
+   HOPOS_TO_HIT}
+{tut_score.lbl set_showing TRUE}
+{new
+   Object
+   tut_33_callback
+   (swingAtHopo_callback
+      {tutorial play_vo hammeron_strum})
+   (hopo_callback
+      {set
+         [hopos_hit]
+         {'+'
+            [hopos_hit]
+            1}}
+      {if
+         {<=
+            [hopos_hit]
+            HOPOS_TO_HIT}
+         {tutorial play_vo hit_vo}
+         {tutorial
+            update_tut_score
+            {localize tut3_3_score}
+            [hopos_hit]
+            HOPOS_TO_HIT}
+         {tut_score.tnm
+            animate
+            (units kTaskTutorialSeconds)
+            (period 0.15)
+            (range 0 2)}})
+   (lesson_running
+      {&&
+         {<
+            [hopos_hit]
+            HOPOS_TO_HIT}
+         {<
+            {player0 percent_complete}
+            END_OF_SONG_PERCENT}})
+   (failed
+      {<
+         [hopos_hit]
+         HOPOS_TO_HIT})
+   (hopos_hit 0)}
+{player_matcher0 add_sink tut_33_callback}
+{game set_paused FALSE}
+{$task
+   wait
+   {tut_33_callback lesson_running}}
+{track_panel animate_track_in_fast}
+{if
+   {!
+      {tut_33_callback failed}}
+   {$task sleep 1}}
+{game set_paused TRUE}
+{tut_top_text.view set_showing FALSE}
+{cond
+   ({tut_33_callback failed}
+      {tut_banner.lbl set_text tut_timeout}
+      {tut_banner.lbl set_showing TRUE}
+      {$this play_vo timeout_vo})
+   (TRUE
+      {tut_banner.lbl set_text tut3_3_done}
+      {tut_banner.lbl set_showing TRUE}
+      {$this play_vo hammeron_real_done})}
+{player_matcher0 remove_sink tut_33_callback}
+{play_sfx bkgd_music}
+WAIT_FOR_VO
+{track_panel set_showing FALSE}
+{$this switch_to_song pulloff tutorial206}

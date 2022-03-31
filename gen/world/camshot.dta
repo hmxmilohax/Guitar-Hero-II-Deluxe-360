@@ -1,0 +1,125 @@
+(hide_crowd FALSE)
+(force_char_lod -1)
+(bad_waypoints
+   ())
+(distance null)
+(facing null)
+(special FALSE)
+(solo ok)
+(walk_ok TRUE)
+(starpower_ok FALSE)
+(far_starpower_ok FALSE)
+(jump_ok TRUE)
+(low_excitement_ok TRUE)
+(crowd_face_camera FALSE)
+(next_shot
+   "")
+(postprocess
+   {object
+      ""})
+(shot_started
+   {handle
+      (world post_switch_cam)})
+(start_shot
+   {if_else
+      [postprocess]
+      {[postprocess]
+         select}
+      {rnd reset_postproc}}
+   #ifndef _SHIP
+   {rnd
+      reflect
+      camera
+      {print
+         "Shot Name:"
+         {$this name}
+         "\n"}
+      {print
+         "distance:"
+         [distance]
+         " facing:"
+         [facing]
+         " solo:"
+         [solo]
+         "\n"}
+      {print
+         "low_excitement_ok:"
+         [low_excitement_ok]
+         " starpower_ok:"
+         [starpower_ok]
+         " walk_ok:"
+         [walk_ok]
+         "\n"}
+      {do
+         ($waypoint
+            {waypoint_nearest
+               guitarist0
+               {'|' kWalkSpot kSoloWalkSpot}})
+         {if
+            {!=
+               $waypoint
+               ""}
+            {print
+               "guitarist0 waypoint: "
+               {$waypoint name}}}}
+      {if
+         {exists guitarist1}
+         {do
+            ($waypoint
+               {waypoint_nearest
+                  guitarist1
+                  {'|' kWalkSpot kSoloWalkSpot}})
+            {if
+               {!=
+                  $waypoint
+                  ""}
+               {print
+                  "guitarist1 waypoint: "
+                  {$waypoint name}}}}}
+      {print
+         "\n"}}
+   #endif
+   {if
+      {&&
+         {==
+            [category]
+            LOSE}}
+      {handle
+         (guitarist0 lose_teleport)}}
+   {handle
+      (world
+         set_min_lod
+         [force_char_lod])}
+   {handle
+      (world resend_excitement)}
+   {if_else
+      {! $camshot_skip_next_update}
+      {if
+         [crowd]
+         {[crowd]
+            crowd_update}
+         {if_else
+            [crowd_face_camera]
+            {[crowd]
+               set
+               rotate
+               TRUE}
+            {[crowd]
+               set
+               rotate
+               FALSE}}}
+      {set $camshot_skip_next_update FALSE}})
+(check_shot
+   {cam_check_shot $this})
+(shot_ok
+   ($prev_shot)
+   {cam_shot_ok $this})
+(shot_over
+   {if
+      {!=
+         [next_shot]
+         ""}
+      {set $camshot_skip_next_update TRUE}
+      {world
+         do_force_shot
+         [next_shot]}})

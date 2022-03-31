@@ -1,0 +1,1410 @@
+#include ..\config\macros.dta
+#define DEFAULT_GH2_PANELDIR_TYPE
+((normal_color
+      {pack_color 1 0 0})
+   (focus_color
+      {pack_color 0 1 0})
+   (disabled_color
+      {pack_color 0.3 0.3 0.3})
+   (selecting_color
+      {pack_color 1 1 1})
+   (focus_scale 1.05)
+   (focus_jitter_interval 0.0)
+   (editor
+      (normal_color
+         color
+         (help
+            "set the color when this button is in normal state"))
+      (focus_color
+         color
+         (help
+            "set the color when this button is in focussed state"))
+      (disabled_color
+         color
+         (help
+            "set the color when this button is in disabled state"))
+      (selecting_color
+         color
+         (help
+            "set the color when this button is in selecting state"))
+      (focus_scale
+         float
+         (help
+            "exactly how big a button should grow when it gains focus (affects x & z)"))
+      (focus_jitter_interval
+         float
+         (help
+            "when a button has focus, jitter every x seconds"))))
+(PanelDir
+   (types
+      (default)
+      (GH2 DEFAULT_GH2_PANELDIR_TYPE)
+      (seldiff_bg
+         DEFAULT_GH2_PANELDIR_TYPE
+         (enter
+            {do
+               ($tex
+                  {sprintf
+                     "sd_poster_%s.tex"
+                     {system_language}})
+               {if
+                  {&&
+                     {exists sd_poster.mat}
+                     {exists $tex}}
+                  {sd_poster.mat set diffuse_tex $tex}}}))
+      (setlist
+         DEFAULT_GH2_PANELDIR_TYPE
+         (enter
+            {do
+               ($tex
+                  {sprintf
+                     "setlist_top_%s.tex"
+                     {system_language}})
+               {if
+                  {&&
+                     {exists setlist_top.mat}
+                     {exists $tex}}
+                  {setlist_top.mat set diffuse_tex $tex}}}))
+      (store_bought
+         DEFAULT_GH2_PANELDIR_TYPE
+         (enter
+            {do
+               ($tex
+                  {sprintf
+                     "sold_tag_%s.tex"
+                     {system_language}})
+               {if
+                  {&&
+                     {exists sold_tag.mat}
+                     {exists $tex}}
+                  {sold_tag.mat set diffuse_tex $tex}}}))
+      (store
+         DEFAULT_GH2_PANELDIR_TYPE
+         (enter
+            {do
+               ($tex
+                  {sprintf
+                     "sold_small_%s.tex"
+                     {system_language}})
+               {if
+                  {&&
+                     {exists soldsticker_01.mat}
+                     {exists $tex}}
+                  {soldsticker_01.mat set diffuse_tex $tex}}}))
+      (newspaper_logo
+         DEFAULT_GH2_PANELDIR_TYPE
+         (enter
+            {do
+               ($tex
+                  {sprintf
+                     "newspaper_logo_gw_%s.tex"
+                     {system_language}})
+               {if
+                  {&&
+                     {exists newspaper_logo.mat}
+                     {exists $tex}}
+                  {newspaper_logo.mat set diffuse_tex $tex}}}))
+      (hud
+         (enter
+            {do
+               ($tex
+                  {sprintf
+                     "youwin_%s.tex"
+                     {system_language}})
+               {if
+                  {&&
+                     {exists youwin.mat}
+                     {exists $tex}}
+                  {youwin.mat set diffuse_tex $tex}}}))))
+(BandLabel
+   (init
+      (type default))
+   (types
+      (default
+         (name
+            "Default")
+         (resource_file
+            "impactor.milo")
+         (texts
+            (text
+               "impactor.txt")))
+      (impactor
+         (name
+            "Impactor")
+         (resource_file
+            "impactor.milo")
+         (texts
+            (text
+               "impactor.txt")))
+      (impactor2
+         (name
+            "Impactor2")
+         (resource_file
+            "impactor2.milo")
+         (texts
+            (text
+               "impactor2.txt")))
+      (impactor_mtv
+         (name
+            "Impactor MTV")
+         (resource_file
+            "impactor_mtv.milo")
+         (texts
+            (text
+               "impactor_mtv.txt")))
+      (cutout
+         (name
+            "Cutout")
+         (resource_file
+            "cutout.milo")
+         (texts
+            (text
+               "cutout.txt")))
+      (postertype
+         (name
+            "Poster Type")
+         (resource_file
+            "postertype.milo")
+         (texts
+            (text
+               "postertype.txt")))
+      (hand
+         (name
+            "Hand")
+         (resource_file
+            "hand.milo")
+         (texts
+            (text
+               "hand.txt")))
+      (oldenglish
+         (name
+            "Old English")
+         (resource_file
+            "oldenglish.milo")
+         (texts
+            (text
+               "oldenglish.txt")))
+      (rokk
+         (name
+            "Rokk")
+         (resource_file
+            "rokk.milo")
+         (texts
+            (text
+               "rokk.txt")))
+      (serif
+         (name
+            "Serif")
+         (resource_file
+            "serif.milo")
+         (texts
+            (text
+               "serif.txt")))
+      (stars
+         (name
+            "Stars")
+         (resource_file
+            "stars.milo")
+         (texts
+            (text
+               "stars.txt")))
+      (tapeworm
+         (name
+            "Tapeworm")
+         (resource_file
+            "tapeworm.milo")
+         (texts
+            (text
+               "tapeworm.txt")))
+      (tapewormscreen
+         (name
+            "Tapeworm Screen")
+         (resource_file
+            "tapewormscreen.milo")
+         (texts
+            (text
+               "tapewormscreen.txt")))
+      (dyingmarker
+         (name
+            "Dying Marker")
+         (resource_file
+            "dyingmarker.milo")
+         (texts
+            (text
+               "dyingmarker.txt")))
+      (rockletters
+         (name
+            "Rock Letters")
+         (resource_file
+            "rockletters.milo")
+         (texts
+            (text
+               "rockletters.txt")))
+      (clarendon
+         (name
+            "Clarendon")
+         (resource_file
+            "clarendon.milo")
+         (texts
+            (text
+               "clarendon.txt")))
+      (helveticablack
+         (name
+            "Helvetica Black")
+         (resource_file
+            "helveticablack.milo")
+         (texts
+            (text
+               "helveticablack.txt")))
+      (helveticablack_overlay
+         (name
+            "Helvetica Black")
+         (resource_file
+            "helveticablack.milo")
+         (texts
+            (text
+               "helveticablack_overlay.txt")))
+      (helveticathin
+         (name
+            "Helvetica Thin")
+         (resource_file
+            "helveticathin.milo")
+         (texts
+            (text
+               "helveticathin.txt")))
+      (impact
+         (name
+            "Impact")
+         (resource_file
+            "impact.milo")
+         (texts
+            (text
+               "impact.txt")))
+      (blockletters
+         (name
+            "Block Letters")
+         (resource_file
+            "blockletters.milo")
+         (texts
+            (text
+               "blockletters.txt")))
+      (blockletters_fill
+         (name
+            "Block Letters Fill")
+         (resource_file
+            "blockletters_fill.milo")
+         (texts
+            (text
+               "blockletters_fill.txt")))
+      (helveticablackcondensed
+         (name
+            "Helvetica Black Condensed")
+         (resource_file
+            "helveticablackcondensed.milo")
+         (texts
+            (text
+               "helveticablackcondensed.txt")))
+      (receipt
+         (name
+            "Receipt")
+         (resource_file
+            "receipt.milo")
+         (texts
+            (text
+               "receipt.txt")))
+      (gunsho
+         (name
+            "Gunsho")
+         (resource_file
+            "gunsho.milo")
+         (texts
+            (text
+               "gunsho.txt")))))
+(BandButton
+   (resource_file
+      "../ui/button.milo")
+   (init
+      (type default))
+   (types
+      (default
+         (name
+            "default")
+         (resource_file
+            "impactor.milo")
+         (texts
+            (text
+               "impactor.txt")))
+      (impactor
+         (name
+            "Impactor")
+         (resource_file
+            "impactor.milo")
+         (texts
+            (text
+               "impactor.txt")))
+      (impactor2
+         (name
+            "Impactor2")
+         (resource_file
+            "impactor2.milo")
+         (texts
+            (text
+               "impactor2.txt")))
+      (impactor_mtv
+         (name
+            "Impactor MTV")
+         (resource_file
+            "impactor_mtv.milo")
+         (texts
+            (text
+               "impactor_mtv.txt")))
+      (cutout
+         (name
+            "Cutout")
+         (resource_file
+            "cutout.milo")
+         (texts
+            (text
+               "cutout.txt")))
+      (hand
+         (name
+            "Hand")
+         (resource_file
+            "hand.milo")
+         (texts
+            (text
+               "hand.txt")))
+      (oldenglish
+         (name
+            "Old English")
+         (resource_file
+            "oldenglish.milo")
+         (texts
+            (text
+               "oldenglish.txt")))
+      (axaxax
+         (name
+            "Toggle")
+         (resource_file
+            "axaxax.milo")
+         (texts
+            (text
+               "axaxax.txt")))
+      (rokk
+         (name
+            "Rokk")
+         (resource_file
+            "rokk.milo")
+         (texts
+            (text
+               "rokk.txt")))
+      (serif
+         (name
+            "Serif")
+         (resource_file
+            "serif.milo")
+         (texts
+            (text
+               "serif.txt")))
+      (tapeworm
+         (name
+            "Tapeworm")
+         (resource_file
+            "tapeworm.milo")
+         (texts
+            (text
+               "tapeworm.txt")))
+      (tapewormscreen
+         (name
+            "Tapeworm Screen")
+         (resource_file
+            "tapewormscreen.milo")
+         (texts
+            (text
+               "tapewormscreen.txt")))
+      (dyingmarker
+         (name
+            "Dying Marker")
+         (resource_file
+            "dyingmarker.milo")
+         (texts
+            (text
+               "dyingmarker.txt")))
+      (rockletters
+         (name
+            "Rock Letters")
+         (resource_file
+            "rockletters.milo")
+         (texts
+            (text
+               "rockletters.txt")))
+      (clarendon
+         (name
+            "Clarendon")
+         (resource_file
+            "clarendon.milo")
+         (texts
+            (text
+               "clarendon.txt")))
+      (helveticablack
+         (name
+            "Helvetica Black")
+         (resource_file
+            "helveticablack.milo")
+         (texts
+            (text
+               "helveticablack.txt")))
+      (helveticathin
+         (name
+            "Helvetica Thin")
+         (resource_file
+            "helveticathin.milo")
+         (texts
+            (text
+               "helveticathin.txt")))
+      (impact
+         (name
+            "Impact")
+         (resource_file
+            "impact.milo")
+         (texts
+            (text
+               "impact.txt")))
+      (blockletters
+         (name
+            "Block Letters")
+         (resource_file
+            "blockletters.milo")
+         (texts
+            (text
+               "blockletters.txt")))
+      (blockletters_fill
+         (name
+            "Block Letters Fill")
+         (resource_file
+            "blockletters_fill.milo")
+         (texts
+            (text
+               "blockletters_fill.txt")))
+      (helveticablackcondensed
+         (name
+            "Helvetica Black Condensed")
+         (resource_file
+            "helveticablackcondensed.milo")
+         (texts
+            (text
+               "helveticablackcondensed.txt")))
+      (receipt
+         (name
+            "Receipt")
+         (resource_file
+            "receipt.milo")
+         (texts
+            (text
+               "receipt.txt")))
+      (gunsho
+         (name
+            "Gunsho")
+         (resource_file
+            "gunsho.milo")
+         (texts
+            (text
+               "gunsho.txt")))))
+(UIPicture
+   (types
+      (default
+         (resource_file
+            "picture.milo")
+         (mesh
+            "picture.mesh")
+         (tex_file
+            "image/picture_keep.png"))
+      (venue
+         (name
+            "Venue")
+         (resource_file
+            "picture_venue.milo")
+         (mesh
+            "picture_venue.mesh")
+         (tex_file
+            "image/picture_venue_keep.png"))
+      (endgame
+         (name
+            "End Game")
+         (resource_file
+            "picture_endgame.milo")
+         (mesh
+            "picture_endgame.mesh")
+         (tex_file
+            "image/og/photo_metal10_keep.bmp"))
+      (char_select
+         (name
+            "Char Select Alterna")
+         (resource_file
+            "picture.milo")
+         (mesh
+            "pic_char_sel.mesh")
+         (tex_file
+            "image/char_select_alterna.png"))
+      (store_cd
+         (name
+            "Store CD")
+         (resource_file
+            "store_cd.milo")
+         (mesh
+            "store_cd.mesh")
+         (tex_file
+            "image/og/us_logo_generic_keep.png"))))
+(BandPlacer
+   (types
+      (char
+         (resource_file
+            "ui/char_placer.rnd")
+         (group
+            "char_placer.view"))
+      (guitar
+         (resource_file
+            "ui/dummy_guitar.RND")
+         (group
+            "guitar.view"))))
+(BandTextEntry
+   (resource_file
+      "../ui/textentry.milo")
+   (init
+      (type default))
+   (types
+      (default
+         (name
+            "Default")
+         (text entry_profile.txt)
+         (characters
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!'. ")
+         (length 8))
+      (high_score
+         (name
+            "High Score")
+         (text label_hand_pen.txt)
+         (characters
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!'. ")
+         (length 10))
+      (band_name
+         (name
+            "Band Name")
+         (text entry_profile.txt)
+         (characters
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!'. ")
+         (length 20))))
+(UIProxy
+   (types
+      (guitar
+         (file
+            "../char/og/guitars/guitar_sg.milo")
+         (main_trans
+            "guitar.mesh"))))
+(BandSlider
+   (resource_file
+      "../ui/slider.milo")
+   (init
+      (type default))
+   (types
+      (default
+         (name
+            "default")
+         (text
+            "char_slider.txt")
+         (texts
+            (text
+               "char_slider.txt"
+               (normal
+                  "helveticablack.font")
+               (disabled
+                  "helveticablack.font")
+               (focused
+                  "helveticablack.font")
+               (selecting
+                  "helveticablack.font")))
+         (meshes
+            ("char_slider.mesh"
+               (normal
+                  "char_slider_default.mat")
+               (focused
+                  "char_slider_focus.mat")
+               (disabled
+                  "char_slider_default.mat")
+               (selecting
+                  "char_slider_selected.mat"))
+            ("char_slider_pod.mesh"
+               (normal
+                  "char_slider_pod.mat")
+               (focused
+                  "char_slider_pod_focus.mat")
+               (disabled
+                  "char_slider_pod.mat")
+               (selecting
+                  "char_slider_pod_selected.mat"))))
+      (char
+         (name
+            "Character")
+         (text
+            "char_slider.txt")
+         (texts
+            (text
+               "char_slider.txt"
+               (normal
+                  "helveticablack.font")
+               (disabled
+                  "helveticablack.font")
+               (focused
+                  "helveticablack.font")
+               (selecting
+                  "helveticablack.font")))
+         (meshes
+            ("char_slider.mesh"
+               (normal
+                  "char_slider_default.mat")
+               (focused
+                  "char_slider_focus.mat")
+               (disabled
+                  "char_slider_default.mat")
+               (selecting
+                  "char_slider_selected.mat"))
+            ("char_slider_pod.mesh"
+               (normal
+                  "char_slider_pod.mat")
+               (focused
+                  "char_slider_pod_focus.mat")
+               (disabled
+                  "char_slider_pod.mat")
+               (selecting
+                  "char_slider_pod_selected.mat"))))
+      (aaron
+         (name
+            "aaron")
+         (text
+            "char_slider.txt")
+         (texts
+            (text
+               "char_slider.txt"
+               (normal
+                  "helveticablack.font")
+               (disabled
+                  "helveticablack.font")
+               (focused
+                  "helveticablack.font")
+               (selecting
+                  "helveticablack.font")))
+         (meshes
+            ("char_slider.mesh"
+               (normal
+                  "aaron_slider_default.mat")
+               (focused
+                  "aaron_slider_focus.mat")
+               (disabled
+                  "aaron_slider_default.mat")
+               (selecting
+                  "aaron_slider_selected.mat"))
+            ("char_slider_pod.mesh"
+               (normal
+                  "aaron_slider_pod.mat")
+               (focused
+                  "aaron_slider_pod_focus.mat")
+               (disabled
+                  "aaron_slider_pod.mat")
+               (selecting
+                  "aaron_slider_pod_selected.mat"))))))
+(CheckBox
+   (resource_file
+      "../ui/checkbox.milo")
+   (init
+      (type default))
+   (types
+      (default
+         (name
+            "default")
+         (mesh
+            "checkbox_toggle.mesh")
+         (mat_on
+            "checkbox_on.mat")
+         (mat_off
+            "checkbox_off.mat"))))
+#define LIST_STATS_COLORS
+((normal 0.1 0.1 0.1)
+   (focused 0.1 0.1 0.1)
+   (disabled 0.3 0.3 0.3)
+   (selecting 1 1 1))
+#define LIST_STATS_BEST
+((normal 0.1 0.5 0.1)
+   (focused 0.1 0.5 0.1)
+   (disabled 0 0 0)
+   (selecting 1 1 1))
+#define LIST_STATS_WORST
+((normal 0.5 0.1 0.1)
+   (focused 0.5 0.1 0.1)
+   (disabled 0 0 0)
+   (selecting 1 1 1))
+#define LIST_STATS_TYPE
+((vertical TRUE)
+   (element
+      ((text
+            "section.txt")
+         (text
+            "notes1.txt")
+         (text
+            "notes1_best.txt")
+         (text
+            "notes1_worst.txt")
+         (text
+            "notes2.txt")
+         (text
+            "notes2_best.txt")
+         (text
+            "notes2_worst.txt")))
+   (back_arrow
+      "")
+   (next_arrow
+      "")
+   (highlight
+      "")
+   (colors
+      (((normal LIST_STATS_COLORS)
+            (highlight LIST_STATS_COLORS))
+         ((normal LIST_STATS_COLORS)
+            (highlight LIST_STATS_COLORS))
+         ((normal LIST_STATS_BEST)
+            (highlight LIST_STATS_BEST))
+         ((normal LIST_STATS_WORST)
+            (highlight LIST_STATS_WORST))
+         ((normal LIST_STATS_COLORS)
+            (highlight LIST_STATS_COLORS))
+         ((normal LIST_STATS_BEST)
+            (highlight LIST_STATS_BEST))
+         ((normal LIST_STATS_WORST)
+            (highlight LIST_STATS_WORST))))
+   (provider
+      ("text"
+         "text"
+         "text"
+         "text"
+         "text"
+         "text"
+         "text")))
+(UIList
+   (types
+      (song
+         (resource_file
+            "list_song.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "header.txt")
+               (text
+                  "list.txt")
+               (text
+                  "stars.txt")
+               (mesh
+                  "stars_gold.mesh")
+               (text
+                  "score.txt")
+               (mesh
+                  "checkmark.mesh")
+               (text
+                  "blurb.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
+                  (highlight
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 0 0)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 0 0)
+                     (selecting 1 1 1))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 1 0 0)
+                     (focused 1 0 0)
+                     (disabled 1 0 0)
+                     (selecting 1 0 0))
+                  (highlight
+                     (normal 1 0 0)
+                     (focused 1 0 0)
+                     (disabled 1 0 0)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.1 0.1 0.1)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.1 0.1 0.1)
+                     (selecting 0.1 0.1 0.1))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))))
+         (provider
+            ("header"
+               "text"
+               "stars"
+               "stars_gold_5.mat"
+               "scores"
+               "checkmark.mat"
+               "blurb")))
+      (song2
+         (resource_file
+            "list_song2.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "header.txt")
+               (text
+                  "list.txt")
+               (text
+                  "stars.txt")
+               (mesh
+                  "stars_gold.mesh")
+               (text
+                  "score.txt")
+               (mesh
+                  "checkmark.mesh")
+               (text
+                  "blurb.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
+                  (highlight
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 0 0)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 0 0)
+                     (selecting 1 1 1))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 1 0 0)
+                     (focused 1 0 0)
+                     (disabled 1 0 0)
+                     (selecting 1 0 0))
+                  (highlight
+                     (normal 1 0 0)
+                     (focused 1 0 0)
+                     (disabled 1 0 0)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.1 0.1 0.1)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.1 0.1 0.1)
+                     (selecting 0.1 0.1 0.1))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))))
+         (provider
+            ("header"
+               "text"
+               "stars"
+               "stars_gold_5.mat"
+               "scores"
+               "checkmark.mat"
+               "blurb")))
+      (song3
+         (resource_file
+            "list_song3.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "header.txt")
+               (text
+                  "list.txt")
+               (text
+                  "stars.txt")
+               (mesh
+                  "stars_gold.mesh")
+               (text
+                  "score.txt")
+               (mesh
+                  "checkmark.mesh")
+               (text
+                  "blurb.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
+                  (highlight
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 0 0)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 0 0)
+                     (selecting 1 1 1))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 1 0 0)
+                     (focused 1 0 0)
+                     (disabled 1 0 0)
+                     (selecting 1 0 0))
+                  (highlight
+                     (normal 1 0 0)
+                     (focused 1 0 0)
+                     (disabled 1 0 0)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.1 0.1 0.1)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.1 0.1 0.1)
+                     (selecting 0.1 0.1 0.1))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))))
+         (provider
+            ("header"
+               "text"
+               "stars"
+               "stars_gold_5.mat"
+               "scores"
+               "checkmark.mat"
+               "blurb")))
+      (venue
+         (resource_file
+            "list.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "list.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 0.5 0.5 0.5)
+                     (focused 1 1 1)
+                     (disabled 0.3 0.3 0.3)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 0.5 0.5 0)
+                     (focused 1 1 0)
+                     (disabled 0.5 0.5 0)
+                     (selecting 1 0 0))
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)))))
+         (provider
+            ("text")))
+      (credits
+         (resource_file
+            "list_credits.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "title.txt")
+               (text
+                  "center.txt")
+               (text
+                  "name.txt")
+               (text
+                  "centername.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 0.7 0.7 0.7)
+                     (focused 1 1 1)
+                     (disabled 0.3 0.3 0.3)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 0.5 0.5 0)
+                     (focused 1 1 1)
+                     (disabled 0.5 0.5 0)
+                     (selecting 1 0 0)))
+               ((normal
+                     (normal 0 0 0)
+                     (focused 1 1 1)
+                     (disabled 0 0 0)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 0.5 0.5 0)
+                     (focused 1 1 1)
+                     (disabled 0.5 0.5 0)
+                     (selecting 1 0 0)))
+               ((normal
+                     (normal 0 0 0)
+                     (focused 1 1 1)
+                     (disabled 0 0 0)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 0.5 0.5 0)
+                     (focused 1 1 1)
+                     (disabled 0.5 0.5 0)
+                     (selecting 1 0 0)))
+               ((normal
+                     (normal 0 0 0)
+                     (focused 1 1 1)
+                     (disabled 0 0 0)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 0.5 0.5 0)
+                     (focused 1 1 1)
+                     (disabled 0.5 0.5 0)
+                     (selecting 1 0 0)))))
+         (provider
+            ("text"
+               "text"
+               "text"
+               "text")))
+      (stats
+         (resource_file
+            "list_stats.milo")
+         LIST_STATS_TYPE)
+      (stats_multi
+         (resource_file
+            "list_stats_multi.milo")
+         LIST_STATS_TYPE)
+      (list_section
+         (resource_file
+            "list_section.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "list.txt")))
+         (back_arrow
+            "back.mesh")
+         (next_arrow
+            "next.mesh")
+         (highlight
+            "highlight.mesh")
+         (colors
+            (((normal
+                     (normal 0 0 0)
+                     (focused 0 0 0)
+                     (disabled 0.7 0.7 0.7)
+                     (selecting 0 0 0))
+                  (highlight
+                     (normal 0 0 0)
+                     (focused 0.56 0 0)
+                     (disabled 0.7 0.7 0.7)
+                     (selecting 0.9 0.13 0.13))
+                  (disabled
+                     (normal 0.7 0.7 0.7)
+                     (focused 0.7 0.7 0.7)
+                     (disabled 0.7 0.7 0.7)
+                     (selecting 0.7 0.7 0.7)))))
+         (provider
+            ("text")))
+      (leaderboard
+         (resource_file
+            "list_leaderboard.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "rank.txt")
+               (text
+                  "name.txt"
+                  (max_width 185))
+               (text
+                  "score.txt")
+               (text
+                  "diff.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "highlight.mesh")
+         (colors
+            (((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0)))
+               ((normal
+                     (normal 0.1 0.1 0.1)
+                     (focused 0.1 0.1 0.1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.1 0.1 0.1))
+                  (highlight
+                     (normal 0.1 0.1 0.1)
+                     (focused 0 0 1)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 1 0 0)))))
+         (provider
+            ("rank"
+               "name"
+               "score"
+               "diff")))))

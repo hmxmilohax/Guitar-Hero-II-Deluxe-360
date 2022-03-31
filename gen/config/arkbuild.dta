@@ -1,0 +1,16 @@
+#include macros.dta
+#define ARK_SONG_LIST
+((arterialblack johnthefisherman psychobilly warpigs whowasinmyroom youreallygotme yyz))
+#define ARK_VENUE_LIST
+((arena big battle fest small1 small2 stone theatre))
+(ark_build
+   (main
+      (dirs
+         SYSTEM_DIRS
+         "../../system/run/band")
+      (file_exts STD_EXTS PS2_EXTS .pss)
+      (skip_files _xbox)
+      (skip_dirs ng STD_SKIP_DIRS deu esl fre ita)
+      (order
+         #include arkorder.dta)))
+#merge ../../../system/run/config/arkbuild.dta

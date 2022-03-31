@@ -1,0 +1,33 @@
+{new
+   GHPanel
+   training_panel
+   (file training.milo)
+   (focus tutorials.btn)
+   (poll
+      {if_else
+         {&&
+            {!
+               {campaign tutorial_access}}
+            {==
+               {game get_controller 0}
+               joypad_guitar}}
+         {$this disable tutorials.btn}
+         {$this enable tutorials.btn}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (tutorials.btn
+            {ui goto_screen tutorials_screen})
+         (practice.btn
+            {gamecfg set mode practice}
+            {ui goto_screen practice_selsong_screen})})}
+{new
+   GHScreen
+   training_screen
+   (panels meta training_panel helpbar)
+   (focus training_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))}

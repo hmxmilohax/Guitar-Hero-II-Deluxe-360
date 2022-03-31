@@ -1,0 +1,23 @@
+(base_dir
+   "BASLUS-21447")
+(elf_name
+   "SLUS_214.47")
+(ps2_icon
+   (file
+      "gh.icn")
+   (bg_transparency 128)
+   (bg_colors
+      (0 0 0)
+      (0 0 0)
+      (192 0 0)
+      (80 0 0))
+   (lit_dirs
+      (0.2 1 0)
+      (1 0 1)
+      (1 -1 0))
+   (lit_colors
+      (1 1 1)
+      (1 0.75 0)
+      (1 0.75 0))
+   (ambient 0.5 0.8 0.5))
+(testing FALSE)

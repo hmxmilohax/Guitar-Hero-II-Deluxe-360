@@ -1,0 +1,177 @@
+{new
+   HelpBarPanel
+   helpbar
+   (file helpbar.milo)
+   (max_labels 4)
+   (max_buttons 4)
+   (button_spacing 35)
+   (strumbar_spacing 70)
+   (text_spacing 30)}
+{new
+   MetaPanel
+   meta
+   (file
+      "")
+   (won_campaign FALSE)
+   (load
+      {set_loader_period 13})
+   (enter
+      {set_loader_period 5}
+      {profilemgr enable_xmp})
+   (exit
+      {profilemgr disable_xmp})
+   (set_defaults
+      {set $first_screen main_screen}
+      {set $autosave FALSE}
+      {set $main_entered FALSE}
+      {gamecfg set mode quickplay})}
+#define CUT_SCENE_VIDEO
+(intro.wmv)
+{new
+   GHScreen
+   cut_scene_screen
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (poll_count 2)
+   (enter
+      {set
+         [poll_count]
+         2})
+   (poll
+      {if
+         {>
+            [poll_count]
+            0}
+         {set
+            [poll_count]
+            {-
+               [poll_count]
+               1}}
+         {if
+            {==
+               0
+               [poll_count]}
+            {$this play_movie}}})
+   (play_movie
+      {meta play_movie CUT_SCENE_VIDEO}
+      {ui goto_screen splash_screen})}
+#define DELAY_BEFORE_ATTRACT_SEC
+(60)
+{new
+   UIPanel
+   splash_panel
+   (file splash.milo)
+   (player_num 0)
+   (finish_load
+      {splash.view set_frame 0}
+      {splash_legal.view set_showing TRUE})
+   (enter
+      {campaign clear}
+      {reset_all_cheats}
+      {ui set_virtual_dpad FALSE}
+      {splash.view
+         animate
+         (period 3.333)
+         (range 0 100)}
+      {set
+         $enter_time
+         {taskmgr ui_seconds}}
+      {game_screen set attract_mode FALSE}
+      {set $entering_attract_mode FALSE}
+      {set $disable_attract_mode FALSE}
+      {synth play_sequence meta_lick})
+   (poll
+      {if_else
+         {&&
+            {! $entering_attract_mode}
+            {!
+               {ui in_transition}}
+            {==
+               {ui current_screen}
+               splash_screen}}
+         {do
+            ($now
+               {-
+                  {taskmgr ui_seconds}
+                  $enter_time})
+            {if
+               {> $now DELAY_BEFORE_ATTRACT_SEC}
+               {if
+                  {! $disable_attract_mode}
+                  {$this enter_attract_mode}}}}
+         {set
+            $enter_time
+            {taskmgr ui_seconds}}})
+   (enter_attract_mode
+      {gamecfg set mode attract}
+      {set $entering_attract_mode TRUE}
+      {game
+         set_song
+         {campaign pick_attract_song}}
+      {{game get_player_config 0}
+         set_difficulty
+         kDifficultyExpert}
+      {game set_quickplay}
+      {game_screen set attract_mode TRUE}
+      {ui goto_screen loading_screen})
+   (BUTTON_DOWN_MSG
+      {if
+         {meta is_any_button $button $player_num}
+         {synth play_sequence button_select}
+         {profilemgr set_active_pad_from_player $player_num}
+         {gamecfg
+            set_player
+            0
+            {profilemgr active_padnum}}
+         {ui set_virtual_dpad TRUE}
+         {goto_startup_load}})}
+{new
+   GHScreen
+   splash_screen
+   (panels meta splash_panel)
+   (focus splash_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (allow_all_controllers TRUE)
+   (enter
+      {profilemgr clear_active_pad}
+      {if
+         $signin_changed_notification
+         {set $signin_changed_notification FALSE}
+         {ui push_screen signin_changed_confirmation_screen}})}
+{new
+   UIPanel
+   guitar_help_panel
+   (file guitar_help.milo)
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_X}
+         {synth play_sequence button_select}
+         {ui goto_screen main_screen}})}
+{new
+   GHScreen
+   guitar_help_screen
+   (panels meta guitar_help_panel helpbar)
+   (focus guitar_help_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue))))}
+{new
+   GHPanel
+   signin_changed_confirmation_panel
+   (file signin_changed.milo)
+   (focus continue.btn)}
+{new
+   GHScreen
+   signin_changed_confirmation_screen
+   (panels signin_changed_confirmation_panel)
+   (focus signin_changed_confirmation_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (continue.btn
+            {ui pop_screen})})}

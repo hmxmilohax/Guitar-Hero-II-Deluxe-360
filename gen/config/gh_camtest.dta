@@ -1,0 +1,14 @@
+#define CAMTEST
+(1)
+(rnd
+   (overlays
+      (camtest
+         (lines 1)
+         (showing 1))))
+(quick_cheats
+   (keyboard
+      (t
+         {camtest_next_shots})
+      (r
+         {camtest_pick_shot})))
+#merge gh.dta

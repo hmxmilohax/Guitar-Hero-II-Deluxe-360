@@ -1,0 +1,1519 @@
+{new
+   GHPanel
+   multi_panel
+   (file multi.milo)
+   (focus coop.btn)
+   (enter
+      {if_else
+         {campaign is_unlocked multi_fo}
+         {do
+            {$this enable faceoff.btn}
+            {faceoff.btn set_showing TRUE}}
+         {do
+            {$this disable faceoff.btn}
+            {faceoff.btn set_showing FALSE}}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (coop.btn
+            {gamecfg set mode multi_coop}
+            {ui goto_screen multi_coop_venue_screen})
+         (versus.btn
+            {gamecfg set mode multi_vs}
+            {ui goto_screen multi_sel_character_screen})
+         (faceoff.btn
+            {gamecfg set mode multi_fo}
+            {ui goto_screen multi_sel_character_screen})})}
+{new
+   GHScreen
+   multi_screen
+   (panels meta multi_panel helpbar)
+   (focus multi_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))}
+#define MULTISELECT_OUTFIT_HANDLERS
+((sel_buttons outfit1.btn outfit2.btn)
+   (enter
+      {set
+         [active]
+         FALSE})
+   (FOCUS_MSG
+      {if
+         {==
+            {$this loaded_dir}
+            $panel_dir}
+         {do
+            ($config
+               {game
+                  get_player_config
+                  [player_num]})
+            ($idx
+               {if_else
+                  {==
+                     $new_focus
+                     "outfit1.btn"}
+                  0
+                  1})
+            ($outfit
+               {$config set_outfit_index $idx})
+            ($old_char
+               {char_multi
+                  get_char
+                  [player_num]})
+            {if
+               {char_multi
+                  show_char
+                  [player_num]
+                  $outfit}
+               {do
+                  ($new_char
+                     {char_multi
+                        get_char
+                        [player_num]})
+                  {if_else
+                     {&& $old_char $new_char}
+                     {do
+                        {reset_hair $new_char}
+                        {{$new_char find main.drv}
+                           transfer
+                           {$old_char find main.drv}}}
+                     {char_multi
+                        char_event
+                        [player_num]
+                        select}}}}}}))
+{new
+   MultiSelectPanel
+   multi_char_outfit0
+   (file multi_char_outfit1.milo)
+   (player_num 0)
+   (ready_label
+      "ready.grp")
+   (reset_focus TRUE)
+   (focus '')
+   MULTISELECT_OUTFIT_HANDLERS}
+{new
+   MultiSelectPanel
+   multi_char_outfit1
+   (file multi_char_outfit2.milo)
+   (player_num 1)
+   (ready_label
+      "ready.grp")
+   (reset_focus TRUE)
+   (focus '')
+   MULTISELECT_OUTFIT_HANDLERS}
+{new
+   MultiCharSelPanel
+   multi_sel_character_panel
+   (file multi_sel_character.milo)
+   (skin_select1 FALSE)
+   (skin_select2 FALSE)
+   (enter
+      {set
+         [skin_select1]
+         FALSE}
+      {set
+         [skin_select2]
+         FALSE}
+      {char_highlight_p1.mnm
+         animate
+         (loop 0 3)
+         (period 0.25)
+         (units kTaskUISeconds)}
+      {char_highlight_p2.mnm
+         animate
+         (loop 0 3)
+         (period 0.25)
+         (units kTaskUISeconds)}
+      {foreach
+         $c
+         CHARACTERS
+         {do
+            ($mesh
+               {sprint
+                  "char_"
+                  $c
+                  ".mesh"})
+            {if_else
+               {campaign is_unlocked $c}
+               {$mesh
+                  set_mat
+                  {sprint
+                     "char_"
+                     $c
+                     ".mat"}}
+               {$mesh set_mat char_locked.mat}}}})
+   (choose_skins
+      ($player)
+      {if_else
+         {== $player 0}
+         {do
+            {set
+               [skin_select1]
+               TRUE}}
+         {do
+            {set
+               [skin_select2]
+               TRUE}}})
+   (char_navigator CHARACTERS)}
+{new
+   CharsysPanel
+   char_multi
+   (file char_multi.milo)
+   (num_placers 2)
+   (load_order LOAD_CHARACTERS)
+   (enter
+      {$this
+         show_char
+         0
+         {game get_character_outfit}}
+      {do
+         ($player2
+            {game get_player_config 1})
+         {$this
+            show_char
+            1
+            {$player2 get_character_outfit}}})}
+{new
+   MultiSelectScreen
+   multi_sel_character_screen
+   (panels meta multi_sel_character_panel char_multi multi_char_outfit0 multi_char_outfit1 helpbar)
+   (focus multi_sel_character_panel)
+   (panel_base_name multi_char_outfit)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (exclusive FALSE)
+   (alt_cam_anim TRUE)
+   (get_selection
+      ($player)
+      {if_else
+         {==
+            {{game get_player_config $player}
+               get_outfit_index}
+            0}
+         outfit1
+         outfit2})
+   (set_selection
+      ($player $selection))
+   (all_ready
+      {ui goto_screen multi_sel_guitar_screen})
+   (not_ready)
+   (scroll_char_sel
+      ($playerNum)
+      {do
+         ($config
+            {game get_player_config $playerNum})
+         {{multi_sel_character_panel
+               find
+               {sprintf
+                  "sc%d_char_nm.lbl"
+                  {'+' $playerNum 1}}}
+            set_text
+            {$config get_character}}
+         {char_multi
+            show_char
+            $playerNum
+            {$config get_character_outfit}}
+         {char_multi char_event $playerNum animate}
+         {{multi_sel_character_panel
+               find
+               {sprintf
+                  "sc%d_char_highlight.tnm"
+                  {'+' $playerNum 1}}}
+            set_frame
+            {$this get_char_idx $playerNum}}})
+   (enter
+      {animate_forever_30fps $this multi_sel_character.view}
+      {$this scroll_char_sel 0}
+      {$this scroll_char_sel 1})
+   (TRANSITION_COMPLETE_MSG
+      {char_multi
+         set_placer
+         0
+         {multi_sel_character_panel find char_multi0.placer}}
+      {char_multi
+         set_placer
+         1
+         {multi_sel_character_panel find char_multi1.placer}}
+      {char_multi
+         set_env
+         0
+         {multi_sel_character_panel find character01.env}}
+      {char_multi
+         set_env
+         1
+         {multi_sel_character_panel find character02.env}})
+   (exit
+      {char_multi set_placer 0}
+      {char_multi set_placer 1})
+   (poll
+      {{multi_sel_character_panel find msc_loading1.lbl}
+         set_showing
+         {!
+            {char_multi is_char_loaded 0}}}
+      {{multi_sel_character_panel find msc_loading2.lbl}
+         set_showing
+         {!
+            {char_multi is_char_loaded 1}}})
+   (multi_char_scroll
+      ($player_num)
+      {synth play_sequence button_toggle}
+      {if_else
+         {== $player_num 0}
+         {$this scroll_char_sel 0}
+         {$this scroll_char_sel 1}})
+   (multi_char_selected
+      ($player)
+      {synth play_sequence button_select}
+      {if_else
+         {== $player 0}
+         {do
+            ($config
+               {game get_player_config 0})
+            {multi_char_outfit0 set_active TRUE}
+            {if_else
+               {>
+                  {$this
+                     num_outfits
+                     {$config get_character}}
+                  1}
+               {do
+                  {{multi_char_outfit0 find outfit.grp}
+                     set_showing
+                     TRUE}
+                  {{multi_char_outfit0 find outfit1.btn}
+                     set_text
+                     {sprint
+                        {$this
+                           get_outfit
+                           {$config get_character}
+                           0}
+                        _outfit}}
+                  {{multi_char_outfit0 find outfit2.btn}
+                     set_text
+                     {sprint
+                        {$this
+                           get_outfit
+                           {$config get_character}
+                           1}
+                        _outfit}}
+                  {multi_char_outfit0
+                     set_focus
+                     {multi_char_outfit0
+                        find
+                        {if_else
+                           {==
+                              {$config get_outfit_index}
+                              0}
+                           outfit1.btn
+                           outfit2.btn}}}}
+               {do
+                  {{multi_char_outfit0 find outfit.grp}
+                     set_showing
+                     FALSE}
+                  {multi_char_outfit0 force_select outfit1.btn}}}}
+         {do
+            ($config
+               {game get_player_config 1})
+            {multi_char_outfit1 set_active TRUE}
+            {if_else
+               {>
+                  {$this
+                     num_outfits
+                     {$config get_character}}
+                  1}
+               {do
+                  {{multi_char_outfit1 find outfit.grp}
+                     set_showing
+                     TRUE}
+                  {{multi_char_outfit1 find outfit1.btn}
+                     set_text
+                     {sprint
+                        {$this
+                           get_outfit
+                           {$config get_character}
+                           0}
+                        _outfit}}
+                  {{multi_char_outfit1 find outfit2.btn}
+                     set_text
+                     {sprint
+                        {$this
+                           get_outfit
+                           {$config get_character}
+                           1}
+                        _outfit}}
+                  {multi_char_outfit1
+                     set_focus
+                     {multi_char_outfit1
+                        find
+                        {if_else
+                           {==
+                              {$config get_outfit_index}
+                              0}
+                           outfit1.btn
+                           outfit2.btn}}}}
+               {do
+                  {{multi_char_outfit1 find outfit.grp}
+                     set_showing
+                     FALSE}
+                  {multi_char_outfit1 force_select outfit1.btn}}}}})
+   (chars_selected
+      {ui goto_screen multi_sel_guitar_screen})
+   (deselect_char
+      ($player)
+      {synth play_sequence button_back.cue}
+      {if_else
+         {== $player 0}
+         {do
+            {{multi_char_outfit0 find outfit.grp}
+               set_showing
+               TRUE}
+            {multi_char_outfit0
+               set_focus
+               {multi_char_outfit0 find outfit1.btn}}
+            {multi_char_outfit0 set_active FALSE}}
+         {do
+            {{multi_char_outfit1 find outfit.grp}
+               set_showing
+               TRUE}
+            {multi_char_outfit1
+               set_focus
+               {multi_char_outfit1 find outfit1.btn}}
+            {multi_char_outfit1 set_active FALSE}}}
+      {{game get_player_config $player}
+         set_outfit_index
+         0})
+   (multi_select
+      ($part $panel $selected)
+      {if_else
+         {== $panel multi_char_outfit0}
+         {{multi_char_outfit0 find outfit.grp}
+            set_showing
+            {! $selected}}
+         {{multi_char_outfit1 find outfit.grp}
+            set_showing
+            {! $selected}}}
+      {if
+         {! $selected}
+         {do
+            ($config $idx)
+            {if_else
+               {== $panel multi_char_outfit0}
+               {set $idx 0}
+               {set $idx 1}}
+            {set
+               $config
+               {game get_player_config $idx}}
+            {if
+               {<
+                  {$this
+                     num_outfits
+                     {$config get_character}}
+                  2}
+               {synth play_sequence button_back.cue}
+               {$panel set_active FALSE}
+               {multi_sel_character_panel set_frozen $idx FALSE}}}})}
+{new
+   GuitarSelectPanel
+   multi_sel_guitar_panel
+   (file multi_sel_guitar.milo)
+   (multiplayer TRUE)
+   (quickplay TRUE TRUE)
+   (enter
+      {sg1_player.lbl
+         set_text
+         {sprintf
+            {localize sg_player1}
+            {localize
+               {$this get_instrument_type 0}}}}
+      {sg2_player.lbl
+         set_text
+         {sprintf
+            {localize sg_player2}
+            {localize
+               {$this get_instrument_type 1}}}}
+      {$this set_skin_select 0 FALSE}
+      {$this set_skin_select 1 FALSE}
+      {skin_select_p1.grp set_showing FALSE}
+      {skin_select_p2.grp set_showing FALSE})
+   (update_guitar_label
+      ($player)
+      {do
+         ($guitar
+            {$this get_selected_guitar $player})
+         ($skin
+            {$this get_selected_skin $player})
+         {if_else
+            {== $player 0}
+            {do
+               {sg1_guitar_nm.lbl set_text $guitar}
+               {sg1_guitar_skin.lbl set_text $skin}}
+            {do
+               {sg2_guitar_nm.lbl set_text $guitar}
+               {sg2_guitar_skin.lbl set_text $skin}}}})
+   (choose_skins
+      ($player)
+      {$this set_skin_select $player TRUE}
+      {if_else
+         {== $player 0}
+         {skin_select_p1.grp set_showing TRUE}
+         {skin_select_p2.grp set_showing TRUE}})
+   (unchoose_skins
+      ($player)
+      {synth play_sequence button_back.cue}
+      {$this set_skin_select $player FALSE}
+      {if_else
+         {== $player 0}
+         {skin_select_p1.grp set_showing FALSE}
+         {skin_select_p2.grp set_showing FALSE}})
+   (poll
+      {ready_p1.grp
+         set_showing
+         {$this is_select_done 0}}
+      {ready_p2.grp
+         set_showing
+         {$this is_select_done 1}})
+   (update_display
+      ($play_sfx)
+      {if
+         $play_sfx
+         {synth play_sequence button_toggle}}
+      {$this update_player_display 0}
+      {$this update_player_display 1})
+   (update_player_display
+      ($player)
+      {$this update_guitar_label $player}
+      {multi_guitar_display_panel
+         set_env
+         $player
+         {{$this loaded_dir}
+            find
+            {sprintf
+               "guitar%02d.env"
+               {'+' 1 $player}}}}
+      {multi_guitar_display_panel
+         show_guitar
+         $player
+         {$this get_selected_guitar $player}
+         {$this get_selected_skin $player}
+         {{$this loaded_dir}
+            find
+            {sprintf
+               "guitar_multi%d.pxy"
+               $player}}
+         {{$this loaded_dir}
+            find
+            {sprintf
+               "guitar_multi%d.filt"
+               $player}}})}
+{new
+   GuitarDisplayPanel
+   multi_guitar_display_panel
+   (file
+      "")
+   (force_exit TRUE)
+   (config multiplayer)}
+{new
+   GHScreen
+   multi_sel_guitar_screen
+   (panels meta multi_sel_guitar_panel multi_guitar_display_panel helpbar)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (focus multi_sel_guitar_panel)
+   (alt_cam_anim TRUE)
+   (enter
+      {multi_sel_guitar_panel
+         set_select_done
+         0
+         {<
+            {$this get_num_guitars 0}
+            2}}
+      {if_else
+         {>
+            {$this get_num_guitars 0}
+            1}
+         {{multi_sel_guitar_panel find msg_label0.lbl}
+            set_text
+            msg_select_guitar}
+         {{multi_sel_guitar_panel find msg_label0.lbl}
+            set_localized_text
+            ""}}
+      {multi_sel_guitar_panel
+         set_select_done
+         1
+         {<
+            {$this get_num_guitars 1}
+            2}}
+      {if_else
+         {>
+            {$this get_num_guitars 1}
+            1}
+         {{multi_sel_guitar_panel find msg_label1.lbl}
+            set_text
+            msg_select_guitar}
+         {{multi_sel_guitar_panel find msg_label1.lbl}
+            set_localized_text
+            ""}}
+      {multi_sel_guitar_panel update_display FALSE})
+   (exit)
+   (get_num_guitars
+      ($playerNum)
+      {multi_sel_guitar_panel get_num_guitars $playerNum})
+   (get_num_guitar_skins
+      ($playerNum)
+      {multi_sel_guitar_panel
+         get_num_skins
+         $playerNum
+         {multi_sel_guitar_panel get_selected_guitar $playerNum}})
+   (set_guitar
+      ($player_num)
+      {do
+         ($config
+            {game get_player_config $player_num})
+         {$config
+            set_guitar
+            {multi_sel_guitar_panel get_selected_guitar $player_num}
+            {multi_sel_guitar_panel get_selected_skin $player_num}}})
+   (handle_select
+      ($player)
+      {if
+         {!
+            {multi_sel_guitar_panel is_select_done $player}}
+         {synth play_sequence button_select}
+         {if_else
+            {multi_sel_guitar_panel is_skin_select $player}
+            {multi_sel_guitar_panel set_select_done $player TRUE}
+            {if_else
+               {>
+                  {$this get_num_guitar_skins $player}
+                  1}
+               {multi_sel_guitar_panel choose_skins $player}
+               {multi_sel_guitar_panel set_select_done $player TRUE}}}
+         {$this update_player_display $player}}
+      TRUE)
+   (BUTTON_DOWN_MSG
+      {switch
+         $button
+         (kPad_Tri
+            {if_else
+               {multi_sel_guitar_panel is_select_done $player_num}
+               {do
+                  {synth play_sequence button_back.cue}
+                  {multi_sel_guitar_panel set_select_done $player_num FALSE}}
+               {if_else
+                  {multi_sel_guitar_panel is_skin_select $player_num}
+                  {multi_sel_guitar_panel unchoose_skins $player_num}
+                  {$this go_back}}})
+         (kPad_X
+            {if_else
+               {$this check_guitars_selected}
+               TRUE
+               kDataUnhandled})
+         kDataUnhandled})
+   (go_back
+      {$this backwards_anim}
+      {synth play_sequence button_back.cue}
+      {ui goto_screen multi_sel_character_screen})
+   (check_guitars_selected
+      {if_else
+         {&&
+            {multi_sel_guitar_panel is_select_done 0}
+            {multi_sel_guitar_panel is_select_done 1}}
+         {do
+            {print
+               "going to next screen!\n"}
+            {$this set_guitar 0}
+            {$this set_guitar 1}
+            {switch
+               {gamecfg get mode}
+               (multi_coop
+                  {ui goto_screen loading_screen})
+               (multi_vs
+                  {ui goto_screen multi_vs_venue_screen})
+               (multi_fo
+                  {ui goto_screen multi_fo_venue_screen})}
+            TRUE}
+         FALSE})
+   (guitar_selected
+      ($player_num)
+      {$this handle_select $player_num}
+      {$this check_guitars_selected}
+      TRUE)}
+#define MULTI_SELDIFF_SCREEN_HANDLERS
+((helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (SELECT_START_MSG
+      {ui
+         goto_screen
+         [next_screen]}
+      kDataUnhandled))
+{new
+   GHScreen
+   multi_fo_seldiff_screen
+   (panels meta sel_difficulty_panel helpbar)
+   (focus sel_difficulty_panel)
+   MULTI_SELDIFF_SCREEN_HANDLERS
+   (next_screen loading_screen)}
+#define MULTISELECT_DIFF_HANDLERS
+((sel_buttons easy.btn medium.btn hard.btn expert.btn))
+{new
+   UIPanel
+   seldiff_bg_panel
+   (file seldiff_bg.milo)}
+{new
+   MultiSelectPanel
+   seldiff0
+   (file seldiff0.milo)
+   (player_num 0)
+   (ready_label
+      "ready.lbl")
+   (focus_button_name medium)
+   MULTISELECT_DIFF_HANDLERS}
+{new
+   MultiSelectPanel
+   seldiff1
+   (file seldiff1.milo)
+   (player_num 1)
+   (ready_label
+      "ready.lbl")
+   (focus_button_name medium)
+   MULTISELECT_DIFF_HANDLERS}
+#define DUAL_DIFF_SEL_SCREEN_HANDLERS
+((panels meta seldiff_bg_panel seldiff0 seldiff1 helpbar)
+   (focus seldiff_bg_panel)
+   (panel_base_name seldiff)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (exclusive FALSE)
+   (get_selection
+      ($player)
+      {if_else
+         {== $player 0}
+         {seldiff0 get focus_button_name}
+         {seldiff1 get focus_button_name}})
+   (set_selection
+      ($player $selection)
+      {{game get_player_config $player}
+         set_difficulty
+         $selection}
+      {if_else
+         {== $player 0}
+         {seldiff0 set focus_button_name $selection}
+         {seldiff1 set focus_button_name $selection}})
+   (all_ready
+      {ui
+         goto_screen
+         {if_else
+            {==
+               {gamecfg get mode}
+               multi_coop}
+            multi_sel_character_screen
+            loading_screen}}))
+{new MultiSelectScreen multi_coop_seldiff_screen DUAL_DIFF_SEL_SCREEN_HANDLERS}
+{new MultiSelectScreen multi_vs_seldiff_screen DUAL_DIFF_SEL_SCREEN_HANDLERS}
+#define MULTISELECT_PART_HANDLERS
+((sel_buttons part0.btn part1.btn)
+   (set_button_text
+      {do
+         ($song
+            {gamecfg get_song})
+         {part0.btn
+            set_text
+            {sprint
+               "sg_"
+               {song_provider get_instrument $song 0}}}
+         {part1.btn
+            set_text
+            {sprint
+               "sg_"
+               {song_provider get_instrument $song 1}}}
+         {if
+            {==
+               {song_provider get_instrument $song 1}
+               "rhythm"}
+            {part0.btn
+               set_text
+               "sg_lead"}}}))
+{new
+   MultiSelectPanel
+   selpart0
+   (file selpart0.milo)
+   (player_num 0)
+   (ready_label
+      "ready.lbl")
+   MULTISELECT_PART_HANDLERS
+   (enter
+      {$this set_button_text})}
+{new
+   MultiSelectPanel
+   selpart1
+   (file selpart1.milo)
+   (player_num 1)
+   (ready_label
+      "ready.lbl")
+   MULTISELECT_PART_HANDLERS
+   (enter
+      {$this set_button_text})}
+{new
+   UIPanel
+   selpart_bg_panel
+   (file selpart_bg.milo)}
+{new
+   MultiSelectScreen
+   selpart_screen
+   (panels meta selpart_bg_panel selpart0 selpart1 helpbar)
+   (focus selpart_bg_panel)
+   (panel_base_name selpart)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (exclusive TRUE)
+   (get_selection
+      ($player)
+      {if_else
+         {==
+            {gamecfg get_track_sym $player}
+            {song_provider
+               get_instrument
+               {gamecfg get_song}
+               0}}
+         part0
+         part1})
+   (set_selection
+      ($player $selection)
+      {if_else
+         {== $selection part0}
+         {gamecfg set_track $player 0}
+         {gamecfg set_track $player 1}})
+   (all_ready
+      {ui goto_screen multi_coop_seldiff_screen})}
+{new
+   GHScreen
+   multi_vs_venue_screen
+   (next_screen multi_vs_selsong_screen)
+   SEL_VENUE_SCREEN_HANDLERS}
+{new
+   GHScreen
+   multi_coop_venue_screen
+   (next_screen multi_coop_selsong_screen)
+   SEL_VENUE_SCREEN_HANDLERS}
+{new
+   GHScreen
+   multi_fo_venue_screen
+   (next_screen multi_fo_selsong_screen)
+   SEL_VENUE_SCREEN_HANDLERS}
+#define MULTI_SELSONG_SCREEN_HANDLERS
+((panels meta sel_song_panel helpbar)
+   (focus sel_song_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (sel_song_career FALSE))
+{new
+   GHScreen
+   multi_coop_selsong_screen
+   MULTI_SELSONG_SCREEN_HANDLERS
+   (SELECT_START_MSG
+      {gamecfg set_track 0 0}
+      {gamecfg set_track 1 1}
+      {if_else
+         {'||'
+            {song_provider
+               has_instrument
+               {gamecfg get_song}
+               bass}
+            {song_provider
+               has_instrument
+               {gamecfg get_song}
+               rhythm}}
+         {ui goto_screen selpart_screen}
+         {ui goto_screen multi_coop_seldiff_screen}}
+      kDataUnhandled)}
+{new
+   GHScreen
+   multi_vs_selsong_screen
+   MULTI_SELSONG_SCREEN_HANDLERS
+   (SELECT_START_MSG
+      {ui goto_screen multi_vs_seldiff_screen}
+      kDataUnhandled)}
+{new
+   GHScreen
+   multi_fo_selsong_screen
+   MULTI_SELSONG_SCREEN_HANDLERS
+   (SELECT_START_MSG
+      {ui goto_screen multi_fo_seldiff_screen}
+      kDataUnhandled)}
+#define MULTI_COMPETE_COMMON_PANEL_HANDLERS
+((update_common_info
+      {$this set_headline me_winner.lbl}
+      {me_song_data.lbl
+         set_localized_text
+         {game get_song_text}}
+      {if_else
+         {>
+            {player0 percent_hit}
+            50}
+         {do
+            {me_percent_data1.lbl
+               set_localized_text
+               {sprintf
+                  {localize me_percent_format}
+                  {player0 percent_hit}}}
+            {me_percent_data1b.lbl
+               set_localized_text
+               ""}}
+         {do
+            {me_percent_data1.lbl
+               set_localized_text
+               ""}
+            {me_percent_data1b.lbl
+               set_localized_text
+               {sprintf
+                  {localize me_percent_format}
+                  {player0 percent_hit}}}}}
+      {if_else
+         {>
+            {player1 percent_hit}
+            50}
+         {do
+            {me_percent_data2.lbl
+               set_localized_text
+               {sprintf
+                  {localize me_percent_format}
+                  {player1 percent_hit}}}
+            {me_percent_data2b.lbl
+               set_localized_text
+               ""}}
+         {do
+            {me_percent_data2.lbl
+               set_localized_text
+               ""}
+            {me_percent_data2b.lbl
+               set_localized_text
+               {sprintf
+                  {localize me_percent_format}
+                  {player1 percent_hit}}}}}
+      {percentbar_p1.mesh
+         set_local_scale
+         {/
+            {player0 percent_hit}
+            100.0}
+         1
+         1}
+      {percentbar_p2.mesh
+         set_local_scale
+         {/
+            {player1 percent_hit}
+            100.0}
+         1
+         1}))
+#define MULTI_COMPETE_PANEL_HANDLERS
+((update_winner_info
+      {do
+         ($winner)
+         {cond
+            ({>
+                  {player0 score}
+                  {player1 score}}
+               {set $winner 0})
+            ({<
+                  {player0 score}
+                  {player1 score}}
+               {set $winner 1})
+            ({==
+                  {player0 score}
+                  {player1 score}}
+               {set $winner -1})}
+         {winner_photo0.mesh
+            set_showing
+            {== 0 $winner}}
+         {winner_photo1.mesh
+            set_showing
+            {== 1 $winner}}
+         {winner_photo2.mesh
+            set_showing
+            {== -1 $winner}}
+         {if_else
+            {== $winner -1}
+            {me_caption.lbl set_text me_caption_tie}
+            {me_caption.lbl
+               set_localized_text
+               {sprintf
+                  {localize me_caption_format}
+                  {localize
+                     {{gamecfg get_player_config $winner}
+                        get_character}}}}}
+         {me_score_data1.lbl
+            set_localized_text
+            {sprint
+               {player0 score}}}
+         {me_score_data2.lbl
+            set_localized_text
+            {sprint
+               {player1 score}}}
+         {me_streak_data1.lbl
+            set_localized_text
+            {sprint
+               {player0 longest_streak}}}
+         {me_streak_data2.lbl
+            set_localized_text
+            {sprint
+               {player1 longest_streak}}}
+         {me_stars1.lbl
+            set_text
+            {player0 star_rating}}
+         {me_stars2.lbl
+            set_text
+            {player1 star_rating}}}))
+{new
+   EndGamePanel
+   multi_compete_panel
+   (file multi_compete.milo)
+   MULTI_COMPETE_COMMON_PANEL_HANDLERS
+   MULTI_COMPETE_PANEL_HANDLERS
+   HEADLINE_HANDLERS
+   (enter
+      {crowd_audio turn_off}
+      {script_task
+         (delay 0.3)
+         (script
+            {play_sfx postshow_loop})}
+      {$this update_common_info}
+      {$this update_winner_info}
+      {me_diff_data1.lbl
+         set_text
+         {game get_difficulty_sym 0}}
+      {me_diff_data2.lbl
+         set_text
+         {game get_difficulty_sym 1}}
+      {$this set_focus me_continue.btn})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (me_continue.btn
+            {ui goto_screen complete_screen})
+         (me_morestats.btn
+            {endgame_stats_screen
+               set
+               prev_screen
+               {ui current_screen}}
+            {endgame_stats_screen set next_screen complete_screen}
+            {ui goto_screen endgame_stats_screen})}
+      kDataUnhandled)}
+{new
+   GHScreen
+   multi_compete_screen
+   (panels GAME_PANELS multi_compete_panel helpbar)
+   (focus multi_compete_panel)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))
+   (enter
+      {world_panel set_showing FALSE})}
+{new
+   EndGamePanel
+   multi_compete_coop_panel
+   (file multi_compete_coop.milo)
+   MULTI_COMPETE_COMMON_PANEL_HANDLERS
+   MULTI_COMPETE_PANEL_HANDLERS
+   HEADLINE_HANDLERS
+   (enter
+      {crowd_audio turn_off}
+      {script_task
+         (delay 0.3)
+         (script
+            {play_sfx postshow_loop})}
+      {$this update_common_info}
+      {me_score_data.lbl
+         set_localized_text
+         {sprint
+            {band score}}}
+      {me_stars.lbl
+         set_text
+         {band star_rating}}
+      {me_streak_data2.lbl
+         set_localized_text
+         {sprintf
+            {localize me_streak_format}
+            {band longest_streak}}}
+      {me_diff_data1.lbl
+         set_text
+         {game get_difficulty_sym 0}}
+      {me_diff_data2.lbl
+         set_text
+         {game get_difficulty_sym 1}}
+      {$this set_focus me_continue.btn})
+   (next_screen
+      {if_else
+         {>
+            {campaign num_guitar_awards}
+            0}
+         multi_unlock_bass_screen
+         complete_screen})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (me_continue.btn
+            {ui
+               goto_screen
+               {$this next_screen}})
+         (me_morestats.btn
+            {endgame_stats_screen
+               set
+               prev_screen
+               {ui current_screen}}
+            {endgame_stats_screen
+               set
+               next_screen
+               {$this next_screen}}
+            {ui goto_screen endgame_stats_screen})}
+      kDataUnhandled)}
+{new
+   GHScreen
+   multi_compete_coop_screen
+   (panels GAME_PANELS multi_compete_coop_panel helpbar)
+   (focus multi_compete_coop_panel)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))
+   (enter
+      {world_panel set_showing FALSE}
+      {campaign finish_coop_song})}
+{new
+   GHPanel
+   multi_unlock_bass_panel
+   (file unlock_bass.milo)
+   (bass
+      "")
+   (enter
+      {set
+         [bass]
+         {campaign next_guitar_award}}
+      {unlock_guitar_display_panel set_showing TRUE}
+      {unlock_guitar_display_panel
+         show_guitar
+         0
+         [bass]
+         ''
+         ub_bass.pxy
+         ub_bass.filt}
+      {ub_bass.lbl
+         set_text
+         [bass]})}
+{new
+   GHScreen
+   multi_unlock_bass_screen
+   (panels GAME_PANELS unlock_guitar_display_panel multi_unlock_bass_panel helpbar)
+   (focus multi_unlock_bass_panel)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_X}
+         {if_else
+            {campaign num_guitar_awards}
+            {do
+               {multi_unlock_bass_panel exit}
+               {multi_unlock_bass_panel enter}}
+            {ui goto_screen complete_screen}}}
+      TRUE)}
+{new
+   EndGamePanel
+   multi_compete_fo_panel
+   (file multi_compete_fo.milo)
+   MULTI_COMPETE_COMMON_PANEL_HANDLERS
+   MULTI_COMPETE_PANEL_HANDLERS
+   HEADLINE_HANDLERS
+   (enter
+      {crowd_audio turn_off}
+      {script_task
+         (delay 0.3)
+         (script
+            {play_sfx postshow_loop})}
+      {$this update_common_info}
+      {$this update_winner_info}
+      {me_diff_data0.lbl
+         set_localized_text
+         {sprintf
+            {localize me_pfo_diff}
+            {localize
+               {game get_difficulty_sym 0}}}}
+      {$this set_focus me_continue.btn})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (me_continue.btn
+            {ui goto_screen complete_screen})
+         (me_morestats.btn
+            {endgame_stats_screen
+               set
+               prev_screen
+               {ui current_screen}}
+            {endgame_stats_screen set next_screen complete_screen}
+            {ui goto_screen endgame_stats_screen})}
+      kDataUnhandled)}
+{new
+   GHScreen
+   multi_compete_fo_screen
+   (panels GAME_PANELS multi_compete_fo_panel helpbar)
+   (focus multi_compete_fo_panel)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))
+   (enter
+      {world_panel set_showing FALSE})}
+#define kPosP1
+(1)
+#define kPosCenter
+(2)
+#define kPosP2
+(3)
+#define PLAYER_NUMS
+((0 1 2 3))
+{func
+   is_player_using_guitar
+   ($player_num)
+   {do
+      ($type
+         {joypad_controller_type $player_num})
+      {'||'
+         {== $type ro_guitar}
+         {== $type ro_guitar_xbox}}}}
+{new
+   GHPanel
+   multi_controller_select_panel
+   (file select_controller.milo)
+   (done 0)
+   (p1_padnum -1)
+   (p2_padnum -1)
+   (pad_pos
+      (kPosCenter kPosCenter kPosCenter kPosCenter))
+   (controller_mesh_info
+      ((controller1.mesh controller1.mat)
+         (controller2.mesh controller2.mat)
+         (controller3.mesh controller3.mat)
+         (controller4.mesh controller4.mat)
+         (controllerP1.mesh controllerP1.mat)
+         (controllerP2.mesh controllerP2.mat)))
+   (get_player_mesh
+      ($num)
+      {elem
+         {elem
+            [controller_mesh_info]
+            {'+' 4 $num}}
+         0})
+   (get_player_mat
+      ($num)
+      {elem
+         {elem
+            [controller_mesh_info]
+            {'+' 4 $num}}
+         1})
+   (get_pad_mesh
+      ($num)
+      {elem
+         {elem
+            [controller_mesh_info]
+            $num}
+         0})
+   (get_pad_mat
+      ($num)
+      {elem
+         {elem
+            [controller_mesh_info]
+            $num}
+         1})
+   (input_devices_changed
+      {if
+         {!
+            [done]}
+         {$this reset_to_center}})
+   (enter
+      {$this reset_to_center}
+      {set
+         [done]
+         0})
+   (reset_to_center
+      {gamecfg set_player 0 0}
+      {gamecfg set_player 1 1}
+      {set
+         [p1_padnum]
+         -1}
+      {set
+         [p2_padnum]
+         -1}
+      {foreach
+         $player_num
+         PLAYER_NUMS
+         {set_elem
+            [pad_pos]
+            $player_num
+            kPosCenter}}
+      {$this update_controllers})
+   (update_controller_mesh
+      ($mesh $mat $num $selected)
+      {$mat
+         set
+         diffuse_tex
+         {if_else
+            {is_player_using_guitar $num}
+            {if_else $selected guitar_selected.tex guitar.tex}
+            {if_else $selected gamepad_selected.tex gamepad.tex}}}
+      {$mesh set_showing TRUE})
+   (player_num_from_pos
+      ($pos)
+      {do
+         ($ret -1)
+         {foreach
+            $player_num
+            PLAYER_NUMS
+            {if
+               {==
+                  {elem
+                     [pad_pos]
+                     $player_num}
+                  $pos}
+               {set $ret $player_num}}}
+         $ret})
+   (update_controllers
+      {{$this get_player_mesh 0}
+         set_showing
+         FALSE}
+      {{$this get_player_mesh 1}
+         set_showing
+         FALSE}
+      {{$this get_pad_mesh 0}
+         set_showing
+         FALSE}
+      {{$this get_pad_mesh 1}
+         set_showing
+         FALSE}
+      {{$this get_pad_mesh 2}
+         set_showing
+         FALSE}
+      {{$this get_pad_mesh 3}
+         set_showing
+         FALSE}
+      {set
+         $tmp
+         {$this player_num_from_pos kPosP1}}
+      {if
+         {!= $tmp -1}
+         {$this
+            update_controller_mesh
+            {$this get_player_mesh 0}
+            {$this get_player_mat 0}
+            $tmp
+            {!=
+               [p1_padnum]
+               -1}}}
+      {set
+         $tmp
+         {$this player_num_from_pos kPosP2}}
+      {if
+         {!= $tmp -1}
+         {$this
+            update_controller_mesh
+            {$this get_player_mesh 1}
+            {$this get_player_mat 1}
+            $tmp
+            {!=
+               [p2_padnum]
+               -1}}}
+      {foreach
+         $num
+         PLAYER_NUMS
+         {if
+            {&&
+               {joypad_is_connected $num}
+               {==
+                  {elem
+                     [pad_pos]
+                     $num}
+                  kPosCenter}}
+            {$this
+               update_controller_mesh
+               {$this get_pad_mesh $num}
+               {$this get_pad_mat $num}
+               $num
+               0}}})
+   (is_pad_pos_available
+      ($pos)
+      {==
+         {$this player_num_from_pos $pos}
+         -1})
+   (on_complete
+      {set
+         [done]
+         1}
+      {gamecfg
+         set_player
+         0
+         [p1_padnum]}
+      {gamecfg
+         set_player
+         1
+         [p2_padnum]}
+      {ui goto_screen multi_screen})
+   (on_back
+      {multi_controller_select_screen backwards_anim}
+      {ui goto_screen main_screen})
+   (BUTTON_DOWN_MSG
+      {switch
+         $button
+         (kPad_X
+            {do
+               ($pos
+                  {elem
+                     [pad_pos]
+                     $player_num})
+               {switch
+                  $pos
+                  (kPosP1
+                     {synth play_sequence button_select}
+                     {set
+                        [p1_padnum]
+                        $player_num})
+                  (kPosP2
+                     {synth play_sequence button_select}
+                     {set
+                        [p2_padnum]
+                        $player_num})}}
+            {$this update_controllers}
+            {if
+               {&&
+                  {!=
+                     [p1_padnum]
+                     -1}
+                  {!=
+                     [p2_padnum]
+                     -1}}
+               {$this on_complete}})
+         (kPad_Tri
+            {synth play_sequence button_back.cue}
+            {if_else
+               {'||'
+                  {==
+                     [p1_padnum]
+                     $player_num}
+                  {==
+                     [p2_padnum]
+                     $player_num}}
+               {do
+                  {if_else
+                     {==
+                        [p1_padnum]
+                        $player_num}
+                     {set
+                        [p1_padnum]
+                        -1}
+                     {set
+                        [p2_padnum]
+                        -1}}
+                  {$this update_controllers}}
+               {$this on_back}})
+         ((kPad_DUp kPad_DLeft)
+            {if
+               {&&
+                  {!=
+                     [p1_padnum]
+                     $player_num}
+                  {!=
+                     [p2_padnum]
+                     $player_num}}
+               {set
+                  $tmp
+                  {elem
+                     [pad_pos]
+                     $player_num}}
+               {switch
+                  $tmp
+                  (kPosCenter
+                     {if
+                        {$this is_pad_pos_available kPosP1}
+                        {synth play_sequence button_toggle}
+                        {set $tmp kPosP1}})
+                  (kPosP2
+                     {synth play_sequence button_toggle}
+                     {set $tmp kPosCenter})}
+               {set_elem
+                  [pad_pos]
+                  $player_num
+                  $tmp}
+               {$this update_controllers}})
+         ((kPad_DDown kPad_DRight)
+            {if
+               {&&
+                  {!=
+                     [p1_padnum]
+                     $player_num}
+                  {!=
+                     [p2_padnum]
+                     $player_num}}
+               {set
+                  $tmp
+                  {elem
+                     [pad_pos]
+                     $player_num}}
+               {switch
+                  $tmp
+                  (kPosP1
+                     {synth play_sequence button_toggle}
+                     {set $tmp kPosCenter})
+                  (kPosCenter
+                     {if
+                        {$this is_pad_pos_available kPosP2}
+                        {synth play_sequence button_toggle}
+                        {set $tmp kPosP2}})}
+               {set_elem
+                  [pad_pos]
+                  $player_num
+                  $tmp}
+               {$this update_controllers}})})}
+{new
+   GHScreen
+   multi_controller_select_screen
+   (panels meta multi_controller_select_panel helpbar)
+   (focus multi_controller_select_panel)
+   (allow_all_controllers TRUE)
+   (enter
+      {gamecfg set mode multi_coop})
+   (helpbar
+      (default
+         ((fret1 help_select)
+            (fret2 help_back)
+            (strum help_updown))))}

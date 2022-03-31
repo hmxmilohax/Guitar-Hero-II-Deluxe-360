@@ -1,0 +1,65 @@
+(controller
+   #include beatmatch_controller.dta)
+(midi_parsers
+   #include midi_parsers.dta)
+(watcher
+   (slop 100)
+   (cheat_error 0)
+   (pitch_bend_range 1)
+   (ms_to_full_pitch_bend 1000))
+(parser
+   (hopo_threshold 170))
+(ingame_stats
+   (missed_slop_threshold 200))
+(audio
+   (multiplayer_scale 0.33)
+   (multiplayer_attenuation 1.5)
+   (multiplayer_common_attenuation 1.5)
+   (background_attenuation 5.0)
+   (practice_attenuation 7.5)
+   (submixes
+      (basic
+         (0 1 2 3 4))
+      (easy_single_gem
+         ((0 1 2 3 4)
+            (0 1 2 3 4)
+            (0 1 2 3 4)
+            (0 1 2 3 4)
+            (0 1 2 3 4)))
+      (easy_combo
+         (0
+            (0 1)
+            (2 3 4)
+            (2 3 4)
+            (2 3 4)))
+      (easy_walk1
+         ((0 1 2 3 4 5)
+            (0 1 2 3 4 5)
+            (0 1 2 3 4 5)
+            (0 1 2 3 4 5)
+            (0 1 2 3 4 5)))
+      (med_walk1
+         ((0 1 2 3 4 5)
+            (0 1 2 3 4 5)
+            (2)
+            (3)
+            (0 1 2 3 4 5)))
+      (hard_walk1
+         ((0)
+            (1)
+            (2)
+            (3 4 5)
+            (3 4 5)))
+      (ironman
+         ((0 1 2 3 4 5 6 7)
+            (0 1 2 3 4 5 6 7)
+            (0 1 2 3 4 5 6 7)
+            (0 1 2 3 4 5 6 7)
+            (0 1 2 3 4 5 6 7)))
+      (bestsongever
+         ((0 1 2 3 4 5 6)
+            (0 1 2 3 4 5 6)
+            (0 1 2 3 4 5 6)
+            (0 1 2 3 4 5 6)
+            (0 1 2 3 4 5 6)))))
+#merge ../../../system/run/config/beatmatch.dta

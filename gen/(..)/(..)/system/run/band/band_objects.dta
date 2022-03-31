@@ -1,0 +1,1142 @@
+(BandCharacter
+   (description
+      "Band Guitarist characters that get specialized by the app")
+   (superclasses Character)
+   (types))
+(BandLabel
+   (description
+      "Label with jitter, and text fitting, alignment, and kerning options.")
+   (allowed_dirs PanelDir)
+   (superclasses UILabel)
+   (ext lbl)
+   (editor
+      (fit_text
+         int
+         (list
+            ("kNormal"
+               "kStretched"
+               "kJustFit"))
+         (help
+            "Whether or not to force this label into specified width/height"))
+      (width
+         float
+         (help
+            "Maximum width this label should take up"))
+      (height
+         float
+         (help
+            "Maximum height this label should take up"))
+      (wrap_width
+         float
+         (help
+            "Corresponds to RndText wrap width"))
+      (text_size
+         float
+         (help
+            "text size of underlying text object"))
+      (leading
+         float
+         (help
+            "Space between lines"))
+      (kerning
+         float
+         (help
+            "additional kerning applied to text object"))
+      (alignment
+         int
+         (list
+            ("kTopLeft"
+               "kTopCenter"
+               "kTopRight"
+               "kMiddleLeft"
+               "kMiddleCenter"
+               "kMiddleRight"
+               "kBottomLeft"
+               "kBottomCenter"
+               "kBottomRight"))
+         (help
+            "text alignment"))
+      (all_caps
+         bool
+         (help
+            "set text to uppercase?"))
+      (deltaX
+         float
+         (help
+            "max change in X when jitter character"))
+      (deltaZ
+         float
+         (help
+            "max change in Z when jitter character"))
+      (deltaRot
+         float
+         (help
+            "max rotation when jitter character"))
+      (jitter
+         script
+         (script
+            {handle
+               ($this jitter_text)})
+         (help
+            "jitter the letters"))
+      (color
+         color
+         (help
+            "set the specific color for this label")))
+   (types))
+(BandButton
+   (description
+      "Button with jitter, text fitting, alignment, and kerning options")
+   (allowed_dirs PanelDir)
+   (superclasses UIButton)
+   (resource_file
+      "../ui/button.milo")
+   (select_frames 10)
+   (focus_anim_duration 0.1)
+   (ext btn)
+   (editor
+      (fit_text
+         int
+         (list
+            ("kNormal"
+               "kStretched"
+               "kJustFit"))
+         (help
+            "Whether or not to force this label into specified width/height"))
+      (width
+         float
+         (help
+            "Maximum width this label should take up"))
+      (height
+         float
+         (help
+            "Maximum height this label should take up"))
+      (wrap_width
+         float
+         (help
+            "Corresponds to RndText wrap width"))
+      (text_size
+         float
+         (help
+            "text size of underlying text object"))
+      (leading
+         float
+         (help
+            "Space between lines"))
+      (kerning
+         float
+         (help
+            "additional kerning applied to text object"))
+      (alignment
+         int
+         (list
+            ("kTopLeft"
+               "kTopCenter"
+               "kTopRight"
+               "kMiddleLeft"
+               "kMiddleCenter"
+               "kMiddleRight"
+               "kBottomLeft"
+               "kBottomCenter"
+               "kBottomRight"))
+         (help
+            "text alignment"))
+      (all_caps
+         bool
+         (help
+            "set text to uppercase?"))
+      (deltaX
+         float
+         (help
+            "max change in X when jitter character"))
+      (deltaZ
+         float
+         (help
+            "max change in Z when jitter character"))
+      (deltaRot
+         float
+         (help
+            "max rotation when jitter character"))
+      (jitter
+         script
+         (script
+            {handle
+               ($this jitter_text)})
+         (help
+            "jitter the letters")))
+   (types))
+(BandPlacer
+   (description
+      "Stand-in for dir in the UI, polls and draws them, can center about a mesh inside it.")
+   (allowed_dirs PanelDir)
+   (superclasses Trans Draw)
+   (ext place)
+   (types)
+   (editor
+      (proxy
+         object
+         (class RndDir)
+         (no_test)
+         (help
+            "test out and see an object to be placed"))
+      (center
+         string
+         (help
+            "Name of RndTransformable to center proxy about"))))
+(BandTextEntry
+   (description
+      "Text entry ui")
+   (allowed_dirs PanelDir)
+   (superclasses UIComponent)
+   (ext texten)
+   (resource_file
+      "../ui/textentry.milo")
+   (editor
+      (default_text
+         string
+         (no_test)
+         (help
+            "Check how it looks with some default text"))
+      (flash_time
+         float
+         (help
+            "blinking cursor interval"))
+      (text_scale
+         float
+         (no_test)
+         (help
+            "scale of highlighted character"))
+      (arrow_offset
+         float
+         (no_test)
+         (help
+            "adjust the arrow up/down by this much"))
+      (entered_color
+         color
+         (help
+            "set the color of already entered text"))
+      (dynamic_color
+         color
+         (help
+            "set the color of the current text")))
+   (types))
+(BandSlider
+   (description
+      "UI Slider implementation")
+   (allowed_dirs PanelDir)
+   (superclasses UISlider)
+   (resource_file
+      "../ui/slider.milo")
+   (ext sld)
+   (colors
+      (mesh_color mesh)
+      (text_color text))
+   (editor
+      (text_token
+         symbol
+         (no_test)
+         (help
+            "Specify the localization token for the slider label")))
+   (types))
+(BandCamShot
+   (description
+      "Band specific camera shot")
+   (superclasses CamShot)
+   (init
+      (type band)
+      (category NORMAL))
+   (ext shot)
+   (editor
+      (targets
+         (array
+            (struct
+               (target
+                  object
+                  (class Trans))
+               (anim
+                  object
+                  (class CharClipGroup)
+                  (dir
+                     {if_else
+                        {!=
+                           [targets
+                              {elem $milo_prop_path 1}
+                              target]
+                           ""}
+                        {do
+                           ($target
+                              [targets
+                                 {elem $milo_prop_path 1}
+                                 target])
+                           {if_else
+                              {$target is_a Character}
+                              {if_else
+                                 {$target find main.drv}
+                                 {{$target find main.drv}
+                                    get
+                                    clips_ptr}
+                                 {milo cur_dir}}
+                              {milo cur_dir}}}
+                        {milo cur_dir}}))
+               (return
+                  bool
+                  (help
+                     "return to original position after shot?")))))
+      (store
+         script
+         (script
+            {$this store}))
+      (view
+         script
+         (script
+            {$this view})))
+   (types
+      (band
+         (editor
+            (hide_crowd
+               bool
+               (help
+                  "Whether to hide the crowd while this shot is active"))
+            (distance
+               symbol
+               (list
+                  (null near far closeup behind))
+               (help
+                  "Distance categorization of the shot"))
+            (facing
+               symbol
+               (list
+                  (null left right))
+               (help
+                  "Facing categorization of the shot"))
+            (bass_focus
+               bool
+               (help
+                  "Is the bass player a major focus of this shot?"))
+            (drums_focus
+               bool
+               (help
+                  "Is the drumer a major focus of this shot?"))
+            (guitar_focus
+               bool
+               (help
+                  "Is the guitar player a major focus of this shot?"))
+            (vocal_focus
+               bool
+               (help
+                  "Is the vocalist a major focus of this shot?"))
+            (min_time
+               int
+               (help
+                  "minimum number of beats this shot can last"))
+            (max_time
+               int
+               (help
+                  "maximum duration for this shot, 0 is infinite"))
+            (special
+               bool
+               (help
+                  "if true, this shot won't be picked as part of the normal logic"))
+            (postprocess
+               object
+               (class PostProc)
+               (help
+                  "Post process object to use for this shot")))
+         (hide_crowd FALSE)
+         (distance null)
+         (facing null)
+         (low_excitement_ok TRUE)
+         (postprocess
+            {object
+               ""})
+         (min_time 0)
+         (max_time 0)
+         (special FALSE)
+         (bass_focus FALSE)
+         (drums_focus FALSE)
+         (guitar_focus FALSE)
+         (vocal_focus FALSE)
+         (shot_over)
+         (play_group
+            ($char $grp)
+            {$char play_group $grp})
+         (start_shot
+            #ifndef _SHIP
+            {rnd
+               reflect
+               camera
+               {print
+                  "BandCamShot:"
+                  {$this name}
+                  " category:"
+                  [category]
+                  "\n"}
+               {print
+                  "hide_crowd:"
+                  [hide_crowd]
+                  " distance:"
+                  [distance]
+                  " facing:"
+                  [facing]
+                  "\n"}
+               {print
+                  "bass_focus:"
+                  [bass_focus]
+                  " drums_focus:"
+                  [drums_focus]
+                  " guitar_focus:"
+                  [guitar_focus]
+                  " vocal_focus:"
+                  [vocal_focus]
+                  "\n"}
+               {print
+                  "min_time:"
+                  [min_time]
+                  " max_time:"
+                  [max_time]
+                  " special:"
+                  [special]
+                  " postprocess:"
+                  [postprocess]
+                  "\n"}}
+            #endif
+            {if_else
+               [postprocess]
+               {[postprocess]
+                  select}
+               {rnd reset_postproc}}
+            {if
+               {exists crowd}
+               {crowd
+                  set
+                  showing
+                  [hide_crowd]}})
+         (check_shot
+            {set
+               $dur
+               {world get camera_beats_left}}
+            {if_else
+               {<
+                  $dur
+                  [min_time]}
+               0
+               {if_else
+                  {&&
+                     {!=
+                        [max_time]
+                        0}
+                     {>
+                        $dur
+                        [max_time]}}
+                  0
+                  1}})
+         (shot_ok
+            ($prev_shot)
+            {if_else
+               {!
+                  {$this check_shot}}
+               0
+               {do
+                  ($facing
+                     {if_else
+                        $prev_shot
+                        {$prev_shot get facing}
+                        {world get intro_camera_facing}})
+                  ($distance
+                     {if_else
+                        $prev_shot
+                        {$prev_shot get distance}
+                        {world get intro_camera_distance}})
+                  {if_else
+                     {&&
+                        {!= $facing null}
+                        {&&
+                           {!=
+                              [facing]
+                              null}
+                           {==
+                              $facing
+                              [facing]}}}
+                     {do 0}
+                     {if_else
+                        {&&
+                           {!= $distance null}
+                           {&&
+                              {!=
+                                 [distance]
+                                 null}
+                              {&&
+                                 {'||'
+                                    {== $distance far}
+                                    {== $distance behind}}
+                                 {'||'
+                                    {==
+                                       [distance]
+                                       far}
+                                    {==
+                                       [distance]
+                                       behind}}}}}
+                        {do 0}
+                        1}}}}))))
+(CheckBox
+   (description
+      "UI CheckBox.  Indicates on/off state.")
+   (allowed_dirs PanelDir)
+   (superclasses UIComponent)
+   (ext chk)
+   (resource_file
+      "../ui/checkbox.milo")
+   (types))
+#define PLAYER_SETTINGS
+(("kPlayer1"
+      "kPlayer2"
+      "kPlayerNone"
+      "kPlayerShared"))
+(BandCrowdMeterDir
+   (description
+      "Crowd meter hud element, has a needle")
+   (superclasses RndDir)
+   (types)
+   (editor
+      (needle_anim
+         object
+         (class Anim)
+         (help
+            "anim to drive the needle")
+         HIDE_IN_PROXY)
+      (warning_anim
+         object
+         (class Anim)
+         (help
+            "animation that is played when below the warning level")
+         HIDE_IN_PROXY)
+      (red_anim
+         object
+         (class Anim)
+         (help
+            "animation that is played when in the red state")
+         HIDE_IN_PROXY)
+      (yellow_anim
+         object
+         (class Anim)
+         (help
+            "animation that is played when in the yellow state")
+         HIDE_IN_PROXY)
+      (green_anim
+         object
+         (class Anim)
+         (help
+            "animation that is played when in the green state")
+         HIDE_IN_PROXY)
+      (value
+         float
+         (range 0 1)
+         (help
+            "crowd value between 0 and 1"))
+      (test_red
+         script
+         (script
+            {$this set_value 0}))
+      (test_yellow
+         script
+         (script
+            {$this set_value 0.5}))
+      (test_green
+         script
+         (script
+            {$this set_value 1}))))
+(BandStarMeterDir
+   (description
+      "Star meter hud element")
+   (superclasses RndDir)
+   (types)
+   (editor
+      (main_group
+         object
+         (class Group)
+         (help
+            "animated from 0 to 100 as the meter fills")
+         HIDE_IN_PROXY)
+      (ready_group
+         object
+         (class Group)
+         (help
+            "drawn and animated only when star power is ready")
+         HIDE_IN_PROXY)
+      (fill_group
+         object
+         (class Group)
+         (help
+            "drawn and animated only when star power is filling up")
+         HIDE_IN_PROXY)
+      (anim_group
+         object
+         (class Group)
+         (help
+            "always animated")
+         HIDE_IN_PROXY)
+      (engage_anim_1
+         object
+         (class Anim)
+         (help
+            "anim to drive when player 1 is trying to engage")
+         HIDE_IN_PROXY)
+      (engage_anim_2
+         object
+         (class Anim)
+         (help
+            "anim to drive when player 2 is trying to engage")
+         HIDE_IN_PROXY)
+      (value
+         float
+         (range 0 1)
+         (help
+            "test value between 0 and 1"))
+      (using_star_power
+         bool
+         (help
+            "for testing; whether we're using star power or not.")
+         (no_test))
+      (engaging_1
+         bool
+         (help
+            "whether player 1 is trying to engage, for testing."))
+      (engaging_2
+         bool
+         (help
+            "whether player 2 is trying to engage, for testing."))
+      (player
+         int
+         (list PLAYER_SETTINGS)
+         (help
+            "which player to track"))))
+(BandScoreDisplay
+   (description
+      "Score displaying hud element")
+   (superclasses RndDir)
+   (types)
+   (editor
+      (display_meshs
+         (array
+            object
+            (class Mesh))
+         (help
+            "mesh for each displayed digit")
+         HIDE_IN_PROXY)
+      (digit_mats
+         (array
+            object
+            (class Mat))
+         (help
+            "material for each digit (0-9)")
+         HIDE_IN_PROXY)
+      (blank_mat
+         object
+         (class Mat)
+         (help
+            "material for a blank space")
+         HIDE_IN_PROXY)
+      (score
+         int
+         (help
+            "enter the score for testing"))
+      (player
+         int
+         (list PLAYER_SETTINGS)
+         (help
+            "which player to track"))))
+(BandStreakDisplay
+   (description
+      "Streak displaying hud element")
+   (superclasses RndDir)
+   (types)
+   (editor
+      (color_anim
+         object
+         (class MatAnim)
+         (help
+            "mat anim specifying the color for each state")
+         HIDE_IN_PROXY)
+      (shake_anim
+         object
+         (class Anim)
+         (help
+            "anim that is fired when achieving a new streak")
+         HIDE_IN_PROXY)
+      (frame_mat
+         object
+         (class Mat)
+         (help
+            "material for the frame (has color applied to it)")
+         HIDE_IN_PROXY)
+      (mult_glow_mesh
+         object
+         (class Mesh)
+         (help
+            "glow mesh; hidden when no streak, color of its material is changed to match the streak color")
+         HIDE_IN_PROXY)
+      (mult_frame_mat
+         object
+         (class Mat)
+         (help
+            "material for multiplier frame")
+         HIDE_IN_PROXY)
+      (led_mats
+         (array
+            object
+            (class Mat))
+         (help
+            "material for LED's; one material per color.")
+         HIDE_IN_PROXY)
+      (led_meshs
+         (array
+            object
+            (class Mesh))
+         (help
+            "meshes for the LED streak indicators")
+         HIDE_IN_PROXY)
+      (digit_mats
+         (array
+            object
+            (class Mat))
+         (help
+            "one material per digit")
+         HIDE_IN_PROXY)
+      (mult_digit_mesh
+         object
+         (class Mesh)
+         (help
+            "mesh for the multiplier digit")
+         HIDE_IN_PROXY)
+      (x_digit_mesh
+         object
+         (class Mesh)
+         (help
+            "mesh for the X")
+         HIDE_IN_PROXY)
+      (blank_digit_mat
+         object
+         (class Mat)
+         (help
+            "material for a blank digit")
+         HIDE_IN_PROXY)
+      (x_digit_mat
+         object
+         (class Mat)
+         (help
+            "material for the X")
+         HIDE_IN_PROXY)
+      (blown_mesh_1
+         object
+         (class Mesh)
+         (help
+            "mesh to indicate when player 1 blows a streak")
+         HIDE_IN_PROXY)
+      (blown_mesh_2
+         object
+         (class Mesh)
+         (help
+            "mesh to indicate when player 2 blows a streak")
+         HIDE_IN_PROXY)
+      (blown_mat
+         object
+         (class Mat)
+         (help
+            "material used for the indicators when the streak is blown")
+         HIDE_IN_PROXY)
+      (blown_display_time
+         float
+         (range 0 5)
+         (no_test serialize)
+         (help
+            "length of time the blown streak indicator should light up for")
+         HIDE_IN_PROXY)
+      (player_1_blows
+         script
+         (script
+            {$this blow_streak 0}))
+      (player_2_blows
+         script
+         (script
+            {$this blow_streak 1}))
+      (multiplier
+         int
+         (range 1 9)
+         (help
+            "multiplier value for testing"))
+      (star_mode
+         bool
+         (help
+            "toggle star power for testing"))
+      (partial_streak
+         int
+         (range 0 20)
+         (help
+            "partial streak for testing"))
+      (player
+         int
+         (list PLAYER_SETTINGS)
+         (help
+            "which player to track"))
+      (refresh
+         script
+         (script
+            {$this refresh}))))
+(BandLeadMeter
+   (description
+      "Multiplayer lead meter hud element, shows which player is in the lead")
+   (superclasses RndDir)
+   (types)
+   (editor
+      (needle_anim
+         object
+         (class Anim)
+         (help
+            "anim to drive the needle")
+         HIDE_IN_PROXY)
+      (logo_glow_anim
+         object
+         (class Anim)
+         (help
+            "anim to make the logo glow different colors")
+         HIDE_IN_PROXY)
+      (glow_mesh_1
+         object
+         (class Mesh)
+         (help
+            "mesh that is shown when player 1 is ahead")
+         HIDE_IN_PROXY)
+      (glow_mesh_2
+         object
+         (class Mesh)
+         (help
+            "mesh that is shown when player 2 is ahead")
+         HIDE_IN_PROXY)
+      (pegged_anim_1
+         object
+         (class Anim)
+         (help
+            "animation to play when player 1 has a huge lead")
+         HIDE_IN_PROXY)
+      (pegged_anim_2
+         object
+         (class Anim)
+         (help
+            "animation to play when player 2 has a huge lead")
+         HIDE_IN_PROXY)
+      (lens_mesh
+         object
+         (class Mesh)
+         (help
+            "lens mesh")
+         HIDE_IN_PROXY)
+      (lens_mat_neutral
+         object
+         (class Mat)
+         (help
+            "lens mat to use when the score is tied")
+         HIDE_IN_PROXY)
+      (lens_mat_1
+         object
+         (class Mat)
+         (help
+            "lens mat to use when player 1 is winning")
+         HIDE_IN_PROXY)
+      (lens_mat_2
+         object
+         (class Mat)
+         (help
+            "lens mat to use when player 2 is winning")
+         HIDE_IN_PROXY)
+      (score_diff
+         int
+         (help
+            "difference in scores for testing. a positive number means the first player is ahead."))
+      (refresh
+         script
+         (script
+            {$this refresh}))))
+(CompositeCharacter
+   (description
+      "Character with outfits and compositing decal texture tech")
+   (superclasses Character)
+   (types)
+   (editor
+      (outfits
+         (array
+            (struct
+               (name
+                  symbol
+                  (hide TRUE))
+               (selected
+                  symbol
+                  (list
+                     {$this
+                        prop_handle
+                        (outfits
+                           {elem $milo_prop_path 1}
+                           list_outfits)})
+                  (refresh outfits))
+               (shown
+                  symbol
+                  (read_only TRUE))
+               (layers
+                  (array
+                     (struct
+                        (name
+                           string
+                           (hide TRUE))
+                        (patch_file
+                           file
+                           (hide
+                              {!
+                                 {$this get_allow_patch}}))
+                        (active
+                           bool
+                           (hide
+                              {!
+                                 {$this get_allow_optional}})
+                           (help
+                              "toggle this layer on and off")
+                           (refresh outfits))
+                        (bitmap
+                           string
+                           (list
+                              {$this get_bitmap_list})
+                           (hide
+                              {!
+                                 {$this get_allow_bitmap}})
+                           (help
+                              "bitmap for this layer")
+                           (refresh outfits))
+                        (color
+                           color
+                           (hide
+                              {!
+                                 {$this get_allow_color}})
+                           (help
+                              "color for this layer")
+                           (refresh outfits))
+                        (alpha
+                           float
+                           (hide
+                              {!
+                                 {$this get_allow_alpha}})
+                           (range 0 1)
+                           (help
+                              "alpha value for this layer")
+                           (refresh outfits)))
+                     (header
+                        [outfits
+                           {elem $milo_prop_path 1}
+                           layers
+                           {elem $milo_prop_path 3}
+                           name]))))
+            (header
+               [outfits
+                  {elem $milo_prop_path 1}
+                  name])))
+      (randomize_colors
+         script
+         (script
+            {$this randomize_colors}))))
+(GHTrackDir
+   (description
+      "Top-level GH2 track object")
+   (types)
+   (editor
+      (player
+         int
+         (list PLAYER_SETTINGS)
+         (help
+            "which player to track; use 'none' for single-player"))
+      (sp_camera
+         object
+         (class Cam)
+         (help
+            "camera to use in single-player")
+         HIDE_IN_PROXY)
+      (mp_cameras
+         (array
+            object
+            (class Cam)
+            (fixed_size TRUE)
+            (help
+               "cameras to use in multi-player"))
+         HIDE_IN_PROXY)
+      ('Widget hookup'
+         (indent
+            (gem_widgets
+               (array
+                  object
+                  (class TrackWidget)
+                  (fixed_size TRUE))
+               (help
+                  "normal gem widgets; 5 slots + bonus + miss"))
+            (hopo_widgets
+               (array
+                  object
+                  (class TrackWidget)
+                  (fixed_size TRUE))
+               (help
+                  "hopo gem widgets; 5 slots + bonus + miss"))
+            (star_widgets
+               (array
+                  object
+                  (class TrackWidget)
+                  (fixed_size TRUE))
+               (help
+                  "star gem widgets; 5 slots + miss"))
+            (star_hopo_widgets
+               (array
+                  object
+                  (class TrackWidget)
+                  (fixed_size TRUE))
+               (help
+                  "star hopo widgets; 5 slots + miss")))
+         HIDE_IN_PROXY))
+   (superclasses TrackDir))
+(LayerDir
+   (description
+      "Draws configurable layer planes from an orthographic camera")
+   (types)
+   (superclasses RndDir)
+   (editor
+      (layers
+         (array
+            (struct
+               (name
+                  string
+                  (hide
+                     {$this is_proxy})
+                  (refresh layers))
+               (active
+                  bool
+                  (help
+                     "is this layer active?")
+                  (hide
+                     {!
+                        [layers
+                           {elem $milo_prop_path 1}
+                           layer_optional]}))
+               (color
+                  color
+                  (help
+                     {if_else
+                        {$this is_proxy}
+                        "layers preview color value to apply (not saved)"
+                        "layers default color value to apply (saved)"})
+                  (hide
+                     {!
+                        [layers
+                           {elem $milo_prop_path 1}
+                           allow_color]}))
+               (alpha
+                  float
+                  (help
+                     {if_else
+                        {$this is_proxy}
+                        "layers preview alpha value to apply (not saved)"
+                        "layers default alpha value to apply (saved)"})
+                  (range 0 1)
+                  (hide
+                     {!
+                        [layers
+                           {elem $milo_prop_path 1}
+                           allow_alpha]}))
+               (bitmap
+                  string
+                  (list
+                     {$this get_bitmap_list})
+                  (help
+                     {if_else
+                        {$this is_proxy}
+                        "preview bitmap to apply (not saved)"
+                        "default bitmap to apply (saved)"})
+                  (hide
+                     {<
+                        {size
+                           [layers
+                              {elem $milo_prop_path 1}
+                              bitmap_list]}
+                        2}))
+               (setup
+                  (indent
+                     (mat
+                        object
+                        (class Mat)
+                        (help
+                           "Material this layer controls"))
+                     (proxy
+                        object
+                        (class RndDir)
+                        (help
+                           "set the proxy file to use if this is a user-created patch layer"))
+                     (layer_optional
+                        bool
+                        (help
+                           "can this layer can be turned off?")
+                        (refresh layers))
+                     (bitmap_list
+                        (array file)
+                        (help
+                           "list of available bitmaps")
+                        (refresh layers))
+                     (allow_color
+                        bool
+                        (help
+                           "allow users to change color")
+                        (refresh layers))
+                     (color_palette
+                        object
+                        (class Object color_palette)
+                        (help
+                           "select a palette object to get colors from")
+                        (hide
+                           {'||'
+                              {!
+                                 [layers
+                                    {elem $milo_prop_path 1}
+                                    allow_color]}
+                              {$this is_proxy}}))
+                     (allow_alpha
+                        bool
+                        (help
+                           "allow users to change alpha as slider")
+                        (refresh layers))
+                     (alpha_min
+                        float
+                        (read_only
+                           {!
+                              [layers
+                                 {elem $milo_prop_path 1}
+                                 allow_alpha]})
+                        (refresh layers)
+                        (help
+                           "minimum alpha value allowed"))
+                     (alpha_max
+                        float
+                        (read_only
+                           {!
+                              [layers
+                                 {elem $milo_prop_path 1}
+                                 allow_alpha]})
+                        (refresh layers)
+                        (help
+                           "maximum alpha value allowed")))
+                  (hide
+                     {$this is_proxy})))
+            (header
+               [layers
+                  {elem $milo_prop_path 1}
+                  name])))
+      (randomize_colors
+         script
+         (script
+            {$this randomize_colors}))
+      (use_free_cam
+         bool
+         (help
+            "allows dir to have it's own camera instead of using the preset fixed camera")
+         (hide
+            {$this is_proxy}))))

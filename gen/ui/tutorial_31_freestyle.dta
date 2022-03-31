@@ -1,0 +1,187 @@
+#include ../config/macros.dta
+#define GUITAR_ZOOM_SECS
+(0.5)
+{beatmatch set_paused TRUE}
+{track_panel set_showing FALSE}
+{tutorial1.view set_showing TRUE}
+{tutorial2.view set_showing FALSE}
+{t1_fret_highlight.view set_showing FALSE}
+{t1_strum_highlight.view set_showing FALSE}
+{t1_note_highlight.view set_showing FALSE}
+{t1_now_highlight.view set_showing FALSE}
+{t1_long_note_highlight.view set_showing FALSE}
+{t1_chord_highlight.view set_showing FALSE}
+{t1_score_highlight.view set_showing FALSE}
+{t1_lets_rock.view set_showing FALSE}
+{t1_guitar.view set_frame 0}
+{t1_guitar.view set_showing FALSE}
+{tut_rock_highlight.view set_showing FALSE}
+{tut_star_highlight.view set_showing FALSE}
+{tut_box_left.view set_showing FALSE}
+{tut_box_right.view set_showing FALSE}
+{tut_screen_dim.view set_showing FALSE}
+{tut_task.lbl set_showing FALSE}
+{tut_score.lbl set_showing FALSE}
+{tut_info.lbl set_showing FALSE}
+{tut_part.lbl set_showing FALSE}
+{tut_header.lbl set_showing FALSE}
+{tut_header.lbl set_text tut_task}
+{tut_banner.lbl set_showing FALSE}
+{tut_top_text.view set_showing TRUE}
+{tut_banner.lbl set_text tut3_title}
+{$this size_left_box TUT3_1_BOX}
+{$this size_right_box TUT3_1_TASK}
+{tut_part.lbl set_text tut3_1_part}
+{tut_banner.lbl set_showing TRUE}
+START_BG_MUSIC
+{$this play_vo hammeron_intro_1}
+WAIT_FOR_VO
+LONG_VO_GAP
+{tut_banner.lbl set_showing FALSE}
+{tut_box_left.view set_showing TRUE}
+{tut_part.lbl set_showing TRUE}
+{tut_top_text.view set_showing TRUE}
+{$this play_vo string_basics_1}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{$this play_vo string_basics_2}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{$this play_vo string_basics_3}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{$this play_vo string_basics_4}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{$this play_vo string_basics_5}
+WAIT_FOR_VO
+LONG_VO_GAP
+{$this size_left_box TUT3_2_BOX}
+{tut_info.lbl set_wrap_width 510}
+{tut_box_left.view set_showing TRUE}
+{tut_part.lbl set_text tut3_2_part}
+{tut_part.lbl set_showing TRUE}
+{t1_highlights.view
+   animate
+   (loop
+      0
+      {t1_highlights.view end_frame})
+   (units kTaskTutorialSeconds)}
+{tut_banner.lbl set_showing FALSE}
+LONG_VO_GAP
+{t1_guitar.view set_showing TRUE}
+{t1_frets.view set_showing FALSE}
+{t1_demo_2.mnm set_frame 1}
+{$this play_vo hammeron_intro_2}
+WAIT_FOR_VO
+{t3_hopo_anim.view set_frame 0}
+LONG_VO_GAP
+{$this play_vo hammeron_demo_1}
+{t3_hopo_anim.view set_frame 1}
+{$task sleep 2}
+{t3_hopo_anim.view set_frame 2}
+{t1_strum_highlight.view set_showing TRUE}
+{$task sleep 2}
+{t1_strum_highlight.view set_showing FALSE}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{$this play_vo hammeron_demo_2}
+WAIT_FOR_VO
+{t3_hopo_anim.view set_frame 3}
+SHORT_VO_GAP
+{t1_strum_highlight.view set_showing FALSE}
+{$this play_vo hammeron_demo_3}
+WAIT_FOR_VO
+{t3_hopo_anim.view set_frame 4}
+LONG_VO_GAP
+{$this play_vo hammeron_invite}
+WAIT_FOR_VO
+LONG_VO_GAP
+{t3_hopo_anim.view set_frame 0}
+{tut_info.lbl set_text tut3_2_info}
+{tut_info.lbl set_showing TRUE}
+{t1_demo_2.mnm set_frame 0}
+{t1_guitar_3.mat set diffuse_tex t1_guitar_3_blank.tex}
+{t1_guitar_1.mat set diffuse_tex t1_guitar_1.tex}
+{t1_frets.view set_showing TRUE}
+{t1_guitar.view
+   animate
+   (units kTaskTutorialSeconds)
+   (period GUITAR_ZOOM_SECS)
+   (range 0 30)}
+#define HOPOS_TO_HIT
+(3)
+{set $hopos_hit 0}
+{stop_sfx bkgd_music}
+{$this size_right_box TUT3_2_TASK}
+{tut_box_right.view set_showing TRUE}
+{tut_header.lbl set_showing TRUE}
+{tut_score.lbl set_showing TRUE}
+{tut_task.lbl set_text tut3_2_task}
+{$this
+   update_tut_score
+   {localize tut3_2_score}
+   0
+   HOPOS_TO_HIT}
+{tut_task.lbl set_showing TRUE}
+{new
+   Object
+   tut_31_callback
+   (fret_played
+      ($fret_num)
+      {{switch
+            $fret_num
+            (1 t1_frethit1.view)
+            (2 t1_frethit2.view)
+            (3 t1_frethit3.view)
+            (4 t1_frethit4.view)
+            (5 t1_frethit5.view)}
+         animate
+         (units kTaskTutorialSeconds)
+         (period 0.3)
+         (range 0 100)})
+   (hopo_hit
+      {set
+         [hopos_hit]
+         {'+'
+            [hopos_hit]
+            1}}
+      {tutorial play_vo hit_vo}
+      {tutorial
+         update_tut_score
+         {localize tut3_2_score}
+         [hopos_hit]
+         HOPOS_TO_HIT}
+      {tut_score.tnm
+         animate
+         (units kTaskTutorialSeconds)
+         (period 0.15)
+         (range 0 2)})
+   (hopos_hit 0)}
+{$this start_hopo_train kHammerOnTutorial tut_31_callback}
+{$task
+   wait_timeout
+   {$this is_hopo_training}
+   60
+   $timeout}
+{$task sleep 2}
+{t1_fretcheck1.view set_showing FALSE}
+{t1_fretcheck2.view set_showing FALSE}
+{t1_fretcheck3.view set_showing FALSE}
+{t1_fretcheck4.view set_showing FALSE}
+{t1_fretcheck5.view set_showing FALSE}
+{t1_guitar.view set_showing FALSE}
+{tut_top_text.view set_showing FALSE}
+{if_else
+   $timeout
+   {tut_banner.lbl set_text tut3_2_timeout}
+   {tut_banner.lbl set_text tut3_2_done}}
+{$this end_hopo_train}
+{tut_banner.lbl set_showing TRUE}
+{$this
+   play_vo
+   {if_else $timeout timeout_vo hammeron_done}}
+WAIT_FOR_VO
+LONG_VO_GAP
+{play_sfx bkgd_music}
+{$this next_lesson sustain}

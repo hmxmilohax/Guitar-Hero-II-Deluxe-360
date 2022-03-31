@@ -1,0 +1,156 @@
+#define GUITAR_ZOOM_SECS
+(0.5)
+{track_panel set_showing FALSE}
+{$this set_beatmatch_muting TRUE}
+{beatmatch set_paused TRUE}
+{tutorial1.view set_showing TRUE}
+{tutorial2.view set_showing FALSE}
+{t1_fret_highlight.view set_showing FALSE}
+{t1_strum_highlight.view set_showing FALSE}
+{t1_note_highlight.view set_showing FALSE}
+{t1_now_highlight.view set_showing FALSE}
+{t1_long_note_highlight.view set_showing FALSE}
+{t1_chord_highlight.view set_showing FALSE}
+{t1_score_highlight.view set_showing FALSE}
+{t1_lets_rock.view set_showing FALSE}
+{t1_guitar.view set_frame 0}
+{t1_guitar.view set_showing FALSE}
+{t1_guitar_3.mat set diffuse_tex t1_guitar_3_blank.tex}
+{t1_guitar_1.mat set diffuse_tex t1_guitar_1.tex}
+{tut_rock_highlight.view set_showing FALSE}
+{tut_star_highlight.view set_showing FALSE}
+{tut_box_left.view set_showing FALSE}
+{tut_box_right.view set_showing FALSE}
+{tut_screen_dim.view set_showing FALSE}
+{tut_task.lbl set_showing FALSE}
+{tut_score.lbl set_showing FALSE}
+{tut_info.lbl set_showing FALSE}
+{tut_part.lbl set_showing FALSE}
+{tut_header.lbl set_showing FALSE}
+{tut_header.lbl set_text tut_task}
+{tut_banner.lbl set_text tut1_title}
+{tut_banner.lbl set_showing TRUE}
+{tut_top_text.view set_showing TRUE}
+START_BG_MUSIC
+{$this play_vo main_intro}
+WAIT_FOR_VO
+{tut_banner.lbl set_showing FALSE}
+LONG_VO_GAP
+{$this play_vo intro_1}
+{t1_guitar.view set_showing TRUE}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{$this play_vo intro_2}
+{t1_highlights.view
+   animate
+   (loop
+      0
+      {t1_highlights.view end_frame})
+   (units kTaskTutorialSeconds)}
+{t1_fret_highlight.view set_showing TRUE}
+{t1_frets.view set_showing FALSE}
+{t1_demo_2.mnm set_frame 1}
+{t1_demo_3.mnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period 2.5)
+   (range 0 5)}
+{$task sleep 2.5}
+{t1_demo_3.mnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period 2.5)
+   (range 1 5)}
+WAIT_FOR_VO
+LONG_VO_GAP
+{$this play_vo intro_3}
+{t1_strum_highlight.view set_showing TRUE}
+{t1_demo_1.mnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period 1)
+   (range 0 1)}
+{$task sleep 2.5}
+{t1_demo_1.mnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period 2)
+   (range 0 5)}
+WAIT_FOR_VO
+LONG_VO_GAP
+{t1_fret_highlight.view set_showing FALSE}
+{t1_strum_highlight.view set_showing FALSE}
+{$this size_left_box TUT1_1_BOX}
+{tut_box_left.view set_showing TRUE}
+{tut_part.lbl set_text tut1_1_part}
+{tut_part.lbl set_showing TRUE}
+{tut_info.lbl set_text tut1_1_info}
+{tut_info.lbl set_showing TRUE}
+{t1_demo_1.mnm set_frame 0}
+{t1_demo_3.mnm set_frame 0}
+{$this play_vo intro_4}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{t1_guitar_3.mat set diffuse_tex t1_guitar_3_blank.tex}
+{t1_guitar_1.mat set diffuse_tex t1_guitar_1.tex}
+{t1_demo_2.mnm set_frame 0}
+{t1_frets.view set_showing TRUE}
+{t1_frets.view set_frame 0}
+{t1_guitar_zoom.tnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period GUITAR_ZOOM_SECS)
+   (range 0 30)}
+{$this play_vo intro_5}
+WAIT_FOR_VO
+{new
+   Object
+   fret_callback
+   (fret_played
+      ($fret_num)
+      {do
+         ($fret_anim
+            {switch
+               $fret_num
+               (1 t1_frethit1.view)
+               (2 t1_frethit2.view)
+               (3 t1_frethit3.view)
+               (4 t1_frethit4.view)
+               (5 t1_frethit5.view)})
+         {$fret_anim
+            animate
+            (units kTaskTutorialSeconds)
+            (period 0.3)
+            (range 0 100)}})}
+{$this start_tuning_mode fret_callback}
+{stop_sfx bkgd_music}
+{$this size_right_box TUT1_1_TASK}
+{tut_box_right.view set_showing TRUE}
+{tut_header.lbl set_showing TRUE}
+{tut_task.lbl set_text tut1_1_task}
+{tut_task.lbl set_showing TRUE}
+{$task
+   wait_timeout
+   {$this is_tuning}
+   60
+   $timeout}
+{if
+   $timeout
+   {$this end_tuning_mode}}
+{$task sleep 2}
+{t1_guitar.view set_showing FALSE}
+{tut_top_text.view set_showing FALSE}
+{if_else
+   $timeout
+   {tut_banner.lbl set_text tut1_1_timeout}
+   {tut_banner.lbl set_text tut1_1_done}}
+{tut_banner.lbl set_showing TRUE}
+{play_sfx tuning_complete}
+{$task sleep 0.6}
+{$this
+   play_vo
+   {if_else $timeout timeout_vo all_frets_tuned}}
+WAIT_FOR_VO
+{$task sleep 1}
+{play_sfx bkgd_music}
+{$this next_lesson playing_notes}

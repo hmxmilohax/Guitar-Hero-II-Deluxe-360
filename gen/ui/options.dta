@@ -1,0 +1,853 @@
+{new
+   UIPanel
+   options_panel
+   (file options.milo)
+   (focus op_audio.btn)
+   (enter
+      {if_else
+         $disable_save
+         {do
+            {$this disable op_data.btn}
+            {$this disable memory_card.btn}}
+         {do
+            {$this enable op_data.btn}
+            {$this enable memory_card.btn}}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (op_audio.btn
+            {ui goto_screen audio_settings_screen})
+         (video_settings.btn
+            {ui goto_screen video_settings_screen})
+         (op_data.btn
+            {ui goto_screen options_chooseprof_screen})
+         (memory_card.btn
+            {ui goto_screen mem_card_screen})
+         (op_bonus.btn
+            {ui goto_screen bonus_material_screen})
+         (op_credit.btn
+            {ui goto_screen credits_screen})}
+      kDataUnhandled)}
+{new
+   GHScreen
+   options_screen
+   (panels meta options_panel helpbar)
+   (focus options_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))}
+#define SLIDER_LEVELS
+(12)
+#define AUDIO_SETTINGS_PANEL_HANDLERS
+((focus gs_band.sld)
+   (focus_component
+      "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {gs_band.sld set_num_steps SLIDER_LEVELS}
+      {gs_guitar.sld set_num_steps SLIDER_LEVELS}
+      {gs_sfx.sld set_num_steps SLIDER_LEVELS})
+   (slider_changed
+      {'||'
+         {!=
+            {options get band_volume_idx}
+            {gs_band.sld current}}
+         {!=
+            {options get guitar_volume_idx}
+            {gs_guitar.sld current}}
+         {!=
+            {options get fx_volume_idx}
+            {gs_sfx.sld current}}})
+   (enter
+      {gs_band.sld
+         set_current
+         {options get band_volume_idx}}
+      {gs_guitar.sld
+         set_current
+         {options get guitar_volume_idx}}
+      {gs_sfx.sld
+         set_current
+         {options get fx_volume_idx}})
+   (set_volumes
+      {if
+         {$this slider_changed}
+         {options
+            set
+            band_volume_idx
+            {gs_band.sld current}}
+         {options
+            set
+            guitar_volume_idx
+            {gs_guitar.sld current}}
+         {options
+            set
+            fx_volume_idx
+            {gs_sfx.sld current}}})
+   (slider_select_cancel
+      ($component)
+      {switch
+         $component
+         (gs_band.sld
+            {$component
+               set_current
+               [orig_vol]})
+         (gs_guitar.sld
+            {$component
+               set_current
+               [orig_vol]})
+         (gs_sfx.sld
+            {$component
+               set_current
+               [orig_vol]})}
+      {$this update_help_display}
+      kDataUnhandled)
+   (FOCUS_MSG
+      {$this
+         set
+         focus_component
+         {$new_focus name}}
+      {$this update_help_display})
+   (update_help_display
+      {if_else
+         {$this slider_selected}
+         {helpbar
+            set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjvol))}
+         {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}})
+   (slider_start_msg
+      ($component)
+      {do
+         ($vol
+            {options
+               get_volume_from_idx
+               {$component current}})
+         {switch
+            $component
+            (gs_band.sld
+               {play_sfx
+                  slider_band
+                  (volume $vol)
+                  (stop TRUE)})
+            (gs_guitar.sld
+               {play_sfx
+                  slider_gtr
+                  (volume $vol)
+                  (stop TRUE)})
+            (gs_sfx.sld
+               {play_sfx
+                  slider_sfx
+                  (volume $vol)
+                  (stop TRUE)})}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (gs_band.sld
+            {$this
+               set
+               orig_vol
+               {gs_band.sld current}})
+         (gs_guitar.sld
+            {$this
+               set
+               orig_vol
+               {gs_guitar.sld current}})
+         (gs_sfx.sld
+            {$this
+               set
+               orig_vol
+               {gs_sfx.sld current}})
+         kDataUnhandled}
+      {$this update_help_display}))
+{new
+   SliderPanel
+   audio_settings_panel
+   (file game_settings.milo)
+   AUDIO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   audio_settings_screen
+   (panels meta audio_settings_panel helpbar)
+   (focus audio_settings_panel)
+   (allow_back FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {!
+               {audio_settings_panel slider_selected}}
+            {== $button kPad_Tri}}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {$this set_volumes}
+         {autosave_goto options_screen}}
+      kDataUnhandled)}
+{new
+   SliderPanel
+   pause_audio_settings_panel
+   (file pause_audio_settings.milo)
+   AUDIO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   pause_audio_settings_screen
+   (panels GAME_PANELS pause_audio_settings_panel helpbar)
+   (focus pause_audio_settings_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {!
+               {pause_audio_settings_panel slider_selected}}
+            {== $button kPad_Tri}}
+         {$this set_volumes}
+         {ui goto_screen pause_screen}}
+      kDataUnhandled)}
+{new
+   GHPanel
+   mem_card_panel
+   (file mem_card.milo)
+   (focus save_bands.btn)}
+{new
+   GHScreen
+   mem_card_screen
+   (panels meta mem_card_panel helpbar)
+   (focus mem_card_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown)))
+      (autosave.btn
+         ((fret1 help_onoff)
+            (fret2 help_back)
+            (strum help_updown))))
+   (enter
+      {{mem_card_panel find autosave.chk}
+         set_check
+         $autosave})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (autosave.btn
+            {{mem_card_panel find autosave.chk}
+               toggle}
+            {set
+               $autosave
+               {{mem_card_panel find autosave.chk}
+                  get_check}}
+            {if
+               $autosave
+               {set $mc_return_screen $this}
+               {ui goto_screen enable_autosave_screen}})
+         (save_bands.btn
+            {set $mc_return_screen $this}
+            {ui goto_screen normal_save_screen})
+         (load_bands.btn
+            {set $mc_return_screen $this}
+            {goto_load})}
+      kDataUnhandled)}
+{new
+   GHPanel
+   bonus_material_panel
+   (file bonus_material.milo)
+   (focus bm_video3.btn)}
+{new
+   GHScreen
+   bonus_material_screen
+   (item_locked FALSE)
+   (panels meta bonus_material_panel helpbar)
+   (focus bonus_material_panel)
+   (helpbar
+      (default
+         ((fret1 help_select)
+            (fret2 help_back)
+            (strum help_updown)))
+      (bm_hidden.btn
+         ((fret2 help_back))))
+   (enter
+      {$this set item_locked FALSE}
+      {$this set_button_state bm_video2.btn}
+      {$this set_button_state bm_video3.btn}
+      {{bonus_material_panel find bm_buy.lbl}
+         set_showing
+         [item_locked]})
+   (set_button_state
+      ($btn)
+      {if_else
+         {campaign
+            is_video_unlocked
+            {$this get_movie $btn}}
+         {do
+            {$this
+               disable
+               {bonus_material_panel find bm_hidden.btn}
+               kPad_DDown}
+            {$this
+               enable
+               {bonus_material_panel find $btn}}}
+         {do
+            {$this
+               disable
+               {bonus_material_panel find $btn}
+               kPad_DDown}
+            {$this set item_locked TRUE}}})
+   (BUTTON_DOWN_MSG
+      {if_else
+         {&&
+            {==
+               {$this focus_name}
+               bm_hidden.btn}
+            {== $button kPad_X}}
+         TRUE
+         kDataUnhandled})
+   (SELECT_START_MSG
+      {play_bonus_video_screen
+         set
+         video
+         {{game video_provider}
+            get_video_file
+            {$this get_movie $component}}}
+      {ui goto_screen play_bonus_video_screen})
+   (get_movie
+      ($btn)
+      {switch
+         $btn
+         (bm_video2.btn video2)
+         (bm_video3.btn video3)
+         {fail
+            "unknown button: "
+            $btn}})}
+{new
+   GHScreen
+   play_bonus_video_screen
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (video
+      "")
+   (TRANSITION_COMPLETE_MSG
+      {meta set_tool_movie TRUE}
+      {meta
+         play_movie
+         [video]}
+      {meta set_tool_movie FALSE}
+      {ui goto_screen bonus_material_screen})}
+{new
+   CreditsPanel
+   credits_panel
+   (file credits.milo)
+   (enter
+      {meta_music stop}
+      {profilemgr disable_xmp})
+   (exit
+      {meta_music start}
+      {profilemgr enable_xmp})}
+{new
+   GHScreen
+   credits_screen
+   (panels meta credits_panel helpbar)
+   (focus credits_panel)
+   (helpbar
+      (default
+         ((fret2 help_back))))
+   (SCROLL_MSG
+      {do
+         ($new_scroll_pos
+            {{credits_panel find credits.lst}
+               selected_pos})
+         {if
+            {==
+               {'+' 1 $new_scroll_pos}
+               {$this num_lines}}
+            {achievements submit credits}
+            {$this go_back}}}
+      kDataUnhandled)
+   (go_back
+      {$this backwards_anim}
+      {ui goto_screen options_screen})}
+{new
+   LagPanel
+   lag_panel
+   (file lag.milo)
+   (focus autocalibrate.btn)
+   (from_panel
+      "")
+   (state init)
+   (lag 0)
+   (hits
+      ())
+   (seconds
+      ())
+   (window 50)
+   (min_hits 7)
+   (min_avg -100)
+   (max_avg 250)
+   (update_groups
+      {cond
+         ({==
+               [state]
+               calibrating}
+            {buttons.grp set showing FALSE})
+         (TRUE
+            {buttons.grp set showing TRUE})})
+   (update_helpbar
+      {do
+         ($array)
+         {set
+            $array
+            ()}
+         {resize $array 0}
+         {cond
+            ({==
+                  [state]
+                  calibrating}
+               {push_back
+                  $array
+                  (strum help_hitonchange)})
+            (TRUE
+               {push_back
+                  $array
+                  (fret1 help_select)}
+               {push_back
+                  $array
+                  (fret2 help_back)}
+               {push_back
+                  $array
+                  (strum help_updown)})}
+         {helpbar set_display $array}})
+   (update_text
+      {switch
+         [state]
+         (init
+            {instructions.lbl set text_token lag_info_why}
+            {instructions2.lbl set text_token lag_info_howto}
+            {setting.lbl
+               set_localized
+               {sprintf
+                  {localize lag_setting}
+                  {int
+                     [lag]}}}
+            {autocalibrate.btn set text_token lag_button_calibrate})
+         (calibrating
+            {instructions.lbl set text_token lag_measuring}
+            {instructions2.lbl
+               set
+               text_token
+               ""}
+            {setting.lbl
+               set_localized_text
+               ""})
+         (success
+            {instructions.lbl set text_token lag_success}
+            {instructions2.lbl
+               set_localized
+               ""}
+            {setting.lbl
+               set_localized
+               {sprintf
+                  {localize lag_measured}
+                  {int
+                     [lag]}}}
+            {autocalibrate.btn set text_token lag_button_recalibrate})
+         (failure
+            {instructions.lbl set text_token lag_info_failure}
+            {instructions2.lbl set text_token lag_info_howto}
+            {setting.lbl
+               set_localized
+               {sprintf
+                  {localize lag_setting}
+                  {int
+                     [lag]}}}
+            {autocalibrate.btn set text_token lag_button_recalibrate})})
+   (set_state
+      ($s)
+      {set
+         [state]
+         $s}
+      {$this update_groups}
+      {$this update_helpbar}
+      {$this update_text})
+   (enter
+      {countdown.lbl
+         set_localized
+         ""}
+      {set
+         [lag]
+         {-
+            0
+            {options get_sync_offset}}}
+      {$this set_state init}
+      {set
+         [hits]
+         {array 0}}
+      {set
+         [seconds]
+         {array 0}})
+   (exit
+      {options
+         set_sync_offset
+         {-
+            0
+            [lag]}})
+   (BUTTON_DOWN_MSG
+      {if_else
+         {==
+            [state]
+            calibrating}
+         {if
+            {'||'
+               {== $button kPad_DDown}
+               {== $button kPad_DUp}}
+            {push_back
+               [hits]
+               {taskmgr ui_seconds}}}
+         {switch
+            $button
+            (kPad_Tri
+               {if_else
+                  {==
+                     [from_panel]
+                     video_settings_panel}
+                  {ui goto_screen video_settings_screen}
+                  {ui goto_screen pause_video_settings_screen}})
+            kDataUnhandled}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (autocalibrate.btn
+            {$this set_state calibrating}
+            {$this start_countdown})
+         (reset_to_zero.btn
+            {set
+               [lag]
+               0.0}
+            {$this set_state init})})
+   (play_sync_animation
+      {lag animate})
+   (start_countdown
+      {set $lag_aniamte_thread_wait TRUE}
+      {set $lag_animate_thread_loop TRUE}
+      {thread_task
+         (units kTaskUISeconds)
+         (script
+            {set $success TRUE}
+            {countdown.lbl set text_token lag_3}
+            {practice_hat play}
+            {$task sleep 0.133}
+            {$task sleep 0.6}
+            {practice_hat play}
+            {countdown.lbl set text_token lag_2}
+            {$task sleep 0.133}
+            {$task sleep 0.6}
+            {practice_hat play}
+            {countdown.lbl set text_token lag_1}
+            {$task sleep 0.133}
+            {$task sleep 0.6}
+            {practice_hat play}
+            {countdown.lbl set text_token lag_go}
+            {$task sleep 0.133}
+            {resize
+               [hits]
+               0}
+            {resize
+               [seconds]
+               0}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back
+               [seconds]
+               {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {countdown.lbl
+               set_localized
+               ""}
+            {$task sleep 0.6}
+            {set
+               [lag]
+               {$this
+                  calculate_lag
+                  [window]
+                  [min_hits]
+                  [hits]
+                  [seconds]}}
+            {if_else
+               {&&
+                  {>
+                     [lag]
+                     [min_avg]}
+                  {<
+                     [lag]
+                     [max_avg]}}
+               {set $success TRUE}
+               {set $success FALSE}}
+            {if
+               {'||'
+                  {<
+                     [lag]
+                     0}
+                  {>=
+                     [lag]
+                     [max_avg]}}
+               {set
+                  [lag]
+                  0}}
+            {$this
+               set_state
+               {if_else $success success failure}})})}
+{new
+   GHScreen
+   lag_screen
+   (panels lag_panel helpbar)
+   (focus lag_panel)}
+{new
+   GHScreen
+   pause_lag_screen
+   (panels GAME_PANELS lag_panel helpbar)
+   (focus lag_panel)
+   (clear_vram TRUE)
+   (enter
+      {hud set_showing FALSE}
+      {track_panel set_showing FALSE}
+      {world_panel set_showing FALSE})}
+#define VIDEO_SETTINGS_PANEL_HANDLERS
+((focus gs_left_p1.btn)
+   (focus_component
+      "")
+   (orig_sync 0)
+   (enter
+      {lefty1.chk
+         set_check
+         {options get_lefty 0}}
+      {lefty2.chk
+         set_check
+         {options get_lefty 1}}
+      {$this update_help_display}
+      {if
+         {==
+            {$this name}
+            pause_video_settings_panel}
+         {hud set_showing TRUE}
+         {track_panel set_showing TRUE}
+         {world_panel set_showing TRUE}})
+   (update_help_display
+      {if_else
+         {==
+            [focus_component]
+            "calibrate_lag.btn"}
+         {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}
+         {helpbar
+            set_display
+            ((fret1 help_onoff)
+               (fret2 help_back)
+               (strum help_updown))}})
+   (FOCUS_MSG
+      {$this
+         set
+         focus_component
+         {$new_focus name}}
+      {$this update_help_display})
+   (slider_start_msg
+      ($component)
+      {synth play_sequence button_toggle})
+   (slider_select_cancel
+      ($component)
+      {$this update_help_display}
+      kDataUnhandled)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (gs_left_p1.btn
+            {lefty1.chk toggle}
+            {options
+               set_lefty
+               0
+               {lefty1.chk get_check}})
+         (gs_left_p2.btn
+            {lefty2.chk toggle}
+            {options
+               set_lefty
+               1
+               {lefty2.chk get_check}})
+         (calibrate_lag.btn
+            {lag_panel set from_panel $this}
+            {if_else
+               {== $this video_settings_panel}
+               {ui goto_screen lag_screen}
+               {ui goto_screen pause_lag_screen}})
+         kDataUnhandled}
+      {$this update_help_display}))
+{new
+   SliderPanel
+   video_settings_panel
+   (file video_settings.milo)
+   VIDEO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   video_settings_screen
+   (panels meta video_settings_panel helpbar)
+   (focus video_settings_panel)
+   (allow_back FALSE)
+   (enter
+      {$this
+         enable
+         {video_settings_panel find gs_left_p2.btn}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {autosave_goto options_screen}}
+      kDataUnhandled)}
+{new
+   SliderPanel
+   pause_video_settings_panel
+   (file pause_video_settings.milo)
+   VIDEO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   pause_video_settings_screen
+   (panels GAME_PANELS pause_video_settings_panel helpbar)
+   (focus pause_video_settings_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (old_lefty_0 0)
+   (old_lefty_1 0)
+   (stash_lefty_settings FALSE)
+   (enter
+      {if
+         [stash_lefty_settings]
+         {set
+            [old_lefty_0]
+            {options get_lefty 0}}
+         {set
+            [old_lefty_1]
+            {options get_lefty 1}}}
+      {set
+         [stash_lefty_settings]
+         FALSE}
+      {if_else
+         {>
+            {game num_players}
+            1}
+         {$this
+            enable
+            {pause_video_settings_panel find gs_left_p2.btn}}
+         {$this
+            disable
+            {pause_video_settings_panel find gs_left_p2.btn}}})
+   (lefty_changed
+      {'||'
+         {!=
+            [old_lefty_0]
+            {options get_lefty 0}}
+         {!=
+            [old_lefty_1]
+            {options get_lefty 1}}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {if_else
+            {$this lefty_changed}
+            {do
+               {if_else
+                  {&&
+                     {!=
+                        [old_lefty_0]
+                        {options get_lefty 0}}
+                     {!=
+                        [old_lefty_1]
+                        {options get_lefty 1}}}
+                  {lefty_restart_screen set lefty_switch 2}
+                  {if_else
+                     {!=
+                        [old_lefty_0]
+                        {options get_lefty 0}}
+                     {lefty_restart_screen set lefty_switch 0}
+                     {lefty_restart_screen set lefty_switch 1}}}
+               {ui goto_screen lefty_restart_screen}}
+            {ui goto_screen pause_screen}}}
+      kDataUnhandled)}

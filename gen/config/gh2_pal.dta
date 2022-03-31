@@ -1,0 +1,11 @@
+(rnd
+   (height 512))
+(mc
+   (base_dir
+      "BESLES-54442")
+   (elf_name
+      "SLES_544.42"))
+(system
+   (language
+      (force '')))
+#merge gh2.dta

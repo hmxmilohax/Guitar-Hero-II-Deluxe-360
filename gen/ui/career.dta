@@ -1,0 +1,1426 @@
+{func
+   is_updown_button
+   ($button)
+   {'||'
+      {== $button kPad_DDown}
+      {== $button kPad_DUp}}}
+#define VENUE_MAP_SCROLL_SEC
+(0.3)
+{new
+   CharsysPanel
+   char_single
+   (num_placers 1)
+   (load_order LOAD_CHARACTERS)
+   (enter
+      {$this
+         show_char
+         0
+         {game get_character_outfit}})}
+#define SEL_DIFFICULTY_COMMON
+((update_focus
+      {$this
+         set_focus
+         {switch
+            {$this last_difficulty}
+            (kDifficultyEasy sd_diff1.btn)
+            (kDifficultyMedium sd_diff2.btn)
+            (kDifficultyHard sd_diff3.btn)
+            (kDifficultyExpert sd_diff4.btn)}})
+   (set_difficulty
+      ($component $player_num)
+      {{game get_player_config $player_num}
+         set_difficulty
+         {switch
+            $component
+            (sd_diff1.btn kDifficultyEasy)
+            (sd_diff2.btn kDifficultyMedium)
+            (sd_diff3.btn kDifficultyHard)
+            (sd_diff4.btn kDifficultyExpert)}}
+      {$this update_difficulty})
+   (SELECT_START_MSG
+      {$this set_difficulty $component 0}
+      {if
+         {>
+            {game get_num_players}
+            1}
+         {$this set_difficulty $component 1}}
+      kDataUnhandled))
+{new
+   UIPanel
+   sel_difficulty_panel
+   (file sel_difficulty.milo)
+   SEL_DIFFICULTY_COMMON
+   (enter
+      {$this update_focus})
+   (last_difficulty
+      {game get_difficulty 0})
+   (update_difficulty)}
+{new
+   UIPanel
+   sel_diff_career_panel
+   (file sel_diff_career.milo)
+   SEL_DIFFICULTY_COMMON
+   (enter
+      {sd_easy_status.lbl
+         set_localized_text
+         {campaign get_status_progress kDifficultyEasy}}
+      {sd_med_status.lbl
+         set_localized_text
+         {campaign get_status_progress kDifficultyMedium}}
+      {sd_hard_status.lbl
+         set_localized_text
+         {campaign get_status_progress kDifficultyHard}}
+      {sd_expert_status.lbl
+         set_localized_text
+         {campaign get_status_progress kDifficultyExpert}}
+      {$this update_focus})
+   (last_difficulty
+      {campaign last_difficulty})
+   (update_difficulty
+      {campaign update_difficulty})}
+{new
+   GHScreen
+   sel_difficulty_screen
+   (panels meta sel_diff_career_panel helpbar char_single)
+   (focus sel_diff_career_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (SELECT_START_MSG
+      {sel_diff_career_panel set_difficulty $component 0}
+      {if_else
+         {campaign new_campaign}
+         {ui goto_screen sel_character_new_screen}
+         {do
+            {campaign get_character_info}
+            {ui goto_screen career_screen}}}
+      kDataUnhandled)
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen chooseprof_screen}}
+      kDataUnhandled)}
+{new
+   GHPanel
+   tour_start_panel
+   (file sponsorship1.milo)
+   (enter
+      {play_sfx cash_award.cue}
+      {if_else
+         {==
+            kDifficultyEasy
+            {game get_difficulty 0}}
+         {do
+            {sponsor_cash.lbl set_showing FALSE}
+            {sponsor_amount.lbl set_showing FALSE}}
+         {do
+            ($starting_cash
+               {campaign starting_cash})
+            {sponsor_amount.lbl
+               set_text
+               {sprintf
+                  {localize career_cash_format}
+                  $starting_cash}}
+            {campaign add_cash $starting_cash}}})}
+{new
+   GHScreen
+   tour_start_screen
+   (panels meta tour_start_panel helpbar char_single)
+   (focus tour_start_panel)
+   (allow_back FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_X}
+         {synth play_sequence button_select}
+         {autosave_goto career_screen}}
+      TRUE)}
+{new
+   GHPanel
+   career_panel
+   (file career.milo)
+   (focus cm_letsrock.btn)
+   (enter
+      {cm_char.lbl
+         set_text
+         {game get_character}}
+      {print
+         {game get_total_num_skins}}
+      {if_else
+         {==
+            1
+            {game get_total_num_skins}}
+         {do
+            {cm_guitar.lbl
+               set_text
+               {game get_guitar_skin}}
+            {cm_guitar_skin.lbl
+               set_localized_text
+               ""}}
+         {do
+            {cm_guitar.lbl
+               set_text
+               {game get_guitar}}
+            {cm_guitar_skin.lbl
+               set_text
+               {game get_guitar_skin}}}}
+      {cm_cash.lbl
+         set_localized_text
+         {sprintf
+            {localize career_cash_format}
+            {campaign cash}}}
+      {cm_band.lbl
+         set_localized_text
+         {campaign
+            profile_name
+            {campaign profile_slot}}}
+      {cm_score.lbl
+         set_localized_text
+         {sprintf
+            {localize career_score_format}
+            {campaign career_score}}}
+      {cm_career.lbl
+         set_text
+         {game get_difficulty_sym 0}}
+      {if
+         {==
+            kDifficultyEasy
+            {game get_difficulty 0}}
+         {$this disable cm_store.btn}}
+      {cm_cash.lbl
+         set_showing
+         {!=
+            kDifficultyEasy
+            {game get_difficulty 0}}}
+      {cm_cash_title.lbl
+         set_showing
+         {!=
+            kDifficultyEasy
+            {game get_difficulty 0}}}
+      {$this set_focus cm_letsrock.btn})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (cm_letsrock.btn
+            {autosave_goto sel_venue_screen})
+         (cm_hero.btn
+            {ui goto_screen sel_character_edit_screen})
+         (cm_guitar.btn
+            {ui goto_screen sel_guitar_edit_screen})
+         (cm_store.btn
+            {ui goto_screen store_screen})})}
+{new
+   GHScreen
+   career_screen
+   (panels meta career_panel helpbar char_single)
+   (focus career_panel)
+   (allow_back FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (enter
+      {$this turn_off_ambient}
+      {content_mgr start_enumeration})
+   (resume_from_practice
+      {practice_sel_section_screen set career_mode FALSE}
+      {gamecfg set mode career}
+      {gamecfg set continue_screen sel_song_screen})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {autosave_goto sel_difficulty_screen}}
+      kDataUnhandled)}
+{new
+   GHPanel
+   sel_character_panel
+   (file sel_character.milo)
+   (char_focus rockabill)
+   (char_outfit rockabill1)
+   (old_scroll_pos 0)
+   (focus character.lst)
+   (skin_select FALSE)
+   (enter
+      {character.lst set_provider character_provider}
+      {animate_forever_30fps $this sel_character.view}
+      {sel_skin.tnm set_frame 0}
+      {char_highlight.mnm
+         animate
+         (loop 0 3)
+         (period 0.25)
+         (units kTaskUISeconds)}
+      {set
+         [skin_select]
+         FALSE}
+      {$this set_focus character.lst}
+      {text_character.grp set_showing TRUE}
+      {text_skin.grp set_showing FALSE}
+      {do
+         ($character
+            {game get_character})
+         ($outfit
+            {game get_character_outfit})
+         {char_single show_char 0 $outfit}
+         {char_single char_event 0 animate}
+         {sc_char_nm.lbl set_text $character}
+         {sc_char_blurb.lbl
+            set_localized_text
+            {localize
+               {sprint
+                  $character
+                  "_blurb"}}}
+         {$this set char_focus $character}
+         {$this set char_outfit $outfit}
+         {character.lst
+            set_selected
+            {character_provider get_index $character}}
+         {$this
+            set
+            old_scroll_pos
+            {character.lst selected_pos}}
+         {char_highlight.tnm
+            set_frame
+            [old_scroll_pos]}
+         {foreach
+            $c
+            CHARACTERS
+            {do
+               ($mesh
+                  {sprint
+                     "char_"
+                     $c
+                     ".mesh"})
+               {if_else
+                  {campaign is_unlocked $c}
+                  {$mesh
+                     set_mat
+                     {sprint
+                        "char_"
+                        $c
+                        ".mat"}}
+                  {$mesh set_mat char_locked.mat}}}}})
+   (poll
+      {scl_loading.lbl
+         set_showing
+         {!
+            {char_single are_chars_loaded}}})
+   (exit
+      {set
+         [skin_select]
+         FALSE})
+   (choose_skins
+      {set
+         [skin_select]
+         TRUE}
+      {text_character.grp set_showing FALSE}
+      {text_skin.grp set_showing TRUE}
+      {sel_skin.tnm
+         animate
+         (units kTaskUISeconds)
+         (period SKIN_ANIM_TIME)
+         (range 0 10)}
+      {if_else
+         {==
+            {character_provider
+               get_outfit
+               [char_focus]
+               1}
+            [char_outfit]}
+         {$this set_focus outfit2.btn}
+         {$this set_focus outfit1.btn}}
+      {outfit1.btn
+         set_text
+         {sprint
+            {character_provider
+               get_outfit
+               [char_focus]
+               0}
+            _outfit}}
+      {outfit2.btn
+         set_text
+         {sprint
+            {character_provider
+               get_outfit
+               [char_focus]
+               1}
+            _outfit}})
+   (unchoose_skins
+      {set
+         [skin_select]
+         FALSE}
+      {text_skin.grp set_showing FALSE}
+      {text_character.grp set_showing TRUE}
+      {sel_skin.tnm
+         animate
+         (units kTaskUISeconds)
+         (period SKIN_ANIM_TIME)
+         (range 10 0)}
+      {$this set_focus character.lst}
+      {synth play_sequence button_back.cue})
+   (open_door)
+   (SCROLL_MSG
+      {do
+         ($new_scroll_pos
+            {character.lst selected_pos})
+         {if
+            {&&
+               {!=
+                  $new_scroll_pos
+                  [old_scroll_pos]}
+               {character_provider is_active $new_scroll_pos}}
+            {synth play_sequence button_toggle}
+            {set
+               [char_focus]
+               {character_provider get_symbol $new_scroll_pos}}
+            {if_else
+               {==
+                  [char_focus]
+                  {game get_character}}
+               {set
+                  [char_outfit]
+                  {game get_character_outfit}}
+               {set
+                  [char_outfit]
+                  {character_provider
+                     get_outfit
+                     [char_focus]
+                     0}}}
+            {if
+               [char_focus]
+               {sc_char_nm.lbl
+                  set_text
+                  [char_focus]}
+               {sc_char_blurb.lbl
+                  set_localized_text
+                  {localize
+                     {sprint
+                        [char_focus]
+                        "_blurb"}}}
+               {char_single
+                  show_char
+                  0
+                  [char_outfit]}
+               {char_single char_event 0 animate}
+               {$this set old_scroll_pos $new_scroll_pos}
+               {char_highlight.tnm set_frame $new_scroll_pos}}}})
+   (FOCUS_MSG
+      {if
+         [skin_select]
+         {do
+            ($idx)
+            ($old_char)
+            {synth play_sequence button_toggle}
+            {if_else
+               {==
+                  $new_focus
+                  "outfit1.btn"}
+               {set $idx 0}
+               {set $idx 1}}
+            {set
+               [char_outfit]
+               {character_provider
+                  get_outfit
+                  [char_focus]
+                  $idx}}
+            {cs_arrow.tnm set_frame $idx}
+            {set
+               $old_char
+               {char_single get_char 0}}
+            {if
+               {char_single
+                  show_char
+                  0
+                  [char_outfit]}
+               {do
+                  ($new_char
+                     {char_single get_char 0})
+                  {if_else
+                     {&& $old_char $new_char}
+                     {do
+                        {reset_hair $new_char}
+                        {{$new_char find main.drv}
+                           transfer
+                           {$old_char find main.drv}}}
+                     {char_single char_event 0 select}}}}
+            {sc_char_outfit_blurb.lbl
+               set_localized_text
+               {localize
+                  {sprint
+                     [char_focus]
+                     "_outfit_blurb"}}}}}
+      kDataUnhandled)}
+#define SEL_CHARACTER_COMMON
+((panels meta sel_character_panel char_single helpbar)
+   (focus sel_character_panel)
+   (allow_back FALSE)
+   (alt_cam_anim TRUE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (TRANSITION_COMPLETE_MSG
+      {char_single
+         set_placer
+         0
+         {sel_character_panel find char_single.placer}}
+      {char_single
+         set_env
+         0
+         {sel_character_panel find character.env}})
+   (exit
+      {char_single set_placer 0}
+      {char_single set_door 0})
+   (enter
+      {char_single
+         set_door
+         0
+         {sel_character_panel find cs_door.mesh}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {if_else
+            {sel_character_panel get skin_select}
+            {sel_character_panel unchoose_skins}
+            {do
+               {$this backwards_anim}
+               {synth play_sequence button_back.cue}
+               {ui
+                  goto_screen
+                  [back_screen]}}}}
+      kDataUnhandled))
+#define SEL_CHARACTER_SELECT_HANDLER
+({if_else
+      {sel_character_panel get skin_select}
+      {do
+         ($sel_outfit
+            {sel_character_panel get char_outfit})
+         {if
+            {&&
+               $sel_outfit
+               {!=
+                  {game get_character_outfit}
+                  $sel_outfit}}
+            {game set_character $sel_outfit}}
+         {ui
+            goto_screen
+            [done_screen]}}
+      {do
+         ($sel_char
+            {sel_character_panel get char_focus})
+         {if_else
+            {>
+               {character_provider num_outfits $sel_char}
+               1}
+            {sel_character_panel choose_skins}
+            {do
+               {game
+                  set_character
+                  {sel_character_panel get char_outfit}
+                  TRUE}
+               {ui
+                  goto_screen
+                  [done_screen]}}}}})
+{new
+   GHScreen
+   sel_character_new_screen
+   (done_screen sel_guitar_new_screen)
+   (back_screen sel_difficulty_screen)
+   SEL_CHARACTER_COMMON
+   (SELECT_START_MSG SEL_CHARACTER_SELECT_HANDLER kDataUnhandled)}
+{new
+   GHScreen
+   sel_character_edit_screen
+   (done_screen career_screen)
+   (back_screen career_screen)
+   SEL_CHARACTER_COMMON
+   (SELECT_START_MSG
+      SEL_CHARACTER_SELECT_HANDLER
+      {campaign set_character_info}
+      kDataUnhandled)}
+{new
+   GuitarDisplayPanel
+   guitar_display_panel
+   (file
+      "")
+   (force_exit TRUE)}
+{new
+   GuitarSelectPanel
+   sel_guitar_panel
+   (file sel_guitar.milo)
+   (quickplay FALSE)
+   (enter
+      {sel_guitar.tnm set_frame 0})
+   (update_display
+      ($play_sfx)
+      {do
+         ($guitar
+            {$this get_selected_guitar 0})
+         ($skin
+            {$this get_selected_skin 0})
+         {sg_guitar_nm.lbl set_text $guitar}
+         {sg_guitar_desc.lbl
+            set_text
+            {game get_guitar_desc $guitar}}
+         {sg_skin_nm.lbl set_text $skin}
+         {sg_skin_desc.lbl
+            set_text
+            {game get_guitar_skin_desc $skin}}
+         {sg_text_guitar.grp
+            set_showing
+            {!
+               {$this is_skin_select 0}}}
+         {sg_text_skin.grp
+            set_showing
+            {$this is_skin_select 0}}
+         {guitar_display_panel set_env 0 guitar.env}
+         {guitar_display_panel show_guitar 0 $guitar $skin guitar.pxy guitar_single.filt}
+         {if
+            $play_sfx
+            {synth play_sequence button_toggle}}})
+   (choose_skins
+      {sel_guitar.tnm
+         animate
+         (units kTaskUISeconds)
+         (period 0.4)
+         (range 0 100)})
+   (unchoose_skins
+      {sel_guitar.tnm
+         animate
+         (units kTaskUISeconds)
+         (period 0.4)
+         (range 100 0)}
+      {$this set_skin_select 0 FALSE}
+      {sg_text_guitar.grp
+         set_showing
+         {!
+            {$this is_skin_select 0}}}
+      {sg_text_skin.grp
+         set_showing
+         {$this is_skin_select 0}})}
+#define SEL_GUITAR_COMMON
+((panels meta sel_guitar_panel helpbar guitar_display_panel char_single)
+   (focus sel_guitar_panel)
+   (alt_cam_anim TRUE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (enter
+      {sel_guitar_panel set_skin_select 0 FALSE}
+      {sel_guitar_panel update_display FALSE}
+      {char_single set_paused TRUE})
+   (exit
+      {char_single set_paused FALSE})
+   (goto_career
+      {game
+         set_guitar
+         {sel_guitar_panel get_selected_guitar 0}
+         {sel_guitar_panel get_selected_skin 0}}
+      {do
+         ($new_campaign
+            {campaign new_campaign})
+         {campaign set_character_info}
+         {if_else
+            $new_campaign
+            {ui goto_screen tour_start_screen}
+            {ui goto_screen career_screen}}})
+   (BUTTON_DOWN_MSG
+      {switch
+         $button
+         (kPad_Tri
+            {if_else
+               {sel_guitar_panel is_skin_select 0}
+               {$this unchoose_skins}
+               {$this go_back}})
+         kDataUnhandled})
+   (guitar_selected
+      ($player_num)
+      {synth play_sequence button_select}
+      {if_else
+         {sel_guitar_panel is_skin_select 0}
+         {do
+            {$this goto_career}}
+         {do
+            ($guitar
+               {sel_guitar_panel get_selected_guitar 0})
+            {if_else
+               {>
+                  {sel_guitar_panel get_num_skins $player_num $guitar}
+                  1}
+               {do
+                  {sel_guitar_panel set_skin_select 0 TRUE}
+                  {$this choose_skins}
+                  {sel_guitar_panel update_display FALSE}}
+               {do
+                  {$this goto_career}}}}}
+      TRUE))
+{new
+   GHScreen
+   sel_guitar_new_screen
+   SEL_GUITAR_COMMON
+   (go_back
+      {$this backwards_anim}
+      {synth play_sequence button_back.cue}
+      {ui goto_screen sel_character_new_screen})}
+{new
+   GHScreen
+   sel_guitar_edit_screen
+   SEL_GUITAR_COMMON
+   (go_back
+      {$this backwards_anim}
+      {synth play_sequence button_back.cue}
+      {campaign set_character_info}
+      {ui goto_screen career_screen})}
+{new
+   CharsysPanel
+   char_store
+   (store TRUE)
+   (num_placers 1)
+   (load_order
+      (STORE_CHARACTERS STORE_OUTFITS))}
+{new
+   GuitarDisplayPanel
+   store_guitar_display_panel
+   (file
+      "")
+   (config store)}
+{new
+   UIPanel
+   store_video_panel
+   (file store_video.milo)
+   (hide
+      {store_video.view set_showing FALSE})
+   (animate_video
+      {store_video.view
+         animate
+         (loop
+            0
+            {store_video.view end_frame})
+         (units kTaskUISeconds)})}
+{new
+   UIPanel
+   store_back_panel
+   (file store_back.milo)}
+{new
+   StorePanel
+   store_panel
+   (file store.milo)
+   (focus st_guitars.btn)
+   (retain_last_focus FALSE)
+   (category guitar)
+   (itemIdx 0)
+   (item_name
+      "")
+   (item_provider store_item_provider)
+   (set_store_mode
+      ($b)
+      {store_guitar_provider init_data}
+      {store_skin_provider init_data}
+      {store_video_provider init_data})
+   (show_store_screen_1
+      {st_screen1.view set_showing TRUE}
+      {st_screen2.view set_showing FALSE}
+      {$this update_helpbar})
+   (show_store_screen_2
+      {st_screen1.view set_showing FALSE}
+      {st_screen2.view set_showing TRUE}
+      {$this set itemIdx 0}
+      {$this update_helpbar})
+   (get_item_price
+      {$this
+         price
+         [category]
+         [item_name]})
+   (can_buy_item
+      {&&
+         {!
+            {campaign
+               is_unlocked
+               [item_name]}}
+         {$this is_item_in_stock}
+         {>=
+            {campaign cash}
+            {store_panel get_item_price}}})
+   (is_item_in_stock
+      {'||'
+         {!=
+            [category]
+            guitar}
+         {[item_provider]
+            in_stock
+            [itemIdx]}})
+   (update_store_item_desc
+      {if_else
+         {$this is_item_in_stock}
+         {do
+            {st_item_name.lbl
+               set_text
+               {[item_provider]
+                  get_text
+                  [itemIdx]}}
+            {st_item_desc.lbl
+               set_text
+               {sprintf
+                  "%s_shop_desc"
+                  [item_name]}}
+            {st_cost.lbl
+               set_localized_text
+               {sprintf
+                  "$%d"
+                  {$this get_item_price}}}
+            {st_question.lbl set_showing FALSE}}
+         {do
+            {st_item_name.lbl set_text shop_locked_reward}
+            {st_item_desc.lbl
+               set_text
+               {sprint
+                  [item_name]
+                  "_locked_desc"}}
+            {st_cost.lbl set_text shop_locked_cost}
+            {st_question.lbl set_showing TRUE}}})
+   (update_store_item_display
+      {switch
+         [category]
+         (character
+            {char_store
+               show_char
+               0
+               {[item_provider]
+                  get_symbol
+                  {$this get itemIdx}}}
+            {char_store char_event 0 store})
+         (outfit
+            {char_store
+               show_char
+               0
+               [item_name]}
+            {char_store char_event 0 store})
+         (guitar
+            {do
+               ($dir
+                  {store_panel loaded_dir})
+               {store_guitar_display_panel
+                  set_env
+                  0
+                  {$dir
+                     find
+                     {if_else
+                        {[item_provider]
+                           in_stock
+                           [itemIdx]}
+                        guitar.env
+                        guitar_black.env}}}
+               {store_guitar_display_panel
+                  show_guitar
+                  0
+                  {store_guitar_provider
+                     get_symbol
+                     {$this get itemIdx}}
+                  ''
+                  {$dir find guitar.pxy}
+                  {$dir find guitar_single.filt}}})
+         (skin
+            {do
+               ($dir
+                  {store_panel loaded_dir})
+               {store_guitar_display_panel
+                  set_env
+                  0
+                  {$dir find guitar.env}}
+               {store_guitar_display_panel
+                  show_guitar
+                  0
+                  {store_skin_provider
+                     get_guitar
+                     {$this get itemIdx}}
+                  {store_skin_provider
+                     get_symbol
+                     {$this get itemIdx}}
+                  {$dir find guitar.pxy}
+                  {$dir find guitar_single.filt}}})
+         (song
+            {song_logos.pic
+               set_tex
+               {sprint
+                  "ui/image/og/us_logo_"
+                  [item_name]
+                  "_keep.png"}}
+            {song_preview
+               [item_name]})}
+      TRUE)
+   (update_store_item_sold
+      {do
+         ($item_sold
+            {campaign
+               is_unlocked
+               [item_name]})
+         {st_sold.mesh set_showing $item_sold}}
+      {$this update_helpbar})
+   (update_store_category_desc
+      {st_blurb.lbl
+         set_text
+         {sprint
+            [category]
+            _shop_desc}}
+      {st_poster.pic
+         set_tex
+         {sprint
+            "ui/image/og/us_poster_"
+            [category]
+            "_keep.png"}}
+      {if_else
+         {==
+            [category]
+            downloads}
+         {st_costrange.lbl set_text store_downloads_costrange}
+         {st_costrange.lbl
+            set_localized_text
+            {sprintf
+               {localize category_cost}
+               {store_panel
+                  low_cost
+                  [category]}
+               {store_panel
+                  high_cost
+                  [category]}}}}
+      {st_cat_name.lbl
+         set_text
+         {sprint
+            "store_"
+            [category]}})
+   (update_total_cash_display
+      {st_cash.lbl
+         set_localized_text
+         {sprintf
+            {localize store_cash_format}
+            {campaign cash}}})
+   (update_helpbar
+      {do
+         ($array)
+         {set
+            $array
+            ()}
+         {resize $array 0}
+         {if_else
+            {st_screen1.view showing}
+            {push_back
+               $array
+               (fret1 help_select)}
+            {if
+               {$this can_buy_item}
+               {push_back
+                  $array
+                  (fret1 help_buyitem)}}}
+         {push_back
+            $array
+            (fret2 help_back)}
+         {push_back
+            $array
+            (strum help_updown)}
+         {helpbar set_display $array}})
+   (enter
+      {$this set_focus st_guitars.btn}
+      {if_else
+         {profilemgr is_active_pad_signed_in}
+         {$this enable st_downloads.btn}
+         {$this disable st_downloads.btn}}
+      {$this set_store_mode TRUE}
+      {$this show_store_screen_1}
+      {$this update_store_category_desc}
+      {$this update_total_cash_display}
+      {$this hide_models}
+      {cash.view set_showing FALSE}
+      {set
+         [item_provider]
+         store_item_provider}
+      {[item_provider]
+         set_category
+         character}
+      {char_store
+         show_char
+         0
+         {[item_provider]
+            get_symbol
+            0}}
+      {play_sfx store_grate.cue})
+   (TRANSITION_COMPLETE_MSG
+      {cash.view set_showing TRUE}
+      {char_store set_env 0 character.env})
+   (exit
+      {$this set_store_mode FALSE}
+      {cash.view set_showing FALSE})
+   (poll
+      {st_loading.lbl
+         set_showing
+         {&&
+            {st_screen2.view showing}
+            {==
+               [category]
+               character}
+            {!
+               {char_store are_chars_loaded}}}})
+   (SELECT_START_MSG
+      {if_else
+         {== $component st_downloads.btn}
+         {profilemgr show_marketplace}
+         {do
+            {set
+               [item_provider]
+               store_item_provider}
+            {[item_provider]
+               set_category
+               [category]}
+            {switch
+               $component
+               (st_guitars.btn
+                  {set
+                     [item_provider]
+                     store_guitar_provider}
+                  {store_guitar_display_panel set_showing TRUE})
+               (st_skins.btn
+                  {set
+                     [item_provider]
+                     store_skin_provider}
+                  {store_guitar_display_panel set_showing TRUE})
+               (st_songs.btn
+                  {meta_music stop}
+                  {profilemgr disable_xmp}
+                  {song_logos.pic set_showing TRUE})
+               (st_characters.btn
+                  {char_store set_placer 0 char_store.placer}
+                  {char_store.placer set_showing TRUE}
+                  {char_store
+                     set_exclusions
+                     (STORE_OUTFITS)})
+               (st_outfits.btn
+                  {char_store set_placer 0 char_store.placer}
+                  {char_store.placer set_showing TRUE}
+                  {char_store
+                     set_exclusions
+                     (STORE_CHARACTERS)})
+               (st_videos.btn
+                  {set
+                     [item_provider]
+                     store_video_provider}
+                  {{store_video_panel find store_video.view}
+                     set_showing
+                     TRUE}
+                  {taskmgr clear_tasks}
+                  {store_video_panel animate_video})}
+            {set
+               [itemIdx]
+               0}
+            {set
+               [item_name]
+               {[item_provider]
+                  get_symbol
+                  [itemIdx]}}
+            {$this show_store_screen_2}
+            {$this update_store_item_desc}
+            {$this update_store_item_display}
+            {$this update_store_item_sold}
+            kDataUnhandled}})
+   (update_index
+      ($dir)
+      {set
+         [itemIdx]
+         {mod
+            {'+'
+               [itemIdx]
+               $dir}
+            {[item_provider]
+               list_length}}}
+      {set
+         [item_name]
+         {[item_provider]
+            get_symbol
+            [itemIdx]}}
+      {$this update_store_item_desc}
+      {$this update_store_item_display}
+      {$this update_store_item_sold}
+      {synth play_sequence button_toggle})
+   (hide_models
+      {song_preview ''}
+      {meta_music start}
+      {profilemgr enable_xmp}
+      {st_question.lbl set_showing FALSE}
+      {char_store.placer set_showing FALSE}
+      {char_store set_placer 0}
+      {store_guitar_display_panel set_showing FALSE}
+      {song_logos.pic set_showing FALSE}
+      {store_video_panel hide})
+   (FOCUS_MSG
+      {do
+         ($new_cat
+            {switch
+               $new_focus
+               (st_guitars.btn guitar)
+               (st_skins.btn skin)
+               (st_songs.btn song)
+               (st_characters.btn character)
+               (st_outfits.btn outfit)
+               (st_videos.btn video)
+               (st_downloads.btn downloads)
+               kDataUnhandled})
+         {if
+            {!= $new_cat kDataUnhandled}
+            {set
+               [category]
+               $new_cat}
+            {$this update_store_category_desc}}}
+      kDataUnhandled)}
+{new
+   GHScreen
+   store_screen
+   (panels meta store_back_panel store_guitar_display_panel store_video_panel char_store store_panel helpbar)
+   (focus store_panel)
+   (BUTTON_DOWN_MSG
+      {cond
+         ({&&
+               {is_updown_button $button}
+               {{store_panel find st_screen2.view}
+                  showing}}
+            {store_panel
+               update_index
+               {if_else
+                  {== $button kPad_DDown}
+                  1
+                  -1}})
+         ({== $button kPad_Tri}
+            {synth play_sequence button_back.cue}
+            {if_else
+               {{store_panel find st_screen1.view}
+                  showing}
+               {do
+                  {store_screen backwards_anim}
+                  {autosave_goto career_screen}}
+               {do
+                  {store_panel hide_models}
+                  {store_panel show_store_screen_1}}}
+            kDataUnhandled)
+         ({&&
+               {== $button kPad_X}
+               {{store_panel find st_screen2.view}
+                  showing}}
+            {if_else
+               {store_panel can_buy_item}
+               {do
+                  ($cat
+                     {store_panel get category})
+                  {campaign
+                     buy_item
+                     {store_panel get item_name}
+                     {store_panel get_item_price}}
+                  {if
+                     {>=
+                        {campaign cash_spent}
+                        10000}
+                     {achievements submit money}}
+                  {store_panel update_store_item_sold}
+                  {store_panel update_total_cash_display}
+                  {if
+                     {== $cat guitar}
+                     {store_skin_provider init_data}}
+                  {ui push_screen store_bought_screen}
+                  {play_sfx cash_register}}
+               {play_sfx button_error}}
+            TRUE)
+         (TRUE kDataUnhandled)})}
+{new
+   UIPanel
+   store_bought_panel
+   (file store_bought.milo)}
+{new
+   GHScreen
+   store_bought_screen
+   (panels store_bought_panel)
+   (focus store_bought_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_X}
+         {synth play_sequence button_select}
+         {ui pop_screen}})
+   (enter
+      {{store_bought_panel find store_bought.lbl}
+         set_text
+         {sprintf
+            "%s_bought_blurb"
+            {store_panel get category}}})
+   (exit
+      {store_panel update_store_item_sold})}
+#define SEL_VENUE_SCREEN_HANDLERS
+((panels meta sel_venue_panel helpbar)
+   (focus sel_venue_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (venue_button_name
+      ($venue)
+      {sprintf
+         "sv_%s.btn"
+         $venue})
+   (venue_button
+      ($venue)
+      {sel_venue_panel
+         find
+         {sprintf
+            "sv_%s.btn"
+            $venue}})
+   (enter
+      {campaign
+         foreach_venue
+         $venue
+         {do
+            ($button
+               {$this venue_button_name $venue})
+            ($unlocked
+               {campaign is_unlocked $venue})
+            {if_else
+               $unlocked
+               {$this
+                  enable
+                  {sel_venue_panel find $button}}
+               {$this
+                  disable
+                  {sel_venue_panel find $button}}}}}
+      {game set_career_venue}
+      {do
+         ($index
+            {game get_venue_index})
+         ($venue
+            {game get_venue})
+         {{sel_venue_panel find venue_anims.grp}
+            set_frame
+            {'+' $index 1}}
+         {$this
+            set_focus
+            {$this venue_button $venue}}})
+   (set_venue_map_frame
+      ($frame)
+      {{sel_venue_panel find venue_anims.grp}
+         animate
+         (dest $frame)
+         (period VENUE_MAP_SCROLL_SEC)
+         (units kTaskUISeconds)})
+   (FOCUS_MSG
+      {if
+         {!
+            {ui in_transition}}
+         {switch
+            $new_focus
+            (sv_battle.btn
+               {$this set_venue_map_frame 1}
+               {game set_venue battle})
+            (sv_small1.btn
+               {$this set_venue_map_frame 2}
+               {game set_venue small1})
+            (sv_small2.btn
+               {$this set_venue_map_frame 3}
+               {game set_venue small2})
+            (sv_big.btn
+               {$this set_venue_map_frame 4}
+               {game set_venue big})
+            (sv_theatre.btn
+               {$this set_venue_map_frame 5}
+               {game set_venue theatre})
+            (sv_fest.btn
+               {$this set_venue_map_frame 6}
+               {game set_venue fest})
+            (sv_arena.btn
+               {$this set_venue_map_frame 7}
+               {game set_venue arena})
+            (sv_stone.btn
+               {$this set_venue_map_frame 8}
+               {game set_venue stone})}})
+   (SELECT_START_MSG
+      {ui
+         goto_screen
+         [next_screen]}
+      kDataUnhandled))
+{new
+   GHPanel
+   sel_venue_panel
+   (file sel_venue.milo)
+   (focus sv_battle.btn)}
+{new
+   GHScreen
+   sel_venue_screen
+   (allow_back FALSE)
+   (next_screen sel_song_screen)
+   SEL_VENUE_SCREEN_HANDLERS
+   (BUTTON_DOWN_MSG
+      {cond
+         ({== $button kPad_Tri}
+            {$this backwards_anim}
+            {synth play_sequence button_back.cue}
+            {ui goto_screen career_screen})}
+      kDataUnhandled)}
+{new
+   GHScreen
+   storage_changed_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_storage_changed mc_title_error})
+   (SELECT_START_MSG
+      {ui goto_screen main_screen})}
+{new
+   SelSongPanel
+   sel_song_panel
+   (file
+      {do
+         ($cfg
+            {gamecfg get mode})
+         {cond
+            ($leaderboards_mode sel_song_leaderboards.milo)
+            ({'||'
+                  {== career $cfg}
+                  {== multi_coop $cfg}}
+               sel_song.milo)
+            (TRUE sel_song_quickplay.milo)}})
+   (metamusic_on_exit TRUE)
+   (focus ss_song.lst)
+   (joypad
+      (hold_ms 500)
+      (repeat_ms 80))
+   (load
+      {profilemgr add_sink $this storage_changed}
+      {content_mgr start_enumeration})
+   (storage_changed
+      {$this clear_cache}
+      {ui goto_screen storage_changed_screen})
+   (enter
+      {{ui current_screen}
+         turn_off_ambient}
+      {$this refresh})
+   (update_song_info
+      {if
+         {==
+            kSongsCareer
+            {song_provider get_mode}}
+         {game set_career_song}}
+      {ss_song.lst
+         set_selected
+         {game get_song_index}}
+      {if
+         {! $leaderboards_mode}
+         {meta_music stop}
+         {profilemgr disable_xmp}}
+      {$this update_pos})
+   (exit
+      {if
+         {! $leaderboards_mode}
+         {song_preview ''}
+         {if
+            [metamusic_on_exit]
+            {meta_music start}
+            {profilemgr enable_xmp}}
+         {set
+            [metamusic_on_exit]
+            TRUE}
+         {song_provider set_mode kSongsCareer}})
+   (unload
+      {profilemgr remove_sink $this storage_changed})
+   (SCROLL_MSG
+      {$this update_pos})
+   (update_pos
+      {do
+         ($pos
+            {ss_song.lst selected_pos})
+         ($frame
+            {'+'
+               $pos
+               {song_provider num_headers $pos}})
+         {if
+            {! $leaderboards_mode}
+            {game set_song_index $pos}
+            {$this cache_song}
+            {song_preview
+               {game get_song}}}
+         {sel_song.view set_frame $frame}})
+   (beat_song
+      ($score)
+      {if
+         {$this is_up}
+         {do
+            ($index
+               {ss_song.lst selected_pos})
+            ($song
+               {song_provider get_symbol $index})
+            {campaign cheat_beat_song $song $score}
+            {$this refresh}}})
+   (beat_song
+      {if
+         {$this is_up}
+         {do
+            ($index
+               {ss_song.lst selected_pos})
+            ($song
+               {song_provider get_symbol $index})
+            {campaign beat_song $song}
+            {$this refresh}}})
+   (gold_song
+      {if
+         {$this is_up}
+         {campaign
+            cheat_gold_song
+            {song_provider
+               get_symbol
+               {ss_song.lst selected_pos}}}
+         {$this refresh}})
+   (refresh
+      {song_provider
+         set_mode
+         {switch
+            {ui current_screen}
+            (leaderboards_song_screen kSongsLeaderboards)
+            (sel_song_screen kSongsCareer)
+            kSongsQuickplay}}
+      {ss_song.lst set_provider song_provider}
+      {if
+         {&&
+            {! $leaderboards_mode}
+            {==
+               {game get_song_index}
+               -1}}
+         {game set_song_index 0}}
+      {$this update_song_info})}
+{new
+   GHScreen
+   sel_song_screen
+   (panels meta sel_song_panel helpbar)
+   (focus sel_song_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (sel_song_career TRUE)
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen sel_venue_screen}}
+      kDataUnhandled)
+   (SELECT_START_MSG
+      {sel_song_panel set metamusic_on_exit FALSE}
+      {ui goto_screen loading_screen}
+      kDataUnhandled)}

@@ -1,0 +1,109 @@
+#include macros.dta
+(mem
+   (heaps
+      #ifdef HX_EE
+      (main 22470000)
+      (rnd 4450000 TRUE)
+      #else
+      (main 27070000)
+      #endif))
+(handlers
+   (start_game
+      {next_character 0}))
+(spew)
+(rnd
+   (show_timers FALSE)
+   (overlays
+      (chartest
+         (lines 1)
+         (showing TRUE)))
+   (console_trycatch FALSE)
+   (title
+      "AnimTest"))
+(beat_graph_restrict
+   {< $node.b_start 2})
+(quick_cheats
+   (right
+      (kPad_DUp
+         {next_skin -1})
+      (kPad_DRight
+         {inc 1})
+      (kPad_DDown
+         {next_skin 1})
+      (kPad_DLeft
+         {inc -1})
+      (kPad_L1
+         {inc_variant 1})
+      (kPad_L2
+         {next_character -1})
+      (kPad_X
+         {cam_head}))
+   (keyboard
+      (n
+         {next_character 1})
+      (N
+         {next_character -1})
+      (m
+         {toggle_metronome})
+      (d
+         {delta 1})
+      (D
+         {delta 0})
+      (KB_UP
+         {next_skin -1})
+      (KB_DOWN
+         {next_skin 1})
+      (KB_RIGHT
+         {inc 1})
+      (KB_LEFT
+         {inc -1})
+      (KB_F1
+         {edit_beat})
+      (v
+         {inc_variant 1})
+      (p
+         {pause})
+      (y
+         {single_step})
+      (r
+         {recenter})
+      (l
+         {cam_lock})
+      (h
+         {cam_head})
+      ("["
+         {inc_bpm -4})
+      ("]"
+         {inc_bpm 4})
+      (o
+         {beat_offset 5.0e-2})
+      (O
+         {beat_offset -5.0e-2})
+      (t
+         {next_clip 1})
+      (g
+         {next_clip 0})
+      (b
+         {next_clip -1})
+      (0
+         {play 0})
+      (1
+         {play 1})
+      (2
+         {play 2})
+      (3
+         {play 3})
+      (4
+         {play 4})
+      (5
+         {play 5})
+      (6
+         {play 6})
+      (7
+         {play 7})
+      (8
+         {play 8})
+      (9
+         {play 9})))
+(timer cpu gs scale_down pose_bones)
+#merge default.dta

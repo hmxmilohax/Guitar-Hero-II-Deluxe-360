@@ -1,0 +1,14 @@
+#include macros.dta
+(ark_build
+   (main
+      (dirs
+         SYSTEM_DIRS
+         "../../system/run/band")
+      (file_exts STD_EXTS XBOX_EXTS .gh)
+      (skip_files)
+      (skip_dirs og STD_SKIP_DIRS)
+      (order
+         #include arkorder_xbox.dta)))
+(mem
+   (disable_mgr TRUE))
+#merge ../../../system/run/config/arkbuild.dta

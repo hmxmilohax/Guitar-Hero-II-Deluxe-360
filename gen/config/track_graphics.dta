@@ -1,0 +1,80 @@
+(slot_colors green red yellow blue orange)
+(smasher
+   (mats
+      (normal gem_smasher)
+      (pressed 'gem_smasher_%s')
+      (ring 'now_ring_%s')))
+(particles
+   (smash
+      (normal smash_normal.view)
+      (star smash_star.view)
+      (bonus smash_bonus.view))
+   (combo1 smash_combo.view)
+   (combo2 smash_combo_lightning.view)
+   (combo2_angle 12)
+   (burn
+      (normal 0)
+      (whammy 10)
+      (bonus 20)))
+#define STRING_SET
+((gems
+      (green red yellow blue orange)))
+(gem
+   (fps 30)
+   (mat_formats
+      (gem 'gem_%s')
+      (tail 'tail_%s')
+      (tail_glow 'tail_glow_%s')
+      (star 'gem_starpower_%s')
+      (dot 'dot_top_hopo2_%s'))
+   (tail_glow_width 1.5)
+   (tail_glow_tight_width 0.7)
+   (sparkle_len 1.0)
+   (parts
+      ((gem
+            (type kMeshGem))
+         (glow
+            (type kMeshGemGlow))
+         (top
+            (type kMeshTop))
+         (miss
+            (type kMeshGemMiss)
+            (default kMeshGem))
+         (hopo
+            (type kMeshHopoTop)
+            (default kMeshTop))
+         (star
+            (type kMeshStar)
+            (default kMeshGem))
+         (top_star
+            (type kMeshStarTop)
+            (default kMeshTop))))
+   (sets
+      (guitar STRING_SET)
+      (bass STRING_SET)
+      (rhythm STRING_SET)))
+(track_width 20)
+(horizon_y 120)
+(remove_y -15)
+(track_speed
+   (kDifficultyEasy 1)
+   (kDifficultyMedium 1)
+   (kDifficultyHard 1.4)
+   (kDifficultyExpert 1.4))
+(alpha_dist 40)
+(horizon_tail_clip 7)
+(nowbar_tail_clip 1.5)
+(cam
+   (near_plane 50)
+   (far_plane 200)
+   (z_start 0)
+   (z_end 0.1))
+(init_gems 25)
+(init_tails 16)
+(multiplayer
+   (normal
+      (track_offset 8.85 0 0)
+      (track_scale 0.85 0.85 0.85))
+   (dual_perspective
+      (track_scale 0.76 0.76 0.76))
+   (use_dual_perspective TRUE))

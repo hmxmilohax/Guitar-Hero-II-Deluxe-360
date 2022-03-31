@@ -1,0 +1,107 @@
+#define SPHERE
+((struct
+      (x float)
+      (y float)
+      (z float)
+      (radius float)))
+#define VECTOR3
+((struct
+      (x float)
+      (y float)
+      (z float)))
+#define VECTOR2
+((struct
+      (x float)
+      (y float)))
+#define COLOR
+((struct
+      (r float)
+      (g float)
+      (b float)))
+#define RECT
+((struct
+      (x float)
+      (y float)
+      (w float)
+      (h float)))
+#define MATRIX3
+((struct
+      (pitch float)
+      (roll float)
+      (yaw float)
+      (x_scale float)
+      (y_scale float)
+      (z_scale float)))
+#define TRANSFORM
+((struct
+      (pitch float)
+      (roll float)
+      (yaw float)
+      (x_scale float)
+      (y_scale float)
+      (z_scale float)
+      (x float)
+      (y float)
+      (z float)))
+#define QUAT
+((struct
+      (x float)
+      (y float)
+      (z float)
+      (w float)))
+#define BOX
+((struct
+      (min_x float)
+      (max_x float)
+      (min_y float)
+      (max_y float)
+      (min_z float)
+      (max_z float)))
+(Object
+   (description
+      "The Object class is the root of the class hierarchy. Every\n        class has Object as a superclass.")
+   (types)
+   (views
+      (Note
+         (note
+            {$this note}
+            {$this set_note $milo_value}))))
+(ObjectDir
+   (description
+      "An ObjectDir keeps track of a set of Objects. It can subdir or proxy in other ObjectDirs.  To rename subdir files search for remap_subdirs in system/run/config/objects.dta")
+   (types)
+   (editor
+      (subdirs
+         (array file)
+         (help
+            "Subdirectories of objects")
+         (post_sync
+            {milo update_objects})
+         (hide
+            {$this is_proxy}))
+      (proxy_file
+         file
+         (hide
+            {!
+               {$this is_proxy}}))
+      (proxy_flag
+         int
+         (list
+            ("kNoInline"
+               "kAlwaysInline"
+               "kPrecacheInline"))
+         (hide
+            {!
+               {$this is_proxy}}))))
+#include rnd_objects.dta
+#include synth_objects.dta
+#include ../char/char_objects.dta
+#include ../ui/ui_objects.dta
+#include ../track/track_objects.dta
+#include ../world/world_objects.dta
+#ifdef INIT_M2
+#include ../m2/m2_objects.dta
+#endif
+#ifdef INIT_BAND
+#include ../band/band_objects.dta
+#endif

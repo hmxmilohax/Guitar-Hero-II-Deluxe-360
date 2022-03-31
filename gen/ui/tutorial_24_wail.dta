@@ -1,0 +1,249 @@
+#define GUITAR_WAIL_SEC
+(1)
+{player0 set_mercuryswitchenabled FALSE}
+{tut_part.lbl set_text tut2_4_part}
+{$this size_left_box TUT2_4_BOX}
+{tut_info.lbl set_wrap_width 500}
+{$this size_right_box TUT2_4_TASK}
+{tut_banner.lbl set_showing FALSE}
+{tut_task.lbl set_showing FALSE}
+{tut_info.lbl set_showing FALSE}
+{tut_header.lbl set_showing FALSE}
+{tut_box_right.view set_showing FALSE}
+{tut_top_text.view set_showing TRUE}
+{game set_paused TRUE}
+{$task sleep 0.1}
+{{hud find hud1_score_meter0.view}
+   set_showing
+   FALSE}
+{hud set_showing TRUE}
+{track_panel animate_track_out_fast}
+{player0 fill_star_power}
+{game set_paused FALSE}
+{$task sleep 3}
+{beatmatch set_paused TRUE}
+{$this play_vo wail_1}
+{set
+   $current_info
+   {localize tut2_4_1}}
+{tut_info.lbl set_localized_text $current_info}
+{tut_info.lbl set_showing TRUE}
+{t1_highlights.view
+   animate
+   (loop
+      0
+      {t1_highlights.view end_frame})
+   (units kTaskTutorialSeconds)}
+{tut_star_highlight.view set_showing TRUE}
+WAIT_FOR_VO
+SHORT_VO_GAP
+{tut_star_highlight.view set_showing FALSE}
+{$this play_vo wail_2}
+{set
+   $current_info
+   {sprint
+      $current_info
+      {localize tut2_4_2}}}
+{tut_info.lbl set_localized_text $current_info}
+{t2_guitar.view set_showing TRUE}
+{$task sleep 4}
+{t2_wail.tnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period GUITAR_WAIL_SEC)
+   (range 0 100)}
+WAIT_FOR_VO
+{$task sleep 0.2}
+{$this play_vo wail_3}
+{set
+   $current_info
+   {sprint
+      $current_info
+      {localize tut2_4_3}}}
+{tut_info.lbl set_localized_text $current_info}
+WAIT_FOR_VO
+{$task sleep 0.2}
+{$this play_vo wail_4}
+WAIT_FOR_VO
+{$task sleep 0.2}
+{stop_sfx bkgd_music}
+{$this play_vo wail_6}
+WAIT_FOR_VO
+{tut_box_right.view set_showing TRUE}
+{tut_header.lbl set_showing TRUE}
+{tut_task.lbl set_text tut2_4_task}
+{tut_task.lbl set_showing TRUE}
+{t2_wail.tnm
+   animate
+   (units kTaskTutorialSeconds)
+   (period GUITAR_WAIL_SEC)
+   (range 0 100)}
+#define STAR_GEMS_TO_HIT
+(8)
+{player0 set_star_power_deploy_rate 1.0e-2}
+{$this
+   update_tut_score
+   {localize tut2_4_score}
+   0
+   STAR_GEMS_TO_HIT}
+{tut_score.lbl set_showing TRUE}
+{new
+   Object
+   tut_24_callback
+   (gem_hit_callback
+      ($slot $hopoable $hopoed)
+      {cond
+         ({player0 in_star_mode}
+            {set
+               [star_gems_hit]
+               {'+'
+                  [star_gems_hit]
+                  1}}
+            {if
+               {<=
+                  [star_gems_hit]
+                  STAR_GEMS_TO_HIT}
+               {tutorial
+                  update_tut_score
+                  {localize tut2_4_score}
+                  [star_gems_hit]
+                  STAR_GEMS_TO_HIT}
+               {tut_score.tnm
+                  animate
+                  (units kTaskTutorialSeconds)
+                  (period 0.15)
+                  (range 0 2)}}
+            {tutorial play_vo great_hit_vo})
+         (TRUE
+            {tutorial play_vo wail_no_wail_1}
+            {play_sfx button_error}
+            {set
+               [num_gems_missed]
+               {'+'
+                  [num_gems_missed]
+                  1}}
+            {$this check_wail_warning})})
+   (star_power_start
+      {if_else
+         {! $wailed}
+         {tutorial play_vo wail_first}
+         {if
+            {!
+               [feedback_1_played]}
+            {set
+               [feedback_1_played]
+               TRUE}}}
+      {t2_guitar.view set_showing FALSE}
+      {set
+         [wailed]
+         TRUE})
+   (star_power_stop
+      {if
+         {&&
+            {!
+               [feedback_2_played]}
+            {$this lesson_running}}
+         {t2_wail.tnm
+            animate
+            (units kTaskTutorialSeconds)
+            (period GUITAR_WAIL_SEC)
+            (range 0 100)}
+         {t2_guitar.view set_showing TRUE}
+         {set
+            [feedback_2_played]
+            TRUE}})
+   (gem_miss_callback
+      ($slot_hit $real_slot $timing_error)
+      {set
+         [num_gems_missed]
+         {'+'
+            [num_gems_missed]
+            1}}
+      {$this check_wail_warning})
+   (gem_pass_callback
+      {set
+         [num_gems_missed]
+         {'+'
+            [num_gems_missed]
+            1}}
+      {$this check_wail_warning})
+   (check_wail_warning
+      {if
+         {! $wailed}
+         {switch
+            [num_gems_missed]
+            (8
+               {tutorial play_vo wail_no_wail_1})
+            (16
+               {tutorial play_vo wail_no_wail_2})}})
+   (lesson_running
+      {&&
+         {<
+            [star_gems_hit]
+            STAR_GEMS_TO_HIT}
+         {<
+            {player0 percent_complete}
+            END_OF_SONG_PERCENT}})
+   (failed
+      {<
+         [star_gems_hit]
+         STAR_GEMS_TO_HIT})
+   (star_gems_hit 0)
+   (num_gems_missed 0)
+   (wailed FALSE)
+   (feedback_1_played FALSE)
+   (feedback_2_played FALSE)}
+{{player0 player_matcher}
+   add_sink
+   tut_24_callback}
+{game add_sink tut_24_callback star_power_start}
+{game add_sink tut_24_callback star_power_stop}
+WAIT_FOR_VO
+{beatmatch set_paused FALSE}
+{player0 set_mercuryswitchenabled TRUE}
+{$task
+   wait
+   {tut_24_callback lesson_running}}
+{track_panel animate_track_in_fast}
+{if
+   {!
+      {tut_24_callback failed}}
+   {$task sleep 1}}
+{game set_paused TRUE}
+{tut_top_text.view set_showing FALSE}
+{t2_guitar.view set_showing FALSE}
+{hud set_showing FALSE}
+{{hud find hud1_score_meter0.view}
+   set_showing
+   TRUE}
+{play_sfx bkgd_music}
+{if
+   {tut_24_callback failed}
+   {tut_banner.lbl set_showing TRUE}
+   {tut_banner.lbl set_text tut_timeout}
+   {$this play_vo timeout_vo}}
+WAIT_FOR_VO
+LONG_VO_GAP
+{stop_sfx bkgd_music}
+{tut_banner.lbl set_text tut2_4_done}
+{tut_banner.lbl set_showing TRUE}
+{play_sfx s19901}
+{$task sleep 0.5}
+{$this play_vo wrapup1_2}
+{tut_top_text.view set_showing FALSE}
+{hud set_showing FALSE}
+{$task sleep 16}
+{t1_stamps.view set_showing TRUE}
+{t1_lets_rock.view set_showing TRUE}
+{tut_banner.lbl set_showing FALSE}
+{play_sfx s19902}
+{$task sleep 5}
+{tut_banner.lbl set_showing FALSE}
+{t1_stamps.view set_showing FALSE}
+{t1_lets_rock.view set_showing FALSE}
+{tut_banner.lbl set_showing FALSE}
+{player0 remove_sink tut_24_callback}
+{game remove_sink tut_24_callback}
+{tutorial_quit_screen set next_screen meta_loading_screen}
+{ui goto_screen tutorial_end_screen}
+{$task exit}

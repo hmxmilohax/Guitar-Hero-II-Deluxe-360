@@ -1,0 +1,109 @@
+#define TRACK_END_FRAME
+(1920)
+{new
+   TrackPanel
+   track_panel
+   (file
+      {if_else
+         {==
+            {gamecfg get_num_players}
+            1}
+         ../track/track_panel_1p.milo
+         ../track/track_panel_2p.milo})
+   (set_track_out
+      {$this set_frame TRACK_END_FRAME})
+   (set_track_in
+      {$this set_frame 0})
+   (animate_track
+      ($start $end $period $units)
+      {$this
+         animate
+         (units $units)
+         (range $start $end)
+         (period $period)})
+   (play_track_sfx
+      ($sfx)
+      {if
+         {!=
+            {gamecfg get mode}
+            attract}
+         {play_game_sfx $sfx}})
+   (animate_track_out
+      {$this play_track_sfx TRACK_EXTEND_SFX}
+      {$this animate_track 0 TRACK_END_FRAME 1 kTaskSeconds})
+   (animate_track_out_fast
+      {$this animate_track 0 TRACK_END_FRAME 0.6 kTaskTutorialSeconds})
+   (animate_track_in_fast
+      {$this animate_track TRACK_END_FRAME 0 0.6 kTaskTutorialSeconds})
+   (intro_start_msg
+      {$this reset}
+      {$this
+         set_showing
+         {&&
+            {gamecfg get show_track}
+            {! $cheat_enabled_performance_mode}}}
+      {$this set_track_in})
+   (intro_skip
+      {$this reset}
+      {$this sync_to_time}
+      {$this
+         set_showing
+         {&&
+            {gamecfg get show_track}
+            {! $cheat_enabled_performance_mode}}}
+      {$this set_track_out})
+   (enter
+      {game add_sink $this blow_streak})
+   (exit
+      {game remove_sink $this})
+   (do_extend_sequence
+      {$this animate_track_out}
+      {script_task
+         (delay 1.3)
+         (units kTaskSeconds)
+         (script
+            {$this play_track_sfx nowbar_1}
+            {$this pop_smasher 0}
+            {$this set_smasher_glowing 0 TRUE})}
+      {script_task
+         (delay 1.4)
+         (units kTaskSeconds)
+         (script
+            {$this play_track_sfx nowbar_2}
+            {$this pop_smasher 1}
+            {$this set_smasher_glowing 1 TRUE})}
+      {script_task
+         (delay 1.5)
+         (units kTaskSeconds)
+         (script
+            {$this play_track_sfx nowbar_3}
+            {$this pop_smasher 2}
+            {$this set_smasher_glowing 2 TRUE})}
+      {script_task
+         (delay 1.6)
+         (units kTaskSeconds)
+         (script
+            {$this play_track_sfx nowbar_4}
+            {$this pop_smasher 3}
+            {$this set_smasher_glowing 3 TRUE})}
+      {script_task
+         (delay 1.7)
+         (units kTaskSeconds)
+         (script
+            {$this play_track_sfx nowbar_5}
+            {$this pop_smasher 4}
+            {$this set_smasher_glowing 4 TRUE})}
+      {script_task
+         (delay 2)
+         (units kTaskSeconds)
+         (script
+            {$this pop_smasher -1})}
+      {script_task
+         (delay 2.5)
+         (units kTaskSeconds)
+         (script
+            {game
+               foreach_player_matcher
+               $m
+               {$m refresh_track_buttons}})})}
+{new TrackMaskPanel track_mask}

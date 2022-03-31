@@ -1,0 +1,27 @@
+(order
+   (battle surrender possum heartshapedbox salvation strutter shoutatthedevil)
+   (small1 mother lifewasted cherrypie woman youreallygotme tonightimgonna)
+   (small2 carryonwayward searchanddestroy messageinabottle billiondollar thembones warpigs)
+   (big monkeywrench hush girlfriend whowasinmyroom cantyouhearme sweetchild)
+   (theatre rockandroll tattooedloveboys johnthefisherman jessica badreputation lastchild)
+   (fest crazyonyou trippinonahole dead killinginthenameof freya stop)
+   (arena madhouse trooper rockthistown laidtorest psychobilly yyz)
+   (stone beastandtheharlot carrymehome institutionalized misirlou hangar18 freebird))
+(required_songs
+   (kDifficultyEasy 4 5)
+   (kDifficultyMedium 5 6)
+   (kDifficultyHard 6 6)
+   (kDifficultyExpert 6 6))
+(cash
+   (starting 50)
+   (star_awards
+      (kDifficultyEasy 0 0 0)
+      (kDifficultyMedium 150 200 250)
+      (kDifficultyHard 150 200 250)
+      (kDifficultyExpert 150 200 250))
+   (status_awards
+      (kDifficultyEasy 0 0 0 0 0 0 0 0)
+      (kDifficultyMedium 100 200 300 400 500 700 800 1000 0)
+      (kDifficultyHard 100 200 300 400 500 700 800 1000 0)
+      (kDifficultyExpert 100 200 300 400 500 700 800 1000 0)))
+(unlock_game_modes multi_fo)

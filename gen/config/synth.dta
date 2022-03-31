@@ -1,0 +1,27 @@
+(use_xma FALSE)
+(iop
+   (max_streams 15)
+   (spu_buffers 60)
+   (max_slip 300))
+(metamusic
+   (volume -6.0)
+   (fade_rate 1.0)
+   (music metaloop1_warpigs metaloop2_psycho metaloop3_whowas metaloop_artillery metaloop_crowns metaloop_ftk metaloop_hoods metaloop_rawdog metaloop_voivod)
+   (background_sfx
+      (sequence meta_people)
+      (min_delay_sec 10)
+      (max_delay_sec 20))
+   (play_from_memory TRUE)
+   (use_rnd_heap FALSE))
+(fx
+   (chain FALSE)
+   (core_0
+      (mode kFXModeEcho)
+      (volume -9.0)
+      (delay 0.5)
+      (feedback -96))
+   (core_1
+      (mode kFXModeLargeStudio)
+      (volume -8.5)
+      (delay 0.0)
+      (feedback -96)))

@@ -1,0 +1,28 @@
+(categories
+   ((venue_banks
+         (("world"
+               "*_bank.milo")))
+      (game_bank
+         (("sfx"
+               "ingame_bank.milo")))
+      (metagame_bank
+         (("sfx"
+               "metagame_bank.milo")))
+      (tutorial_bank
+         (("tutorial"
+               "tutorial_bank.milo")))
+      (practice_bank
+         (("sfx"
+               "practice_bank.milo")))
+      (character_bank
+         (("char/shared"
+               "guitar_smashing_sounds.milo")))))
+(configurations
+   ((metagame
+         (metagame_bank))
+      (game
+         (venue_banks game_bank character_bank))
+      (practice_mode
+         (game_bank practice_bank))
+      (tutorial
+         (tutorial_bank))))

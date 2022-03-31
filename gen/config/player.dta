@@ -1,0 +1,56 @@
+(handlers
+   (end_streak)
+   (whammy_start
+      {handle
+         ($this whammy_start_callback)})
+   (whammy_end
+      {handle
+         ($this whammy_end_callback)})
+   (star_gem_hit
+      {handle
+         ($this star_gem_hit_callback)})
+   (phrase_captured
+      ($player_num)
+      {script_task
+         (delay 0.2)
+         (script
+            {play_game_sequence_player sp_awarded sp_awarded_multi $player_num})}
+      {handle
+         ($this star_phrase_captured_callback)})
+   (phrase_miss
+      ($gem_id)
+      {{$this track}
+         on_miss_phrase
+         $gem_id}
+      {handle
+         ($this star_phrase_miss_callback)})
+   (start_using
+      ($player_num)
+      {{{$this track}
+            extend_anim}
+         animate
+         (range 2000 2025)
+         (period 0.8)}
+      {{$this player_matcher}
+         on_start_starpower}
+      {play_game_sfx_player sp_deployed sp_deployed_multi $player_num}
+      {handle
+         (world stop_sfx crowd_upto_good)}
+      {handle
+         (world play_sfx crowd_upto_good)}
+      {{$this track}
+         set_bonus_gems
+         TRUE}
+      {handle
+         (game star_power_start $player_num)})
+   (stop_using
+      ($player_num)
+      {play_game_sfx_player sp_depleted sp_depleted_multi $player_num}
+      {{$this player_matcher}
+         on_stop_starpower}
+      {{$this track}
+         set_bonus_gems
+         FALSE}
+      {handle
+         (game star_power_stop $player_num)})
+   (depleted))

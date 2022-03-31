@@ -1,0 +1,277 @@
+(keyboard
+   (KB_F4
+      "Display Current Lighting State"
+      {toggle_lights_debug})
+   (KB_F5
+      "Empty Star Power"
+      {cheat_empty_star_power})
+   (KB_F6
+      "Hide Gems"
+      {track_panel toggle_gems})
+   (KB_F7
+      "Hide Track Surface"
+      {track_panel toggle_surface})
+   (KB_F8
+      "Hide Nowbar"
+      {track_panel toggle_nowbar})
+   (KB_F10
+      "Toggle Mask"
+      {track_panel toggle_mask})
+   (KB_F9
+      "Toggle Scoring Debug"
+      {toggle_scoring_debug})
+   (KB_F11
+      "Test Screen Transitions"
+      {test_screen_transitions})
+   (KB_F12
+      "Show World Events"
+      {set
+         $echo_world_events
+         {! $echo_world_events}})
+   (0
+      "Pause Time"
+      {toggle_time_paused})
+   (1
+      "Fake Player 1 using Joypad 1"
+      {fake_player1_cheat 0})
+   (2
+      "Fake Player 2 using Joypad 1"
+      {fake_player1_cheat 1})
+   (3
+      "Display Character LOD"
+      {toggle_char_lod})
+   (5
+      "Beat Song with High Score"
+      {if
+         {meta is_up}
+         {sel_song_panel beat_song 1000000}})
+   (6
+      "Beat Song with Best Score"
+      {if
+         {meta is_up}
+         {sel_song_panel gold_song}})
+   (7
+      "Cycle Character Drivers"
+      {next_character_driver})
+   (#
+      "From Game, Win with 3 Stars"
+      {if
+         {game is_up}
+         {player0 win 3}})
+   ('$'
+      "(META) Add $100 (GAME) Win with 4 Stars"
+      {if_else
+         {game is_up}
+         {player0 win 4}
+         {cheat_add_cash}})
+   ('%'
+      "From Game, Win with 5 Stars"
+      {if
+         {game is_up}
+         {player0 win 5}})
+   ('*'
+      "unlock all achievements"
+      {achievements submit_all})
+   ('+'
+      "Force Encore"
+      {game cheat_force_encore})
+   ('?'
+      "Stretch Background"
+      {toggle_stretch_bg})
+   (' '
+      "Use Older (Red) Guitar Prototype"
+      {toggle_guitar_type})
+   (a
+      "(META) Audio Mode (GAME) Show/Hide Arena"
+      {a_cheat})
+   (A
+      "(META) Access All (GAME) Toggle Crowd Audio"
+      {A_cheat})
+   (b
+      "(META) Beat Song (GAME) Toggle Click Track"
+      {b_cheat})
+   (B
+      "Barf Cheat"
+      {set
+         $barf_cheat
+         {! $barf_cheat}})
+   (C
+      "Camera Overlay"
+      {rnd toggle_overlay camera})
+   (c
+      "Next Alphabetical Camera"
+      {if
+         {game is_up}
+         {world cycle_shot}})
+   (V
+      "Hold Camera on Current Shot"
+      {world toggle_pick_shot})
+   (d
+      "Toggle Dual Perspective"
+      {toggle_dual_perspective})
+   (e
+      "Lower Excitement Level"
+      {adjust_crowd_rating -0.1})
+   (E
+      "Raise Excitement Level"
+      {adjust_crowd_rating 0.1})
+   (f
+      "Hide the Fretboard"
+      {toggle_fretboard})
+   (F
+      "Toggle Free Camera"
+      {cycle_free_camera})
+   (g
+      "Display Walkspots"
+      {waypoint_toggle_show})
+   (G
+      "Display Mercury Switch Status"
+      {rnd toggle_overlay guitar})
+   (h
+      "Hide HUD & Fretboard"
+      {toggle_fretboard}
+      {handle
+         (hud
+            set_showing
+            {!
+               {hud showing}})})
+   (H
+      "Hide HUD Only"
+      {handle
+         (hud
+            set_showing
+            {!
+               {hud showing}})})
+   (I
+      "Display Lighting Info"
+      {rnd toggle_overlay light_preset})
+   (i
+      "Enable/Disable Lighting Presets"
+      {handle
+         (world toggle_lighting_events)})
+   (j
+      "Guitarist Walk to Random Spot"
+      {handle
+         ({find_obj world guitarist0}
+            start_walk)})
+   (k
+      "Teleport Guitarist to Next Walkspot"
+      {handle
+         ({find_obj world guitarist0}
+            teleport_next)})
+   (J
+      "Show 3 Most Recent Guitarist Animations"
+      {set
+         $guitarist_debug
+         {mod
+            {'+' $guitarist_debug 1}
+            3}}
+      {if_else
+         {> $guitarist_debug 0}
+         {cheat_display
+            show
+            {sprint
+               "Player "
+               $guitarist_debug
+               " debug"}}
+         {cheat_display
+            show
+            "Player debug off"}}
+      {rnd show_overlay char_status $guitarist_debug}
+      {rnd show_overlay char_history $guitarist_debug})
+   (l
+      "Automatically Lose"
+      {handle
+         (player0 lose)})
+   (L
+      "toggle limiter"
+      {synth toggle_limiter})
+   (m
+      "Disable Crowd Meter"
+      {toggle_crowd_meter})
+   (M
+      "Mute Global"
+      {toggle_mute_global})
+   (n
+      "Toggle Normalization"
+      {toggle_normalization})
+   (o
+      "Toggle Auto-Solo"
+      {toggle_auto_solo})
+   (O
+      "Save Objects"
+      {rnd save_objects dump.rnd ui})
+   (p
+      "Toggle Autoplay"
+      {toggle_auto_play})
+   (P
+      "Cycle Track Speed"
+      {cycle_music_speed})
+   (q
+      "Toggle Solo Quantize"
+      {toggle_solo_quantize})
+   (Q
+      "(Meta) Print Current Screen"
+      {meta print_current_screen})
+   (r
+      "Reload Song"
+      {reload_song})
+   (R
+      "Reload Track"
+      {reload_track})
+   (s
+      "Display Score Info"
+      {if
+         {game is_up}
+         {rnd toggle_overlay score}})
+   (S
+      "Fill StarPower Meter"
+      {fill_star_meter})
+   (t
+      "Show Song Time"
+      {rnd toggle_overlay time})
+   (T
+      "Show Timers"
+      {rnd toggle_timers}
+      {rnd toggle_overlay rate})
+   (u
+      "Next Tutorial Lesson"
+      {next_tutorial_lesson})
+   (U
+      "Previous Tutorial Lesson"
+      {prev_tutorial_lesson})
+   (v
+      "Show Current Version"
+      {show_version})
+   (w
+      "Automatically Win"
+      {handle
+         (player0 win 3)})
+   (W
+      "Toggle Walking On/Off"
+      {toggle_walks})
+   (x
+      "Toggle Cam"
+      {toggle_cam})
+   (X
+      "Toggle Shuttle - Left Analog Scrolls Time"
+      {toggle_shuttle})
+   (>
+      "Skip Tutorial VoiceOver"
+      {tutorial reset_vo}))
+(right
+   (kPad_Square
+      "Toggle Autoplay"
+      {toggle_auto_play})
+   (kPad_Circle
+      "Toggle Shuttle - Left Analog Scrolls Time"
+      {toggle_shuttle})
+   (kPad_Tri
+      "Camera Overlay"
+      {rnd toggle_overlay camera})
+   (kPad_DLeft
+      "Toggle Free Camera"
+      {cycle_free_camera})
+   (kPad_DRight
+      "Display Lighting Info"
+      {rnd toggle_overlay light_preset}))

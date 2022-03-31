@@ -1,0 +1,5 @@
+#define INIT_BAND
+(1)
+#define INIT_M2
+(1)
+#include sysutl.dta

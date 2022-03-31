@@ -1,0 +1,78 @@
+#include macros.dta
+(spew)
+(rnd
+   (width 640))
+(sliptest
+   (num_players 2)
+   (app
+      "gh")
+   (controller
+      (guitar
+         (slots kPad_R2 0 kPad_Circle 1 kPad_Tri 2 kPad_X 3 kPad_Square 4))
+      (joypad
+         (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4))
+      (egozy
+         (slots kPad_R2 0 kPad_R1 1 kPad_Tri 2 kPad_Square 3 kPad_X 4))))
+(gh
+   (audio
+      (unmute))
+   (beatmatcher
+      #include beatmatch.dta)
+   (song
+      (midi_file ../../gh/run/songs/morethanafeeling/morethanafeeling.mid)
+      (name ../../gh/run/songs/morethanafeeling/morethanafeeling)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.8 0.8 0.8 0.8))
+      (solo
+         (riffs standard)))
+   (default-controller joypad)
+   (difficulty 1)
+   (rnd_file
+      "test/sliptest/sliptest.rnd")
+   (graphics
+      (slot_width -7.0e-2)
+      (track_offset 0)))
+(m2
+   (audio
+      (slipstream))
+   (beatmatcher
+      (phrases
+         (finder
+            (bar 2))
+         (capturer
+            (bar 6))
+         (bar_round_ticks 80)))
+   (song
+      (name
+         "test/m2test/M2_Weezer_mono")
+      (midi_file
+         "test/m2test/dopenose_final.mid")
+      (tracks 4)
+      (slip_tracks
+         (0 1 2 3))
+      (pans
+         (0.5 0.5 0.5 0.5 0.5))
+      (vols
+         (1.0 1.0 1.0 1.0 1.0)))
+   (default-controller joypad)
+   (difficulty 1)
+   (rnd_file
+      "test/m2test/m2test.rnd")
+   (graphics
+      (slot_width -3.5e-2)
+      (track_offset 0.35)))
+(joypad
+   (ignore 2 3 5 6 7))
+(sound
+   (bank ../../gh/run/sfx/ingame))
+(synth
+   (iop
+      (max_streams 8)
+      (spu_buffers 50)
+      (max_slip 300)))
+#merge default.dta

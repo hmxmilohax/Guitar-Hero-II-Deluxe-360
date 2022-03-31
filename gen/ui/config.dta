@@ -1,0 +1,134 @@
+(colors
+   (text
+      (normal 0.5 0.5 0.5)
+      (focused 0.9 0.9 0.9)
+      (selected 0 0 0)
+      (disabled 0.5 0.5 0.5))
+   (mesh
+      (normal 0.3 0.3 0.3)
+      (focused 0.7 0.7 0.7)
+      (selected 0.7 0.7 0.7)
+      (disabled 0.4 0.4 0.4))
+   (arrow 0 0 0)
+   (bg 0.3 0.3 0.3)
+   (rollout 0.5 0.5 0.5)
+   (flow
+      (main
+         (bg 0.5 0.5 0.9))))
+(components
+   (credits
+      (fade_offset 2)
+      (max_step 1.8e-2)
+      (element
+         (text
+            "credit_title.txt")
+         (text
+            "credit_center.txt")
+         (text
+            "credit_name.txt")
+         (text
+            "credit_center_name.txt")))
+   (list
+      (colors
+         (text_color 0.1 0.1 0.1)
+         (highlight_text_color text)
+         (highlight_mesh_color mesh)
+         (header_text_color 0.66 0 0))
+      (styles
+         (song
+            (name
+               "Song")
+            (max_step 1.0)
+            (back_arrow_mesh
+               "song_back.mesh")
+            (next_arrow_mesh
+               "song_next.mesh")
+            (element_view
+               "song_element.view")
+            (colors
+               (highlight_text_color
+                  (normal 0.1 0.1 0.1)
+                  (focused 0 0 1)
+                  (selected 0 1 0)
+                  (disabled 0.5 0.5 0.5))))))
+   (picturetoggle
+      (styles
+         (checkbox
+            (name
+               "Checkbox")
+            (mesh
+               "checkbox_toggle.mesh")
+            (tex_path
+               "image")
+            (tex_off
+               "checkbox_empty.png")
+            (tex_on
+               "checkbox_checked.png"))))
+   (slider
+      (colors
+         (mesh_color mesh)
+         (text_color text))
+      (styles
+         (char
+            (name
+               "Character")
+            (slider_mesh
+               "char_slider.mesh")
+            (bar_mesh
+               "char_slider_bar.mesh")
+            (pod_mesh
+               "char_slider_pod.mesh")
+            (pod_anim
+               "char_slider.tnm")
+            (text
+               "char_slider.txt")
+            (default_bar_mat
+               "char_slider_default.mat")
+            (colors
+               (text_color
+                  (normal 0.9 0.9 0.9)
+                  (focused 0.9 0.9 0)
+                  (selected 0.9 0.9 0)
+                  (disabled 0.4 0.4 0.4))
+               (mesh_color
+                  (normal 0.9 0.9 0.9)
+                  (focused 0.9 0.9 0)
+                  (selected 0 1 0)
+                  (disabled 0.4 0.4 0.4))))
+         (mic
+            (name
+               "Microphone")
+            (slider_mesh
+               "mic_slider.mesh")
+            (bar_mesh
+               "mic_slider_bar.mesh")
+            (pod_mesh
+               "mic_slider_pod.mesh")
+            (pod_anim
+               "mic_slider.tnm")
+            (text
+               "mic_slider.txt")
+            (default_bar_mat
+               "char_slider_default.mat"))))
+   (textentry
+      (colors
+         (text_color text))
+      (styles
+         (high_score
+            (name
+               "High Score")
+            (text label_hand_pen.txt)
+            (characters
+               "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !?.'")
+            (length 8)
+            (colors
+               (text_color 0.1 0.1 0.1)))
+         (band_name
+            (name
+               "Band Name")
+            (text entry_profile.txt)
+            (characters
+               "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !?.'")
+            (length 20)
+            (colors
+               (text_color 0.25 0.25 0.25))))))

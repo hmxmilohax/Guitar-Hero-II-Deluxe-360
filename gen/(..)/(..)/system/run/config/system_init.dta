@@ -1,0 +1,25 @@
+{func
+   deg_to_rad
+   ($deg)
+   {/
+      {'*' $deg PI}
+      180}}
+{func
+   verify_exists
+   ($obj)
+   {if
+      {!
+         {exists $obj}}
+      {print
+         "ERROR: "
+         $obj
+         " not found\n"}}}
+{func
+   toggle_showing
+   ($x)
+   {if
+      {exists $x}
+      {$x
+         set_showing
+         {!
+            {$x showing}}}}}

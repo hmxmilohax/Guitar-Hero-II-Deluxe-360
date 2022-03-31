@@ -1,0 +1,30 @@
+#define SCREEN_DIM_SECS
+(0.5)
+{tut_part.lbl set_showing FALSE}
+{tut_task.lbl set_showing FALSE}
+{tut_score.lbl set_showing FALSE}
+{tut_info.lbl set_showing FALSE}
+{tut_top_text.view set_showing FALSE}
+{hud set_showing FALSE}
+{track_panel set_showing FALSE}
+{tut_screen_dim.view set_showing TRUE}
+{tut_screen_dim.view
+   animate
+   (units kTaskTutorialSeconds)
+   (period SCREEN_DIM_SECS)
+   (range 0 30)}
+{$task sleep 0.5}
+{stop_sfx bkgd_music}
+{tut_banner.lbl set_text tut1_complete}
+{tut_banner.lbl set_showing TRUE}
+{play_sfx s19901}
+{$task sleep 1.5}
+{$this play_vo wrapup1_1}
+{$task sleep 20}
+{tut_banner.lbl set_showing FALSE}
+{t1_lets_rock.view set_showing TRUE}
+{play_sfx s19902}
+{$task sleep 4}
+{t1_lets_rock.view set_showing FALSE}
+{ui goto_screen tutorial_end_screen}
+{$task exit}

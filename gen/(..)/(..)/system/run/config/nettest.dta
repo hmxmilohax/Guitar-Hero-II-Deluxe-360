@@ -1,0 +1,7 @@
+#include macros.dta
+(mem
+   (heaps
+      (main
+         (size 33554432))))
+(timer cpu gs scale_down pose_bones)
+#merge default.dta

@@ -1,0 +1,28 @@
+#include macros.dta
+(ark_build
+   (main
+      (file_exts STD_EXTS PS2_EXTS .gh)
+      (skip_files)
+      (skip_dirs
+         "."
+         ".."
+         CVS
+         iop
+         test
+         tools
+         arena
+         charsys
+         freestyle
+         ui
+         hud
+         iop
+         mc
+         sfx
+         solo
+         songs
+         track
+         tutorial
+         ui
+         venues
+         video)))
+#merge ../../../system/run/config/arkbuild.dta

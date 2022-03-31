@@ -1,0 +1,144 @@
+{new
+   GHPanel
+   main_panel
+   (file main.milo)
+   (focus main_quickspin.btn)
+   (msg_last_frame 0)
+   (already_entered FALSE)
+   (retain_last_focus FALSE)
+   (enter
+      {set $main_entered TRUE}
+      {set $leaderboards_mode FALSE}
+      {$this reset_player_settings}
+      {if
+         {!
+            [already_entered]}
+         {synth play_sequence meta_lick}
+         {if
+            {&&
+               {==
+                  {game get_controller 0}
+                  guitar}
+               {==
+                  {campaign tutorials_done}
+                  0}}
+            {$this set_focus main_tutorial.btn}}
+         {$this set already_entered TRUE}}
+      {game set_tutorial_running FALSE}
+      {main_msg.view set_showing FALSE}
+      {set
+         [msg_last_frame]
+         0}
+      {gamecfg
+         set_player
+         0
+         {profilemgr active_padnum}}
+      {gamecfg set mode quickplay}
+      {content_mgr start_enumeration})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (main_career.btn
+            {gamecfg set mode career}
+            {if_else
+               {>
+                  {campaign num_profiles}
+                  0}
+               {ui goto_screen chooseprof_screen}
+               {do
+                  {nameprof_screen set back_screen main_screen}
+                  {nameprof_screen set is_editing FALSE}
+                  {nameprof_screen set profile_slot 0}
+                  {nameprof_screen set next_screen sel_difficulty_screen}
+                  {ui goto_screen nameprof_screen}}})
+         (main_quickspin.btn
+            {gamecfg set mode quickplay}
+            {ui goto_screen qp_selsong_screen})
+         (main_multiplayer.btn
+            {ui goto_screen multi_controller_select_screen})
+         (main_tutorial.btn
+            {ui goto_screen training_screen})
+         (main_leaderboards.btn
+            {if_else
+               {profilemgr is_active_pad_signed_in_live}
+               {do
+                  {gamecfg set mode quickplay}
+                  {leaderboards_song_screen set list_index 0}
+                  {set $leaderboards_mode TRUE}
+                  {ui goto_screen leaderboards_song_screen}}
+               {do
+                  {helpbar
+                     set_display
+                     ((fret1 help_continue))}
+                  {ui push_screen main_not_logged_in_screen}}})
+         (main_options.btn
+            {ui goto_screen options_screen})})
+   (poll
+      {if_else
+         {game is_multiple_controllers}
+         {$this enable main_multiplayer.btn}
+         {$this disable main_multiplayer.btn}}
+      {main_msg.view
+         set_showing
+         {<
+            {taskmgr ui_seconds}
+            {$this get msg_last_frame}}})
+   (reset_player_settings
+      {{game get_player_config 0}
+         set_difficulty
+         kDifficultyMedium}
+      {song_provider set_mode kSongsCareer}
+      {song_provider init_data}
+      {game set_song_index 0}
+      {game set_character punk1 TRUE}
+      {game set_guitar_index 0}
+      {do
+         ($player2_config
+            {game get_player_config 1})
+         {$player2_config set_character rockabill1 TRUE}
+         {$player2_config set_guitar_index 0}
+         {$player2_config set_difficulty kDifficultyMedium}})
+   (display_cheat_msg
+      ($cheat $enable)
+      {mm_msg.lbl
+         set_localized_text
+         {sprintf
+            {localize
+               {if_else $enable cheat_enabled_fmt cheat_disabled_fmt}}
+            {localize $cheat}}}
+      {$this
+         set
+         msg_last_frame
+         {'+'
+            {taskmgr ui_seconds}
+            5}})}
+{new
+   GHScreen
+   main_screen
+   (panels meta main_panel helpbar)
+   (focus main_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))
+   (access_all
+      {main_panel reset_player_settings})
+   (enter
+      {$this turn_off_ambient})}
+{new
+   GHPanel
+   main_not_logged_in_panel
+   (file not_signed_in.milo)
+   (focus continue.btn)}
+{new
+   GHScreen
+   main_not_logged_in_screen
+   (panels main_not_logged_in_panel)
+   (focus main_not_logged_in_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (continue.btn
+            {ui pop_screen})})}

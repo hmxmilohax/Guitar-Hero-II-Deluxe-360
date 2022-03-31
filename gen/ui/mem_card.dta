@@ -1,0 +1,681 @@
+#define MEMCARD_RESULT_MSG
+(memcard_result
+   ($result))
+#define DIALOG_SCREEN
+((panels meta dialog helpbar)
+   (focus dialog)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (allow_only_active_controller TRUE))
+{new
+   UIPanel
+   dialog
+   (file dialog.milo)
+   (force_exit TRUE)
+   (enable_buttons
+      {$this enable dl_button1.btn}
+      {$this enable dl_button2.btn}
+      {$this set_focus dl_button1.btn})
+   (disable_buttons
+      {$this disable dl_button1.btn}
+      {$this disable dl_button2.btn})
+   (enter
+      {{ui current_screen}
+         reset_ambient}
+      {$this enable_buttons})
+   (get_button
+      ($button_name)
+      {sprintf 'dl_%s.btn' $button_name})
+   (set_button_text
+      ($button $text)
+      {$button set_showing TRUE}
+      {$this enable $button}
+      {$button set_text $text})
+   (set_button_focus
+      ($button)
+      {$this enable $button}
+      {$this set_focus $button})
+   (hide_button
+      ($button)
+      {$button set_showing FALSE}
+      {$this disable $button})
+   (setup
+      ($btn1_text $btn2_text $default $msg $title)
+      {do
+         ($b1
+            {$this get_button button1})
+         ($b2
+            {$this get_button button2})
+         {if_else
+            {!= $btn1_text ''}
+            {$this set_button_text $b1 $btn1_text}
+            {$this hide_button $b1}}
+         {if_else
+            {!= $btn2_text ''}
+            {$this set_button_text $b2 $btn2_text}
+            {$this hide_button $b2}}
+         {switch
+            $default
+            (button1
+               {$this set_button_focus $b1})
+            (button2
+               {$this set_button_focus $b2})
+            (none 0)
+            {fail
+               "Expected button1/button2/none, got: "
+               $default}}}
+      {$this set_message $msg}
+      {dl_title.lbl set_text $title}
+      {helpbar
+         set_display
+         {$this
+            get_help_text
+            ()}})
+   (set_message
+      ($token)
+      {dl_message.lbl set_text $token})
+   (get_help_text
+      ($array)
+      {resize $array 0}
+      {if
+         {dl_button1.btn showing}
+         {push_back
+            $array
+            (fret1 help_select)}}
+      {if
+         {dl_button2.btn showing}
+         {push_back
+            $array
+            (strum help_updown)}}
+      {eval $array})
+   (message
+      ($msg $title)
+      {$this setup '' '' none $msg $title})}
+{func
+   goto_startup_load
+   {set $mc_return_screen guitar_help_screen}
+   {set $autosave TRUE}
+   {if_else
+      {profilemgr is_active_pad_signed_in}
+      {ui goto_screen startup_load_finder_screen}
+      {ui goto_screen startup_signin_screen}}}
+{func
+   goto_post_startup_load
+   {if_else
+      {>
+         {campaign num_profiles}
+         0}
+      {ui goto_screen main_screen}
+      {ui goto_screen guitar_help_screen}}}
+{new
+   GHScreen
+   startup_signin_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_signin mc_no_save button1 mc_not_signed_in mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {profilemgr signin 1})
+         (dl_button2.btn
+            {ui goto_screen startup_not_signedin_screen})})
+   (pre_active_signin_change
+      {dialog disable_buttons})
+   (active_signin_changed
+      ($isSignedIn)
+      {ui goto_screen startup_load_finder_screen})}
+{new
+   GHScreen
+   startup_not_signedin_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_confirm_not_signed_in mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {set $disable_save TRUE}
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   startup_load_finder_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog message mc_checking mc_title_loading}
+      {memcard auto_load})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCFileExists
+            {ui goto_screen startup_load_screen})
+         (kMCFileNotFound
+            {ui goto_screen startup_create_save_screen})
+         (kMCMultipleFilesFound
+            {ui goto_screen startup_load_chooser_screen})
+         {ui goto_screen load_failed_screen}})}
+{new
+   GHScreen
+   startup_load_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog message mc_loading mc_title_loading}
+      {memcard load_game})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen startup_load_storage_pulled_screen})
+         (kMCNoError
+            {goto_post_startup_load})
+         (kMCCorrupt
+            {ui goto_screen startup_load_corrupt_screen})
+         {ui goto_screen load_failed_screen}})}
+{new
+   GHScreen
+   startup_load_corrupt_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_overwrite mc_no_save button1 mc_load_file_corrupt mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {goto_save_with_overwrite})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   startup_create_save_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_choose_device mc_no_save button1 mc_create_file mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {dialog disable_buttons}
+            {memcard device_selector})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})
+   (no_device_selected
+      {dialog enable_buttons})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen startup_save_storage_pulled_screen})
+         (kMCFileNotFound
+            {goto_save_no_overwrite})
+         (kMCFileExists
+            {goto_save_no_overwrite})
+         {ui goto_screen load_failed_screen}})}
+{new
+   GHScreen
+   startup_load_chooser_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_choose_device mc_no_save button1 mc_multiple_saves mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {dialog disable_buttons}
+            {memcard device_selector})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})
+   (no_device_selected
+      {dialog enable_buttons})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen startup_load_storage_missing_screen})
+         (kMCFileNotFound
+            {dialog setup mc_choose_device mc_no_save button1 mc_file_not_found mc_title_warning})
+         (kMCFileExists
+            {ui goto_screen startup_load_screen})
+         {ui goto_screen load_failed_screen}})}
+{new
+   GHScreen
+   startup_load_storage_missing_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_storage_device_missing mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen startup_load_finder_screen})})}
+{new
+   GHScreen
+   startup_load_storage_pulled_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_load_storage_device_pulled mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen startup_load_finder_screen})})}
+{new
+   GHScreen
+   startup_save_storage_pulled_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_storage_device_pulled mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen startup_load_finder_screen})})}
+{func
+   autosave_goto
+   ($next_screen)
+   {if_else
+      {&&
+         {campaign needs_save}
+         {!
+            {campaign all_access}}
+         $autosave
+         {! $disable_save}}
+      {do
+         {set $mc_return_screen $next_screen}
+         {if_else
+            {memcard is_storage_device_valid}
+            {goto_save_with_overwrite}
+            {ui goto_screen autosave_device_invalid_screen}}}
+      {ui goto_screen $next_screen}}}
+{new
+   GHScreen
+   enable_autosave_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_choose_device cancel button1 mc_enable_autosave mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {dialog disable_buttons}
+            {memcard device_selector})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})
+   (no_device_selected
+      {dialog enable_buttons})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen autosave_device_pulled_screen})
+         (kMCFileNotFound
+            {goto_save_no_overwrite})
+         (kMCFileExists
+            {goto_save_no_overwrite})
+         {ui goto_screen autosave_failed_screen}})}
+{new
+   GHScreen
+   autosave_device_pulled_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_storage_device_pulled mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen enable_autosave_screen})})}
+{new
+   GHScreen
+   autosave_device_invalid_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_choose_device mc_disable_autosave button1 mc_autosave_device_changed mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {dialog disable_buttons}
+            {memcard device_selector})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})
+   (no_device_selected
+      {dialog enable_buttons})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen autosave_device_pulled_screen})
+         (kMCFileNotFound
+            {goto_save_no_overwrite})
+         (kMCFileExists
+            {goto_save_no_overwrite})
+         {ui goto_screen autosave_failed_screen}})}
+{new
+   GHScreen
+   autosave_failed_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_failed mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{func
+   goto_save_no_overwrite
+   {set $mc_overwrite FALSE}
+   {ui goto_screen saving_screen}}
+{func
+   goto_save_with_overwrite
+   {set $mc_overwrite TRUE}
+   {ui goto_screen saving_screen}}
+{new
+   GHScreen
+   saving_screen
+   DIALOG_SCREEN
+   (enter
+      {set
+         $enter_time
+         {taskmgr ui_seconds}}
+      {set $save_time 0.0}
+      {set $done_saving FALSE}
+      {set $done_polling FALSE}
+      {dialog message mc_saving mc_title_saving}
+      {memcard save_game $mc_overwrite}
+      {set $mc_overwrite FALSE})
+   (poll
+      {if
+         {! $done_polling}
+         {do
+            ($enter_dt
+               {-
+                  {taskmgr ui_seconds}
+                  $enter_time})
+            ($save_dt
+               {- $save_time $enter_time})
+            {if_else
+               $done_saving
+               {if
+                  {'||'
+                     {&&
+                        {< $save_dt 1.0}
+                        {>= $enter_dt 1.0}}
+                     {&&
+                        {>= $save_dt 1.0}
+                        {>= $enter_dt 4.0}}}
+                  {set $done_polling TRUE}
+                  {dialog message mc_save_complete mc_title_saving}
+                  {ui goto_screen $mc_return_screen}}
+               {if
+                  {>= $enter_dt 1.0}
+                  {dialog message mc_saving_long mc_title_saving}}}}})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen save_storage_missing_screen})
+         (kMCNoError
+            {set $done_saving 1}
+            {set
+               $save_time
+               {taskmgr ui_seconds}}
+            {foreach
+               $cat
+               (guitar skin song character outfit)
+               {store_item_provider check_achievement $cat}}
+            {campaign save_complete})
+         (kMCFileExists
+            {ui goto_screen saving_confirm_overwrite_screen})
+         (kMCCorrupt
+            {ui goto_screen saving_confirm_overwrite_screen})
+         (kMCNotEnoughSpace
+            {set $done_polling TRUE}
+            {ui goto_screen saving_not_enough_space_screen})
+         {set $done_polling TRUE}
+         {ui goto_screen saving_failed_screen}})}
+{new
+   GHScreen
+   save_storage_missing_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_storage_device_pulled mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   saving_confirm_overwrite_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_overwrite cancel button2 mc_save_confirm_overwrite mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {goto_save_with_overwrite})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   saving_not_enough_space_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_not_enough_space mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   saving_failed_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_failed mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   normal_save_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_choose_device cancel button1 mc_save_choose_device mc_title_saving})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {dialog disable_buttons}
+            {memcard device_selector})
+         (dl_button2.btn
+            {ui goto_screen $mc_return_screen})})
+   (no_device_selected
+      {dialog enable_buttons})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen normal_save_storage_missing_screen})
+         (kMCFileNotFound
+            {goto_save_no_overwrite})
+         (kMCFileExists
+            {goto_save_no_overwrite})
+         (kMCNotEnoughSpace
+            {ui goto_screen normal_save_not_enough_space_screen})
+         {ui goto_screen saving_failed_screen}})}
+{new
+   GHScreen
+   normal_save_storage_missing_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_save_storage_device_pulled mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_save_screen})})}
+{new
+   GHScreen
+   normal_save_not_enough_space_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup retry cancel button1 mc_save_not_enough_space mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_save_screen})
+         (dl_button2.btn
+            {set $autosave FALSE}
+            {ui goto_screen $mc_return_screen})})}
+{func
+   goto_load
+   {set $mc_prev_autosave $autosave}
+   {if_else
+      {campaign needs_save}
+      {ui goto_screen normal_load_confirm_screen}
+      {ui goto_screen normal_load_choose_device_screen}}}
+{new
+   GHScreen
+   normal_load_confirm_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue cancel button2 mc_unsaved_data mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_load_choose_device_screen})
+         (dl_button2.btn
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   normal_load_choose_device_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_choose_device cancel button1 mc_load_choose_device mc_title_loading})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {set $autosave FALSE}
+            {dialog disable_buttons}
+            {memcard device_selector})
+         (dl_button2.btn
+            {ui goto_screen $mc_return_screen})})
+   (no_device_selected
+      {dialog enable_buttons})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen normal_load_storage_missing_screen})
+         (kMCFileExists
+            {ui goto_screen normal_load_screen})
+         (kMCCorrupt
+            {ui goto_screen normal_load_corrupt_screen})
+         (kMCFileNotFound
+            {ui goto_screen normal_load_no_file_screen})
+         {ui goto_screen load_failed_screen}})}
+{new
+   GHScreen
+   normal_load_storage_missing_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_storage_device_missing mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_load_choose_device_screen})})}
+{new
+   GHScreen
+   normal_load_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog message mc_loading mc_title_loading}
+      {memcard load_game})
+   (MEMCARD_RESULT_MSG
+      {switch
+         $result
+         (kMCNoDeviceFound
+            {ui goto_screen normal_load_storage_pulled_screen})
+         (kMCNoError
+            {set $autosave $mc_prev_autosave}
+            {ui goto_screen $mc_return_screen})
+         (kMCCorrupt
+            {ui goto_screen normal_load_corrupt_screen})
+         {ui goto_screen load_failed_screen}})}
+{new
+   GHScreen
+   normal_load_storage_pulled_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_load_storage_device_pulled mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_load_choose_device_screen})})}
+{new
+   GHScreen
+   normal_load_no_file_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_file_not_found mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_load_choose_device_screen})})}
+{new
+   GHScreen
+   normal_load_corrupt_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_load_file_corrupt mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen normal_load_choose_device_screen})})}
+{new
+   GHScreen
+   load_failed_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup mc_continue '' button1 mc_load_failed mc_title_error})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {ui goto_screen $mc_return_screen})})}
+{new
+   GHScreen
+   delete_band_confirmation_screen
+   DIALOG_SCREEN
+   (enter
+      {dialog setup yes no button2 mc_delete_confirmation mc_title_warning})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (dl_button1.btn
+            {campaign
+               delete_slot
+               {manage_band_screen get profile_slot}}
+            {autosave_goto options_screen})
+         (dl_button2.btn
+            {ui goto_screen manage_band_screen})})}

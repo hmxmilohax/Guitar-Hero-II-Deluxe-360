@@ -1,0 +1,35 @@
+(BandCrowdMeterDir
+   (init
+      (type gh2))
+   (types
+      (gh2
+         (enter
+            {if
+               {exists game}
+               {{$this dir}
+                  add_sink
+                  $this}})
+         (exit
+            {{$this dir}
+               remove_sink
+               $this}))))
+(BandStarMeterDir
+   (init
+      (type gh2))
+   (types
+      (gh2)))
+(BandScoreDisplay
+   (init
+      (type gh2))
+   (types
+      (gh2)))
+(BandStreakDisplay
+   (init
+      (type gh2))
+   (types
+      (gh2)))
+(BandLeadMeter
+   (init
+      (type gh2))
+   (types
+      (gh2)))

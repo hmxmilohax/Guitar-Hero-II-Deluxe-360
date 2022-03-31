@@ -1,0 +1,198 @@
+(guitar
+   (explorer
+      (price 700))
+   (lespaul_doublecut
+      (price 850))
+   (firebird
+      (price 700))
+   (epiphone_coronet
+      (price 550))
+   (kramer_vanguard
+      (price 700))
+   (moderne
+      (price 850))
+   (corvus
+      (price 550))
+   (es335
+      (price 850))
+   (kramer_650
+      (price 700))
+   (eds
+      (price 950))
+   (lespaul_doublecut_sticker
+      (price 700))
+   (lespaul_sonex
+      (price 550))
+   (lespaul_marauder
+      (price 550))
+   (epiphone_casino
+      (price 700))
+   (epiphone_sheraton
+      (price 700))
+   (chet_atkins
+      (price 850))
+   (fish_reward
+      (price 500))
+   (usa_reward
+      (price 1000))
+   (coffin_reward
+      (price 1000))
+   (viking_reward
+      (price 2000))
+   (snaketapus_reward
+      (price 2000))
+   (eyeball_reward
+      (price 5000))
+   (battleaxe_reward
+      (price 5600))
+   (log_reward
+      (price 8000)))
+(skin
+   (lp_cayenne
+      (price 250))
+   (lp_goddessburst
+      (price 550))
+   (lp_zakk
+      (price 550))
+   (sg_white
+      (price 250))
+   (sg_gt
+      (price 450))
+   (sg_flames
+      (price 550))
+   (fv_v2
+      (price 250))
+   (fv_century
+      (price 450))
+   (fv_red
+      (price 550))
+   (exp_nat
+      (price 250))
+   (exp_sun
+      (price 450))
+   (exp_white
+      (price 450))
+   (exp_swirl
+      (price 550))
+   (lp_dbl_yellow
+      (price 250))
+   (lp_dbl_resin
+      (price 550))
+   (fb_blue
+      (price 250))
+   (fb_ebony
+      (price 450))
+   (fb_leopard
+      (price 550))
+   (coronet_cherry
+      (price 250))
+   (coronet_burst
+      (price 450))
+   (coronet_green
+      (price 550))
+   (van_yellow
+      (price 450))
+   (mod_cherry
+      (price 550))
+   (cor_nat
+      (price 300))
+   (es_cherry
+      (price 450))
+   (650_white
+      (price 550))
+   (eds_white
+      (price 550)))
+(song
+   (rawdog
+      (price 550))
+   (arterialblack
+      (price 550))
+   (collide
+      (price 550))
+   (drinkup
+      (price 550))
+   (elephantbones
+      (price 550))
+   (fallofpangea
+      (price 550))
+   (ftk
+      (price 550))
+   (gemini
+      (price 550))
+   (kicked
+      (price 550))
+   (ladylightning
+      (price 550))
+   (laughtrack
+      (price 550))
+   (lesstalkmorerokk
+      (price 550))
+   (jordan
+      (price 550))
+   (mrfixit
+      (price 550))
+   (newblack
+      (price 550))
+   (onefortheroad
+      (price 550))
+   (parasite
+      (price 550))
+   (radiumeyes
+      (price 550))
+   (redlottery
+      (price 550))
+   (six
+      (price 550))
+   (soybomb
+      (price 550))
+   (thelightthatblinds
+      (price 550))
+   (thunderhorse
+      (price 550))
+   (trogdor
+      (price 550))
+   (xstream
+      (price 550))
+   (yeswecan
+      (price 550)))
+(character
+   (classic
+      (price 5000))
+   (funk1
+      (price 5000))
+   (grim
+      (price 7000)))
+(outfit
+   (punk2
+      (price 2000))
+   (alterna2
+      (price 2000))
+   (glam2
+      (price 2000))
+   (goth1
+      (price 2000))
+   (metal2
+      (price 2000))
+   (rockabill2
+      (price 2000))
+   (rock1
+      (price 2000))
+   (deathmetal2
+      (price 2000)))
+(video
+   (video3
+      #ifdef HX_EE
+      (file hmx.pss)
+      #endif
+      #ifdef HX_XBOX
+      (file hmx.wmv)
+      #endif
+      (price 1500))
+   (video2
+      #ifdef HX_EE
+      (file wg.pss)
+      #endif
+      #ifdef HX_XBOX
+      (file wg.wmv)
+      #endif
+      (price 1500)))

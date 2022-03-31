@@ -1,0 +1,70 @@
+(SELECT_START_MSG
+   {if_else
+      {'||'
+         {==
+            {{ui current_screen}
+               name}
+            sel_song_screen}
+         {==
+            {{ui current_screen}
+               name}
+            multi_seldiff_screen}
+         {==
+            {{ui current_screen}
+               name}
+            seldiff_screen}
+         {== $component pause_restart.btn}
+         {== $component pause_controller_resume.btn}
+         {== $component lose_restart.btn}
+         {== $component comp_restart.btn}}
+      {synth play_sequence button_play}
+      {synth play_sequence button_select}}
+   kDataUnhandled)
+(SCROLL_MSG
+   {if
+      {&&
+         {!=
+            {ui focus_panel}
+            credits_panel}
+         {!=
+            {ui focus_panel}
+            sel_character_panel}}
+      {synth play_sequence button_toggle}}
+   kDataUnhandled)
+(FOCUS_MSG
+   {if
+      {&&
+         {!
+            {ui in_transition}}
+         {!=
+            {{ui current_screen}
+               name}
+            sel_character_new_screen}
+         {!=
+            {{ui current_screen}
+               name}
+            sel_character_edit_screen}}
+      {synth play_sequence button_toggle}}
+   kDataUnhandled)
+(BAD_SELECT_MSG
+   {if
+      {!=
+         {ui focus_panel}
+         nameprof_panel}
+      {play_sfx button_error}}
+   kDataUnhandled)
+(SCREEN_BACK_MSG
+   {if
+      {meta is_up}
+      {synth play_sequence button_back.cue}}
+   kDataUnhandled)
+(CHAR_ADDED_MSG
+   {if
+      {meta is_up}
+      {synth play_sequence button_select}}
+   kDataUnhandled)
+(CHAR_REMOVED_MSG
+   {if
+      {meta is_up}
+      {synth play_sequence button_back.cue}}
+   kDataUnhandled)

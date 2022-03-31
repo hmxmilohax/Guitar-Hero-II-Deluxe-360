@@ -1,0 +1,215 @@
+(disable FALSE)
+(deadzone 36)
+(threshold 0.75)
+(ignore 1 2 3 4 5 6 7)
+(hold_ms 500)
+(repeat_ms 50)
+(midi_joypad
+   (disable TRUE)
+   (mapping
+      (36 kPad_L2)
+      (38 kPad_L1)
+      (46 kPad_R1)
+      (48 kPad_R2)
+      (45 kPad_X))
+   (thresholds
+      (36 50))
+   (come_first FALSE))
+#ifdef HX_PS3
+(controllers
+   (analog
+      (detect
+         (type kJoypadAnalog))
+      (bidirectional TRUE))
+   (dualshock
+      (detect
+         (type kJoypadDualShock))
+      (bidirectional TRUE)))
+#endif
+#ifdef HX_PC
+(controllers
+   (midi
+      (detect
+         (type kJoypadMidi)))
+   (ro_guitar
+      (detect
+         (stick kLeftAnalog X -1)
+         (stick kLeftAnalog Y 0)))
+   (digital
+      (detect
+         (button kPad_RStickRight)
+         (button kPad_RStickDown))
+      (bidirectional TRUE))
+   (hx_guitar_xbox
+      (detect
+         (button kPad_L1)))
+   (hx_xbox
+      (detect
+         (button kPad_RStickUp))
+      (bidirectional TRUE))
+   (analog
+      (detect)
+      (bidirectional TRUE))
+   (dualshock
+      (detect)
+      (bidirectional TRUE)))
+#endif
+#ifdef HX_XBOX
+(controllers
+   (ro_guitar_xbox
+      (detect
+         (type kJoypadXboxGuitar))
+      (ignore_buttons kPad_L2 kPad_R2))
+   #ifndef _SHIP
+   (ro_guitar_xbox_old
+      (detect
+         (type kJoypadAnalog)
+         (button kPad_R2)))
+   (ro_guitar_xbox_old_2
+      (detect
+         (type kJoypadAnalog)
+         (button kPad_L2)))
+   #endif
+   (analog
+      (detect
+         (type kJoypadAnalog))
+      (bidirectional TRUE)))
+#endif
+(adapters
+   (map
+      ('4 axis 16 button joystick' default)
+      ('SmartJoy PLUS Adapter' smart_plus)
+      ('SmartJoy PLUS USB Adapter' smart_plus)
+      ('SmartJoy Dual PLUS Adapter' smart_plus)
+      ('MP-8866 Dual USB Joypad' ro_dual)
+      ('6-button joystick' 6-button)
+      ('PSX/USB Pad Adaptor (4-axis, 12-button, POV,effects)' kiky_system_x)
+      ('TigerGame PS/PS2 Game Controller Adapter' tiger)
+      ('XBOX 360 For Windows (Controller)' xbox))
+   (default
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Select)
+         (9 kPad_Start)
+         (10 kPad_R3)
+         (11 kPad_L3)
+         (12 kPad_DUp)
+         (13 kPad_DRight)
+         (14 kPad_DDown)
+         (15 kPad_DLeft)))
+   (smart_plus
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Start)
+         (9 kPad_Select)
+         (10 kPad_L3)
+         (11 kPad_R3))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft)))
+   (kiky_system_x
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Select)
+         (9 kPad_Start)
+         (10 kPad_L3)
+         (11 kPad_R3))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft)))
+   (ro_dual
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L1)
+         (5 kPad_R1)
+         (6 kPad_L2)
+         (7 kPad_R2)
+         (8 kPad_Start)
+         (9 kPad_Select)
+         (10 kPad_L3)
+         (11 kPad_R3))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft)))
+   (6-button
+      (buttons
+         (0 kPad_X)
+         (1 kPad_Circle)
+         (2 kPad_Square)
+         (3 kPad_Tri)
+         (4 kPad_L2)
+         (5 kPad_R2)))
+   (tiger
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Start)
+         (9 kPad_Select)
+         (10 kPad_L3)
+         (11 kPad_R3)
+         (12 kPad_DUp)
+         (13 kPad_DRight)
+         (14 kPad_DDown)
+         (15 kPad_DLeft)))
+   (xbox
+      (buttons
+         (0 kPad_X)
+         (1 kPad_Tri)
+         (2 kPad_Square)
+         (3 kPad_Circle)
+         (4 kPad_L1)
+         (5 kPad_L2)
+         (6 kPad_Select)
+         (7 kPad_Start)
+         (23 kPad_R2))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft))
+      (sticks xbox)))
+(button_filters
+   (ro_guitar
+      (kPad_R2 kPad_X)
+      (kPad_Circle kPad_Tri))
+   (midi
+      (kPad_L1 kPad_Tri)
+      (kPad_R1 kPad_DUp)
+      (kPad_R2 kPad_DDown)
+      (kPad_X kPad_X)))

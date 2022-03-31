@@ -1,0 +1,55 @@
+(WorldDir
+   (types
+      (fest
+         WORLD_OBJECT_BASE
+         (sound
+            (bank fest_bank)
+            (crowd
+               (intro
+                  -8.0
+                  crowd_v5_0intro
+                  (pan 1))
+               (levels
+                  (kExcitementBoot
+                     -12.0
+                     crowd_v5_1danger
+                     (pan 3))
+                  (kExcitementBad
+                     -12.0
+                     crowd_v5_2poor
+                     (pan 3))
+                  (kExcitementOkay
+                     -12.0
+                     crowd_v5_3norm
+                     (pan 3))
+                  (kExcitementGreat
+                     -9.0
+                     crowd_v5_4good
+                     (pan 3))
+                  (kExcitementPeak
+                     -8.0
+                     crowd_v5_4good
+                     (pan 3)))
+               (encore_outro
+                  0.0
+                  encore_v6_outro
+                  (pan 1)
+                  (loop_ms 11470 27167))
+               (encore_intro
+                  0.0
+                  encore_v6_intro
+                  (pan 1))))
+         (song_movie fest_1)
+         (reduced_crowd_shots
+            (flr_far_lft03 0.8)
+            (flr_far_lft05 0.85)
+            (flr_far_rt01x2w 0.9)
+            (flr_far_rt03 0.8))
+         (camera_durations
+            ((kExcitementBoot 3 6)
+               (kExcitementBad 3 6)
+               (kExcitementOkay 3 5)
+               (kExcitementGreat 2 4)
+               (kExcitementPeak 2 4)))
+         (intro_camera_distance near)
+         (intro_camera_facing left))))

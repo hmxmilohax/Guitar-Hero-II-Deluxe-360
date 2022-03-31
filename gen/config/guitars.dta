@@ -1,0 +1,346 @@
+(lespaul
+   (type guitar)
+   (skins
+      (lp_cherry
+         (outfit lespaull)
+         (mat guitar_lespaul_burst.mat))
+      (lp_cayenne
+         (outfit lp_cayenne)
+         (mat guitar_lespaul_cayenne.mat))
+      (lp_goddessburst
+         (outfit lp_goddessburst)
+         (mat lp_goddessburst.mat))
+      (lp_zakk
+         (outfit lespaul_wylde)
+         (mat guitar_lespaul_wylde.mat))))
+(sg
+   (type guitar)
+   (skins
+      (sg_cherry
+         (outfit guitar_sg)
+         (mat guitar.mat))
+      (sg_white
+         (outfit guitar_sg_goddess_white)
+         (mat goddess_white.mat))
+      (sg_gt
+         (outfit guitar_sg_gt)
+         (mat guitar_sg_gt.mat))
+      (sg_flames
+         (outfit guitar_sg_flame)
+         (mat guitar_sg_flame.mat))))
+(flying_v
+   (type guitar)
+   (skins
+      (fv_white
+         (outfit fv_white)
+         (mat fv_white.mat))
+      (fv_v2
+         (outfit flyingv_v2)
+         (mat guitar_fv_V2.mat))
+      (fv_century
+         (outfit fv_century)
+         (mat fv_century.mat))
+      (fv_red
+         (outfit fv_red)
+         (mat fv_red.mat))))
+(explorer
+   (type guitar)
+   (skins
+      (exp_ebony
+         (outfit xplorer)
+         (mat guitar_xplorer_ebony.mat))
+      (exp_nat
+         (outfit xplorer)
+         (mat guitar_xplorer_wood.mat))
+      (exp_sun
+         (outfit xplorer_sun)
+         (mat guitar_explorer_sun.mat))
+      (exp_white
+         (outfit xplorer)
+         (mat guitar_xplorer_white.mat))
+      (exp_swirl
+         (outfit xplorer)
+         (mat guitar_xplorer_swirl.mat))))
+(lespaul_doublecut
+   (type guitar)
+   (skins
+      (lp_dbl_white
+         (outfit lp_dbl_white)
+         (mat lp_dbl_white.mat))
+      (lp_dbl_yellow
+         (outfit lp_dbl_yellow)
+         (mat lp_dbl_yellow.mat))
+      (lp_dbl_resin
+         (outfit lp_dbl_resin)
+         (mat lp_dbl_resin.mat))))
+(firebird
+   (type guitar)
+   (skins
+      (fb_burst
+         (outfit firebird)
+         (mat guitar_firebird.mat))
+      (fb_blue
+         (outfit firebird)
+         (mat guitar_firebird_blue.mat))
+      (fb_ebony
+         (outfit fb_ebony)
+         (mat fb_ebony.mat))
+      (fb_leopard
+         (outfit fb_leopard)
+         (mat fb_leopard.mat))))
+(epiphone_coronet
+   (type guitar)
+   (skins
+      (coronet_brown
+         (outfit coronet_brown)
+         (mat coronet_brown.mat))
+      (coronet_cherry
+         (outfit coronet_cherry)
+         (mat coronet_cherry.mat))
+      (coronet_burst
+         (outfit coronet_burst)
+         (mat coronet_burst.mat))
+      (coronet_green
+         (outfit coronet_green)
+         (mat coronet_green.mat))))
+(kramer_vanguard
+   (type guitar)
+   (skins
+      (van_black
+         (outfit van_black)
+         (mat van_black.mat))
+      (van_yellow
+         (outfit van_yellow)
+         (mat van_yellow.mat))))
+(moderne
+   (type guitar)
+   (skins
+      (mod_nat
+         (outfit moderne)
+         (mat guitar_moderne_wood.mat))
+      (mod_cherry
+         (outfit moderne)
+         (mat guitar_moderne_red.mat))))
+(corvus
+   (type guitar)
+   (skins
+      (cor_yellow
+         (outfit corvus)
+         (mat guitar_corvus_yellow.mat))
+      (cor_nat
+         (outfit corvus)
+         (mat guitar_corvus_wood.mat))))
+(es335
+   (type guitar)
+   (skins
+      (es_maple
+         (outfit es335_ebony_maple)
+         (mat guitar_es335_maple.mat))
+      (es_cherry
+         (outfit es335_cherry)
+         (mat es335_cherry.mat))))
+(kramer_650
+   (type guitar)
+   (skins
+      (650_stripe
+         (outfit 650_stripe)
+         (mat 650_stripe.mat))
+      (650_white
+         (outfit 650_white)
+         (mat 650_white.mat))))
+(eds
+   (type guitar)
+   (skins
+      (eds_cherry
+         (outfit eds)
+         (mat guitar_eds_cherry.mat))
+      (eds_white
+         (outfit eds)
+         (mat guitar_eds_white.mat))))
+(lespaul_doublecut_sticker
+   (type guitar)
+   (skins
+      (lp_dbl_sticker
+         (outfit lp_dbl_sticker)
+         (mat lp_dbl_sticker.mat))))
+(lespaul_sonex
+   (type guitar)
+   (skins
+      (lp_sonex
+         (outfit lp_sonex)
+         (mat lp_sonex.mat))))
+(lespaul_marauder
+   (type guitar)
+   (skins
+      (lp_marauder
+         (outfit lp_marauder)
+         (mat lp_marauder.mat))))
+(epiphone_casino
+   (type guitar)
+   (skins
+      (casino
+         (outfit casino)
+         (mat casino.mat))))
+(epiphone_sheraton
+   (type guitar)
+   (skins
+      (sheraton
+         (outfit sheraton)
+         (mat sheraton.mat))))
+(chet_atkins
+   (type guitar)
+   (skins
+      (chet_orange
+         (outfit chet_orange)
+         (mat chet_orange.mat))))
+(fish_reward
+   (type guitar)
+   (require tour_passed)
+   (difficulty kDifficultyEasy)
+   (skins
+      (fish
+         (outfit fish)
+         (mat fish.mat))))
+(usa_reward
+   (type guitar)
+   (require tour_5_star)
+   (difficulty kDifficultyEasy)
+   (skins
+      (usa
+         (outfit usa)
+         (mat usa.mat))))
+(coffin_reward
+   (type guitar)
+   (require tour_passed)
+   (difficulty kDifficultyMedium)
+   (skins
+      (coffin
+         (outfit coffin)
+         (mat coffin.mat))))
+(viking_reward
+   (type guitar)
+   (require tour_5_star)
+   (difficulty kDifficultyMedium)
+   (skins
+      (viking
+         (outfit viking)
+         (mat viking.mat))))
+(snaketapus_reward
+   (type guitar)
+   (require tour_passed)
+   (difficulty kDifficultyHard)
+   (skins
+      (snaketapus
+         (outfit snaketapus)
+         (mat snaketapus.mat))))
+(eyeball_reward
+   (type guitar)
+   (require tour_5_star)
+   (difficulty kDifficultyHard)
+   (skins
+      (eyeball
+         (outfit eyeball)
+         (mat eyeball.mat))))
+(battleaxe_reward
+   (type guitar)
+   (require tour_passed)
+   (difficulty kDifficultyExpert)
+   (skins
+      (battleaxe
+         (outfit battleaxe)
+         (mat guitar_battleaxe.mat))))
+(log_reward
+   (type guitar)
+   (require tour_5_star)
+   (difficulty kDifficultyExpert)
+   (skins
+      (log
+         (outfit log)
+         (mat log.mat))))
+(scythe
+   (type grim)
+   (skins
+      (scythe
+         (outfit scythe)
+         (mat scythe.mat))))
+(guitar_red_octane
+   (type cheat)
+   (skins
+      (guitar_red_octane
+         (outfit guitar_redoctane)
+         (mat guitar_redoctane.mat))))
+(bass_musicman
+   (type bass)
+   (skins
+      (bass_music_black
+         (outfit bass_music_black)
+         (mat bass_music_black.mat))))
+(bass_musicman_lava
+   (type bass)
+   (skins
+      (bass_music_lava
+         (outfit bass_music_lava)
+         (mat bass_music_lava.mat))))
+(bass_sg_mahogany
+   (type bass)
+   (require
+      (songs 1)
+      (stars 3))
+   (skins
+      (bass_sg_mahog
+         (outfit bass_sg_mahog)
+         (mat bass_sg_mahog.mat))))
+(bass_sg_cream
+   (type bass)
+   (require
+      (songs 5)
+      (stars 3))
+   (skins
+      (bass_sg_cream
+         (outfit bass_sg_cream)
+         (mat bass_sg_cream.mat))))
+(bass_grabber_cherry
+   (type bass)
+   (require
+      (songs 10)
+      (stars 3))
+   (skins
+      (bass_grab_cherry
+         (outfit bass_grab_cherry)
+         (mat bass_grab_cherry.mat))))
+(bass_grabber_maple
+   (type bass)
+   (require
+      (songs 20)
+      (stars 3))
+   (skins
+      (bass_grab_maple
+         (outfit bass_grab_maple)
+         (mat bass_grab_maple.mat))))
+(bass_thunderbird_ebony
+   (type bass)
+   (require
+      (songs 30)
+      (stars 3))
+   (skins
+      (bass_tb_ebony
+         (outfit bass_tb_ebony)
+         (mat bass_tb_ebony.mat))))
+(bass_thunderbird_burst
+   (type bass)
+   (require
+      (songs 40)
+      (stars 3))
+   (skins
+      (bass_tb_burst
+         (outfit bass_tb_burst)
+         (mat bass_tb_burst.mat))))
+(bass_hofner
+   (type bass)
+   (require
+      (songs 48)
+      (stars 3))
+   (skins
+      (bass_hofner
+         (outfit bass_hofner)
+         (mat bass_hofner.mat))))

@@ -1,0 +1,668 @@
+#include ../config/macros.dta
+(Object
+   (types
+      (timeline
+         (editor
+            (events
+               (array
+                  symbol
+                  (list WORLDEVENTS))
+               (post_sync
+                  {$this restart})
+               (refresh current))
+            (current
+               symbol
+               (read_only TRUE))
+            (fire
+               script
+               (script
+                  {$this fire})
+               (refresh current))
+            (skip
+               script
+               (script
+                  {$this skip})
+               (refresh current))
+            (reset
+               script
+               (script
+                  {$this reset})
+               (refresh current)))
+         (current
+            {if_else
+               {size
+                  [events]}
+               {elem
+                  [events]
+                  [current_index]}
+               ''})
+         (current_index 0)
+         (events
+            ())
+         (fire
+            {handle
+               ({$this dir}
+                  {elem
+                     [events]
+                     [current_index]})}
+            {$this skip})
+         (skip
+            {'++'
+               [current_index]}
+            {if
+               {>=
+                  [current_index]
+                  {size
+                     [events]}}
+               {set
+                  [current_index]
+                  0}})
+         (reset
+            {set
+               [current_index]
+               0}))))
+#define LIGHTING_ADJECTIVES
+((blackout strobe flare color1 color2 sweep))
+#define CAMSHOT_CATEGORIES
+((flr_near_lft flr_near_rt flr_far_lft flr_far_rt band_POV balcony_lft balcony_rt SOLO_NEAR SOLO_FAR LOSE WIN WIN_ENCORE WIN_GAME WIN_ENCORE_SONG INTRO INTRO_ENCORE INTRO_FAST LIGHTER))
+#define NORMAL_CAMSHOT_CATEGORIES
+((flr_near_lft flr_near_rt flr_far_lft flr_far_rt band_POV balcony_lft balcony_rt SOLO_NEAR SOLO_FAR))
+#include world_objects_worldbase.dta
+(RndDir
+   (types
+      (lighting
+         (editor
+            (set_multiplayer
+               script
+               (help
+                  "Hide single-player only objects")
+               (script
+                  {handle
+                     ($this set_multiplayer)}))
+            (set_singleplayer
+               script
+               (help
+                  "Hide multi-player only objects")
+               (script
+                  {handle
+                     ($this set_singleplayer)}))
+            (multiplayer_hide_objects
+               (array
+                  object
+                  (class Draw))
+               (pre_sync
+                  {if
+                     [multiplayer]
+                     {$this
+                        show_objects
+                        [multiplayer_hide_objects]
+                        TRUE}})
+               (post_sync
+                  {if
+                     [multiplayer]
+                     {$this
+                        show_objects
+                        [multiplayer_hide_objects]
+                        FALSE}})
+               (help
+                  "List of objects that should be hidden in multiplayer"))
+            (singleplayer_hide_objects
+               (array
+                  object
+                  (class Draw))
+               (pre_sync
+                  {if
+                     {!
+                        [multiplayer]}
+                     {$this
+                        show_objects
+                        [singleplayer_hide_objects]
+                        TRUE}})
+               (post_sync
+                  {if
+                     {!
+                        [multiplayer]}
+                     {$this
+                        show_objects
+                        [singleplayer_hide_objects]
+                        FALSE}})
+               (help
+                  "List of objects that should be hidden in singleplayer")))
+         (multiplayer_hide_objects
+            ())
+         (singleplayer_hide_objects
+            ())
+         (multiplayer FALSE)
+         (set_multiplayer
+            {set
+               [multiplayer]
+               TRUE}
+            {$this
+               show_objects
+               [multiplayer_hide_objects]
+               FALSE}
+            {$this
+               show_objects
+               [singleplayer_hide_objects]
+               TRUE}
+            kDataUnhandled)
+         (set_singleplayer
+            {set
+               [multiplayer]
+               FALSE}
+            {$this
+               show_objects
+               [multiplayer_hide_objects]
+               TRUE}
+            {$this
+               show_objects
+               [singleplayer_hide_objects]
+               FALSE}
+            kDataUnhandled))
+      (chars
+         (editor
+            (set_multiplayer
+               script
+               (help
+                  "Hide single-player only objects")
+               (script
+                  {handle
+                     ($this set_multiplayer)}))
+            (set_singleplayer
+               script
+               (help
+                  "Hide multi-player only objects")
+               (script
+                  {handle
+                     ($this set_singleplayer)})))
+         (change_proxies
+            {handle
+               (game change_chars $this)})
+         (set_multiplayer
+            {handle
+               (guitarist0
+                  start_at
+                  {waypoint_find kStartGuitarist0Mp})}
+            {handle
+               (guitarist1 set_showing TRUE)}
+            {handle
+               (bassist set showing FALSE)}
+            {handle
+               (singer set showing FALSE)}
+            kDataUnhandled)
+         (set_singleplayer
+            {handle
+               (guitarist0
+                  start_at
+                  {waypoint_find kStartGuitarist0})}
+            {handle
+               (guitarist1 set showing FALSE)}
+            {handle
+               (bassist set showing TRUE)}
+            {handle
+               (singer set showing TRUE)}
+            kDataUnhandled))
+      (geom
+         (editor
+            (multiplayer_hide_objects
+               (array
+                  object
+                  (class Draw))
+               (pre_sync
+                  {if
+                     [multiplayer]
+                     {$this
+                        show_objects
+                        [multiplayer_hide_objects]
+                        TRUE}})
+               (post_sync
+                  {if
+                     [multiplayer]
+                     {$this
+                        show_objects
+                        [multiplayer_hide_objects]
+                        FALSE}})
+               (help
+                  "List of objects that should be hidden in multiplayer"))
+            (singleplayer_hide_objects
+               (array
+                  object
+                  (class Draw))
+               (pre_sync
+                  {if
+                     {!
+                        [multiplayer]}
+                     {$this
+                        show_objects
+                        [singleplayer_hide_objects]
+                        TRUE}})
+               (post_sync
+                  {if
+                     {!
+                        [multiplayer]}
+                     {$this
+                        show_objects
+                        [singleplayer_hide_objects]
+                        FALSE}})
+               (help
+                  "List of objects that should be hidden in singleplayer"))
+            (player1_guitaramp_objects
+               (array
+                  object
+                  (class Draw))
+               (help
+                  "List of meshes associated with player one's guitar amp"))
+            (player1_guitaramp_trigger
+               object
+               (class EventTrigger)
+               (help
+                  "The event trigger associated with player one's guitar amp"))
+            (player1_bassamp_objects
+               (array
+                  object
+                  (class Draw))
+               (help
+                  "List of meshes associated with player one's bass amp"))
+            (player1_bassamp_trigger
+               object
+               (class EventTrigger)
+               (help
+                  "The event trigger associated with player one's bass amp"))
+            (player2_guitaramp_objects
+               (array
+                  object
+                  (class Draw))
+               (help
+                  "List of meshes associated with player two's guitar amp"))
+            (player2_guitaramp_trigger
+               object
+               (class EventTrigger)
+               (help
+                  "The event trigger associated with player two's guitar amp"))
+            (player2_bassamp_objects
+               (array
+                  object
+                  (class Draw))
+               (help
+                  "List of meshes associated with player two's bass amp"))
+            (player2_bassamp_trigger
+               object
+               (class EventTrigger)
+               (help
+                  "The event trigger associated with player two's bass amp"))
+            (set_multiplayer
+               script
+               (help
+                  "Hide single-player only objects")
+               (script
+                  {handle
+                     ($this set_multiplayer)}))
+            (set_singleplayer
+               script
+               (help
+                  "Hide multi-player only objects")
+               (script
+                  {handle
+                     ($this set_singleplayer)}))
+            (set_player1_guitar
+               script
+               (help
+                  "Hide player 1 bass assets")
+               (script
+                  {handle
+                     ($this set_player1_guitar)}))
+            (set_player1_bass
+               script
+               (help
+                  "Hide player 1 guitar assets")
+               (script
+                  {handle
+                     ($this set_player1_bass)}))
+            (set_player2_guitar
+               script
+               (help
+                  "Hide player 1 bass assets")
+               (script
+                  {handle
+                     ($this set_player2_guitar)}))
+            (set_player2_bass
+               script
+               (help
+                  "Hide player 1 guitar assets")
+               (script
+                  {handle
+                     ($this set_player2_bass)})))
+         (multiplayer_hide_objects
+            ()
+            proxy_save)
+         (singleplayer_hide_objects
+            ())
+         (multiplayer FALSE)
+         (player1_guitaramp_objects
+            ())
+         (player1_guitaramp_trigger
+            "")
+         (player1_bassamp_objects
+            ())
+         (player1_bassamp_trigger
+            "")
+         (player2_guitaramp_objects
+            ())
+         (player2_guitaramp_trigger
+            "")
+         (player2_bassamp_objects
+            ())
+         (player2_bassamp_trigger
+            "")
+         (set_player1_guitar
+            {$this
+               show_objects
+               [player1_bassamp_objects]
+               FALSE}
+            {$this
+               show_objects
+               [player1_guitaramp_objects]
+               TRUE}
+            {if
+               {!=
+                  [player1_bassamp_trigger]
+                  ""}
+               {[player1_bassamp_trigger]
+                  disable}}
+            {if
+               {!=
+                  [player1_guitaramp_trigger]
+                  ""}
+               {[player1_guitaramp_trigger]
+                  enable}})
+         (set_player1_bass
+            {$this
+               show_objects
+               [player1_guitaramp_objects]
+               FALSE}
+            {$this
+               show_objects
+               [player1_bassamp_objects]
+               TRUE}
+            {if
+               {!=
+                  [player1_bassamp_trigger]
+                  ""}
+               {[player1_bassamp_trigger]
+                  enable}}
+            {if
+               {!=
+                  [player1_guitaramp_trigger]
+                  ""}
+               {[player1_guitaramp_trigger]
+                  disable}})
+         (set_player2_guitar
+            {$this
+               show_objects
+               [player2_bassamp_objects]
+               FALSE}
+            {$this
+               show_objects
+               [player2_guitaramp_objects]
+               TRUE}
+            {if
+               {!=
+                  [player2_bassamp_trigger]
+                  ""}
+               {[player2_bassamp_trigger]
+                  disable}}
+            {if
+               {!=
+                  [player2_guitaramp_trigger]
+                  ""}
+               {[player2_guitaramp_trigger]
+                  enable}})
+         (set_player2_bass
+            {$this
+               show_objects
+               [player2_guitaramp_objects]
+               FALSE}
+            {$this
+               show_objects
+               [player2_bassamp_objects]
+               TRUE}
+            {if
+               {!=
+                  [player2_bassamp_trigger]
+                  ""}
+               {[player2_bassamp_trigger]
+                  enable}}
+            {if
+               {!=
+                  [player2_guitaramp_trigger]
+                  ""}
+               {[player2_guitaramp_trigger]
+                  disable}})
+         (set_multiplayer
+            {set
+               [multiplayer]
+               TRUE}
+            {$this
+               show_objects
+               [multiplayer_hide_objects]
+               FALSE}
+            {$this
+               show_objects
+               [singleplayer_hide_objects]
+               TRUE})
+         (set_singleplayer
+            {set
+               [multiplayer]
+               FALSE}
+            {$this
+               show_objects
+               [multiplayer_hide_objects]
+               TRUE}
+            {$this
+               show_objects
+               [singleplayer_hide_objects]
+               FALSE})
+         (budget_set_singleplayer
+            {$this
+               show_objects
+               [singleplayer_hide_objects]
+               FALSE})
+         (budget_set_multiplayer
+            {$this
+               show_objects
+               [multiplayer_hide_objects]
+               FALSE}))))
+(WorldCrowd
+   (init
+      (type gh2))
+   (types
+      (gh2
+         #include crowd.dta)))
+(WorldDir
+   (editor
+      (test_adj_blackout
+         script
+         (script
+            {world
+               lighting
+               (blackout)}))
+      (test_adj_strobe
+         script
+         (script
+            {world
+               lighting
+               (strobe)}))
+      (test_adj_flare
+         script
+         (script
+            {world
+               lighting
+               (flare)}))
+      (test_adj_chaos
+         script
+         (script
+            {world
+               lighting
+               (chaos)}))
+      (test_adj_soft
+         script
+         (script
+            {world
+               lighting
+               (soft)}))
+      (test_adj_rock
+         script
+         (script
+            {world
+               lighting
+               (rock)}))))
+(LightPreset
+   (editor
+      (category
+         symbol
+         (list
+            (INTRO INTRO_ENCORE WIN WIN_ENCORE WIN_GAME LOSE VERSE VERSE_ENCORE CHORUS CHORUS_ENCORE VERSECHORUS VERSECHORUS_ENCORE SOLO SOLO_ENCORE VERSECHORUSSOLO VERSECHORUSSOLO_ENCORE))
+         (help
+            "Category of the preset"))
+      (adjectives
+         (array
+            symbol
+            (list LIGHTING_ADJECTIVES))))
+   (views
+      (flags
+         ("category"
+            [category])
+         ("min_excitement"
+            [min_excitement])
+         ("max_excitement"
+            [max_excitement])
+         ("adjective"
+            {if_else
+               {!=
+                  {$this
+                     size
+                     (adjectives)}
+                  0}
+               {$this
+                  get
+                  (adjectives 0)}
+               ''})
+         ("looping"
+            [looping])
+         ("manual"
+            [manual])))
+   (types))
+(CamShot
+   (init
+      (type band)
+      (category band_POV))
+   (editor
+      (category
+         symbol
+         (list CAMSHOT_CATEGORIES)
+         (help
+            "Category of the shot")))
+   (views
+      (flags
+         ("shot distance"
+            [distance])
+         ("shot facing"
+            [facing])
+         ("walking ok"
+            [walk_ok])
+         ("solo ok"
+            [solo])
+         ("starpower ok"
+            [starpower_ok])
+         ("far starpower ok"
+            [far_starpower_ok])
+         ("jump ok"
+            [jump_ok])
+         ("low excitment ok"
+            [low_excitement_ok])
+         ("crowd facing camera"
+            [crowd_face_camera])
+         ("force LOD"
+            [force_char_lod])
+         ("special"
+            [special])
+         ("depth of field"
+            [use_depth_of_field])))
+   (types
+      (band
+         (editor
+            (crowd_face_camera
+               bool
+               (help
+                  "Whether the crowd should face the camera"))
+            (force_char_lod
+               int
+               (help
+                  "Minimum character LOD to force while this shot is active"))
+            (bad_waypoints
+               (array
+                  object
+                  (class Waypoint))
+               (help
+                  "If the character is currently on any of these walk spots, the shot will not be used"))
+            (distance
+               symbol
+               (list
+                  (null near far closeup behind))
+               (help
+                  "Distance categorization of the shot"))
+            (facing
+               symbol
+               (list
+                  (null left right))
+               (help
+                  "Facing categorization of the shot"))
+            (special
+               bool
+               (help
+                  "Whether this shot is special-purpose"))
+            (solo
+               symbol
+               (list
+                  (ok only never))
+               (help
+                  "Whether this shot can be used during a solo"))
+            (walk_ok
+               bool
+               (help
+                  "Whether this shot can be used while the target is walking"))
+            (starpower_ok
+               bool
+               (help
+                  "Whether this shot can be used while in starpower"))
+            (far_starpower_ok
+               bool
+               (help
+                  "Whether this shot can be used with far starpower"))
+            (jump_ok
+               bool
+               (help
+                  "whether this shot can be used while the band is jumping"))
+            (low_excitement_ok
+               bool
+               (help
+                  "Whether this shot can be used while excitement is low"))
+            (next_shot
+               object
+               (class CamShot)
+               (help
+                  "Shot to start when this shot has finished"))
+            (postprocess
+               object
+               (class PostProc)
+               (help
+                  "Post process object to use for this shot")))
+         #include camshot.dta)))
+#merge arena/arena.dta
+#merge battle/battle.dta
+#merge big/big.dta
+#merge fest/fest.dta
+#merge small1/small1.dta
+#merge small2/small2.dta
+#merge stone/stone.dta
+#merge theatre/theatre.dta

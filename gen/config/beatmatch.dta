@@ -1,0 +1,29 @@
+(player_matcher_handlers
+   (hit
+      ($slot $star $hopoable $hopoed $player_num)
+      {if
+         $star
+         {play_game_sequence_player sp_gemhit sp_gemhit $player_num}})
+   (hopo
+      {handle
+         ($this hopo_callback)})
+   (swingAtHopo
+      {handle
+         ($this swingAtHopo_callback)})
+   (miss
+      ($player_num)
+      {do
+         ($seq
+            {switch
+               {game get_track_type $player_num}
+               (kTrackBass miss_bass)
+               miss_gtr})
+         {play_game_sequence_player $seq $seq $player_num}})
+   (swing))
+(solo_handlers
+   (pick_done
+      {print
+         "pick_done\n"})
+   (all_done
+      {print
+         "all_done\n"}))

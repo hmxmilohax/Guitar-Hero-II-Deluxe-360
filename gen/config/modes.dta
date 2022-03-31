@@ -1,0 +1,124 @@
+(defaults
+   (hud_file hud_blank.milo)
+   (allow_achievements TRUE)
+   (update_song_leaderboard FALSE)
+   (update_career_leaderboard FALSE)
+   (crowd_rating_active TRUE)
+   (separate_parts TRUE)
+   (num_players 1)
+   (competitive FALSE)
+   (force_autoplay FALSE)
+   (blown_streak_feedback TRUE)
+   (score_config default_config)
+   (song_block song)
+   (midi_suffix '')
+   (game_over_sequence TRUE)
+   (skip_intro FALSE)
+   (show_hud TRUE)
+   (show_track TRUE)
+   (encore_fx FALSE)
+   (track_surface_override '')
+   (crowd_audio TRUE)
+   (star_power_disable FALSE)
+   (shared_star_meter FALSE)
+   (main_screen main_screen)
+   (continue_screen qp_selsong_screen)
+   (loading_screen loading_screen)
+   (win_screen endgame_screen)
+   (lose_screen lose_screen)
+   (game_screen game_screen)
+   (win_preload_panel '')
+   (practice_speed 0)
+   (practice_sections
+      (0 0)))
+(attract
+   (allow_achievements FALSE)
+   (star_power_disable TRUE)
+   (show_hud FALSE)
+   (show_track FALSE)
+   (force_autoplay TRUE))
+(practice
+   (allow_achievements FALSE)
+   (skip_intro TRUE)
+   (star_power_disable TRUE)
+   (game_over_sequence FALSE)
+   (crowd_rating_active FALSE)
+   (crowd_audio FALSE)
+   (hud_file hud_practice.milo)
+   (continue_screen main_screen)
+   (loading_screen practice_loading_screen)
+   (game_screen practice_game_screen)
+   (track_surface_override rosewood)
+   (song_block
+      {if_else
+         {==
+            {gamecfg get_track_type 0}
+            kTrackGuitar}
+         song
+         song_coop})
+   (midi_suffix
+      {if_else
+         {==
+            {gamecfg get_track_type 0}
+            kTrackGuitar}
+         ''
+         COOP}))
+(quickplay
+   (continue_screen qp_selsong_screen)
+   (hud_file hud_sp.milo)
+   (win_preload_panel endgame_panel)
+   (update_song_leaderboard TRUE))
+(career
+   (main_screen career_screen)
+   (continue_screen sel_song_screen)
+   (win_preload_panel endgame_panel)
+   (hud_file hud_sp.milo)
+   (encore_fx TRUE)
+   (update_song_leaderboard TRUE)
+   (update_career_leaderboard TRUE))
+(multi_vs
+   (num_players 2)
+   (competitive TRUE)
+   (continue_screen multi_vs_selsong_screen)
+   (win_screen multi_compete_screen)
+   (win_preload_panel multi_compete_panel)
+   (hud_file hud_vs.milo)
+   (song_block song_vs)
+   (midi_suffix VS))
+(multi_fo
+   (num_players 2)
+   (competitive TRUE)
+   (continue_screen multi_fo_selsong_screen)
+   (win_screen multi_compete_fo_screen)
+   (win_preload_panel multi_compete_fo_panel)
+   (separate_parts FALSE)
+   (hud_file hud_vs.milo))
+(multi_coop
+   (num_players 2)
+   (shared_star_meter TRUE)
+   (separate_parts FALSE)
+   (score_config coop_config)
+   (hud_file hud_coop.milo)
+   (continue_screen multi_coop_selsong_screen)
+   (win_screen multi_compete_coop_screen)
+   (win_preload_panel multi_compete_coop_panel)
+   (song_block song_coop)
+   (midi_suffix COOP)
+   (sp_engage
+      ($player $state)
+      {if_else
+         $state
+         {play_game_sfx_player sp_deploystart.cue sp_deploystart.cue $player}
+         {stop_sfx sp_deploystart.cue}}
+      kDataUnhandled))
+(tutorial
+   (allow_achievements FALSE)
+   (skip_intro TRUE)
+   (crowd_rating_active FALSE)
+   (show_hud FALSE)
+   (crowd_audio FALSE)
+   (game_screen tut_script_screen)
+   (loading_screen tut_loading_screen)
+   (blown_streak_feedback FALSE)
+   (hud_file hud_sp.milo)
+   (track_surface_override rosewood))

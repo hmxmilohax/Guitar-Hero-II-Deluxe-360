@@ -1,0 +1,200 @@
+#ifdef APP_MACROS_DTA
+#else
+#define APP_MACROS_DTA
+(1)
+#include sfx_macros.dta
+#include ../../../system/run/config/macros.dta
+#define kTempoMedium
+(1)
+#define kTempoFast
+(2)
+#define kSelfLoop
+(4)
+#define kWalkLeft
+(256)
+#define kWalkRight
+(512)
+#define kWalkForward
+(1024)
+#define kWalkBackward
+(2048)
+#define kWalkNormal
+(4096)
+#define kWalkExtreme
+(8192)
+#define kStarPowerFar
+(16384)
+#define kIdleComplete
+(32768)
+#define kGuitarLeftIK
+(4194304)
+#define kGuitarRightIK
+(8388608)
+#define kBassPluck
+(16777216)
+#define kBassSlap
+(33554432)
+#define kBandActive
+(4)
+#define kBandAllbeat
+(8)
+#define kBandDouble
+(16)
+#define kBandHalf
+(32)
+#define kBandIdle
+(64)
+#define kBandLose
+(128)
+#define kBandWin
+(256)
+#define kBandNosnare
+(512)
+#define kBandIntro
+(1024)
+#define kBandIdleNoLoop
+(2048)
+#define kBandIntroIdle
+(4096)
+#define kBandIdleComplete
+(8192)
+#define kSyncJump
+(16777216)
+#define kStartGuitarist0
+(1)
+#define kStartGuitarist1Mp
+(2)
+#define kStartSinger
+(4)
+#define kStartKeyboardist
+(8)
+#define kStartBassist
+(16)
+#define kStartDrummer
+(32)
+#define kWalkSpot
+(64)
+#define kSoloWalkSpot
+(128)
+#define kStartGuitarist0Mp
+(512)
+#define kEncoreWalkSpot
+(1024)
+#define kWinWalkSpot
+(2048)
+#define kWinGameWalkSpot
+(4096)
+#define MAX_WALK_WAIT
+(6)
+#define kDifficultyEasy
+(0)
+#define kDifficultyMedium
+(1)
+#define kDifficultyHard
+(2)
+#define kDifficultyExpert
+(3)
+#define DIFF_SYMBOLS
+(easy medium hard expert)
+#define kTrackBass
+(0)
+#define kTrackRhythm
+(1)
+#define kTrackGuitar
+(2)
+#define TRACK_SYMBOLS
+(bass rhythm guitar)
+#define kSoloFeedback
+(0)
+#define kSoloMayhem
+(1)
+#define kSoloRiff
+(2)
+#define kSoloSustain
+(3)
+#define kSoloWhammy
+(4)
+#define kCamLeft
+(1)
+#define kCamRight
+(2)
+#define kCamCloseup
+(4)
+#define kCamNear
+(8)
+#define kCamFar
+(16)
+#define kCamBehind
+(32)
+#define kCamSolo
+(64)
+#define kCamNoSolo
+(128)
+#define kCamSpecial
+(256)
+#define kNoHopoTutorial
+(0)
+#define kHammerOnTutorial
+(1)
+#define kPullOffTutorial
+(2)
+#define kNormal
+(0)
+#define kFocused
+(1)
+#define kDisabled
+(2)
+#define kStretched
+(1)
+#define kJustFit
+(2)
+#define BAD_SELECT_MSG
+(component_bad_selection)
+#define SCREEN_BACK_MSG
+(screen_back)
+#define CHAR_ADDED_MSG
+(char_added)
+#define CHAR_REMOVED_MSG
+(char_removed)
+#define kSongsCareer
+(0)
+#define kSongsQuickplay
+(1)
+#define kSongsLeaderboards
+(2)
+#define kLeaderboardInvalid
+(-1)
+#define kLeaderboardPermanent
+(0)
+#define kLeaderboardWeekly
+(1)
+#define kLeaderboardStartAtTop
+(0)
+#define kLeaderboardStartAtUser
+(1)
+#define kLeaderboardShowOnlyFriends
+(2)
+#define kLeaderboardCareer
+(_career)
+#define kLeaderboardCampaign
+(_campaign)
+#define kMeshGem
+(0)
+#define kMeshGemGlow
+(1)
+#define kMeshGemMiss
+(2)
+#define kMeshTop
+(3)
+#define kMeshHopoTop
+(4)
+#define kMeshStar
+(5)
+#define kMeshStarTop
+(6)
+#define WORLDEVENTS
+((SYSTEMWORLDEVENTS chorus verse solo venue_effect excitement_bad excitement_okay excitement_great intro_skip intro_start intro_end kick_drum crash_symbal bass_hit post_switch_cam music_start game_over game_won game_lost campaign_won encore_lost crowd_update crowd_hide crowd_half_tempo crowd_double_tempo crowd_normal_tempo crowd_lighters_slow crowd_lighters_fast crowd_lighters_off build_streak single_player multi_player hit_p0_fret1 hit_p0_fret2 hit_p0_fret3 hit_p0_fret4 hit_p0_fret5 hit_p1_fret1 hit_p1_fret2 hit_p1_fret3 hit_p1_fret4 hit_p1_fret5 play_encore_fx skip_encore_fx encore_outro hit_snare hit_hihat peak_on peak_off star_power_ready star_power_start star_power_stop drummer_explode))
+#define LANGUAGES
+((eng fre ita deu esl))
+#include xlast_macros.dta
+#endif

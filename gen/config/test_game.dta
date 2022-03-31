@@ -1,0 +1,20 @@
+#include macros.dta
+(ui
+   (my_init
+      {game set_character metal1}
+      {game set_venue small2}
+      {game set_song morethanafeeling}
+      {{game get_player_config 0}
+         set_difficulty
+         kDifficultyExpert}
+      {set $first_screen loading})
+   (music_start
+      {print
+         "Loaded: "
+         {game get_venue}
+         "\n"}
+      {game
+         delay_task
+         5000
+         {meta_loading_goto main}}))
+#merge gh.dta

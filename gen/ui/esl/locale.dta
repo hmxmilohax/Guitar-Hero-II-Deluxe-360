@@ -1,0 +1,2768 @@
+(splash_anybutton
+   "PULSA UN BOTÓN PARA EMPEZAR")
+(splash_legal
+   "Guitar Hero II TM & © 2006-2007 RedOctane, Inc.\n RedOctane® es una marca comercial registrada de RedOctane, Inc y Activision es una marca comercial registrada de Activision Publishing, Inc.Código del motor© 2005-2007 Harmonix Music Systems, Inc. Desarrollado por Harmonix Music Systems.")
+(signin_changed_title
+   "CAMBIO EN EL INICIO DE SESIÓN")
+(signin_changed_msg
+   "Se ha producido un cambio al iniciar sesión. No podrás guardar tus logros y tus progresos. Como resultado el juego se ha reiniciado.")
+(sigin_to_live_title
+   "NO HAS INICIADO SESIÓN")
+(sigin_to_live_msg
+   "Para ver las Tablas de clasificación, tienes que iniciar sesión en Xbox Live. Inicia sesión e inténtalo de nuevo.")
+(guitar_help_using
+   "USO DEL MANDO DE GUITARRA")
+(guitar_help_plugin
+   "Conecta la guitarra y abrocha la bandolera.")
+(guitar_help_continue1
+   "Continuar")
+(guitar_help_continue2
+   "(botón verde)")
+(guitar_help_step1
+   "1")
+(guitar_help_step2
+   "2")
+(guitar_help_step3
+   "3   Mueve la cabeza")
+(guitar_help_back1
+   "Atrás")
+(guitar_help_back2
+   "(botón rojo)")
+(guitar_help_start
+   "Botón START")
+(guitar_help_strumbar1
+   "Arriba/Abajo")
+(guitar_help_strumbar2
+   "(barra toque)")
+(help_continue
+   "CONTINUAR")
+(help_start
+   "COMENZAR")
+(help_back
+   "ATRÁS")
+(help_reset
+   "REINICIAR")
+(help_keep
+   "MANTENER")
+(help_retry
+   "REINTENT.")
+(help_updown
+   "ARRIBA/ABAJO")
+(help_onoff
+   "ACTIVAR/DESACTIVAR")
+(help_select
+   "ELEGIR")
+(help_confirm
+   "CONFIRMAR")
+(help_accept
+   "ACEPTAR")
+(help_cancel
+   "CANCELAR")
+(help_hitonchange
+   "RASGUEAR")
+(help_adjvol
+   "AJUSTAR VOLUMEN")
+(help_adjsync
+   "AJUSTAR SINCRONIZACIÓN")
+(help_nextletter
+   "SEGUIR")
+(help_deleteletter
+   "BORRAR")
+(help_buyitem
+   "COMPRAR")
+(help_skins
+   "CAMBIAR DISEÑOS")
+(help_tolisting
+   "TABLA DE CLASIFICACIÓN")
+(help_gamercard
+   "TARJETA DE JUGADOR")
+(lag_title
+   "Retraso HD")
+(lag_button_calibrate
+   "Calibrar")
+(lag_button_recalibrate
+   "Recalibrar")
+(lag_button_reset
+   "Reiniciado a 0 ms")
+(lag_setting
+   "Retraso comp. actual de %d ms")
+(lag_measured
+   "Retraso de compensación nuevo de %d ms")
+(lag_measuring
+   "Calibrando...")
+(lag_info_why
+   "Algunos televisores HDTV tienen retraso de audio/vídeo que dificulta el juego. Échale la culpa a tu TV o calibra.")
+(lag_info_howto
+   "Calibra rasgueando las notas cuando estén en el objetivo.")
+(lag_info_failure
+   "No se ha podido realizar la calibración. Inténtalo de nuevo.")
+(lag_success
+   "Se ha realizado la calibración correctamente.")
+(lag_3
+   "3")
+(lag_2
+   "2")
+(lag_1
+   "1")
+(lag_go
+   "¡YA!")
+(name_band
+   "NOMBRE DE TU GRUPO")
+(BAND_NAME_EXPLAIN
+   "Mismo nombre que la PARTIDA GUARDADA")
+(HOW_TO_END
+   "Pulsa START para confirmar el nombre y continuar")
+(HOW_TO_EDIT
+   "Puedes editar el nombre en Gestionar grupo en el menú Opciones")
+(choose_band
+   "ELEGIR GRUPO")
+(no_profile
+   "SIN GRUPO")
+(no_profile_msg
+   "Escribe un NOMBRE DE GRUPO.")
+(duplicate_profile
+   "GRUPO REPETIDO")
+(duplicate_profile_msg
+   "Este NOMBRE DE GRUPO ya existe. Escribe un NOMBRE DE GRUPO diferente.")
+(max_profile
+   "NO HAY GRUPOS LIBRES")
+(max_profile_msg
+   "No hay espacio para grupos nuevos. Debes borrar uno o más bloques para crear un nuevo perfil.")
+(cant_delete_profile
+   "IMPOSIBLE BORRAR GRUPO")
+(cant_delete_profile_msg
+   "No se puede borrar el grupo elegido. Antes de borrarlo, escoge un grupo diferente en CARGAR GRUPO o NUEVO GRUPO.")
+(op_bonus_material
+   "Vídeos de bonificación")
+(op_credits
+   "Créditos")
+(op_data_settings
+   "Gestionar grupo")
+(op_game_settings
+   "Config. sonido")
+(op_video_settings
+   "Config. vídeo")
+(op_memcard
+   "Config. datos")
+(GAME_SETTINGS
+   "CONFIG. SONIDO")
+(LEFT_PLAYER_1
+   "JUGADOR ZURDO 1")
+(LEFT_PLAYER_2
+   "JUGADOR ZURDO 2")
+(GS_STEREO_SOUND
+   "SONIDO ESTÉREO")
+(gs_sound_fx
+   "SONIDO/FX")
+(gs_guitar
+   "GUITARRA")
+(gs_band
+   "GRUPO")
+(gs_sync_help
+   "(0-.250 seg, . paso 10)")
+(gs_video
+   "CONFIG. VÍDEO")
+(STEREO_SOUND
+   "SONIDO ESTÉREO")
+(SOUND_FX
+   "SONIDO/FX")
+(BONUS_MATERIAL
+   "MATERIAL EXTRA")
+(CREDITS
+   "CRÉDITOS")
+(DATA_SETTINGS1
+   "DATOS")
+(DATA_SETTINGS2
+   "CONFIG.")
+(rename_band
+   "camb. nombre")
+(autosave_band
+   "autoguardado")
+(new_band
+   "nuevo grupo")
+(save_band
+   "guardar grupo")
+(load_band
+   "cargar grupo")
+(delete_band
+   "borrar grupo")
+(save_bands
+   "guardar partida")
+(load_bands
+   "cargar partida")
+(ds_autosave
+   "guardado automático")
+(manage_band
+   "GESTIONAR GRUPO")
+(manage_band_title
+   "GESTIONAR")
+(vs_title
+   "CONFIG. VÍDEO")
+(vs_lag
+   "CALIBRAR EL RETRASO")
+(warning
+   "ADVERTENCIA")
+(pscan_warning
+   "El modo progresivo puede no funcionar en todas las televisiones. Si este es tu caso, espera 15 segundos para volver al modo actual.")
+(pscan_switching
+   "Ahora estás en modo progresivo. ¿Quieres mantener este modo de visualización?")
+(BUY_BONUS
+   "comprar en la tienda")
+(video1
+   "Gibson USA: un tour")
+(video2
+   "Guitar Hero II: grabación de temas")
+(video3
+   "Guitar Hero II: entre bastidores")
+(video1_shop_desc
+   "¿Alguna vez has soñado con visitar la fábrica de Gibson en EE.UU. y descubrir todos sus rincones? Ésta es tu oportunidad.")
+(video2_shop_desc
+   "No te pierdas el vídeo exclusivo sobre la grabación de temas de Guitar Hero II.")
+(video3_shop_desc
+   "El equipo de desarrollo de Guitar Hero II te invita a conocer cómo es DE VERDAD la vida en Harmonix.")
+(QUICK_PLAY
+   "PART. RÁPIDA")
+(QP_SELSONG
+   "ELEGIR TEMA")
+(E3_SINGLE_PLAYER
+   "E3: UN SOLO JUGADOR")
+(E3_MULTI_COOP
+   "E3: MODO MULTIJUGADOR COOPERATIVO")
+(big
+   "RedOctane Club")
+(arena
+   "The Arena")
+(fest
+   "Vans Warped Tour")
+(theatre
+   "Rock City Theater")
+(stone
+   "Stonehenge")
+(small1
+   "The Rat Cellar")
+(small2
+   "The Blackout Bar")
+(battle
+   "Batalla de grupos")
+(battle_address
+   "Nilbog High")
+(small1_address
+   "675 Mass Ave")
+(small2_address
+   "677 Flatbush Ave")
+(big_address
+   "720 Landsdowne St")
+(theatre_address
+   "Centro ciudad")
+(fest_address
+   "Randall Field")
+(arena_address
+   "1 City Place")
+(stone_address
+   "la cara alegre de Inglaterra")
+(Controller
+   "Mando")
+(Difficulty
+   "Dificultad")
+(Play
+   "Tocar")
+(Song
+   "Tema")
+(Venue
+   "LOCAL")
+(cheat_enabled_fmt
+   "TRUCO ACTIVADO:\n%s")
+(cheat_disabled_fmt
+   "TRUCO DESACTIVADO:\n%s")
+(cheat_unlock_all
+   "Desbloquéalos todos (guardando los desactivados)")
+(cheat_air_guitar
+   "Guitarra imaginaria")
+(cheat_performance_mode
+   "Modo actuación")
+(cheat_hyper_speed_mode
+   "velocidad supersónica")
+(cheat_horse_head_mode
+   "caracaballo")
+(cheat_flaming_head
+   "cabeza ardiente")
+(cheat_eyeball_head_crowd
+   "público con ojo mágico")
+(cheat_monkey_head_crowd
+   "público enmonado")
+(CAREER
+   "CARRERA")
+(MULTIPLAYER
+   "MULTIJUGADOR")
+(OPTIONS
+   "OPCIONES")
+(EXTRAS
+   "EXTRAS")
+(OFFSET
+   "SINCRONIZACIÓN")
+(multi_campaign
+   "CARRERA")
+(multi_coop
+   "COOPERATIVO")
+(multi_versus
+   "DUELO DE GUITARRAS")
+(multi_faceoff
+   "DUELO DE GUITARRAS PRO")
+(multi_select_multi_mode
+   "ELEGIR MODO MULTIJUGADOR")
+(multi_sel_diff_done
+   "Pulsa START cuando estéis listos")
+(SELECTYOURGUITAR
+   "Elige tu guitarra")
+(SELECTYOURSKIN
+   "Elige el acabado")
+(CM_PLAY_LIVE_SHOW
+   "TOCAR EN DIRECTO")
+(CM_SELECT_CHARACTER
+   "CAMBIAR PERSONAJE")
+(CM_SEL_GUITAR
+   "CAMBIAR GUITARRA")
+(CM_UNLOCK_SHOP
+   "LA TIENDA")
+(CM_BAND_TITLE
+   "GRUPO:")
+(CM_CAREER_TITLE
+   "CARRERA")
+(CM_STATUS_TITLE
+   "NIVEL:")
+(CM_SCORE_TITLE
+   "PUNTOS:")
+(CM_CASH_TITLE
+   "DINERO:")
+(cm_char_title
+   "GUITARRISTA:")
+(cm_guitar_title
+   "GUITARRA:")
+(career_cash_format
+   "%d$")
+(career_score_format
+   "%d")
+(career_featuring
+   "UNA ACTUACIÓN DE")
+(career_playing_the
+   "TOCANDO ")
+(mtv_made_famous
+   "un clásico de")
+(performed_by
+   "interpretada por")
+(press_any_button
+   "PULSA UN BOTÓN PARA DARLE CAÑA")
+(pausetitle
+   "PAUSA")
+(pause_resume
+   "REANUDAR")
+(pause_restart
+   "REINICIAR")
+(pause_quit
+   "SALIR")
+(quit
+   "salir")
+(restart
+   "reiniciar")
+(resume
+   "reanudar")
+(retry
+   "reintentar")
+(exit
+   "salir")
+(new_song
+   "tema nuevo")
+(video_settings
+   "config. vídeo")
+(audio_settings
+   "config. sonido")
+(SONG_COMPLETE
+   "¡TEMA COMPLETADO!")
+(PLAYER_1_WINS
+   "¡GANA EL JUG. 1!")
+(PLAYER_2_WINS
+   "¡GANA EL JUG. 2!")
+(DRAW
+   "¡EMPATE!")
+(CONTINUE
+   "CONTINUAR")
+(MORE_STATS
+   "MÁS ESTADÍST.")
+(CHANGE_SECTION
+   "CAMBIAR SECCIÓN")
+(CHANGE_SPEED
+   "CAMBIAR VELOC.")
+(NEW_SONG
+   "NUEVO TEMA")
+(lefty_flip_changed
+   "Para modificar la config. para zurdos debes reiniciar este tema. Si reinicias este tema todo el progreso que no haya sido guardado se perderá. ¿Reiniciar?")
+(RESET
+   "REINICIAR")
+(pause_confirm_quit_message
+   "Si sales de este tema se perderá todo el progreso que no haya sido guardado. ¿Seguro que quieres salir de este tema?")
+(pause_cancel
+   "CANCELAR")
+(pause_confirm_restart_message
+   "Todo el progreso no guardado se perderá. ¿Seguro que quieres reiniciar este tema?")
+(yes
+   "sí")
+(no
+   "no")
+(cancel
+   "cancelar")
+(confirm_ok
+   "Aceptar")
+(CONTROLLER_LOSS
+   "¡ESTÁS METIENDO DEMASIADA CAÑA!")
+(controller_loss_msg
+   "Comprueba que el mando de guitarra está conectado correctamente")
+(controller_loss_msg_multi
+   "Comprueba que los mandos de guitarra están conectados correctamente")
+(tut_guitar_loss_msg
+   "Comprueba que el mando de guitarra está conectado correctamente")
+(win_easy
+   "Hola__________________\n\nEnhorabuena por arrasar en el nivel fácil de Guitar Hero II. Es hora de pasar a otro nivel, máquina.\n\n¿Quieres premios en metálico? Juega en los niveles MEDIO, DIFÍCIL o EXPERTO. Podrás comprar nuevas guitarras, temas, impresionantes acabados... Todo lo que tu corazoncito de roquero desee... Quién sabe, quizás incluso te encuentres con un nuevo modo...\n\nEs la hora de la verdad, colega.\n\nUn saludo,\nLa Directiva")
+(win_medium
+   "Hola______________________\n\nEnhorabuena, has arrasado en el nivel medio de Guitar Hero II. Bien hecho.\n\nSeguro que sabes que puedes conseguir más dinero y comprar más artículos si juegas en los niveles DIFÍCIL o EXPERTO, ¿verdad? Comprar cosas mola. Si compras artículos le gustas a la gente.\n\nSube un nivel y lo comprobarás. Sigue vendiendo entradas como rosquillas y seremos buenos contigo.\n\nAbrazos,\nLa Directiva")
+(win_hard
+   "Hola______________________\n\nEnhorabuena, has arrasado en el nivel difícil de Guitar Hero II. Es una gran hazaña.\n\n¿Crees que tienes lo que hay que tener para dejarlos alucinados? Ponte a prueba en el nivel EXPERTO. Se llama EXPERTO por algo. Quizá te esté esperando un premio si lo superas.\n\nAsí que estira tus deditos regordetes, vaquero, te espera una oleada de dolor. El poder del ROCK te obliga.\n\nUn abrazo,\nLa Directiva")
+(win_expert
+   "Hola ______________________,\n\n¡Qué pasada! Acabas de arrasar en el nivel EXPERTO de Guitar Hero II.\n\nTienes el nivel de muy poca gente, la verdad. Eres una leyenda que está entre los mortales de a pie.\n\n¿¿¿Has superado todas las canciones con CINCO ESTRELLAS??? Si no, vuelve al trabajo, campeón. Todos tus esfuerzos serán recompensados.\n\nSí, en serio, ha sido alucinante. Enhorabuena.\n\nUn fuerte abrazo,\nLa Directiva")
+(win_diff
+   "Has derrotado a Guitar Hero II en el nivel %s")
+(win_congrats
+   "¡Enhorabuena!")
+(win_legendary
+   "Tu legendaria actuación será recordada durante años.")
+(win_stardom
+   "El Olimpo del rock llama a...")
+(ug_congrats
+   "¡Enhorabuena!")
+(ug_blurb1
+   " ")
+(ug_blurb2
+   "Ve y cómprala en La Tienda")
+(ub_congrats
+   "¡Enhorabuena!")
+(ub_blurb1
+   "Ahora ya puedes tocar este bajo en modo cooperativo.")
+(ub_blurb2
+   "Tocad bien, sí...es a vosotros.")
+(percent_complete_format
+   "%d%% completado")
+(lose_diff
+   "DIFICULTAD:")
+(lose_title
+   "TEMA NO SUPERADO")
+(lose_quit
+   "SALIR")
+(lose_restart
+   "REINTENT.")
+(lose_practice
+   "ENSAYAR")
+(lose_selsong
+   "NUEVO TEMA")
+(3_star
+   "***__")
+(4_star
+   "****_")
+(5_star
+   "*****")
+(eg_percent_format
+   "%d%%")
+(eg_score
+   "Puntos")
+(eg_percent
+   "Aciertos")
+(eg_review
+   "Crítica")
+(eg_streak_format
+   "¡Racha de %i notas!")
+(me_percent_format
+   "%d%%")
+(me_notes_hit
+   "ACIERTOS")
+(me_streak
+   "RACHA DE NOTAS ")
+(me_score
+   "PUNTOS")
+(meplayer1
+   "JUGADOR 1")
+(meplayer2
+   "JUGADOR 2")
+(me_streak_format
+   "¡Racha de %d notas!")
+(me_caption_format
+   "¡GANA %s!")
+(me_caption_tie
+   "¡EMPATE INCREÍBLE!")
+(me_pfo_diff
+   "DIFICULTAD: %s")
+(headline1
+   "Un {GH_ADJ} {GH_NOUN} de {GH_BAND} en {GH_VENUE}")
+(headline2
+   "El grupo {GH_BAND} {GH_VERB} en {GH_VENUE} con un {GH_NOUN} {GH_ADJ}")
+(headline_battle
+   "El grupo {GH_BAND} {GH_WIN_PHRASE}")
+(headline_perfect
+   "Gran actuación de {GH_BAND} en {GH_VENUE}")
+(headline_perfect_coop
+   "Gran actuación en {GH_VENUE}")
+(headline_quick_coop1
+   "Un {GH_ADJ} {GH_NOUN} {GH_VERB} en {GH_VENUE}")
+(headline_quick_coop2
+   "Un {GH_ADJ} {GH_NOUN} {GH_VERB_PAST} al público en {GH_VENUE} ")
+(headline_vs
+   "El jugador {GH_NUM} {GH_VS_VERB} {GH_VS_NOUN}")
+(headline_vs_tie
+   "¡LOS JUGADORES EMPATAN EN UN COMBATE ENTRE IGUALES!")
+(from
+   "de")
+(at
+   "en")
+(with
+   "con")
+(new_band_headline
+   "Nuevo grupo")
+(adj_a_1
+   "insuperable")
+(adj_a_2
+   "alucinante")
+(adj_a_3
+   "brillante")
+(adj_a_4
+   "impresionante")
+(adj_a_5
+   "respetable")
+(adj_a_6
+   "sensacional")
+(adj_a_7
+   "brillante")
+(adj_a_8
+   "impresionante")
+(adj_a_9
+   "emocionante")
+(adj_a_10
+   "sensacional")
+(adj_b_1
+   "excelente")
+(adj_b_2
+   "complaciente")
+(adj_b_3
+   "inspirado")
+(adj_b_4
+   "divertido")
+(adj_b_5
+   "agradable")
+(adj_b_6
+   "apasionante")
+(adj_b_7
+   "seductor")
+(adj_b_8
+   "encantador")
+(adj_b_9
+   "vehemente")
+(adj_b_10
+   "conmovedor")
+(adj_c_1
+   "increíble")
+(adj_c_2
+   "convincente")
+(adj_c_3
+   "interesante")
+(adj_c_4
+   "sentido")
+(adj_c_5
+   "pulido")
+(adj_c_6
+   "entregado")
+(adj_c_7
+   "ameno")
+(adj_c_8
+   "plácido")
+(adj_c_9
+   "decente")
+(verb_a_1
+   "machaca")
+(verb_a_2
+   "conquista")
+(verb_a_3
+   "liquida")
+(verb_a_4
+   "pone al rojo vivo")
+(verb_a_5
+   "estremece")
+(verb_a_6
+   "sorprende")
+(verb_a_7
+   "estimula")
+(verb_a_8
+   "inspira")
+(verb_a_9
+   "sobrecoge")
+(verb_b_1
+   "arrasa")
+(verb_b_2
+   "excita")
+(verb_b_3
+   "impresiona")
+(verb_b_4
+   "calienta")
+(verb_b_5
+   "deleita")
+(verb_b_6
+   "cautiva")
+(verb_b_7
+   "embelesa")
+(verb_b_8
+   "maravilla")
+(verb_b_9
+   "deslumbra")
+(verb_c_1
+   "conquista")
+(verb_c_2
+   "alucina")
+(verb_c_3
+   "seduce")
+(verb_c_4
+   "entretiene")
+(verb_past_a_1
+   "machacó")
+(verb_past_a_2
+   "conquistó")
+(verb_past_a_3
+   "liquidó")
+(verb_past_a_4
+   "electrificó")
+(verb_past_a_5
+   "arrolló")
+(verb_past_a_6
+   "sorprendió")
+(verb_past_a_7
+   "estimuló")
+(verb_past_a_8
+   "inspiró")
+(verb_past_a_9
+   "sobrecogió")
+(verb_past_b_1
+   "alucinó")
+(verb_past_b_2
+   "excitó")
+(verb_past_b_3
+   "impresionó")
+(verb_past_b_4
+   "calentó")
+(verb_past_b_5
+   "deleitó")
+(verb_past_b_6
+   "cautivó")
+(verb_past_b_7
+   "hechizó")
+(verb_past_b_8
+   "maravilló")
+(verb_past_b_9
+   "encendió")
+(verb_past_c_1
+   "conquistó")
+(verb_past_c_2
+   "divirtió")
+(verb_past_c_3
+   "gustó")
+(verb_past_c_4
+   "entretuvo")
+(noun_a_1
+   "espectáculo")
+(noun_a_2
+   "acto")
+(noun_a_3
+   "recital")
+(noun_b_1
+   "recital")
+(noun_b_2
+   "concierto")
+(noun_c_1
+   "esfuerzo")
+(noun_c_2
+   "intento")
+(win_phrase_c_1
+   "termina en tercer lugar en la Batalla de Grupos")
+(win_phrase_c_2
+   "consigue un tercer puesto por los pelos en la Batalla de Grupos")
+(win_phrase_b_1
+   "consigue el segundo puesto en la Batalla de Grupos")
+(win_phrase_b_2
+   "se hace con la medalla de plata en la Batalla de Grupos")
+(win_phrase_a_1
+   "obtiene el primer puesto en la Batalla de Grupos")
+(win_phrase_a_2
+   "se hace con el oro en la Batalla de Grupos")
+(win_vs_verb_c_1
+   "arrasa")
+(win_vs_verb_c_2
+   "vence")
+(win_vs_verb_b_1
+   "triunfa")
+(win_vs_verb_b_2
+   "sale victorioso")
+(win_vs_verb_a_1
+   "gana")
+(win_vs_verb_a_2
+   "se impone")
+(win_vs_noun_c_1
+   "con diferencia")
+(win_vs_noun_c_2
+   "con autoridad")
+(win_vs_noun_b_1
+   "de manera espectacular")
+(win_vs_noun_b_2
+   "con un concierto con garra ")
+(win_vs_noun_a_1
+   "por los pelos")
+(win_vs_noun_a_2
+   "en un apretado duelo")
+(stat_header
+   "Breakdown detallado")
+(stat_notes_hit
+   "Aciertos")
+(stat_sp_phrases
+   "Frases EE")
+(stat_avg_multi
+   "Multipl. promedio")
+(stat_avg_multi_format
+   "%d.%dx")
+(stat_section_no_notes
+   "N/A")
+(stat_section_title
+   "sección de estadíst.")
+(stat_streaks_broken
+   "MALA RACHA")
+(stat_best_performer
+   "MEJOR ACTUACIÓN")
+(stat_lead
+   "TIEMPO EN CABEZA")
+(ca_reason
+   "¡Enhorabuena! Gran concierto, magníficas críticas e informe de puntuación perfecto. Aquí tienes tu parte.")
+(ca_blurb1
+   "pago")
+(ca_deductions
+   "menos las deducciones:")
+(ca_blurb2
+   "Amplificadores, dañados")
+(ca_blurb3
+   "Camerino, destrozado")
+(ca_blurb4
+   "Personal, insultado")
+(ca_blurb5
+   "Cables, desaparecidos")
+(ca_blurb6
+   "Sobornos, generalizados")
+(ca_blurb7
+   "Exigencias de más, de locos")
+(ca_blurb8
+   "Los gorilas, intimidados.")
+(ca_blurb9
+   "Cuadro robado")
+(ca_blurb10
+   "Suelo escupido")
+(ca_blurb11
+   "Micrófonos abollados")
+(ca_blurb12
+   "Seguridad requerida")
+(ca_blurb13
+   "Sillas volando por los aires")
+(ca_blurb14
+   "Clientes intimidados")
+(ca_blurb15
+   "Coches incendiados")
+(ca_blurb16
+   "Focos pisoteados")
+(ca_blurb17
+   "Pie de micrófono abatido")
+(ca_blurb18
+   "Estantería destrozada")
+(ca_blurb19
+   "Batería empalada")
+(ca_blurb20
+   "Disturbios provocados")
+(ca_blurb21
+   "Ventanas hechas añicos")
+(ca_blurb22
+   "Propiedad destrozada")
+(ca_blurb23
+   "Peleas iniciadas")
+(ca_blurb24
+   "Limpieza masiva")
+(ca_blurb25
+   "Multa por disturbios pagada")
+(ca_blurb26
+   "Pizzas encargadas")
+(ca_blurb27
+   "Chico de sonido herido")
+(ca_yourcut
+   "TU PARTE:")
+(ca_spend
+   "Gástate la pasta en La Tienda.")
+(CASH_AWARD
+   "DINERO DE ACTUACIÓN")
+(LETTERHEAD1
+   "Amenaza de muerte Records")
+(LETTERHEAD2
+   "\qSomos el rock.\q")
+(LETTERHEAD3
+   "LOS ANGELES, CALIFORNIA")
+(STATUS_UPGRADE_BONUS
+   "STATUS_UPGRADE_BONUS")
+(CASH_AWARD_BLURB1
+   "En La Tienda puedes comprar guitarras, personajes, temas...")
+(CASH_AWARD_BLURB2
+   "Se consigue dinero extra por:")
+(CASH_AWARD_BLURB3
+   "Ascensos en tu carrera")
+(CASH_AWARD_BLURB4
+   "Críticas de 5 estrellas")
+(CASH_AWARD_BLURB5
+   "Cada millón de puntos en tu carrera")
+(award_3_star
+   "Buena crítica de 3 estrellas. Aquí tienes tu parte. Recuerda: cuanto mejor sea el espectáculo, más ganas.")
+(award_4_star
+   "Crítica genial de 4 estrellas. Aquí tienes tu parte. Bien hecho.")
+(award_5_star
+   "Crítica bestial de 5 estrellas. Aquí tienes tu parte. Cómprate algo rompedor.")
+(award_3_star_status
+   "Buena crítica de 3 estrellas. Aquí tienes tu parte. Recuerda: cuanto mejor sea el espectáculo, más ganas.")
+(award_4_star_status
+   "Crítica genial de 4 estrellas. Aquí tienes tu parte. Bien hecho.")
+(award_5_star_status
+   "Crítica bestial de 5 estrellas. Aquí tienes tu parte. Cómprate algo rompedor.")
+(sponsor_title
+   "¡TE HAN PATROCINADO!")
+(sponsor_sub1
+   "(Enhorabuena, anda y dales envidia a tus amigos.)")
+(sponsor_blurb1
+   "Ernie Ball cree que tienes algo especial, chico. Te van a pagar con un patrocinio y unas cuerdas de calidad para empezar.")
+(sponsor_sub2
+   "(Y tu padre decía que no comerías de esto...)")
+(sponsor_blurb2
+   "Line 6 Amps piensa que te luciste en la última actuación, ¡es hora de darle caña! Te han ofrecido un patrocinio y un amplificador Line 6 para que arrases.")
+(sponsor_sub3
+   "(¡Vive el sueño!)")
+(sponsor_blurb3
+   "Esa aclamada actuación ha dado que hablar y Orange Amps se ha enterado de todo. Te ofrecen un patrocinio y un alucinante amplificador Orange para que tus amigos se mueran de envidia.")
+(sponsor_sub4
+   "(Es genial que te puedas permitir una cartera más grande.)")
+(sponsor_blurb4
+   "La gente te quiere, y VHT Amps lo sabe. ¡Te has ganado un buen patrocinio y amplificador VHT de calidad superior para que los vuelvas locos!")
+(sponsor_sub5
+   "(¿Te has planteado asegurarte tus virtuosos dedos?)")
+(sponsor_blurb5
+   "Krank Amps piensa que te vas a montar en el tren de la fama y quiere estar a bordo. Te ofrecen un patrocinio y un increíble amplificador Krank como billete de ida.")
+(sponsor_sub6
+   "(¡Rebózate en tu dinero!)")
+(sponsor_blurb6
+   "Vaya, mírate, los peces gordos se fijan en ti. Mesa Boogie se quedaron impresionados con tu última actuación. Te han ofrecido un considerable patrocinio y un amplificador Mesa Boogie para que nadie te quite los ojos de encima.")
+(sponsor_sub7
+   "(Hora de esconderse de los paparazzi.)")
+(sponsor_blurb7
+   "Partes la pana y a Randall Amps les gusta tu estilo. ¡Te ofrecen un patrocinio inmenso y un amplificador Randall para hacer resonar tu famoso sonido!")
+(sponsor_sub8
+   "(No te olvides de la gente corriente.)")
+(sponsor_blurb8
+   "¿Ves como todos esos ensayos servían de algo? ¡Boss Pedals piensa que sí y te ofrecen un patrocinio bestial, sin olvidarte de los pedales Boss suficientes para personalizar tu sonido!")
+(sponsor_sub9
+   "(Cómprale a tu madre una casa. O una isla.)")
+(sponsor_blurb9
+   "Ernie Ball ha estado contigo desde el principio y está orgulloso de tu gran éxito. Te ofrecen un patrocinio incomparable y cuerdas de por vida, Enhorabuena.")
+(sponsor_cash
+   "Le sacas a tu patrocinador:")
+(unlock_profaceoff1
+   "Hola ____________________")
+(unlock_profaceoff2
+   "¡ENHORABUENA!")
+(unlock_profaceoff3
+   "¡Has desbloqueado el modo DUELO DE GUITARRAS PRO!")
+(unlock_profaceoff4
+   "Suponemos que ya sabes cómo es jugar con tu colega en el modo DUELO DE GUITARRAS: tu colega con el rollo de que te tocan los temas más fáciles, menos notas, bla, bla, bla y siempre la misma cantinela... Pues se acabó, mi virtuoso amigo.\n\nPrueba el modo DUELO DE GUITARRAS PRO en el menú Multijugador y machaca nota por nota la nueva modalidad.\n\nDiviértete,\nLa Directiva")
+(highscore_dummy_0
+   "Finn")
+(highscore_dummy_1
+   "Alex D.")
+(highscore_dummy_2
+   "Owen")
+(highscore_dummy_3
+   "Kayley")
+(highscore_dummy_4
+   "Liana")
+(highscore_title
+   "MEJORES ROCKEROS")
+(highscore_score_fmt
+   "%s / %s")
+(highscore_start
+   "Pulsa START para confirmar el nombre y continuar")
+(comp_selsong
+   "Nuevo tema")
+(comp_restart
+   "Repetir")
+(comp_quit
+   "Salir")
+(sc_select_character
+   "ELIGE A TU HÉROE")
+(sc_select_outfit
+   "ELIGE TU VESTUARIO")
+(select_character
+   "Elige un personaje")
+(alterna
+   "Judy Nails")
+(alterna2
+   "Judy Nails")
+(classic
+   "Clive Winston")
+(deathmetal
+   "Lars Umlaut")
+(deathmetal2
+   "Lars Umlaut")
+(funk1
+   "Xavier Stone")
+(glam
+   "Izzy Sparks")
+(glam2
+   "Izzy Sparks")
+(goth
+   "Pandora")
+(goth1
+   "Pandora")
+(grim
+   "Morticio Rip")
+(metal
+   "Axel Steel")
+(metal2
+   "Axel Steel")
+(punk
+   "Johnny Napalm")
+(punk2
+   "Johnny Napalm")
+(rock
+   "Casey Lynch")
+(rock1
+   "Casey Lynch")
+(rockabill
+   "Eddie Knox")
+(rockabill2
+   "Eddie Knox")
+(alterna_blurb
+   "Fan de los acoples distorsionados y del patinaje, Judy Nails fue pionera del rock alternativo desde su primera gira con tan solo 17 años. Famosa por su gran colección de vinilos, Nails siempre aporta una sonrisa y muchos pedales al escenario.")
+(classic_blurb
+   "Después de abandonar su afición por la cítara, desarrollada durante un \qretiro espititual\q en prisión, Clive vuelve a pasearse por la cima del rock clásico con su mágica guitarra y su arrolladora personalidad.")
+(deathmetal_blurb
+   "Cierra la puerta y protege tus ventanas, ¡Lars Umlaut viene a por ti! Con un aspecto intimidatorio, el noruego Umlaut se describe a sí mismo como \q¡una fuerza a la que tendrás que enfrentarte!\q")
+(funk1_blurb
+   "Proveniente de los aledaños de Connecticut, Xavier Stone renunció a ser un niño mimado al darse cuenta que le gustaban más los clubs de rock que los clubs de campo. Mezclando el estilo de los 70 con ritmos potentes, lo clava cada vez en el escenario.")
+(goth_blurb
+   "El pasado de Pandora está envuelto por un halo de misterio. Algunos dicen que nació en una dimensión de oscuridad absoluta. Otros dicen que se crió en un dúplex cerca de Boise. Con sus violentos solos y sus caóticas melodías, Pandora es la Princesa del rock.")
+(glam_blurb
+   "El público le adora. Izzy enloquece a todo el mundo con su espectáculo en el escenario lleno de energía mientras deleita a la prensa con su libertinaje entre bastidores. Los fans de Izzy abultan mucho más que su pelo.")
+(glam_blurb
+   "El público le adora. Izzy enloquece a todo el mundo con su espectáculo en el escenario lleno de energía mientras deleita a la prensa con su libertinaje entre bastidores. Los fans de Izzy abultan mucho más que su pelo.")
+(grim_blurb
+   "Esta estrella del rock es mala hasta la médula. Los riffs de Morticio son tan terroríficos que los fans son afortunados de salir del concierto con el alma intacta. La artillería sobrenatural de Morticio deja a la gente sin aliento. Porque él es... ya sabes... eso mismo.")
+(metal_blurb
+   "Famoso por sus generosos riffs y su carácter abierto, Axel Steel cogió una guitarra por primera vez en un intento de matar el aburrimiento provocado por una expulsión del colegio. El resto es historia, Historia del Heavy.")
+(punk_blurb
+   "Johnny encarna el verdadero espíritu de rock punk con melodías arrogantes y con sus habilidades con la guitarra. Puesto en libertad por \qcasi buena conducta\q, Johnny vuelve pisando fuerte en el escenario, listo para dar la nota.")
+(rock_blurb
+   "Una veterana del circuito de las giras, los rugidos demoledores y los maravillosos riffs de Gina han influenciado a todos los rockeros que están empezando, desde Maine hasta Alaska. Es dura, presuntuosa y te romperá el corazón más rápido que la nota MI.")
+(rockabill_blurb
+   "Cuando no conduce su Chevy del 55, Eddie da muestras de su impresionante trabajo de rock en cualquier escenario que pisa. Un auténtico \qperro callejero\q, Knox afirma que sin su caja hueca y su gomina \qnunca está lejos de casa\q.")
+(alterna_outfit_blurb
+   "Ama: la perfecta ortografía, mostrar los cardenales impresionantes y las fresas\n\nOdia: la falta de educación, los sabores artificiales a fresa")
+(deathmetal_outfit_blurb
+   "Ama: las explosiones de sangre, los ajustes de cuentas, los cambios repentinos de tempo, la mortalidad\n\nOdia: los perros grandes")
+(goth_outfit_blurb
+   "Ama: el maquillaje, las tormentas de granizo, el cuero.\n\nOdia: las conversaciones de besugos, la playa")
+(glam_outfit_blurb
+   "Ama: los motivos de cebra, los estadios, hacer pucheros\n\nOdia: la ironía, los mánagers de las giras, la pensión alimenticia")
+(metal_outfit_blurb
+   "Ama: el Metal\n\nOdia: todo lo que no sea Metal")
+(punk_outfit_blurb
+   "Ama: los espectáculos en directo, destrozar y darle patadas a las cosas, los amplificadores \n\nOdia: las llamadas que le despiertan, la autoridad")
+(rock_outfit_blurb
+   "Ama: la caravana, las guitarras de época, Led Zeppelin\n\nOdia: a ti, probablemente")
+(rockabill_outfit_blurb
+   "Ama: las exposiciones de coches, le pierden las pelirrojas, los tatuajes\n\nOdia: los directores, la alta sociedad")
+(alterna2_shop_desc
+   "La reina del rock alternativo por excelencia, Judy siempre viste al último grito en moda. Haz que siempre vaya a la última con este atractivo atuendo.")
+(deathmetal2_shop_desc
+   "Cuando se le pregunta a Lars sobre su estilo rocambolesco, responde:\q¡LA FUERZA DE LARS TIENE UNA REPUTACIÓN QUE MANTENER!\q")
+(goth1_shop_desc
+   "Pandora, camaleónica como siempre, es casi tan admirada por su innovador y exclusivo estilo personal como por sus incomparables habilidades como guitarrista.")
+(glam2_shop_desc
+   "No todo el mundo puede tocar con un sombrero en forma de boa con plumas. Izzy no tiene miedo a romper con los moldes establecidos con este glamuroso conjunto.")
+(metal2_shop_desc
+   "Como no le ayuda a tocar mejor ni tampoco puede bebérsela, el interés de Axel por la ropa es nulo. ¡Pero incluso él necesita un cambio de vez en cuando!")
+(rock1_shop_desc
+   "El look de Casey es ideal para una agotadora vida en la carretera; no le gustan las prendas que no puede llevar en la furgoneta.")
+(rockabill2_shop_desc
+   "Eddie Knox es un felino que no teme lucir su mejor aspecto. Mientras que no se le mueva ni un pelo, le da igual llevar sus viejos vaqueros o esta elegante vestimenta.")
+(punk2_shop_desc
+   "Johnny cuenta con varios looks, aunque en ninguno de ellos predomina la higiene. Con una cresta y un cinturón con balas, Johnny es capaz de convertir el merodeo por callejones oscuros en algo glamuroso.")
+(classic_shop_desc
+   "Después de abandonar su afición por la cítara, desarrollada durante un \qretiro espititual\q en prisión, Clive vuelve a pasearse por la cima del rock clásico con su mágica guitarra y su arrolladora personalidad.")
+(funk1_shop_desc
+   "Proveniente de los aledaños de Connecticut, Xavier Stone renunció a ser un niño mimado al darse cuenta que le gustaban más los clubs de rock que los clubs de campo. Mezclando el estilo de los 70 con ritmos potentes, lo clava cada vez en el escenario. ")
+(grim_shop_desc
+   "Esta estrella del rock es mala hasta la médula. Los riffs de Morticio son tan terroríficos que los fans son afortunados de salir del concierto con el alma intacta. La artillería sobrenatural de Morticio deja a la gente sin aliento. Porque él es... ya sabes... eso mismo.")
+(alterna1_outfit
+   "CALAVERAS")
+(alterna2_outfit
+   "SERPIENTES")
+(deathmetal1_outfit
+   "GUANTES")
+(deathmetal2_outfit
+   "GÁRGOLAS")
+(goth2_outfit
+   "CUERO")
+(goth1_outfit
+   "PLUMAS")
+(glam1_outfit
+   "GREGÜESCOS")
+(glam2_outfit
+   "SOMBRERO DE COPA")
+(metal1_outfit
+   "CAMISA 1")
+(metal2_outfit
+   "CAMISA 2")
+(punk1_outfit
+   "CRESTA")
+(punk2_outfit
+   "PINCHOS ATREVIDOS")
+(rock1_outfit
+   "DISEÑOS")
+(rock2_outfit
+   "CAMISAS")
+(rockabill1_outfit
+   "MODELO RENO")
+(rockabill2_outfit
+   "MODELO LAS VEGAS")
+(select_guitar
+   "ELIGE TU GUITARRA")
+(select_skin
+   "ELIGE EL ACABADO")
+(msg_select_guitar
+   "ELIGE TU GUITARRA")
+(msg_select_skin
+   "ELIGE EL ACABADO")
+(lespaul
+   "Gibson Les Paul")
+(lespaul_desc
+   "En manos de Jimmy Page, Joe Perry, Slash, y otros muchos, la Gibson Les Paul dio forma al sonido del rock duro. Sube al escenario con este modelo clásico y sigue el camino de aquellos héroes que crearon escuela.")
+(lp_cherry
+   "Classic destello rojo cereza")
+(lp_cherry_desc
+   "El icono del rock 'n' roll por antonomasia, el elegante diseño de Les Paul Standard se acentúa con este clásico acabado en destello rojo cereza. ")
+(lp_zakk
+   "Custom Zakk Wylde")
+(lp_zakk_desc
+   "Con base en la marca Wylde, el diseño de diana Les Paul de \qGrail\q, es un modelo con un diseño atrevido y permite mods tipo\qmonstruo\q, como pastillas EMG y un mástil de arce natural.")
+(lp_cayenne
+   "Standard rojo cayena")
+(lp_cayenne_desc
+   "Dale un poco de carácter a esa maciza Les Paul Standard con el chapado en rojo cayena.")
+(lp_goddessburst
+   "Diosa en estallido rosa")
+(lp_goddessburst_desc
+   "Con un perfil más delgado y un peso más ligero, el estilo de la Diosa (cortesía de acabados como el estallido rosa sobre la tapa de arce y las pastillas translúcidas) atrae tanto a hombres como a mujeres. ")
+(lp_sonex
+   "Gibson Sonex 180")
+(lespaul_sonex_desc
+   "Lanzada en 1980, el cuerpo Multiphonic de la Sonex estaba hecho de un material híbrido llamado \qResonwood\q (interior de madera y exterior de resina) y tenía muchas de las características de las Les Paul, pero a un precio más asequible.")
+(lp_marauder
+   "Gibson Marauder")
+(lespaul_marauder_desc
+   "La Marauder fue la versión \qasequible\q de una Gibson SG a mediados de los 70. Fue una amalgama de varios diseños, haciendo gala de un cuerpo aliso \qLes Paul-esco\q, un cabezal serie V que también incluía tanto una pastilla humbucker como una pastilla de bobinado.")
+(lespaul_doublecut
+   "Gibson Les Paul (doble recorte)")
+(lespaul_doublecut_desc
+   "Apareció en el 1958 con doble recorte. Esta versión de Les Paul ofrece un mejor acceso a los 22 trastes sin perder cualidades clave como las legendarias notas prolongadas de las Les Paul.")
+(lp_dbl_white
+   "Blanco")
+(lp_dbl_white_desc
+   "Con un diseño innovador y una atractiva silueta, el sencillo atractivo de la Gibson Les Paul con doble recorte resulta evidente en este modelo con un sencillo acabado en blanco.")
+(lp_dbl_yellow
+   "Amarillo TV")
+(lp_dbl_yellow_desc
+   "Gracias a los excesos libertinos de un Johnny Thunders, y una guitarra a la altura de las rodillas, la amarilla de doble recorte se ha convertido en la quintaesencia del punk de Gibson.")
+(lp_dbl_resin
+   "Resina")
+(lp_dbl_resin_desc
+   "Gibson apuesta por un toque jurásico con esta LP ámbar de doble recorte que incluye un mosquito prehistórico fosilizado en la resina.")
+(lp_dbl_sticker
+   "Gibson Melody Maker ")
+(lespaul_doublecut_sticker_desc
+   "Las Melody Makers de doble recorte fueron diseñadas para principiantes, pero con el paso del tiempo y las historias exitosas de algunos...(ejem) \qlistillos\q, las Melody Makers de los 60 son ejemplares muy codiciados.")
+(sg
+   "Gibson SG")
+(sg_desc
+   "Para los que vais a rokear, aquí teneis la Gibson SG, utilizada por iconos como Angus Young, Tony Iommi e Ian MacKaye. Esta ligera doble recortada de \qcuerno de demonio\q es uno de los símbolos del rock más duro.")
+(sg_cherry
+   "Standard rojo cereza")
+(sg_cherry_desc
+   "Introducida en el 1961 como un diseño de Les Paul, el SG (\qSolid Guitar\q) acabado en rojo cereza de la caja sustituyó oficialmente al diseño Les Paul Standard en el 62. ")
+(sg_flames
+   "Diseño llamas")
+(sg_flames_desc
+   "Seguramente tocarás Highway to Hell en una SG, de paso puedes prepararte para el final con esta filigrana de adorno a medida.")
+(sg_gt
+   "GT rojo manzana")
+(sg_gt_desc
+   "La serie GT está pensada para el guitarrista de tournée, con ciertos temas especiales para el circuito. Una doble varilla superior/inferior proporciona un gran refuerzo en el mástil, a la vez que la toma Neutrik y la bandolera de función doble te mantiene conectado.")
+(sg_white
+   "Special blanco vintage")
+(sg_white_desc
+   "Guitarristas de la talla de Wayne Kramer, Eric Bloom y Duane Allman han ayudado a que la Gibson SG se convierta en un icono. Únete a los mejores con este modelo en blanco vintage de larga tradición.")
+(flying_v
+   "Gibson Flying V")
+(flying_v_desc
+   "La Flying V formaba parte de un trío de guitarras de diseño radical introducido en 1958, en un intento de refutar la fama conservadora de las Gibson y de encajar con los instrumentos \qmodernos\q de la emergente escena roquera burguesa.")
+(fv_white
+   "Blanco")
+(fv_white_desc
+   "La vanguardista forma de la Gibson Flying V es ideal para tocar en el escenario. Su agresivo diseño la convierte en un complemento natural para los monstruos del heavy metal.")
+(fv_v2
+   "V2 natural")
+(fv_v2_desc
+   "Al final de los setenta, el uso de la Flying V por virtuosos como Jimi Hendrix y Dave Davies, ocasionó la reedición del modelo. La segunda generación V2 tenía dos pastillas Boomerang que la hacían inconfundible.")
+(fv_century
+   "New Century")
+(fv_century_desc
+   "Esta icónica guitarra se deleita en su propia gloria, exhibiendo aquí un cuerpo completo con guardia doble al hilo del estilo del nuevo milenio.")
+(fv_red
+   "Rojo cereza vintage")
+(fv_red_desc
+   "Haz que se traguen que llevas en esto años con un acabado \qvintage\q para la Flying V.")
+(explorer
+   "Gibson X-plorer")
+(explorer_desc
+   "Junto con la V y la Moderne, la Explorer (el nombre original se cambió a X-plorer en 2002) fue una de las tres apuestas futuristas de Gibson al final de la década de los 50.")
+(exp_nat
+   "Natural")
+(exp_nat_desc
+   "Las Explorer con este modelo de acabado natural han sido tocadas por Bob Mould, The Edge y Allen Collins de Lynyrd Skynyrd, entre otros. ")
+(exp_sun
+   "Sol naciente")
+(exp_sun_desc
+   "Si no puedes dejar boquiabierto al público con tus flamantes riffs, intenta deslumbrarles con esta Explorer con este ardiente acabado en diseño sol naciente. ")
+(exp_white
+   "Classic en blanco")
+(exp_white_desc
+   "Algunos de los ritmos más brutales del speed metal de los 80 se compusieron con una Gibson Explorer blanca. Cógela y sigue los pasos de fuego. ¡Arghhhh!")
+(exp_ebony
+   "Ébano")
+(exp_ebony_desc
+   "Con su atrevida y eléctrica forma, parece que la Explorer se adelantó demasiado a su tiempo y tuvo que pasar una década para que fuera aceptada.")
+(exp_swirl
+   "Torbellino cereza")
+(exp_swirl_desc
+   "Este vistoso acabado en negro y rojo aumenta aún más uno de los diseños más conocidos y atrevidos de Gibson.")
+(firebird
+   "Gibson Firebird")
+(firebird_desc
+   "Salió en 1963 como una versión más \qdiscreta\q de la entonces impopular Explorer. La Firebird cuenta con un mástil incrustado en el cuerpo, pastillas y cabezal esculpido de dos tonos con clavijas de banjo.")
+(fb_burst
+   "Destello natural")
+(fb_burst_desc
+   "A principios de los 60, Gibson quiso introducir guitarras más progresivas para penetrar en el mercado de las guitarras de cuerpo macizo. El diseñador de coches Ray Dietrich creó la forma asimétrica que sirvió de base para la Firebird.")
+(fb_blue
+   "Azul hielo")
+(fb_blue_desc
+   "El extraño cuerpo de la Firebird le ganó el apelativo de \qinversa\q, debido a que el cuerno del lado de los agudos es más alto y pronunciado que el otro, un perfil único de esta guitarra y de la Explorer, de la que deriva.")
+(fb_ebony
+   "Ébano")
+(fb_ebony_desc
+   "Con un diseño de mástil típico, en lugar del mástil incrustado de la Firebird, la Firebird Studio ofrece un toque distinto para esta guitarra que marcó un hito en la historia.")
+(fb_leopard
+   "Piel de leopardo")
+(fb_leopard_desc
+   "¡Roarrr! Esta gatita tiene mucha garra, colega. Un poco de leche para la mesa 3. ¿Pillas? Pues eso.")
+(es335
+   "Gibson ES-335")
+(es335_desc
+   "Esta aclamada semi-acústica de línea fina tiene una tapa arqueada de arce, mástil delgado y rápido con varilla ajustable, pastillas paralelas y controles separados de tono y volumen, que el jugador puede programar de antemano.")
+(es_maple
+   "Arce con veteado ojo de perdiz")
+(es_maple_desc
+   "El inconfundible sonido de su estructura con cuerpo semihueco y la facilidad de manejo gracias a su delgado mástil y al cómodo acceso a los trastes superiores, convierten a la 335 en la preferida de iconos como Chuck Berry, B.B. King y Roy Orbison. ")
+(es_cherry
+   "Custom rojo cereza")
+(es_cherry_desc
+   "Eric Clapton, Alvin Lee y muchos otros virtuosos le han sacado el jugo al cuerpo rápido y fino con doble recorte y al mástil para punteos bajos de la ES335. Con ella compusieron algunas de las canciones más memorables jamás escritas para guitarra.")
+(chet_orange
+   "Gibson Country Gentleman")
+(chet_atkins_desc
+   "Fue introducida en 1986 siguiendo los pasos de la clásica de tapa arqueada de Chet Atkins. El mismo Atkins contribuyó a este modelo que cuenta con bloque interior de madera para las notas alargadas, puente Bigsby chapado en oro y brazo de tortuga.")
+(eds
+   "Gibson EDS-1275")
+(eds_desc
+   "Gibson empezó con el mástil doble por encargo en 1958, en combinaciones de 6 y 12 cuerdas, ó de 6 cuerdas y mandolina. Debido a la tapa arqueada de pieza y los recortes florentinos, se parece al cuerpo de la SG.")
+(eds_cherry
+   "Rojo cereza")
+(eds_cherry_desc
+   "¿Alguien se acuerda de la carcajada? Las posibilidades tonales de la EDS-1275 de doble mástil no eran cosa de risa para Jimmy Page, que solía recrear en sus conciertos algunos de los arreglos de estudio de Led Zeppelin.")
+(eds_white
+   "Blanco alpino")
+(eds_white_desc
+   "La EDS-1275 ha sido tocada por un diverso grupo de alucinantes artistas de la talla de James Hetfield, Alex Lifeson, Tom Morello, Don Felder, Pete Townshend y Zakk Wylde.")
+(moderne
+   "Gibson Moderne")
+(moderne_desc
+   "El pariente maldito de la Flying V y de la Explorer, la Gibson Moderne es el Santo Grial de los coleccionistas de guitarras. La mera existencia de un solo modelo de la producción original se pone en duda.")
+(mod_nat
+   "Natural")
+(mod_nat_desc
+   "Si alguna vez tienes la suerte de tener entre tus manos lo que parece ser una Gibson Moderne original, puedes estar seguro de que aunque no se adapte a tus necesidades musicales, pagará tu hipoteca.")
+(mod_cherry
+   "Rojo")
+(mod_cherry_desc
+   "Emulando el diseño angular y afilado de los alerones de los coches de los 50, la misteriosa Moderne con su diseño radical habría sido un ejemplar muy codiciado, incluso aunque se hubiera producido en cadena.")
+(corvus
+   "Gibson Corvus")
+(corvus_desc
+   "Aunque un poco desgarbado, el intento de Gibson a comienzos de los 80 por proyectar la estética de la nueva era, tiene muchos seguidores entre los aficionados a las guitarras raras.")
+(cor_nat
+   "Natural")
+(cor_nat_desc
+   "La \qBottle-opener\q (abrelatas), al natural. La Corvus, con su corte en forma de V, su diapasón de palisandro y su mástil de nogal se dejó de fabricar en 1984.")
+(cor_yellow
+   "Amarillo TV")
+(cor_yellow_desc
+   "La unión de una \qcosecha clásica\q con un toque de\qambigüedad futurista\q. Puede parecer raro combinar un acabado establecido como el Amarillo TV con el Corvus, pero, sea por lo que sea, queda bien.")
+(casino
+   "Epiphone Casino")
+(epiphone_casino_desc
+   "Una de las guitarras favoritas de John Lennon, el puente de la Epiphone Casino jugó un papel muy importante en la creación del sonido de los 60.")
+(sheraton
+   "Epiphone Sheraton")
+(epiphone_sheraton_desc
+   "Una semi-acústica conocida por sus cálidos tonos, la Sheraton de doble recorte cuenta con cabezal incrustado, botón de traste triangular incrustado y mástil y cuerpo ribeteados.")
+(epiphone_coronet
+   "Epiphone Coronet")
+(epiphone_coronet_desc
+   "Esta guitarra de doble recorte para principiantes iba a lanzarse como una Gibson, bajo el nombre de \qModerne\q, pero cuando finalmente apareció en 1958 tenía una marca y un nombre distinto.")
+(coronet_cherry
+   "Rojo cereza")
+(coronet_cherry_desc
+   "En 1959, Epiphone comenzó a vender la Coronet en rojo cereza con una pastilla P-90. Estas \qasequibles\q ofertas se cotizan actualmente a cifras exorbitantes entre los coleccionistas de reliquias.")
+(coronet_green
+   "Verde")
+(coronet_green_desc
+   "Sácale todo el partido al estilo retro de la Coronet con este acabado en verde brillante")
+(coronet_burst
+   "Destello tabaco")
+(coronet_burst_desc
+   "Con piezas de oro, dos pastillas potentes y cabezal tradicional de clavijas superiores, este modelo de la Coronet es una belleza que barre con todo.")
+(coronet_brown
+   "Marrón natural")
+(coronet_brown_desc
+   "A partir de 1963, la Coronet adoptó un cuerpo más asimétrico, así como el cabezal de clavijas superiores con forma de \qmurciélago\q.")
+(kramer_650
+   "Kramer 650")
+(kramer_650_desc
+   "La innovadora 650 de Kramer tiene un cuerpo de arce y nogal, afinadores Sperzel, traste cero y un mástil de aluminio salvaje con cabezal en V.")
+(650_stripe
+   "Banda de caoba")
+(650_stripe_desc
+   "Un ejemplo de la mejor ingeniería made in USA: el inconfundible mástil de esta Kramer 650 con acabado en banda de caoba produce notas aún más largas. ")
+(650_white
+   "Blanco")
+(650_white_desc
+   "A veces los buenos no visten de blanco. Debajo de este impresionante acabado se esconden algunas de las innovaciones más brutales de finales de los 70, convirtiendo la 650 en una de las mejores.")
+(kramer_vanguard
+   "Kramer Vanguard")
+(kramer_vanguard_desc
+   "Todo un hito dentro del heavy metal, la Kramer en forma de V era la favorita de los fanáticos de la velocidad, gracias a sus pastillas especiales y a su mástil para punteos bajos.")
+(van_black
+   "Negro")
+(van_black_desc
+   "Es casi imposible sacar más sonido metal de otra guitarra que no sea este clásico de los 80. Cumple tus sueños de estrellato con esta llamativa Kramer Vanguard. ")
+(van_yellow
+   "Amarillo")
+(van_yellow_desc
+   "Ponte algo de laca y revienta esa camiseta de redecilla. Esta Vangard amarilla te lleva de vuelta a cuando las melenas heavy eran las reinas de las listas, te guste o no.")
+(shop_locked_reward
+   "???")
+(shop_locked_cost
+   "???$")
+(usa_reward
+   "La USA")
+(usa_reward_desc
+   "A veces hay gente que quiere hacer guitarras con formas raras. Igual que a veces hay gente que se bebe un vaso de vinagre pensando que es vino. Son cosas que pasan.")
+(usa_reward_locked_desc
+   "Primero consigue cinco estrellas en todas las canciones en el modo FÁCIL y después hablamos.")
+(coffin_reward
+   "Ataúd")
+(coffin_reward_desc
+   "Los ataúdes molan en cierta forma. Las guitarras también molan. En teoría ésta debería molar.")
+(coffin_reward_locked_desc
+   "Tendrás que superar el nivel MEDIO para poder vendértelo. Lo siento.")
+(fish_reward
+   "Pez")
+(fish_reward_desc
+   "Este diseño es muy práctico y eficiente. Porque parece un pez.")
+(fish_reward_locked_desc
+   "Campeón, intenta pasar el nivel FÁCIL primero. Después podrás comprar esta bestia.")
+(snaketapus_reward
+   "Snaketapus")
+(snaketapus_reward_desc
+   "\qQue ¿qué es una 'snaketapus'?\q y ¿te hace falta preguntarlo? Pues es un cráneo con serpientes que salen de él y es... una guitarra.")
+(snaketapus_reward_locked_desc
+   "Oh, tío. TIENES que pasarte el nivel DIFÍCIL. En serio.")
+(viking_reward
+   "Viking")
+(viking_reward_desc
+   "Los vikingos eran una comunidad marinera nórdica conocida por sus saqueos de las costas francesas e inglesas del siglo VIII al XI d.C. Esta historia termina con una guitarra con forma de vikingo con una espada en su cabeza.")
+(viking_reward_locked_desc
+   "Si consigues cinco estrellas en todos los temas del nivel MEDIO, quizá te merezcas esta guitarra.")
+(eyeball_reward
+   "Ojo")
+(eyeball_reward_desc
+   "Alguien dijo una vez que \qmenos mal que a nadie se le ha ocurrido hacer una guitarra en forma de ojo\q. Esa persona se estará tirando de los pelos ahora mismo.")
+(eyeball_reward_locked_desc
+   "Consigue cinco estrellas en todos los temas del nivel DIFÍCIL. Ya sé que impresiona. Pero tú puedes, campeón.")
+(battleaxe_reward
+   "Hacha de guerra")
+(battleaxe_reward_desc
+   "Posiblemente alguno de los de Manowar tiene una guitarra como ésta, así que ya es algo.")
+(battleaxe_reward_locked_desc
+   "Gana en el nivel EXPERTO. Tienes que lograrlo. Es justo y necesario.")
+(log_reward
+   "Tronco")
+(log_reward_desc
+   "La primera guitarra maciza de Les Paul (fabricada en 1941) fue apodada \qEl Tronco\q, debido a su peso excesivo y a su falta de funcionalidad. Por otro lado, esta guitarra es, de hecho, un tronco.")
+(log_reward_locked_desc
+   "Si te tomas el tiempo de obtener cinco estrellas en cada tema del nivel EXPERTO, te quedará esta guitarra como premio de consolación, por haber perdido a todos tus amigos.")
+(guitarname
+   "Nombre de la guitarra")
+(guitarname_desc
+   "Descripción de la guitarra")
+(scythe
+   "Guadaña")
+(scythe_desc
+   "Pensándolo mejor, hay que temer a la muerte. Tanto para punteos súper rápidos como para combates cara-a-cara, esta es una bestia peligrosa. ")
+(bass_musicman
+   "Bajo StingRay MusicMan (negro)")
+(bass_musicman_lava
+   "Bajo StingRay MusicMan (perla lava)")
+(bass_sg_mahogany
+   "Bajo Gibson SG (rojo cereza)")
+(bass_sg_cream
+   "Bajo Gibson SG color (crema)")
+(bass_grabber_cherry
+   "Bajo Gibson Grabber (rojo cereza)")
+(bass_grabber_maple
+   "Bajo Gibson Grabber (arce natural)")
+(bass_thunderbird_ebony
+   "Bajo Gibson Thunderbird (ébano)")
+(bass_thunderbird_burst
+   "Bajo Gibson Thunderbird (destello natural)")
+(bass_hofner
+   "Bajo Hofner (destello clásico)")
+(select_song
+   "Elige un tema")
+(song_header_battle
+   "1. Para principiantes")
+(song_header_small1
+   "2. Calentando amplificadores")
+(song_header_small2
+   "3. Rompe las cuerdas")
+(song_header_big
+   "4. Quema el escenario")
+(song_header_theatre
+   "5. El retorno del monstruo")
+(song_header_fest
+   "6. A todo riff")
+(song_header_arena
+   "7. Trastes a saco")
+(song_header_stone
+   "8. Desparrame total")
+(song_header_store
+   "Pistas extra")
+(song_header_download
+   "Temas descargados ")
+(song_old_venue
+   "Toca en el mejor local para seguir con tu carrera.")
+(song_current_venue
+   "Supera %i/5 temas para seguir")
+(song_current_venue_encore
+   "Supera la canción que pidió el público para continuar")
+(song_win_easy
+   "Supera %i/%i temas para seguir")
+(song_win_other
+   "Supera Free Bird para ganar")
+(song_quickplay
+   "Logra más temas en el modo Carrera")
+(encore_song_listing
+   "¡Otra, otra! Juega en el modo carrera para desbloquearlo")
+(encore_song_career_listing
+   "¡Otra, otra! Consigue críticas de 4 estrellas para tocarlo")
+(sd_title
+   "Nivel de la gira")
+(sd_help
+   "ELIGE  TU  NIVEL DE DIFICULTAD")
+(sd_help_practice
+   "elige tu nivel de dificultad")
+(select_career
+   "ELIGE CARRERA")
+(easy
+   "FÁCIL")
+(medium
+   "MEDIO")
+(hard
+   "DIFÍCIL")
+(expert
+   "EXPERTO")
+(EASY_STATUS
+   "(X DE X TEMAS)")
+(MED_STATUS
+   "(X DE X TEMAS)")
+(HARD_STATUS
+   "(X DE X TEMAS)")
+(EXPERT_STATUS
+   "(X DE X TEMAS)")
+(status_0
+   "NOVATO")
+(status_1
+   "ROCKERO")
+(status_2
+   "PROMESA")
+(status_3
+   "ROCKERO DE MODA")
+(status_4
+   "MONSTRUO")
+(status_5
+   "MAESTRO")
+(status_6
+   "GURÚ")
+(status_7
+   "LEYENDA")
+(status_8
+   "GUITAR HERO")
+(status_9
+   "ÍDOLO")
+(status_progress
+   "(%i DE %i TEMAS)")
+(no_progress
+   " ")
+(SELECT_VENUE
+   "ELEGIR LOCAL")
+(store_shop
+   "LA TIENDA")
+(GUITAR_STORE
+   "¡ÚLTIMAS REBAJAS!")
+(SELECT_ITEM
+   "ELEGIR PRODUCTO")
+(store_guitar
+   "GUITARRAS")
+(store_skin
+   "ACABADOS")
+(store_song
+   "TEMAS")
+(store_character
+   "PERSONAJES")
+(store_outfit
+   "TRAJES")
+(store_video
+   "VÍDEOS")
+(store_downloads
+   "DESCARGAS")
+(store_cash_format
+   "DINERO: %d$")
+(category_cost
+   "%d$ - %d$")
+(category
+   "CATEGORÍA")
+(guitar_shop_desc
+   "Somos distribuidores exclusivos de Gibson. No puedes comprar la felicidad, pero puedes quedarte bastante cerca.")
+(skin_shop_desc
+   "Actualiza tu arsenal con un nuevo acabado que hará que tu guitarra parezca nueva y brillante.")
+(song_shop_desc
+   "Hay muchos más temas disponibles, ¡incluso el de los ganadores de nuestro concurso, The Last Vegas!")
+(video_shop_desc
+   "Es como tener un pase para estar entre bastidores, sólo que al día siguiente te puedes mirar a la cara.")
+(character_shop_desc
+   "Iconos del rock para comprar arrinconados en las estanterías de una tienda. Es muy triste. ¡Libéralos!")
+(outfit_shop_desc
+   "A veces, la fama implica hacer extrañas decisiones sobre moda. Dales un nuevo look a tus artistas.")
+(downloads_shop_desc
+   "¡Compra nuevos temas en el Bazar Xbox Live!")
+(guitar_bought_blurb
+   "¡Gracias por comprar en nuestra tienda!\n\nAhora puedes seleccionar este modelo en la pantalla Cambiar guitarra.")
+(skin_bought_blurb
+   "¡Gracias por comprar en nuestra tienda!\n\nAhora puedes seleccionar este acabado en la pantalla Cambiar guitarra.")
+(song_bought_blurb
+   "¡Gracias por comprar en nuestra tienda!\n\nSe ha añadido este tema a tu lista en todos los modos de juego.")
+(character_bought_blurb
+   "¡Enhorabuena por tu nuevo Guitar Hero!\n\nEste personaje está listo para subirse al escenario y puedes seleccionarlo en la pantalla Cambiar personaje.")
+(outfit_bought_blurb
+   "¡Gracias por tu compra! \n\nEste traje está ahora disponible en el menú Cambiar personaje.")
+(video_bought_blurb
+   "¡Gracias por comprar en nuestra tienda!\n\nPuedes ver este vídeo en Opciones del menú principal.")
+(store_downloads_costrange
+   "$ DINERO DE VERDAD $ ")
+(arterialblack
+   "Arterial Black")
+(arterialblack_shop_desc
+   "Drist vuelve para ofrecernos una dosis doble de arte de trastes con Arterial Black.")
+(collide
+   "Collide")
+(collide_shop_desc
+   "Anarchy Club regresa a Guitar Hero con \qCollide\q, la última canción de su próximo single: \qA Single Drop of Red\q. ¿Quieres saber cómo suena una canción de amor para el Apocalipsis? Así...")
+(drinkup
+   "Drink Up")
+(drinkup_shop_desc
+   "¡OUNCE of SELF están listos para machacar a este planeta!  Con su contundente, atronador y oscuro estilo este grupo ha dejado su huella en la escena metálica.")
+(elephantbones
+   "Elephant Bones")
+(elephantbones_shop_desc
+   "That Handsome Devil: nacido de sustancias químicas y destellos luminosos a tiempo para darle una lección al mundo.")
+(fallofpangea
+   "Fall of Pangea")
+(fallofpangea_shop_desc
+   "Los Valient Thorr compusieron este tema sobre el origen de la Tierra para explicar qué ocurrió realmente... Cuentan cómo, por causas meteorológicas, se murieron los dinosaurios y cómo los venusianos, en busca de un nuevo hogar, invadieron la Tierra.")
+(ftk
+   "FTK")
+(ftk_shop_desc
+   "VAGIANT está compuesto por 3 empleadas de Harmonix (Elena, The Hellion y Leanne) y una batería novata (LoWreck). Cuando no andan escribiendo temas como este, matan el tiempo odiando cosas.")
+(gemini
+   "Gemini")
+(gemini_shop_desc
+   "\qKahanek se deja llevar (en 'Real Life') con una intensa demostración de felicidad tras otra al tocar la guitarra eléctrica como si la vida le fuese en ello.\q\n- Jason Warburg\n- \qThe Daily Vault\q (no confundir con Jason Warburg de HMX)")
+(kicked
+   "Kicked to the Curb")
+(kicked_shop_desc
+   "Noble Rot es rock americano en estado puro acompañado de una ración extra de FIESTA. Creado en 2006, su primer álbum completo fue lanzando al mercado el 7 de diciembre.")
+(jordan
+   "Jordan")
+(jordan_shop_desc
+   "Buckethead compuso y grabó \qJordan\q especialmente para Guitar Hero II (¡nada menos que en un gallinero!)")
+(laughtrack
+   "Laughtrack")
+(laughtrack_shop_desc
+   "En un intento de forzar al público a ver más allá del típico tópico de grupo de \qniños bien\q con cortes de pelo a la última que les hizo famosos, los The Acrobrats, de Boston, no se han afeitado ni duchado desde 2005.")
+(lesstalkmorerokk
+   "Less Talk More Rokk")
+(lesstalkmorerokk_shop_desc
+   "¡Deja de hablar y empieza a rockear! Freezepop han vuelto con sintetizadores y notas a Eliminator con el que conseguimos llegar al número uno. ")
+(ladylightning
+   "Push Push (Lady Lightning)")
+(ladylightning_shop_desc
+   "Bang Camaro está convirtiendo lentamente Boston en el nuevo Sunset Strip. Esconded a vuestras novias.")
+(mrfixit
+   "Mr. Fix-It")
+(mrfixit_shop_desc
+   "Empleado de Harmonix y cantante de Crowns, Jason Kendall es realmente polifacético.")
+(newblack
+   "The New Black")
+(newblack_shop_desc
+   "Si a lo único que aspira tu grupo es a tocar en la fiesta del pueblo o en la graduación de tu clase, es hora de dejarlo\q. \n- Keith Buckley\n- Every Time I Die")
+(onefortheroad
+   "One for the Road")
+(onefortheroad_shop_desc
+   "Breaking Wheel (anteriormente conocidos como Artillery) es un trío de Boston que ignora todas las fronteras del metal. Tocan todo lo que sea heavy.")
+(parasite
+   "Parasite")
+(parasite_shop_desc
+   "Los legendarios The Neighborhoods, de Boston, ayudaron a promocionar el sonido del rock de \qgaraje\q que aún domina el panorama musical local.")
+(radiumeyes
+   "Radium Eyes")
+(radiumeyes_shop_desc
+   "Una canción interesante, pegadiza y fácil de tocar. Escrita únicamente para Guitar Hero II por Count Zero, una banda de Boston conocida por sus rarezas. Y también por sus escarceos. Por sus galimatías. Y por sus muchos trabalenguas. ¡Que no panda el cúnico!")
+(rawdog
+   "Raw Dog")
+(rawdog_shop_desc
+   "Rock de alto voltaje a todas horas. Una genial mezcla de rock, garaje y desenfreno post-punk. Los ganadores del concurso, The Last Vegas, tienen lo que hay que tener, América no está preparada para lo que se avecina. Consigue su nuevo álbum \qSEAL THE DEAL\q.")
+(redlottery
+   "Red Lottery")
+(redlottery_shop_desc
+   "Como si se tratara de una energía salvaje, pisando fuerte con sus pies de acero, las canciones de MEGASUS hablan de tristeza a juzgar por su ceja.")
+(six
+   "Six")
+(six_shop_desc
+   "Protagonizada por la maravillosa técnica de guitarra de Oli Herbert y Mike Martin, All That Remains es metal moderno con el estilo de la guitarra doble de Iron Maiden. \qSix\q es de su álbum \qThe Fall of Ideals\q.")
+(soybomb
+   "Soy Bomb")
+(soybomb_shop_desc
+   "Honest Bob and the Factory-to-Dealer Incentives navegan por el mar de la continuación en una ola de júbilo.")
+(thelightthatblinds
+   "The Light That Blinds")
+(thelightthatblinds_shop_desc
+   "Con 5 álbumes bajo el brazo, una nominación a los Grammy y la participación en el Ozzfest, los héroes internacionales del metal, Shadows Fall, parecen no tener intención de parar.")
+(thunderhorse
+   "Thunder Horse")
+(thunderhorse_shop_desc
+   "La banda de METAL extremo DETHLOK, \qel mayor directo del universo\q, saca adelante el último sonido Armageddon. Prepárate para ser aplastado. Enciende el \ncanal de adultos.")
+(trogdor
+   "Trogdor")
+(trogdor_shop_desc
+   "La canción Trogdor de Strong Bad Email fue en realidad una idea añadida a última hora. Mike estaba acabando la caricatura y Matt de repente empezó a cantar el estribillo mientras cocinaba unos huevos.")
+(xstream
+   "X-Stream")
+(xstream_shop_desc
+   "Este tema no está incluido dentro del esperado álbum de Voivod, titulado \qKatorz\q, publicado por The End Records.")
+(yeswecan
+   "Yes We Can")
+(yeswecan_shop_desc
+   "Made In Mexico nació en Providence, Rhode Island, en un restaurante. El estado más pequeño del país tiene más de 700 kilómetros de costa y todos los habitantes de Rhode Island viven a menos de 12 minutos en coche del Océano Atlántico.")
+(lespaul_sonex
+   "Gibson Sonex 180")
+(lespaul_sonex_shop_desc
+   "Lanzada en 1980, el cuerpo Multiphonic de la Sonex estaba hecho de un material híbrido llamado \qResonwood\q (interior de madera y exterior de resina) y tenía muchas de las características de las Les Paul, pero a un precio más asequible.")
+(lespaul_marauder
+   "Gibson Marauder")
+(lespaul_marauder_shop_desc
+   "La Marauder fue la versión \qasequible\q de una Gibson SG a mediados de los 70. Fue una amalgama de varios diseños, haciendo gala de un cuerpo aliso \qLes Paul-esco\q, un cabezal serie V que también incluía tanto una pastilla humbucker como una pastilla de bobinado.")
+(lespaul_doublecut_shop_desc
+   "Apareció en el 1958 con doble recorte. Esta versión de Les Paul ofrece un mejor acceso a los 22 trastes sin perder cualidades clave como las legendarias notas prolongadas de las Les Paul.")
+(lespaul_doublecut_sticker
+   "Gibson Melody Maker")
+(lespaul_doublecut_sticker_shop_desc
+   "Las Melody Makers de doble recorte fueron diseñadas para principiantes, pero con el paso del tiempo y las historias exitosas de algunos... (ejem) \qlistillos\q, las Melody Makers de los 60 son ejemplares muy codiciados.")
+(explorer_shop_desc
+   "Junto con la V y la Moderne, la Explorer (el nombre original se cambió en 2002) fue una de las tres apuestas futuristas de Gibson al final de la década de los 50.")
+(firebird_shop_desc
+   "Salió en 1963 como una versión más \qdiscreta\q de la entonces impopular Explorer. La Firebird cuenta con un mástil incrustado en el cuerpo, pastillas, y cabezal esculpido de dos tonos con clavijas de banjo.")
+(es335_shop_desc
+   "Esta aclamada semi-acústica de línea fina tiene una tapa arqueada de arce, mástil delgado y rápido con varilla ajustable, pastillas paralelas y controles separados de tono y volumen, que el jugador puede programar de antemano.")
+(chet_atkins
+   "Gibson Chet Atkins Country Gentleman")
+(chet_atkins_shop_desc
+   "Fue introducida en 1986 siguiendo los pasos de la clásica de tapa arqueada de Chet Atkins. El mismo Atkins contribuyó a este modelo que cuenta con bloque interior de madera para las notas alargadas, puente Bigsby chapado en oro y brazo de tortuga.")
+(eds_shop_desc
+   "Gibson empezó con el mástil doble por encargo en 1958, en combinaciones de 6 y 12 cuerdas, ó de 6 cuerdas y mandolina. Debido a la tapa arqueada de pieza y los recortes florentinos, se parece al cuerpo de la SG.")
+(corvus_shop_desc
+   "Aunque un poco desgarbado, el intento de Gibson a comienzos de los 80 por proyectar la estética de la nueva era, tiene muchos seguidores entre los aficionados a las guitarras raras.")
+(moderne_shop_desc
+   "El pariente maldito de la Flying V y de la Explorer, la Gibson Moderne es el Santo Grial de los coleccionistas de guitarras. La mera existencia de un solo modelo de la producción original se pone en duda.")
+(epiphone_casino
+   "Epiphone Casino")
+(epiphone_casino_shop_desc
+   "Una de las guitarras favoritas de John Lennon, el puente de la Epiphone Casino jugó un papel muy importante en la creación del sonido de los 60.")
+(epiphone_sheraton
+   "Epiphone Sheraton")
+(epiphone_sheraton_shop_desc
+   "Una semi-acústica conocida por sus cálidos tonos, la Sheraton de doble recorte cuenta con cabezal incrustado, botón de traste triangular incrustado y mástil y cuerpo ribeteados.")
+(epiphone_coronet_shop_desc
+   "Esta guitarra de doble recorte para principiantes iba a lanzarse como una Gibson, bajo el nombre de \qModerne\q, pero cuando finalmente apareció en 1958 tenía una marca y un nombre distinto.")
+(kramer_650_shop_desc
+   "La innovadora 650 de Kramer tiene un cuerpo de arce y nogal, afinadores Sperzel, traste cero y un mástil de aluminio salvaje con cabezal en V. El mástil la distingue de todas las demás y produce notas aún más largas.")
+(kramer_vanguard_shop_desc
+   "Todo un hito dentro del heavy metal, la Kramer en forma de V era la favorita de los fanáticos de la velocidad, gracias a sus pastillas especiales y a su mástil para punteos bajos.")
+(fish_reward_shop_desc
+   "Este diseño es muy práctico y eficiente. Porque parece un pez.")
+(viking_reward_shop_desc
+   "Los vikingos eran una comunidad marinera nórdica conocida por sus saqueos de las costas francesas e inglesas del siglo VIII al XI d.C. Esta historia termina con una guitarra con forma de vikingo con una espada en su cabeza.")
+(usa_reward_shop_desc
+   "A veces hay gente que quiere hacer guitarras con formas raras. Igual que a veces hay gente que se bebe un vaso de vinagre pensando que es vino. Son cosas que pasan.")
+(snaketapus_reward_shop_desc
+   "\qQue ¿qué es una 'snaketapus'?\q y ¿te hace falta preguntarlo? Pues es un cráneo con serpientes que salen de él y es...una guitarra.")
+(coffin_reward_shop_desc
+   "Los ataúdes molan en cierta forma. Las guitarras también molan. En teoría ésta debería molar.")
+(eyeball_reward_shop_desc
+   "Alguien dijo una vez que \qmenos mal que a nadie se le ha ocurrido hacer una guitarra en forma de ojo\q. Esa persona se estará tirando de los pelos ahora mismo.")
+(battleaxe_reward_shop_desc
+   "Posiblemente alguno de los de Manowar tiene una guitarra como ésta, así que ya es algo.")
+(log_reward_shop_desc
+   "La primera guitarra maciza de Les Paul (fabricada en 1941) fue apodada \qEl Tronco\q, debido a su peso excesivo y a su falta de funcionalidad. Por otro lado, esta guitarra es, de hecho, un tronco.")
+(easy_guitar_shop_desc
+   "Esta guitarra está solo disponible para los que han superado el nivel fácil")
+(easy_guitar_5_star_shop_desc
+   "Consigue todas las críticas de 5 estrellas del nivel fácil y podras comprar esta guitarra.")
+(medium_guitar_shop_desc
+   "¿Así que que has superado el nivel medio, eh?")
+(medium_guitar_5_star_shop_desc
+   "¿Así que has recibido muy buenas críticas en el nivel medio eh?")
+(hard_guitar_shop_desc
+   "Esta guitarra no se le da a cualquiera, ¿sabes? Supera el nivel díficil y ya hablaremos.")
+(hard_guitar_5_star_shop_desc
+   "Clava el nivel difícil y nos pensaremos si te dejamos comprar una.")
+(expert_guitar_shop_desc
+   "Reservado únicamente a jugadores del legendario nivel experto.")
+(expert_guitar_5_star_shop_desc
+   "Críticas de 5 estrellas en el nivel experto. Todo")
+(lp_cayenne_shop_desc
+   "Dale un poco de carácter a esa maciza Les Paul Standard con el acabado en rojo cayena.")
+(lp_goddessburst_shop_desc
+   "Con un perfil más delgado y un peso más ligero, el estilo de la Diosa (cortesía de acabados como el estallido rosa sobre la tapa de arce y las pastillas translúcidas) atrae tanto a hombres como a mujeres.")
+(lp_zakk_shop_desc
+   "Con base en la marca Wylde, el diseño de diana Les Paul de \qGrail\q, es un modelo con un diseño atrevido y permite mods tipo\qmonstruo\q, como pastillas EMG y un mástil de arce natural.")
+(sg_white_shop_desc
+   "Guitarristas de la talla de Wayne Kramer, Eric Bloom y Duane Allman han ayudado a que la Gibson SG se convierta en un icono. Únete a los mejores con este modelo en blanco vintage de larga tradición.")
+(sg_gt_shop_desc
+   "La serie GT está pensada para el guitarrista de tournée, con ciertos temas especiales para el circuito. Una doble varilla superior/inferior proporciona un gran refuerzo en el mástil, a la vez que la toma Neutrik y la bandolera de función doble te mantiene conectado.")
+(sg_flames_shop_desc
+   "Seguramente tocarás Highway to Hell en una SG, de paso puedes prepararte para el final con esta filigrana de adorno a medida.")
+(fv_v2_shop_desc
+   "Al final de los setenta, el uso de la Flying V por virtuosos como Jimi Hendrix y Dave Davies, ocasionó la reedición del modelo. La segunda generación V2 tenía dos pastillas Boomerang que la hacían inconfundible.")
+(fv_century_shop_desc
+   "Esta icónica guitarra se deleita en su propia gloria, exhibiendo aquí un cuerpo completo con guardia doble al hilo del estilo del nuevo milenio.")
+(fv_red_shop_desc
+   "Haz que se traguen que llevas en esto años con un acabado \qvintage\q para la Flying V.")
+(exp_nat_shop_desc
+   "Las Explorer como este modelo de acabado natural han sido tocadas por Bob Mould, The Edge y Allen Collins de Lynyrd Skynyrd, entre otros. ")
+(exp_sun_shop_desc
+   "Si no puedes dejar boquiabierto  al público con tus flamantes riffs, intenta deslumbrarles con esta Explorer con este ardiente acabado en diseño sol naciente.")
+(exp_white_shop_desc
+   "Algunos de los ritmos más brutales del speed metal de los 80 se compusieron con una Gibson Explorer blanca. Cógela y sigue los pasos de fuego. ¡Arghhhh!")
+(exp_swirl_shop_desc
+   "Este vistoso acabado en negro y rojo aumenta aún más uno de los diseños más conocidos y atrevidos de Gibson.")
+(lp_dbl_yellow_shop_desc
+   "Gracias a los excesos libertinos de un Johnny Thunders, y una guitarra a la altura de las rodillas, la amarilla de doble recorte se ha convertido en la quintaesencia del punk de Gibson.")
+(lp_dbl_resin_shop_desc
+   "Gibson apuesta por un toque jurásico con esta LP ámbar de doble recorte que incluye un mosquito prehistórico fosilizado en la resina.")
+(fb_blue_shop_desc
+   "El extraño cuerpo de la Firebird le ganó el apelativo de \qinversa\q, debido a que el cuerno del lado de los agudos es más alto y pronunciado que el otro, un perfil único de esta guitarra y de la Explorer, de la que deriva.")
+(fb_ebony_shop_desc
+   "Con un diseño de mástil típico, en lugar del mástil incrustado de la Firebird, la Firebird Studio ofrece un toque distinto para esta guitarra que marcó un hito en la historia.")
+(fb_leopard_shop_desc
+   "¡Roarrr! Esta gatita tiene mucha garra, colega. Un poco de leche para la mesa 3. ¿Pillas? Pues eso.")
+(coronet_cherry_shop_desc
+   "En 1959, Epiphone comenzó a vender la Coronet en rojo cereza con una pastilla P-90. Estas \qasequibles\q ofertas se cotizan actualmente a cifras exorbitantes entre los coleccionistas de reliquias.")
+(coronet_burst_shop_desc
+   "Con piezas de oro, dos pastillas potentes y cabezal tradicional de clavijas superiores, este modelo de la Coronet es una belleza que barre con todo.")
+(coronet_green_shop_desc
+   "Sácale todo el partido al estilo retro de la Coronet con este acabado en verde brillante")
+(van_yellow_shop_desc
+   "Ponte algo de laca y revienta esa camiseta de redecilla. Esta Vangard amarilla te lleva de vuelta a cuando las melenas heavy eran las reinas de las listas, te guste o no.")
+(mod_cherry_shop_desc
+   "Emulando el diseño angular y afilado de los alerones de los coches de los 50, la misteriosa Moderne con su diseño radical habría sido un ejemplar muy codiciado, incluso aunque se hubiera producido en cadena.")
+(cor_nat_shop_desc
+   "La \qBottle-opener\q (abrelatas), al natural. La Corvus, con su corte en forma de V, su diapasón de palisandro y su mástil de nogal se dejó de fabricar en 1984.")
+(es_cherry_shop_desc
+   "Eric Clapton, Alvin Lee y muchos otros virtuosos le han sacado el jugo al cuerpo rápido y fino con doble recorte y al mástil para punteos bajos de la ES335. Con ella compusieron algunas de las canciones más memorables jamás escritas para guitarra.")
+(650_white_shop_desc
+   "A veces los buenos no visten de blanco. Debajo de este impresionante acabado se esconden algunas de las innovaciones más brutales de finales de los 70, convirtiendo la 650 en una de las mejores.")
+(eds_white_shop_desc
+   "La EDS-1275 ha sido tocada por un diverso grupo de alucinantes artistas de la talla de James Hetfield, Alex Lifeson, Tom Morello, Don Felder, Pete Townshend y Zakk Wylde.")
+(endgame_encore_title1
+   "DEJA GRITAR AL PÚBLICO")
+(endgame_encore_title2
+   "¡OTRA, OTRA!")
+(endgame_encore_score
+   "%d puntos")
+(endgame_encore_review
+   "%d estrellas")
+(endgame_encore_money
+   "%d$ obtenido")
+(endgame_encore_letter3
+   "El público se está volviendo loco, tienes que tocar otra. ¿Crees que puedes ponerte las pilas y dar lo mejor de ti en un bis?")
+(endgame_encore_letter4
+   "¡Tío, están flipándolo! Hazle un favor a tus fans y vuelve ahí fuera. ¿Te queda un poco de energía para una más?")
+(endgame_encore_letter5
+   "¡Te están pidiendo a gritos una más! ¿Podrás lograrlo para salir por la puerta grande?")
+(endgame_encore_letter6
+   "¡El público está alucinando! ¡Venga jefe, dales lo que quieren! ¿Te queda tiempo para una más?")
+(endgame_encore_freebird1
+   "Parece que ya es la hora. Están pidiendo Free Bird. Sabías que algún día pasaría. ¿Estás seguro de que quieres hacerlo?")
+(freebird_confirm1
+   "Espera, ¿de verdad quieres tocar Free Bird?")
+(freebird_confirm2
+   "Esto solo lo puede hacer un VERDADERO Guitar Hero. ¿Aún quieres tocar?")
+(freebird_confirm3
+   "Última oportunidad... ¿De verdad quieres tocar Free Bird?")
+(MULTIPLAYER_MODE_SELECT
+   "ELEGIR MODO MULTIJUGADOR")
+(MULTI_COMPETE
+   "COMPETICIÓN")
+(multi_compete_desc
+   "Lucha de guitarras a muerte. Para ganar, consigue más puntos que el otro jugador.")
+(PLAYER_1
+   "JUGADOR 1")
+(PLAYER_2
+   "JUGADOR 2")
+(mp_player_1_short
+   "J1")
+(mp_player_2_short
+   "J2")
+(mp_ready
+   "A PUNTO")
+(MULTI_SELECT_YOUR_HERO
+   "ELIGE A TU HÉROE")
+(WAITING
+   "ESPERANDO...")
+(LOADING
+   "CARGANDO...")
+(MULTI_SELECT_GUITAR
+   "ELIGE TU GUITARRA")
+(MULTI_SELECT_SKINS
+   "SELECCIONA ACABADOS")
+(MULTI_SELECT_SKIN
+   "ELEGIR ACABADO")
+(mp_select_outfit
+   "ELIGE VESTUARIO")
+(mp_select_character
+   "ELIGE TU PERSONAJE")
+(sg_player1
+   "JUGADOR 1 %s")
+(sg_player2
+   "JUGADOR 2 %s")
+(sg_lead
+   "SOLISTA")
+(sg_rhythm
+   "RÍTMICA")
+(sg_guitar
+   "GUITARRA")
+(sg_bass
+   "BAJO")
+(multiplier_format
+   "%dX")
+(star_ready
+   "¡ENERGÍA ESTRELLA A PUNTO!")
+(song_failed
+   "TEMA NO SUPERADO")
+(deploy_star
+   "¡UTILIZA LA ENERGÍA ESTRELLA!")
+(METALOADING
+   "CARGANDO")
+(loading_tip1
+   "Atrévete con los Hammer-ons y los Pull-offs. Funcionan de verdad. Te lo prometemos.")
+(loading_tip2
+   "Toca 10 notas seguidas y multiplicarás tus puntos x2. Cuanto más larga sea la racha, mayor será el multiplicador.")
+(loading_tip3
+   "Es como con una guitarra de verdad: al tocar notas altas, no hace falta que sueltes los botones de traste de las notas bajas.")
+(loading_tip4
+   "Espera hasta tener un multiplicador x4 y usa la energía Estrella para aumentar tu puntuación.")
+(loading_tip5
+   "¡La energía Estrella puede salvarte! Si estás hundido en el rojo, usa la energía Estrella para ganarte al público.")
+(loading_tip6
+   "Usa la energía Estrella para volver loco al público. Aprende a controlar esta energía en el tutorial de energía Estrella.")
+(loading_tip7
+   "Consigue un multiplicador de racha al tocar unas cuantas notas sin fallos.")
+(loading_tip8
+   "¿Se avecinan una serie de notas para el mismo botón de traste? ¡No sueltes el botón de traste!")
+(loading_tip9
+   "Puedes ralentizar las canciones y algunas secciones de canciones en el modo práctica. ¡Por ejemplo, los solos perfectos que no te salen ni a tiros!")
+(loading_tip10
+   "Asegúrate de que te has conectado a Xbox Live si quieres comprobar tu puntuación en las Tablas de clasificación.")
+(loading_tip11
+   "Visita el modo práctica desde el menú Ensayo para perfeccionar las partes más difíciles.")
+(loading_tip12
+   "No te preocupes por el nivel de dificultad al intentar mejorar la puntuación en el modo carrera, consigue la puntuación más alta que puedas y punto.")
+(loading_tip13
+   "¡Comprueba tu puntuación en las Tablas de clasificación! A lo mejor descubres que necesitas mejorar tus conocimientos de guitarra.")
+(loading_tip14
+   "Coge la máxima puntuación obtenida en cada tema en todos los niveles y ponlas todas juntas. Esta es tu puntuación en el modo carrera.")
+(comedy_tip1
+   "La vida de los músicos es dura, pero la del batería es casi imposible.")
+(comedy_tip2
+   "Si tu cantante no está contento, nadie está contento.")
+(comedy_tip3
+   "Necesitarás una nevera portátil en tu local de ensayo. Es mucho más importante que un bajista.")
+(comedy_tip4
+   "Solo necesitas una persona con una cresta en tu grupo.")
+(comedy_tip5
+   "¡Recuerda, NO STAIRWAY!")
+(comedy_tip6
+   "¡DALE CAÑA!")
+(comedy_tip7
+   "Se tarda MUCHO en atravesar con la furgoneta el estado de Nebraska.")
+(comedy_tip8
+   "Si tienes un equipo de carretera, se llama equipo de \qtrayecto\q. Si no se llama \qincordio\q.")
+(comedy_tip9
+   "Todo sale a relucir en la carretera.")
+(comedy_tip10
+   "Un grupo es la familia disfuncional que eliges.")
+(comedy_tip11
+   "Si a tu nueva canción la llamas \qHimno del Rock\q, más te vale que lo sea.")
+(comedy_tip12
+   "Es habitual intentar ser el que más ruido hace durante los ensayos.")
+(comedy_tip13
+   "Bajarte los pantalones en el escenario no activará la energía Estrella.")
+(comedy_tip14
+   "Si los vecinos se quejan por el ruido, sube el volumen y acaba con ellos.")
+(comedy_tip15
+   "Tu madre no cuenta como una fan.")
+(easy_tip1
+   "Claro que no te llevarás ni un duro en el nivel fácil, pero sí en el nivel medio, difícil y experto.")
+(easy_tip2
+   "Si consigues críticas de 5 estrellas en cada canción sin ningún esfuerzo, es hora de pasar al nivel medio.")
+(easy_tip3
+   "Prueba el nivel medio o superior si quieres comprar nuevas guitarras, canciones y mucho más.")
+(advanced_tip1
+   "¿Te has atascado en una canción? Intenta conseguir críticas de 5 estrellas en una canción más fácil.")
+(advanced_tip2
+   "Acumula la energía Estrella para las secciones con muchas notas. Conseguirás más puntos y más subidones del rockómetro.")
+(advanced_tip3
+   "¡Las acordes valen más puntos que las notas normales!")
+(advanced_tip4
+   "Rasguea arriba y abajo para evitar que se te canse el brazo durante las partes más difíciles.")
+(advanced_tip5
+   "Elige personajes, trajes, guitarras, temas extra y mucho más en La Tienda.")
+(encore_tip1
+   "Nunca pongas tu bis en tu lista de temas. Tus fans se darán cuenta de que lo planeaste.")
+(encore_tip2
+   "Si el personal está ya recogiendo, significa que te has quedado sin bis.")
+(encore_tip3
+   "Será mejor asegurarte de que PEDIRÁN un bis antes de guardar tu mejor canción para el final.")
+(encore_tip4
+   "Si tu batería está demasiado cansado para un bis, entonces también lo está para la fiesta después del concierto.")
+(encore_tip5
+   "Si el público quiere un bis, pero no te quedan canciones, NI SE TE OCURRA improvisar.")
+(encore_tip6
+   "Si el público te pide más a gritos y el tío de sonido te dice que no con la cabeza, pasa de él y toca de todas formas.")
+(freebird_tip1
+   "Estás buscando el\n \qSolo gtr. i\q en el modo práctica.")
+(freebird_tip2
+   "No te expongas a un mundo lleno de dolor. Domina Free Bird en el modo práctica antes de intentar tocar la versión completa sobre un escenario.")
+(freebird_tip3
+   "BIEN. Esta vez NO están precisamente interrumpiéndote. SUSPIRO.")
+(freebird_tip4
+   "Tío, mira que te gusta Free Bird.")
+(freebird_tip5
+   "¡Aguanta! ¡Tú puedes! ¡FREE BIRD!")
+(freebird_tip6
+   "¡¡¡AND THIS BIRD YOU CANNOT CHANGE!!!")
+(multi_coop_tip1
+   "En el modo cooperativo, los dos jugadores necesitan levantar la guitarra AL MISMO TIEMPO para activar la energía Estrella.")
+(multi_coop_tip2
+   "Recuerda que los dos jugadores debéis activar juntos la energía Estrella.")
+(multi_coop_tip3
+   "En el modo cooperativo, ambos guitarristas trabajan juntos para conseguir la puntuación máxima.")
+(multi_coop_tip4
+   "En el modo cooperativo, todos ganan. A no ser que los dos seáis unos perdedores.")
+(multi_coop_tip5
+   "Las rachas se comparten en el modo cooperativo. Si uno de los dos lo hace mal, los dos perdéis el multiplicador de puntos.")
+(multi_coop_tip6
+   "Hay que tener cuidado en el modo cooperativo: si el indicador del rockómetro señala mucho tiempo el color rojo, ambos jugadores pierden.")
+(multi_coop_tip7
+   "No nos hacemos responsables si termináis odiándoos a muerte.")
+(multi_coop_tip8
+   "Gritar \q¡ENERGÍA ESTRELLA!\q es tan buen método como otro cualquiera.")
+(multi_coop_tip9
+   "Cuando alguien organiza una \qReunión de grupo\q normalmente no es una buena señal.")
+(loading_tip_arterialblack
+   "El guitarrista Marcus Henderson contribuyó con otra canción para Guitar Hero II antes de separarse de Drist para ser el guitarrista principal para Morticio Rip.")
+(loading_tip_collide
+   "Cuando Anarchy Club no está destrozando cosas o peleándose con las bandas rivales de Kung Fu, el cantante Keith Smith destroza guitarras para el equipo de control de calidad de HMX. Adam Buhler prefiere la oscuridad de Anar-Cave menos cuando hay luna llena...")
+(loading_tip_drinkup
+   "OUNCE of SELF es uno de los grupos más originales de la música heavy en Los Ángeles. \qDrink Up\q se ha convertido en un referente para las masas sudorosas.")
+(loading_tip_elephantbones
+   "Mareo por humos, con nudillos blancos, con la rueda como rehén. Un viejo y sucio Cadillac va disparado hacia el infierno, con un ladrillo en el acelerador. That Handsome Devil.")
+(loading_tip_fallofpangea
+   "Los Valient Thorr vienen de Venus. Su mensaje es tu arma para aumentar el conocimiento de la conciencia humana.")
+(loading_tip_ftk
+   "VAGIANT son de Boston y tocan con energía, rapidez y sin control. Si no estuvieran tan entretenidas metiendo bronca y destrozando cosas, estas chicas conquistarían el mundo.")
+(loading_tip_gemini
+   "Brian Kahanek dice que \qcada vez que te subas al escenario, toca de todo corazón\q.")
+(loading_tip_jordan
+   "Aunque te pongas un cubo en la cabeza, no tendrás más posibilidades de superar este tema. O a lo mejor sí.")
+(loading_tip_kicked
+   "Ahora mismo, mientras esperas que se cargue el tema, Noble Rot está ligándose a tu hermana. Y si ella no pica, lo intentará con tu madre.")
+(loading_tip_soybomb
+   "Honest Bob and The Factory-to-Dealer Incentives vuelven con su éxito, con un guiño al español, \qSoy Bomb\q.")
+(loading_tip_ladylightning
+   "Medio hombre, medio máquina, Bang Camaro está hecho de una pasta especial.")
+(loading_tip_laughtrack
+   "Nadie discute que The Acrobrats son la mejor banda de rock de su local de ensayo.")
+(loading_tip_lesstalkmorerokk
+   "Lanza tu ropa interior al escenario. No, espera, eres menor de edad.")
+(loading_tip_mrfixit
+   "¡Vive para las giras, gira para vivir! The Crowns serán, ahora y siempre, fieles a los leales.")
+(loading_tip_newblack
+   "\qDurante las actuaciones no vale ponerse a corear a tu propio grupo. Es como ponerte un mote tú mismo.\q - Keith Buckley - Every Time I Die")
+(loading_tip_onefortheroad
+   "A Breaking Wheel le gustaría tocar en tu sótano, en tu funeral o en tu primera comunión. A propósito, se aceptan donaciones para la colecta de nuestra furgoneta.")
+(loading_tip_parasite
+   "The Neighborhoods fueron galardonados con el premio de Hall of Fame en los Boston Music Awards de 2005.")
+(loading_tip_radiumeyes
+   "¡Qué pasada! Al igual que otros 50 millones de personas, puedes tocar música metal. Mira tú que bien. ¿Crees que puedes tocar una canción de amor de un prototipo de retrosoldado orgánico creada durante la guerra de Filipinas?  Lo dudo.")
+(loading_tip_rawdog
+   "La siguiente canción fue compuesta por The Last Vegas. Para obtener mejores resultados, sube el volumen al máximo, especialmente en presencia de padres o mayores.")
+(loading_tip_redlottery
+   "Galopando al compás como los golpes de martillos de Thor, las ocho herraduras de MEGASUS trazan una línea de fuego en el cielo invernal.")
+(loading_tip_six
+   "El guitarrista Mike Martin recomendó a su profesor, Oli Herbert, para All That Remains antes de unirse al grupo unos años después.")
+(loading_tip_thelightthatblinds
+   "Esto es SHADOWS FALL en la prueba más evidente de que, una vez más, son los líderes del panorama del rock duro y del metal.")
+(loading_tip_trogdor
+   "\qPara las notas agudas, machaca la barra de vibrato. Para las mezclas, suaviza los acordes. ¡Oh, soy genial! \q"
+   -
+   Stongbad)
+(loading_tip_thunderhorse
+   "La banda de METAL extremo DETHLOK, \qel mayor directo del universo\q, saca adelante el último sonido Armageddon. Prepárate para ser aplastado. Enciende el \ncanal de adultos.")
+(loading_tip_xstream
+   "El espíritu del legendario guitarrista Piggy (Denis D'Amour) está presente en Guitar Hero II gracias a Voivod, que te transporta de nuevo a la X-Stream.")
+(loading_tip_yeswecan
+   "Made In Mexico nació en Rhode Island, conocido como el estado del Océano.")
+(TRAINING
+   "ensayo")
+(select_mode
+   "elige modo")
+(practice
+   "práctica")
+(sel_speed
+   "elige velocidad")
+(select_start_section
+   "elige comienzo de sección")
+(select_end_section
+   "elige fin de sección")
+(speed_label0
+   "Velocidad máx.")
+(speed_label1
+   "Lenta")
+(speed_label2
+   "Más lenta")
+(speed_label3
+   "La más lenta")
+(PRACTICE_END
+   "FIN DE LA PRÁCTICA")
+(SELECT_PART
+   "INSTRUMENTO")
+(change_speed
+   "cambiar velocidad")
+(gems_hit_pattern
+   "aciertos: %i%% (%i/%i)")
+(full_song
+   "Tema íntegro")
+(intro
+   "Intro")
+(intro_a
+   "Intr. a")
+(intro_b
+   "Intr. b")
+(intro_c
+   "Intr. c")
+(vocal_intro
+   "Intr. vocal")
+(gtr_intro
+   "Intr. gtr.")
+(gtr_intro_a
+   "Intr. gtr. a")
+(gtr_intro_b
+   "Intr. gtr. b")
+(gtr_intro_c
+   "Intr. gtr. c")
+(gtr_intro_d
+   "Intr. gtr. d")
+(gtr_intro_e
+   "Intr. gtr. e")
+(intro_riff
+   "Riff intro")
+(bass_intro
+   "Intr. bajo")
+(noise_intro
+   "Intr. ruido")
+(gtr_enters
+   "Entra gtr.")
+(rhy_enters
+   "Entra gtr. 2")
+(bass_enters
+   "Entra bajo")
+(band_enters
+   "Entrada")
+(kick_it
+   "¡Adelante!")
+(quiet_intro
+   "Intr. tranquila")
+(verse_1
+   "Estrofa 1")
+(verse_1a
+   "Estrofa 1a")
+(verse_1b
+   "Estrofa 1b")
+(verse_1c
+   "Estrofa 1c")
+(verse_1d
+   "Estrofa 1d")
+(verse_1e
+   "Estrofa 1e")
+(verse_1f
+   "Estrofa 1f")
+(verse_2
+   "Estrofa 2")
+(verse_2a
+   "Estrofa 2a")
+(verse_2b
+   "Estrofa 2b")
+(verse_2c
+   "Estrofa 2c")
+(verse_2d
+   "Estrofa 2d")
+(verse_2e
+   "Estrofa 2e")
+(verse_2f
+   "Estrofa 2f")
+(verse_3
+   "Estrofa 3")
+(verse_3a
+   "Estrofa 3a")
+(verse_3b
+   "Estrofa 3b")
+(verse_3c
+   "Estrofa 3c")
+(verse_3d
+   "Estrofa 3d")
+(verse_3e
+   "Estrofa 3e")
+(verse_3f
+   "Estrofa 3f")
+(verse_4
+   "Estrofa 4")
+(verse_4a
+   "Estrofa 4a")
+(verse_4b
+   "Estrofa 4b")
+(verse_4c
+   "Estrofa 4c")
+(verse_4d
+   "Estrofa 4d")
+(verse_5
+   "Estrofa 5")
+(verse_5a
+   "Estrofa 5a")
+(verse_5b
+   "Estrofa 5b")
+(verse_5c
+   "Estrofa 5c")
+(verse_5d
+   "Estrofa 5d")
+(chorus
+   "Estribillo")
+(chorus_1
+   "Estrib 1")
+(chorus_1a
+   "Estribillo 1a")
+(chorus_1b
+   "Estribillo 1b")
+(chorus_1c
+   "Estribillo 1c")
+(chorus_1d
+   "Estribillo 1d")
+(chorus_2
+   "Estrib 2")
+(chorus_2a
+   "Estribillo 2a")
+(chorus_2b
+   "Estribillo 2b")
+(chorus_2c
+   "Estribillo 2c")
+(chorus_3
+   "Estrib 3")
+(chorus_3a
+   "Estribillo 3a")
+(chorus_3b
+   "Estribillo 3b")
+(chorus_3c
+   "Estribillo 3c")
+(chorus_4
+   "Estrib 4")
+(chorus_4a
+   "Estribillo 4a")
+(chorus_4b
+   "Estribillo 4b")
+(chorus_4c
+   "Estribillo 4c")
+(chorus_5
+   "Estrib 5")
+(chorus_5a
+   "Estribillo 5a")
+(chorus_5b
+   "Estribillo 5b")
+(chorus_5c
+   "Estribillo 5c")
+(gtr_solo
+   "Solo gtr.")
+(gtr_solo_a
+   "Solo gtr. a")
+(gtr_solo_b
+   "Solo gtr. b")
+(gtr_solo_c
+   "Solo gtr. c")
+(gtr_solo_d
+   "Solo gtr. d")
+(gtr_solo_e
+   "Solo gtr. e")
+(gtr_solo_f
+   "Solo gtr. f")
+(gtr_solo_g
+   "Solo gtr. g")
+(gtr_solo_h
+   "Solo gtr. h")
+(gtr_solo_i
+   "Solo gtr. i")
+(gtr_solo_j
+   "Solo gtr. j")
+(gtr_solo_k
+   "Solo gtr. k")
+(gtr_solo_l
+   "Solo gtr. l")
+(gtr_solo_m
+   "Solo gtr. m")
+(gtr_solo_n
+   "Solo gtr. n")
+(gtr_solo_o
+   "Solo gtr. o")
+(gtr_solo_p
+   "Solo gtr. p")
+(gtr_solo_q
+   "Solo gtr. q")
+(gtr_solo_r
+   "Solo gtr. r")
+(gtr_solo_s
+   "Solo gtr. s")
+(gtr_solo_1
+   "Solo 1")
+(gtr_solo_1a
+   "Solo 1a")
+(gtr_solo_1b
+   "Solo 1b")
+(gtr_solo_1c
+   "Solo 1c")
+(gtr_solo_1d
+   "Solo 1d")
+(gtr_solo_1e
+   "Solo gtr. 1e")
+(gtr_solo_2
+   "Solo gtr. 2")
+(gtr_solo_2a
+   "Solo gtr. 2a")
+(gtr_solo_2b
+   "Solo gtr. 2b")
+(gtr_solo_2c
+   "Solo gtr. 2c")
+(gtr_solo_2d
+   "Solo gtr. 2d")
+(gtr_solo_2e
+   "Solo gtr. 2e")
+(gtr_solo_2f
+   "Solo gtr. 2f")
+(gtr_solo_2g
+   "Solo gtr. 2g")
+(gtr_solo_3
+   "Solo gtr. 3")
+(gtr_solo_3a
+   "Solo gtr. 3a")
+(gtr_solo_3b
+   "Solo gtr. 3b")
+(gtr_solo_3c
+   "Solo gtr. 3c")
+(gtr_solo_4
+   "Solo gtr. 4")
+(gtr_solo_4a
+   "Solo gtr. 4a")
+(gtr_solo_4b
+   "Solo gtr. 4b")
+(gtr_solo_5
+   "Solo gtr. 5")
+(gtr_solo_6
+   "Solo 6")
+(gtr_solo_7
+   "¡Solo gtr. 7!")
+(gtr_solo_8
+   "¡¡Solo gtr. 8!!")
+(gtr_solo_9
+   "¡¡¡Solo gtr. 9!!!")
+(drum_solo
+   "Solo bat.")
+(drum_solo_1
+   "Solo bat. 1")
+(drum_solo_2
+   "Solo bat. 2")
+(drum_solo_3
+   "Solo bat. 3")
+(bass_solo
+   "Solo bajo")
+(bass_solo_1
+   "Solo bajo 1")
+(bass_solo_2
+   "Solo bajo 2")
+(bass_solo_3
+   "Solo bajo 3")
+(organ_solo
+   "Solo órgano")
+(noise_solo
+   "Solo ruidoso")
+(trill_me_1
+   "¡Fascíname!")
+(trill_me_2
+   "¡¡Fascíname!!")
+(ah_ah_1
+   "¡Ah, ah!")
+(ah_ah_2
+   "¡¡Ah, ah!!")
+(trogdor_1
+   "¡TROGDOR!")
+(trogdor_2
+   "¡¡TROGDOR!!")
+(trogdor_3
+   "¡¡¡TROGDOR!!!")
+(trc
+   "¡¡T-R-C!!")
+(slide_solo_1
+   "Solo slide 1")
+(slide_solo_2
+   "Solo slide 2")
+(fast_part
+   "Parte rápida")
+(gtr_lead_1
+   "Gtr. prin. 1")
+(gtr_lead_2
+   "Gtr. prin. 2")
+(gtr_lead_3
+   "Gtr. prin. 3")
+(speed_picking
+   "Punteo rápido")
+(slow_hvy
+   "Parte lenta")
+(bridge
+   "Puente")
+(bridge_a
+   "Puente a")
+(bridge_b
+   "Puente b")
+(bridge_c
+   "Puente c")
+(bridge_d
+   "Puente d")
+(bridge_1
+   "Puente 1")
+(bridge_1a
+   "Puente 1a")
+(bridge_1b
+   "Puente 1b")
+(bridge_2
+   "Puente 2")
+(bridge_2a
+   "Puente 2a")
+(bridge_2b
+   "Puente 2b")
+(soft_1
+   "Parte lenta 1")
+(soft_2
+   "Parte lenta 2")
+(soft_3
+   "Parte lenta 3")
+(soft_4
+   "Parte lenta 4")
+(break
+   "Break")
+(break_1
+   "Break 1")
+(break_2
+   "Break 2")
+(breakdown
+   "Breakdown")
+(jam
+   "Improvisación")
+(gtr_break
+   "Break gtr.")
+(gtr_break_1
+   "Break gtr. 1")
+(gtr_break_2
+   "Break gtr. 2")
+(gtr_break_3
+   "Break gtr. 3")
+(gtr_break_4
+   "Break gtr. 4")
+(gtr_fill
+   "Relleno gtr.")
+(gtr_fills
+   "Rellenos gtr.")
+(gtr_hook
+   "Gancho gtr.")
+(gtr_hook_1
+   "Gancho gtr. 1")
+(gtr_hook_2
+   "Gancho gtr. 2")
+(gtr_hook_3
+   "Gancho gtr. 3")
+(vocal_break
+   "Break vocal")
+(noise_build
+   "Crear ruido")
+(release
+   "Soltar")
+(melody_1
+   "Melodía 1")
+(melody_2
+   "Melodía 2")
+(lo_melody
+   "Melodía baja")
+(gtr_mel_1
+   "Melodía 1")
+(gtr_mel_2
+   "Melodía 2")
+(gtr_mel_3
+   "Melodía 3")
+(speedup
+   "Acelerar")
+(main_riff_1
+   "Riff a1")
+(main_riff_2
+   "Riff a3")
+(main_riff_3
+   "Riff a3")
+(main_riff_4
+   "Riff a4")
+(main_riff_5
+   "Riff a5")
+(main_riff_6
+   "Riff a6")
+(main_riff_7
+   "Riff a7")
+(high_gtr_1
+   "Gtr. alta 1")
+(high_gtr_2
+   "Gtr. alta 2")
+(high_gtr_3
+   "Gtr. alta 3")
+(high_gtr_4
+   "Gtr. alta 4")
+(verse_riff
+   "Riff estrofa")
+(chorus_riff
+   "Riff coro")
+(gtr_riff_1
+   "Riff gtr. 1")
+(gtr_riff_2
+   "Riff gtr. 2")
+(gtr_riff_3
+   "Riff gtr. 3")
+(gtr_riff_4
+   "Riff gtr. 4")
+(gtr_riff_5
+   "Riff gtr. 5")
+(big_riff_1
+   "Gran riff 1")
+(big_riff_2
+   "Gran riff 2")
+(bigger_riff
+   "Riff mayor")
+(swing_riff_1
+   "Swing riff 1")
+(swing_riff_2
+   "Swing riff 2")
+(swing_riff_3
+   "Swing riff 3")
+(swing_riff_4
+   "Swing riff 4")
+(chunky_riff_1
+   "Riff parcial 1")
+(chunky_riff_2
+   "Riff parcial 2")
+(odd_riff_1
+   "Riff raro 1")
+(odd_riff_2
+   "Riff raro 2")
+(odd_riff_3
+   "Riff raro 3")
+(outro
+   "Final")
+(outro_a
+   "Final a")
+(outro_b
+   "Final b")
+(ending
+   "Clausura")
+(end_wankery
+   "Delirio")
+(big_end_1
+   "Gran final 1")
+(big_end_2
+   "Gran final 2")
+(tutorials
+   "Tutoriales")
+(TUTORIAL_1
+   "Lecciones básicas")
+(TUTORIAL_2
+   "Energía Estrella")
+(TUTORIAL_3
+   "Técnicas avanzadas")
+(TUT_1_BLURB
+   "Lo básico para empezar a tocar.")
+(TUT_2_BLURB
+   "El secreto de la energía Estrella: cómo acumularla y utilizarla.")
+(TUT_3_BLURB
+   "Para expertos que ya tienen horas de práctica.")
+(tut_description
+   "Descripción de la lección")
+(tut_letsrock
+   "¡VAMOS A ROCKANROLEAR!")
+(tut_task
+   "MISIÓN:")
+(tut_notes_fmt
+   "%s %d/%d")
+(tut_timeout
+   "¡FIN DE LA LECCIÓN!")
+(tut1_title
+   "TUTORIAL BÁSICO DE GUITAR HERO")
+(tut1_1_part
+   "LECCIÓN 1: AFINACIÓN")
+(tut1_1_info
+   "Afina la guitarra:\n1. PULSA el traste para ELEGIR la nota.\n2. PULSA la barra de toque para TOCAR la nota.")
+(tut1_1_task
+   "Para seguir, toca cada nota tres veces.")
+(tut1_1_done
+   "¡LECCIÓN SOBRE AFINACIÓN COMPLETADA!")
+(tut1_1_timeout
+   "¡FIN DE LA LECCIÓN!")
+(tut1_2_part
+   "LECCIÓN 2: TOCAR NOTAS")
+(tut1_2_intro
+   "Al cruzar la línea, toca las notas en la guitarra.")
+(tut1_2_task
+   "Toca 6 notas.")
+(tut1_2_score
+   "Aciertos:")
+(tut1_2_done
+   "¡LECCIÓN SOBRE TOCAR NOTAS COMPLETADA!")
+(tut1_3_part
+   "LECCIÓN 3: NOTAS DISPARES")
+(tut1_3_intro
+   "Haz coincidir los colores para tocar notas distintas.")
+(tut1_3_task
+   "Toca 8 notas diferentes.")
+(tut1_3_score
+   "Aciertos:")
+(tut1_3_done
+   "¡LECCIÓN SOBRE NOTAS DIFERENTES COMPLETADA!")
+(tut1_4_part
+   "LECCIÓN 4: NOTAS LARGAS")
+(tut1_4_intro
+   "1. Pulsa el botón de traste.\n2. Rasguea.\n3. Mantenlo pulsado mientras suena la nota.")
+(tut1_4_task
+   "Toca seis notas largas.")
+(tut1_4_score
+   "Notas largas:")
+(tut1_4_done
+   "¡LECCIÓN SOBRE NOTAS LARGAS COMPLETADA!")
+(tut1_5_part
+   "LECCIÓN 5: ACORDES")
+(tut1_5_intro
+   "Dos notas tocadas a la vez.")
+(tut1_5_task
+   "Toca 6 acordes.")
+(tut1_5_score
+   "Acordes correctos:")
+(tut1_5_done
+   "¡LECCIÓN SOBRE ACORDES COMPLETADA!")
+(tut1_6_part
+   "LECCIÓN 6: INTERFAZ")
+(tut1_6_yellow
+   "Amarillo = vas bien\n")
+(tut1_6_green
+   "Verde = actuación buena\n")
+(tut1_6_red
+   "Rojo = actuación mala\n")
+(tut1_6_blink
+   "Rojo intermit. = ¡ojo!\n")
+(tut1_6_score
+   "Notas tocadas = puntos")
+(tut1_complete
+   "¡TUTORIAL BÁSICO COMPLETADO!")
+(tut2_title
+   "TUTORIAL SOBRE ENERGÍA ESTRELLA")
+(tut2_1_intro
+   "Extravagancias = Energía Estrella = ¡Grandes puntuaciones!")
+(tut2_1_info
+   "1. Acumular\n2. Utilizar")
+(tut2_2_part
+   "LECCIÓN 1: COMBOS ESTRELLA")
+(tut2_2_intro
+   "Clava las notas de un Combo Estrella y obtén un Subidón Estrella.")
+(tut2_2_task
+   "Para seguir, clava el Combo Estrella.")
+(tut2_2_done
+   "¡LECCIÓN SOBRE COMBOS ESTRELLA COMPLETADA!")
+(tut2_3_part
+   "LECCIÓN 2: BARRA VIBRATO")
+(tut2_3_intro
+   "Toca una nota y empuja la barra de vibrato dentro y fuera para acumular energía Estrella.")
+(tut2_3_task
+   "Para seguir, haz que suba el medidor Estrella.")
+(tut2_3_done
+   "¡LECCIÓN SOBRE BARRA DE VIBRATO COMPLETADA!")
+(tut2_4_part
+   "LECCIÓN 3: Levantar la guitarra")
+(tut2_4_1
+   "")
+(tut2_4_2
+   "Levanta la guitarra y activa la energía Estrella.\nUna vez activada, baja la guitarra.\n")
+(tut2_4_3
+   "")
+(tut2_4_task
+   "Para seguir, levanta la guitarra, acumula energía Estrella y toca 8 notas.")
+(tut2_4_score
+   "Aciertos:")
+(tut2_4_done
+   "¡TUTORIAL SOBRE ENERGÍA ESTRELLA COMPLETADO!")
+(tut3_title
+   "TUTORIAL SOBRE HAMMER-ONS Y PULL-OFFS ")
+(tut3_1_part
+   "LECCIÓN 1: CUERDAS")
+(tut3_2_part
+   "LECCIÓN 2: HAMMER-ONS.")
+(tut3_2_info
+   "1. Pulsa el verde y toca la nota.\n2. \qPulsa\q el rojo sin rasguear.\n3. \qPulsa\q el amarillo sin rasguear.")
+(tut3_2_task
+   "Toca 3 secuencias de hammer-ons para seguir.")
+(tut3_2_score
+   "Aciertos:")
+(tut3_2_done
+   "¡LECCIÓN SOBRE HAMMER-ONS COMPLETADA!")
+(tut3_2_timeout
+   "¡FIN DE LA LECCIÓN!")
+(tut3_3_part
+   "LECCIÓN 3: HAMMER-ONS")
+(tut3_3_task
+   "Toca 8 notas con la técnica hammer-on.")
+(tut3_3_score
+   "Aciertos:")
+(tut3_3_done
+   "¡LECCIÓN SOBRE HAMMER-ONS COMPLETADA!")
+(tut3_4_part
+   "LECCIÓN 4: PULL-OFFS")
+(tut3_4_info
+   "1. Pulsa el amarillo y toca\n2. Suelta el amarillo\n3. Suelta el rojo sin rasguear")
+(tut3_4_task
+   "Para seguir, toca tres secuencias de pull-offs.")
+(tut3_4_score
+   "Aciertos:")
+(tut3_4_done
+   "¡LECCIÓN SOBRE PULL-OFFS COMPLETADA!")
+(tut3_4_timeout
+   "¡FIN DE LA LECCIÓN!")
+(tut3_5_task
+   "Toca 8 notas con la técnica del pull-off")
+(tut3_5_score
+   "Aciertos:")
+(tut3_5_done
+   "¡LECCIÓN SOBRE PULL-OFFS COMPLETADA!")
+(tut3_complete
+   "¡TUTORIAL AVANZADO COMPLETADO!")
+(mc_title_loading
+   "Cargando")
+(mc_title_saving
+   "Guardando")
+(mc_title_autosave
+   "autoguardado")
+(mc_title_warning
+   "ADVERTENCIA:")
+(mc_title_error
+   "Error")
+(mc_enable_autosave
+   "Tienes que elegir un dispositivo de almacenamiento y guardar para que la acción de guardado automático se active.")
+(mc_autosave_device_changed
+   "La función de guardado automático ha detectado que el dispositivo de almacenamiento ha cambiado desde la última vez que se utilizó. Elige la ubicación de guardado automático o desactívalo.")
+(mc_checking
+   "Comprobando dispositivos de almacenamiento...")
+(mc_loading
+   "Cargando...")
+(mc_multiple_saves
+   "Se encontraron varios dispositivos de almacenamiento con partidas guardadas. Elige el dispositivo de almacenamiento que desees o continúa sin cargar.")
+(mc_not_signed_in
+   "No has iniciado sesión. Si no inicias sesión, no puedes guardar el progreso.")
+(mc_confirm_not_signed_in
+   "Has elegido continuar sin iniciar sesión. Todo el progreso que hagas no se guardará.")
+(mc_load_file_corrupt
+   "No se pudo cargar la partida guardada porque el archivo está dañado.")
+(mc_load_failed
+   "Se produjo un error desconocido al cargar. El dispositivo de almacenamiento seleccionado ya no está disponible.")
+(mc_create_file
+   "No se encontraron datos guardados. ¿Crear un nuevo archivo para guardar datos?")
+(mc_saving
+   "Guardando...")
+(mc_save_complete
+   "Guardado completo.")
+(mc_saving_long
+   "Guardando contenido. No apagues tu consola.")
+(mc_save_confirm_overwrite
+   "El archivo guardado ya existe. ¿Sobrescribir?")
+(mc_save_failed
+   "No se pudo guardar. La función de guardado automático está desactivada.")
+(mc_save_choose_device
+   "Elige el dispositivo donde vas a guardar la partida.")
+(mc_save_not_enough_space
+   "No hay espacio suficiente en el dispositivo de almacenamiento seleccionado.")
+(mc_unsaved_data
+   "Hay datos sin guardar. Si cargas sin guardar primero, se perderán los datos. ¿Seguro que quieres cargar?")
+(mc_load_choose_device
+   "Elige el dispositivo desde donde vas a cargar la partida.")
+(mc_file_not_found
+   "No se encontraron datos en el dispositivo seleccionado.")
+(mc_delete_confirmation
+   "Estás a punto de borrar permanentemente el grupo seleccionado. Todo el progreso de este grupo se perderá. ¿Seguro que quieres continuar?")
+(mc_storage_changed
+   "Se produjo un cambio en la unidad de memoria Xbox 360 . El juego volverá al menú principal.")
+(mc_storage_device_missing
+   "El dispositivo de almacenamiento seleccionado no se encuentra. Error al cargar.")
+(mc_save_storage_device_pulled
+   "El dispositivo de almacenamiento seleccionado no está disponible. Error al guardar.")
+(mc_load_storage_device_pulled
+   "El dispositivo de almacenamiento seleccionado no está disponible. Error al cargar.")
+(mc_continue
+   "continuar")
+(mc_choose_device
+   "Elegir dispositivo de almacenamiento")
+(mc_create_save
+   "Crear nuevo archivo para guardar datos")
+(mc_disable_autosave
+   "Desactivar guardado automático")
+(mc_signin
+   "Iniciar sesión")
+(mc_no_save
+   "Continuar sin guardar")
+(mc_overwrite
+   "Sobrescribir")
+(leaderboards
+   "Tablas de clasificación")
+(lb_career_leaderboard
+   "Puntos modo carrera")
+(lb_campaign_leaderboard
+   "Puntuación de carrera")
+(lb_option1
+   "tema:")
+(lb_option2
+   "tiempo:")
+(lb_option3
+   "actuación:")
+(lb_charts
+   "Los mejores de esta semana")
+(lb_charts_alltime
+   "Listas de siempre")
+(lb_charts_campaign
+   "Canciones carrera")
+(lb_charts_all_songs
+   "Todos los temas")
+(lb_yourname
+   "Tu nombre:")
+(lb_top
+   "%d de %d")
+(lb_unranked
+   "Sin igualar")
+(lb_gotolist
+   "IR A LA LISTA")
+(lb_all_time
+   "CLÁSICOS")
+(lb_this_week
+   "SOLO ESTA SEMANA")
+(lb_campaign_songs
+   "SOLO CARRERA")
+(lb_friends_only
+   "SOLO AMIGOS")
+(lb_select_song
+   "ELIGE UNA TABLA DE CLASIFICACIÓN")
+(lb_diff
+   "FMDE")
+(lb_placeholder_name
+   "---")
+(lb_move_to_top
+   "INICIO")
+(lb_my_position
+   "MI PUNTUACIÓN")
+(sc_headline
+   "Seleccionar mando")
+(sc_attached
+   "(MANDOS INSERTADOS)")
+(sc_instructions
+   "Pulsa la barra de toque en tu mando de guitarra o utiliza el mando D de tu mando Xbox 360 para mover el dispositivo de entrada deseado al otro lado de la pantalla.")
+(sc_player1
+   "JUGADOR 1")
+(sc_player2
+   "JUGADOR 2")

@@ -1,0 +1,56 @@
+{new
+   UIPanel
+   system_cheat_panel
+   (file
+      "../ui/cheat.milo")
+   (focus cheat.lst)
+   (cheat_provider '')
+   (enter
+      {project.lbl
+         set_localized
+         {sprint
+            {elem
+               {find $syscfg rnd title}
+               1}
+            " Cheats"}}
+      {set
+         [cheat_provider]
+         {new CheatProvider}}
+      {cheat.lst
+         set_provider
+         [cheat_provider]})
+   (exit
+      {cheat.lst
+         set_data
+         ()}
+      {delete
+         [cheat_provider]})
+   (BUTTON_DOWN_MSG
+      {switch
+         $button
+         (kPad_Tri
+            {ui pop_screen})}
+      kDataUnhandled)
+   (SELECT_START_MSG
+      {if_else
+         {[cheat_provider]
+            invoke
+            {cheat.lst selected_pos}}
+         kDataUnhandled
+         TRUE})}
+{new
+   UIScreen
+   system_cheat_screen
+   (panels system_cheat_panel)
+   (focus system_cheat_panel)}
+{func
+   show_cheats
+   {if
+      {!
+         {ui in_transition}}
+      {if_else
+         {==
+            {ui current_screen}
+            system_cheat_screen}
+         {ui pop_screen}
+         {ui push_screen system_cheat_screen}}}}

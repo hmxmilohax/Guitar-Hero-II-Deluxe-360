@@ -1,0 +1,75 @@
+#define METER_END_FRAME
+(480)
+#define WIN_MESSAGE_SECS
+(3)
+{new
+   HudPanel
+   hud
+   (file
+      {sprint
+         "../hud/"
+         {gamecfg get hud_file}})
+   (enter
+      {game add_sinks $this intro_start_msg intro_skip slide_meter_in star_power_ready game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
+      {if
+         {!=
+            tutorial
+            {gamecfg get mode}}
+         {game add_sinks $this peak_on peak_off}})
+   (exit
+      {game remove_sink $this})
+   (on_reset
+      {$this
+         set_showing
+         {&&
+            {gamecfg get show_hud}
+            {! $cheat_enabled_performance_mode}}}
+      {$this set_meters_showing TRUE}
+      {$this set_win_showing FALSE})
+   (intro_start_msg
+      {$this reset}
+      {meters_slide_in.view set_frame 0}
+      {$this set_meters_showing FALSE})
+   (intro_skip
+      {$this reset}
+      {meters_slide_in.view set_frame METER_END_FRAME}
+      {$this set_meters_showing TRUE})
+   (slide_meter_in
+      {$this set_meters_showing TRUE}
+      {meters_slide_in.view
+         animate
+         (period 0.5)
+         (units kTaskSeconds)}
+      {if
+         {!=
+            {gamecfg get mode}
+            attract}
+         {script_task
+            (delay 0.25)
+            (script
+               {play_game_sfx meter_slide})}})
+   (star_power_ready
+      ($player_num)
+      {if_else
+         {gamecfg get shared_star_meter}
+         {if
+            {== $player_num 0}
+            {$this show_message kPlayerShared star_ready}}
+         {$this show_message $player_num star_ready}}
+      {play_game_sfx_player sp_available sp_available_multi $player_num}
+      kDataUnhandled)
+   (game_won_msg
+      {$this on_game_over}
+      {$this set_win_showing TRUE}
+      {script_task
+         (delay WIN_MESSAGE_SECS)
+         (script
+            {$this set_win_showing FALSE})})
+   (game_lost
+      {$this on_game_over}
+      {$this show_message kPlayerShared song_failed})
+   (game_outro_complete
+      {$this set_showing FALSE})
+   (on_set_paused
+      ($paused)
+      {$this set_paused $paused})}

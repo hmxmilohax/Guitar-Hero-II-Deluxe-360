@@ -1,0 +1,12 @@
+#include macros.dta
+(objects
+   #include objects.dta)
+(locale ../ui/eng/locale_milo.dta ../ui/eng/locale.dta)
+(ui
+   #include ../ui/defaults.dta)
+(milo
+   (title
+      "GH2"))
+(system
+   (ng TRUE))
+#merge ../../../system/run/config/milo.dta
