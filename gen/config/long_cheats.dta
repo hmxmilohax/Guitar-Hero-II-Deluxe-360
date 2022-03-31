@@ -29,6 +29,36 @@
 #define G_ORANGE
 (kPad_Square)
 #endif
+((kPad_Select kPad_Select)
+   {if
+      {&&
+         {exists ui}
+         {!
+            {ui in_transition}}
+         {'||'
+            {==
+               {ui current_screen}
+               sel_song_screen}
+            {==
+               {ui current_screen}
+               qp_selsong_screen}
+            {==
+               {ui current_screen}
+               multi_vs_selsong_screen}
+            {==
+               {ui current_screen}
+               multi_coop_selsong_screen}
+            {==
+               {ui current_screen}
+               multi_fo_selsong_screen}
+            {==
+               {ui current_screen}
+               practice_selsong_screen}}}
+      {set
+         $modifier_exit
+         {ui current_screen}}
+      {synth play_sequence button_select}
+      {ui goto_screen modifiers_screen}})
 ((G_BLUE G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW)
    {if
       {&&

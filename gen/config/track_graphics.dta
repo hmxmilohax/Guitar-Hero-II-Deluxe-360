@@ -57,10 +57,18 @@
 (horizon_y 120)
 (remove_y -15)
 (track_speed
-   (kDifficultyEasy 1)
-   (kDifficultyMedium 1)
-   (kDifficultyHard 1.4)
-   (kDifficultyExpert 1.4))
+   (kDifficultyEasy 
+      {/ $trackspd $speedmod})
+   (kDifficultyMedium 
+      {/ $trackspd $speedmod})
+   (kDifficultyHard 
+      {/
+         {'*' $trackspd 1.4}
+         $speedmod})
+   (kDifficultyExpert 
+      {/
+         {'*' $trackspd 1.4}
+         $speedmod}))
 (alpha_dist 40)
 (horizon_tail_clip 7)
 (nowbar_tail_clip 1.5)

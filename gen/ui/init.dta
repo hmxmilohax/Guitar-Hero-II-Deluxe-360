@@ -16,6 +16,7 @@
 #include training.dta
 #include pause.dta
 #include leaderboards.dta
+#include modifiers.dta
 {foreach
    $p
    (pause_panel pause_controller_panel tut_pause_panel pract_pause_panel tut_pause_controller_panel lose_panel helpbar endgame_encore_panel)
@@ -30,3 +31,5 @@
       {track_budget setup $cfg}
       {set $first_screen track_budget}}}
 {ui goto_screen $first_screen}
+{set $speedmod 1.0}
+{set $trackspd 1.0}

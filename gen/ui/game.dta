@@ -23,7 +23,30 @@
             ($prefix
                "mtv_campaign_line")
             {mtv_campaign_song_id.view set_showing TRUE}
-            {$this set_line $prefix 1 $song_text}
+            {if_else
+               {!= $speedmod 1}
+               {if_else
+                  {&&
+                     {==
+                        {gamecfg get mode}
+                        practice}
+                     {!=
+                        {gamecfg get practice_speed}
+                        0}}
+                  {$this set_line $prefix 1 $song_text}
+                  {$this
+                     set_line
+                     $prefix
+                     1
+                     {sprint
+                        $song_text
+                        " ("
+                        {int
+                           {'+'
+                              0.5
+                              {'*' $speedmod 100}}}
+                        "%)"}}}
+            {$this set_line $prefix 1 $song_text}}
             {$this set_line $prefix 2 $song_caption}
             {$this set_line $prefix 3 $artist_text}}})
    (set_line
@@ -129,6 +152,7 @@
       kDataUnhandled)
    (extend_track
       {track_panel do_extend_sequence}
+      {beatmatch set_music_speed $speedmod}
       {script_task
          (delay 1.8)
          (units kTaskSeconds)

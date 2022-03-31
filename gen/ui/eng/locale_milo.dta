@@ -1,0 +1,692 @@
+(note_streak_popup_p0
+   {if_else
+      $egg5
+      {sprint
+         $player0_streak
+         " NOTES IN A ROW!"}
+      {sprint
+         $player0_streak
+         " NOTE STREAK!"}})
+(note_streak_popup_p1
+   {if_else
+      $egg5
+      {sprint
+         $player1_streak
+         " NOTES IN A ROW!"}
+      {sprint
+         $player1_streak
+         " NOTE STREAK!"}})
+(note_streak_popup_p2
+   {if_else
+      $egg5
+      {sprint
+         $player2_streak
+         " NOTES IN A ROW!"}
+      {sprint
+         $player2_streak
+         " NOTE STREAK!"}})
+(eg_streak_format
+   {if_else
+      {==
+         {gamecfg get mode}
+         quickplay}
+      {switch
+         {game get_track_type 0}
+         (kTrackBass
+            "%i Bass Streak!")
+         (kTrackRhythm
+            "%i Rhythm Streak!")
+         "%i Note Streak!"}
+      "%i Note Streak!"})
+(cheat_focusmode
+   "Focus Mode")
+(cheat_neckless
+   "Neckless Mode")
+(speed_msg
+   "NOTES: %d%%  SONG: %d%%")
+(gm_tspd
+   "UNUSED")
+(gm_sngspd
+   "NOTE SPEED")
+(gm_unusedsl
+   "SONG SPEED")
+(GM_BLACK_BACKGD
+   "FOCUS MODE")
+(GAME_MODIFIER
+   "GAME MODIFIERS")
+(help_adjspd
+   "ADJUST SPEED")
+(conceived_by
+   "as diabolically conceived by")
+(cheat_mtv_overlay
+   "Song Title Always")
+(cheat_awesomeness
+   "Awesomeness Detection")
+(EASTER_EGG1
+   "MiloHax Community")
+(EASTER_EGG3
+   "DISCORD, INTERNET")
+(EASTER_EGGa
+   "\qFriends Don't Let Friends Clon\q")
+(EASTER_EGGb
+   "\qCALL ATTENDANT\q")
+(EASTER_EGGc
+   "\qlord help my poor soul\q")
+(EASTER_EGGd
+   "\qweekly old man psa\q")
+(unlockeasteregg1_1
+   "Dear Valued GH2 Deluxe Player,")
+(unlockeasteregg1_2
+   "GUESS WHAT?")
+(unlockeasteregg1_3
+   "You have unlocked an EASTER EGG!")
+(unlockeasteregg1_4
+   "\nIt seems like you wanted to activate hyperspeed. We're sorry to inform you that hyperspeed no longer exists as a code.\n\nPress SELECT, SELECT on any setlist screen to access the new modifiers screen!\n\nHave fun,\nThe GH2 Deluxe Team\n\nP.S. This isn't the only easter egg...try OBOYOBOY in other places in this video game...")
+(unlockeasteregg2_1
+   "Dear Valued GH2 Deluxe Player,")
+(unlockeasteregg2_2
+   "EASTER EGG!")
+(unlockeasteregg2_3
+   "You found another one! Hell yeah!")
+(unlockeasteregg2_4
+   "\nIf you want to keep the song title on, press YELLOW, ORANGE, RED, YELLOW, ORANGE, RED on the main menu! Apologies for the occasional text blur, that's a leftover from the venue rendering that I couldn't disable.\n\nHave fun,\nThe GH2 Deluxe Team\n\nP.S. It shouldn't be too difficult to find the other eggs, and you really want to find them all...")
+(unlockeasteregg3_1
+   "Dear Valued GH2 Deluxe Player,")
+(unlockeasteregg3_2
+   "EASTER EGG!")
+(unlockeasteregg3_3
+   "How many more are there?")
+(unlockeasteregg3_4
+   "\nEver want to play performance mode, but still want to see your score? Press YELLOW, RED, RED, YELLOW on the main menu for neckless mode! For minimalist play, enable this and focus mode at the same time.\n\nHave fun,\nThe GH2 Deluxe Team\n\nP.S. Have you fired your band manager yet? That guy's a real asshole...")
+(unlockeasteregg4_1
+   "Dear Awesome GH2 Deluxe Player,")
+(unlockeasteregg4_2
+   "AWESOME EGG!")
+(unlockeasteregg4_3
+   "awesome awesome awesome awesome")
+(unlockeasteregg4_4
+   "\nWe infused this game with the very same Awesomeness Detection that you know and love from the Rock Band series! Press YELLOW, BLUE, ORANGE, YELLOW, BLUE, ORANGE, YELLOW, BLUE, ORANGE on the main menu to enable it!\n\nHave fun,\nThe GH2 Deluxe Team\n\nP.S. Have you found all four easter eggs? If you have, then I really have to give you credit...")
+(finaleggtxt1
+   "CONGRATULATIONS")
+(finaleggtxt2
+   "YOU FOUND ALL THE EGGS")
+(finaleggtxt3
+   "Thank you so much for playing our special version of\nGuitar Hero II.")
+(headline1
+   "Concertgoers at {GH_VENUE} {GH_VERB_PAST} {GH_ADJ} {GH_NOUN}")
+(headline2
+   "{GH_BAND}'s fans {GH_VERB} tonight's {GH_NOUN} at {GH_VENUE}")
+(headline3
+   "{GH_BAND} {GH_VERB} the {GH_NOUN} of fans at {GH_VENUE}")
+(headline_battle
+   "Battle of the Bands sees {GH_BAND} {GH_WIN_PHRASE}")
+(headline_perfect
+   "{GH_VENUE} patrons in awe of {GH_BAND}'s flawless show")
+(headline_perfect_coop
+   "{GH_VENUE} patrons go wild at flawless, legendary set")
+(headline_quick_coop1
+   "{GH_VENUE} {GH_VERB} {GH_ADJ} {GH_NOUN}")
+(headline_quick_coop2
+   "{GH_VENUE} {GH_VERB_PAST} {GH_ADJ} {GH_NOUN}")
+(headline_vs
+   "Player {GH_NUM} {GH_VS_VERB} {GH_VS_NOUN}")
+(headline_vs_tie
+   "NO DECISIVE WINNER IN EPIC GUITAR BATTLE")
+(from
+   "from")
+(at
+   "at")
+(with
+   "with")
+(new_band_headline
+   "New Band")
+(adj_a_1
+   "monumental")
+(adj_a_2
+   "red-hot")
+(adj_a_3
+   "fiery")
+(adj_a_4
+   "strong")
+(adj_a_5
+   "rafter-shaking")
+(adj_a_6
+   "earthquaking")
+(adj_a_7
+   "mind-blowing")
+(adj_a_8
+   "destructive")
+(adj_a_9
+   "near-perfect")
+(adj_a_10
+   "towering")
+(adj_b_1
+   "pleasant")
+(adj_b_2
+   "solid")
+(adj_b_3
+   "spirited")
+(adj_b_4
+   "enjoyable")
+(adj_b_5
+   "well-rehearsed")
+(adj_b_6
+   "decent")
+(adj_b_7
+   "adequate")
+(adj_b_8
+   "curious")
+(adj_b_9
+   "fine")
+(adj_b_10
+   "promising")
+(adj_c_1
+   "mediocre")
+(adj_c_2
+   "pitiful")
+(adj_c_3
+   "laughable")
+(adj_c_4
+   "cringeworthy")
+(adj_c_5
+   "forgettable")
+(adj_c_6
+   "painful")
+(adj_c_7
+   "marginal")
+(adj_c_8
+   "poor")
+(adj_c_9
+   "absurd")
+(verb_a_1
+   "adores")
+(verb_a_2
+   "lit up by")
+(verb_a_3
+   "in love with")
+(verb_a_4
+   "crazy over")
+(verb_a_5
+   "in awe of")
+(verb_a_6
+   "unruly over")
+(verb_a_7
+   "rioting over")
+(verb_a_8
+   "rave about")
+(verb_a_9
+   "psyched over")
+(verb_b_1
+   "happy with")
+(verb_b_2
+   "jam out to")
+(verb_b_3
+   "sway to")
+(verb_b_4
+   "enjoy")
+(verb_b_5
+   "rock out to")
+(verb_b_6
+   "sing along with")
+(verb_b_7
+   "vibe to")
+(verb_b_8
+   "warmly receive")
+(verb_b_9
+   "applaud")
+(verb_c_1
+   "mock")
+(verb_c_2
+   "jeer")
+(verb_c_3
+   "demand refunds for")
+(verb_c_4
+   "bargaining over")
+(verb_past_a_1
+   "entranced by")
+(verb_past_a_2
+   "rocked by")
+(verb_past_a_3
+   "driven wild at")
+(verb_past_a_4
+   "blown away by")
+(verb_past_a_5
+   "astounded at")
+(verb_past_a_6
+   "hooked on")
+(verb_past_a_7
+   "stirred by")
+(verb_past_a_8
+   "slayed by")
+(verb_past_a_9
+   "thrilled by")
+(verb_past_b_1
+   "entertained at")
+(verb_past_b_2
+   "pleased by")
+(verb_past_b_3
+   "leave satisfied at")
+(verb_past_b_4
+   "enjoyed")
+(verb_past_b_5
+   "delighted at")
+(verb_past_b_6
+   "impressed by")
+(verb_past_b_7
+   "charmed by")
+(verb_past_b_8
+   "placated by")
+(verb_past_b_9
+   "won over by")
+(verb_past_c_1
+   "bemused by")
+(verb_past_c_2
+   "disappointed by")
+(verb_past_c_3
+   "angry over")
+(verb_past_c_4
+   "frustrated by")
+(concert_a_1
+   "showing")
+(concert_a_2
+   "gig")
+(concert_a_3
+   "set")
+(concert_b_1
+   "show")
+(concert_b_2
+   "production")
+(concert_c_1
+   "performance")
+(concert_c_2
+   "concert")
+(win_phrase_c_1
+   "slightly inebriated")
+(win_phrase_c_2
+   "take home bronze")
+(win_phrase_b_1
+   "in respectable form")
+(win_phrase_b_2
+   "score second place")
+(win_phrase_a_1
+   "win in a landslide")
+(win_phrase_a_2
+   "take home gold")
+(win_vs_verb_c_1
+   "wins guitar battle")
+(win_vs_verb_c_2
+   "blows away challenger")
+(win_vs_verb_b_1
+   "grinds out win")
+(win_vs_verb_b_2
+   "earns crowd's favor")
+(win_vs_verb_a_1
+   "emerges victorious")
+(win_vs_verb_a_2
+   "claims top spot")
+(win_vs_noun_c_1
+   "decisively")
+(win_vs_noun_c_2
+   "no questions asked")
+(win_vs_noun_b_1
+   "in fair battle")
+(win_vs_noun_b_2
+   "with solid showing")
+(win_vs_noun_a_1
+   "in squeaker matchup")
+(win_vs_noun_a_2
+   "by a hair's length")
+(take_verb_1
+   "steals")
+(take_verb_2
+   "earns")
+(take_verb_3
+   "wins")
+(take_verb_4
+   "grabs")
+(take_noun_a_1
+   "hearts")
+(take_noun_a_2
+   "ears")
+(take_noun_a_3
+   "souls")
+(take_noun_b_1
+   "fancy")
+(take_noun_b_2
+   "appreciation")
+(take_noun_b_3
+   "curiosity")
+(take_noun_c_1
+   "ire")
+(take_noun_c_2
+   "wallets")
+(take_noun_c_3
+   "disgust")
+(win_easy
+   "Dear ______________________,\n\nCongrats on beating Guitar Hero II Deluxe on Easy. Pretty cool, more songs to play, yeah?\n\nRegardless, you've only just begun. Easy players don't get paid--MEDIUM, HARD, and EXPERT players do. And I think you know what cash gets ya...\n\nIt takes some pinky dexterity, but I'm sure you'll be fine. Use that Practice Mode to your advantage.\n\nKisses,\nThe GH2 Deluxe Team")
+(win_medium
+   "Dear ______________________,\n\nCongrats on beating Guitar Hero II Deluxe on Medium. Making some headroom now.\n\nIf you're still hard up for money (and we know you rock star types always are), get working on the HARD and EXPERT difficulties. We're throwing one more color at you for it! Still, if you can handle it, there's more to unlock and more cash in it for you.\n\nSmooches,\nThe GH2 Deluxe Team")
+(win_hard
+   "Dear ______________________,\n\nCongrats, you beat Guitar Hero II Deluxe on Hard. Not bad at all.\n\nI think you know what's next, kiddo. EXPERT awaits. No new colors, but the notes come at you faster and more furiously than ever before. It's where the gunslingers ascend to rock GODS. And lordy, it's RIGHTEOUS if you can make it work.\n\nGodspeed, pilgrim.\n\nHugs,\nThe GH2 Deluxe Team")
+(win_expert
+   "Dear ______________________,\n\nAnd that's it! Guitar Hero II Deluxe on Expert SLAIN.\n\nThat expanded setlist takes a bit longer to work though, but there's some gems in there, ain't there? And speaking of gems, you should have enough money now to buy a whole 'nother beast, the infamous \qSpeed Test\q. Makes good use of that uncapped strumming, to say the least. Check for it in the store!\n\nAnd keep an eye out for the GH2DX expansion disc if you like strumming. There will be MUCH strumming.\n\nLove,\nThe GH2 Deluxe Team")
+(speedtest
+   "Speed Test")
+(speedtest_shop_desc
+   "The real test of the strum limit fix.\n\nThink you can accurately rake in this engine?\n\nGET SMOKED")
+(loading_tip_speedtest
+   "\qwhy speed test?\q\n - ExileLord, 2021")
+(bass_musicman_desc
+   "Introduced in 1976, StingRays are renowned among bassists for their high build quality and bright sound. The latter makes them especially ideal for dense styles of music like hard rock and shoegazing, where the bass is likely to be lost in all the din.")
+(bass_musicman_lava_desc
+   "Slap bassists like Louis Johnson and Flea count the StingRay as a favorite, as do classic rockers like Benjamin Orr and John Deacon. With its 3-band onboard EQ and \qMM-style\q humbucking pickups, it's not hard to see why.")
+(bass_sg_mahogany_desc
+   "The SG Standard Bass has a shorter scale length than most other basses, making it ideal for players with smaller hands and those looking for more fundamental richness in their tone.")
+(bass_sg_cream_desc
+   "Gibson fit the SG Bass with not just two huge-sounding humbucking pickups, but individual volume and tone controls to let you dial in the exact sound you need. The mahogany body and neck aids in the SG Bass' warm, fat tone.")
+(bass_grabber_cherry_desc
+   "First seen in 1973 along with the Gibson Ripper, the Grabber featured a unique adjustable pickup not seen on its cousins - allowing the player to simulate a neck, bridge, or in between pickup position for pure tone control.")
+(bass_grabber_maple_desc
+   "The Grabber saw its peak in 1975, after its high-profile use by KISS' Gene Simmons. While discontinued in the mid-80s, its cousins, the Ripper and G-3 basses, have both seen much more recent reissues.")
+(bass_hofner_desc
+   "While the Violin Bass has since achieved iconic status, its most famous player - one Paul McCartney - bought it because it was cheap at the time and because the symmetrical design looked less strange left-handed than a traditional cutaway bass.")
+(bass_thunderbird_ebony_desc
+   "Launched as a companion to the Gibson Firebird in 1963, the Thunderbird also featured neck-through construction and a high output, good for the thick, heavy low-end the Thunderbird is prized for.")
+(bass_thunderbird_burst_desc
+   "The Who, Aerosmith, Cheap Trick, Mötley Crüe - what do they all have in common? They've all made the growl, the rumble, the - er, THUNDER of the Thunderbird a key part of their sound.")
+(sg_cherry_desc
+   {if_else
+      $egg5
+      "The classic cherry finish showcases the rich mahogany used on the SG Standard. Hazzard and his hero, Angus Young, both favor this guitar."
+      "The classic cherry finish showcases the rich mahogany used on the SG Standard. Axel Steel and his hero, Angus Young, both favor this guitar."})
+(sg_white_desc
+   "The SG can take a beatin' and keep on tickin'. This was the first guitar that Judy Nails ever owned.")
+(exp_sun_desc
+   {if_else
+      $egg5
+      "Matthias Jabs of the Scorpions uses the Gibson Explorer to create metal madness. This particular finish was made specially for Hair Matheson."
+      "Matthias Jabs of the Scorpions uses the Gibson Explorer to create metal madness. This particular finish was made specially for Izzy Sparks."})
+(fb_blue_desc
+   "Pandora favors her Blue Gibson Firebird, not just because it plays well, but because it matches her hair.")
+(es_maple_desc
+   "The ES-335 is crafted at Gibson's Memphis, TN facility. This particular one belongs to Clive Winston who, for no apparent reason, dubbed it \qLeeanne.\q")
+(cor_white_desc
+   "The mysterious shape of the Gibson Corvus attracted Xavier Stone at an early age. One of his first guitars, it has accompanied him on more than 7 world tours.")
+(sg_ebony
+   "Ebony Standard")
+(sg_ebony_desc
+   "The earliest SG style guitars were still referred to as Les Paul models up to late 1963 when Les Paul creator, Les Paul, and Gibson temporarily parted ways.")
+(lp_ebony
+   "Ebony Standard")
+(lp_ebony_desc
+   "The all-time favorite Gibson model, the Les Paul Standard is recognized the world over as an icon for rock and roll.")
+(lp_gold
+   "Goldtop Standard")
+(lp_gold_desc
+   "When the original Les Paul made its debut in 1952, the model featured a striking Goldtop finish. The Goldtop finish was originally offered from 1952-1958, returning in 1968 and still going strong today.")
+(lp_acai
+   "The Discount Code")
+(lp_acai_desc
+   "Legend says that this guitar provides a magical ability to get 10% off your next GFUEL order. Just use Discount Code \qAcai\q and watch the magic happen!")
+(fv_cracked
+   "Cracked Blue Finish")
+(fv_cracked_desc
+   "To facilitate playing the original Flying V in a seated position, the model originally featured a rubber non-skid pad on the lower body wing.")
+(fv_buckethead
+   "Ibanez Buckethead Custom")
+(fv_buckethead_desc
+   "Big deal. You play a V. But do you play the V of one of the most badass guitarists of all time, the man who contributed this game's single most iconic song? Think not. (Thanks HellsAn631.).")
+(es_ebony
+   "Ebony Finish")
+(es_ebony_desc
+   "\qES\q stands for Electric Spanish. Typically, Spanish guitars are acoustic and have nylon strings. The ES-335 brings a little something different to the world of rock electric guitar.")
+(fb_copper
+   "Copper Finish")
+(fb_copper_desc
+   "The top-of-the-line Firebird features mother-of-pearl fingerboard inlays that place it in the ranks of Gibson's most prestigious models.")
+(fb_hippie
+   "Psychedelic Finish")
+(fb_hippie_desc
+   "The Harmonix custom shop did the paint job on this Custom Gibson Firebird. The inspiration was drawn from years of Friday night Led Zeppelin laser shows.")
+(lp_dbl_red
+   "Cherry Les Paul Special")
+(lp_dbl_red_desc
+   "The original Gibson Les Paul left little room for improvement, but the combination of a double-cutaway body with the original carved-top design has been embraced by guitarists who want the ultimate combination of tradition and performance.")
+(lp_dbl_green
+   "Green Lightning Finish")
+(lp_dbl_green_desc
+   "Johnny Napalm's signature guitar, he favors the Les Paul Special for its light weight, playability and quality of construction.")
+(cor_white
+   "Alpine White Finish")
+(cor_white_desc
+   "The mysterious shape of the Gibson Corvus attracted Xavier Stone at an early age. One of his first guitars, it has accompanied him on more than 7 world tours.")
+(cor_snake
+   "Custom Snakeskin Finish")
+(cor_snake_desc
+   "Reptilian rockers love the Custom Snakeskin Gibson Corvus. Shed your conventional skin and slither your way into rock-stardom with this distinctive take on an already unique guitar.")
+(mod_ebony
+   "Ebony Finish")
+(mod_ebony_desc
+   "A bizarre mutation of the Flying V, the Moderne was designed in the 1950s but never went to market until the 1980s.")
+(mod_dragon
+   "Night Dragon Custom")
+(mod_dragon_desc
+   "The Gibson Moderne's already innovative shape takes flight with the custom Night Dragon finish. Only rock will soothe this savage beast!")
+(redoctane
+   "Harmonix Signature SG")
+(redoctane_desc
+   "Gibson's daring foray into the world of toy guitars led to this compact little beauty. Connecting not through a 1/4\q output jack but through a common nine-pin PlayStation®2 controller port, you might still be able to make music with it, if you're insane.")
+(redoctane_cherry
+   "Cherry Standard")
+(redoctane_cherry_desc
+   "Perhaps the most iconic of the Harmonix lineup, this model stands as the go-to guitar of choice for PS2 players of all stripes. (Protip, if the whammy bar goes limp, rubber-band it to the strap peg.)")
+(redoctane_white
+   "Tuxedo Finish")
+(redoctane_white_desc
+   "Initially, the Harmonix Signature SG came in black with a white pickguard, rather than black on red like a traditional SG. This resulted in the finish being nicknamed the \qtuxedo\q guitar.")
+(redoctane_yellow
+   "Yellow E3 Finish")
+(redoctane_yellow_desc
+   "A true rarity, a yellow Harmonix Signature SG was featured on the showroom floor at E3 2006. Only a single model has ever been seen, in a camcorder upload to YouTube from that same year.")
+(redoctane_pink
+   "Pink Finish")
+(redoctane_pink_desc
+   "Where or when this finish was offered at retail is still up for debate. Word has it they very rarely surface on internet auction sites.")
+(redoctane_walnut
+   "Walnut Finish")
+(redoctane_walnut_desc
+   "Who said only real guitars can be made out of wood? Okay, so this one's not REALLY made from wood--but hey, it's still pretty classy.")
+(redoctane_target
+   "Target® Special Finish")
+(redoctane_target_desc
+   "Exclusively sold at Target® retailers in a guitar bundle, this one shares the store's red on white color scheme. It also manages to escape its dull, corporate trappings by just plain looking clean.")
+(redoctane_scott
+   "Local H V3 Custom")
+(redoctane_scott_desc
+   "Local H, the (other) Mad Scientist of Guitar Hero II, has a habit of Frankensteining together toy guitars. (Ask him about his \qXG\q sometime - he could use the reminder to go fix it.) White on white, with a ROYOR array of fret buttons; it's unique, if nothing else.")
+(redoctane_jnack
+   "jnack Special Finish")
+(redoctane_jnack_desc
+   "Legend says jnack broke into Activision's break room to steal their guitars, but since Activision already killed the franchise twice, no one seemed to care.")
+(redoctane_green
+   "Green E3 Finish")
+(redoctane_green_desc
+   "The similarly ill-fated sister of the Yellow E3 finish, to date, not a single one of either guitar has surfaced in public past their initial showing.")
+(redoctane_green_shop_desc
+   "The similarly ill-fated sister of the Yellow E3 finish, to date, not a single one of either guitar has surfaced in public past their initial showing.")
+(sg_ebony_shop_desc
+   "This ebony Gibson SG has a custom tailpiece. An axe with style, this guitar will not disappoint.")
+(lp_ebony_shop_desc
+   "This classic Gibson Les Paul Standard comes in an Ebony finish. It isn't fancy, but it rocks!")
+(lp_gold_shop_desc
+   "The Goldtop finish was originally offered from 1952-1958, returning in 1968 and still going strong today.")
+(lp_acai_shop_desc
+   "Legend says that this guitar provides a magical ability to get 10% off your next GFUEL order. Just use Discount Code \qACAI\q and watch the magic happen!")
+(fv_cracked_shop_desc
+   "The Harmonix custom shop works its magic again with the blue and white paintjob on this Gibson Flying V.")
+(fv_buckethead_shop_desc
+   "One of Buckethead's most iconic guitars, this bad boy came to life sometime in the mid-90s. It also will not increase your chances of beating \qJordan\q.")
+(es_ebony_shop_desc
+   "As classy as they come, you'll definitely raise some eyebrows playing this Ebony Gibson ES-335.")
+(fb_copper_shop_desc
+   "This sleek copper finish compliments the unconventional shape of the Gibson Firebird.")
+(fb_hippie_shop_desc
+   "Trade in your hard earned cash for this crazy cool custom finish on this Gibson Firebird.")
+(lp_dbl_red_shop_desc
+   "A classic guitar with a classic cherry finish.")
+(lp_dbl_green_shop_desc
+   "Lightning strikes 3 times with this custom finished Gibson Les Paul Special.")
+(cor_white_shop_desc
+   "A classic take on a guitar that is anything but ordinary. The Gibson Corvus.")
+(cor_snake_shop_desc
+   "A distinctive slant on an already unusual guitar, the Custom Snakeskin Gibson Corvus makes a memorable impression.")
+(mod_ebony_shop_desc
+   "Make a statement with the Gibson Moderne. The post-modern design will get you noticed.")
+(mod_dragon_shop_desc
+   "The Gibson Moderne's already innovative shape takes flight with the custom Night Dragon finish. Only rock can soothe this savage beast!")
+(redoctane_shop_desc
+   "This 3/4 scale SG replica - one you might very well recognize - was initially featured in the first Guitar Hero by way of a cheat code. Harmonix thankfully thought to leave the files on-disc for the second game so we could sell it to you proper.")
+(redoctane_white_shop_desc
+   "Initially, the Harmonix Signature SG came in black with a white pickguard, rather than black on red like a traditional SG. This resulted in the finish being nicknamed the \qtuxedo\q guitar.")
+(redoctane_yellow_shop_desc
+   "A true rarity, a yellow Harmonix Signature SG was featured on the showroom floor at E3 2006. Only a single model has ever been seen, in a camcorder upload to YouTube from that same year.")
+(redoctane_pink_shop_desc
+   "Where or when this finish was offered at retail is still up for debate. Word has it they very rarely surface on internet auction sites.")
+(redoctane_walnut_shop_desc
+   "Who said only real guitars can be made out of wood? Okay, so this one's not REALLY made from wood - but hey, it's still pretty classy.")
+(redoctane_target_shop_desc
+   "Exclusively sold at Target® retailers in a guitar bundle, this one shares the store's red on white color scheme. It also manages to escape its dull, corporate trappings by just plain looking clean.")
+(redoctane_scott_shop_desc
+   "An odd hybrid of parts scavenged from other toy guitars, this all-white Signature SG is truly one of a kind - for better or worse.")
+(redoctane_jnack_shop_desc
+   "Legend says jnack broke into Activision's break room to steal their guitars, but since Activision already killed the franchise twice, no one seemed to care.")
+(drinkup
+   "Drink Up")
+(drinkup_shop_desc
+   "OUNCE of SELF is ready to out-heavy the entire face of this planet! Keeping everything heavy, sludgy, and earth-shaking, the band tends to leave their mark on the metal scene.")
+(kicked
+   "Kicked to the Curb")
+(kicked_shop_desc
+   "Noble Rot is pure American rock 'n' roll with an extra large side order of PARTY. Founded in 2006, their first full-length album debuts December 7th.")
+(loading_tip_arterialblack
+   "Marcus Henderson contributed another tune for Guitar Hero II before splitting Drist to play lead guitar for the Grim Ripper.")
+(loading_tip_collide
+   "When Anarchy Club isn't fighting rival Kung Fu gangs, frontman Keith Smith smashes guitars for HMX QA.")
+(loading_tip_drinkup
+   "\qDrink Up\q has become the anthem for the messed-up masses.")
+(loading_tip_elephantbones
+   "Dizzy from the fumes, white knuckled, holding the wheel hostage. A dirty old Cadillac barrels toward hell, with a brick on the gas pedal.")
+(loading_tip_ftk
+   "If they weren't so busy starting fights and smashing things, these girls would probably take over the world.")
+(loading_tip_kicked
+   "Right now, Noble Rot is hitting on your sister. And if she doesn't take the bait, your mom is on hold.")
+(loading_tip_newblack
+   "\qWhen playing shows, it's not ok to start a chant for your own band. That's like giving yourself a nickname.\q")
+(loading_tip_onefortheroad
+   "Breaking Wheel would love to play in your basement, funeral or bar mitzvah. Donations to our van fund also welcome.")
+(loading_tip_radiumeyes
+   "Think you can you play a proto-retro-roboto-organico soldier's love song set during the Phillippines-American War?")
+(loading_tip_rawdog
+   "For best results, play at maximum volume, especially in the presence of authority figures or the elderly.")
+(loading_tip_thunderhorse
+   "DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed.")
+(freebird_tip2
+   "Master Free Bird in Practice Mode before trying your hand at the full version on stage.")
+(loading_tip10
+   "If you're having problems with timing, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
+(loading_tip12
+   "Did you forget to turn on Progressive Scan again?")
+(soft_1
+   "Soft part 1")
+(soft_2
+   "Soft part 2")
+(soft_3
+   "Soft part 3")
+(soft_4
+   "Soft part 4")
+(gtr_riff_3
+   "Gtr riff 3")
+(gtr_riff_4
+   "Gtr riff 4")
+(gtr_riff_5
+   "Gtr riff 5")
+(135bpm_start
+   "135bpm start")
+(135bpm_strumming
+   "135bpm strumming")
+(135bpm_brokenscale
+   "135bpm brokenscale")
+(135bpm_doubles
+   "135bpm doubles")
+(145bpm_start
+   "145bpm start")
+(145bpm_strumming
+   "145bpm strumming")
+(145bpm_brokenscale
+   "145bpm brokenscale")
+(145bpm_doubles
+   "145bpm doubles")
+(155bpm_start
+   "155bpm start")
+(155bpm_strumming
+   "155bpm strumming")
+(155bpm_brokenscale
+   "155bpm brokenscale")
+(155bpm_doubles
+   "155bpm doubles")
+(165bpm_start
+   "165bpm start")
+(165bpm_strumming
+   "165bpm strumming")
+(165bpm_brokenscale
+   "165bpm brokenscale")
+(165bpm_doubles
+   "165bpm doubles")
+(175bpm_start
+   "175bpm start")
+(175bpm_strumming
+   "175bpm strumming")
+(175bpm_brokenscale
+   "175bpm brokenscale")
+(175bpm_doubles
+   "175bpm doubles")
+(185bpm_start
+   "185bpm start")
+(185bpm_strumming
+   "185bpm strumming")
+(185bpm_brokenscale
+   "185bpm brokenscale")
+(185bpm_doubles
+   "185bpm doubles")
+(195bpm_start
+   "195bpm start")
+(195bpm_strumming
+   "195bpm strumming")
+(195bpm_brokenscale
+   "195bpm brokenscale")
+(195bpm_doubles
+   "195bpm doubles")
+(205bpm_start
+   "205bpm start")
+(205bpm_strumming
+   "205bpm strumming")
+(205bpm_brokenscale
+   "205bpm brokenscale")
+(205bpm_doubles
+   "205bpm doubles")
+(215bpm_start
+   "215bpm start")
+(215bpm_strumming
+   "215bpm strumming")
+(215bpm_brokenscale
+   "215bpm brokenscale")
+(215bpm_doubles
+   "215bpm doubles")
+(break_3
+   "Break 3")
+(break_4
+   "Break 4")
+(break_5
+   "Break 5")
+(blackout
+   "Blackout")
