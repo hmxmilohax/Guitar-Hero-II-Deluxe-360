@@ -131,6 +131,9 @@
             show_drummer}})
    (intro_start_msg
       ($fast $encore)
+      {world_panel
+         set_showing
+         {! $focusmode}}
       {track_panel intro_start_msg}
       {mtv_overlay_panel show_overlay FALSE}
       {script_task
@@ -148,12 +151,12 @@
          FALSE}
       kDataUnhandled)
    (intro_skip
-      {track_panel intro_skip}
-      kDataUnhandled)
-   (extend_track
       {world_panel
          set_showing
          {! $focusmode}}
+      {track_panel intro_skip}
+      kDataUnhandled)
+   (extend_track
       {track_panel do_extend_sequence}
       {beatmatch set_music_speed $speedmod}
       {script_task
@@ -175,6 +178,9 @@
       {ui music_start}
       kDataUnhandled)
    (beat
+      {world_panel
+         set_showing
+         {! $focusmode}}
       {if
          $barf_cheat
          {track_panel
