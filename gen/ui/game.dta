@@ -227,8 +227,7 @@
       kDataUnhandled)
    (game_won_msg
       ($encore)
-      {if $songtitle
-         {mtv_overlay_panel show_overlay FALSE}}
+      {mtv_overlay_panel show_overlay FALSE}
       {if_else
          {gamecfg get game_over_sequence}
          {do
@@ -303,8 +302,7 @@
             kDataUnhandled}
          0})
    (game_lost
-      {if $songtitle
-         {mtv_overlay_panel show_overlay FALSE}}
+      {mtv_overlay_panel show_overlay FALSE}
       {track_panel set_showing FALSE}
       {game set_realtime TRUE}
       {$this slow_music}
