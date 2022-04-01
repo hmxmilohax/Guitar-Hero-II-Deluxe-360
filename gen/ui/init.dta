@@ -33,3 +33,5 @@
 {ui goto_screen $first_screen}
 {set $speedmod 1.0}
 {set $trackspd 1.0}
+{set $songtitle FALSE}
+{set $focusmode FALSE}

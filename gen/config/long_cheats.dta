@@ -59,6 +59,32 @@
          {ui current_screen}}
       {synth play_sequence button_select}
       {ui goto_screen modifiers_screen}})
+((G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_RED)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $songtitle
+         {do
+            {set $songtitle FALSE}
+               {main_screen display_cheat_msg cheat_mtv_overlay FALSE}
+            {play_sfx cheat_off}}
+         {do
+            {set $songtitle TRUE}
+               {main_screen display_cheat_msg cheat_mtv_overlay TRUE}
+            {play_sfx cheat}}}})
+((G_YELLOW G_RED G_YELLOW G_RED)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $focusmode
+         {do
+            {set $focusmode FALSE}
+               {main_screen display_cheat_msg cheat_focusmode FALSE}
+            {play_sfx cheat_off}}
+         {do
+            {set $focusmode TRUE}
+               {main_screen display_cheat_msg cheat_focusmode TRUE}
+            {play_sfx cheat}}}})
 ((G_BLUE G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW)
    {if
       {&&

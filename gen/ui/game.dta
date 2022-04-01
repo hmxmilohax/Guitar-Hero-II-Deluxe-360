@@ -142,7 +142,7 @@
          (delay 6)
          (units kTaskSeconds)
          (script
-            {mtv_overlay_panel show_overlay FALSE})}
+            {mtv_overlay_panel show_overlay $songtitle})}
       {set
          [intro_complete]
          FALSE}
@@ -151,6 +151,9 @@
       {track_panel intro_skip}
       kDataUnhandled)
    (extend_track
+      {world_panel
+         set_showing
+         {! $focusmode}}
       {track_panel do_extend_sequence}
       {beatmatch set_music_speed $speedmod}
       {script_task
