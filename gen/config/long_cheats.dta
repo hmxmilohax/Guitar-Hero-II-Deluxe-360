@@ -85,6 +85,19 @@
             {set $focusmode TRUE}
                {main_screen display_cheat_msg cheat_focusmode TRUE}
             {play_sfx cheat}}}})
+((G_RED G_YELLOW G_BLUE G_RED G_RED G_BLUE G_BLUE G_RED G_YELLOW G_BLUE)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $nofail
+         {do
+            {set $nofail FALSE}
+               {main_screen display_cheat_msg nofail FALSE}
+            {play_sfx cheat_off}}
+         {do
+            {set $nofail TRUE}
+               {main_screen display_cheat_msg nofail TRUE}
+               {play_sfx cheat}}}})
 ((G_BLUE G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW G_BLUE G_YELLOW)
    {if
       {&&

@@ -35,3 +35,4 @@
 {set $trackspd 1.0}
 {set $songtitle FALSE}
 {set $focusmode FALSE}
+{set $nofail FALSE}
