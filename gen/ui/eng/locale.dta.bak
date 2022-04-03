@@ -1,0 +1,2613 @@
+(splash_anybutton
+   "PRESS ANY BUTTON TO BEGIN")
+(splash_legal
+   "Guitar Hero II Deluxe © 2006 RedOctane, Inc.\nModifications © 2021 MiloHax. Big thanks to GenericMadScientist\nfor the strum limit and HOPO bug fixes.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems.")
+(signin_changed_title
+   "SIGN-IN CHANGED")
+(signin_changed_msg
+   "A user sign-in change has caused the game to lose ownership of saves and achievements.  As a result, the game has restarted.")
+(sigin_to_live_title
+   "NOT SIGNED IN")
+(sigin_to_live_msg
+   "In order to view Leaderboards, you must be signed into Xbox Live.  Please sign in and then try again.")
+(guitar_help_using
+   "USING THE GUITAR CONTROLLER")
+(guitar_help_plugin
+   "Plug in the Guitar Controller and attach the guitar strap.")
+(guitar_help_continue1
+   "Continue")
+(guitar_help_continue2
+   "(Green Button)")
+(guitar_help_step1
+   "1")
+(guitar_help_step2
+   "2")
+(guitar_help_step3
+   "3   Bang Head")
+(guitar_help_back1
+   "Back")
+(guitar_help_back2
+   "(Red Button)")
+(guitar_help_start
+   "START Button")
+(guitar_help_strumbar1
+   "Up/Down")
+(guitar_help_strumbar2
+   "(Strum Bar)")
+(help_continue
+   "CONTINUE")
+(help_start
+   "START")
+(help_back
+   "BACK")
+(help_reset
+   "RESET")
+(help_keep
+   "KEEP")
+(help_retry
+   "RETRY")
+(help_updown
+   "UP/DOWN")
+(help_onoff
+   "ON/OFF")
+(help_select
+   "SELECT")
+(help_confirm
+   "CONFIRM")
+(help_accept
+   "ACCEPT")
+(help_cancel
+   "CANCEL")
+(help_hitonchange
+   "STRUM")
+(help_adjvol
+   "ADJUST VOLUME")
+(help_adjsync
+   "ADJUST OFFSET")
+(help_nextletter
+   "NEXT")
+(help_deleteletter
+   "DELETE")
+(help_buyitem
+   "BUY ITEM")
+(help_skins
+   "TOGGLE SKINS")
+(help_tolisting
+   "TO LEADERBOARD")
+(help_gamercard
+   "GET GAMER CARD")
+(lag_title
+   "HDTV Lag")
+(lag_button_calibrate
+   "Calibrate")
+(lag_button_recalibrate
+   "Recalibrate")
+(lag_button_reset
+   "Reset to 0 ms")
+(lag_setting
+   "Current Lag Offset is %d ms")
+(lag_measured
+   "Your new Lag Offset is %d ms")
+(lag_measuring
+   "Calibrating...")
+(lag_info_why
+   "Some HDTV's have an audio/video delay that makes playing difficult.  If you're ready to blame your TV, try calibrating.")
+(lag_info_howto
+   "Calibrate by strumming your guitar to the beat of the notes crossing the target.")
+(lag_info_failure
+   "We couldn't get a good reading for calibration.  Let's do another take.")
+(lag_success
+   "Calibration Successful")
+(lag_3
+   "3")
+(lag_2
+   "2")
+(lag_1
+   "1")
+(lag_go
+   "GO!")
+(name_band
+   "NAME YOUR BAND")
+(BAND_NAME_EXPLAIN
+   "This is also your SAVE GAME name")
+(HOW_TO_END
+   "Press START button to accept name and continue")
+(HOW_TO_EDIT
+   "You can edit this name later from Manage Band in the Options menu")
+(choose_band
+   "CHOOSE BAND")
+(no_profile
+   "NO BAND")
+(no_profile_msg
+   "Please enter a BAND NAME.")
+(duplicate_profile
+   "DUPLICATE BAND")
+(duplicate_profile_msg
+   "The BAND NAME you entered already exists. Please enter a different BAND NAME.")
+(max_profile
+   "NO FREE BANDS")
+(max_profile_msg
+   "There are no free band slots.  You must delete one or more band slots to create a new profile.")
+(cant_delete_profile
+   "CAN'T DELETE BAND")
+(cant_delete_profile_msg
+   "The currently selected band cannot be deleted.  To delete this band, first choose a different band using LOAD BAND or NEW BAND.")
+(op_bonus_material
+   "Bonus Videos")
+(op_credits
+   "Credits")
+(op_data_settings
+   "Manage Band ")
+(op_game_settings
+   "Audio Settings ")
+(op_video_settings
+   "Video Settings")
+(op_memcard
+   "Data Settings")
+(GAME_SETTINGS
+   "AUDIO SETTINGS  ")
+(LEFT_PLAYER_1
+   "LEFTY FLIP - PLAYER 1")
+(LEFT_PLAYER_2
+   "LEFTY FLIP - PLAYER 2")
+(GS_STEREO_SOUND
+   "STEREO SOUND")
+(gs_sound_fx
+   "SOUND FX")
+(gs_guitar
+   "GUITAR")
+(gs_band
+   "BAND")
+(gs_sync_help
+   "(0-.250 sec, .10 step)")
+(gs_video
+   "VIDEO SETTINGS")
+(STEREO_SOUND
+   "STEREO SOUND")
+(SOUND_FX
+   "SOUND FX")
+(BONUS_MATERIAL
+   "BONUS MATERIAL")
+(CREDITS
+   "CREDITS")
+(DATA_SETTINGS1
+   "DATA")
+(DATA_SETTINGS2
+   "SETTINGS")
+(rename_band
+   "rename band")
+(autosave_band
+   "autosave band")
+(new_band
+   "new band")
+(save_band
+   "save band")
+(load_band
+   "load band")
+(delete_band
+   "delete band")
+(save_bands
+   "save game")
+(load_bands
+   "load game")
+(ds_autosave
+   "autosave")
+(manage_band
+   "MANAGE BAND")
+(manage_band_title
+   "MANAGE")
+(vs_title
+   "VIDEO SETTINGS")
+(vs_lag
+   "CALIBRATE LAG")
+(warning
+   "WARNING")
+(pscan_warning
+   "Progressive Mode may not work on all televisions.  If it doesn't work on yours, please wait 15 seconds and we'll automatically switch back.")
+(pscan_switching
+   "You are now in Progressive Mode.  Do you want to keep this display mode?")
+(BUY_BONUS
+   "buy these at The Store")
+(video1
+   "Gibson USA: A Tour")
+(video2
+   "Guitar Hero II: Making of Songs")
+(video3
+   "Guitar Hero II: Behind the Scenes")
+(video1_shop_desc
+   "Ever dreamed of taking an all-access tour of the Gibson USA factory? This is your chance.")
+(video2_shop_desc
+   "Check out an exclusive behind-the-scenes video of the recording of the Guitar Hero II songs.")
+(video3_shop_desc
+   "The Guitar Hero II development team takes you backstage to see what life is REALLY like at Harmonix.")
+(QUICK_PLAY
+   "FREE PLAY")
+(QP_SELSONG
+   "SELECT SONG")
+(E3_SINGLE_PLAYER
+   "E3 SINGLE PLAYER")
+(E3_MULTI_COOP
+   "E3 MULTI CO-OP")
+(big
+   "RedOctane Club")
+(arena
+   "The Arena")
+(fest
+   "Vans Warped Tour")
+(theatre
+   "Rock City Theater")
+(stone
+   "Stonehenge")
+(small1
+   "The Rat Cellar")
+(small2
+   "The Blackout Bar")
+(battle
+   "Battle of the Bands")
+(battle_address
+   "Nilbog High")
+(small1_address
+   "675 Mass Ave")
+(small2_address
+   "677 Flatbush Ave")
+(big_address
+   "720 Landsdowne St")
+(theatre_address
+   "Downtown")
+(fest_address
+   "Randall Field")
+(arena_address
+   "1 City Place")
+(stone_address
+   "jolly Old England")
+(Controller
+   "Controller")
+(Difficulty
+   "Difficulty")
+(Play
+   "Play")
+(Song
+   "Song")
+(Venue
+   "VENUE")
+(cheat_enabled_fmt
+   "CHEAT ENABLED:\n%s")
+(cheat_disabled_fmt
+   "CHEAT DISABLED:\n%s")
+(cheat_unlock_all
+   "Unlock All (saving disabled)")
+(cheat_air_guitar
+   "Air Guitar")
+(cheat_performance_mode
+   "Performance Mode")
+(cheat_hyper_speed_mode
+   "Hyper Speed")
+(cheat_horse_head_mode
+   "Horse Head")
+(cheat_flaming_head
+   "Flaming Head")
+(cheat_eyeball_head_crowd
+   "Eyeball Head Crowd")
+(cheat_monkey_head_crowd
+   "Monkey Head Crowd")
+(CAREER
+   "CAREER")
+(MULTIPLAYER
+   "MULTIPLAYER")
+(OPTIONS
+   "OPTIONS")
+(EXTRAS
+   "EXTRAS")
+(OFFSET
+   "OFFSET")
+(multi_campaign
+   "CAREER")
+(multi_coop
+   "COOPERATIVE")
+(multi_versus
+   "FACE-OFF")
+(multi_faceoff
+   "PRO FACE-OFF")
+(multi_select_multi_mode
+   "SELECT MULTIPLAYER MODE")
+(multi_sel_diff_done
+   "Press START when both are ready")
+(SELECTYOURGUITAR
+   "Select Your Guitar")
+(SELECTYOURSKIN
+   "Select Your Finish")
+(CM_PLAY_LIVE_SHOW
+   "PLAY LIVE SHOW")
+(CM_SELECT_CHARACTER
+   "CHANGE CHARACTER")
+(CM_SEL_GUITAR
+   "CHANGE GUITAR")
+(CM_UNLOCK_SHOP
+   "THE STORE")
+(CM_BAND_TITLE
+   "BAND:")
+(CM_CAREER_TITLE
+   "CAREER:")
+(CM_STATUS_TITLE
+   "STATUS:")
+(CM_SCORE_TITLE
+   "CAREER SCORE:")
+(CM_CASH_TITLE
+   "CASH:")
+(cm_char_title
+   "GUITARIST:")
+(cm_guitar_title
+   "GUITAR:")
+(career_cash_format
+   "$%d")
+(career_score_format
+   "%d")
+(career_featuring
+   "FEATURING")
+(career_playing_the
+   "PLAYING THE")
+(mtv_made_famous
+   {if_else $egg5
+      "as not actually performed by"
+      "as made famous by"})
+(performed_by
+   {if_else $egg5
+      "as actually performed by"
+      "as performed by"})
+(press_any_button
+   {if_else $egg5
+      "PRESS ANY BUTTON TO JAM"
+      "PRESS ANY BUTTON TO ROCK"})
+(pausetitle
+   "PAUSED")
+(pause_resume
+   "RESUME")
+(pause_restart
+   "RESTART")
+(pause_quit
+   "QUIT")
+(quit
+   "quit")
+(restart
+   "restart")
+(resume
+   "resume")
+(retry
+   "retry")
+(exit
+   "exit")
+(new_song
+   "new song")
+(video_settings
+   "video settings")
+(audio_settings
+   "audio settings")
+(SONG_COMPLETE
+   "SONG COMPLETE!")
+(PLAYER_1_WINS
+   "PLAYER 1 WINS!")
+(PLAYER_2_WINS
+   "PLAYER 2 WINS!")
+(DRAW
+   {if_else $egg5
+      "TIED!"
+      "DRAW!"})
+(CONTINUE
+   "CONTINUE")
+(MORE_STATS
+   "MORE STATS")
+(CHANGE_SECTION
+   "CHANGE SECTION")
+(CHANGE_SPEED
+   "CHANGE SPEED")
+(NEW_SONG
+   "NEW SONG")
+(lefty_flip_changed
+   "To change the lefty flip setting, this song must be restarted.  OK to restart?")
+(RESET
+   "RESET")
+(pause_confirm_quit_message
+   "You will lose all unsaved progress if you quit. Are you sure you want to quit this song?")
+(pause_cancel
+   "CANCEL")
+(pause_confirm_restart_message
+   "You will lose all unsaved progress if you restart. Are you sure you want to restart this song?")
+(yes
+   "yes")
+(no
+   "no")
+(cancel
+   "cancel")
+(confirm_ok
+   "ok")
+(CONTROLLER_LOSS
+   {if_else $egg5
+      "YOU PULLED IT OUT"
+      "YOU ARE ROCKING OUT A BIT TOO HARD"})
+(controller_loss_msg
+   "Please ensure a Guitar Controller is properly connected")
+(controller_loss_msg_multi
+   "Please ensure Guitar Controllers are both properly connected")
+(tut_guitar_loss_msg
+   "Please ensure a Guitar Controller is properly connected")
+;(win_easy
+;   "Dear ______________________,\n\nCongrats on beating Guitar Hero II Deluxe on Easy. Time to step it up a notch, Ace.\n\nYou want cash awards? Play on MEDIUM, HARD, or EXPERT. You'll be able to buy new guitars, new songs, new finishes... whatever your little rock star heart desires. Who knows, maybe we'll even throw a new mode atcha'!\n\nWelcome to the big time, kiddo.\n\nKisses,\nThe Management")
+;(win_medium
+;   "Dear ______________________,\n\nCongrats, you beat Guitar Hero II Deluxe on Medium. Nicely done.\n\nSo you probably know that you can score more cash and buy more stuff if you play HARD or EXPERT, right? Buying stuff is good. Buying stuff makes people like you.\n\nSo let's take it up a level, shall we? Just keep sellin' out gigs and we'll keep sucking up to you.\n\nSmooches,\nThe Management")
+;(win_hard
+;   "Dear ______________________,\n\nCongrats, you beat Guitar Hero II Deluxe on Hard. That's no small feat.\n\nThink you've got what it takes to really blow their minds? Try this bad boy out on EXPERT. They call it EXPERT for a reason. There may be a reward waiting for you if you succeed.\n\nSo stretch out them stubby little fingers, Tex, you've got truckload of pain awaiting you. The power of ROCK compels you.\n\nHugs,\nThe Management")
+;(win_expert
+;   "Dear ______________________,\n\nWow... You just beat Guitar Hero II Deluxe on EXPERT.\n\nYou've joined the ranks of... well... not very many people. You're kinda out there all alone, a legend among the common folk.\n\nHave you beaten every song with FIVE STARS? If not, get back to work, champ. You might just be rewarded for your efforts.\n\nAnd, uh, seriously? That was awesome. Congratulations.\n\nLove,\nThe Management")
+(win_diff
+   "You beat Guitar Hero II Deluxe on the %s difficulty")
+(win_congrats
+   "Congratulations!")
+(win_legendary
+   "Your legendary show will be talked about for years.")
+(win_stardom
+   "Rock Stardom beckons...")
+(ug_congrats
+   "Congratulations!")
+(ug_blurb1
+   " ")
+(ug_blurb2
+   "Go buy it in The Store.")
+(ub_congrats
+   "Congratulations!")
+(ub_blurb1
+   "This bass is now available in Cooperative Mode.")
+(ub_blurb2
+   "Play nice, you two.")
+(percent_complete_format
+   "%d%% complete")
+(lose_diff
+   "DIFFICULTY:")
+(lose_title
+   "SONG FAILED")
+(lose_quit
+   "EXIT")
+(lose_restart
+   "RETRY")
+(lose_practice
+   "PRACTICE")
+(lose_selsong
+   "NEW SONG")
+(3_star
+   "***__")
+(4_star
+   "****_")
+(5_star
+   "*****")
+(eg_percent_format
+   "%d%%")
+(eg_score
+   "Score")
+(eg_percent
+   "Notes Hit")
+(eg_review
+   "Review")
+;(eg_streak_format
+;   "%i Note Streak!")
+(me_percent_format
+   "%d%%")
+(me_notes_hit
+   "NOTES HIT")
+(me_streak
+   "LONGEST NOTE STREAK")
+(me_score
+   "SCORE")
+(meplayer1
+   "PLAYER 1")
+(meplayer2
+   "PLAYER 2")
+(me_streak_format
+   "%d Note Streak!")
+(me_caption_format
+   "%s IS VICTORIOUS!")
+(me_caption_tie
+   "INCREDIBLE DRAW!")
+(me_pfo_diff
+   "DIFFICULTY: %s")
+(stat_header
+   "Detailed Breakdown")
+(stat_notes_hit
+   "Notes Hit")
+(stat_sp_phrases
+   "SP Phrases")
+(stat_avg_multi
+   "Avg Multiplier")
+(stat_avg_multi_format
+   "%d.%dx")
+(stat_section_no_notes
+   "N/A")
+(stat_section_title
+   "section stats")
+(stat_streaks_broken
+   "STREAKS BROKEN")
+(stat_best_performer
+   "BEST PERFORMER")
+(stat_lead
+   "TIME IN LEAD")
+(ca_reason
+   "Congratulations on the killer show, amazing write-up, and perfect review score! Here's your cut.")
+(ca_blurb1
+   "Pay")
+(ca_deductions
+   "minus deductions:")
+(ca_blurb2
+   "Milos, extracted")
+(ca_blurb3
+   "Note streak, dropped")
+(ca_blurb4
+   "Danny, did it first")
+(ca_blurb5
+   "GH Live, mentioned")
+(ca_blurb6
+   "Clon, installed")
+(ca_blurb7
+   "Goodwills, ransacked")
+(ca_blurb8
+   "Gergorge, went down to")
+(ca_blurb9
+   "Star Power, squeezed")
+(ca_blurb10
+   "GH3, installed")
+(ca_blurb11
+   "Lotion, missing")
+(ca_blurb12
+   "Strum bar, raked")
+(ca_blurb13
+   "Attendant, called")
+(ca_blurb14
+   "Activision, affiliated")
+(ca_blurb15
+   "Binders, stolen")
+(ca_blurb16
+   "Citation, 420")
+(ca_blurb17
+   "Medication, arthritis")
+(ca_blurb18
+   "Surgery, wrist")
+(ca_blurb19
+   "Game, decrypted")
+(ca_blurb20
+   "Debug ELF, leaked")
+(ca_blurb21
+   "Hacks, encouraged")
+(ca_blurb22
+   "Guitars, overstrummed")
+(ca_blurb23
+   "Restarts, utilized")
+(ca_blurb24
+   "FC's, choked")
+(ca_blurb25
+   "GHEx, used")
+(ca_blurb26
+   "G FUEL, discounted")
+(ca_blurb27
+   "tittyfaff, requested")
+(ca_yourcut
+   "YOU GET:")
+(ca_spend
+   "Spend your hard-earned cash at The Store.")
+(CASH_AWARD
+   "GIG MONEY")
+(LETTERHEAD1
+   {if_else $egg5
+      "MiloHax Records"
+      "Death Threat Records"})
+(LETTERHEAD2
+   {if_else $egg5
+      "\qFriends don't let friends GHEx\q"
+      "\qWe do rock right.\q"})
+(LETTERHEAD3
+   "LOS ANGELES, CALIFORNIA")
+(STATUS_UPGRADE_BONUS
+   "STATUS_UPGRADE_BONUS")
+(CASH_AWARD_BLURB1
+   "Spend cash on bonus guitars, characters, songs and more at The Store")
+(CASH_AWARD_BLURB2
+   "Cash Bonuses awarded for:")
+(CASH_AWARD_BLURB3
+   "Career Status Upgrades")
+(CASH_AWARD_BLURB4
+   "5 Star Review Ratings")
+(CASH_AWARD_BLURB5
+   "Each 1 Million Career Points")
+(award_3_star
+   "Nice 3-star review. Here's your cut. Remember - better show, better pay.")
+(award_4_star
+   "Sweet 4-star review. Here's your cut. Good job out there.")
+(award_5_star
+   {if_else $egg5
+      "Amazing set, but you also trashed the place. Here's what it cost you."
+      "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty."})
+(award_3_star_status
+   "Nice 3-star review. Here's your cut. Remember - better show, better pay.")
+(award_4_star_status
+   "Sweet 4-star review. Here's your cut. Good job out there.")
+(award_5_star_status
+   {if_else $egg5
+      "Amazing set, but you also trashed the place. Here's what it cost you."
+      "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty."})
+(sponsor_title
+   "YOU GOT SPONSORED!")
+(sponsor_sub1
+   "(Congrats, go brag to your friends.)")
+(sponsor_blurb1
+   "Ernie Ball thinks you might have something special, kiddo. They're gonna start you off right with a sponsorship deal and a premium pack of strings to get you started.")
+(sponsor_sub2
+   "(And your daddy said you'd never make money doing this.)")
+(sponsor_blurb2
+   "Line 6 Amps thought you slayed at that last show - so now it's time to turn it up! They're handing you a sponsorship deal, and a sweet Line 6 amp so you really can crank it.")
+(sponsor_sub3
+   "(Live the dream!)")
+(sponsor_blurb3
+   "That encore performance got people talking and Orange Amps heard all about it. They're handing you a sponsorship deal and a killer Orange amp to make your friends weep with envy.")
+(sponsor_sub4
+   "(Good thing you can afford to buy a bigger wallet.)")
+(sponsor_blurb4
+   "The crowd loves you, and VHT Amps has noticed. They're setting you up with a hot sponsorship deal, and a top-of-the-line VHT amp to help drive 'em wild!")
+(sponsor_sub5
+   "(Have you considered getting your fretting hand insured?)")
+(sponsor_blurb5
+   "Krank Amps thinks you're about to ride the fame train, and they wanna be onboard. They're giving you a sponsorship deal and a stellar Krank amp as your ticket to ride.")
+(sponsor_sub6
+   "(Go roll around in your money!)")
+(sponsor_blurb6
+   "Well, look at you, gettin' all noticed by big wigs. Mesa Boogie was pretty impressed by that last show. They're handing you a major sponsorship deal and a Mesa Boogie amp to keep all eyes and ears focused on you.")
+(sponsor_sub7
+   "(Time to start hiding from the paparazzi.)")
+(sponsor_blurb7
+   "You're a household name, baby, and Randall Amps likes your style. They're providing a huge sponsorship deal and a Randall Amp to boost that famous sound of yours!")
+(sponsor_sub8
+   "(Try not to forget about the little people.)")
+(sponsor_blurb8
+   "See, wasn't all that practice worth it? Boss Pedals thinks so, and they're handing you a monster sponsorship deal, not to mention enough Boss Pedals to perfectly customize your signature sound!")
+(sponsor_sub9
+   "(Go buy Speed Test. You've earned it.)")
+(sponsor_blurb9
+   "Ernie Ball has been with you from the start, and they are so proud of your incredible success. They're giving you a record-breaking sponsorship deal and strings for life. Congratulations.")
+(sponsor_cash
+   "You milk your sponsor for:")
+(unlock_profaceoff1
+   "Dear ____________________,")
+(unlock_profaceoff2
+   "CONGRATULATIONS")
+(unlock_profaceoff3
+   "You have unlocked PRO FACE-OFF Mode!")
+(unlock_profaceoff4
+   "You know how whenever you play FACE-OFF Mode, your buddy screams about how you got the easier track and less notes and blah blah, out comes the waaahmbulance? No more, my shredding friend.\n\nCheck out PRO FACE-OFF Mode in the Multiplayer menu and go note-for-note in the ultimate guitarmageddon.\n\nHave fun,\nThe Management")
+(highscore_dummy_0
+   "GMS")
+(highscore_dummy_1
+   "Scott")
+(highscore_dummy_2
+   "Cam")
+(highscore_dummy_3
+   "jnack")
+(highscore_dummy_4
+   "Cisco")
+(highscore_title
+   "TOP ROCKERS")
+(highscore_score_fmt
+   "%s / %s")
+(highscore_start
+   "Press START button to accept name and continue")
+(comp_selsong
+   "New Song")
+(comp_restart
+   "Replay")
+(comp_quit
+   "Exit")
+(sc_select_character
+   "SELECT YOUR HERO")
+(sc_select_outfit
+   "SELECT YOUR OUTFIT")
+(select_character
+   "Select a Character")
+(alterna
+   "Judy Nails")
+(alterna2
+   "Judy Nails")
+(classic
+   "Clive Winston")
+(deathmetal
+   "Lars Ümlaüt")
+(deathmetal2
+   "Lars Ümlaüt")
+(funk1
+   "Xavier Stone")
+(glam
+   {if_else $egg5
+   "Hair Matheson"
+   "Izzy Sparks"})
+(glam2
+   {if_else $egg5
+   "Hair Matheson"
+   "Izzy Sparks"})
+(goth
+   "Pandora")
+(goth1
+   "Pandora")
+(grim
+   "Grim Ripper")
+(metal
+   {if_else $egg5
+   "Hazzard"
+   "Axel Steel"})
+(metal2
+   {if_else $egg5
+   "Hazzard"
+   "Axel Steel"})
+(punk
+   "Johnny Napalm")
+(punk2
+   "Johnny Napalm")
+(rock
+   {if_else $egg5
+   "Gina Hazard"
+   "Casey Lynch"})
+(rock1
+   {if_else $egg5
+   "Gina Hazard"
+   "Casey Lynch"})
+(rockabill
+   {if_else $egg5
+   "Dax Deville"
+   "Eddie Knox"})
+(rockabill2
+   {if_else $egg5
+   "Dax Deville"
+   "Eddie Knox"})
+(alterna_blurb
+   "A fan of distorted feedback and roller derby, Judy Nails has been a pioneer of alt-rock since her first tour at age 17. Known for her huge collection of vinyl, Judy brings a smile, and a lot of pedals, to the stage.")
+(classic_blurb
+   "Having abandoned his fascination with the sitar (an interest developed during a court-ordered \qmeditation retreat\q), Clive returns to the forefront of classic rock with his guitar wizardry and iconic status.")
+(deathmetal_blurb
+   "Lock the doors and board the windows, Lars Ümlaüt is coming for you! An intimidating presence, the Norwegian-born Ümlaüt describes himself as \qa force for you to be doing the reckoning with!\q")
+(funk1_blurb
+   "Raised in suburban Connecticut, Xavier Stone broke from his pampered upbringing after realizing he preferred rock clubs to country clubs. Weaving slick '70s style with chunky grooves, Xavier does it right every time.")
+(goth_blurb
+   "Pandora's youth is shrouded in mystery.  Some say she was born in a dimension of pure darkness. Others say she was raised in a duplex near Boise. With her blazing solos and chaotic melodies, Pandora is the Dark Princess of Rock.")
+(glam_blurb
+   {if_else $egg5
+   "A real crowd pleaser, Hair thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Hair's fan base is even bigger than, well, his hair."
+   "A real crowd pleaser, Izzy thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Izzy's fan base is even bigger than his hair."})
+(grim_blurb
+   "This rock star is bad to the bone. Grim's riffs are so killer, fans are lucky just to leave the show with their souls intact. Grim's supernatural licks always knock 'em dead. 'Cause he's... you know... right.")
+(metal_blurb
+   {if_else $egg5
+   "Famous for his driving riffs and up-front attitude, Hazzard first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history."
+   "Famous for his driving riffs and up-front attitude, Axel Steel first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history."})
+(punk_blurb
+   "Johnny embodies the true spirit of punk rock with his signature stomp and swagger. Released from lockup for \qalmost tolerable behavior,\q Johnny lurches back into the spotlight, rough and ready for action.")
+(rock_blurb
+   {if_else $egg5
+   "A veteran of the tour circuit, Gina's dirty, low-end growl and ultra-heavy riffs have influenced budding shredders from Maine to Alaska. She's tough, she's brash, and she'll break your heart faster than an E string."
+   "A veteran of the tour circuit, Casey's dirty, low-end growl and ultra-heavy riffs have influenced budding shredders from Maine to Alaska. She's tough, she's brash, and she'll break your heart faster than an E string."})
+(rockabill_blurb
+   {if_else $egg5
+   "When he's not cruisin' in his '55 Chevy, Dax brings his hard-working rock to any stage he sets foot on. A real \qroad dog,\q Dax Deville claims that as long as he's got his hollow body and his pomade, he \qain't too far from home.\q"
+   "When he's not cruisin' in his '55 Chevy, Eddie brings his hard-working rock to any stage he sets foot on. A real \qroad dog,\q Eddie Knox claims that as long as he's got his hollow body and his pomade, he \qain't too far from home.\q"})
+(alterna_outfit_blurb
+   "Likes: Perfect spelling, boast-worthy bruises, strawberries\n\nDislikes: Rudeness, fake strawberry-flavored things")
+(deathmetal_outfit_blurb
+   "Likes: mortality, blood explosions, the reckoning, abrupt tempo changes\n\nDislikes:  Big dogs")
+(goth_outfit_blurb
+   "Likes: make-up, hailstorms, leather\n\nDislikes: Small talk, the beach")
+(glam_outfit_blurb
+   "Likes: Zebra print, arenas, pouting\n\nDislikes: irony, tour managers, alimony")
+(metal_outfit_blurb
+   "Likes: Metal\n\nDislikes: Un-metal")
+(punk_outfit_blurb
+   "Likes: live shows, smashing stuff, kicking stuff, amps\n\nDislikes: wake-up calls, authority")
+(rock_outfit_blurb
+   "Likes: the van, vintage guitars, Led Zeppelin\n\nDislikes: You, probably")
+(rockabill_outfit_blurb
+   "Likes: car shows, feelin' broken-hearted over redheads, tattoos\n\nDislikes: wardens, high society")
+(alterna2_shop_desc
+   "The queen of alternative rock, through and through, Judy is always seen in the latest styles. Keep her on the cutting edge with this cute get-up.")
+(deathmetal2_shop_desc
+   "Asked about his gauntlets-to-gargoyles style, Lars responds, \qLARS HAS A REPUTATION OF STRENGTH OF WHICH HE NEEDS TO BE DOING THE UPHOLDING!\q")
+(goth1_shop_desc
+   "The consummate chameleon, Pandora is admired almost as much for her unique and ever-changing personal style as for her incomparable shredding skills.")
+(glam2_shop_desc
+   {if_else $egg5
+   "Not everybody can pull off a top hat and feather boa. Hair is not afraid to subvert the dominant paradigm in this ultra-glam ensemble."   
+   "Not everybody can pull off a top hat and feather boa. Izzy is not afraid to subvert the dominant paradigm in this ultra-glam ensemble."})
+(metal2_shop_desc
+   {if_else $egg5
+   "Since they don't make you play better and you can't drink 'em, Hazzard has zero interest in clothes. But even Hazzard needs a change once in awhile."
+   "Since they don't make you play better and you can't drink 'em, Axel has zero interest in clothes. But even Axel needs a change once in awhile."})
+(rock1_shop_desc
+   {if_else $egg5
+   "Gina's look is designed for backbreaking life on the road; if she can't pass out in the van wearing it, she's not interested."
+   "Casey's look is designed for backbreaking life on the road; if she can't pass out in the van wearing it, she's not interested."})
+(rockabill2_shop_desc
+   {if_else $egg5
+   "Dax Deville is one cat who ain't afraid to look his best. As long as his hair is in place, he's as comfortable in old jeans as he is in these swanky duds."
+   "Eddie Knox is one cat who ain't afraid to look his best. As long as his hair is in place, he's as comfortable in old jeans as he is in these swanky duds."})
+(punk2_shop_desc
+   "Johnny has a couple of different looks, but neither of them involves bathing. With liberty spikes and a bullet belt, Johnny makes sordid, degenerate behavior look pretty good.")
+(classic_shop_desc
+   "Having abandoned his fascination with the sitar (an interest developed during a court-ordered \qmeditation retreat\q), Clive returns to the forefront of classic rock with his guitar wizardry and iconic status.")
+(funk1_shop_desc
+   "Raised in suburban Connecticut, Xavier Stone broke from his pampered upbringing after realizing he preferred rock clubs to country clubs. Weaving slick '70s style with chunky grooves, Xavier does it right every time.")
+(grim_shop_desc
+   "This rock star is bad to the bone. Grim's riffs are so killer, fans are lucky just to leave the show with their souls intact. Grim's supernatural licks always knock 'em dead. 'Cause he's... you know... right.")
+(alterna1_outfit
+   "SKULLS")
+(alterna2_outfit
+   "SNAKES")
+(deathmetal1_outfit
+   "GAUNTLETS")
+(deathmetal2_outfit
+   "GARGOYLES")
+(goth2_outfit
+   "LEATHERS")
+(goth1_outfit
+   "FEATHERS")
+(glam1_outfit
+   "CODPIECE")
+(glam2_outfit
+   "TOP HAT")
+(metal1_outfit
+   "SHIRT")
+(metal2_outfit
+   "OTHER SHIRT")
+(punk1_outfit
+   "MOHAWK")
+(punk2_outfit
+   "LIBERTY SPIKES")
+(rock1_outfit
+   "SKINS")
+(rock2_outfit
+   "SHIRTS")
+(rockabill1_outfit
+   "RENO")
+(rockabill2_outfit
+   "VEGAS")
+(select_guitar
+   "SELECT YOUR GUITAR")
+(select_skin
+   "SELECT YOUR FINISH")
+(msg_select_guitar
+   "SELECT YOUR GUITAR")
+(msg_select_skin
+   "SELECT YOUR FINISH")
+(lespaul
+   "Gibson Les Paul")
+(lespaul_desc
+   "In the hands of Jimmy Page, Joe Perry, Slash, and countless others, the Gibson Les Paul shaped the sound of hard rock. Take the stage with this classic model and channel the real guitar heroes who set the standard.")
+(lp_cherry
+   "Cherry Sunburst Classic")
+(lp_cherry_desc
+   "The quintessential icon of rock 'n' roll, the elegant design of the Les Paul standard is accentuated with this time-tested Cherry Sunburst finish.")
+(lp_zakk
+   "Zakk Wylde Custom")
+(lp_zakk_desc
+   "Based on Wylde's trademark \qGrail\q bullseye-design Les Paul, this signature model combines bold visual elements with \qshred-ready\q custom mods, including two EMG humbuckers and an oiled, raw maple neck.")
+(lp_cayenne
+   "Cayenne Standard")
+(lp_cayenne_desc
+   "Spice up the archetypal solidbody electric with this special cayenne-red veneer Les Paul Standard.")
+(lp_goddessburst
+   "Rose Burst Goddess")
+(lp_goddessburst_desc
+   "With a slimmer profile and lighter overall bodyweight, the Goddess's stylish appearance - courtesy of finishes such as Rose Burst over the figured maple top, coupled with translucent humbuckers - appeals to players regardless of gender.")
+(lp_sonex
+   "Gibson Sonex 180")
+(lespaul_sonex_desc
+   "Launched in 1980, the Sonex's Multi-phonic body was composed of a hybrid material designated \qResonwood\q (wood core, resin outer layer) and the guitar featured many characteristics of the Les Paul, but at a more affordable price.")
+(lp_marauder
+   "Gibson Marauder")
+(lespaul_marauder_desc
+   "Gibson's mid-'70s \qbudget\q solid body offering, the Marauder was an amalgam of design elements, boasting a \qLes Paul-ish\q alder body, a V-series headstock, and featuring both a humbucker and single coil pickup.")
+(lespaul_doublecut
+   "Gibson Les Paul Double Cutaway")
+(lespaul_doublecut_desc
+   "First appearing as a double-cutaway in 1958, this version of the Les Paul allows for greater access to all 22 frets, while retaining certain key qualities such as the LP's legendary sustain.")
+(lp_dbl_white
+   "White Finish")
+(lp_dbl_white_desc
+   "With an innovative design and attractive silhouette, the uncomplicated appeal of the Les Paul Double Cutaway is evident in this model with a clean White finish.")
+(lp_dbl_yellow
+   "TV Yellow Finish")
+(lp_dbl_yellow_desc
+   "Thanks to the debauched, low-slung guitar exploits of one Johnny Thunders, the TV Yellow double-cutaway has become the quintessential trash-punk Gibson.")
+(lp_dbl_resin
+   "Custom Resin Finish")
+(lp_dbl_resin_desc
+   "Gibson goes Jurassic with this unique amber LP double-cutaway - complete with prehistoric mosquito trapped within the fossilized resin.  ")
+(lp_dbl_sticker
+   "Gibson Melody Maker")
+(lespaul_doublecut_sticker_desc
+   "Double-cutaway Melody Makers were originally offered as entry-level guitars, but with the passage of time and association with certain... (ahem) \qrunaway\q success stories, '60s Melody Makers have become highly sought-after.")
+(sg
+   "Gibson SG")
+(sg_desc
+   "For those about to rock, we... give you the Gibson SG. Embraced by the likes of Angus Young, Tony Iommi, and Ian MacKaye, this slim-bodied \qdevil horns\q double-cutaway has become an iconic instrument of heavy rock.")
+(sg_cherry
+   "Cherry Standard")
+;(sg_cherry_desc
+;   "First introduced as a Les Paul Signature model in 1961, the cherry-finish SG (\qSolid Guitar\q) officially replaced the familiar Les Paul Standard body shape the following year.")
+(sg_flames
+   "Custom Flame Finish")
+(sg_flames_desc
+   "You'll presumably be playing an SG while on the Highway to Hell - may as well anticipate your end-point with this tricked out custom finish.")
+(sg_gt
+   "Candy Apple GT")
+(sg_gt_desc
+   "The GT series is geared towards the gigging guitarist, with a number of road-ready features.  An over/under dual truss rod provides extra neck reinforcement, while a Neutrik input jack and dual function strap locks ensure that you'll stay connected.")
+(sg_white
+   "Worn White Special")
+;(sg_white_desc
+;   "Guitarists like Wayne Kramer, Eric Bloom, and Duane Allman helped to turn the Gibson SG into an icon in its own right. Join the ranks, with this time-honored Worn White model.")
+(flying_v
+   "Gibson Flying V")
+(flying_v_desc
+   "The Flying V was one of a trio of radical guitar designs introduced in 1958 in an effort to refute Gibson's reputation for conservative sensibilities and to match the more \qmodern\q instruments favored by the burgeoning rock scene.")
+(fv_white
+   "White Finish")
+(fv_white_desc
+   "The avant-garde shape of the Gibson Flying V makes it well-suited to playing onstage and its aggressive design makes it a natural fit for Heavy Metal shredders.")
+(fv_v2
+   "Natural V2")
+(fv_v2_desc
+   "By the late seventies, high profile usage of the Flying V via the likes of Jimi Hendrix and Dave Davies had prompted numerous reissues of the model. The second-generation V2 featured two distinctive Boomerang pickups.")
+(fv_century
+   "New Century Finish")
+(fv_century_desc
+   "Bask in the reflected (literally) glory of this iconic guitar, presented here in new-millennium fashion complete with full body mirrored pick guard.")
+(fv_red
+   "Worn Cherry Finish")
+(fv_red_desc
+   "Make 'em think you've been at it for years, courtesy of this V's well-worn, \qweathered\q finish.")
+(explorer
+   "Gibson X-plorer")
+(explorer_desc
+   "Along with the V and the Moderne, the Explorer (its name was changed to X-Plorer in 2002) was part of Gibson's three-pronged, late-'50s entry into progressive guitar design.")
+(exp_nat
+   "Natural Finish")
+(exp_nat_desc
+   "Explorers such as this Natural finish model have been played by Bob Mould, The Edge, and Lynyrd Skynyrd's Allen Collins, among others.")
+(exp_sun
+   "Custom Rising Sun Finish")
+;(exp_sun_desc
+;   "If you can't blind 'em with blazing licks, try blinding your audience with this custom Explorer featuring a scorching Rising Sun finish.")
+(exp_white
+   "Classic White Finish")
+(exp_white_desc
+   "Some of the most brutal speed metal rhythms of the mid-'80s were authored on a white Gibson Explorer.  Strap this bad boy on and Jump in the Fire, brah.")
+(exp_ebony
+   "Ebony Finish")
+(exp_ebony_desc
+   "With its daring lightning-bolt shape, the Explorer was apparently too ahead of its time and took roughly a decade to catch on.")
+(exp_swirl
+   "Custom Cherry Swirl Finish")
+(exp_swirl_desc
+   "This eye-catching black and red finish augments one of Gibson's most recognized and daring guitar designs.")
+(firebird
+   "Gibson Firebird")
+(firebird_desc
+   "Launched in 1963 as a \qtoned down\q version of the (then) commercially unpopular Explorer, the Firebird featured neck-through construction, humbuckers, and a sculpted two-tone headstock with banjo pegs.")
+(fb_burst
+   "Natural Sunburst Finish")
+(fb_burst_desc
+   "By the early '60s, Gibson was looking to field more progressive guitars in order to make greater inroads into the solidbody market. Car designer Ray Dietrich came up with the asymmetric shape which was the basis for the Firebird.")
+(fb_blue
+   "Ice Blue Finish")
+;(fb_blue_desc
+;   "The Firebird's unusual body shape has been termed \qreverse,\q due to the treble-side's horn being higher and more pronounced than the other - a profile unique to this guitar and the Explorer, from which the Firebird was derived.")
+(fb_ebony
+   "Ebony Finish")
+(fb_ebony_desc
+   "Featuring the more typical set-neck design, instead of the classic Firebird's neck-through-body construction, the Firebird Studio offers a slightly different spin on this landmark guitar.")
+(fb_leopard
+   "Custom Leopard Skin Finish")
+(fb_leopard_desc
+   "Reowrr! This little kitten's got claws, my friend. Saucer of milk - table three! Um... point made? Good.")
+(es335
+   "Gibson ES-335")
+(es335_desc
+   "This celebrated thinline, semi-acoustic model features a maple arched top and back, slim and fast neck with adjustable truss rod, and twin humbucking pickups with separate tone and volume control, which can be preset by the player.")
+(es_maple
+   "Birdseye Maple Finish")
+;(es_maple_desc
+;   "The distinctive sound afforded by the semi-hollowbody construction and ease of play due to the slim neck and comfortable access to the upper frets made the 335 a hit with the likes of Chuck Berry, B.B. King, and Roy Orbison.")
+(es_cherry
+   "Custom Cherry Finish")
+(es_cherry_desc
+   "Eric Clapton, Alvin Lee, and numerous other guitar luminaries have made the most of the ES335's thin double-cutaway body and speedy, low-action neck to craft some of popular music's most memorable guitar lines.")
+(chet_orange
+   "Gibson Country Gentleman")
+(chet_atkins_desc
+   "Introduced in 1986 and modeled after Chet Atkins' classic archtop, this model was built in close partnership with Atkins and features a wood interior block for greater sustain, gold-plated Bigsby tailpiece, and tortoiseshell armrest.")
+(eds
+   "Gibson EDS-1275")
+(eds_desc
+   "Gibson first began to offer custom-order doublenecks in 1958 - initially as a 6- & 12-string combo and a 6-string & mandolin combo.  With an arched spruce top and double Florentine cutaways, they recall the SG body style.")
+(eds_cherry
+   "Cherry Finish")
+(eds_cherry_desc
+   "Does anybody remember laughter? The multi-tonal possibilities of the doubleneck EDS-1275 were no laughing matter to Jimmy Page, who used the guitar to recreate some of Led Zeppelin's complex recorded arrangements in concert.")
+(eds_white
+   "Alpine White Finish")
+(eds_white_desc
+   "The EDS-1275 has been played by a strikingly diverse group of guitarists, including James Hetfield, Alex Lifeson, Tom Morello, Don Felder, Pete Townshend, and Zakk Wylde.")
+(moderne
+   "Gibson Moderne")
+(moderne_desc
+   "The doomed sibling of the Flying V and Explorer, the Gibson Moderne is the Holy Grail of guitar collectors - the existence of even a single model from the original production run is in doubt.")
+(mod_nat
+   "Natural Finish")
+(mod_nat_desc
+   "If you're lucky enough to ever get your hands on what you believe to be an actual Gibson Moderne, rest assured that even if it doesn't suit your musical needs, it will surely pay your mortgage.")
+(mod_cherry
+   "Red Finish")
+(mod_cherry_desc
+   "Echoing the angular, sharp-edged tailfins on cars of the late 1950s, the radical design of the mysterious Moderne would have made it a highly sought-after period piece, even if it had been widely distributed.")
+(corvus
+   "Gibson Corvus")
+(corvus_desc
+   "Though decidedly ungainly, Gibson's early-'80s stab at a New Wave aesthetic has nonetheless gained a loyal following amongst guitar aficionados with a taste for the bizarre.")
+(cor_nat
+   "Natural Finish")
+(cor_nat_desc
+   "\qBottle-opener\q guitar, au naturel. The Corvus, with its offset v-type cut, rosewood fingerboard, and bolt-on maple neck, was discontinued in 1984.")
+(cor_yellow
+   "TV Yellow Finish")
+(cor_yellow_desc
+   "A pairing of \qclassic vintage\q with \qambitiously futuristic\q - it may seem odd to match a timeless finish such as TV Yellow with the purposefully bizarre Corvus, but somehow it works.")
+(casino
+   "Epiphone Casino")
+(epiphone_casino_desc
+   "As one of John Lennon's favored guitars, the archtop Epiphone Casino played a significant role in shaping the soundtrack of the sixties.")
+(sheraton
+   "Epiphone Sheraton")
+(epiphone_sheraton_desc
+   "A more upscale semi-acoustic known for its warm tone, the double-cutaway Sheraton features an inlayed headstock, block/triangle fretboard inlays, and neck and body binding.")
+(epiphone_coronet
+   "Epiphone Coronet")
+(epiphone_coronet_desc
+   "Originally, this one-pickup entry-level double-cutaway was slated to be released as a Gibson, with the name \qModerne,\q  though when it appeared in 1958 it was mysteriously renamed and re-branded.")
+(coronet_cherry
+   "Cherry Finish")
+(coronet_cherry_desc
+   "In 1959, Epiphone began shipping the Coronet in cherry red with a P-90 pickup.  These \qbudget\q offerings now regularly fetch top dollar amongst vintage collectors.")
+(coronet_green
+   "Green Finish")
+(coronet_green_desc
+   "Maximize the Coronet's retro-cool factor with this radiant green sparkle finish.")
+(coronet_burst
+   "Tobacco Burst Finish")
+(coronet_burst_desc
+   "Featuring gold hardware, two high output humbuckers, and a more traditional 6-on-a-side headstock, this model proves that the Coronet cleans up real nice.")
+(coronet_brown
+   "Natural Brown Finish")
+(coronet_brown_desc
+   "Starting in 1963, the Coronet adopted a more asymmetrical body shape as well as the distinctive 6-on-a-side \qbatwing\q headstock.")
+(kramer_650
+   "Kramer 650")
+(kramer_650_desc
+   "Kramer's wildly innovative 650 features a maple-walnut composite body, Sperzel tuners, a zero fret, and - most significantly - an aluminum neck with forked headstock.")
+(650_stripe
+   "Mahogany Stripe Finish")
+(650_stripe_desc
+   "An example of American engineering at its best, the distinctive neck construction on this Mahagony Stripe Kramer 650 produces increased sustain.")
+(650_white
+   "White Finish")
+(650_white_desc
+   "Sometimes good guys don't wear white - beneath this striking finish lies some of the most badass guitar innovations of the late 1970s, making the 650 still well ahead of the curve today.")
+(kramer_vanguard
+   "Kramer Vanguard")
+(kramer_vanguard_desc
+   "A heavy metal landmark, Kramer's V-shaped guitar was favored by velocity hounds from its introduction, thanks to super-hot pickups and a fast, low-action neck.")
+(van_black
+   "Ebony Finish")
+(van_black_desc
+   "It doesn't get much more metal than this '80s classic. Fulfill your dreams of stardom with this attention-grabbing Kramer Vanguard.")
+(van_yellow
+   "Yellow Finish")
+(van_yellow_desc
+   "Bust out the hairspray and pour yourself into some spandex - this brilliant yellow Vanguard is taking you back to the time when hair-metal ruled the charts, whether you like it or not.")
+(shop_locked_reward
+   "???")
+(shop_locked_cost
+   "$???")
+(usa_reward
+   "The USA")
+(usa_reward_desc
+   "Sometimes people think that it'd be a good idea to make guitars in funny shapes.  Sometimes people mistakenly drink a tall glass of apple vinegar thinking that it's apple juice.  Things happen like that.")
+(usa_reward_locked_desc
+   "Get five stars on every song on EASY first and then we'll talk deal.")
+(coffin_reward
+   "The Coffin")
+(coffin_reward_desc
+   "Coffins are kinda cool in a creepy, Misfits way.  Guitars are cool.  You'd think this could work.")
+(coffin_reward_locked_desc
+   "Yeah, you gotta beat the game on MEDIUM before we'll sell you this one. Sorry.")
+(fish_reward
+   "The Fish")
+(fish_reward_desc
+   "This is a highly practical and efficient guitar design.  Because it looks like a fish.")
+(fish_reward_locked_desc
+   "Beat the game on EASY first, champ. Then you can buy this bad boy.")
+(snaketapus_reward
+   "The Snaketapus")
+(snaketapus_reward_desc
+   "\qWhat's a 'snaketapus'?\q you ask?  Well, it's a skull with snakes coming out of it and it's... um... a guitar.")
+(snaketapus_reward_locked_desc
+   "Oh man. You SO want to beat the game on HARD for this one. For serious.")
+(viking_reward
+   "The Viking")
+(viking_reward_desc
+   "The Vikings were a Nordic seafaring people noted for their violent raids along the coasts of France and the British Isles in the 8th through 11th Centuries.  All of this history culminates in a guitar shaped like a viking with a sword in his head.")
+(viking_reward_locked_desc
+   "If you can get five stars on every song on MEDIUM, you might be worthy of this guitar.")
+(eyeball_reward
+   "The Eyeball")
+(eyeball_reward_desc
+   "Once a guy said to me, \qThank goodness nobody's ever made a 'wacky' guitar designed to look like an eyeball.\q  Somewhere, that man is crying now.")
+(eyeball_reward_locked_desc
+   "Get five stars on every song on HARD. I know, it's scary. You can do it, cap'n.")
+(battleaxe_reward
+   "The Battle Axe")
+(battleaxe_reward_desc
+   "It's likely a guy in Manowar actually plays a guitar like this, so I guess that's something.")
+(battleaxe_reward_locked_desc
+   "Beat EXPERT. You have to. Because this thing is so freakin' righteous.")
+(log_reward
+   "The Log")
+(log_reward_desc
+   "Les Paul's first solidbody guitar, built in 1941, was called \qThe Log,\q due to its impractical weight and crude construction. This guitar, on the other hand, is an actual log.")
+(log_reward_locked_desc
+   "If you take the time to get five stars on every song on EXPERT, this guitar will make up for the fact that you've lost all your friends.")
+(guitarname
+   "guitarname")
+(guitarname_desc
+   "guitarname description")
+(scythe
+   "Scythe")
+(scythe_desc
+   "On second thought, you probably should fear the reaper. Equally suited for über-fast shredding or deadly combat, this literal axe is a dangerous mother.")
+(bass_musicman
+   "Black MusicMan StingRay Bass")
+(bass_musicman_lava
+   "Lava Pearl MusicMan StingRay Bass")
+(bass_sg_mahogany
+   "Cherry Gibson SG Bass")
+(bass_sg_cream
+   "Cream Gibson SG Bass")
+(bass_grabber_cherry
+   "Cherry Gibson Grabber Bass")
+(bass_grabber_maple
+   "Natural Maple Gibson Grabber Bass")
+(bass_thunderbird_ebony
+   "Ebony Gibson Thunderbird Bass")
+(bass_thunderbird_burst
+   "Natural Sunburst Gibson Thunderbird Bass")
+(bass_hofner
+   "Sunburst Classic Höfner Bass")
+(select_song
+   "Select a Song")
+(song_header_battle
+   "1. Opening Licks")
+(song_header_small1
+   "2. Amp-Warmers")
+(song_header_small2
+   "3. String Snappers")
+(song_header_big
+   "4. Thrash and Burn")
+(song_header_theatre
+   "5. Return of the Shred")
+(song_header_fest
+   "6. Relentless Riffs")
+(song_header_arena
+   "7. Furious Fretwork")
+(song_header_stone
+   "8. Face-Melters")
+(song_header_store
+   "Bonus Tracks")
+(song_header_download
+   "Downloaded Tracks")
+(song_old_venue
+   "Play in the latest venue to continue your career")
+(song_current_venue
+   "Beat %i/5 songs to continue")
+(song_current_venue_encore
+   "Beat the encore to continue")
+(song_win_easy
+   "Beat %i/%i songs to win")
+(song_win_other
+   "Beat Free Bird to win")
+(song_quickplay
+   "Play Career Mode to get more songs")
+(encore_song_listing
+   "Encore: Play Career Mode to unlock")
+(encore_song_career_listing
+   "Encore: Get 4-star ratings to play")
+(sd_title
+   "select tour difficulty")
+(sd_help
+   "SELECT   YOUR   DIFFICULTY")
+(sd_help_practice
+   "select your difficulty")
+(select_career
+   "SELECT CAREER")
+(easy
+   "EASY")
+(medium
+   "MEDIUM")
+(hard
+   "HARD")
+(expert
+   "EXPERT")
+(EASY_STATUS
+   "(X OF X SONGS)")
+(MED_STATUS
+   "(X OF X SONGS)")
+(HARD_STATUS
+   "(X OF X SONGS)")
+(EXPERT_STATUS
+   "(X OF X SONGS)")
+(status_0
+   "NEW KID")
+(status_1
+   "ROCKER")
+(status_2
+   "YOUNG GUN")
+(status_3
+   "HOT SHOT")
+(status_4
+   "SHREDDER")
+(status_5
+   "PRO")
+(status_6
+   "GURU")
+(status_7
+   "GUITAR LEGEND")
+(status_8
+   "GUITAR HERO")
+(status_9
+   "GUITAR GOD")
+(status_progress
+   "(%i OF %i SONGS)")
+(no_progress
+   " ")
+(SELECT_VENUE
+   "SELECT VENUE")
+(store_shop
+   "THE STORE")
+(GUITAR_STORE
+   "CRUNCH TIME SHOPARAMA")
+(SELECT_ITEM
+   "SELECT ITEM")
+(store_guitar
+   "GUITARS")
+(store_skin
+   "FINISHES")
+(store_song
+   "SONGS")
+(store_character
+   "CHARACTERS")
+(store_outfit
+   "OUTFITS")
+(store_video
+   "VIDEOS")
+(store_downloads
+   "DOWNLOADS")
+(store_cash_format
+   "CASH: $%d")
+(category_cost
+   "$%d - $%d")
+(category
+   "CATEGORY")
+(guitar_shop_desc
+   "We are a Gibson Exclusive dealer. You can't buy happiness, but you can get awful close.")
+(skin_shop_desc
+   "Update your arsenal with a new finish that'll make your axe seem all shiny and new.")
+(song_shop_desc
+   "Many more tracks available, including our contest winner, The Last Vegas!")
+(video_shop_desc
+   "It's like having a backstage pass, except that you can respect yourself in the morning.")
+(character_shop_desc
+   "Rock icons, stashed away in a store for purchase. It's tragic, really. Set them free!")
+(outfit_shop_desc
+   "Sometimes stardom involves odd fashion choices. Help your heroes out with a new look.")
+(downloads_shop_desc
+   "Purchase new songs through Xbox Live Marketplace!")
+(guitar_bought_blurb
+   "Thanks for your purchase!\n\nThis guitar is now available on the Change Guitar screen.")
+(skin_bought_blurb
+   "Thanks for your purchase!\n\nThis guitar finish is now available on the Change Guitar screen.")
+(song_bought_blurb
+   "Thanks for your purchase!\n\nThis song has been added to the Set List in all game modes.")
+(character_bought_blurb
+   "Congratulations on your new Guitar Hero!\n\n This character is ready to take the stage and is waiting for you on the Change Character screen.")
+(outfit_bought_blurb
+   "Thanks for your purchase! \n\nThis outfit is now available from the Change Character menu.")
+(video_bought_blurb
+   "Thanks for your purchase!\n\nGo to Options from the Main Menu to watch this video.")
+(store_downloads_costrange
+   "$ REAL MONEY $")
+(arterialblack
+   "Arterial Black")
+(arterialblack_shop_desc
+   "Drist returns to offer a double-dose of flying fretwork with Arterial Black.")
+(collide
+   "Collide")
+(collide_shop_desc
+   "Anarchy Club returns to Guitar Hero with \qCollide,\q the newest song from their upcoming E.P. - \qA Single Drop of Red.\q Wanna know what a love song for the apocalypse sounds like? Like this...")
+;(drinkup
+;   "Drink Up")
+;(drinkup_shop_desc
+;   "OUNCE of SELF is ready to out-heavy the entire face of this planet! Keeping everything heavy, sludgy, and earth-shaking, the band tends to leave their mark on the metal scene.")
+(elephantbones
+   "Elephant Bones")
+(elephantbones_shop_desc
+   "That Handsome Devil: Born of chemicals and lightning spark, just in time to kick the world's teeth in.")
+(fallofpangea
+   "Fall of Pangea")
+(fallofpangea_shop_desc
+   "Valient Thorr wrote this song about the beginning of the Earth, to explain what really happened... how the dinosaurs were killed by weather and how Earth was seeded by the Venusians in search of a new home.")
+(ftk
+   "FTK")
+(ftk_shop_desc
+   "VAGIANT is composed of 3 HMX miscreants (Elena, The Hellion, and Leeanne) and one scrappy drummer (LoWreck). When not writing heavily edited anthems like this one, they spend their free time hating stuff.")
+(gemini
+   "Gemini")
+(gemini_shop_desc
+   "\qKahanek lets loose (on 'Real Life') with one vivid demonstration after another of the pure joy of playing the electric guitar as if your life depended on it.\q\n- Jason Warburg\n- \qThe Daily Vault\q (not to be confused with Jason Warburg of HMX)")
+;(kicked
+;   "Kicked to the Curb")
+;(kicked_shop_desc
+;   "Noble Rot is pure American rock 'n' roll with an extra large side order of PARTY. Founded in 2006, their first full-length album debuts December 7th.")
+(jordan
+   "Jordan")
+(jordan_shop_desc
+   "Buckethead wrote and recorded \qJordan\q specifically for Guitar Hero II (in a special chicken coop, no less!)")
+(laughtrack
+   "Laughtrack")
+(laughtrack_shop_desc
+   "In a bid to force listeners to look beyond the boy-band cuteness and stylish haircuts that first made them household names, Boston's The Acro-brats haven't shaved or showered since 2005.")
+(lesstalkmorerokk
+   "Less Talk More Rokk")
+(lesstalkmorerokk_shop_desc
+   "Stop talking, start rokking! Freezepop is back with fuzzy keytars and keys to the Eliminator which we scored cheap from the Top.")
+(ladylightning
+   "Push Push (Lady Lightning)")
+(ladylightning_shop_desc
+   "Bang Camaro is slowly turning Boston into the new Sunset Strip.  Hide your girlfriends.")
+(mrfixit
+   "Mr. Fix-It")
+(mrfixit_shop_desc
+   "Under your hood, HMX lackey and Crowns singer Jason Kendall is a jack-of-all-trades.")
+(newblack
+   "The New Black")
+(newblack_shop_desc
+   "\qIf the only thing your band has to look forward to is playing the county fair or the minor league baseball stadium circuit, it's time to hang it up.\q\n- Keith Buckley\n- Every Time I Die")
+(onefortheroad
+   "One for the Road")
+(onefortheroad_shop_desc
+   "Breaking Wheel (formerly called Artillery) is a Boston trio that disregards any boundaries in the metal genre. If it's heavy, they'll play it.")
+(parasite
+   "Parasite")
+(parasite_shop_desc
+   "Boston legends The Neighborhoods helped to pioneer the sound of the hooky garage-rock that still dominates the local music scene today.")
+(radiumeyes
+   "Radium Eyes")
+(radiumeyes_shop_desc
+   "An interesting, catchy, playable song, written just for Guitar Hero II by Count Zero, a Boston band known for its peculiarities. And dalliances. And fol-de-rol. And a hodgepodge of hocus-pocus hoi-polloi.")
+(rawdog
+   "Raw Dog")
+(rawdog_shop_desc
+   "Full throttle rock that never slows up. A great mix of rock, garage and post-punk kicks. Contest winners The Last Vegas have got what it takes - America will never know what hit 'em. Grab the new album \qSEAL THE DEAL.\q")
+(redlottery
+   "Red Lottery")
+(redlottery_shop_desc
+   "Like a wild power, burning the ice black beneath its hooves of steel, the MEGASUS bears tales of woe upon its furrowed brow.")
+(six
+   "Six")
+(six_shop_desc
+   "Featuring guitar wizardry from Oli Herbert and Mike Martin, All That Remains is modern metal with twin-guitar throwbacks to Iron Maiden. \qSix\q is taken from their album \qThe Fall of Ideals.\q")
+(soybomb
+   "Soy Bomb")
+(soybomb_shop_desc
+   "Honest Bob and the Factory-to-Dealer Incentives surf their way into the sequel on a wave of jubilation.")
+(thelightthatblinds
+   "The Light That Blinds")
+(thelightthatblinds_shop_desc
+   "With 5 albums under their belt, a Grammy nomination and main stage spot on the Ozzfest, international metal heroes Shadows Fall show no signs of stopping.")
+(thunderhorse
+   "Thunderhorse")
+(thunderhorse_shop_desc
+   "Extreme METAL band DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed. On \nHBO Max.")
+(trogdor
+   "Trogdor")
+(trogdor_shop_desc
+   "The Trogdor song from the Strong Bad Email 'dragon' was actually an afterthought that was added at the last minute. Mike was finishing up the cartoon and Matt suddenly started screaming the chorus while making eggs.")
+(xstream
+   "The X-Stream")
+(xstream_shop_desc
+   "This track is off the highly anticipated 14th album by Voivod, entitled 'Katorz' on The End Records.")
+(yeswecan
+   "Yes We Can")
+(yeswecan_shop_desc
+   "Made In Mexico was made in Providence, Rhode Island while eating stuffies off a Red. The smallest state in the nation actually has over 4000 miles of ocean coastline, and all Rhode Islanders live within a 12 minute drive of the Atlantic.")
+(lespaul_sonex
+   "Gibson Sonex 180")
+(lespaul_sonex_shop_desc
+   "Launched in 1980, the Sonex's Multi-phonic body was composed of a hybrid material designated \qResonwood\q (wood core, resin outer layer) and the guitar featured many characteristics of the Les Paul, but at a more affordable price.")
+(lespaul_marauder
+   "Gibson Marauder")
+(lespaul_marauder_shop_desc
+   "Gibson's mid-'70s \qbudget\q solid body offering, the Marauder was an amalgam of design elements, boasting a \qLes Paul-ish\q alder body, a V-series headstock, and featuring both a humbucker and single coil pickup.")
+(lespaul_doublecut_shop_desc
+   "First appearing as a double-cutaway in 1958, this version of the Les Paul allows for greater access to all 22 frets, while retaining certain key qualities such as the LP's legendary sustain.")
+(lespaul_doublecut_sticker
+   "Gibson Melody Maker")
+(lespaul_doublecut_sticker_shop_desc
+   "Double-cutaway Melody Makers were originally offered as entry-level guitars, but with the passage of time and association with certain... (ahem) \qrunaway\q success stories, '60s Melody Makers have become highly sought-after.")
+(explorer_shop_desc
+   "Along with the V and the Moderne, the Explorer (its original name was changed in 2002) was part of Gibson's three-pronged, late-'50s entry into progressive guitar design.")
+(firebird_shop_desc
+   "Launched in 1963 as a \qtoned down\q version of the (then) commercially unpopular Explorer, the Firebird featured neck-through construction, humbuckers, and a sculpted two-tone headstock with banjo pegs.")
+(es335_shop_desc
+   "This celebrated thinline, semi-acoustic model features a maple arched top and back, slim and fast neck with adjustable truss rod, and twin humbucking pickups with separate tone and volume control, which can be preset by the player.")
+(chet_atkins
+   "Gibson Chet Atkins Country Gentleman")
+(chet_atkins_shop_desc
+   "Introduced in 1986 and modeled after Chet Atkins' classic archtop, this model was built in close partnership with Atkins and features a wood interior block for greater sustain, gold-plated Bigsby tailpiece, and tortoiseshell armrest.")
+(eds_shop_desc
+   "Gibson first began to offer custom-order doublenecks in 1958 - initially as a 6- & 12-string combo and a 6-string & mandolin combo.  With an arched spruce top and double Florentine cutaways, they recall the SG body style.")
+(corvus_shop_desc
+   "Though decidedly ungainly, Gibson's early-'80s stab at a New Wave aesthetic has nonetheless gained a loyal following amongst guitar aficionados with a taste for the bizarre.")
+(moderne_shop_desc
+   "The doomed sibling of the Flying V and Explorer, the Gibson Moderne is the Holy Grail of guitar collectors - the existence of even a single model from the original production run is in doubt.")
+(epiphone_casino
+   "Epiphone Casino")
+(epiphone_casino_shop_desc
+   "As one of John Lennon's favored guitars, the archtop Epiphone Casino played a significant role in shaping the soundtrack of the sixties.")
+(epiphone_sheraton
+   "Epiphone Sheraton")
+(epiphone_sheraton_shop_desc
+   "A more upscale semi-acoustic known for its warm tone, the double-cutaway Sheraton features an inlayed headstock, block/triangle fretboard inlays, and neck and body binding.")
+(epiphone_coronet_shop_desc
+   "Originally, this one-pickup entry-level double-cutaway was slated to be released as a Gibson, with the name \qModerne,\q  though when it appeared in 1958 it was mysteriously renamed and re-branded.")
+(kramer_650_shop_desc
+   "Kramer's wildly innovative 650 features a maple-walnut composite body, Sperzel tuners, a zero fret, and - most significantly - an aluminum neck with forked headstock.  The distinctive neck construction produces increased sustain.")
+(kramer_vanguard_shop_desc
+   "A heavy metal landmark, Kramer's V-shaped guitar was favored by velocity hounds from its introduction, thanks to super-hot pickups and a fast, low-action neck.")
+(fish_reward_shop_desc
+   "This is a highly practical and efficient guitar design.  Because it looks like a fish.")
+(viking_reward_shop_desc
+   "The Vikings were a Nordic seafaring people noted for their violent raids along the coasts of France and the British Isles in the 8th through 11th Centuries.  All of this history culminates in a guitar shaped like a viking with a sword in his head.")
+(usa_reward_shop_desc
+   "Sometimes people think that it'd be a good idea to make guitars in funny shapes.  Sometimes people mistakenly drink a tall glass of apple vinegar thinking that it's apple juice.  Things happen like that.")
+(snaketapus_reward_shop_desc
+   "\qWhat's a 'snaketapus'?\q you ask?  Well, it's a skull with snakes coming out of it and it's... um... a guitar.")
+(coffin_reward_shop_desc
+   "Coffins are kinda cool in a creepy, Misfits way.  Guitars are cool.  You'd think this could work.")
+(eyeball_reward_shop_desc
+   "Once a guy said to me, \qThank goodness nobody's ever made a 'wacky' guitar designed to look like an eyeball.\q  Somewhere, that man is crying now.")
+(battleaxe_reward_shop_desc
+   "It's likely a guy in Manowar actually plays a guitar like this, so I guess that's something.")
+(log_reward_shop_desc
+   "Les Paul's first solidbody guitar, built in 1941, was called \qThe Log,\q due to its impractical weight and crude construction. This guitar, on the other hand, is an actual log.")
+(easy_guitar_shop_desc
+   "This guitar is only for those who have finished the easy tour.")
+(easy_guitar_5_star_shop_desc
+   "Get all 5-star reviews on Easy, and you can buy this guitar.")
+(medium_guitar_shop_desc
+   "So you've finished your Medium tour, huh?")
+(medium_guitar_5_star_shop_desc
+   "So you got perfect reviews on your Medium tour, huh?")
+(hard_guitar_shop_desc
+   "This status symbol doesn't go to just anyone, you know?  Beat Hard and we'll talk.")
+(hard_guitar_5_star_shop_desc
+   "Nail Hard, and we'll think about letting you buy one.")
+(expert_guitar_shop_desc
+   "Exclusively Legendary Expert tour players only.")
+(expert_guitar_5_star_shop_desc
+   "Five Stars.  Expert.  Everything.")
+(lp_cayenne_shop_desc
+   "Spice up the archetypal solidbody electric with this special cayenne-red veneer Les Paul Standard.")
+(lp_goddessburst_shop_desc
+   "With a slimmer profile and lighter overall bodyweight, the Goddess's stylish appearance - courtesy of finishes such as Rose Burst over the figured maple top, coupled with translucent humbuckers - appeals to players regardless of gender.")
+(lp_zakk_shop_desc
+   "Based on Wylde's trademark \qGrail\q bullseye-design Les Paul, this signature model combines bold visual elements with \qshred-ready\q custom mods, including two EMG humbuckers and an oiled, raw maple neck.")
+(sg_white_shop_desc
+   "Guitarists like Wayne Kramer, Eric Bloom, and Duane Allman helped to turn the Gibson SG into an icon in its own right. Join the ranks, with this time-honored Worn White model.")
+(sg_gt_shop_desc
+   "The GT series is geared towards the gigging guitarist, with a number of road-ready features.  An over/under dual truss rod provides extra neck reinforcement, while a Neutrik input jack and dual function strap locks ensure that you'll stay connected.")
+(sg_flames_shop_desc
+   "You'll presumably be playing an SG while on the Highway to Hell - may as well anticipate your end-point with this tricked out custom finish.")
+(fv_v2_shop_desc
+   "By the late seventies, high profile usage of the Flying V via the likes of Jimi Hendrix and Dave Davies had prompted numerous reissues of the model. The second-generation V2 featured two distinctive Boomerang pickups.")
+(fv_century_shop_desc
+   "Bask in the reflected (literally) glory of this iconic guitar, presented here in new-millennium fashion complete with full body mirrored pick guard.")
+(fv_red_shop_desc
+   "Make 'em think you've been at it for years, courtesy of this V's well-worn, \qweathered\q finish.")
+(exp_nat_shop_desc
+   "Explorers such as this Natural finish model have been played by Bob Mould, The Edge, and Lynyrd Skynyrd's Allen Collins, among others.")
+(exp_sun_shop_desc
+   "If you can't blind 'em with blazing licks, try blinding your audience with this custom Explorer featuring a scorching Rising Sun finish.")
+(exp_white_shop_desc
+   "Some of the most brutal speed metal rhythms of the mid-'80s were authored on a white Gibson Explorer.  Strap this bad boy on and Jump in the Fire, brah.")
+(exp_swirl_shop_desc
+   "This eye-catching black and red finish augments one of Gibson's most recognized and daring guitar designs.")
+(lp_dbl_yellow_shop_desc
+   "Thanks to the debauched, low-slung guitar exploits of one Johnny Thunders, the TV Yellow double-cutaway has become the quintessential trash-punk Gibson.")
+(lp_dbl_resin_shop_desc
+   "Gibson goes Jurassic with this unique amber LP double-cutaway - complete with prehistoric mosquito trapped within the fossilized resin.")
+(fb_blue_shop_desc
+   "The Firebird's unusual body shape has been termed \qreverse,\q due to the treble-side's horn being higher and more pronounced than the other - a profile unique to this guitar and the Explorer, from which the Firebird was derived.")
+(fb_ebony_shop_desc
+   "Featuring the more typical set-neck design, instead of the classic Firebird's neck-through-body construction, the Firebird Studio offers a slightly different spin on this landmark guitar.")
+(fb_leopard_shop_desc
+   "Reowrr! This little kitten's got claws, my friend. Saucer of milk - table three! Um... point made? Good.")
+(coronet_cherry_shop_desc
+   "In 1959, Epiphone began shipping the Coronet in cherry red with a P-90 pickup.  These \qbudget\q offerings now regularly fetch top dollar amongst vintage collectors.")
+(coronet_burst_shop_desc
+   "Featuring gold hardware, two high output humbuckers, and a more traditional 6-on-a-side headstock, this model proves that the Coronet cleans up real nice.")
+(coronet_green_shop_desc
+   "Maximize the Coronet's retro-cool factor with this radiant green sparkle finish.")
+(van_yellow_shop_desc
+   "Bust out the hairspray and pour yourself into some spandex - this brilliant yellow Vanguard is taking you back to the time when hair-metal ruled the charts, whether you like it or not.")
+(mod_cherry_shop_desc
+   "Echoing the angular, sharp-edged tailfins on cars of the late 1950s, the radical design of the mysterious Moderne would have made it a highly sought-after period piece, even if it had been widely distributed.")
+(cor_nat_shop_desc
+   "\qBottle-opener\q guitar, au naturel. The Corvus, with its offset v-type cut, rosewood fingerboard, and bolt-on maple neck, was discontinued in 1984.")
+(es_cherry_shop_desc
+   "Eric Clapton, Alvin Lee, and numerous other guitar luminaries have made the most of the ES335's thin double-cutaway body and speedy, low-action neck to craft some of popular music's most memorable guitar lines.")
+(650_white_shop_desc
+   "Sometimes good guys don't wear white - beneath this striking finish lies some of the most badass guitar innovations of the late 1970s, making the 650 still well ahead of the curve today.")
+(eds_white_shop_desc
+   "The EDS-1275 has been played by a strikingly diverse group of guitarists, including James Hetfield, Alex Lifeson, Tom Morello, Don Felder, Pete Townshend, and Zakk Wylde.")
+(endgame_encore_title1
+   {if_else $egg5
+   "THEY WANT A DAMN"
+   "GIVE YOUR AUDIENCE AN"})
+(endgame_encore_title2
+   {if_else $egg5
+   "ENCORE!"
+   "ENCORE?"})
+(endgame_encore_score
+   "%d points")
+(endgame_encore_review
+   "%d stars")
+(endgame_encore_money
+   "$%d earned")
+(endgame_encore_letter3
+   "The crowd is goin' nuts, you'd better play an encore. Think you can buck up and give it all you've got with one more?")
+(endgame_encore_letter4
+   "Man, they're lovin' you! Do your fans a favor and go back out there. You got enough energy for one more?")
+(endgame_encore_letter5
+   "They're really chanting out there! They're demanding one more. Can you pull it together for a big finish?")
+(endgame_encore_letter6
+   "The audience is flippin' out! Come on, chief, give 'em what they want! You got time for one more?")
+(endgame_encore_freebird1
+   "Looks like the time has come. They're chanting for Free Bird. You knew it would happen one day. You wanna do this?")
+(freebird_confirm1
+   "Wait, you really want to play Free Bird?")
+(freebird_confirm2
+   "This move can only be pulled off by a TRUE hero! \nYou still game?")
+(freebird_confirm3
+   "Okay, last chance... \nYou really want to play Free Bird?")
+(MULTIPLAYER_MODE_SELECT
+   "MULTIPLAYER MODE SELECT")
+(MULTI_COMPETE
+   "COMPETITION")
+(multi_compete_desc
+   "Head-to-head guitar battle. Score more points than the other player to win.")
+(PLAYER_1
+   "PLAYER 1")
+(PLAYER_2
+   "PLAYER 2")
+(mp_player_1_short
+   "P1")
+(mp_player_2_short
+   "P2")
+(mp_ready
+   "READY")
+(MULTI_SELECT_YOUR_HERO
+   "SELECT YOUR HERO")
+(WAITING
+   "WAITING....")
+(LOADING
+   "LOADING....")
+(MULTI_SELECT_GUITAR
+   "SELECT YOUR GUITAR")
+(MULTI_SELECT_SKINS
+   "SELECT FINISHES")
+(MULTI_SELECT_SKIN
+   "SELECT FINISH")
+(mp_select_outfit
+   "SELECT OUTFIT")
+(mp_select_character
+   "SELECT YOUR CHARACTER")
+(sg_player1
+   "PLAYER 1: %s")
+(sg_player2
+   "PLAYER 2: %s")
+(sg_lead
+   "LEAD")
+(sg_rhythm
+   "RHYTHM")
+(sg_guitar
+   "GUITAR")
+(sg_bass
+   "BASS")
+(multiplier_format
+   "%dX")
+(star_ready
+   "STAR POWER READY!")
+(song_failed
+   "SONG FAILED!")
+(deploy_star
+   "DEPLOY YOUR STAR POWER!")
+(METALOADING
+   "LOADING")
+(loading_tip1
+   "Try the Hammer-ons and Pull-offs. They really work. We promise.")
+(loading_tip2
+   "Hit 10 notes in a row for a x2 multiplier. Longer streaks are rewarded with higher multipliers.")
+(loading_tip3
+   "Just like a real guitar, you don't need to release lower Fret Buttons when you play higher ones.")
+(loading_tip4
+   "Wait until you have a x4 multiplier going, and then use Star Power to max out your score.")
+(loading_tip5
+   "Star Power can be a life saver! If you're deep in the red, use it to win the crowd back.")
+(loading_tip6
+   "Use Star Power to drive the crowd wild. Learn how to control it in the Star Power Tutorial.")
+(loading_tip7
+   "Get a streak multiplier by playing perfectly for a few notes.")
+(loading_tip8
+   "Series of notes on the same fret coming up?  Keep the fret button held down.")
+(loading_tip9
+   {if_else $egg5
+   "You found all the eggs! Much love to everyone <3"
+   "You can slow down or speed up specific sections in Practice Mode."})
+(loading_tip10
+   "We also fixed the HOPO bug. Wait, this is 360.")
+(loading_tip11
+   "Visit Practice Mode from the Training menu to really nail those tough sections.")
+(loading_tip12
+   "If you're having problems with timing, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
+(loading_tip13
+   "We fixed the strum limit so you don't have to. Go check out Trogdor and see how it feels.")
+(loading_tip14
+   "If you're having problems with timing, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
+(comedy_tip1
+   "Life is hard for musicians, but for drummers it's nearly impossible.")
+(comedy_tip2
+   {if_else $egg5
+   "Stop fucking asking to buy Deluxe. That would be illegal."
+   "If your singer ain't happy, ain't nobody happy."})
+(comedy_tip3
+   {if_else $egg5
+   "Don't get it confused, jnack can't actually draw. Professional rip-off artist."
+   "You need a mini-fridge in your practice space. It's more important than a bassist."})
+(comedy_tip4
+   {if_else $egg5
+   "Go put the fret colors back yourself if it bothers you so much."
+   "You only need one person with a mohawk in your band."})
+(comedy_tip5
+   "Remember, NO STAIRWAY!")
+(comedy_tip6
+   "TURN IT UP!")
+(comedy_tip7
+   {if_else $egg5
+   "If you ever come across suspicious looking Harmonix binders call LocalH immediately."
+   "It takes a REALLY long time to drive the van through Nebraska."})
+(comedy_tip8
+   "If you have a road crew, it's called \qhauling\q gear. Otherwise it's \qschlepping.\q")
+(comedy_tip9
+   {if_else $egg5
+   "Damnit Harmonix, why did you hardcode some of this stuff?"
+   "It all comes out on the road."})
+(comedy_tip10
+   "A band is the dysfunctional family you choose.")
+(comedy_tip11
+   {if_else $egg5
+   "When your past 50,000 points that means your in the clear so try not to
+miss alot of notes."
+   "If you call your new song a \qRock Anthem,\q you'd better be damn sure."})
+(comedy_tip12
+   "It's customary to try to be the loudest during practice.")
+(comedy_tip13
+   "Dropping your pants onstage does not deploy Star Power.")
+(comedy_tip14
+   "If your neighbors keep complaining, turn it up until they move away.")
+(comedy_tip15
+   {if_else $egg5
+   "Remember, Trogdor FCs on this disc don't count."
+   "Your mom does not count as a fan."})
+(easy_tip1
+   "You don't get any cash in EASY, but you do in MEDIUM, HARD and EXPERT.")
+(easy_tip2
+   "If you're getting 5 stars on every song without breaking a sweat, it's time for MEDIUM.")
+(easy_tip3
+   "Try MEDIUM or harder if you want to be able to buy new guitars, songs, videos, and more.")
+(advanced_tip1
+   "Stuck on a song? Try getting 5 stars on an easier one.")
+(advanced_tip2
+   "Save your Star Power for note-heavy sections, for more points and bigger crowd boosts.")
+(advanced_tip3
+   "Chords are worth more points than regular notes!")
+(advanced_tip4
+   "Strum up and down to keep your arm from wearing out during fast passages.")
+(advanced_tip5
+   "Pick up characters, outfits, guitars, bonus songs, and more at The Store.")
+(encore_tip1
+   "Don't write your encore on your set list - your fans will know you planned it.")
+(encore_tip2
+   "If the staff is already flipping the stools, you missed your chance for an encore.")
+(encore_tip3
+   "Be sure they WANT you to come back out before you save your best song for last.")
+(encore_tip4
+   "If your drummer is too tired for an encore, then they're too tired for the after-party.")
+(encore_tip5
+   "If they want an encore but you're out of songs, do NOT try to just JAM.")
+(encore_tip6
+   "If the crowd is screaming for more but the sound dude is shaking his head, ignore him and play.")
+(freebird_tip1
+   "You're looking for \qGtr solo i\q in Practice Mode.")
+;(freebird_tip2
+;   "Master Free Bird in Practice Mode before trying your hand at the full version on stage.")
+(freebird_tip3
+   "FINE. They AREN'T just heckling you this time. SIGH.")
+(freebird_tip4
+   "Man, you must really like Free Bird.")
+(freebird_tip5
+   "Hang in there! You can do it! FREE BIRD!")
+(freebird_tip6
+   "AND THIS BIRD YOU CANNOT CHANGE!!!")
+(multi_coop_tip1
+   "In Cooperative Mode, both players need to tilt their guitars TOGETHER to engage Star Power.")
+(multi_coop_tip2
+   "You both need to engage Star Power together.")
+(multi_coop_tip3
+   "In Cooperative Mode, you both are working together to achieve maximum high score.")
+(multi_coop_tip4
+   "In Cooperative Mode, everyone's a winner.  Unless you're both losers.")
+(multi_coop_tip5
+   "Your streaks are combined in Cooperative Mode - you lose your multiplier if one of you screws up.")
+(multi_coop_tip6
+   "Be careful in Cooperative Mode - if the Rock Meter gets too far into the red, you'll lose.")
+(multi_coop_tip7
+   "We aren't responsible if you end up hating each other.")
+(multi_coop_tip8
+   "Shouting \qSTAR POWER!\q is as good a method as any.")
+(multi_coop_tip9
+   "When someone calls a \qBand Meeting\q it's usually not a good thing.")
+;(loading_tip_arterialblack
+;   "Marcus Henderson contributed another tune for Guitar Hero II before splitting Drist to play lead guitar for the Grim Ripper.")
+;(loading_tip_collide
+;   "When Anarchy Club isn't breaking things or fighting rival Kung Fu gangs, frontman Keith Smith smashes guitars for the HMX QA team.")
+;(loading_tip_drinkup
+;   "\qDrink Up\q has become the anthem for the messed-up masses.")
+;(loading_tip_elephantbones
+;   "Dizzy from the fumes, white knuckled, holding the wheel hostage. A dirty old Cadillac barrels toward hell, with a brick on the gas pedal.")
+(loading_tip_fallofpangea
+   "Valient Thorr is from Venus. Their message is your tool to further the knowledgement of the human consciousness.")
+;(loading_tip_ftk
+;   "If they weren't so busy starting fights and smashing things, these girls would probably take over the world.")
+(loading_tip_gemini
+   "Brian Kahanek says, \qPlay it from the bottom of your heart to the tips of your toes - every time.\q")
+(loading_tip_jordan
+   "Wearing a bucket on your head will not improve your chances of beating this song. Or maybe it will.")
+;(loading_tip_kicked
+;   "Right now, Noble Rot is hitting on your sister. If she doesn't take the bait, your mom is on hold.")
+(loading_tip_soybomb
+   "Honest Bob and the Factory-to-Dealer Incentives return with their hit \qSoy Bomb\q, Spanish for \qI am bomb\q.")
+(loading_tip_ladylightning
+   "Half man, half machine, Bang Camaro runs on dude power.")
+(loading_tip_laughtrack
+   "The Acro-brats are hands-down the best rock band in their practice space.")
+(loading_tip_lesstalkmorerokk
+   "Throw your undies on the stage. No wait, you're underage.")
+(loading_tip_mrfixit
+   "Live to tour, tour to live! The Crowns remain, now and forever, royal to the loyal.")
+;(loading_tip_newblack
+;   "\qWhen playing shows, it's not ok to start a chant for your own band. That's like giving yourself a nickname.\q")
+;(loading_tip_onefortheroad
+;   "Breaking Wheel would love to play in your basement, funeral or bar mitzvah.  As well, donations to our van fund are welcome.")
+(loading_tip_parasite
+   "The Neighborhoods were presented with the Hall of Fame award at the 2005 Boston Music Awards.")
+;(loading_tip_radiumeyes
+;   "Think you can you play a proto-retro-roboto-organico soldier's love song set during the Phillippines-American War?  Doubt it.")
+;(loading_tip_rawdog
+;   "For best results, play at maximum volume, especially in the presence of authority figures or the elderly.")
+(loading_tip_redlottery
+   "Riding forth like thunderbolts cast from the hammer of Thor, the eight hooves of MEGASUS burn a trail of fire 'cross the winter sky.")
+(loading_tip_six
+   "Guitarist Mike Martin recommended Oli Herbert to All That Remains prior to joining the band a few years later.")
+(loading_tip_thelightthatblinds
+   "SHADOWS FALL at their very best proving, once again, they are the undeniable leaders of the current hard rock/metal scene.")
+(loading_tip_trogdor
+   "\qFor squeadlies, mash on the trembalo. For meadlies, tone up on your chord surpassers. Oh, and I'm awesome.\q\n   - Stongbad")
+;(loading_tip_thunderhorse
+;   "DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed.")
+(loading_tip_xstream
+   "The spirit of legendary guitarist Piggy (Denis D'Amour) lives on in Guitar Hero II as Voivod takes you to the X-Stream once again.")
+(loading_tip_yeswecan
+   "Made In Mexico was made in Rhode Island, the Ocean State.")
+(TRAINING
+   "training")
+(select_mode
+   "select mode")
+(practice
+   "practice")
+(sel_speed
+   "select speed")
+(select_start_section
+   "select start section")
+(select_end_section
+   "select end section")
+(speed_label0
+   "Full speed")
+(speed_label1
+   "Slow")
+(speed_label2
+   "Slower")
+(speed_label3
+   "Slowest")
+(PRACTICE_END
+   "GH2DX PRACTICE")
+(SELECT_PART
+   "SELECT PART")
+(change_speed
+   "change speed")
+(gems_hit_pattern
+   "notes hit: %i%% (%i/%i)")
+(full_song
+   "Full Song")
+(intro
+   "Intro")
+(intro_a
+   "Intro a")
+(intro_b
+   "Intro b")
+(intro_c
+   "Intro c")
+(vocal_intro
+   "Vocal intro")
+(gtr_intro
+   "Gtr intro")
+(gtr_intro_a
+   "Gtr intro a")
+(gtr_intro_b
+   "Gtr intro b")
+(gtr_intro_c
+   "Gtr intro c")
+(gtr_intro_d
+   "Gtr intro d")
+(gtr_intro_e
+   "Gtr intro e")
+(intro_riff
+   "Intro riff")
+(bass_intro
+   "Bass intro")
+(noise_intro
+   "Noise intro")
+(gtr_enters
+   "Gtr enters")
+(rhy_enters
+   "Gtr2 enters")
+(bass_enters
+   "Bass enters")
+(band_enters
+   "Band enters")
+(kick_it
+   "Kick It!")
+(quiet_intro
+   "Quiet intro")
+(verse_1
+   "Verse 1")
+(verse_1a
+   "Verse 1a")
+(verse_1b
+   "Verse 1b")
+(verse_1c
+   "Verse 1c")
+(verse_1d
+   "Verse 1d")
+(verse_1e
+   "Verse 1e")
+(verse_1f
+   "Verse 1f")
+(verse_2
+   "Verse 2")
+(verse_2a
+   "Verse 2a")
+(verse_2b
+   "Verse 2b")
+(verse_2c
+   "Verse 2c")
+(verse_2d
+   "Verse 2d")
+(verse_2e
+   "Verse 2e")
+(verse_2f
+   "Verse 2f")
+(verse_3
+   "Verse 3")
+(verse_3a
+   "Verse 3a")
+(verse_3b
+   "Verse 3b")
+(verse_3c
+   "Verse 3c")
+(verse_3d
+   "Verse 3d")
+(verse_3e
+   "Verse 3e")
+(verse_3f
+   "Verse 3f")
+(verse_4
+   "Verse 4")
+(verse_4a
+   "Verse 4a")
+(verse_4b
+   "Verse 4b")
+(verse_4c
+   "Verse 4c")
+(verse_4d
+   "Verse 4d")
+(verse_5
+   "Verse 5")
+(verse_5a
+   "Verse 5a")
+(verse_5b
+   "Verse 5b")
+(verse_5c
+   "Verse 5c")
+(verse_5d
+   "Verse 5d")
+(chorus
+   "Chorus")
+(chorus_1
+   "Chorus 1")
+(chorus_1a
+   "Chorus 1a")
+(chorus_1b
+   "Chorus 1b")
+(chorus_1c
+   "Chorus 1c")
+(chorus_1d
+   "Chorus 1d")
+(chorus_2
+   "Chorus 2")
+(chorus_2a
+   "Chorus 2a")
+(chorus_2b
+   "Chorus 2b")
+(chorus_2c
+   "Chorus 2c")
+(chorus_3
+   "Chorus 3")
+(chorus_3a
+   "Chorus 3a")
+(chorus_3b
+   "Chorus 3b")
+(chorus_3c
+   "Chorus 3c")
+(chorus_4
+   "Chorus 4")
+(chorus_4a
+   "Chorus 4a")
+(chorus_4b
+   "Chorus 4b")
+(chorus_4c
+   "Chorus 4c")
+(chorus_5
+   "Chorus 5")
+(chorus_5a
+   "Chorus 5a")
+(chorus_5b
+   "Chorus 5b")
+(chorus_5c
+   "Chorus 5c")
+(gtr_solo
+   "Gtr solo")
+(gtr_solo_a
+   "Gtr solo a")
+(gtr_solo_b
+   "Gtr solo b")
+(gtr_solo_c
+   "Gtr solo c")
+(gtr_solo_d
+   "Gtr solo d")
+(gtr_solo_e
+   "Gtr solo e")
+(gtr_solo_f
+   "Gtr solo f")
+(gtr_solo_g
+   "Gtr solo g")
+(gtr_solo_h
+   "Gtr solo h")
+(gtr_solo_i
+   "Gtr solo i")
+(gtr_solo_j
+   "Gtr solo j")
+(gtr_solo_k
+   "Gtr solo k")
+(gtr_solo_l
+   "Gtr solo l")
+(gtr_solo_m
+   "Gtr solo m")
+(gtr_solo_n
+   "Gtr solo n")
+(gtr_solo_o
+   "Gtr solo o")
+(gtr_solo_p
+   "Gtr solo p")
+(gtr_solo_q
+   "Gtr solo q")
+(gtr_solo_r
+   "Gtr solo r")
+(gtr_solo_s
+   "Gtr solo s")
+(gtr_solo_1
+   "Gtr solo 1")
+(gtr_solo_1a
+   "Gtr solo 1a")
+(gtr_solo_1b
+   "Gtr solo 1b")
+(gtr_solo_1c
+   "Gtr solo 1c")
+(gtr_solo_1d
+   "Gtr solo 1d")
+(gtr_solo_1e
+   "Gtr solo 1e")
+(gtr_solo_2
+   "Gtr solo 2")
+(gtr_solo_2a
+   "Gtr solo 2a")
+(gtr_solo_2b
+   "Gtr solo 2b")
+(gtr_solo_2c
+   "Gtr solo 2c")
+(gtr_solo_2d
+   "Gtr solo 2d")
+(gtr_solo_2e
+   "Gtr solo 2e")
+(gtr_solo_2f
+   "Gtr solo 2f")
+(gtr_solo_2g
+   "Gtr solo 2g")
+(gtr_solo_3
+   "Gtr solo 3")
+(gtr_solo_3a
+   "Gtr solo 3a")
+(gtr_solo_3b
+   "Gtr solo 3b")
+(gtr_solo_3c
+   "Gtr solo 3c")
+(gtr_solo_4
+   "Gtr solo 4")
+(gtr_solo_4a
+   "Gtr solo 4a")
+(gtr_solo_4b
+   "Gtr solo 4b")
+(gtr_solo_5
+   "Gtr solo 5")
+(gtr_solo_6
+   "Gtr solo 6")
+(gtr_solo_7
+   "Gtr solo 7!")
+(gtr_solo_8
+   "Gtr solo 8!!")
+(gtr_solo_9
+   "Gtr solo 9!!!")
+(drum_solo
+   "Drum solo")
+(drum_solo_1
+   "Drum solo 1")
+(drum_solo_2
+   "Drum solo 2")
+(drum_solo_3
+   "Drum solo 3")
+(bass_solo
+   "Bass solo")
+(bass_solo_1
+   "Bass solo 1")
+(bass_solo_2
+   "Bass solo 2")
+(bass_solo_3
+   "Bass solo 3")
+(organ_solo
+   "Organ solo")
+(noise_solo
+   "Noise solo")
+(trill_me_1
+   "Trill me!")
+(trill_me_2
+   "Trill me!!")
+(ah_ah_1
+   "Ah ah!")
+(ah_ah_2
+   "Ah ah!!")
+(trogdor_1
+   "TROGDOR!")
+(trogdor_2
+   "TROGDOR!!")
+(trogdor_3
+   "TROGDOR!!!")
+(trc
+   "T-R-C!!")
+(slide_solo_1
+   "Slide solo 1")
+(slide_solo_2
+   "Slide solo 2")
+(fast_part
+   "Fast part")
+(gtr_lead_1
+   "Gtr lead 1")
+(gtr_lead_2
+   "Gtr lead 2")
+(gtr_lead_3
+   "Gtr lead 3")
+(speed_picking
+   "Fast picking")
+(slow_hvy
+   "Slow part")
+(bridge
+   "Bridge")
+(bridge_a
+   "Bridge a")
+(bridge_b
+   "Bridge b")
+(bridge_c
+   "Bridge c")
+(bridge_d
+   "Bridge d")
+(bridge_1
+   "Bridge 1")
+(bridge_1a
+   "Bridge 1a")
+(bridge_1b
+   "Bridge 1b")
+(bridge_2
+   "Bridge 2")
+(bridge_2a
+   "Bridge 2a")
+(bridge_2b
+   "Bridge 2b")
+(break
+   "Break")
+(break_1
+   "Break 1")
+(break_2
+   "Break 2")
+(breakdown
+   "Breakdown")
+(jam
+   "Jam")
+(gtr_break
+   "Gtr break")
+(gtr_break_1
+   "Gtr break 1")
+(gtr_break_2
+   "Gtr break 2")
+(gtr_break_3
+   "Gtr break 3")
+(gtr_break_4
+   "Gtr break 4")
+(gtr_fill
+   "Gtr fill")
+(gtr_fills
+   "Gtr fills")
+(gtr_hook
+   "Gtr hook")
+(gtr_hook_1
+   "Gtr hook 1")
+(gtr_hook_2
+   "Gtr hook 2")
+(gtr_hook_3
+   "Gtr hook 3")
+(vocal_break
+   "Vocal break")
+(noise_build
+   "Noise build")
+(release
+   "Release")
+(melody_1
+   "Melody 1")
+(melody_2
+   "Melody 2")
+(lo_melody
+   "Low melody")
+(gtr_mel_1
+   "Melody 1")
+(gtr_mel_2
+   "Melody 2")
+(gtr_mel_3
+   "Melody 3")
+(speedup
+   "Speed up")
+(soft_1
+   "Soft part 1")
+(soft_2
+   "Soft part 2")
+(soft_3
+   "Soft part 3")
+(soft_4
+   "Soft part 4")
+(main_riff_1
+   "Main riff 1")
+(main_riff_2
+   "Main riff 2")
+(main_riff_3
+   "Main riff 3")
+(main_riff_4
+   "Main riff 4")
+(main_riff_5
+   "Main riff 5")
+(main_riff_6
+   "Main riff 6")
+(main_riff_7
+   "Main riff 7")
+(high_gtr_1
+   "High gtr 1")
+(high_gtr_2
+   "High gtr 2")
+(high_gtr_3
+   "High gtr 3")
+(high_gtr_4
+   "High gtr 4")
+(verse_riff
+   "Verse riff")
+(chorus_riff
+   "Chorus riff")
+(gtr_riff_1
+   "Gtr riff 1")
+(gtr_riff_2
+   "Gtr riff 2")
+(gtr_riff_3
+   "Gtr riff 3")
+(gtr_riff_4
+   "Gtr riff 4")
+(gtr_riff_5
+   "Gtr riff 5")
+(big_riff_1
+   "Big riff 1")
+(big_riff_2
+   "Big riff 2")
+(bigger_riff
+   "Bigger riff")
+(swing_riff_1
+   "Swing riff 1")
+(swing_riff_2
+   "Swing riff 2")
+(swing_riff_3
+   "Swing riff 3")
+(swing_riff_4
+   "Swing riff 4")
+(chunky_riff_1
+   "Chunk riff 1")
+(chunky_riff_2
+   "Chunk riff 2")
+(odd_riff_1
+   "Odd riff 1")
+(odd_riff_2
+   "Odd riff 2")
+(odd_riff_3
+   "Odd riff 3")
+(outro
+   "Outro")
+(outro_a
+   "Outro a")
+(outro_b
+   "Outro b")
+(ending
+   "Ending")
+(end_wankery
+   "End wankery")
+(big_end_1
+   "Big ending 1")
+(big_end_2
+   "Big ending 2")
+(tutorials
+   "Tutorials")
+(TUTORIAL_1
+   "Basic Lessons")
+(TUTORIAL_2
+   "Star Power Lessons")
+(TUTORIAL_3
+   "Advanced Techniques")
+(TUT_1_BLURB
+   "Just the basics you need to begin playing.")
+(TUT_2_BLURB
+   "The secret of Star Power: how to boost it and how to use it.")
+(TUT_3_BLURB
+   "For experts with hours of practice already.")
+(tut_description
+   "Lesson Description")
+(tut_letsrock
+   "LET'S ROCK!")
+(tut_task
+   "TASK:")
+(tut_notes_fmt
+   "%s %d/%d")
+(tut_timeout
+   "LESSON TIMED OUT!")
+(tut1_title
+   "GUITAR HERO BASICS TUTORIAL")
+(tut1_1_part
+   "LESSON 1: GUITAR TUNING")
+(tut1_1_info
+   "Tune your guitar:\n1. HOLD Fret Button to CHOOSE note\n2. PRESS Strum Bar up or down to PLAY note")
+(tut1_1_task
+   "Play each note 3 times to continue")
+(tut1_1_done
+   "GUITAR TUNING LESSON COMPLETE!")
+(tut1_1_timeout
+   "LESSON TIMED OUT!")
+(tut1_2_part
+   "LESSON 2: PLAYING NOTES")
+(tut1_2_intro
+   "As notes cross the line, play them on your guitar")
+(tut1_2_task
+   "Play 6 notes to continue")
+(tut1_2_score
+   "Notes Hit:")
+(tut1_2_done
+   "PLAYING NOTES LESSON COMPLETE!")
+(tut1_3_part
+   "LESSON 3: DIFFERENT NOTES")
+(tut1_3_intro
+   "Match the note colors to play different notes")
+(tut1_3_task
+   "Play some different notes, hit 8 to continue")
+(tut1_3_score
+   "Notes Hit:")
+(tut1_3_done
+   "DIFFERENT NOTES LESSON COMPLETE!")
+(tut1_4_part
+   "LESSON 4: LONG NOTES")
+(tut1_4_intro
+   "1. Hold fret button down\n2. Strum\n3 Keep fret button down until the whole note has played")
+(tut1_4_task
+   "Play 6 Long notes to continue")
+(tut1_4_score
+   "Notes Sustained:")
+(tut1_4_done
+   "LONG NOTE LESSON COMPLETE!")
+(tut1_5_part
+   "LESSON 5: CHORDS")
+(tut1_5_intro
+   "Two notes played at the same time")
+(tut1_5_task
+   "Hit 6 chords to continue")
+(tut1_5_score
+   "Chords Hit:")
+(tut1_5_done
+   "CHORDS LESSON COMPLETE!")
+(tut1_6_part
+   "LESSON 6: USER INTERFACE")
+(tut1_6_yellow
+   "Yellow = OK performance\n")
+(tut1_6_green
+   "Green = good performance\n")
+(tut1_6_red
+   "Red = poor performance\n")
+(tut1_6_blink
+   "Blinking Red = danger!\n")
+(tut1_6_score
+   "Play notes = score points")
+(tut1_complete
+   "BASIC TUTORIAL COMPLETE!")
+(tut2_title
+   "STAR POWER TUTORIAL")
+(tut2_1_intro
+   "Guitar Extravagance = Star Power = Huge Scores!")
+(tut2_1_info
+   "1. Boost it\n2. Use it")
+(tut2_2_part
+   "LESSON 1: STAR COMBOS")
+(tut2_2_intro
+   "Hit every note in a Star Combo for a Star Power Boost")
+(tut2_2_task
+   "Nail the Star Combo to continue")
+(tut2_2_done
+   "STAR COMBO LESSON COMPLETE!")
+(tut2_3_part
+   "LESSON 2: WHAMMY BAR")
+(tut2_3_intro
+   "After playing a note, move the whammy bar in and out to extract Star Power.")
+(tut2_3_task
+   "Boost the Star Power Meter to continue")
+(tut2_3_done
+   "WHAMMY BAR LESSON COMPLETE!")
+(tut2_4_part
+   "LESSON 3: Tilt for Star Power")
+(tut2_4_1
+   "")
+(tut2_4_2
+   "Tilt the guitar upright to activate Star Power.\nOnce it is activated you can drop the guitar back down\n")
+(tut2_4_3
+   "")
+(tut2_4_task
+   "Tilt for Star Power and hit 8 notes to continue")
+(tut2_4_score
+   "Notes Hit:")
+(tut2_4_done
+   "STAR POWER TUTORIAL COMPLETE!")
+(tut3_title
+   "HAMMER-ON AND PULL-OFF TUTORIAL")
+(tut3_1_part
+   "LESSON 1: STRING BASICS")
+(tut3_2_part
+   "LESSON 2: HAMMER-ON FINGERING")
+(tut3_2_info
+   "1. Play Green normally (strum)\n2. Hammer-on Red (no strum)\n3. Hammer-on Yellow (no strum)")
+(tut3_2_task
+   "Hit 3 hammer-on sequences to continue")
+(tut3_2_score
+   "Sequences Hit:")
+(tut3_2_done
+   "HAMMER-ON FINGERING LESSON COMPLETE!")
+(tut3_2_timeout
+   "LESSON TIMED OUT!")
+(tut3_3_part
+   "LESSON 3: HAMMER-ONS")
+(tut3_3_task
+   "Hit 8 notes using the Hammer-On technique")
+(tut3_3_score
+   "Notes Hit:")
+(tut3_3_done
+   "HAMMER-ON LESSON COMPLETE!")
+(tut3_4_part
+   "LESSON 4: PULL-OFFS")
+(tut3_4_info
+   "1. Play Yellow normally (strum)\n2. Pull-off Yellow (no strum)\n3. Pull-off Red (no strum)")
+(tut3_4_task
+   "Hit 3 pull-off sequences to continue")
+(tut3_4_score
+   "Sequences Hit:")
+(tut3_4_done
+   "PULL-OFF FINGERING LESSON COMPLETE!")
+(tut3_4_timeout
+   "LESSON TIMED OUT!")
+(tut3_5_task
+   "Hit 8 notes using the Pull-Off technique")
+(tut3_5_score
+   "Notes Hit:")
+(tut3_5_done
+   "PULL-OFF LESSON COMPLETE!")
+(tut3_complete
+   "ADVANCED TUTORIAL COMPLETE!")
+(mc_title_loading
+   "Loading")
+(mc_title_saving
+   "Saving")
+(mc_title_autosave
+   "Autosave")
+(mc_title_warning
+   "Warning")
+(mc_title_error
+   "Error")
+(mc_enable_autosave
+   "You must choose a storage device and save in order for autosave to become active.")
+(mc_autosave_device_changed
+   "Autosave has detected the storage device has changed since the last save.  Please choose your autosave location, or disable autosave.")
+(mc_checking
+   "Checking storage devices...")
+(mc_loading
+   "Loading...")
+(mc_multiple_saves
+   "Multiple storage devices with valid saves were found.  Please choose your preferred storage device, or continue without loading.")
+(mc_not_signed_in
+   "You are not signed in.  If you don't sign in, you can't save your progress.")
+(mc_confirm_not_signed_in
+   "You have chosen to continue without signing in.  Any progress you make will not be saved.")
+(mc_load_file_corrupt
+   "Loading saved game failed because the save file is corrupt.")
+(mc_load_failed
+   "Loading has failed for an unknown reason. Selected storage device is no longer available.")
+(mc_create_file
+   "No save data was found.  Create a new save file?")
+(mc_saving
+   "Saving...")
+(mc_save_complete
+   "Saving Complete.")
+(mc_saving_long
+   "Saving content.  Please don't turn off your console.")
+(mc_save_confirm_overwrite
+   "Save file already exists.  Overwrite?")
+(mc_save_failed
+   "Saving has failed.  Autosaving is disabled.")
+(mc_save_choose_device
+   "Choose the device to save to.")
+(mc_save_not_enough_space
+   "Insufficient space on the selected storage device.")
+(mc_unsaved_data
+   "There is unsaved data.  If you load without saving first, you will lose that data.  Are you sure you want to Load?")
+(mc_load_choose_device
+   "Choose the device to load from.")
+(mc_file_not_found
+   "No save data found on selected device.")
+(mc_delete_confirmation
+   "You are about to permanently delete the selected band.  All progress associated with that band will be lost.  Are you sure you want to continue?")
+(mc_storage_changed
+   "A change has been detected in the Xbox 360 Memory Unit.  You are being redirected to the Main Menu.")
+(mc_storage_device_missing
+   "Selected storage device cannot be found.  Loading Failed.")
+(mc_save_storage_device_pulled
+   "Selected storage device has become unavailable.  Saving has failed.")
+(mc_load_storage_device_pulled
+   "Selected storage device has become unavailable.  Loading has failed.")
+(mc_continue
+   "continue")
+(mc_choose_device
+   "Choose Storage Device")
+(mc_create_save
+   "Create New Save")
+(mc_disable_autosave
+   "Disable Autosaving")
+(mc_signin
+   "Sign In")
+(mc_no_save
+   "Continue Without Saving")
+(mc_overwrite
+   "Overwrite")
+(leaderboards
+   "leaderboards")
+(lb_career_leaderboard
+   "Career Score")
+(lb_campaign_leaderboard
+   "Campaign Score")
+(lb_option1
+   "song:")
+(lb_option2
+   "timeframe:")
+(lb_option3
+   "show:")
+(lb_charts
+   "This Week's Charts")
+(lb_charts_alltime
+   "All-Time Charts")
+(lb_charts_campaign
+   "Campaign Only")
+(lb_charts_all_songs
+   "All Songs")
+(lb_yourname
+   "Your Name:")
+(lb_top
+   "%d of %d")
+(lb_unranked
+   "UNRANKED")
+(lb_gotolist
+   "GO TO LIST")
+(lb_all_time
+   "ALL TIME")
+(lb_this_week
+   "THIS WEEK ONLY")
+(lb_campaign_songs
+   "CAMPAIGN ONLY")
+(lb_friends_only
+   "FRIENDS ONLY")
+(lb_select_song
+   "SELECT A LEADERBOARD")
+(lb_diff
+   "EMHX")
+(lb_placeholder_name
+   "---")
+(lb_move_to_top
+   "GO TO TOP")
+(lb_my_position
+   "GO TO MY SCORE")
+(sc_headline
+   "Select Controller")
+(sc_attached
+   "(ATTACHED CONTROLLERS)")
+(sc_instructions
+   "Press the strum bar on your guitar controller, or use the D-pad on your Xbox 360 controller to move your desired input device onto your side of the screen.")
+(sc_player1
+   "Player 1")
+(sc_player2
+   "player 2")

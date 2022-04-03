@@ -18,10 +18,12 @@
    (show_track TRUE)
    (encore_fx FALSE)
    (track_surface_override '')
-   (crowd_audio TRUE)
+   (crowd_audio 
+      {if_else $focusmode FALSE TRUE})
    (star_power_disable FALSE)
    (shared_star_meter FALSE)
-   (main_screen main_screen)
+   (main_screen
+      {if_else $egg5 main_screen_egg main_screen})
    (continue_screen qp_selsong_screen)
    (loading_screen loading_screen)
    (win_screen endgame_screen)
@@ -45,7 +47,8 @@
    (crowd_rating_active FALSE)
    (crowd_audio FALSE)
    (hud_file hud_practice.milo)
-   (continue_screen main_screen)
+   (continue_screen
+      {if_else $egg5 main_screen_egg main_screen})
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
    (track_surface_override rosewood)

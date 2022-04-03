@@ -2,17 +2,7 @@
    GHPanel
    training_panel
    (file training.milo)
-   (focus tutorials.btn)
-   (poll
-      {if_else
-         {&&
-            {!
-               {campaign tutorial_access}}
-            {==
-               {game get_controller 0}
-               joypad_guitar}}
-         {$this disable tutorials.btn}
-         {$this enable tutorials.btn}})
+   (focus practice.btn)
    (SELECT_START_MSG
       {switch
          $component

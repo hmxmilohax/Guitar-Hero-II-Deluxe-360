@@ -58,6 +58,8 @@
    "ADJUST SPEED")
 (conceived_by
    "as diabolically conceived by")
+(cheat_nofail
+   "No Fail")
 (cheat_mtv_overlay
    "Song Title Always")
 (cheat_awesomeness
@@ -393,7 +395,7 @@
 (bass_thunderbird_ebony_desc
    "Launched as a companion to the Gibson Firebird in 1963, the Thunderbird also featured neck-through construction and a high output, good for the thick, heavy low-end the Thunderbird is prized for.")
 (bass_thunderbird_burst_desc
-   "The Who, Aerosmith, Cheap Trick, Mötley Crüe - what do they all have in common? They've all made the growl, the rumble, the - er, THUNDER of the Thunderbird a key part of their sound.")
+   "The Who, Aerosmith, Cheap Trick, MÃ¶tley CrÃ¼e - what do they all have in common? They've all made the growl, the rumble, the - er, THUNDER of the Thunderbird a key part of their sound.")
 (sg_cherry_desc
    {if_else
       $egg5
@@ -475,7 +477,7 @@
 (redoctane
    "Harmonix Signature SG")
 (redoctane_desc
-   "Gibson's daring foray into the world of toy guitars led to this compact little beauty. Connecting not through a 1/4\q output jack but through a common nine-pin PlayStation®2 controller port, you might still be able to make music with it, if you're insane.")
+   "Gibson's daring foray into the world of toy guitars led to this compact little beauty. Connecting not through a 1/4\q output jack but through a common nine-pin PlayStationÂ®2 controller port, you might still be able to make music with it, if you're insane.")
 (redoctane_cherry
    "Cherry Standard")
 (redoctane_cherry_desc
@@ -497,9 +499,9 @@
 (redoctane_walnut_desc
    "Who said only real guitars can be made out of wood? Okay, so this one's not REALLY made from wood--but hey, it's still pretty classy.")
 (redoctane_target
-   "Target® Special Finish")
+   "TargetÂ® Special Finish")
 (redoctane_target_desc
-   "Exclusively sold at Target® retailers in a guitar bundle, this one shares the store's red on white color scheme. It also manages to escape its dull, corporate trappings by just plain looking clean.")
+   "Exclusively sold at TargetÂ® retailers in a guitar bundle, this one shares the store's red on white color scheme. It also manages to escape its dull, corporate trappings by just plain looking clean.")
 (redoctane_scott
    "Local H V3 Custom")
 (redoctane_scott_desc
@@ -555,7 +557,7 @@
 (redoctane_walnut_shop_desc
    "Who said only real guitars can be made out of wood? Okay, so this one's not REALLY made from wood - but hey, it's still pretty classy.")
 (redoctane_target_shop_desc
-   "Exclusively sold at Target® retailers in a guitar bundle, this one shares the store's red on white color scheme. It also manages to escape its dull, corporate trappings by just plain looking clean.")
+   "Exclusively sold at TargetÂ® retailers in a guitar bundle, this one shares the store's red on white color scheme. It also manages to escape its dull, corporate trappings by just plain looking clean.")
 (redoctane_scott_shop_desc
    "An odd hybrid of parts scavenged from other toy guitars, this all-white Signature SG is truly one of a kind - for better or worse.")
 (redoctane_jnack_shop_desc

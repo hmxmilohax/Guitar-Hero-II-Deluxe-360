@@ -6,17 +6,18 @@
 #include game.dta
 #include career.dta
 #include endgame.dta
+#include eggs.dta
 #include lose.dta
 #include quickplay.dta
 #include multiplayer.dta
 #include main.dta
 #include tutorials.dta
 #include options.dta
+#include modifiers.dta
 #include practice.dta
 #include training.dta
 #include pause.dta
 #include leaderboards.dta
-#include modifiers.dta
 {foreach
    $p
    (pause_panel pause_controller_panel tut_pause_panel pract_pause_panel tut_pause_controller_panel lose_panel helpbar endgame_encore_panel)
@@ -30,9 +31,12 @@
       {option_str budget_config $cfg}
       {track_budget setup $cfg}
       {set $first_screen track_budget}}}
-{ui goto_screen $first_screen}
 {set $speedmod 1.0}
 {set $trackspd 1.0}
+{set $interval_p0 50}
+{set $interval_p1 50}
+{set $interval_p2 50}
 {set $songtitle FALSE}
 {set $focusmode FALSE}
 {set $nofail FALSE}
+{ui goto_screen $first_screen}

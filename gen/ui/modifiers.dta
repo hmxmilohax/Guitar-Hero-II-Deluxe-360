@@ -8,16 +8,14 @@
    (reset_focus TRUE)
    (orig_vol 0)
    (finish_load
-      {gs_guitar.sld set_localized_text gm_sngspd}
-      {gs_sfx.sld set_localized_text gm_unusedsl}
-      {gs_guitar.sld set_num_steps 21}
+      {gs_guitar.sld set_num_steps 31} ;was 21
       {if_else
          {'||'
             {== $modifier_exit multi_vs_selsong_screen}
             {== $modifier_exit multi_coop_selsong_screen}
             {== $modifier_exit multi_fo_selsong_screen}}
-         {gs_sfx.sld set_num_steps 21}
-         {gs_sfx.sld set_num_steps 31}})
+         {gs_sfx.sld set_num_steps 151} ;was 21
+         {gs_sfx.sld set_num_steps 151}}) ;was 31
    (slider_changed
       {'||'
          {!=
@@ -45,6 +43,8 @@
                {/
                   {- $speedmod 1}
                   5.0e-2}}}}
+      {$this enable gs_stereo.btn}
+      {stereo.chk set_check $focusmode}
       {$this display_speed_msg $trackspd $speedmod})
    (poll
       {gs_band.sld set_state kDisabled}
@@ -117,11 +117,20 @@
                (fret2 help_cancel)
                (strum help_adjspd))}
          {do
+            {if_else
+               {==
+                  [focus_component]
+                  "gs_stereo.btn"}
+               {helpbar
+                  set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))}
                {helpbar
                   set_display
                   ((fret1 help_select)
                      (fret2 help_back)
-                     (strum help_updown))}}})
+                     (strum help_updown))}}}})
    (slider_start_msg
       ($component)
       {do
@@ -131,14 +140,14 @@
                {do
                   {play_sfx
                      slider_band
-                     (volume 2)
+                     (volume 1)
                      (stop TRUE)}
                   {$this set_speeds}})
             (gs_sfx.sld
                {do
                   {play_sfx
                      slider_band
-                     (volume 2)
+                     (volume 1)
                      (stop TRUE)}
                   {$this set_speeds}})}})
    (SELECT_START_MSG
@@ -154,6 +163,11 @@
                set
                orig_vol
                {gs_sfx.sld current}})
+         (gs_stereo.btn
+            {stereo.chk toggle}
+            {set
+               $focusmode
+               {stereo.chk get_check}})
          kDataUnhandled}
       {$this update_help_display}
       {$this set_speeds}
@@ -176,5 +190,8 @@
          {if_else
             {exists $modifier_exit}
             {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}}
+            {if_else
+               $egg5
+               {ui goto_screen main_screen_egg}
+               {ui goto_screen main_screen}}}}
       kDataUnhandled)}

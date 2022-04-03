@@ -1,7 +1,7 @@
 (splash_anybutton
    "PRESS ANY BUTTON TO BEGIN")
 (splash_legal
-   "Guitar Hero II TM & © 2006-2007 RedOctane, Inc.\nRedOctane® is a registered trademark of RedOctane, Inc. and Activision is a registered trademark of Activision Publishing, Inc.\nGame code © 2005-2007 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems.")
+   "Guitar Hero II Deluxe © 2006 RedOctane, Inc.\nModifications © 2021 MiloHax. Big thanks to GenericMadScientist\nfor the strum limit and HOPO bug fixes.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems.")
 (signin_changed_title
    "SIGN-IN CHANGED")
 (signin_changed_msg
@@ -137,15 +137,15 @@
 (op_credits
    "Credits")
 (op_data_settings
-   "Manage Band")
+   "Manage Band ")
 (op_game_settings
-   "Audio Settings")
+   "Audio Settings ")
 (op_video_settings
    "Video Settings")
 (op_memcard
    "Data Settings")
 (GAME_SETTINGS
-   "AUDIO SETTINGS")
+   "AUDIO SETTINGS  ")
 (LEFT_PLAYER_1
    "LEFTY FLIP - PLAYER 1")
 (LEFT_PLAYER_2
@@ -221,7 +221,7 @@
 (video3_shop_desc
    "The Guitar Hero II development team takes you backstage to see what life is REALLY like at Harmonix.")
 (QUICK_PLAY
-   "QUICK PLAY")
+   "FREE PLAY")
 (QP_SELSONG
    "SELECT SONG")
 (E3_SINGLE_PLAYER
@@ -347,11 +347,20 @@
 (career_playing_the
    "PLAYING THE")
 (mtv_made_famous
-   "as made famous by")
+   {if_else
+      $egg5
+      "as not actually performed by"
+      "as made famous by"})
 (performed_by
-   "as performed by")
+   {if_else
+      $egg5
+      "as actually performed by"
+      "as performed by"})
 (press_any_button
-   "PRESS ANY BUTTON TO ROCK")
+   {if_else
+      $egg5
+      "PRESS ANY BUTTON TO JAM"
+      "PRESS ANY BUTTON TO ROCK"})
 (pausetitle
    "PAUSED")
 (pause_resume
@@ -383,7 +392,10 @@
 (PLAYER_2_WINS
    "PLAYER 2 WINS!")
 (DRAW
-   "DRAW!")
+   {if_else
+      $egg5
+      "TIED!"
+      "DRAW!"})
 (CONTINUE
    "CONTINUE")
 (MORE_STATS
@@ -395,7 +407,7 @@
 (NEW_SONG
    "NEW SONG")
 (lefty_flip_changed
-   "To change the lefty flip setting, this song must be restarted. You will lose all unsaved progress if you restart. OK to restart?")
+   "To change the lefty flip setting, this song must be restarted.  OK to restart?")
 (RESET
    "RESET")
 (pause_confirm_quit_message
@@ -413,23 +425,18 @@
 (confirm_ok
    "ok")
 (CONTROLLER_LOSS
-   "YOU ARE ROCKING OUT A BIT TOO HARD")
+   {if_else
+      $egg5
+      "YOU PULLED IT OUT"
+      "YOU ARE ROCKING OUT A BIT TOO HARD"})
 (controller_loss_msg
    "Please ensure a Guitar Controller is properly connected")
 (controller_loss_msg_multi
    "Please ensure Guitar Controllers are both properly connected")
 (tut_guitar_loss_msg
    "Please ensure a Guitar Controller is properly connected")
-(win_easy
-   "Dear ______________________,\n\nCongrats on beating Guitar Hero II on Easy. Time to step it up a notch, Ace.\n\nYou want cash awards? Play on MEDIUM, HARD, or EXPERT. You'll be able to buy new guitars, new songs, new finishes... whatever your little rock star heart desires. Who knows, maybe we'll even throw a new mode atcha'!\n\nWelcome to the big time, kiddo.\n\nKisses,\nThe Management")
-(win_medium
-   "Dear ______________________,\n\nCongrats, you beat Guitar Hero II on Medium. Nicely done.\n\nSo you probably know that you can score more cash and buy more stuff if you play HARD or EXPERT, right? Buying stuff is good. Buying stuff makes people like you.\n\nSo let's take it up a level, shall we? Just keep sellin' out gigs and we'll keep sucking up to you.\n\nSmooches,\nThe Management")
-(win_hard
-   "Dear ______________________,\n\nCongrats, you beat Guitar Hero II on Hard. That's no small feat.\n\nThink you've got what it takes to really blow their minds? Try this bad boy out on EXPERT. They call it EXPERT for a reason. There may be a reward waiting for you if you succeed.\n\nSo stretch out them stubby little fingers, Tex, you've got truckload of pain awaiting you. The power of ROCK compels you.\n\nHugs,\nThe Management")
-(win_expert
-   "Dear ______________________,\n\nWow... You just beat Guitar Hero II on EXPERT.\n\nYou've joined the ranks of... well... not very many people. You're kinda out there all alone, a legend among the common folk.\n\nHave you beaten every song with FIVE STARS? If not, get back to work, champ. You might just be rewarded for your efforts.\n\nAnd, uh, seriously? That was awesome. Congratulations.\n\nLove,\nThe Management")
 (win_diff
-   "You beat Guitar Hero II on the %s difficulty")
+   "You beat Guitar Hero II Deluxe on the %s difficulty")
 (win_congrats
    "Congratulations!")
 (win_legendary
@@ -476,8 +483,6 @@
    "Notes Hit")
 (eg_review
    "Review")
-(eg_streak_format
-   "%i Note Streak!")
 (me_percent_format
    "%d%%")
 (me_notes_hit
@@ -498,228 +503,6 @@
    "INCREDIBLE DRAW!")
 (me_pfo_diff
    "DIFFICULTY: %s")
-(headline1
-   "{GH_ADJ} {GH_NOUN} from {GH_BAND} at {GH_VENUE}")
-(headline2
-   "{GH_BAND} {GH_VERB} {GH_VENUE} with {GH_ADJ} {GH_NOUN}")
-(headline_battle
-   "{GH_BAND} {GH_WIN_PHRASE}")
-(headline_perfect
-   "Perfect performance from {GH_BAND} at {GH_VENUE}")
-(headline_perfect_coop
-   "Perfect performance at {GH_VENUE}")
-(headline_quick_coop1
-   "{GH_ADJ} {GH_NOUN} {GH_VERB} {GH_VENUE}")
-(headline_quick_coop2
-   "{GH_VENUE} {GH_VERB_PAST} by {GH_ADJ} {GH_NOUN}")
-(headline_vs
-   "Player {GH_NUM} {GH_VS_VERB} {GH_VS_NOUN}")
-(headline_vs_tie
-   "PLAYERS TIE IN PERFECTLY MATCHED BATTLE!")
-(from
-   "from")
-(at
-   "at")
-(with
-   "with")
-(new_band_headline
-   "New Band")
-(adj_a_1
-   "Killer")
-(adj_a_2
-   "Mind-blowing")
-(adj_a_3
-   "Brilliant")
-(adj_a_4
-   "Dazzling")
-(adj_a_5
-   "Righteous")
-(adj_a_6
-   "Stunning")
-(adj_a_7
-   "Sizzling")
-(adj_a_8
-   "Awesome")
-(adj_a_9
-   "Thrilling")
-(adj_a_10
-   "Sensational")
-(adj_b_1
-   "Excellent")
-(adj_b_2
-   "Crowd-pleasing")
-(adj_b_3
-   "Inspiring")
-(adj_b_4
-   "Rollicking")
-(adj_b_5
-   "Delightful")
-(adj_b_6
-   "Gripping")
-(adj_b_7
-   "Tantalizing")
-(adj_b_8
-   "Winning")
-(adj_b_9
-   "Rousing")
-(adj_b_10
-   "Stirring")
-(adj_c_1
-   "Solid")
-(adj_c_2
-   "Confident")
-(adj_c_3
-   "Interesting")
-(adj_c_4
-   "Heartfelt")
-(adj_c_5
-   "Well-rehearsed")
-(adj_c_6
-   "Enthusiastic")
-(adj_c_7
-   "Enjoyable")
-(adj_c_8
-   "Good")
-(adj_c_9
-   "Decent")
-(verb_a_1
-   "Slays")
-(verb_a_2
-   "Conquers")
-(verb_a_3
-   "Blows Away")
-(verb_a_4
-   "Electrifies")
-(verb_a_5
-   "Overwhelms")
-(verb_a_6
-   "Amazes")
-(verb_a_7
-   "Exhilarates")
-(verb_a_8
-   "Inspires")
-(verb_a_9
-   "Astounds")
-(verb_b_1
-   "Rocks")
-(verb_b_2
-   "Excites")
-(verb_b_3
-   "Impresses")
-(verb_b_4
-   "Heats Up")
-(verb_b_5
-   "Delights")
-(verb_b_6
-   "Captivates")
-(verb_b_7
-   "Charms")
-(verb_b_8
-   "Thrills")
-(verb_b_9
-   "Lights Up")
-(verb_c_1
-   "Wins Over")
-(verb_c_2
-   "Amuses")
-(verb_c_3
-   "Pleases")
-(verb_c_4
-   "Entertains")
-(verb_past_a_1
-   "Slayed")
-(verb_past_a_2
-   "Conquered")
-(verb_past_a_3
-   "Blown Away")
-(verb_past_a_4
-   "Electrified")
-(verb_past_a_5
-   "Overwhelmed")
-(verb_past_a_6
-   "Amazed")
-(verb_past_a_7
-   "Exhilarated")
-(verb_past_a_8
-   "Inspired")
-(verb_past_a_9
-   "Astounded")
-(verb_past_b_1
-   "Rocked")
-(verb_past_b_2
-   "Excited")
-(verb_past_b_3
-   "Impressed")
-(verb_past_b_4
-   "Heated Up")
-(verb_past_b_5
-   "Delighted")
-(verb_past_b_6
-   "Captivated")
-(verb_past_b_7
-   "Charmed")
-(verb_past_b_8
-   "Thrilled")
-(verb_past_b_9
-   "Lit Up")
-(verb_past_c_1
-   "Won Over")
-(verb_past_c_2
-   "Amused")
-(verb_past_c_3
-   "Pleased")
-(verb_past_c_4
-   "Entertained")
-(noun_a_1
-   "concert")
-(noun_a_2
-   "performance")
-(noun_a_3
-   "show")
-(noun_b_1
-   "gig")
-(noun_b_2
-   "set")
-(noun_c_1
-   "effort")
-(noun_c_2
-   "attempt")
-(win_phrase_c_1
-   "finishes third at Battle of the Bands")
-(win_phrase_c_2
-   "squeaks out third place at Battle of the Bands")
-(win_phrase_b_1
-   "gets second place win at Battle of the Bands")
-(win_phrase_b_2
-   "nets a silver medal at Battle of the Bands")
-(win_phrase_a_1
-   "comes in first at Battle of the Bands")
-(win_phrase_a_2
-   "takes home gold at Battle of the Bands")
-(win_vs_verb_c_1
-   "dominates")
-(win_vs_verb_c_2
-   "conquers")
-(win_vs_verb_b_1
-   "triumphs")
-(win_vs_verb_b_2
-   "is victorious")
-(win_vs_verb_a_1
-   "wins")
-(win_vs_verb_a_2
-   "prevails")
-(win_vs_noun_c_1
-   "by a longshot")
-(win_vs_noun_c_2
-   "with authority")
-(win_vs_noun_b_1
-   "in great show")
-(win_vs_noun_b_2
-   "with solid performance")
-(win_vs_noun_a_1
-   "in tight match")
-(win_vs_noun_a_2
-   "in close battle")
 (stat_header
    "Detailed Breakdown")
 (stat_notes_hit
@@ -747,57 +530,57 @@
 (ca_deductions
    "minus deductions:")
 (ca_blurb2
-   "Amps, damaged")
+   "Milos, extracted")
 (ca_blurb3
-   "Green room, trashed")
+   "Note streak, dropped")
 (ca_blurb4
-   "Staff, verbally abused")
+   "Danny, did it first")
 (ca_blurb5
-   "Cables, missing")
+   "GH Live, mentioned")
 (ca_blurb6
-   "Bribes, general")
+   "Clon, installed")
 (ca_blurb7
-   "Rider demands, crazy")
+   "Goodwills, ransacked")
 (ca_blurb8
-   "Bouncers, intimidated")
+   "Gergorge, went down to")
 (ca_blurb9
-   "Wall art, stolen")
+   "Star Power, squeezed")
 (ca_blurb10
-   "Floor, spat upon")
+   "GH3, installed")
 (ca_blurb11
-   "House mics, dented")
+   "Lotion, missing")
 (ca_blurb12
-   "Security, needed")
+   "Strum bar, raked")
 (ca_blurb13
-   "Bar stools, wielded")
+   "Attendant, called")
 (ca_blurb14
-   "Patrons, frightened")
+   "Activision, affiliated")
 (ca_blurb15
-   "Cars, set fire to")
+   "Binders, stolen")
 (ca_blurb16
-   "Can lights, stomped")
+   "Citation, 420")
 (ca_blurb17
-   "Mic stand, thrown")
+   "Medication, arthritis")
 (ca_blurb18
-   "Top shelf, imbibed")
+   "Surgery, wrist")
 (ca_blurb19
-   "House drums, impaled")
+   "Game, decrypted")
 (ca_blurb20
-   "Riots, incited")
+   "Debug ELF, leaked")
 (ca_blurb21
-   "Windows, smashed")
+   "Hacks, encouraged")
 (ca_blurb22
-   "Property, vandalized")
+   "Guitars, overstrummed")
 (ca_blurb23
-   "Fights, initiated")
+   "Restarts, utilized")
 (ca_blurb24
-   "Clean-up, massive")
+   "FC's, choked")
 (ca_blurb25
-   "Noise violations, paid")
+   "GHEx, used")
 (ca_blurb26
-   "Pizzas, ordered")
+   "G FUEL, discounted")
 (ca_blurb27
-   "Sound guy, injured")
+   "tittyfaff, requested")
 (ca_yourcut
    "YOU GET:")
 (ca_spend
@@ -805,9 +588,15 @@
 (CASH_AWARD
    "GIG MONEY")
 (LETTERHEAD1
-   "Death Threat Records")
+   {if_else
+      $egg5
+      "MiloHax Records"
+      "Death Threat Records"})
 (LETTERHEAD2
-   "\qWe do rock right.\q")
+   {if_else
+      $egg5
+      "\qFriends don't let friends GHEx\q"
+      "\qWe do rock right.\q"})
 (LETTERHEAD3
    "LOS ANGELES, CALIFORNIA")
 (STATUS_UPGRADE_BONUS
@@ -827,13 +616,19 @@
 (award_4_star
    "Sweet 4-star review. Here's your cut. Good job out there.")
 (award_5_star
-   "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty.")
+   {if_else
+      $egg5
+      "Amazing set, but you also trashed the place. Here's what it cost you."
+      "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty."})
 (award_3_star_status
    "Nice 3-star review. Here's your cut. Remember - better show, better pay.")
 (award_4_star_status
    "Sweet 4-star review. Here's your cut. Good job out there.")
 (award_5_star_status
-   "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty.")
+   {if_else
+      $egg5
+      "Amazing set, but you also trashed the place. Here's what it cost you."
+      "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty."})
 (sponsor_title
    "YOU GOT SPONSORED!")
 (sponsor_sub1
@@ -869,7 +664,7 @@
 (sponsor_blurb8
    "See, wasn't all that practice worth it? Boss Pedals thinks so, and they're handing you a monster sponsorship deal, not to mention enough Boss Pedals to perfectly customize your signature sound!")
 (sponsor_sub9
-   "(Buy your mom a house. Or an island.)")
+   "(Go buy Speed Test. You've earned it.)")
 (sponsor_blurb9
    "Ernie Ball has been with you from the start, and they are so proud of your incredible success. They're giving you a record-breaking sponsorship deal and strings for life. Congratulations.")
 (sponsor_cash
@@ -883,15 +678,15 @@
 (unlock_profaceoff4
    "You know how whenever you play FACE-OFF Mode, your buddy screams about how you got the easier track and less notes and blah blah, out comes the waaahmbulance? No more, my shredding friend.\n\nCheck out PRO FACE-OFF Mode in the Multiplayer menu and go note-for-note in the ultimate guitarmageddon.\n\nHave fun,\nThe Management")
 (highscore_dummy_0
-   "Finn")
+   "GMS")
 (highscore_dummy_1
-   "Alex D.")
+   "Scott")
 (highscore_dummy_2
-   "Owen")
+   "Cam")
 (highscore_dummy_3
-   "Kayley")
+   "jnack")
 (highscore_dummy_4
-   "Liana")
+   "Cisco")
 (highscore_title
    "TOP ROCKERS")
 (highscore_score_fmt
@@ -923,9 +718,15 @@
 (funk1
    "Xavier Stone")
 (glam
-   "Izzy Sparks")
+   {if_else
+      $egg5
+      "Hair Matheson"
+      "Izzy Sparks"})
 (glam2
-   "Izzy Sparks")
+   {if_else
+      $egg5
+      "Hair Matheson"
+      "Izzy Sparks"})
 (goth
    "Pandora")
 (goth1
@@ -933,21 +734,39 @@
 (grim
    "Grim Ripper")
 (metal
-   "Axel Steel")
+   {if_else
+      $egg5
+      "Hazzard"
+      "Axel Steel"})
 (metal2
-   "Axel Steel")
+   {if_else
+      $egg5
+      "Hazzard"
+      "Axel Steel"})
 (punk
    "Johnny Napalm")
 (punk2
    "Johnny Napalm")
 (rock
-   "Casey Lynch")
+   {if_else
+      $egg5
+      "Gina Hazard"
+      "Casey Lynch"})
 (rock1
-   "Casey Lynch")
+   {if_else
+      $egg5
+      "Gina Hazard"
+      "Casey Lynch"})
 (rockabill
-   "Eddie Knox")
+   {if_else
+      $egg5
+      "Dax Deville"
+      "Eddie Knox"})
 (rockabill2
-   "Eddie Knox")
+   {if_else
+      $egg5
+      "Dax Deville"
+      "Eddie Knox"})
 (alterna_blurb
    "A fan of distorted feedback and roller derby, Judy Nails has been a pioneer of alt-rock since her first tour at age 17. Known for her huge collection of vinyl, Judy brings a smile, and a lot of pedals, to the stage.")
 (classic_blurb
@@ -959,19 +778,29 @@
 (goth_blurb
    "Pandora's youth is shrouded in mystery.  Some say she was born in a dimension of pure darkness. Others say she was raised in a duplex near Boise. With her blazing solos and chaotic melodies, Pandora is the Dark Princess of Rock.")
 (glam_blurb
-   "A real crowd pleaser, Izzy thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Izzy's fan base is even bigger than his hair.")
-(glam_blurb
-   "A real crowd pleaser, Izzy thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Izzy's fan base is even bigger than his hair.")
+   {if_else
+      $egg5
+      "A real crowd pleaser, Hair thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Hair's fan base is even bigger than, well, his hair."
+      "A real crowd pleaser, Izzy thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Izzy's fan base is even bigger than his hair."})
 (grim_blurb
    "This rock star is bad to the bone. Grim's riffs are so killer, fans are lucky just to leave the show with their souls intact. Grim's supernatural licks always knock 'em dead. 'Cause he's... you know... right.")
 (metal_blurb
-   "Famous for his driving riffs and up-front attitude, Axel Steel first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history.")
+   {if_else
+      $egg5
+      "Famous for his driving riffs and up-front attitude, Hazzard first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history."
+      "Famous for his driving riffs and up-front attitude, Axel Steel first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history."})
 (punk_blurb
    "Johnny embodies the true spirit of punk rock with his signature stomp and swagger. Released from lockup for \qalmost tolerable behavior,\q Johnny lurches back into the spotlight, rough and ready for action.")
 (rock_blurb
-   "A veteran of the tour circuit, Casey's dirty, low-end growl and ultra-heavy riffs have influenced budding shredders from Maine to Alaska. She's tough, she's brash, and she'll break your heart faster than an E string.")
+   {if_else
+      $egg5
+      "A veteran of the tour circuit, Gina's dirty, low-end growl and ultra-heavy riffs have influenced budding shredders from Maine to Alaska. She's tough, she's brash, and she'll break your heart faster than an E string."
+      "A veteran of the tour circuit, Casey's dirty, low-end growl and ultra-heavy riffs have influenced budding shredders from Maine to Alaska. She's tough, she's brash, and she'll break your heart faster than an E string."})
 (rockabill_blurb
-   "When he's not cruisin' in his '55 Chevy, Eddie brings his hard-working rock to any stage he sets foot on. A real \qroad dog,\q Eddie Knox claims that as long as he's got his hollow body and his pomade, he \qain't too far from home.\q")
+   {if_else
+      $egg5
+      "When he's not cruisin' in his '55 Chevy, Dax brings his hard-working rock to any stage he sets foot on. A real \qroad dog,\q Dax Deville claims that as long as he's got his hollow body and his pomade, he \qain't too far from home.\q"
+      "When he's not cruisin' in his '55 Chevy, Eddie brings his hard-working rock to any stage he sets foot on. A real \qroad dog,\q Eddie Knox claims that as long as he's got his hollow body and his pomade, he \qain't too far from home.\q"})
 (alterna_outfit_blurb
    "Likes: Perfect spelling, boast-worthy bruises, strawberries\n\nDislikes: Rudeness, fake strawberry-flavored things")
 (deathmetal_outfit_blurb
@@ -995,13 +824,25 @@
 (goth1_shop_desc
    "The consummate chameleon, Pandora is admired almost as much for her unique and ever-changing personal style as for her incomparable shredding skills.")
 (glam2_shop_desc
-   "Not everybody can pull off a top hat and feather boa. Izzy is not afraid to subvert the dominant paradigm in this ultra-glam ensemble.")
+   {if_else
+      $egg5
+      "Not everybody can pull off a top hat and feather boa. Hair is not afraid to subvert the dominant paradigm in this ultra-glam ensemble."
+      "Not everybody can pull off a top hat and feather boa. Izzy is not afraid to subvert the dominant paradigm in this ultra-glam ensemble."})
 (metal2_shop_desc
-   "Since they don't make you play better and you can't drink 'em, Axel has zero interest in clothes. But even Axel needs a change once in awhile.")
+   {if_else
+      $egg5
+      "Since they don't make you play better and you can't drink 'em, Hazzard has zero interest in clothes. But even Hazzard needs a change once in awhile."
+      "Since they don't make you play better and you can't drink 'em, Axel has zero interest in clothes. But even Axel needs a change once in awhile."})
 (rock1_shop_desc
-   "Casey's look is designed for backbreaking life on the road; if she can't pass out in the van wearing it, she's not interested.")
+   {if_else
+      $egg5
+      "Gina's look is designed for backbreaking life on the road; if she can't pass out in the van wearing it, she's not interested."
+      "Casey's look is designed for backbreaking life on the road; if she can't pass out in the van wearing it, she's not interested."})
 (rockabill2_shop_desc
-   "Eddie Knox is one cat who ain't afraid to look his best. As long as his hair is in place, he's as comfortable in old jeans as he is in these swanky duds.")
+   {if_else
+      $egg5
+      "Dax Deville is one cat who ain't afraid to look his best. As long as his hair is in place, he's as comfortable in old jeans as he is in these swanky duds."
+      "Eddie Knox is one cat who ain't afraid to look his best. As long as his hair is in place, he's as comfortable in old jeans as he is in these swanky duds."})
 (punk2_shop_desc
    "Johnny has a couple of different looks, but neither of them involves bathing. With liberty spikes and a bullet belt, Johnny makes sordid, degenerate behavior look pretty good.")
 (classic_shop_desc
@@ -1104,8 +945,6 @@
    "For those about to rock, we... give you the Gibson SG. Embraced by the likes of Angus Young, Tony Iommi, and Ian MacKaye, this slim-bodied \qdevil horns\q double-cutaway has become an iconic instrument of heavy rock.")
 (sg_cherry
    "Cherry Standard")
-(sg_cherry_desc
-   "First introduced as a Les Paul Signature model in 1961, the cherry-finish SG (\qSolid Guitar\q) officially replaced the familiar Les Paul Standard body shape the following year.")
 (sg_flames
    "Custom Flame Finish")
 (sg_flames_desc
@@ -1116,8 +955,6 @@
    "The GT series is geared towards the gigging guitarist, with a number of road-ready features.  An over/under dual truss rod provides extra neck reinforcement, while a Neutrik input jack and dual function strap locks ensure that you'll stay connected.")
 (sg_white
    "Worn White Special")
-(sg_white_desc
-   "Guitarists like Wayne Kramer, Eric Bloom, and Duane Allman helped to turn the Gibson SG into an icon in its own right. Join the ranks, with this time-honored Worn White model.")
 (flying_v
    "Gibson Flying V")
 (flying_v_desc
@@ -1148,8 +985,6 @@
    "Explorers such as this Natural finish model have been played by Bob Mould, The Edge, and Lynyrd Skynyrd's Allen Collins, among others.")
 (exp_sun
    "Custom Rising Sun Finish")
-(exp_sun_desc
-   "If you can't blind 'em with blazing licks, try blinding your audience with this custom Explorer featuring a scorching Rising Sun finish.")
 (exp_white
    "Classic White Finish")
 (exp_white_desc
@@ -1172,8 +1007,6 @@
    "By the early '60s, Gibson was looking to field more progressive guitars in order to make greater inroads into the solidbody market. Car designer Ray Dietrich came up with the asymmetric shape which was the basis for the Firebird.")
 (fb_blue
    "Ice Blue Finish")
-(fb_blue_desc
-   "The Firebird's unusual body shape has been termed \qreverse,\q due to the treble-side's horn being higher and more pronounced than the other - a profile unique to this guitar and the Explorer, from which the Firebird was derived.")
 (fb_ebony
    "Ebony Finish")
 (fb_ebony_desc
@@ -1188,8 +1021,6 @@
    "This celebrated thinline, semi-acoustic model features a maple arched top and back, slim and fast neck with adjustable truss rod, and twin humbucking pickups with separate tone and volume control, which can be preset by the player.")
 (es_maple
    "Birdseye Maple Finish")
-(es_maple_desc
-   "The distinctive sound afforded by the semi-hollowbody construction and ease of play due to the slim neck and comfortable access to the upper frets made the 335 a hit with the likes of Chuck Berry, B.B. King, and Roy Orbison.")
 (es_cherry
    "Custom Cherry Finish")
 (es_cherry_desc
@@ -1279,7 +1110,7 @@
 (kramer_vanguard_desc
    "A heavy metal landmark, Kramer's V-shaped guitar was favored by velocity hounds from its introduction, thanks to super-hot pickups and a fast, low-action neck.")
 (van_black
-   "Black Finish")
+   "Ebony Finish")
 (van_black_desc
    "It doesn't get much more metal than this '80s classic. Fulfill your dreams of stardom with this attention-grabbing Kramer Vanguard.")
 (van_yellow
@@ -1363,7 +1194,7 @@
 (bass_thunderbird_burst
    "Natural Sunburst Gibson Thunderbird Bass")
 (bass_hofner
-   "Sunburst Classic Hofner Bass")
+   "Sunburst Classic Höfner Bass")
 (select_song
    "Select a Song")
 (song_header_battle
@@ -1514,10 +1345,6 @@
    "Collide")
 (collide_shop_desc
    "Anarchy Club returns to Guitar Hero with \qCollide,\q the newest song from their upcoming E.P. - \qA Single Drop of Red.\q Wanna know what a love song for the apocalypse sounds like? Like this...")
-(drinkup
-   "Drink Up")
-(drinkup_shop_desc
-   "OUNCE of SELF is ready to out-heavy the entire face of this planet! Keeping everything heavy, sludgy, and earth-shaking, the band tends to leave their mark on the metal scene.")
 (elephantbones
    "Elephant Bones")
 (elephantbones_shop_desc
@@ -1534,10 +1361,6 @@
    "Gemini")
 (gemini_shop_desc
    "\qKahanek lets loose (on 'Real Life') with one vivid demonstration after another of the pure joy of playing the electric guitar as if your life depended on it.\q\n- Jason Warburg\n- \qThe Daily Vault\q (not to be confused with Jason Warburg of HMX)")
-(kicked
-   "Kicked to the Curb")
-(kicked_shop_desc
-   "Noble Rot is pure American rock 'n' roll with an extra large side order of PARTY. Founded in 2006, their first full-length album debuts December 7th.")
 (jordan
    "Jordan")
 (jordan_shop_desc
@@ -1595,15 +1418,15 @@
 (thelightthatblinds_shop_desc
    "With 5 albums under their belt, a Grammy nomination and main stage spot on the Ozzfest, international metal heroes Shadows Fall show no signs of stopping.")
 (thunderhorse
-   "Thunder Horse")
+   "Thunderhorse")
 (thunderhorse_shop_desc
-   "Extreme METAL band DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed. On \n[adult swim](TM).")
+   "Extreme METAL band DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed. On \nHBO Max.")
 (trogdor
    "Trogdor")
 (trogdor_shop_desc
    "The Trogdor song from the Strong Bad Email 'dragon' was actually an afterthought that was added at the last minute. Mike was finishing up the cartoon and Matt suddenly started screaming the chorus while making eggs.")
 (xstream
-   "X-Stream")
+   "The X-Stream")
 (xstream_shop_desc
    "This track is off the highly anticipated 14th album by Voivod, entitled 'Katorz' on The End Records.")
 (yeswecan
@@ -1741,9 +1564,15 @@
 (eds_white_shop_desc
    "The EDS-1275 has been played by a strikingly diverse group of guitarists, including James Hetfield, Alex Lifeson, Tom Morello, Don Felder, Pete Townshend, and Zakk Wylde.")
 (endgame_encore_title1
-   "GIVE YOUR AUDIENCE AN")
+   {if_else
+      $egg5
+      "THEY WANT A DAMN"
+      "GIVE YOUR AUDIENCE AN"})
 (endgame_encore_title2
-   "ENCORE?")
+   {if_else
+      $egg5
+      "ENCORE!"
+      "ENCORE?"})
 (endgame_encore_score
    "%d points")
 (endgame_encore_review
@@ -1823,71 +1652,95 @@
 (loading_tip1
    "Try the Hammer-ons and Pull-offs. They really work. We promise.")
 (loading_tip2
-   "Hit 10 notes in a row for a x2 score multiplier. Longer note streaks are rewarded with higher multipliers.")
+   "Hit 10 notes in a row for a x2 multiplier. Longer streaks are rewarded with higher multipliers.")
 (loading_tip3
-   "Just like with a real guitar, you don't need to release Fret Buttons on lower notes when you play higher notes.")
+   "Just like a real guitar, you don't need to release lower Fret Buttons when you play higher ones.")
 (loading_tip4
    "Wait until you have a x4 multiplier going, and then use Star Power to max out your score.")
 (loading_tip5
-   "Star Power can be a life saver! If you're deep in the red, use Star Power to win the crowd back.")
+   "Star Power can be a life saver! If you're deep in the red, use it to win the crowd back.")
 (loading_tip6
-   "Use Star Power to drive the crowd wild. Learn how to control this awesome energy in the Star Power Tutorial.")
+   "Use Star Power to drive the crowd wild. Learn how to control it in the Star Power Tutorial.")
 (loading_tip7
    "Get a streak multiplier by playing perfectly for a few notes.")
 (loading_tip8
    "Series of notes on the same fret coming up?  Keep the fret button held down.")
 (loading_tip9
-   "You can slow down songs and individual song sections in Practice Mode. Nail solos that have been kicking your butt!")
+   {if_else
+      $egg5
+      "You found all the eggs! Much love to everyone <3"
+      "You can slow down or speed up specific sections in Practice Mode."})
 (loading_tip10
-   "Make sure you're signed onto Xbox Live if you want to check your scores on the Leaderboards.")
+   "We also fixed the HOPO bug. Wait, this is 360.")
 (loading_tip11
    "Visit Practice Mode from the Training menu to really nail those tough sections.")
 (loading_tip12
-   "Don't worry about the difficulty level when trying to bump up your career score - it's all about the highest score you can get, period.")
+   "If you're having problems with timing, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
 (loading_tip13
-   "Check your scores on the Xbox Live Leaderboards! You may find that you need some higher shreducation.")
+   "We fixed the strum limit so you don't have to. Go check out Trogdor and see how it feels.")
 (loading_tip14
-   "Take the highest score you've gotten on each song across all difficulties and add 'em all together. That's your career score.")
+   "If you're having problems with timing, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
 (comedy_tip1
    "Life is hard for musicians, but for drummers it's nearly impossible.")
 (comedy_tip2
-   "If your singer ain't happy, ain't nobody happy.")
+   {if_else
+      $egg5
+      "Stop fucking asking to buy Deluxe. That would be illegal."
+      "If your singer ain't happy, ain't nobody happy."})
 (comedy_tip3
-   "You need a mini-fridge in your practice space. It's more important than a bassist.")
+   {if_else
+      $egg5
+      "Don't get it confused, jnack can't actually draw. Professional rip-off artist."
+      "You need a mini-fridge in your practice space. It's more important than a bassist."})
 (comedy_tip4
-   "You only need one person with a mohawk in your band.")
+   {if_else
+      $egg5
+      "Go put the fret colors back yourself if it bothers you so much."
+      "You only need one person with a mohawk in your band."})
 (comedy_tip5
    "Remember, NO STAIRWAY!")
 (comedy_tip6
    "TURN IT UP!")
 (comedy_tip7
-   "It takes a REALLY long time to drive the van through Nebraska.")
+   {if_else
+      $egg5
+      "If you ever come across suspicious looking Harmonix binders call LocalH immediately."
+      "It takes a REALLY long time to drive the van through Nebraska."})
 (comedy_tip8
-   "If you have a road crew, it's called \qhauling\q equipment. Otherwise it's called \qschlepping.\q")
+   "If you have a road crew, it's called \qhauling\q gear. Otherwise it's \qschlepping.\q")
 (comedy_tip9
-   "It all comes out on the road.")
+   {if_else
+      $egg5
+      "Damnit Harmonix, why did you hardcode some of this stuff?"
+      "It all comes out on the road."})
 (comedy_tip10
    "A band is the dysfunctional family you choose.")
 (comedy_tip11
-   "If you call your new song a \qRock Anthem,\q you'd better be damn sure.")
+   {if_else
+      $egg5
+      "When your past 50,000 points that means your in the clear so try not to\nmiss alot of notes."
+      "If you call your new song a \qRock Anthem,\q you'd better be damn sure."})
 (comedy_tip12
    "It's customary to try to be the loudest during practice.")
 (comedy_tip13
    "Dropping your pants onstage does not deploy Star Power.")
 (comedy_tip14
-   "If your neighbors keep complaining about the noise, turn up the volume until they move away.")
+   "If your neighbors keep complaining, turn it up until they move away.")
 (comedy_tip15
-   "Your mom does not count as a fan.")
+   {if_else
+      $egg5
+      "Remember, Trogdor FCs on this disc don't count."
+      "Your mom does not count as a fan."})
 (easy_tip1
    "You don't get any cash in EASY, but you do in MEDIUM, HARD and EXPERT.")
 (easy_tip2
-   "If you're getting 5 stars on every song without breaking a sweat, it's time to move up to MEDIUM.")
+   "If you're getting 5 stars on every song without breaking a sweat, it's time for MEDIUM.")
 (easy_tip3
    "Try MEDIUM or harder if you want to be able to buy new guitars, songs, videos, and more.")
 (advanced_tip1
    "Stuck on a song? Try getting 5 stars on an easier one.")
 (advanced_tip2
-   "Save your Star Power for sections with many notes. You'll get more points and bigger Rock Meter boosts.")
+   "Save your Star Power for note-heavy sections, for more points and bigger crowd boosts.")
 (advanced_tip3
    "Chords are worth more points than regular notes!")
 (advanced_tip4
@@ -1899,17 +1752,15 @@
 (encore_tip2
    "If the staff is already flipping the stools, you missed your chance for an encore.")
 (encore_tip3
-   "You better be sure they WANT you to come back out before you save your best song for the encore.")
+   "Be sure they WANT you to come back out before you save your best song for last.")
 (encore_tip4
-   "If your drummer is too tired for an encore, then your drummer is too tired for the after-party.")
+   "If your drummer is too tired for an encore, then they're too tired for the after-party.")
 (encore_tip5
-   "If they want an encore but you're out of songs, do NOT, under any circumstances, try to just JAM.")
+   "If they want an encore but you're out of songs, do NOT try to just JAM.")
 (encore_tip6
-   "If the crowd is screaming for more but the sound dude is shaking his head angrily, just ignore him and play anyway.")
+   "If the crowd is screaming for more but the sound dude is shaking his head, ignore him and play.")
 (freebird_tip1
    "You're looking for \qGtr solo i\q in Practice Mode.")
-(freebird_tip2
-   "Save yourself a whole world of pain. Master Free Bird in Practice Mode before trying your hand at the full version on stage.")
 (freebird_tip3
    "FINE. They AREN'T just heckling you this time. SIGH.")
 (freebird_tip4
@@ -1936,56 +1787,32 @@
    "Shouting \qSTAR POWER!\q is as good a method as any.")
 (multi_coop_tip9
    "When someone calls a \qBand Meeting\q it's usually not a good thing.")
-(loading_tip_arterialblack
-   "Guitarist Marcus Henderson contributed another tune for Guitar Hero II before splitting Drist to play lead guitar for the Grim Ripper.")
-(loading_tip_collide
-   "When Anarchy Club isn't breaking things or fighting rival Kung Fu gangs, frontman Keith Smith smashes guitars for the HMX QA team. Adam Buhler prefers the darkness of the Anar-Cave, except when the moon is full...")
-(loading_tip_drinkup
-   "OUNCE of SELF is one of the most original bands out of L.A.'s heavy music scene. \qDrink Up\q has become the anthem for the messed-up masses.")
-(loading_tip_elephantbones
-   "Dizzy from the fumes, white knuckled, holding the wheel hostage. A dirty old Cadillac barrels toward hell, with a brick on the gas pedal. That Handsome Devil.")
 (loading_tip_fallofpangea
-   "Valient Thorr is from the planet Venus. Their message is your tool to further the knowledgement of the human consciousness.")
-(loading_tip_ftk
-   "Boston-based VAGIANT plays loud, fast, and sloppy. If they weren't so busy starting fights and smashing things, these girls would probably take over the world.")
+   "Valient Thorr is from Venus. Their message is your tool to further the knowledgement of the human consciousness.")
 (loading_tip_gemini
    "Brian Kahanek says, \qPlay it from the bottom of your heart to the tips of your toes - every time.\q")
 (loading_tip_jordan
    "Wearing a bucket on your head will not improve your chances of beating this song. Or maybe it will.")
-(loading_tip_kicked
-   "Right now, as you're waiting for their song to load, Noble Rot is hitting on your sister. And if she doesn't take the bait, your mom is on hold.")
 (loading_tip_soybomb
-   "Honest Bob and the Factory-to-Dealer Incentives return with their smash hit \qSoy Bomb\q, which is Spanish for \qI am bomb\q.")
+   "Honest Bob and the Factory-to-Dealer Incentives return with their hit \qSoy Bomb\q, Spanish for \qI am bomb\q.")
 (loading_tip_ladylightning
    "Half man, half machine, Bang Camaro runs on dude power.")
 (loading_tip_laughtrack
    "The Acro-brats are hands-down the best rock band in their practice space.")
 (loading_tip_lesstalkmorerokk
-   "Throw your undies on the stage. No, wait, you're underage.")
+   "Throw your undies on the stage. No wait, you're underage.")
 (loading_tip_mrfixit
    "Live to tour, tour to live! The Crowns remain, now and forever, royal to the loyal.")
-(loading_tip_newblack
-   "\qWhen playing shows, it's not ok to start a chant for your own band. That's like giving yourself a nickname.\q - Keith Buckley - Every Time I Die")
-(loading_tip_onefortheroad
-   "Breaking Wheel would love to play in your basement, funeral or bar mitzvah.  Incidentally, donations to our van fund are welcome.")
 (loading_tip_parasite
    "The Neighborhoods were presented with the Hall of Fame award at the 2005 Boston Music Awards.")
-(loading_tip_radiumeyes
-   "Wow. Like 50 million others, you can play metal. Big deal.  Think you can you play a proto-retro-roboto-organico soldier's love song set during the Phillippines-American War?  Doubt it.")
-(loading_tip_rawdog
-   "The following song is by The Last Vegas. For best results, play at maximum volume, especially in the presence of authority figures or the elderly.")
 (loading_tip_redlottery
    "Riding forth like thunderbolts cast from the hammer of Thor, the eight hooves of MEGASUS burn a trail of fire 'cross the winter sky.")
 (loading_tip_six
-   "Guitarist Mike Martin recommended his teacher, Oli Herbert, to All That Remains prior to joining the band a few years later.")
+   "Guitarist Mike Martin recommended Oli Herbert to All That Remains prior to joining the band a few years later.")
 (loading_tip_thelightthatblinds
-   "This is SHADOWS FALL at their very best proving, once again, that they are the undeniable leaders of the current hard rock/metal scene.")
+   "SHADOWS FALL at their very best proving, once again, they are the undeniable leaders of the current hard rock/metal scene.")
 (loading_tip_trogdor
-   "\qFor squeadlies, mash on the trembalo. For meadlies, tone up on your chord surpassers. Oh, and I'm awesome.\q"
-   -
-   Stongbad)
-(loading_tip_thunderhorse
-   "Extreme METAL band DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed. On \n[adult swim](TM).")
+   "\qFor squeadlies, mash on the trembalo. For meadlies, tone up on your chord surpassers. Oh, and I'm awesome.\q\n   - Stongbad")
 (loading_tip_xstream
    "The spirit of legendary guitarist Piggy (Denis D'Amour) lives on in Guitar Hero II as Voivod takes you to the X-Stream once again.")
 (loading_tip_yeswecan
@@ -2011,7 +1838,7 @@
 (speed_label3
    "Slowest")
 (PRACTICE_END
-   "END OF PRACTICE")
+   "GH2DX PRACTICE")
 (SELECT_PART
    "SELECT PART")
 (change_speed
@@ -2384,14 +2211,6 @@
    "Melody 3")
 (speedup
    "Speed up")
-(soft_1
-   "Soft part 1")
-(soft_2
-   "Soft part 2")
-(soft_3
-   "Soft part 3")
-(soft_4
-   "Soft part 4")
 (main_riff_1
    "Main riff 1")
 (main_riff_2
@@ -2422,12 +2241,6 @@
    "Gtr riff 1")
 (gtr_riff_2
    "Gtr riff 2")
-(gtr_riff_3
-   "Gtr riff 3")
-(gtr_riff_4
-   "Gtr riff 4")
-(gtr_riff_5
-   "Gtr riff 5")
 (big_riff_1
    "Big riff 1")
 (big_riff_2

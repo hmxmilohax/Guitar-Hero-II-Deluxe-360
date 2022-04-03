@@ -1,4 +1,5 @@
 (slot_colors green red yellow blue orange)
+;(slot_colors red orange yellow green blue)
 (smasher
    (mats
       (normal gem_smasher)
@@ -17,8 +18,9 @@
       (whammy 10)
       (bonus 20)))
 #define STRING_SET
-((gems
-      (green red yellow blue orange)))
+((gems (green red yellow blue orange)))
+;((gems
+;      (red orange yellow green blue)))
 (gem
    (fps 30)
    (mat_formats
@@ -57,15 +59,15 @@
 (horizon_y 120)
 (remove_y -15)
 (track_speed
-   (kDifficultyEasy 
+   (kDifficultyEasy
       {/ $trackspd $speedmod})
-   (kDifficultyMedium 
+   (kDifficultyMedium
       {/ $trackspd $speedmod})
-   (kDifficultyHard 
+   (kDifficultyHard
       {/
          {'*' $trackspd 1.4}
          $speedmod})
-   (kDifficultyExpert 
+   (kDifficultyExpert
       {/
          {'*' $trackspd 1.4}
          $speedmod}))

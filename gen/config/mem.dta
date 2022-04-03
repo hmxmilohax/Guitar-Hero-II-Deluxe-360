@@ -13,7 +13,7 @@
       (size 20000000))
    #else
    (main
-      (size 50000000))
+      (size 345000000))
    #endif
    #endif)
 (pool

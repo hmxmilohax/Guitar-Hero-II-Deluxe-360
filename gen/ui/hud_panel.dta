@@ -2,6 +2,73 @@
 (480)
 #define WIN_MESSAGE_SECS
 (3)
+{func note_streak_p0
+   {set $player0_streak {player0 current_streak}}
+   {if {> $player0_streak 50}
+      {set $interval_p0 100}}
+   {if
+      {== {mod $player0_streak $interval_p0} 0}
+      {hud show_message 0 note_streak_popup_p0}
+      {play_game_sfx_player meter_slide meter_slide 0}}}
+
+{func note_streak_p1
+   {set $player1_streak {player1 current_streak}}
+   {if {> $player1_streak 50}
+      {set $interval_p1 100}}
+   {if
+      {== {mod $player1_streak $interval_p1} 0}
+      {hud show_message 1 note_streak_popup_p1}
+      {play_game_sfx_player meter_slide meter_slide 1}}}
+
+{func note_streak_p2
+   {set $player2_streak {'+' $player2_streak 1}}
+   {if {> $player2_streak 50}
+      {set $interval_p2 100}}
+   {if
+      {== {mod $player2_streak $interval_p2} 0}
+      {hud show_message kPlayerShared note_streak_popup_p2}
+      {play_game_sfx_player meter_slide meter_slide $player_num}}}
+{new
+ Object
+ note_streak_callback_p0
+ (gem_hit_callback
+  ($slot $hopoable $hopoed)
+  {switch
+   {gamecfg get mode}
+   (career {note_streak_p0})
+   (quickplay {note_streak_p0})
+   (multi_vs {note_streak_p0})
+   (multi_fo {note_streak_p0})
+   (multi_coop {note_streak_p2})
+   (practice {note_streak_p0})}
+  )
+ (gem_miss_callback
+  ($slot_hit $real_slot $timing_error)
+  {set $player0_streak 0}
+  {set $interval_p0 50}
+  {if {== {gamecfg get mode} multi_coop}
+     {set $player2_streak 0}
+     {set $interval_p2 50}})}
+{new
+ Object
+ note_streak_callback_p1
+ (gem_hit_callback
+  ($slot $hopoable $hopoed)
+  {switch
+   {gamecfg get mode}
+   (multi_vs {note_streak_p1})
+   (multi_fo {note_streak_p1})
+   (multi_coop {note_streak_p2})
+  })
+ (gem_miss_callback
+  ($slot_hit $real_slot $timing_error)
+  {set $player1_streak 0}
+  {set $interval_p1 50}
+   {if 
+     {== {gamecfg get mode} multi_coop}
+     {set $player2_streak 0}
+     {set $interval_p2 50}})}
+
 {new
    HudPanel
    hud
@@ -11,6 +78,9 @@
          {gamecfg get hud_file}})
    (enter
       {game add_sinks $this intro_start_msg intro_skip slide_meter_in star_power_ready game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
+;      {player_matcher0 add_sink note_streak_callback_p0}
+;      {if {exists player_matcher1}
+;         {player_matcher1 add_sink note_streak_callback_p1}}
       {if
          {!=
             tutorial

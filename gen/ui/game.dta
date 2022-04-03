@@ -23,30 +23,14 @@
             ($prefix
                "mtv_campaign_line")
             {mtv_campaign_song_id.view set_showing TRUE}
-            {if_else
-               {!= $speedmod 1}
+            {if_else {!= $speedmod 1}
                {if_else
                   {&&
-                     {==
-                        {gamecfg get mode}
-                        practice}
-                     {!=
-                        {gamecfg get practice_speed}
-                        0}}
+                     {== {gamecfg get mode} practice}
+                     {!= {gamecfg get practice_speed} 0}}
                   {$this set_line $prefix 1 $song_text}
-                  {$this
-                     set_line
-                     $prefix
-                     1
-                     {sprint
-                        $song_text
-                        " ("
-                        {int
-                           {'+'
-                              0.5
-                              {'*' $speedmod 100}}}
-                        "%)"}}}
-            {$this set_line $prefix 1 $song_text}}
+                  {$this set_line $prefix 1 {sprint $song_text " (" {int {+ 0.5 {* $speedmod 100}}} "%)"}}}
+               {$this set_line $prefix 1 $song_text}}
             {$this set_line $prefix 2 $song_caption}
             {$this set_line $prefix 3 $artist_text}}})
    (set_line
@@ -85,6 +69,12 @@
    (load
       {set_loader_period 13})
    (enter
+      {set $interval_p0 50}
+      {set $interval_p1 50}
+      {set $interval_p2 50}
+      {set $player0_streak 0}
+      {set $player1_streak 0}
+      {set $player2_streak 0}
       #ifdef HX_XBOX
       {rnd suspend}
       #endif
@@ -131,33 +121,57 @@
             show_drummer}})
    (intro_start_msg
       ($fast $encore)
-      {world_panel
-         set_showing
-         {! $focusmode}}
       {track_panel intro_start_msg}
       {mtv_overlay_panel show_overlay FALSE}
-      {script_task
-         (delay 1)
-         (units kTaskSeconds)
-         (script
-            {mtv_overlay_panel show_overlay TRUE})}
-      {script_task
-         (delay 6)
-         (units kTaskSeconds)
-         (script
-            {mtv_overlay_panel show_overlay $songtitle})}
+      {if
+         $encore
+         {do
+            {world_panel set_showing TRUE}
+            {if
+               $focusmode
+               {set $encorefocus TRUE}}}}
+      {if_else
+         {!
+            $fast
+            {do
+               {script_task
+                  (delay 1)
+                  (units kTaskSeconds)
+                  (script
+                     {mtv_overlay_panel show_overlay TRUE})}
+               {script_task
+                  (delay 6)
+                  (units kTaskSeconds)
+                  (script
+                     {mtv_overlay_panel show_overlay $songtitle})}}
+            {do
+               {script_task
+                  (delay 1)
+                  (units kTaskSeconds)
+                  (script
+                     {mtv_overlay_panel show_overlay TRUE})}
+               {script_task
+                  (delay 3)
+                  (units kTaskSeconds)
+                  (script
+                     {mtv_overlay_panel show_overlay $songtitle})}}}}
       {set
          [intro_complete]
          FALSE}
       kDataUnhandled)
    (intro_skip
-      {world_panel
-         set_showing
-         {! $focusmode}}
       {track_panel intro_skip}
       kDataUnhandled)
    (extend_track
-      {track_panel do_extend_sequence}
+      {set $encorefocus FALSE}
+      {world_panel
+         set_showing
+         {! $focusmode}}
+      {if
+         {&&
+            {! $neckless}
+            {! $cheat_enabled_performance_mode}}
+         {track_panel do_extend_sequence}}
       {beatmatch set_music_speed $speedmod}
       {script_task
          (delay 1.8)
@@ -178,9 +192,6 @@
       {ui music_start}
       kDataUnhandled)
    (beat
-      {world_panel
-         set_showing
-         {! $focusmode}}
       {if
          $barf_cheat
          {track_panel
@@ -190,25 +201,25 @@
       {if
          $debug.beep
          {play_sfx click.cue}}
-      {if
-         {!
-            {game is_tutorial_running}}
-         {do
-            ($clap FALSE)
-            {$this
-               foreach_player
-               $p
-               {if
-                  {$p in_star_mode}
-                  {set $clap TRUE}}}
-            {if
-               $clap
-               {script_task
-                  (units kTaskBeats)
-                  (delay CLAP_DELAY_BEATS)
-                  (script
-                     {handle
-                        (world play_sfx CLAP_SEQUENCE)})}}}}
+;      {if
+;         {!
+;            {game is_tutorial_running}}
+;         {do
+;            ($clap FALSE)
+;            {$this
+;               foreach_player
+;               $p
+;               {if
+;                  {$p in_star_mode}
+;                  {set $clap TRUE}}}
+;            {if
+;               $clap
+;               {script_task
+;                  (units kTaskBeats)
+;                  (delay CLAP_DELAY_BEATS)
+;                  (script
+;                     {handle
+;                        (world play_sfx CLAP_SEQUENCE)})}}}}
       kDataUnhandled)
    (downbeat
       {$this
@@ -227,7 +238,7 @@
       kDataUnhandled)
    (game_won_msg
       ($encore)
-      {mtv_overlay_panel show_overlay FALSE}
+      {world_panel set_showing TRUE}
       {if_else
          {gamecfg get game_over_sequence}
          {do
@@ -302,7 +313,7 @@
             kDataUnhandled}
          0})
    (game_lost
-      {mtv_overlay_panel show_overlay FALSE}
+      {world_panel set_showing TRUE}
       {track_panel set_showing FALSE}
       {game set_realtime TRUE}
       {$this slow_music}
@@ -445,7 +456,7 @@
             ($this multi_player)}
          {handle
             ($this single_player)}}
-      {$this set_showing TRUE}
+      {$this set_showing {! $focusmode}}
       {$this set_paused FALSE})
    #ifdef HX_XBOX
    (unload

@@ -1,0 +1,130 @@
+{new
+   GHPanel
+   easter_egg_panel1
+   (file easteregg1.milo)
+   (enter
+      {play_sfx meta_lick5}
+      {we_bandname.lbl
+         set_localized_text
+         ""})}
+{new
+   GHScreen
+   easter_egg_screen1
+   (panels easter_egg_panel1 helpbar)
+   (animate_transition TRUE)
+   (focus easter_egg_panel1)
+   (helpbar
+      (default
+         ((fret2 help_back))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen $egg_back}})}
+{new
+   GHPanel
+   easter_egg_panel2
+   (file easteregg2.milo)
+   (enter
+      {play_sfx meta_lick4}
+      {we_bandname.lbl
+         set_localized_text
+         ""})}
+{new
+   GHScreen
+   easter_egg_screen2
+   (panels easter_egg_panel2 helpbar)
+   (animate_transition TRUE)
+   (focus easter_egg_panel2)
+   (helpbar
+      (default
+         ((fret2 help_back))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen $egg_back}})}
+{new
+   GHPanel
+   easter_egg_panel3
+   (file easteregg3.milo)
+   (enter
+      {play_sfx meta_lick2}
+      {we_bandname.lbl
+         set_localized_text
+         ""})}
+{new
+   GHScreen
+   easter_egg_screen3
+   (panels easter_egg_panel3 helpbar)
+   (animate_transition TRUE)
+   (focus easter_egg_panel3)
+   (helpbar
+      (default
+         ((fret2 help_back))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen $egg_back}})}
+{new
+   GHPanel
+   easter_egg_panel4
+   (file easteregg4.milo)
+   (enter
+      {play_sfx meta_lick7}
+      {we_bandname.lbl
+         set_localized_text
+         ""})}
+{new
+   GHScreen
+   easter_egg_screen4
+   (panels easter_egg_panel4 helpbar)
+   (animate_transition TRUE)
+   (focus easter_egg_panel4)
+   (helpbar
+      (default
+         ((fret2 help_back))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen $egg_back}})}
+#define EGG_VIDEO
+(dummy.dat)
+{new
+   GHScreen
+   final_egg_screen
+   (allow_back FALSE)
+   (animate_transition TRUE)
+   (TRANSITION_COMPLETE_MSG
+      {meta play_movie EGG_VIDEO}
+      {ui goto_screen final_egg_screen2})}
+{new
+   UIPanel
+   final_egg_panel2
+   (file final_egg.milo)
+   (enter
+      {play_sfx meta_lick0})}
+{new
+   GHScreen
+   final_egg_screen2
+   (panels final_egg_panel2 helpbar)
+   (focus final_egg_panel2)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (force_exit TRUE)
+   (helpbar
+      (default
+         ((fret1 help_continue))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_X}
+         {synth play_sequence button_select}
+         {song_provider init_data}
+         {ui goto_screen main_screen_egg}})}
