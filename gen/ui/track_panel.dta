@@ -58,6 +58,9 @@
       {game remove_sink $this})
    (do_extend_sequence
       {$this animate_track_out}
+      {if
+      {! $funni}
+   {do
       {script_task
          (delay 1.3)
          (units kTaskSeconds)
@@ -92,14 +95,14 @@
          (script
             {$this play_track_sfx nowbar_5}
             {$this pop_smasher 4}
-            {$this set_smasher_glowing 4 TRUE})}
+            {$this set_smasher_glowing 4 TRUE})}}}
       {script_task
-         (delay 2)
+         (delay {if_else $funni 1.5 2})
          (units kTaskSeconds)
          (script
             {$this pop_smasher -1})}
       {script_task
-         (delay 2.5)
+         (delay {if_else $funni 2 2.5})
          (units kTaskSeconds)
          (script
             {game

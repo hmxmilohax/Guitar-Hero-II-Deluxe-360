@@ -71,6 +71,25 @@
                {main_screen_egg display_cheat_msg cheat_focusmode TRUE}
                {main_screen display_cheat_msg cheat_focusmode TRUE}}
             {play_sfx cheat}}}})
+((G_RED G_RED G_RED G_RED)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $funni
+         {do
+            {set $funni FALSE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_funni FALSE}
+               {main_screen display_cheat_msg cheat_funni FALSE}}
+            {play_sfx cheat_off}}
+         {do
+            {set $funni TRUE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_funni TRUE}
+               {main_screen display_cheat_msg cheat_funni TRUE}}
+            {play_sfx cheat}}}})
 ((G_YELLOW G_BLUE G_ORANGE G_YELLOW G_BLUE G_ORANGE G_YELLOW G_BLUE G_ORANGE)
    {if
       CHEATS_ALLOWED

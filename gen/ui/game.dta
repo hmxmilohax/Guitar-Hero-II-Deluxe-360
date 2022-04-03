@@ -121,40 +121,21 @@
             show_drummer}})
    (intro_start_msg
       ($fast $encore)
+      {world_panel
+         set_showing
+         {! $focusmode}}
       {track_panel intro_start_msg}
       {mtv_overlay_panel show_overlay FALSE}
-      {if
-         $encore
-         {do
-            {world_panel set_showing TRUE}
-            {if
-               $focusmode
-               {set $encorefocus TRUE}}}}
-      {if_else
-         {!
-            $fast
-            {do
-               {script_task
-                  (delay 1)
-                  (units kTaskSeconds)
-                  (script
-                     {mtv_overlay_panel show_overlay TRUE})}
-               {script_task
-                  (delay 6)
-                  (units kTaskSeconds)
-                  (script
-                     {mtv_overlay_panel show_overlay $songtitle})}}
-            {do
-               {script_task
-                  (delay 1)
-                  (units kTaskSeconds)
-                  (script
-                     {mtv_overlay_panel show_overlay TRUE})}
-               {script_task
-                  (delay 3)
-                  (units kTaskSeconds)
-                  (script
-                     {mtv_overlay_panel show_overlay $songtitle})}}}}
+      {script_task
+         (delay 1)
+         (units kTaskSeconds)
+         (script
+            {mtv_overlay_panel show_overlay TRUE})}
+      {script_task
+         (delay 6)
+         (units kTaskSeconds)
+         (script
+            {mtv_overlay_panel show_overlay $songtitle})}
       {set
          [intro_complete]
          FALSE}
@@ -174,13 +155,13 @@
          {track_panel do_extend_sequence}}
       {beatmatch set_music_speed $speedmod}
       {script_task
-         (delay 1.8)
+         (delay {if_else $funni 1.3 1.8})
          (units kTaskSeconds)
          (script
             {handle
                ($this slide_meter_in)})}
       {script_task
-         (delay 2)
+         (delay {if_else $funni 1.5 2})
          (units kTaskSeconds)
          (script
             {handle
@@ -239,6 +220,7 @@
    (game_won_msg
       ($encore)
       {world_panel set_showing TRUE}
+      {mtv_overlay_panel show_overlay FALSE}
       {if_else
          {gamecfg get game_over_sequence}
          {do
@@ -313,6 +295,7 @@
             kDataUnhandled}
          0})
    (game_lost
+      {mtv_overlay_panel show_overlay FALSE}
       {world_panel set_showing TRUE}
       {track_panel set_showing FALSE}
       {game set_realtime TRUE}
