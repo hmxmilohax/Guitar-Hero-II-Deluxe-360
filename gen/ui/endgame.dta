@@ -1,406 +1,295 @@
-{new
-   GHScreen
-   post_show_screen
+{new GHScreen post_show_screen
+   (clear_vram TRUE)
    (panels GAME_PANELS fade_panel)
    (allow_back FALSE)
    (animate_transition FALSE)
    (pfo_newly_unlocked 0)
    (enter
       {crowd_audio turn_off}
-      {set
-         $new_venue
-         ""}
-      {if
-         {==
-            career
-            {gamecfg get mode}}
+      {set $new_venue ""}
+      {if {== career {gamecfg get mode}}
          {do
-            ($score
-               {player0 score})
+            ($score {player0 score})
             ($new_cash)
             ($new_cash_reason)
             ($new_status)
             ($new_status_award)
-            ($pfo
-               {campaign is_unlocked multi_fo})
-            ($already_won
-               {campaign won_campaign})
+            ($pfo {campaign is_unlocked multi_fo})
+            ($already_won {campaign won_campaign})
             {campaign finish_song $score $new_cash $new_cash_reason $new_venue $new_status $new_status_award}
-            {set
-               [pfo_newly_unlocked]
-               {&&
-                  {! $pfo}
-                  {campaign is_unlocked multi_fo}}}
+            {set [pfo_newly_unlocked] {&& {! $pfo} {campaign is_unlocked multi_fo}}}
             {cashaward_screen set new_cash $new_cash}
             {cashaward_screen set new_cash_reason $new_cash_reason}
-            {if
-               {! $already_won}
+            {if {! $already_won}
                {status_panel set new_status $new_status}}
             {status_panel set new_status_award $new_status_award}
-            {if
-               {!=
-                  $new_venue
-                  ""}
-               {gamecfg set continue_screen career_screen}
-               {achievements submit_venue $new_venue}}
-            {if
-               {get_highscore_index $score}
-               {highscores
-                  add
-                  {campaign
-                     profile_name
-                     {campaign profile_slot}}
-                  $score}}
-            {if
-               {campaign won_campaign}
-               {do
-                  ($diff
-                     {gamecfg get_difficulty 0})
-                  ($five
-                     {campaign is_max_status})
-                  {achievements submit_tour $diff $five}}}}}
-      {if
-         {!
-            {gamecfg multiplayer}}
-         {if
-            {&&
-               {campaign is_song_passed trogdor}
-               {campaign is_song_passed thunderhorse}}
-            {achievements submit troghorse}}
-         {if
-            {campaign store_songs_passed}
-            {achievements submit beat_unlocks}}}
-      {if
-         {!
-            {gamecfg multiplayer}}
-         {leaderboards
-            submit_score
-            {gamecfg get_song}
-            {player0 score}}}
+            {if {!= $new_venue ""}
+               {gamecfg set continue_screen career_screen}}
+            {if {get_highscore_index $score}
+               {highscores add {campaign profile_name {campaign profile_slot}} $score}}}}
       {do
          ($win_screen $freebird)
-         {set
-            $win_screen
-            {if_else
-               {meta get won_campaign}
-               win_game_screen
-               {if_else
-                  {'||'
-                     {game get force_encore}
-                     {&&
-                        {game get encore_unlock_check}
-                        {campaign encore_newly_unlocked $freebird}}}
+         {set $win_screen
+            {if_else {meta get won_campaign} win_game_screen
+               {if_else {'||'
+               {game get force_encore}
+               {&&
+               {game get encore_unlock_check}
+               {campaign encore_newly_unlocked $freebird}}}
                   endgame_encore_screen
                   {gamecfg get win_screen}}}}
          {script_task
             (units kTaskUISeconds)
             (delay 0.3)
-            (script
-               {play_sfx postshow_loop})}
-         {if
-            {== $win_screen endgame_encore_screen}
+            (script {play_sfx postshow_loop})}
+         {if {== $win_screen endgame_encore_screen}
             {endgame_encore_panel set freebird $freebird}}
-         {ui goto_screen $win_screen}})
-   (exit
-      {rnd unset_depth_of_field}
-      {world_panel set_paused TRUE})}
-{func
-   goto_endgame_complete
-   {ui
-      goto_screen
-      {if_else
-         {==
-            {gamecfg get mode}
-            career}
+         {ui goto_screen $win_screen}}
+)}
+
+{func goto_endgame_complete
+   {ui goto_screen
+      {if_else {== {gamecfg get mode} career}
          {cond
-            ({>
-                  {status_panel get new_status}
-                  0}
-               status_screen)
-            ({>
-                  {cashaward_screen get new_cash}
-                  0}
+            ({> {status_panel get new_status} 0} status_screen)
+            ({> {cashaward_screen get new_cash} 0}
                cashaward_screen)
-            ({campaign num_guitar_awards}
-               unlock_guitar_screen)
+#ifdef 8DBUG
+            ({campaign has_unlocked_song} unlock_song_screen)
+#endif
+            ({campaign num_guitar_awards} unlock_guitar_screen)
             (TRUE complete_screen)}
-         highscore_screen}}}
+             {if_else $disable_save complete_screen highscore_screen}}}}
+
 #define ADJS
 (((adj_c_1 adj_c_2 adj_c_3 adj_c_4 adj_c_5 adj_c_6 adj_c_7 adj_c_8 adj_c_9)
-      (adj_b_1 adj_b_2 adj_b_3 adj_b_4 adj_b_5 adj_b_6 adj_b_7 adj_b_8 adj_b_9 adj_b_10)
-      (adj_a_1 adj_a_2 adj_a_3 adj_a_4 adj_a_5 adj_a_6 adj_a_7 adj_a_8 adj_a_9 adj_a_10)))
+(adj_b_1 adj_b_2 adj_b_3 adj_b_4 adj_b_5 adj_b_6 adj_b_7 adj_b_8 adj_b_9 adj_b_10)
+(adj_a_1 adj_a_2 adj_a_3 adj_a_4 adj_a_5 adj_a_6 adj_a_7 adj_a_8 adj_a_9 adj_a_10)))
+
 #define VERBS
 (((verb_c_1 verb_c_2 verb_c_3 verb_c_4)
-      (verb_b_1 verb_b_2 verb_b_3 verb_b_4 verb_b_5 verb_b_6 verb_b_7 verb_b_8 verb_b_9)
-      (verb_a_1 verb_a_2 verb_a_3 verb_a_4 verb_a_5 verb_a_6 verb_a_7 verb_a_8 verb_a_9)))
+(verb_b_1 verb_b_2 verb_b_3 verb_b_4 verb_b_5 verb_b_6 verb_b_7 verb_b_8 verb_b_9)
+(verb_a_1 verb_a_2 verb_a_3 verb_a_4 verb_a_5 verb_a_6 verb_a_7 verb_a_8 verb_a_9)))
+
 #define VERBS_PAST
 (((verb_past_c_1 verb_past_c_2 verb_past_c_3 verb_past_c_4)
-      (verb_past_b_1 verb_past_b_2 verb_past_b_3 verb_past_b_4 verb_past_b_5 verb_past_b_6 verb_past_b_7 verb_past_b_8 verb_past_b_9)
-      (verb_past_a_1 verb_past_a_2 verb_past_a_3 verb_past_a_4 verb_past_a_5 verb_past_a_6 verb_past_a_7 verb_past_a_8 verb_past_a_9)))
+(verb_past_b_1 verb_past_b_2 verb_past_b_3 verb_past_b_4 verb_past_b_5 verb_past_b_6 verb_past_b_7 verb_past_b_8 verb_past_b_9)
+(verb_past_a_1 verb_past_a_2 verb_past_a_3 verb_past_a_4 verb_past_a_5 verb_past_a_6 verb_past_a_7 verb_past_a_8 verb_past_a_9)))
+
 #define NOUNS
-(((noun_c_1 noun_c_2)
-      (noun_b_1 noun_b_2)
-      (noun_a_1 noun_a_2 noun_a_3)))
+(((concert_c_1 concert_c_2)
+(concert_b_1 concert_b_2)
+(concert_a_1 concert_a_2 concert_a_3)))
+
+#define TAKE_VERBS
+(((take_verb_1 take_verb_2 take_verb_3 take_verb_4)
+(take_verb_1 take_verb_2 take_verb_3 take_verb_4)
+(take_verb_1 take_verb_2 take_verb_3 take_verb_4)))
+
+#define TAKE_NOUNS
+(((take_noun_c_1 take_noun_c_2 take_noun_c_3)
+(take_noun_b_1 take_noun_b_2 take_noun_b_3)
+(take_noun_a_1 take_noun_a_2 take_noun_a_3)))
+
 #define BATTLE_WIN_PHRASE
 (((win_phrase_c_1 win_phrase_c_2)
-      (win_phrase_b_1 win_phrase_b_2)
-      (win_phrase_a_1 win_phrase_a_2)))
+(win_phrase_b_1 win_phrase_b_2)
+(win_phrase_a_1 win_phrase_a_2)))
+
 #define WIN_VS_VERB
 (((win_vs_verb_c_1 win_vs_verb_c_2)
-      (win_vs_verb_b_1 win_vs_verb_b_2)
-      (win_vs_verb_a_1 win_vs_verb_a_2)))
-#define WIN_VS_NOUN
+(win_vs_verb_b_1 win_vs_verb_b_2)
+(win_vs_verb_a_1 win_vs_verb_a_2)))
+
+#define WIN_VS_CONCERT
 (((win_vs_noun_c_1 win_vs_noun_c_2)
-      (win_vs_noun_b_1 win_vs_noun_b_2)
-      (win_vs_noun_a_1 win_vs_noun_a_2)))
-#define HEADLINE_HANDLERS
-((gen_headline_tour_1
+(win_vs_noun_b_1 win_vs_noun_b_2)
+(win_vs_noun_a_1 win_vs_noun_a_2)))
+
+#define TOOGLE_HEAD_QP ((toogle_headline_qp_1 toogle_headline_qp_2 toogle_headline_qp_3 toogle_headline_qp_4)) ;macros for autoplay headline generation
+#define TOOGLE_HEAD_CA ((toogle_headline_ca_1 toogle_headline_ca_2 toogle_headline_ca_3 toogle_headline_ca_4))
+#define TOOGLE_HEAD_VSP1 ((toogle_headline_vsp1_1 toogle_headline_vsp1_2 toogle_headline_vsp1_3 toogle_headline_vsp1_4))
+#define TOOGLE_HEAD_VSP2 ((toogle_headline_vsp2_1 toogle_headline_vsp2_2 toogle_headline_vsp2_3 toogle_headline_vsp2_4))
+#define TOOGLE_HEAD_VS ((toogle_headline_vs_1 toogle_headline_vs_2 toogle_headline_vs_3 toogle_headline_vs_4))
+#define TOOGLE_HEAD_COP1 ((toogle_headline_cop1_1 toogle_headline_cop1_2 toogle_headline_cop1_3 toogle_headline_cop1_4))
+#define TOOGLE_HEAD_COP2 ((toogle_headline_cop2_1 toogle_headline_cop2_2 toogle_headline_cop2_3 toogle_headline_cop2_4))
+#define TOOGLE_HEAD_CO ((toogle_headline_co_1 toogle_headline_co_2 toogle_headline_co_3 toogle_headline_co_4))
+
+#define HEADLINE_HANDLERS ; Added handlers for all game modes and p1/p2/both possibilities
+(
+    (gen_toogle_head_qp {$this generate_headline {random_elem TOOGLE_HEAD_QP}})
+    (gen_toogle_head_ca {$this generate_headline {random_elem TOOGLE_HEAD_CA}})
+    (gen_toogle_head_vsp1  {$this generate_headline {random_elem TOOGLE_HEAD_VSP1}})
+    (gen_toogle_head_vsp2 {$this generate_headline {random_elem TOOGLE_HEAD_VSP2}})
+    (gen_toogle_head_vs {$this generate_headline {random_elem TOOGLE_HEAD_VS}})
+    (gen_toogle_head_cop1 {$this generate_headline {random_elem TOOGLE_HEAD_COP1}})
+    (gen_toogle_head_cop2 {$this generate_headline {random_elem TOOGLE_HEAD_COP2}})
+    (gen_toogle_head_co {$this generate_headline {random_elem TOOGLE_HEAD_CO}})
+    (gen_headline_tour_1
       {do
-         ($index
-            {-
-               {player0 num_stars}
-               3})
-         {$this
-            generate_headline
-            headline1
-            (adj
-               {localize
-                  {random_elem
-                     {elem ADJS $index}}})
-            (noun
-               {localize
-                  {random_elem
-                     {elem NOUNS $index}}})}})
+         ($index {- {player0 num_stars} 3})
+         {$this generate_headline headline1
+            (adj {localize {random_elem {elem ADJS $index}}})
+            (noun {localize {random_elem {elem NOUNS $index}}})
+            (verb_past {localize {random_elem {elem VERBS_PAST $index}}})}})
    (gen_headline_tour_2
       {do
-         ($index
-            {-
-               {player0 num_stars}
-               3})
+         ($index {- {player0 num_stars} 3})
+         {$this generate_headline headline2
+            (noun {localize {random_elem {elem NOUNS $index}}})
+            (verb {localize {random_elem {elem VERBS $index}}})}})
+   (gen_headline_tour_3
+      {do
+         ($index {- {player0 num_stars} 3})
          {$this
             generate_headline
-            headline2
-            (adj
-               {localize
-                  {random_elem
-                     {elem ADJS $index}}})
-            (noun
-               {localize
-                  {random_elem
-                     {elem NOUNS $index}}})
-            (verb
-               {localize
-                  {random_elem
-                     {elem VERBS $index}}})}})
+            headline3
+            (verb {localize {random_elem {elem TAKE_VERBS $index}}})
+            (noun {localize {random_elem {elem TAKE_NOUNS $index}}})}})
    (gen_battle_headline
       {do
-         ($index
-            {-
-               {player0 num_stars}
-               3})
-         {$this
-            generate_headline
-            headline_battle
-            (win_phrase
-               {localize
-                  {random_elem
-                     {elem BATTLE_WIN_PHRASE $index}}})}})
+         ($index {- {player0 num_stars} 3})
+         {$this generate_headline headline_battle
+            (win_phrase {localize {random_elem {elem BATTLE_WIN_PHRASE $index}}})}})
    (gen_headline_perfect
       {$this generate_headline headline_perfect})
    (gen_headline_perfect_coop
       {$this generate_headline headline_perfect_coop})
    (gen_headline_qc_1
       {do
-         ($index
-            {-
-               {player0 num_stars}
-               3})
-         {$this
-            generate_headline
-            headline_quick_coop1
-            (adj
-               {localize
-                  {random_elem
-                     {elem ADJS $index}}})
-            (noun
-               {localize
-                  {random_elem
-                     {elem NOUNS $index}}})
-            (verb
-               {localize
-                  {random_elem
-                     {elem VERBS $index}}})}})
+         ($index {- {player0 num_stars} 3})
+         {$this generate_headline headline_quick_coop1
+            (adj {localize {random_elem {elem ADJS $index}}})
+            (noun {localize {random_elem {elem NOUNS $index}}})
+            (verb {localize {random_elem {elem VERBS $index}}})}})
    (gen_headline_qc_2
       {do
-         ($index
-            {-
-               {player0 num_stars}
-               3})
+         ($index {- {player0 num_stars} 3})
          {$this
             generate_headline
             headline_quick_coop2
-            (adj
-               {localize
-                  {random_elem
-                     {elem ADJS $index}}})
-            (noun
-               {localize
-                  {random_elem
-                     {elem NOUNS $index}}})
-            (verb_past
-               {localize
-                  {random_elem
-                     {elem VERBS_PAST $index}}})}})
+            (adj {localize {random_elem {elem ADJS $index}}})
+            (noun {localize {random_elem {elem NOUNS $index}}})
+            (verb_past {localize {random_elem {elem VERBS_PAST $index}}})}})
    (gen_versus_headline
-      {if_else
-         {==
-            {player0 score}
-            {player1 score}}
+      {if_else {== {player0 score} {player1 score}}
          {$this generate_headline headline_vs_tie}
          {do
-            ($spread
-               {$this
-                  get_versus_spread
-                  {player0 score}
-                  {player1 score}})
+            ($spread {$this get_versus_spread {player0 score} {player1 score}})
             ($winner
-               {if_else
-                  {>
-                     {player1 score}
-                     {player0 score}}
+               {if_else {> {player1 score} {player0 score}}
                   "2"
                   "1"})
-            {$this
-               generate_headline
-               headline_vs
+            {$this generate_headline headline_vs
                (num $winner)
-               (vs_verb
-                  {localize
-                     {random_elem
-                        {elem WIN_VS_VERB $spread}}})
-               (vs_noun
-                  {localize
-                     {random_elem
-                        {elem WIN_VS_NOUN $spread}}})}}})
-   (set_headline
-      ($label)
-      {$label
-         set_localized_text
-         {$this
-            {cond
+               (vs_verb {localize {random_elem {elem WIN_VS_VERB $spread}}})
+               (vs_noun {localize {random_elem {elem WIN_VS_CONCERT $spread}}})}}})
+    (set_headline
+        ($label)
+        {$label set_localized_text
+         {$this {cond
                ({&&
-                     {==
-                        multi_coop
-                        {gamecfg get mode}}
-                     {==
-                        {player0 percent_hit}
-                        100}
-                     {==
-                        {player1 percent_hit}
-                        100}}
+                     {== multi_coop {gamecfg get mode}}
+                     {== {player0 percent_hit} 100}
+                     {== {player1 percent_hit} 100}}
                   gen_headline_perfect_coop)
-               ({==
-                     multi_coop
-                     {gamecfg get mode}}
-                  {random_elem
-                     (gen_headline_qc_1 gen_headline_qc_2)})
-               ({==
-                     quickplay
-                     {gamecfg get mode}}
-                  {if_else
-                     {==
-                        {player0 percent_hit}
-                        100}
+               ({== multi_coop {gamecfg get mode}}
+                  {random_elem (gen_headline_qc_1 gen_headline_qc_2)})
+               ({== quickplay {gamecfg get mode}}
+                  {if_else {== {player0 percent_hit} 100}
                      gen_headline_perfect_coop
-                     {random_elem
-                        (gen_headline_qc_1 gen_headline_qc_2)}})
+                     {random_elem (gen_headline_qc_1 gen_headline_qc_2)}})
                ({&&
-                     {==
-                        career
-                        {gamecfg get mode}}
-                     {==
-                        {player0 percent_hit}
-                        100}}
+                     {== career {gamecfg get mode}}
+                     {== {player0 percent_hit} 100}}
                   gen_headline_perfect)
-               ({==
-                     career
-                     {gamecfg get mode}}
-                  {if_else
-                     {==
-                        {game get_venue}
-                        battle}
+               ({== career {gamecfg get mode}}
+                  {if_else {== {game get_venue} battle}
                      gen_battle_headline
-                     {random_elem
-                        (gen_headline_tour_1 gen_headline_tour_2)}})
+                     {random_elem (gen_headline_tour_3 gen_headline_tour_2 gen_headline_tour_1)}})
                ({'||'
                      {==
                         multi_vs
                         {gamecfg get mode}}
-                     {==
-                        multi_fo
-                        {gamecfg get mode}}}
-                  gen_versus_headline)}}}))
-{new
-   EndGamePanel
-   endgame_panel
-   (file endgame.milo)
+                     {== multi_fo {gamecfg get mode}}}
+                  gen_versus_headline)}}}
+
+        ;Handle setting headline for the various autoplay combos
+        {switch
+            {gamecfg get mode}
+                (career {if {player_matcher0 auto_play} {$label set_localized_text {$this gen_toogle_head_ca}}})
+                (quickplay {if {player_matcher0 auto_play} {$label set_localized_text {$this gen_toogle_head_qp}}})
+                (multi_vs
+                    {if {&& {player_matcher0 auto_play} {player_matcher1 auto_play}} ; If both auto
+                        {$label set_localized_text {$this gen_toogle_head_vs}}}
+                    {if {&& {player_matcher0 auto_play} {! {player_matcher1 auto_play}}} ; If p1 auto
+                        {$label set_localized_text {$this gen_toogle_head_vsp1}}}
+                    {if {&& {! {player_matcher0 auto_play}} {player_matcher1 auto_play}} ; If p2 auto
+                        {$label set_localized_text {$this gen_toogle_head_vsp2}}})
+                (multi_fo
+                    {if {&& {player_matcher0 auto_play} {player_matcher1 auto_play}} ; If both auto
+                        {$label set_localized_text {$this gen_toogle_head_vs}}}
+                    {if {&& {player_matcher0 auto_play} {! {player_matcher1 auto_play}}} ; If p1 auto
+                        {$label set_localized_text {$this gen_toogle_head_vsp1}}}
+                    {if {&& {! {player_matcher0 auto_play}} {player_matcher1 auto_play}} ; If p2 auto
+                        {$label set_localized_text {$this gen_toogle_head_vsp2}}})
+                (multi_coop
+                    {if {&& {player_matcher0 auto_play} {player_matcher1 auto_play}} ; If both auto
+                        {$label set_localized_text {$this gen_toogle_head_co}}}
+                    {if {&& {player_matcher0 auto_play} {! {player_matcher1 auto_play}}} ; If p1 auto
+                        {$label set_localized_text {$this gen_toogle_head_cop1}}}
+                    {if {&& {! {player_matcher0 auto_play}} {player_matcher1 auto_play}} ; If p2 auto
+                        {$label set_localized_text {$this gen_toogle_head_cop2}}})
+        }
+))
+{new EndGamePanel endgame_panel
+   (file {if_else $gamegh1 endgame_gh1.milo endgame.milo}) 
    (focus me_continue.btn)
    (reset_focus TRUE)
    HEADLINE_HANDLERS
    (enter
+   ;this is exclusive to gh1 redux. Redux does not have any buttons to continue, so I have to force you to the next screen
+	{if $gamegh1 {script_task (delay 6) (units kTaskUISeconds) (script {goto_endgame_complete})}}
       {set $song_text1 {game get_song_text}}
-      {if_else {! $speedmod 1}
-         {set $song_text2 {sprint $song_text1 " (" {int {+ 0.5 {* $speedmod 100}}} "%)"}}
+      {if_else {!= $speedmod 1}
+         {set $song_text2 {sprint $song_text1 " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
          {set $song_text2 $song_text1}}
       {endgame_song_data.lbl set_text $song_text2}
-      {endgame_diff_data.lbl
-         set_text
-         {game get_difficulty_sym 0}}
+      {endgame_diff_data.lbl set_text {game get_difficulty_sym 0}}
       {do
          ($player player0)
-         {endgame_score_data.lbl
-            set_localized_text
-            {sprint
-               {$player score}}}
-         {endgame_streak_data.lbl
-            set_localized_text
-            {sprint
-               {$player longest_streak}}}
-         {endgame_percent_data.lbl
-            set_localized_text
-            {sprintf
-               {localize eg_percent_format}
-               {$player percent_hit}}}
-         {endgame_streak_data.lbl
-            set_localized_text
-            {sprintf
-               {localize eg_streak_format}
-               {$player longest_streak}}}
-         {endgame_review_data.lbl
-            set_text
-            {$player star_rating}}
-         {percentbar_p1.mesh
-            set_local_scale
-            {/
-               {$player percent_hit}
-               100.0}
+         {endgame_score_data.lbl set_localized_text {sprint {$player score}}}
+         {endgame_streak_data.lbl set_localized_text {sprint {$player longest_streak}}}
+         {if_else $player0_fc
+            {endgame_percent_data.lbl set_localized_text {sprint {localize fullcombo}}}
+            {endgame_percent_data.lbl set_localized_text {sprintf {localize eg_percent_format} {$player percent_hit}}}}
+         {endgame_streak_data.lbl set_localized_text {sprintf {localize eg_streak_format} {$player longest_streak}}}
+         {endgame_review_data.lbl set_text {$player star_rating}} ; Original stars font
+         {endgame_review_data_fc.lbl set_text {$player star_rating}} ; New stars FC font
+         {percentbar_p1.mesh set_local_scale {/ {$player percent_hit} 100.0}
             1
             1}}
-      {$this set_headline endgame_headline.lbl})
+         {if_else $player0_fc
+            {do
+               {endgame_review_data.lbl set_showing FALSE}
+               {endgame_review_data_fc.lbl set_showing TRUE}} ; If P0 FC, use new label
+            {do
+               {endgame_review_data_fc.lbl set_showing FALSE}
+               {endgame_review_data.lbl set_showing TRUE}}} ; If P0 didn't FC, use old label
+      {$this set_headline endgame_headline.lbl}
+      {if {player_matcher0 auto_play} ; Check for autoplay on player 1
+        {do
+          {endgame_percent_data.lbl set_text toogle_label} ; percentage to AUTOPLAY
+          {endgame_review_data_fc.lbl set_showing FALSE} ; hide FC stars
+          {endgame_review_data.lbl set_showing TRUE} ; show non-FC stars
+        }})
    (SELECT_START_MSG
-      {switch
-         $component
-         (me_continue.btn
-            {goto_endgame_complete})
+      {switch $component
+         (me_continue.btn {goto_endgame_complete})
          (me_morestats.btn
-            {endgame_stats_screen
-               set
-               prev_screen
-               {ui current_screen}}
+            {endgame_stats_screen set prev_screen {ui current_screen}}
             {ui goto_screen endgame_stats_screen})})}
-{new
-   GHScreen
-   endgame_screen
+{new GHScreen endgame_screen
    (panels GAME_PANELS endgame_panel helpbar)
    (focus endgame_panel)
    (clear_vram TRUE)
@@ -413,12 +302,10 @@
       (default
          ((fret1 help_continue)
             (strum help_updown))))}
-{new
-   GHPanel
+{new GHPanel
    endgame_stats_panel
    (file
-      {if_else
-         {gamecfg multiplayer}
+      {if_else {gamecfg multiplayer}
          endgame_stats_multi.milo
          endgame_stats.milo})
    (is_scrolling FALSE)
@@ -427,147 +314,74 @@
    (enter
       {set $song_text1 {game get_song_text}}
       {if_else {!= $speedmod 1}
-         {set $song_text2 {sprint $song_text1 " (" {int {+ 0.5 {* $speedmod 100}}} "%)"}}
+         {set $song_text2 {sprint $song_text1 " (" {int  {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
          {set $song_text2 $song_text1}}
       {song_name.lbl set_text $song_text2}
-      {gamecfg
-         foreach_player
-         $player
+      {gamecfg foreach_player $player
          {do
-            ($gems_hit
-               {$player gems_hit})
-            ($gems_total
-               {'+'
-                  $gems_hit
-                  {$player gems_passed}})
-            {{sprint
-                  $player
-                  "_notes_hit.lbl"}
-               set_localized_text
-               {sprint
-                  $gems_hit
-                  "/"
-                  $gems_total}}}
-         {{sprint
-               $player
-               "_sp_phrases.lbl"}
+            ($gems_hit {$player gems_hit})
+            ($gems_total {'+' $gems_hit {$player gems_passed}})
+            {{sprint $player "_notes_hit.lbl"} set_localized_text
+               {sprint $gems_hit "/" $gems_total}}}
+         {{sprint $player "_sp_phrases.lbl"}
             set_localized_text
             {$player sp_phrases}}}
-      {if_else
-         {gamecfg multiplayer}
+      {if_else {gamecfg multiplayer}
          {$this update_multiplayer_stats}
          {$this update_singleplayer_stats}}
-      {stats_sections.lst
-         set_provider
-         {new StatsProvider stats_provider}})
+      {stats_sections.lst set_provider {new StatsProvider stats_provider}})
    (update_singleplayer_stats
       {do
-         ($avg_multi
-            {max
-               1
-               {player0 avg_multiplier}})
+         ($avg_multi {max 1 {player0 avg_multiplier}})
          {player0_avg_multi.lbl
             set_localized_text
-            {sprintf
-               {localize stat_avg_multi_format}
+            {sprintf {localize stat_avg_multi_format}
                {int $avg_multi}
-               {mod
-                  {int
-                     {'*' 10 $avg_multi}}
-                  10}}}})
+               {mod {int {'*' 10 $avg_multi}} 10}}}})
    (update_multiplayer_stats
       {do
-         ($p0hit
-            {player0 gems_hit})
-         ($p0all
-            {'+'
-               $p0hit
-               {player0 gems_passed}})
-         ($p1hit
-            {player1 gems_hit})
-         ($p1all
-            {'+'
-               $p1hit
-               {player1 gems_passed}})
-         {if_else
-            {>
-               {'*' $p0hit $p1all}
-               {'*' $p1hit $p0all}}
-            {do
-               {player0_best.lbl set_showing TRUE}
-               {player1_best.lbl set_showing FALSE}}
-            {do
-               {player1_best.lbl set_showing TRUE}
-               {player0_best.lbl set_showing FALSE}}}}
-      {if_else
-         {==
-            {gamecfg get mode}
-            multi_coop}
+         ($p0hit {player0 gems_hit})
+         ($p0all {'+' $p0hit {player0 gems_passed}})
+         ($p1hit {player1 gems_hit})
+         ($p1all {'+' $p1hit {player1 gems_passed}})
+         {if_else {> {'*' $p0hit $p1all} {'*' $p1hit $p0all}}
+            {do {player0_best.lbl set_showing TRUE} {player1_best.lbl set_showing FALSE}}
+            {do {player1_best.lbl set_showing TRUE} {player0_best.lbl set_showing FALSE}}}}
+      {if_else {== {gamecfg get mode} multi_coop}
          {$this update_coop_stats}
          {$this update_faceoff_stats}})
    (update_coop_stats
       {stats_coop.grp set_showing TRUE}
       {stats_faceoff.grp set_showing FALSE}
-      {gamecfg
-         foreach_player
-         $player
-         {{sprint
-               $player
-               "_streaks_broken.lbl"}
+      {gamecfg foreach_player $player
+         {{sprint $player "_streaks_broken.lbl"}
             set_localized_text
-            {sprint
-               {$player streaks_broken}}}})
+            {sprint {$player streaks_broken}}}})
    (update_faceoff_stats
       {stats_coop.grp set_showing FALSE}
       {stats_faceoff.grp set_showing TRUE}
-      {gamecfg
-         foreach_player
-         $player
-         {{sprint
-               $player
-               "_lead_time.lbl"}
-            set_localized_text
-            {sprintf
-               {localize eg_percent_format}
-               {int
-                  {/
-                     {'*'
-                        100
-                        {$player lead_time_sec}}
-                     {game song_duration_sec}}}}}})
+      {gamecfg foreach_player $player
+         {{sprint $player "_lead_time.lbl"} set_localized_text {sprintf {localize eg_percent_format} {int {/ {'*' 100 {$player lead_time_sec}} {game song_duration_sec}}}}}})
    (stop_scrolling
-      {if
-         [is_scrolling]
+      {if [is_scrolling]
          {receipt_scroll.tnm stop_animation}
-         {set
-            [is_scrolling]
-            FALSE}})
+         {set [is_scrolling] FALSE}})
    (BUTTON_DOWN_MSG
-      {if
-         {is_updown_button $button}
+      {if {is_updown_button $button}
          {$this stop_scrolling}
-         {receipt_scroll.tnm
-            animate
+         {receipt_scroll.tnm animate
             (dest
-               {if_else
-                  {== $button kPad_DDown}
-                  {'*'
-                     2
-                     {stats_provider num_data}}
+               {if_else {== $button kPad_DDown}
+                  {'*' 2 {stats_provider num_data}}
                   0})
             (units kTaskUISeconds)}
-         {set
-            [is_scrolling]
-            TRUE}}
+         {set [is_scrolling] TRUE}}
       kDataUnhandled)
    (BUTTON_UP_MSG
-      {if
-         {is_updown_button $button}
+      {if {is_updown_button $button}
          {$this stop_scrolling}}
       kDataUnhandled)}
-{new
-   GHScreen
-   endgame_stats_screen
+{new GHScreen endgame_stats_screen
    (panels GAME_PANELS endgame_stats_panel helpbar)
    (focus endgame_stats_panel)
    (in_game TRUE)
@@ -584,36 +398,26 @@
       {cond
          ({== $button kPad_X}
             {synth play_sequence button_select}
-            {if_else
-               [next_screen]
+            {if_else [next_screen]
                {do
-                  ($next_screen
-                     [next_screen])
-                  {set
-                     [next_screen]
-                     0}
+                  ($next_screen [next_screen])
+                  {set [next_screen] 0}
                   {ui goto_screen $next_screen}}
                {goto_endgame_complete}})
          ({== $button kPad_Tri}
             {synth play_sequence button_select}
-            {ui
-               goto_screen
-               [prev_screen]})}
+            {ui goto_screen [prev_screen]})}
       kDataUnhandled)}
 #define START_ENCORE
 ({world play_meta_sfx encore_yes}
-   {game
-      set_song
-      {campaign get_cur_encore}}
+   {game set_song {campaign get_cur_encore}}
    {game retain_world_bank}
    {ui goto_screen endgame_encore_unload_screen})
 #define ENDGAME_ENCORE_LETTERS
 ((endgame_encore_letter3 endgame_encore_letter4 endgame_encore_letter5 endgame_encore_letter6))
-{new
-   GHPanel
-   endgame_encore_panel
+{new GHPanel endgame_encore_panel
    (file endgame_encore.milo)
-   (focus yes.btn)
+   (focus no.btn)
    (cash_award 0)
    (freebird 0)
    (enter
@@ -622,29 +426,14 @@
       {freebird2.grp set_showing FALSE}
       {freebird3.grp set_showing FALSE}
       {$this set_focus yes.btn}
-      {set
-         [cash_award]
-         {cashaward_screen get new_cash}}
-      {score.lbl
-         set_localized_text
-         {sprintf
-            {localize endgame_encore_score}
-            {player0 score}}}
-      {review.lbl
-         set_localized_text
-         {sprintf
-            {localize endgame_encore_review}
-            {player0 num_stars}}}
-      {money.lbl
-         set_localized_text
-         {if_else
-            [cash_award]
-            {sprintf
-               {localize endgame_encore_money}
-               [cash_award]}
+      {set [cash_award] {cashaward_screen get new_cash}}
+      {score.lbl set_localized_text {sprintf {localize endgame_encore_score} {player0 score}}}
+      {review.lbl set_localized_text {sprintf {localize endgame_encore_review} {player0 num_stars}}}
+      {money.lbl set_localized_text
+         {if_else [cash_award]
+            {sprintf {localize endgame_encore_money} [cash_award]}
             ""}}
-      {letter2.lbl
-         set_text
+      {letter2.lbl set_text
          {if_else
             [freebird]
             endgame_encore_freebird1
@@ -654,11 +443,9 @@
       {switch
          $component
          (yes.btn
-            {if_else
-               [freebird]
+            {if_else [freebird]
                {do
-                  {freebird_moves.tnm
-                     animate
+                  {freebird_moves.tnm animate
                      (range 0.0 1.0)
                      (period 0.15)
                      (units k30_fps_ui)}
@@ -666,21 +453,17 @@
                   {$this set_focus yes_freebird1.btn}}
                {do START_ENCORE}})
          ((no.btn no_freebird1.btn no_freebird2.btn no_freebird3.btn)
-            {achievements submit encoreno}
-            {world play_meta_sfx encore_no}
             {encore_stream stop}
             {ui goto_screen endgame_screen})
          (yes_freebird1.btn
-            {freebird_moves.tnm
-               animate
+            {freebird_moves.tnm animate
                (range 1.0 2.0)
                (period 0.15)
                (units k30_fps_ui)}
             {freebird2.grp set_showing TRUE}
             {$this set_focus yes_freebird2.btn})
          (yes_freebird2.btn
-            {freebird_moves.tnm
-               animate
+            {freebird_moves.tnm animate
                (range 2.0 3.0)
                (period 0.15)
                (units k30_fps_ui)}
@@ -688,9 +471,7 @@
             {$this set_focus yes_freebird3.btn})
          (yes_freebird3.btn START_ENCORE)}
       kDataUnhandled)}
-{new
-   GHScreen
-   endgame_encore_screen
+{new GHScreen endgame_encore_screen
    (panels GAME_PANELS endgame_encore_panel helpbar)
    (focus endgame_panel)
    (clear_vram TRUE)
@@ -703,38 +484,21 @@
    (enter
       {world_panel set_showing FALSE}
       {$this set_focus_panel endgame_encore_panel})}
-{new
-   GHScreen
-   endgame_encore_unload_screen
+{new GHScreen endgame_encore_unload_screen
    (panels endgame_encore_panel helpbar)
    (animate_transition FALSE)
    (allow_back FALSE)
    (enter
       {ui goto_screen loading_screen})}
-#define WIN_GAME_FADE_TO_BLACK_SEC
-(1)
-#define WIN_GAME_FADE_TO_WHITE_SEC
-(1)
-#define WIN_GAME_FADE_IN_SCREEN_SEC
-(4)
-#define WIN_GAME_INPUT_DELAY_SEC
-(6)
-{new
-   UIPanel
-   win_game_panel
-   (file
-      {sprintf
-         "win_%s.milo"
-         {gamecfg get_difficulty_sym 0}})
+#define WIN_GAME_FADE_TO_BLACK_SEC (1)
+#define WIN_GAME_FADE_TO_WHITE_SEC (1)
+#define WIN_GAME_FADE_IN_SCREEN_SEC (4)
+#define WIN_GAME_INPUT_DELAY_SEC (6)
+{new UIPanel win_game_panel
+   (file {sprintf "win_%s.milo" {gamecfg get_difficulty_sym 0}})
    (enter
-      {we_bandname.lbl
-         set_localized_text
-         {campaign
-            profile_name
-            {campaign profile_slot}}})}
-{new
-   GHScreen
-   win_game_screen
+      {we_bandname.lbl set_localized_text {campaign profile_name {campaign profile_slot}}})}
+{new GHScreen win_game_screen
    (panels GAME_PANELS win_game_panel helpbar fade_panel)
    (in_game TRUE)
    (allow_back FALSE)
@@ -744,42 +508,28 @@
       (default
          ()))
    (enter
-      {fade_panel
-         start_fade
+      {fade_panel start_fade
          WIN_GAME_FADE_IN_SCREEN_SEC
          (color 1 1 1)
          (fade_synth FALSE)
          (fade_out FALSE)}
-      {set
-         [continue_time]
-         {'+'
-            {taskmgr ui_seconds}
-            WIN_GAME_INPUT_DELAY_SEC}}
+      {set [continue_time] {'+' {taskmgr ui_seconds} WIN_GAME_INPUT_DELAY_SEC}}
       {play_sfx
-         {if_else
-            {==
-               kDifficultyEasy
-               {game get_difficulty 0}}
+         {if_else {== kDifficultyEasy {game get_difficulty 0}}
             beat_easy
             beat_other}}
       {world play_meta_sfx crowd_win})
-   (can_continue
-      {>
-         {taskmgr ui_seconds}
-         [continue_time]})
+   (can_continue {> {taskmgr ui_seconds} [continue_time]})
    (poll
-      {if
-         {$this can_continue}
+      {if {$this can_continue}
          {helpbar
             set_display
             ((fret1 help_continue))}})
    (BUTTON_DOWN_MSG
-      {if
-         {&&
+      {if {&&
             {$this can_continue}
             {== $button kPad_X}}
-         {fade_panel
-            start_fade
+         {fade_panel start_fade
             WIN_GAME_FADE_TO_BLACK_SEC
             (color 0 0 0)
             (fade_synth FALSE)
@@ -788,26 +538,15 @@
          {script_task
             (delay WIN_GAME_FADE_TO_BLACK_SEC)
             (units kTaskUISeconds)
-            (script
-               {ui
-                  goto_screen
-                  {if_else
-                     {post_show_screen get pfo_newly_unlocked}
+            (script {ui goto_screen
+                  {if_else {post_show_screen get pfo_newly_unlocked}
                      unlock_pfo_screen
                      endgame_screen}})}})}
-{new
-   GHPanel
-   unlock_pfo_panel
+{new GHPanel unlock_pfo_panel
    (file unlock_profaceoff.milo)
    (enter
-      {we_bandname.lbl
-         set_localized_text
-         {campaign
-            profile_name
-            {campaign profile_slot}}})}
-{new
-   GHScreen
-   unlock_pfo_screen
+      {we_bandname.lbl set_localized_text {campaign profile_name {campaign profile_slot}}})}
+{new GHScreen unlock_pfo_screen
    (panels GAME_PANELS unlock_pfo_panel helpbar)
    (animate_transition FALSE)
    (focus unlock_pfo_panel)
@@ -815,21 +554,14 @@
       (default
          ((fret1 help_continue))))
    (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_X}
+      {if {== $button kPad_X}
          {ui goto_screen endgame_screen}})}
-{new
-   GHPanel
-   status_panel
+{new GHPanel status_panel
    (file
-      {sprint
-         "sponsorship"
-         {if_else
-            {campaign is_max_status}
+      {sprint "sponsorship"
+         {if_else {campaign is_max_status}
             {campaign status}
-            {'+'
-               {campaign status}
-               1}}
+            {'+' {campaign status} 1}}
          ".milo"})
    (reset_focus TRUE)
    (focus '')
@@ -837,27 +569,15 @@
    (new_status_award 0)
    (enter
       {do
-         ($cash
-            {'+'
-               {cashaward_screen get new_cash}
-               [new_status_award]})
-         {if_else
-            $cash
-            {sponsor_amount.lbl
-               set_localized_text
-               {sprintf
-                  {localize career_cash_format}
-                  $cash}}
+         ($cash {'+' {cashaward_screen get new_cash} [new_status_award]})
+         {if_else $cash
+            {sponsor_amount.lbl set_localized_text {sprintf {localize career_cash_format} $cash}}
             {do
                {sponsor_cash.lbl set_showing FALSE}
                {sponsor_amount.lbl set_showing FALSE}}}}
       {cashaward_screen set new_cash 0}
-      {set
-         [new_status]
-         0})}
-{new
-   GHScreen
-   status_screen
+      {set [new_status] 0})}
+{new GHScreen status_screen
    (panels GAME_PANELS status_panel helpbar)
    (focus status_panel)
    (in_game TRUE)
@@ -869,16 +589,12 @@
    (enter
       {play_sfx cash_award})
    (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_X}
+      {if {== $button kPad_X}
          {synth play_sequence button_select}
          {cond
             ({&&
-                  {!
-                     {meta get won_campaign}}
-                  {!=
-                     $new_venue
-                     ""}}
+            {! {meta get won_campaign}}
+            {!= $new_venue ""}}
                {ui goto_screen unlock_venue_screen})
             (TRUE
                {goto_endgame_complete})}})}
@@ -909,38 +625,16 @@
       (ca_blurb25 550)
       (ca_blurb26 30)
       (ca_blurb27 250)))
-{new
-   UIPanel
-   cashaward_panel
+{new UIPanel cashaward_panel
    (file cashaward.milo)
    (set_deduction
       ($num $data)
-      {{sprint
-            "ca_blurb"
-            $num
-            ".lbl"}
-         set_text
-         {elem $data 0}}
-      {{sprint
-            "ca_num"
-            $num
-            ".lbl"}
-         set_localized_text
-         {sprint
-            "-"
-            {sprintf
-               {localize career_cash_format}
-               {elem $data 1}}}})
+      {{sprint "ca_blurb" $num ".lbl"} set_text {elem $data 0}}
+      {{sprint "ca_num" $num ".lbl"} set_localized_text {sprint "-" {sprintf {localize career_cash_format} {elem $data 1}}}})
    (set_total_pay
       ($amount)
-      {ca_num1.lbl
-         set_localized_text
-         {sprintf
-            {localize career_cash_format}
-            $amount}})}
-{new
-   GHScreen
-   cashaward_screen
+      {ca_num1.lbl set_localized_text {sprintf {localize career_cash_format} $amount}})}
+{new GHScreen cashaward_screen
    (panels GAME_PANELS cashaward_panel helpbar)
    (focus cashaward_panel)
    (in_game TRUE)
@@ -948,8 +642,7 @@
    (animate_transition FALSE)
    (force_exit TRUE)
    (new_cash 0)
-   (new_cash_reason
-      "")
+   (new_cash_reason "")
    (helpbar
       (default
          ((fret1 help_continue))))
@@ -961,76 +654,43 @@
          ($amount 0)
          ($reason 0)
          ($gross)
-         ($venue
-            {game get_venue})
-         {{cashaward_panel find ca_reason.lbl}
-            set_text
-            [new_cash_reason]}
-         {{cashaward_panel find ca_amount.lbl}
-            set_localized_text
-            {sprintf
-               "$%d"
-               [new_cash]}}
-         {{cashaward_panel find ca_venue.lbl}
-            set_text
-            $venue}
-         {{cashaward_panel find ca_address.lbl}
-            set_text
-            {sprintf
-               "%s_address"
-               $venue}}
+         ($venue {game get_venue})
+         {{cashaward_panel find ca_reason.lbl} set_text [new_cash_reason]}
+         {{cashaward_panel find ca_amount.lbl} set_localized_text {sprintf "$%d" [new_cash]}}
+         {{cashaward_panel find ca_venue.lbl} set_text $venue}
+         {{cashaward_panel find ca_address.lbl} set_text {sprintf "%s_address" $venue}}
          {do
-            ($removed
-               ())
-            ($total
-               [new_cash])
-            {foreach_int
-               $num
-               2
-               6
+            ($removed ())
+            ($total [new_cash])
+            {foreach_int $num 2 6
                {do
                   ($data
                      {random_elem CASH_AWARD_DEDUCTIONS})
                   {remove_elem CASH_AWARD_DEDUCTIONS $data}
                   {cashaward_panel set_deduction $num $data}
                   {push_back $removed $data}
-                  {'+='
-                     $total
-                     {elem $data 1}}}}
+                  {'+=' $total {elem $data 1}}}}
             {cashaward_panel set_total_pay $total}
-            {foreach
-               $elem
-               $removed
+            {foreach $elem $removed
                {push_back CASH_AWARD_DEDUCTIONS $elem}}
             {resize $removed 0}}}
-      {set
-         [new_cash]
-         0})
+      {set [new_cash] 0})
    (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_X}
+      {if {== $button kPad_X}
          {synth play_sequence button_select}
          {goto_endgame_complete}})}
-{new
-   UIPanel
-   unlock_venue_panel
+{new UIPanel unlock_venue_panel
    (file
-      {sprint
-         "unlockvenue"
-         {if_else
-            {campaign is_max_status}
-            {-
-               {campaign status}
-               1}
+      {sprint "unlockvenue"
+         {if_else {campaign is_max_status}
+		    {- {campaign status} 1}
             {campaign status}}
          ".milo"})
    (retain_last_focus FALSE)
    (animation_begin FALSE)
    (enter
       {unlock_anim.grp set_frame 0}
-      {set
-         [animation_begin]
-         FALSE})
+      {set [animation_begin] FALSE})
    (TRANSITION_COMPLETE_MSG
       {unlock_anim.grp
          animate
@@ -1038,26 +698,16 @@
          (period 3)
          (range 0 200)
          (units kTaskUISeconds)}
-      {set
-         [animation_begin]
-         TRUE})
+      {set [animation_begin] TRUE})
    (exit
-      {set
-         [animation_begin]
-         FALSE})
+      {set [animation_begin] FALSE})
    (poll
-      {if
-         {&&
-            [animation_begin]
-            {!
-               {exists unlock_anim}}}
-         {set
-            [animation_begin]
-            FALSE}
+      {if {&&
+      [animation_begin]
+      {! {exists unlock_anim}}}
+         {set [animation_begin] FALSE}
          {ui goto_screen complete_screen}})}
-{new
-   GHScreen
-   unlock_venue_screen
+{new GHScreen unlock_venue_screen
    (panels GAME_PANELS unlock_venue_panel helpbar)
    (focus unlock_venue_panel)
    (in_game TRUE)
@@ -1068,36 +718,19 @@
          ((fret1 help_continue))))
    (enter
       {world play_sfx vroom.cue})}
-{new
-   GHPanel
-   unlock_guitar_panel
+{new GHPanel unlock_guitar_panel
    (file unlock_guitar.milo)
    (animation_begin FALSE)
-   (guitar
-      "")
+   (guitar "")
    (enter
-      {set
-         [guitar]
-         {campaign next_guitar_award}}
+      {set [guitar] {campaign next_guitar_award}}
       {unlock_guitar_display_panel set_showing TRUE}
-      {unlock_guitar_display_panel
-         show_guitar
-         0
-         [guitar]
-         ''
-         ug_guitar.pxy
-         ug_guitar.filt}
-      {ug_guitar.lbl
-         set_text
-         [guitar]})}
-{new
-   GuitarDisplayPanel
-   unlock_guitar_display_panel
-   (file
-      "")
+      {unlock_guitar_display_panel show_guitar 0 [guitar] '' ug_guitar.pxy ug_guitar.filt}
+      {ug_guitar.lbl set_text [guitar]})}
+{new GuitarDisplayPanel unlock_guitar_display_panel
+   (file "")
    (config endgame)}
-{new
-   GHScreen
+{new GHScreen
    unlock_guitar_screen
    (panels GAME_PANELS unlock_guitar_display_panel unlock_guitar_panel helpbar)
    (focus unlock_guitar_panel)
@@ -1108,8 +741,7 @@
       (default
          ((fret1 help_continue))))
    (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_X}
+      {if {== $button kPad_X}
          {if_else
             {campaign num_guitar_awards}
             {do
@@ -1120,50 +752,32 @@
                {synth play_sequence button_select}
                {meta_loading_goto career_screen}}}}
       TRUE)}
-{func
-   get_highscore_index
+{func get_highscore_index
    ($score)
-   {'+'
-      {highscores check_highscore $score}
-      1}}
-{new
-   UIPanel
-   highscore_panel
-   (file highscore.milo)
+   {'+' {highscores check_highscore $score} 1}}
+{new UIPanel highscore_panel
+   (file
+      {if_else $gamegh1
+         highscore_gh1.milo
+         highscore.milo})
    (active_ten 0)
    (auto_add TRUE)
    (flushed FALSE)
    (enter
-      {set
-         [auto_add]
-         {==
-            career
-            {gamecfg get mode}}}
-      {set
-         [flushed]
-         FALSE}
-      {hs_stats.lbl
-         set_localized_text
-         {sprintf
-            {localize highscore_score_fmt}
+      {set [auto_add] {== career {gamecfg get mode}}}
+      {set [flushed] FALSE}
+      {hs_stats.lbl set_localized_text
+         {sprintf {localize highscore_score_fmt}
             {game get_song_text}
             {localize
                {game get_difficulty_sym 0}}}}
       {do
-         ($score
-            {player0 score})
-         ($index
-            {get_highscore_index $score})
-         {$this
-            fill_scores
-            $index
-            $score
-            {$this get_default_name}}
-         {if_else
-            {!= $index 0}
+         ($score {player0 score})
+         ($index {get_highscore_index $score})
+         {$this fill_scores $index $score {$this get_default_name}}
+         {if_else {!= $index 0}
             {$this enter_score $index}
-            {if_else
-               [auto_add]
+            {if_else [auto_add]
                {ui goto_screen complete_screen}
                {$this view_scores}}}}
       {highscore_screen update_help_bar})
@@ -1171,97 +785,59 @@
       ($new_index $new_score $new_name)
       {do
          ($slot 0)
-         {foreach_int
-            $i
-            1
-            6
+         {foreach_int $i 1 6
             {do
                ($name 0)
                ($score 0)
-               {if_else
-                  {== $i $new_index}
+               {if_else {== $i $new_index}
                   {$this set_entry $i $new_name $new_score}
                   {do
                      {highscores get_highscore $slot $name $score}
                      {$this set_entry $i $name $score}
                      {'++' $slot}}}}}})
    (get_default_name
-      {if_else
-         [auto_add]
-         {campaign
-            profile_name
-            {campaign profile_slot}}
+      {if_else [auto_add]
+         {campaign profile_name {campaign profile_slot}}
          {highscores get_default_name}})
    (set_entry
       ($index $name $score)
       {do
-         ($name_lbl
-            {sprintf
-               "hs_name%d.lbl"
-               $index})
-         ($score_lbl
-            {sprintf
-               "hs_score%d.lbl"
-               $index})
+         ($name_lbl {sprintf "hs_name%d.lbl" $index})
+         ($score_lbl {sprintf "hs_score%d.lbl" $index})
          {$name_lbl set_localized_text $name}
-         {$score_lbl
-            set_text
-            {sprintf
-               "%d"
-               $score}}})
+         {$score_lbl set_text {sprintf "%d" $score}}})
    (get_text_entry
       ($index)
-      {sprintf
-         "hs_entry%d.ten"
-         $index})
+      {sprintf "hs_entry%d.ten" $index})
    (get_name_label
       ($index)
-      {sprintf
-         "hs_name%d.lbl"
-         $index})
+      {sprintf "hs_name%d.lbl" $index})
    (enter_score
       ($index)
       {hs_flush.tnm set_frame 0}
       {do
-         ($ten
-            {$this get_text_entry $index})
-         {$ten
-            set_text
-            {$this get_default_name}}
-         {if_else
-            [auto_add]
+         ($ten {$this get_text_entry $index})
+         {$ten set_text {$this get_default_name}}
+         {if_else [auto_add]
             {do
-               {set
-                  [active_ten]
-                  0}
+               {set [active_ten] 0}
                {$this set_text_entry -1}
                {hs_start.lbl set_showing FALSE}
-               {highscores
-                  add
-                  {$ten get_text}
-                  {player0 score}}}
+               {highscores add {$ten get_text} {player0 score}}}
             {do
-               {set
-                  [active_ten]
-                  $ten}
+               {set [active_ten] $ten}
                {$this set_text_entry $index}
                {$this set_focus $ten}}}
          {printf
             {$ten get_text}}})
    (view_scores
-      {printf
-         "view_scores\n"}
-      {set
-         [active_ten]
-         0}
+      {printf "view_scores\n"}
+      {set [active_ten] 0}
       {$this set_text_entry -1}
       {hs_start.lbl set_showing FALSE})
    (set_text_entry
       ($index)
-      {foreach_int
-         $i
-         1
-         6
+      {foreach_int $i 1 6
          {{$this get_text_entry $i}
             set_showing
             {== $i $index}}
@@ -1269,27 +845,16 @@
             set_showing
             {!= $i $index}}})
    (get_active_ten
-      {if_else
-         [active_ten]
-         {$this
-            find
-            [active_ten]}
+      {if_else [active_ten]
+         {$this find [active_ten]}
          NULL})
    (poll
-      {if
-         {&&
-            {!=
-               {$this get_active_ten}
-               NULL}
-            {{$this get_active_ten}
-               is_done}
-            {!
-               [flushed]}}
-         {set
-            [flushed]
-            TRUE}
-         {hs_flush.tnm
-            animate
+      {if {&&
+      {!= {$this get_active_ten} NULL}
+      {{$this get_active_ten} is_done}
+            {! [flushed]}}
+         {set [flushed] TRUE}
+         {hs_flush.tnm animate
             (range 0 17)
             (period 1)
             (units kTaskUISeconds)}
@@ -1298,11 +863,8 @@
          {script_task
             (delay 7)
             (units kTaskUISeconds)
-            (script
-               {ui goto_screen complete_screen})}})}
-{new
-   GHScreen
-   highscore_screen
+            (script {ui goto_screen complete_screen})}})}
+{new GHScreen highscore_screen
    (panels GAME_PANELS highscore_panel helpbar)
    (focus highscore_panel)
    (in_game TRUE)
@@ -1310,64 +872,42 @@
    (animate_transition FALSE)
    (okay_to_add_score TRUE)
    (enter
-      {set
-         [okay_to_add_score]
-         TRUE}
-      {set_key_cheats_enabled FALSE})
-   (exit
-      {set_key_cheats_enabled TRUE})
+      {set [okay_to_add_score] TRUE})
    (update_help_bar
       {do
-         ($ten
-            {highscore_panel get_active_ten})
-         {helpbar
-            set_display
-            {if_else
-               {&&
-                  {!= $ten NULL}
-                  {!
-                     {$ten is_done}}}
-               {get_text_entry_help_text $ten FALSE}
-               {if_else
-                  {highscore_panel get flushed}
+         ($ten {highscore_panel get_active_ten})
+         {helpbar set_display
+            {if_else {&&
+            {!= $ten NULL}
+            {! {$ten is_done}}}
+               {get_text_entry_help_text () $ten FALSE}
+               {if_else {highscore_panel get flushed}
                   ()
                   ((fret1 help_continue))}}}})
-   (CHAR_REMOVED_MSG
-      {synth play_sequence button_back.cue}
+   (SELECT_START_MSG
       {$this update_help_bar}
       kDataUnhandled)
-   (CHAR_ADDED_MSG
-      {synth play_sequence button_select}
+   (SCREEN_BACK_MSG
+      {synth play_sequence button_back.cue}
       {$this update_help_bar}
       kDataUnhandled)
    (TEXT_ENTRY_MSG
       {do
-         ($ten
-            {highscore_panel get_active_ten})
-         {if
-            {!= $ten NULL}
+         ($ten {highscore_panel get_active_ten})
+         {if {!= $ten NULL}
             {do
                ($text
                   {$ten get_text})
-               {if
-                  [okay_to_add_score]
-                  {set
-                     [okay_to_add_score]
-                     FALSE}
-                  {highscores
-                     add
-                     $text
-                     {player0 score}}
+               {if [okay_to_add_score]
+                  {set [okay_to_add_score] FALSE}
+                  {highscores add $text {player0 score}}
                   {highscores set_default_name $text}}}}
          kDataUnhandled})
    (BUTTON_DOWN_MSG
-      {if_else
-         {== $button kPad_X}
+      {if_else {== $button kPad_X}
          {do
-            ($ten
-               {highscore_panel get_active_ten})
-            {if
-               {'||'
+            ($ten {highscore_panel get_active_ten})
+            {if {'||'
                   {== $ten NULL}
                   {$ten is_done}}
                {synth play_sequence button_select}
@@ -1377,42 +917,27 @@
             {highscore_panel get_active_ten}
             kDataUnhandled
             TRUE}})}
-{new
-   GHPanel
-   complete_panel
-   (file complete.milo)
+{new GHPanel complete_panel
+   (file
+      {if_else $gamegh1
+         complete_gh1.milo
+         complete.milo})
    (enter
       {$this set_focus comp_selsong.btn}
-      {if_else
-         {&&
-            {==
-               career
-               {gamecfg get mode}}
-            {!
-               {campaign
-                  is_store_song
-                  {game get_song}}}}
+      {if_else {&&
+      {== career {gamecfg get mode}}
+      {! {campaign is_store_song {game get_song}}}}
          {comp_selsong.btn set_text CONTINUE}
          {comp_selsong.btn set_text comp_selsong}})
    (SELECT_START_MSG
-      {switch
-         $component
-         (comp_selsong.btn
-            {meta_loading_goto
-               {gamecfg get continue_screen}})
-         (comp_restart.btn
-            {game_restart_fast})
-         (comp_quit.btn
-            {meta_loading_goto main_screen})}
+      {switch $component
+         (comp_selsong.btn {meta_loading_goto {gamecfg get continue_screen}})
+         (comp_restart.btn {game_restart_fast})
+         (comp_quit.btn {meta_loading_goto main_screen})}
       {stop_sfx postshow_loop}
-      {if
-         {==
-            career
-            {gamecfg get mode}}
+      {if {== career {gamecfg get mode}}
          {gamecfg set continue_screen sel_song_screen}})}
-{new
-   GHScreen
-   complete_screen
+{new GHScreen complete_screen
    (panels GAME_PANELS complete_panel helpbar)
    (focus complete_panel)
    (clear_vram TRUE)
@@ -1423,3 +948,19 @@
       (default
          ((fret1 help_continue)
             (strum help_updown))))}
+{new UIPanel unlock_song_panel
+   (file unlock_song.milo)}
+{new GHScreen unlock_song_screen
+   (panels GAME_PANELS unlock_song_panel helpbar)
+   (focus unlock_song_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (force_exit TRUE)
+   (helpbar
+      (default
+         ((fret1 help_continue))))
+   (BUTTON_DOWN_MSG
+      {if {== $button kPad_X}
+         {synth play_sequence button_select}
+         {goto_endgame_complete}})}	
