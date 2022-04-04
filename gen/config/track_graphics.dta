@@ -1,5 +1,9 @@
-(slot_colors green red yellow blue orange)
-;(slot_colors red orange yellow green blue)
+(slot_colors
+   {if_else $roygb green red}
+   {if_else $roygb red orange} 
+   yellow
+   {if_else $roygb blue green}
+   {if_else $roygb orange blue})
 (smasher
    (mats
       (normal gem_smasher)

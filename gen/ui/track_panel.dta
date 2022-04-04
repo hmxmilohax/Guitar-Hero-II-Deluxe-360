@@ -4,12 +4,19 @@
    TrackPanel
    track_panel
    (file
-      {if_else
-         {==
-            {gamecfg get_num_players}
-            1}
+      {if_else $roygb
+         {if_else
+            {==
+               {gamecfg get_num_players}
+               1}
          ../track/track_panel_1p.milo
-         ../track/track_panel_2p.milo})
+         ../track/track_panel_2p.milo}
+         {if_else
+            {==
+               {gamecfg get_num_players}
+               1}
+         ../track/track_panel_1p_roygb.milo
+         ../track/track_panel_2p_roygb.milo}})
    (set_track_out
       {$this set_frame TRACK_END_FRAME})
    (set_track_in
