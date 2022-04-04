@@ -9,20 +9,908 @@
             (fret2 help_back)
             (strum help_updown))))
    (sel_song_career FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+            {ui goto_screen main_screen}}
+      kDataUnhandled)
    (SELECT_START_MSG
-      {ui goto_screen qp_diff_screen}
+      {ui goto_screen qp_selpart_screen}
       kDataUnhandled)}
+{new
+   UIPanel
+   qp_selpart_bg_panel
+   (file
+      selpart_bg.milo)}
+{new
+   GHPanel
+   qp_selpart_panel
+   (file
+      practice_selpart.milo)
+   (focus part0.btn)
+   (sel_buttons part0.btn part1.btn part2.btn)
+   (set_button_text
+      {do
+         ($song
+            {gamecfg get_song})
+         {part0.btn
+            set_text
+            {sprint
+               "sg_"
+               {song_provider get_instrument $song 0}}}
+         {part1.btn
+            set_text
+            {sprint
+               "sg_"
+               {song_provider get_instrument $song 1}}}
+            {part2.btn
+               set_text
+               "sg_drum"}
+         {if
+            {==
+               {song_provider get_instrument $song 1}
+               "rhythm"}
+            {part0.btn
+               set_text
+               "sg_lead"}}
+            {part2.btn
+               set_state
+               kDisabled}
+            {part2.btn
+               set_showing
+               FALSE}
+})
+   (enter
+      {do
+         ($song
+            {gamecfg get_song})
+         {switch
+            {song_provider get_instrument $song 1}
+            (bass
+               {gamecfg set_track_type bass})
+            (rhythm
+               {gamecfg set_track_type rhythm})}
+         {$this set_button_text}})
+   (SELECT_START_MSG
+      {if
+         {== $component part0.btn}
+         {gamecfg set_track 0 0}}
+      {if
+         {== $component part1.btn}
+         {gamecfg set_track 0 1}}
+      {if
+         {== $component part2.btn}
+         {gamecfg set_track 0 2}
+		 {set $roygb TRUE}}
+      {ui goto_screen qp_diff_screen})}
+{new
+   GHScreen
+   qp_selpart_screen
+   (panels meta qp_selpart_bg_panel qp_selpart_panel helpbar)
+   (focus qp_selpart_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))}
+{new
+   GHPanel
+   sel_diff_qp_panel
+   (file
+      sel_diff_qp.milo)
+   SEL_DIFFICULTY_COMMON
+   (enter
+      {$this update_focus})
+   (last_difficulty
+      {game get_difficulty 0})
+   (update_difficulty)}
 {new
    GHScreen
    qp_diff_screen
-   (panels meta sel_difficulty_panel helpbar)
-   (focus sel_difficulty_panel)
+   (panels meta sel_diff_qp_panel helpbar)
+   (focus sel_diff_qp_panel)
    (helpbar
       (default
          ((fret1 help_continue)
             (fret2 help_back)
             (strum help_updown))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {do
+            {$this backwards_anim}
+            {synth play_sequence button_back.cue}
+            {ui goto_screen qp_selpart_screen}}}
+      kDataUnhandled)
    (SELECT_START_MSG
-      {game set_quickplay}
-      {ui goto_screen loading_screen}
+               {do
+         {ui goto_screen manage_gig_screen}}
+      kDataUnhandled)}
+{new
+   GHPanel
+   manage_gig_panel
+   (file
+      manage_gig.milo)
+   (focus speed0.btn)
+   (set_button_text
+	{if_else $focusmode
+		{speed2.btn set_state kDisabled}
+		{speed2.btn set_showing TRUE}}
+	{if_else $focusmode
+		{speed3.btn set_state kDisabled}
+		{speed3.btn set_showing TRUE}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (speed0.btn
+            {ui goto_screen loading_screen})
+         (speed1.btn
+            {ui goto_screen sel_character_new_screen_qp})
+         (speed2.btn
+            {ui goto_screen sel_guitar_edit_screen_qp})
+         (speed3.btn
+            {ui goto_screen sel_venue_screen_qp})
+         (speed4.btn
+            {ui goto_screen milo_extras_screen})})}
+{new
+   GHScreen
+   manage_gig_screen
+   (panels meta manage_gig_panel helpbar)
+   (focus manage_gig_panel)
+   (enter
+	  {$this set_button_text})
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen qp_diff_screen}}
+      kDataUnhandled)}
+#define MILO_EXTRAS_PANEL_HANDLERS
+((focus gs_left_p1.btn)
+   (focus_component
+      "")
+   (orig_sync 0)
+(enter
+      {lefty1.chk set_check $songtitle}
+      {fuck.chk set_check $cheat_enabled_horse_head_mode}
+      {lefty3.chk set_check $barf_cheat}
+      {lefty4.chk set_check $cheat_enabled_performance_mode}
+      {lefty5.chk set_check $nofail}
+      {widescreen.chk set_check $neckless}
+      {p_scan.chk set_check $cheat_enabled_flaming_head}
+      {switch $cheat_crowd_heads
+         (eyeball_crowd_heads {do
+                                 {lefty6.chk set_check TRUE}
+                                 {lefty7.chk set_check FALSE}})
+         (monkey_crowd_heads {do 
+                                {lefty7.chk set_check TRUE}
+                                {lefty6.chk set_check FALSE}})
+         (0 {do
+               {lefty6.chk set_check FALSE}
+               {lefty7.chk set_check FALSE}})}
+	   {lefty8.chk set_check $roygb}
+      {$this update_help_display})
+   (update_help_display
+      {if_else
+         {==
+            [focus_component]
+            "calibrate_lag.btn"}
+         {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}
+         {helpbar
+            set_display
+            ((fret1 help_onoff)
+               (fret2 help_back)
+               (strum help_updown))}})
+   (FOCUS_MSG
+      {$this
+         set
+         focus_component
+         {$new_focus name}}
+      {$this update_help_display})
+   (slider_start_msg
+      ($component)
+      {synth play_sequence button_toggle})
+   (slider_select_cancel
+      ($component)
+      {$this update_help_display}
+      kDataUnhandled)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (p_scan.btn
+            {p_scan.chk toggle}
+            {if_else {p_scan.chk get_check}
+               {do
+                  {set $cheat_enabled_flaming_head TRUE}
+                  {fuck.chk set_check FALSE}
+                  {set $cheat_enabled_horse_head_mode FALSE}}
+               {set $cheat_enabled_flaming_head FALSE}})
+
+         (widescreen.btn
+            {widescreen.chk toggle}
+            {if_else {widescreen.chk get_check}
+               {do
+                  {set $neckless TRUE}
+                  {lefty4.chk set_check FALSE}
+                  {set $cheat_enabled_performance_mode FALSE}}
+               {set $neckless FALSE}})
+
+         (gs_left_p1.btn
+            {lefty1.chk toggle}
+            {set $songtitle {lefty1.chk get_check}})
+
+         (gs_left_p2.btn
+            {fuck.chk toggle}
+            {if_else {fuck.chk get_check}
+               {do
+                  {set $cheat_enabled_horse_head_mode TRUE}
+                  {p_scan.chk set_check FALSE}
+                  {set $cheat_enabled_flaming_head FALSE}}
+               {set $cheat_enabled_horse_head_mode FALSE}})
+
+         (gs_left_p3.btn
+            {lefty3.chk toggle}
+            {set $barf_cheat {lefty3.chk get_check}})
+
+         (gs_left_p4.btn
+            {lefty4.chk toggle}
+            {if_else {lefty4.chk get_check}
+               {do
+                  {set $cheat_enabled_performance_mode TRUE}
+                  {widescreen.chk set_check FALSE}
+                  {set $neckless FALSE}}
+               {set $cheat_enabled_performance_mode FALSE}})
+
+         (gs_left_p5.btn
+            {lefty5.chk toggle}
+            {set $nofail {lefty5.chk get_check}})
+
+         (gs_left_p6.btn
+            {lefty6.chk toggle}
+            {if_else {lefty6.chk get_check}
+               {do
+                  {set $cheat_crowd_heads eyeball_crowd_heads}
+                  {lefty7.chk set_check FALSE}}
+               {set $cheat_crowd_heads 0}})
+
+         (gs_left_p7.btn
+            {lefty7.chk toggle}
+            {if_else {lefty7.chk get_check}
+               {do
+                  {set $cheat_crowd_heads monkey_crowd_heads}
+                  {lefty6.chk set_check FALSE}}
+               {set $cheat_crowd_heads 0}})
+
+         (gs_left_p8.btn
+            {lefty8.chk toggle}
+            {set $roygb {lefty8.chk get_check}})
+			
+         (calibrate_lag.btn
+                      {game set_character streamer TRUE})
+                  kDataUnhandled}
+      {$this update_help_display}))
+{new
+   SliderPanel
+   milo_extras_panel
+   (file milo_extras.milo)
+   MILO_EXTRAS_PANEL_HANDLERS
+   (pscan_warning pscan_warning_screen)}
+{new
+   GHScreen
+   milo_extras_screen
+   (panels meta milo_extras_panel helpbar)
+   (focus milo_extras_panel)
+   (allow_back FALSE)
+   (enter
+      {$this
+         enable
+         {milo_extras_panel find gs_left_p2.btn}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen manage_gig_screen}}
+      kDataUnhandled)}
+{new
+   GHPanel
+   sel_character_panel_qp
+   (file
+      sel_character.milo)
+   (char_focus rockabill)
+   (char_outfit rockabill1)
+   (old_scroll_pos 0)
+   (focus character.lst)
+   (skin_select FALSE)
+   (enter
+      {character.lst set_provider character_provider}
+      {animate_forever_30fps $this sel_character.view}
+      {sel_skin.tnm set_frame 0}
+      {char_highlight.mnm
+         animate
+         (loop 0 3)
+         (period 0.25)
+         (units kTaskUISeconds)}
+      {set
+         [skin_select]
+         FALSE}
+      {$this set_focus character.lst}
+      {text_character.grp set_showing TRUE}
+      {text_skin.grp set_showing FALSE}
+      {do
+         ($character
+            {game get_character})
+         ($outfit
+            {game get_character_outfit})
+         {char_single show_char 0 $outfit}
+         {char_single char_event 0 animate}
+         {sc_char_nm.lbl set_text $character}
+         {sc_char_blurb.lbl
+            set_localized_text
+            {localize
+               {sprint
+                  $character
+                  "_blurb"}}}
+         {$this set char_focus $character}
+         {$this set char_outfit $outfit}
+         {character.lst
+            set_selected
+            {character_provider get_index $character}}
+         {$this
+            set
+            old_scroll_pos
+            {character.lst selected_pos}}
+         {char_highlight.tnm
+            set_frame
+            [old_scroll_pos]}
+         {foreach
+            $c
+            CHARACTERS
+            {do
+               ($mesh
+                  {sprint
+                     "char_"
+                     $c
+                     ".mesh"})
+               {if_else
+                  {campaign is_unlocked $c}
+                  {$mesh
+                     set_mat
+                     {sprint
+                        "char_"
+                        $c
+                        ".mat"}}
+                  {$mesh set_mat char_locked.mat}}}}})
+   (poll
+      {scl_loading.lbl
+         set_showing
+         {!
+            {char_single are_chars_loaded}}})
+   (exit
+      {set
+         [skin_select]
+         FALSE})
+   (choose_skins
+      {set
+         [skin_select]
+         TRUE}
+      {text_character.grp set_showing FALSE}
+      {text_skin.grp set_showing TRUE}
+      {sel_skin.tnm
+         animate
+         (units kTaskUISeconds)
+         (period SKIN_ANIM_TIME)
+         (range 0 10)}
+      {if_else
+         {==
+            {character_provider
+               get_outfit
+               [char_focus]
+               1}
+            [char_outfit]}
+         {$this set_focus outfit2.btn}
+         {$this set_focus outfit1.btn}}
+      {outfit1.btn
+         set_text
+         {sprint
+            {character_provider
+               get_outfit
+               [char_focus]
+               0}
+            _outfit}}
+      {outfit2.btn
+         set_text
+         {sprint
+            {character_provider
+               get_outfit
+               [char_focus]
+               1}
+            _outfit}})
+   (unchoose_skins
+      {set
+         [skin_select]
+         FALSE}
+      {text_skin.grp set_showing FALSE}
+      {text_character.grp set_showing TRUE}
+      {sel_skin.tnm
+         animate
+         (units kTaskUISeconds)
+         (period SKIN_ANIM_TIME)
+         (range 10 0)}
+      {$this set_focus character.lst})
+   (open_door)
+   (SCROLL_MSG
+      {do
+         ($new_scroll_pos
+            {character.lst selected_pos})
+         {if
+            {&&
+               {!=
+                  $new_scroll_pos
+                  [old_scroll_pos]}
+               {character_provider is_active $new_scroll_pos}}
+            {set
+               [char_focus]
+               {character_provider get_symbol $new_scroll_pos}}
+            {if_else
+               {==
+                  [char_focus]
+                  {game get_character}}
+               {set
+                  [char_outfit]
+                  {game get_character_outfit}}
+               {set
+                  [char_outfit]
+                  {character_provider
+                     get_outfit
+                     [char_focus]
+                     0}}}
+            {if
+               [char_focus]
+               {sc_char_nm.lbl
+                  set_text
+                  [char_focus]}
+               {sc_char_blurb.lbl
+                  set_localized_text
+                  {localize
+                     {sprint
+                        [char_focus]
+                        "_blurb"}}}
+               {char_single
+                  show_char
+                  0
+                  [char_outfit]}
+               {char_single char_event 0 animate}
+               {$this set old_scroll_pos $new_scroll_pos}
+               {char_highlight.tnm set_frame $new_scroll_pos}}}})
+   (FOCUS_MSG
+      {if
+         [skin_select]
+         {do
+            ($idx)
+            ($old_char)
+            {if_else
+               {==
+                  $new_focus
+                  "outfit1.btn"}
+               {set $idx 0}
+               {set $idx 1}}
+            {set
+               [char_outfit]
+               {character_provider
+                  get_outfit
+                  [char_focus]
+                  $idx}}
+            {cs_arrow.tnm set_frame $idx}
+            {set
+               $old_char
+               {char_single get_char 0}}
+            {if
+               {char_single
+                  show_char
+                  0
+                  [char_outfit]}
+               {do
+                  ($new_char
+                     {char_single get_char 0})
+                  {if_else
+                     {&& $old_char $new_char}
+                     {do
+                        {reset_hair $new_char}
+                        {{$new_char find main.drv}
+                           transfer
+                           {$old_char find main.drv}}}
+                     {char_single char_event 0 select}}}}
+            {sc_char_outfit_blurb.lbl
+               set_localized_text
+               {localize
+                  {sprint
+                     [char_focus]
+                     "_outfit_blurb"}}}}}
+      kDataUnhandled)}
+#define SEL_CHARACTER_COMMON_QP
+((panels meta sel_character_panel_qp char_single helpbar)
+   (focus sel_character_panel_qp)
+   (allow_back FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (TRANSITION_COMPLETE_MSG
+      {char_single
+         set_placer
+         0
+         {sel_character_panel_qp find char_single.placer}}
+      {char_single
+         set_env
+         0
+         {sel_character_panel_qp find character.env}})
+   (exit
+      {char_single set_placer 0}
+      {char_single set_door 0})
+   (enter
+      {char_single
+         set_door
+         0
+         {sel_character_panel_qp find cs_door.mesh}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {if_else
+            {sel_character_panel_qp get skin_select}
+            {sel_character_panel_qp unchoose_skins}
+            {do
+               {$this backwards_anim}
+               {synth play_sequence button_back.cue}
+               {ui
+                  goto_screen
+                  [back_screen]}}}}
+      kDataUnhandled))
+#define SEL_CHARACTER_SELECT_HANDLER_QP
+({if_else
+      {sel_character_panel_qp get skin_select}
+      {do
+         ($sel_outfit
+            {sel_character_panel_qp get char_outfit})
+         {if
+            {&&
+               $sel_outfit
+               {!=
+                  {game get_character_outfit}
+                  $sel_outfit}}
+            {game set_character $sel_outfit}}
+         {ui
+            goto_screen
+            [done_screen]}}
+      {do
+         ($sel_char
+            {sel_character_panel_qp get char_focus})
+         {if_else
+            {>
+               {character_provider num_outfits $sel_char}
+               1}
+            {sel_character_panel_qp choose_skins}
+            {do
+               {game
+                  set_character
+                  {sel_character_panel_qp get char_outfit}
+                  TRUE}
+               {ui
+                  goto_screen
+                  [done_screen]}}}}})
+{new
+   GHScreen
+   sel_character_new_screen_qp
+   (done_screen manage_gig_screen)
+   (back_screen manage_gig_screen)
+   SEL_CHARACTER_COMMON_QP
+   (SELECT_START_MSG SEL_CHARACTER_SELECT_HANDLER_QP kDataUnhandled)}
+{new
+   GHScreen
+   sel_character_edit_screen_qp
+   (done_screen manage_gig_screen)
+   (back_screen manage_gig_screen)
+   SEL_CHARACTER_COMMON_QP
+   (SELECT_START_MSG SEL_CHARACTER_SELECT_HANDLER_QP kDataUnhandled)}
+{new
+   GuitarSelectPanel
+   sel_guitar_panel_qp
+   (file sel_guitar.milo)
+   (quickplay TRUE)
+   (enter
+      {sel_guitar.tnm set_frame 0}
+      {sel_guitar_panel_qp set_quickplay 0 TRUE})
+   (update_display
+      ($play_sfx)
+      {do
+         ($guitar
+            {$this get_selected_guitar 0})
+         ($skin
+            {$this get_selected_skin 0})
+         {sg_guitar_nm.lbl set_text $guitar}
+         {sg_guitar_desc.lbl
+            set_text
+            {game get_guitar_desc $guitar}}
+         {sg_skin_nm.lbl set_text $skin}
+         {sg_skin_desc.lbl
+            set_text
+            {game get_guitar_skin_desc $skin}}
+         {sg_text_guitar.grp
+            set_showing
+            {!
+               {$this is_skin_select 0}}}
+         {sg_text_skin.grp
+            set_showing
+            {$this is_skin_select 0}}
+         {guitar_display_panel set_env 0 guitar.env}
+         {guitar_display_panel show_guitar 0 $guitar $skin guitar.pxy guitar_single.filt}
+         {if
+            $play_sfx
+            {synth play_sequence button_toggle}}})
+   (choose_skins
+      {sel_guitar.tnm
+         animate
+         (units kTaskUISeconds)
+         (period 0.4)
+         (range 0 100)}
+      {$this set_skin_select 0 TRUE}
+      {sg_text_guitar.grp
+         set_showing
+         {!
+            {$this is_skin_select 0}}}
+      {sg_text_skin.grp
+         set_showing
+         {$this is_skin_select 0}})
+   (unchoose_skins
+      {sel_guitar.tnm
+         animate
+         (units kTaskUISeconds)
+         (period 0.4)
+         (range 100 0)}
+      {$this set_skin_select 0 FALSE}
+      {sg_text_guitar.grp
+         set_showing
+         {!
+            {$this is_skin_select 0}}}
+      {sg_text_skin.grp
+         set_showing
+         {$this is_skin_select 0}}
+      {synth play_sequence button_back.cue})}
+#define SEL_GUITAR_COMMON_QP
+((panels meta sel_guitar_panel_qp helpbar guitar_display_panel char_single)
+   (focus sel_guitar_panel_qp)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (enter
+      {sel_guitar_panel_qp set_skin_select 0 FALSE}
+      {sel_guitar_panel_qp update_display FALSE}
+      {char_single set_paused TRUE})
+   (exit
+      {char_single set_paused FALSE})
+   (get_num_guitars
+      ($playerNum)
+      {sel_guitar_panel_qp get_num_guitars $playerNum})
+   (get_num_guitar_skins
+      ($playerNum)
+      {sel_guitar_panel_qp
+         get_num_skins
+         $playerNum
+         {sel_guitar_panel_qp get_selected_guitar $playerNum}
+         {sel_guitar_panel get_selected_skin 0}})
+   (set_guitar
+      ($player_num)
+      {do
+         ($config
+            {game get_player_config $player_num})
+         {$config
+            set_guitar
+            {sel_guitar_panel_qp get_selected_guitar $player_num}
+            {sel_guitar_panel_qp get_selected_skin $player_num}}})
+   (handle_select
+      ($player)
+      {if
+         {!
+            {sel_guitar_panel_qp is_select_done $player}}
+         {synth play_sequence button_select}
+         {if_else
+            {sel_guitar_panel_qp is_skin_select $player}
+            {sel_guitar_panel_qp set_select_done $player TRUE}
+            {if_else
+               {>
+                  {$this get_num_guitar_skins $player}
+                  1}
+               {sel_guitar_panel_qp choose_skins $player}
+               {sel_guitar_panel_qp set_select_done $player TRUE}}}}
+      TRUE)
+   (goto_quickplay
+      {game
+         set_guitar
+         {sel_guitar_panel_qp get_selected_guitar 0}
+         {sel_guitar_panel_qp get_selected_skin 0}}
+      {ui goto_screen manage_gig_screen})
+   (BUTTON_DOWN_MSG
+      {switch
+         $button
+         (kPad_Tri
+            {if_else
+               {sel_guitar_panel_qp is_skin_select 0}
+               {$this unchoose_skins}
+               {$this go_back}})
+         kDataUnhandled})
+   (check_guitar_selected
+      {if_else
+         {sel_guitar_panel_qp is_select_done 0}
+         {do
+            {game
+               set_guitar
+               {sel_guitar_panel_qp get_selected_guitar 0}
+               {sel_guitar_panel_qp get_selected_skin 0}}
+            {ui goto_screen manage_gig_screen}
+            TRUE}
+         FALSE})
+   (guitar_selected
+      ($player_num)
+      {synth play_sequence button_select}
+      {if_else
+         {sel_guitar_panel_qp is_skin_select 0}
+         {do
+            {$this goto_quickplay}}
+         {do
+            ($guitar
+               {sel_guitar_panel_qp get_selected_guitar 0})
+            {if_else
+               {>
+                  {sel_guitar_panel_qp get_num_skins $player_num $guitar}
+                  1}
+               {do
+                  {sel_guitar_panel_qp set_skin_select 0 TRUE}
+                  {$this choose_skins}
+                  {sel_guitar_panel_qp update_display FALSE}}
+               {do
+                  {$this goto_quickplay}}}}}
+      TRUE))
+{new
+   GHScreen
+   sel_guitar_new_screen_qp
+   SEL_GUITAR_COMMON_QP
+   (go_back
+      {$this backwards_anim}
+      {synth play_sequence button_back.cue}
+      {ui goto_screen manage_gig_screen})}
+{new
+   GHScreen
+   sel_guitar_edit_screen_qp
+   SEL_GUITAR_COMMON_QP
+   (go_back
+      {$this backwards_anim}
+      {synth play_sequence button_back.cue}
+      {ui goto_screen manage_gig_screen})}
+#define SEL_VENUE_SCREEN_HANDLERS_QP
+((panels meta sel_venue_panel_qp helpbar)
+   (focus sel_venue_panel_qp)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (venue_button_name
+      ($venue)
+      {sprintf
+         "sv_%s.btn"
+         $venue})
+   (venue_button
+      ($venue)
+      {sel_venue_panel_qp
+         find
+         {sprintf
+            "sv_%s.btn"
+            $venue}})
+   (enter
+	; disable 2 stages if gh1rdx
+      {campaign
+         foreach_venue
+         $venue
+         {do
+            ($button
+               {$this venue_button_name $venue})
+            ($unlocked
+               {campaign is_unlocked $venue})
+            {if_else
+               $unlocked
+               {$this
+                  enable
+                  {sel_venue_panel_qp find $button}}
+               {$this
+                  disable
+                  {sel_venue_panel_qp find $button}}}}}
+      {game set_career_venue}
+      {do
+         ($index
+            {game get_venue_index})
+         ($venue
+            {game get_venue})
+         {{sel_venue_panel_qp find venue_anims.grp}
+            set_frame
+            {'+' $index 1}}
+         {$this
+            set_focus
+            {$this venue_button $venue}}})
+   (set_venue_map_frame
+      ($frame)
+      {{sel_venue_panel_qp find venue_anims.grp}
+         animate
+         (dest $frame)
+         (period VENUE_MAP_SCROLL_SEC)
+         (units kTaskUISeconds)})
+   (FOCUS_MSG
+      {if
+         {!
+            {ui in_transition}}
+         {switch
+            $new_focus
+            (sv_battle.btn
+               {$this set_venue_map_frame 1}
+               {game set_venue battle})
+            (sv_small1.btn
+               {$this set_venue_map_frame 2}
+               {game set_venue small1})
+            (sv_small2.btn
+               {$this set_venue_map_frame 3}
+               {game set_venue small2})
+            (sv_big.btn
+               {$this set_venue_map_frame 4}
+               {game set_venue big})
+            (sv_theatre.btn
+               {$this set_venue_map_frame 5}
+               {game set_venue theatre})
+            (sv_fest.btn
+               {$this set_venue_map_frame 6}
+               {game set_venue fest})
+            (sv_arena.btn
+               {$this set_venue_map_frame 7}
+               {game set_venue arena})
+            (sv_stone.btn
+               {$this set_venue_map_frame 8}
+               {game set_venue stone})}})
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; DONT MISS THIS, THIS HAS NO IFDEF
+   (SELECT_START_MSG
+      {game set_career}
+      {ui goto_screen manage_gig_screen}
+      kDataUnhandled))
+{new
+   GHPanel
+   sel_venue_panel_qp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+   (file sel_venue_gh2.milo)
+   (focus sv_battle.btn)
+}
+{new
+   GHScreen
+   sel_venue_screen_qp
+   (allow_back FALSE)
+   (next_screen manage_gig_screen)
+   SEL_VENUE_SCREEN_HANDLERS
+   (BUTTON_DOWN_MSG
+      {cond
+         ({== $button kPad_Tri}
+            {$this backwards_anim}
+            {synth play_sequence button_back.cue}
+            {ui goto_screen manage_gig_screen})}
       kDataUnhandled)}
