@@ -45,9 +45,6 @@
             {sprint
                "sg_"
                {song_provider get_instrument $song 1}}}
-            {part2.btn
-               set_text
-               "sg_drum"}
          {if
             {==
                {song_provider get_instrument $song 1}
@@ -55,12 +52,6 @@
             {part0.btn
                set_text
                "sg_lead"}}
-            {part2.btn
-               set_state
-               kDisabled}
-            {part2.btn
-               set_showing
-               FALSE}
 })
    (enter
       {do
@@ -88,7 +79,7 @@
 {new
    GHScreen
    qp_selpart_screen
-   (panels meta qp_selpart_bg_panel qp_selpart_panel helpbar)
+   (panels meta qp_selpart_panel helpbar)
    (focus qp_selpart_panel)
    (helpbar
       (default
