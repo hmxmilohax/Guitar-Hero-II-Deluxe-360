@@ -86,7 +86,7 @@
    (reset_player_settings
       {{game get_player_config 0}
          set_difficulty
-         kDifficultyMedium}
+         kDifficultyExpert}
       {song_provider set_mode kSongsCareer}
       {song_provider init_data}
       {game set_song_index 0}
@@ -200,7 +200,7 @@
    (reset_player_settings
       {{game get_player_config 0}
          set_difficulty
-         kDifficultyMedium}
+         kDifficultyExpert}
       {song_provider set_mode kSongsCareer}
       {song_provider init_data}
       {game set_song_index 0}
