@@ -456,3 +456,155 @@
                {main_screen_egg display_cheat_msg cheat_monkey_head_crowd FALSE}
                {main_screen display_cheat_msg cheat_monkey_head_crowd FALSE}}
             {play_sfx cheat_off}}}})
+;hopefully i can just slot these in and it will work
+((G_BLUE G_YELLOW G_ORANGE G_RED G_ORANGE G_YELLOW G_RED G_YELLOW G_RED G_YELLOW G_RED G_YELLOW G_RED G_YELLOW G_RED G_YELLOW)
+   {if
+      {&&
+         CHEATS_ALLOWED
+         {! $cheat_enabled_unlock_all}}
+      {set $cheat_enabled_unlock_all 1}
+      {campaign set_all_access 1}
+      {set $disable_save 1}
+      {set $disable_career 1}
+      {if_else
+         $egg5
+         {main_screen_egg display_cheat_msg cheat_unlock_all TRUE}
+         {main_screen display_cheat_msg cheat_unlock_all TRUE}}
+      {play_sfx cheat}})
+((G_YELLOW G_YELLOW G_BLUE G_ORANGE G_YELLOW G_BLUE)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         {== $cheat_guitar air_guitar}
+         {do
+            {set $cheat_guitar 0}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_air_guitar FALSE}
+               {main_screen display_cheat_msg cheat_air_guitar FALSE}}
+            {play_sfx cheat_off}}
+         {do
+            {set $cheat_guitar air_guitar}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_air_guitar TRUE}
+               {main_screen display_cheat_msg cheat_air_guitar TRUE}}
+            {play_sfx cheat}}}})
+((G_YELLOW G_YELLOW G_BLUE G_YELLOW G_YELLOW G_ORANGE G_YELLOW G_YELLOW)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $cheat_enabled_performance_mode
+         {do
+            {set $cheat_enabled_performance_mode FALSE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_performance_mode FALSE}
+               {main_screen display_cheat_msg cheat_performance_mode FALSE}}
+            {play_sfx cheat_off}}
+         {do
+            {set $cheat_enabled_performance_mode TRUE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_performance_mode TRUE}
+               {main_screen display_cheat_msg cheat_performance_mode TRUE}}
+            {play_sfx cheat}}}})
+((G_YELLOW G_RED G_RED G_YELLOW)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $neckless
+         {do
+            {set $neckless FALSE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_neckless FALSE}
+               {main_screen display_cheat_msg cheat_neckless FALSE}}
+            {play_sfx cheat_off}}
+         {do
+            {set $neckless TRUE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_neckless TRUE}
+               {main_screen display_cheat_msg cheat_neckless TRUE}}
+            {play_sfx cheat}}}})
+((G_BLUE G_ORANGE G_ORANGE G_BLUE G_ORANGE G_ORANGE G_BLUE G_ORANGE G_ORANGE G_BLUE)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $cheat_enabled_horse_head_mode
+         {do
+            {set $cheat_enabled_horse_head_mode FALSE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_horse_head_mode FALSE}
+               {main_screen display_cheat_msg cheat_horse_head_mode FALSE}}
+            {play_sfx cheat_off}}
+         {do
+            {set $cheat_enabled_horse_head_mode TRUE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_horse_head_mode TRUE}
+               {main_screen display_cheat_msg cheat_horse_head_mode TRUE}}
+            {play_sfx cheat}}}})
+((G_ORANGE G_YELLOW G_ORANGE G_ORANGE G_YELLOW G_ORANGE G_YELLOW G_YELLOW)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         $cheat_enabled_flaming_head
+         {do
+            {set $cheat_enabled_flaming_head FALSE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_flaming_head FALSE}
+               {main_screen display_cheat_msg cheat_flaming_head FALSE}}
+            {play_sfx cheat_off}}
+         {do
+            {set $cheat_enabled_flaming_head TRUE}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_flaming_head TRUE}
+               {main_screen display_cheat_msg cheat_flaming_head TRUE}}
+            {play_sfx cheat}}}})
+((G_BLUE G_ORANGE G_YELLOW G_ORANGE G_YELLOW G_ORANGE G_BLUE)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         {'||'
+            {== $cheat_crowd_heads 0}
+            {== $cheat_crowd_heads monkey_crowd_heads}}
+         {do
+            {set $cheat_crowd_heads eyeball_crowd_heads}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_eyeball_head_crowd TRUE}
+               {main_screen display_cheat_msg cheat_eyeball_head_crowd TRUE}}
+            {play_sfx cheat}}
+         {do
+            {set $cheat_crowd_heads 0}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_eyeball_head_crwod FALSE}
+               {main_screen display_cheat_msg cheat_eyeball_head_crowd FALSE}}
+            {play_sfx cheat_off}}}})
+((G_ORANGE G_BLUE G_YELLOW G_YELLOW G_ORANGE G_BLUE G_YELLOW G_YELLOW)
+   {if
+      CHEATS_ALLOWED
+      {if_else
+         {'||'
+            {== $cheat_crowd_heads 0}
+            {== $cheat_crowd_heads eyeball_crowd_heads}}
+         {do
+            {set $cheat_crowd_heads monkey_crowd_heads}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_monkey_head_crowd TRUE}
+               {main_screen display_cheat_msg cheat_monkey_head_crowd TRUE}}
+            {play_sfx cheat}}
+         {do
+            {set $cheat_crowd_heads 0}
+            {if_else
+               $egg5
+               {main_screen_egg display_cheat_msg cheat_monkey_head_crowd FALSE}
+               {main_screen display_cheat_msg cheat_monkey_head_crowd FALSE}}
+            {play_sfx cheat_off}}}})
