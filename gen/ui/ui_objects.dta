@@ -208,6 +208,11 @@
          (texts
             (text
                "stars.txt")))
+      (starsfc
+         (name "StarsFC")
+         (resource_file "starsfc.milo")
+         (texts
+            (text "starsfc.txt")))
       (tapeworm
          (name
             "Tapeworm")
