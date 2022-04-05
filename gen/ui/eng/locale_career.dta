@@ -1,0 +1,234 @@
+(select_career "SELECT CAREER")
+(easy "EASY")
+(medium "MEDIUM")
+(hard "HARD")
+(expert "EXPERT")
+(EASY_STATUS "(X OF X SONGS)")
+(MED_STATUS "(X OF X SONGS)")
+(HARD_STATUS "(X OF X SONGS)")
+(EXPERT_STATUS "(X OF X SONGS)")
+(status_0 "NEW KID")
+(status_1 "ROCKER")
+(status_2 "YOUNG GUN")
+(status_3 "HOT SHOT")
+(status_4 "SHREDDER")
+(status_5 "PRO")
+(status_6 "GURU")
+(status_7 "GUITAR LEGEND")
+(status_8 "GUITAR HERO")
+(status_9 "GUITAR GOD")
+(status_progress "(%i OF %i SONGS)")
+(no_progress " ")
+(CM_PLAY_LIVE_SHOW "PLAY LIVE SHOW")
+(CM_SELECT_CHARACTER "CHANGE CHARACTER")
+(CM_SEL_GUITAR "INSTRUMENT")
+(CM_UNLOCK_SHOP "THE STORE")
+(CM_BAND_TITLE "BAND:")
+(CM_CAREER_TITLE "CAREER:")
+(CM_STATUS_TITLE "STATUS:")
+(CM_SCORE_TITLE "CAREER SCORE:")
+(CM_CASH_TITLE "CASH:")
+(cm_char_title "GUITARIST:")
+(cm_guitar_title "INSTRUMENT:")
+(career_cash_format "$%d")
+(career_score_format "%d")
+(SELECT_VENUE "SELECT VENUE")
+(3_star "***__")
+(4_star "****_")
+(5_star "*****")
+(song_old_venue "Play in the latest venue to continue your career")
+
+; Six-song tiers (DX)
+#ifndef 8DBUG
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+(song_current_venue "Beat %i/5 songs to continue")
+#endif
+#endif
+#endif
+#endif
+
+; Five-song tiers (Encore)
+#ifndef _SHIP
+#ifndef 2DBUG
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef GH1RX
+(song_current_venue "Beat %i/4 songs to continue")
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; Mega tiers
+#ifdef _MEGA
+(song_current_venue "Beat %i songs to continue")
+#endif
+
+; CE tiers (nothing)
+#ifdef _ONYX
+(song_current_venue " ")
+#endif
+
+(song_current_venue_encore "Beat the encore to continue")
+(song_win_easy "Beat %i/%i songs to win")
+(song_win_other "Beat the final song to win")
+(ca_reason "Congratulations on the killer show, amazing write-up, and perfect review score! Here's your cut.")
+(ca_blurb1 "Pay")
+(ca_deductions "minus deductions:")
+(ca_blurb2 "Milos, extracted")
+(ca_blurb3 "Note streak, dropped")
+(ca_blurb4 "Danny, did it first")
+(ca_blurb5 "GH Live, mentioned")
+(ca_blurb6 "Clon, installed")
+(ca_blurb7 "Goodwills, ransacked")
+(ca_blurb8 "Gergorge, went down to")
+(ca_blurb9 "Star Power, squeezed")
+(ca_blurb10 "GH3, installed")
+(ca_blurb11 "Lotion, missing")
+(ca_blurb12 "Strum bar, raked")
+(ca_blurb13 "Attendant, called")
+(ca_blurb14 "Activision, affiliated")
+(ca_blurb15 "Binders, stolen")
+(ca_blurb16 "Citation, 420")
+(ca_blurb17 "Medication, arthritis")
+(ca_blurb18 "Surgery, wrist")
+(ca_blurb19 "Game, decrypted")
+(ca_blurb20 "Debug ELF, leaked")
+(ca_blurb21 "Hacks, encouraged")
+(ca_blurb22 "Guitars, overstrummed")
+(ca_blurb23 "Restarts, utilized")
+(ca_blurb24 "FC's, choked")
+(ca_blurb25 "GHEx, used")
+(ca_blurb26 "G FUEL, discounted")
+(ca_blurb27 "tittyfaff, requested")
+(ca_yourcut "YOU GET:")
+(ca_spend "Spend your hard-earned cash at The Store.")
+(CASH_AWARD "GIG MONEY")
+(LETTERHEAD1
+   {if_else $egg5
+      "MiloHax Records"
+      "Death Threat Records"})
+(LETTERHEAD2
+   {if_else
+      $egg5
+      "\qFriends don't let friends GHEx\q"
+      "\qWe do rock right.\q"})
+(LETTERHEAD3 "LOS ANGELES, CALIFORNIA")
+(STATUS_UPGRADE_BONUS "STATUS_UPGRADE_BONUS")
+(CASH_AWARD_BLURB1 "Spend cash on bonus guitars, characters, songs and more at The Store")
+(CASH_AWARD_BLURB2 "Cash Bonuses awarded for:")
+(CASH_AWARD_BLURB3 "Career Status Upgrades")
+(CASH_AWARD_BLURB4 "5 Star Review Ratings")
+(CASH_AWARD_BLURB5 "Each 1 Million Career Points")
+(award_3_star "Nice 3-star review. Here's your cut. Remember - better show, better pay.")
+(award_4_star "Sweet 4-star review. Here's your cut. Good job out there.")
+(award_5_star
+   {if_else $egg5
+      "Amazing set, but you also trashed the place. Here's what it cost you."
+      "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty."})
+(award_3_star_status "Nice 3-star review. Here's your cut. Remember - better show, better pay.")
+(award_4_star_status "Sweet 4-star review. Here's your cut. Good job out there.")
+(award_5_star_status
+   {if_else $egg5
+      "Amazing set, but you also trashed the place. Here's what it cost you."
+      "Killer 5-star review. Here's your cut. Go buy yourself somethin' pretty."})
+(sponsor_title "YOU GOT SPONSORED!")
+(sponsor_sub1 "(Congrats, go brag to your friends.)")
+(sponsor_blurb1 "Ernie Ball thinks you might have something special, kiddo. They're gonna start you off right with a sponsorship deal and a premium pack of strings to get you started.")
+(sponsor_sub2 "(And your daddy said you'd never make money doing this.)")
+(sponsor_blurb2 "Line 6 Amps thought you slayed at that last show - so now it's time to turn it up! They're handing you a sponsorship deal, and a sweet Line 6 amp so you really can crank it.")
+(sponsor_sub3 "(Live the dream!)")
+(sponsor_blurb3 "That encore performance got people talking and Orange Amps heard all about it. They're handing you a sponsorship deal and a killer Orange amp to make your friends weep with envy.")
+(sponsor_sub4 "(Good thing you can afford to buy a bigger wallet.)")
+(sponsor_blurb4 "The crowd loves you, and VHT Amps has noticed. They're setting you up with a hot sponsorship deal, and a top-of-the-line VHT amp to help drive 'em wild!")
+(sponsor_sub5 "(Have you considered getting your fretting hand insured?)")
+(sponsor_blurb5 "Krank Amps thinks you're about to ride the fame train, and they wanna be onboard. They're giving you a sponsorship deal and a stellar Krank amp as your ticket to ride.")
+(sponsor_sub6 "(Go roll around in your money!)")
+(sponsor_blurb6 "Well, look at you, gettin' all noticed by big wigs. Mesa Boogie was pretty impressed by that last show. They're handing you a major sponsorship deal and a Mesa Boogie amp to keep all eyes and ears focused on you.")
+(sponsor_sub7 "(Time to start hiding from the paparazzi.)")
+(sponsor_blurb7 "You're a household name, baby, and Randall Amps likes your style. They're providing a huge sponsorship deal and a Randall Amp to boost that famous sound of yours!")
+(sponsor_sub8 "(Try not to forget about the little people.)")
+(sponsor_blurb8 "See, wasn't all that practice worth it? Boss Pedals thinks so, and they're handing you a monster sponsorship deal, not to mention enough Boss Pedals to perfectly customize your signature sound!")
+(sponsor_sub9 "(Go buy Speed Test. You've earned it.)")
+(sponsor_blurb9 "Ernie Ball has been with you from the start, and they are so proud of your incredible success. They're giving you a record-breaking sponsorship deal and strings for life. Congratulations.")
+(sponsor_cash "You milk your sponsor for:")
+(endgame_encore_title1
+   {if_else $egg5
+      "THEY WANT A DAMN"
+      "GIVE YOUR AUDIENCE AN"})
+(endgame_encore_title2
+   {if_else $egg5
+      "ENCORE!"
+      "ENCORE?"})
+(endgame_encore_score "%d points")
+(endgame_encore_review "%d stars")
+(endgame_encore_money "$%d earned")
+
+(endgame_encore_letter3
+    {if_else $game80s
+    "Oh my God, the crowd, like, totally worships you. You, like, HAVE to play an encore or they'll just DIE. You can play one more, right?"
+    "The crowd is goin' nuts, you'd better play an encore. Think you can buck up and give it all you've got with one more?"})
+(endgame_encore_letter4
+    {if_else $game80s
+    "This is, like, the most righteous show EVER. You have the stamina to give 'em one more song, dontcha? Like, please?"
+    "Man, they're lovin' you! Do your fans a favor and go back out there. You got enough energy for one more?"})
+(endgame_encore_letter5
+    {if_else $game80s
+    "Whoa, the crowd just will NOT stop chanting your name! Seriously, you gotta play another song! Can you pull it together for a big finish?"
+    "They're really chanting out there! They're demanding one more. Can you pull it together for a big finish?"})
+(endgame_encore_letter6 "The audience is flippin' out! Come on, chief, give 'em what they want! You got time for one more?")
+(endgame_encore_freebird1 "Looks like the time has come. They're chanting for Free Bird. You knew it would happen one day. You wanna do this?")
+(endgame_encore_finalsong1 "The crowd is goin' insane. You know what they wanna hear: the MOST EXCELLENT super-shredder track. You ready?")
+(freebird_confirm1 "Wait, you really want to play Free Bird?")
+(freebird_confirm2 "This move can only be pulled off by a TRUE hero! \nYou still game?")
+(freebird_confirm3 "Okay, last chance... \nYou really want to play Free Bird?")
+(finalsong_confirm1 "This ain't for the faint of heart, buddy. \nYou really want to try this song?")
+(finalsong_confirm2 "Seriously, it's, like, TOTALLY hard. \nYou still game?")
+(finalsong_confirm3 "Okay, last chance... \nYou really want to rock this song?")
+
+(win_diff
+    {if_else $gamegh1
+       "You beat Guitar Hero Redux on the %s difficulty"
+    {if_else $game80s
+       "You beat Guitar Hero Encore Deluxe on the %s difficulty"
+       "You beat Guitar Hero II Deluxe on the %s difficulty"}})
+(win_congrats "Congratulations!")
+(win_legendary "Your legendary show will be talked about for years.")
+(win_stardom "Rock Stardom beckons...")
+(win_easy
+   {if_else $gamegh1
+      "Dear ______________________,\n\nThanks for playing GH1 Redux! After all the work that went into it, and all you folks in the audience who wanted to see it - we couldn't just leave you hanging. Maybe we'll come back to it if models get figured out someday. For now, this is good enough.\n\nKisses,\nThe GH2 Deluxe Team"
+      {if_else $game80s
+         "Dear ______________________,\n\nNice job beating Guitar Hero Encore Deluxe on Easy, dude!\n\nThis is just the start of the fun though, y'know? You're not getting paid for this - but if you play MEDIUM, HARD, and EXPERT, you do. Cash means sick guitars. Like, duh, no brainer!\n\nThat blue button can make things pretty gnarly, but you got this. Practice a bunch, see what happens.\n\nLater,\nThe GH2 Deluxe Team"
+         "Dear ______________________,\n\nCongrats on beating Guitar Hero II Deluxe on Easy. Pretty cool, more songs to play, yeah?\n\nRegardless, you've only just begun. Easy players don't get paid - MEDIUM, HARD, and EXPERT players do. And I think you know what cash gets ya...\n\nIt takes some pinky dexterity, but I'm sure you'll be fine. Use that Practice Mode to your advantage.\n\nKisses,\nThe GH2 Deluxe Team"}})
+(win_medium
+   {if_else $gamegh1
+      "Dear ______________________,\n\nThanks for playing GH1 Redux! After all the work that went into it, and all you folks in the audience who wanted to see it - we couldn't just leave you hanging. Maybe we'll come back to it if models get figured out someday. For now, this is good enough.\n\nSmooches,\nThe GH2 Deluxe Team"
+      {if_else $game80s
+	     "Dear ______________________,\n\nWicked! You beat Guitar Hero Encore Deluxe on Medium.\n\nIf you're not done slayin' stages (and I mean, who is?), you should take it up a notch, on HARD or EXPERT. The crowd loves it, chicks dig it, and there's more money in it for you. It's tough, though - like, REALLY tough. All five buttons tough. The reward though? Is STELLAR.\n\nRock on,\nThe GH2 Deluxe Team"
+		 "Dear ______________________,\n\nCongrats on beating Guitar Hero II Deluxe on Medium. Making some headroom now.\n\nIf you're still hard up for money (and we know you rock star types always are), get working on the HARD and EXPERT difficulties. We're throwing one more color at you for it! Still, if you can handle it, there's more to unlock and more cash in it for you.\n\nSmooches,\nThe GH2 Deluxe Team"}})
+(win_hard
+   {if_else $gamegh1
+      "Dear ______________________,\n\nThanks for playing GH1 Redux! After all the work that went into it, and all you folks in the audience who wanted to see it - we couldn't just leave you hanging. Maybe we'll come back to it if models get figured out someday. For now, this is good enough.\n\nHugs,\nThe GH2 Deluxe Team"
+      {if_else $game80s
+	     "Dear ______________________,\n\nWhoa, sick, dude! You just beat Guitar Hero Encore Deluxe on Hard!\n\nC'mon, you gotta hit up EXPERT next! I know it's scary, I know there's a ton more notes, but the money and the new guitars and the bragging rights are, like, KILLER. TUBULAR.\n\nPlus, imagine how lame you'd look if you stopped now. As IF!\n\nParty on,\nThe GH2 Deluxe Team"
+		 "Dear ______________________,\n\nCongrats, you beat Guitar Hero II Deluxe on Hard. Not bad at all.\n\nI think you know what's next, kiddo. EXPERT awaits. No new colors, but the notes come at you faster and more furiously than ever before. It's where the gunslingers ascend to rock GODS. And lordy, it's RIGHTEOUS if you can make it work.\n\nGodspeed, pilgrim.\n\nHugs,\nThe GH2 Deluxe Team"}})
+(win_expert
+   {if_else $gamegh1
+      "Dear ______________________,\n\nThanks for playing GH1 Redux! After all the work that went into it, and all you folks in the audience who wanted to see it - we couldn't just leave you hanging. Maybe we'll come back to it if models get figured out someday. For now, this is good enough.\n\nLove,\nThe GH2 Deluxe Team"
+      {if_else $game80s
+	     "Dear ______________________,\n\nNo. Way! Guitar Hero Encore Deluxe, Expert, beaten?! That's rad, man. Rad.\n\nSo quick question: you got FIVE STARS on everything? If you do, check the shop. Only the BADDEST of all speed metal tracks, \qSpeed Test\q, waits for you now. Like, dude, it seriously rips. You might wanna stretch first.\n\nSeriously though, that was one bitchin' show. You're a legend.\n\nLove,\nThe GH2 Deluxe Team"
+		 "Dear ______________________,\n\nAnd that's it! Guitar Hero II Deluxe on Expert SLAIN. That expanded setlist takes a bit longer to work though, but there's some gems in there, yeah?\n\nSo let's talk the ultimate reward. If you've gotten FIVE STARS on every song, you should have enough money now to unlock the ultra-cruel \qSpeed Test\q. And they don't call it that for nothing! It'll test your speed, your endurance - your entire BEING. Good thing we patched out that strum limit thing, huh?\n\nLove,\nThe GH2 Deluxe Team"}})
+(unlock_profaceoff1 "Dear ____________________,")
+(unlock_profaceoff2 "CONGRATULATIONS")
+(unlock_profaceoff3 "You have unlocked PRO FACE-OFF Mode!")
+(unlock_profaceoff4
+    {if_else $game80s
+       "So, FACE-OFF Mode is pretty cool, until your goober friend says something totally bogus about you playing the easier track and then calls you a dweeb, and you're like, \qAs IF!\q and it ends in a major spazzfest. Now you can chill because YOUR skill IS boss and you get to prove it in PRO FACE-OFF, a killer note-for-note showdown mode found in the Multiplayer menu. Heavy!\n\nHave fun,\nThe Management"
+       "You know how whenever you play FACE-OFF Mode, your buddy screams about how you got the easier track and less notes and blah blah, out comes the waaahmbulance? No more, my shredding friend.\n\nCheck out PRO FACE-OFF Mode in the Multiplayer menu and go note-for-note in the ultimate guitarmageddon.\n\nHave fun,\nThe Management"})
+(unlock_song1 "Congratulations")
+(unlock_song2 "You have unlocked:")
+(unlock_song3 "This song is now available in your set list.")

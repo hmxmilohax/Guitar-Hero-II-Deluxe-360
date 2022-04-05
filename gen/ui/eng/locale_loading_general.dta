@@ -1,0 +1,65 @@
+; MiloHax tips (we wrote these :steve:)
+(milo_tip1 "Use the new Modifiers menu to pick exactly how fast you prefer the notes to scroll - or how fast you want the song to play!")
+(milo_tip2 "More a bassist? Wanna groove as the rhythm guitarist instead? Try Free Play - you're now able to play either instrument in singleplayer, whenever you want!")
+(milo_tip3 "Note streak popups appear at 50, 100, 200, and every 100 notes after that.")
+(milo_tip4 "In the new Free Play mode, you can hop into any song with the guitar, guitarist, and venue of your choice.")
+(milo_tip5
+   {if_else $game80s
+      "No worries - \qBecause, It's Midnite\q isn't a campaign song anymore. Pays to use cut songs."
+      "We've reordered the setlist to match the 360 version of Guitar Hero II. It should be a bit easier to progress now."})
+(milo_tip6 "The Extras menu in Free Play can be used to set certain cheats or game behavior without memorizing lengthy button codes.")
+(milo_tip7
+   {if_else $game80s
+      "In our testing, the Rock for Safety Tour is the venue that runs the best on both console and emulator."
+      "In our testing, the Vans Warped Tour is the venue that runs the best on both console and emulator."})
+(milo_tip8 "The new note counter will glow orange when you've yet to miss a note and turn white when your full combo is ruined.")
+(milo_tip9 "This is a sample tip.")
+(milo_tip10 "Did you forget to turn on Progressive Scan again?")
+(milo_tip11
+   {if_else $game80s
+      "We fixed the strum limit so you don't have to. Go check out Trogdor on the OTHER setlist and see how it feels."
+      "We fixed the strum limit so you don't have to. Go check out Trogdor and see how it feels."})
+(milo_tip12 "We also fixed the HOPO bug. You can quick-restart again!")
+(milo_tip13 "Press the Select button twice at any setlist to access the new Modifiers menu.")
+(milo_tip14 "Some songs have a way better bass part than guitar part. Check the Free Play mode - you can now take those basslines to the stage yourself.")
+(milo_tip15 "As someone somewhere once requested, you can now quit directly to Practice Mode in the middle of a song, right from the Pause menu. Don't try that during a real show.")
+(milo_tip16 "Some songs are also available to play on drums, if you've got a way to map a drumkit to a DualShock controller. Check in the Part Select menus in Free Play!")
+(milo_tip17 "When playing on a DualShock instead of a guitar, you don't need to strum, and you use the shoulder buttons and X for the frets.")
+(milo_tip18 "To that guy in the back complaining about the \qrandom\q fret colors: check the Extras menu in Free Play. You can change it back now.")
+
+; Easy tips
+(easy_tip1 "You don't get any cash in EASY, but you do in MEDIUM, HARD and EXPERT.")
+(easy_tip2 "If you're getting five stars on every song without breaking a sweat, it's time to move up to MEDIUM.")
+(easy_tip3 "Try MEDIUM or harder if you want to be able to buy new guitars, songs, videos, and more.")
+
+; Advanced tips
+(advanced_tip1 "Stuck on a song? Try getting five stars on an easier one.")
+(advanced_tip2 "Save your Star Power for sections with many notes. You'll get more points and bigger Rock Meter boosts.")
+(advanced_tip3 "Chords are worth more points than regular notes!")
+(advanced_tip4 "Strum up and down to keep your arm from wearing out during fast passages.")
+(advanced_tip5
+   {if_else $game80s
+      "Pick up characters, guitars, bonus songs, and more at The Store."
+      "Pick up characters, outfits, guitars, bonus songs, and more at The Store."})
+
+; More advanced tips (but these we wrote too :marf:)
+(advanced_tip6 "Try the debug executable if you're so inclined - it adds a ton of fun and useful diagnostic tools and cheats for testing your mods and getting around the game quickly.")
+(advanced_tip7 "If you hit a note at the last possible moment after activating Star Power, you'll \qsqueeze\q it into your Star Power combo and gain extra points for it.")
+(advanced_tip8 "Focus Mode, available in the Modifiers menu, replaces the stage with a black void, which can speed up the game and improve performance if you need a boost.")
+(advanced_tip9 "Each song has a \qpath\q of Star Power activations - when's most ideal to activate and when you should save up. Learning and using one is the key to top-tier scores.")
+(advanced_tip10 "If you're clutch enough, during fast solos, strum with your elbow and use both hands for the frets.")
+
+; Multiplayer tips
+(multi_coop_tip1 "In Cooperative Mode, both players need to tilt their guitars TOGETHER to engage Star Power.")
+(multi_coop_tip2 "You both need to engage Star Power together.")
+(multi_coop_tip3 "In Cooperative Mode, you both are working together to achieve maximum high score.")
+(multi_coop_tip4 "In Cooperative Mode, everyone's a winner. Unless you're both losers.")
+(multi_coop_tip5 "Your streaks are combined in Cooperative Mode - you lose your multiplier if one of you screws up.")
+(multi_coop_tip6 "Be careful in Cooperative Mode - if the Rock Meter gets too far into the red, you'll lose.")
+(multi_coop_tip7 "We aren't responsible if you end up hating each other.")
+(multi_coop_tip8 "Shouting \qSTAR POWER!\q is as good a method as any.")
+(multi_coop_tip9 "When someone calls a \qBand Meeting\q it's usually not a good thing.")
+
+; New song tips
+(loading_tip_greengrass "If you've got what it takes, FC this song (with Focus Mode off!) and send a video in MiloHax. Conquer the strum limit. Don't let this port be in vain :marfpeek:")
+(loading_tip_speedtest "\qwhy speed test\q\n - ExileLord, 2021")

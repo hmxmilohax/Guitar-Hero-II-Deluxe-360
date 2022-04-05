@@ -1,0 +1,61 @@
+; Encore comedy tips
+(comedy_tip_80s_1
+   {if_else $egg5
+      "[Open box before eating pizza.]"
+      "It's not how WELL you sing, it's how HIGH you sing."})
+(comedy_tip_80s_2
+   {if_else $egg5
+      "Stop fucking asking to buy Deluxe. That would be illegal."
+      "When you are famous, you will have assistants remove your leather pants for you. Until then, use talcum powder."})
+(comedy_tip_80s_3
+   {if_else $egg5
+      "Don't get it confused, jnack can't actually draw. Professional rip-off artist."
+      "Your singer is correct. \qNight\q is the word that best rhymes with \qnight.\q"})
+(comedy_tip_80s_4
+   {if_else $egg5 
+      "Go put the fret colors back yourself if it bothers you so much."
+      "Don't stand too close to the flash pots."})
+(comedy_tip_80s_5 "Keep practicin' that \qAxl Dance.\q You'll get it one of these days.")
+(comedy_tip_80s_6 "TURN IT UP!")
+(comedy_tip_80s_7
+   {if_else $egg5
+      "If you ever come across suspicious looking Harmonix binders, call LocalH immediately."
+      "Live the life. Stonewash your underpants."})
+(comedy_tip_80s_8 "If your hair still moves while you're headbanging, you aren't using enough hairspray.")
+(comedy_tip_80s_9
+   {if_else $egg5
+      "Dammit Harmonix, why did you hardcode some of this stuff?"
+      "Smell the new cassette tape. This is the scent of rock."})
+(comedy_tip_80s_10 "Beware: country bands, too, wear fringed jackets.")
+(comedy_tip_80s_11
+   {if_else $egg5
+      "When your past 50,000 points that means your in the clear so try not to miss alot of notes."
+      "Before the internet existed, people expressed their love for heavy metal in the bathroom stall."})
+(comedy_tip_80s_12 "It's okay for the drummer to buy, like, the hugest kit ever. No one wants to see his bad make-up anyway.")
+(comedy_tip_80s_13 "A proper modern hard rock solo requires 3 whammies per note. Minimum.")
+(comedy_tip_80s_14 "If your neighbors keep complaining about the noise, turn up the volume until they move away.")
+(comedy_tip_80s_15
+   {if_else $egg5
+      "Remember, Trogdor FCs on this disc don't count."
+      "The crowd will never tire of the lyric \qOh yeah!\q"})
+
+; Encore, er, encore tips
+(encore_tip_80s_1 "Always re-tease your hair before the encore. ALWAYS.")
+(encore_tip_80s_2 "Encore? They needed to ask? Like, DUH!")
+(encore_tip_80s_3 "For your encore, remember: untested laser effects can look wicked bogus.")
+(encore_tip_80s_4 "Playing a long set can make you tired and mega-grody. Drench your drummer in soda before the encore.")
+(encore_tip_80s_5 "Give the encore all you've got. Do it for the bitchin' babe in the third row in the cut-offs.")
+(encore_tip_80s_6 "General rule of encores: first on the cassette, last in the set.")
+
+
+; Play With Me tips
+(playwithme_tip1 "Yeah it's hard. In fact, it's EXTREME! Ha ha ha.")
+(playwithme_tip2 "Save yourself a whole world of pain. Master Play With Me in Practice Mode before trying your hand at the full version on stage.")
+(playwithme_tip3 "Look, it's easier than washing all that gel out of your hair.")
+(playwithme_tip4 "Nobody ever said shredding was easy.")
+(playwithme_tip5 "That intro part? Yeah. That's Mozart. Dude was pretty righteous.")
+(playwithme_tip6 "You've gotten this far. Party on.")
+
+
+; Song tips
+(loading_tip_becauseitsmidnite "While on tour, Limozeen used to demand leather sheets from the hotels they stayed at until the rashes and animal rights activists became a problem.")

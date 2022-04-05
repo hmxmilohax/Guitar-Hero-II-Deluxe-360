@@ -1,0 +1,96 @@
+(loading_tip_gh2_1 "Try the new and improved Hammer-ons and Pull-offs. They're easier this time around.")
+(loading_tip_gh2_2 "Hit 10 notes in a row for a x2 score multiplier. Longer note streaks are rewarded with higher multipliers.")
+(loading_tip_gh2_3 "Just like with a real guitar, you don't need to release Fret Buttons on lower notes when you play higher notes.")
+(loading_tip_gh2_4 "Wait until you have a x4 multiplier going, and then use Star Power to max out your score.")
+(loading_tip_gh2_5 "Star Power can be a life saver! If you're deep in the red, use Star Power to win the crowd back.")
+(loading_tip_gh2_6 "Use Star Power to drive the crowd wild. Learn how to control this awesome energy in the Star Power Tutorial.")
+(loading_tip_gh2_7 "Get a streak multiplier by playing perfectly for a few notes.")
+(loading_tip_gh2_8 "Series of notes on the same fret coming up? Keep the fret button held down.")
+(loading_tip_gh2_9
+   {if_else $egg5
+      "You found all the eggs! Much love to everyone <3"
+      "You can slow down songs and individual song sections in Practice Mode. Nail solos that have been kicking your butt!"})
+(loading_tip_gh2_10 "Some HDTVs have an audio/visual lag that may affect your ability to play the game. If you're having problems, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
+(loading_tip_gh2_11 "Visit Practice Mode from the Training menu to really nail those tough sections.")
+
+; Comedy tips
+(comedy_tip_gh2_1
+   {if_else $egg5
+      "[Open box before eating pizza.]"
+      "Life is hard for musicians, but for drummers it's nearly impossible."})
+(comedy_tip_gh2_2
+   {if_else $egg5
+      "If you see Deluxe for sale, it's not us. But you should join MiloHax and tell us anyway so we can laugh about it."
+      "If your singer ain't happy, ain't nobody happy."})
+(comedy_tip_gh2_3
+   {if_else $egg5
+      "Don't get it confused, jnack can't actually draw. Professional rip-off artist."
+      "You need a mini-fridge in your practice space. It's more important than a bassist."})
+(comedy_tip_gh2_4 "You only need one person with a mohawk in your band.")
+(comedy_tip_gh2_5 "Remember, NO STAIRWAY!")
+(comedy_tip_gh2_6 "TURN IT UP!")
+(comedy_tip_gh2_7
+   {if_else $egg5
+      "If you ever come across suspicious looking Harmonix binders, call LocalH immediately."
+      "It takes a REALLY long time to drive the van through Nebraska."})
+(comedy_tip_gh2_8 "If you have a road crew, it's called \qhauling\q equipment. Otherwise it's called \qschlepping.\q")
+(comedy_tip_gh2_9
+   {if_else $egg5
+      "Dammit Harmonix, why did you hardcode some of this stuff?"
+      "It all comes out on the road."})
+(comedy_tip_gh2_10 "A band is the dysfunctional family you choose.")
+(comedy_tip_gh2_11
+   {if_else $egg5
+      "When your past 50,000 points that means your in the clear so try not to miss alot of notes."
+      "If you call your new song a \qRock Anthem,\q you'd better be damn sure."})
+(comedy_tip_gh2_12 "It's customary to try to be the loudest during practice.")
+(comedy_tip_gh2_13 "Dropping your pants onstage does not deploy Star Power.")
+(comedy_tip_gh2_14 "If your neighbors keep complaining about the noise, turn up the volume until they move away.")
+(comedy_tip_gh2_15
+   {if_else $egg5
+      "Remember, Trogdor FCs on this disc don't count."
+      "Your mom does not count as a fan."})
+
+; Encore tips
+(encore_tip_gh2_1 "Don't write your encore on your set list - your fans will know you planned it.")
+(encore_tip_gh2_2 "If the staff is already flipping the stools, you missed your chance for an encore.")
+(encore_tip_gh2_3 "You better be sure they WANT you to come back out before you save your best song for the encore.")
+(encore_tip_gh2_4 "If your drummer is too tired for an encore, then your drummer is too tired for the after-party.")
+(encore_tip_gh2_5 "If they want an encore but you're out of songs, do NOT, under any circumstances, try to just JAM.")
+(encore_tip_gh2_6 "If the crowd is screaming for more but the sound dude is shaking his head angrily, just ignore him and play anyway.")
+
+; Freebird Tips
+(freebird_tip1 "You're looking for \qGtr solo i\q in Practice Mode.")
+(freebird_tip2 "Save yourself a whole world of pain. Master Free Bird in Practice Mode before trying your hand at the full version on stage.")
+(freebird_tip3 "FINE. They AREN'T just heckling you this time. SIGH.")
+(freebird_tip4 "Man, you must really like Free Bird.")
+(freebird_tip5 "Hang in there! You can do it! FREE BIRD!")
+(freebird_tip6 "AND THIS BIRD YOU CANNOT CHANGE!!!")
+
+; Song tips
+(loading_tip_arterialblack "Guitarist Marcus Henderson contributed another tune for Guitar Hero II before splitting Drist to play lead guitar for the Grim Ripper.")
+(loading_tip_collide "When Anarchy Club isn't breaking things or fighting rival Kung Fu gangs, frontman Keith Smith smashes guitars for the HMX QA team. Adam Buhler prefers the darkness of the Anar-Cave, except when the moon is full...")
+(loading_tip_drinkup "OUNCE of SELF is one of the most original bands out of L.A.'s heavy music scene. \qDrink Up\q has become the anthem for the messed-up masses.")
+(loading_tip_elephantbones "Dizzy from the fumes, white knuckled, holding the wheel hostage. A dirty old Cadillac barrels toward hell, with a brick on the gas pedal. That Handsome Devil.")
+(loading_tip_fallofpangea "Valient Thorr is from the planet Venus. Their message is your tool to further the knowledgement of the human consciousness.")
+(loading_tip_ftk "Boston-based VAGIANT plays loud, fast, and sloppy. If they weren't so busy starting fights and smashing things, these girls would probably take over the world.")
+(loading_tip_gemini "Brian Kahanek says, \qPlay it from the bottom of your heart to the tips of your toes - every time.\q")
+(loading_tip_jordan "Wearing a bucket on your head will not improve your chances of beating this song. Or maybe it will.")
+(loading_tip_kicked "Right now, as you're waiting for their song to load, Noble Rot is hitting on your sister. And if she doesn't take the bait, your mom is on hold.")
+(loading_tip_ladylightning "Half man, half machine, Bang Camaro runs on dude power.")
+(loading_tip_laughtrack "The Acro-brats are hands-down the best rock band in their practice space.")
+(loading_tip_lesstalkmorerokk "Throw your undies on the stage. No wait, you're underage.")
+(loading_tip_mrfixit "Live to tour, tour to live! The Crowns remain, now and forever, royal to the loyal.")
+(loading_tip_newblack "\qWhen playing shows, it's not ok to start a chant for your own band. That's like giving yourself a nickname.\q - Keith Buckley - Every Time I Die")
+(loading_tip_onefortheroad "Breaking Wheel would love to play in your basement, funeral or bar mitzvah. Incidentally, donations to our van fund are welcome.")
+(loading_tip_parasite "The Neighborhoods were presented with the Hall of Fame award at the 2005 Boston Music Awards.")
+(loading_tip_radiumeyes "Wow. Like 50 million others, you can play metal. Big deal. Think you can you play a proto-retro-roboto-organico soldier's love song set during the Philippines-American War? Doubt it.")
+(loading_tip_rawdog "The following song is by The Last Vegas. For best results, play at maximum volume, especially in the presence of authority figures or the elderly.")
+(loading_tip_redlottery "Riding forth like thunderbolts cast from the hammer of Thor, the eight hooves of MEGASUS burn a trail of fire 'cross the winter sky.")
+(loading_tip_soybomb "Honest Bob and the Factory-to-Dealer Incentives return with their smash hit \qSoy Bomb\q, which is Spanish for \qI am bomb\q.")
+(loading_tip_six "Guitarist Mike Martin recommended his teacher, Oli Herbert, to All That Remains prior to joining the band a few years later.")
+(loading_tip_thelightthatblinds "This is SHADOWS FALL at their very best proving, once again, that they are the undeniable leaders of the current hard rock/metal scene.")
+(loading_tip_thunderhorse "Extreme METAL band DETHKLOK - \qthe biggest act in the universe\q - brings forth the ultimate metal Armageddon. Prepare to be crushed.")
+(loading_tip_trogdor "\qFor squeadlies, mash on the trembalo. For meadlies, tone up on your chord surpassers. Oh, and I'm awesome.\q\n - Stongbad")
+(loading_tip_xstream "The spirit of legendary guitarist Piggy (Denis D'Amour) lives on in Guitar Hero II as Voivod takes you to the X-Stream once again.")
+(loading_tip_yeswecan "Made In Mexico was made in Rhode Island, the Ocean State.")

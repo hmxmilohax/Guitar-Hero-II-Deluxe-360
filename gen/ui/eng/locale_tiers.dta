@@ -1,0 +1,119 @@
+; Eight tiers (DX)
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef 8DBUG
+#ifndef GH1RX
+(song_header_battle "1. Opening Licks")
+(song_header_small1 "2. Amp-Warmers")
+(song_header_small2 "3. String Snappers")
+(song_header_big "4. Thrash and Burn")
+(song_header_theatre "5. Return of the Shred")
+(song_header_fest "6. Relentless Riffs")
+(song_header_arena "7. Furious Fretwork")
+(song_header_stone "8. Face-Melters")
+(song_header_store "Bonus Tracks")
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; Six tiers (Encore)
+#ifndef _SHIP
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef 2DBUG
+#ifndef GH1RX
+(song_header_battle2 "1. The New Wave of New Wave")
+(song_header_small3 "2. Leaden Legato")
+(song_header_small4 "3. Vicious Vibrato")
+(song_header_theatre2 "4. Divebombs to Deafen")
+(song_header_fest2 "5. Swells of the Doomed")
+(song_header_arena2 "6. Killer Evil Tracks")
+(song_header_store "Bonus Tracks")
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; 14 tiers (Mega)
+#ifndef _SHIP
+#ifndef _ENCO
+#ifndef _ONYX
+#ifndef 2DBUG
+#ifndef 8DBUG
+#ifndef GH1RX
+(song_header_battle "1. Opening Licks")
+(song_header_battle2 "2. The New Wave of New Wave")
+(song_header_small1 "3. Amp-Warmers")
+(song_header_small3 "4. Leaden Legato")
+(song_header_small2 "5. String Snappers")
+(song_header_small4 "6. Vicious Vibrato")
+(song_header_big "7. Thrash and Burn")
+(song_header_theatre "8. Return of the Shred")
+(song_header_theatre2 "9. Divebombs to Deafen")
+(song_header_fest "10. Relentless Riffs")
+(song_header_fest2 "11. Swells of the Doomed")
+(song_header_arena "12. Furious Fretwork")
+(song_header_arena2 "13. Killer Evil Tracks")
+(song_header_stone "14. Face-Melters")
+(song_header_store "Bonus Tracks")
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; Customs Edition (which are all empty :steve:)
+#ifndef _DRUM
+#ifdef _ONYX
+(song_header_battle " ")
+(song_header_battle2 " ")
+(song_header_small1 " ")
+(song_header_small3 " ")
+(song_header_small2 " ")
+(song_header_small4 " ")
+(song_header_big " ")
+(song_header_theatre " ")
+(song_header_theatre2 " ")
+(song_header_fest " ")
+(song_header_fest2 " ")
+(song_header_arena " ")
+(song_header_arena2 " ")
+(song_header_stone " ")
+(song_header_store "Custom Songs")
+#endif
+#endif
+
+; Expansion
+#ifdef _DRUM
+(song_header_battle "Hot Licks (no problem)")
+(song_header_battle2 "Sizzling Songs (ok, I can do this)")
+(song_header_small1 "Blistering Tracks (practice these)")
+(song_header_small3 "Face Melting Riffs (these kick my ass)")
+(song_header_small2 " ")
+(song_header_small4 " ")
+(song_header_big " ")
+(song_header_theatre " ")
+(song_header_theatre2 " ")
+(song_header_fest " ")
+(song_header_fest2 " ")
+(song_header_arena " ")
+(song_header_arena2 " ")
+(song_header_stone " ")
+(song_header_store "Wassat? RB4? :steve:")
+#endif
+
+; GH1 Redux
+#ifdef GH1RX
+(song_header_battle "Guitar Hero Redux Demo")
+(song_header_small1 " ")
+(song_header_small2 " ")
+(song_header_theatre " ")
+(song_header_fest " ")
+(song_header_arena " ")
+(song_header_store "Bonus Tracks")
+#endif

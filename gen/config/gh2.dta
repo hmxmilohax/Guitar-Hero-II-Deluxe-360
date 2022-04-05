@@ -134,7 +134,15 @@
    #include ../world/world_objects.dta
    #include ../ui/ui_objects.dta
    #include ../hud/hud_objects.dta)
-(locale ../ui/eng/locale_milo.dta ../ui/eng/locale.dta ../ui/eng/locale_newspaper.dta)
+(locale
+../ui/eng/locale_milo.dta ../ui/eng/locale.dta ../ui/eng/locale_authors.dta
+../ui/eng/locale_career.dta ../ui/eng/locale_chars.dta ../ui/eng/locale_drums.dta
+../ui/eng/locale_guitars.dta ../ui/eng/locale_loading_general.dta
+../ui/eng/locale_loading_gh2.dta ../ui/eng/locale_loading_gh1.dta
+../ui/eng/locale_loading_gh80s.dta ../ui/eng/locale_mc.dta ../ui/eng/locale_newspaper.dta
+../ui/eng/locale_sections.dta ../ui/eng/locale_sections_rb1.dta ../ui/eng/locale_sections_rb2.dta
+../ui/eng/locale_sections_rb3.dta ../ui/eng/locale_shop.dta ../ui/eng/locale_tiers.dta
+../ui/eng/locale_tutorials.dta ../ui/eng/locale_venues.dta)
 (venues battle small1 small2 big theatre fest arena stone)
 (default_band metal_singer metal_bass metal_drummer)
 (quick_cheats
