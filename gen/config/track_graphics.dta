@@ -1,32 +1,7 @@
 ; Rainbow toggle!
 ; This is a nice microcosm of the mess going on in synth.dta, where we have
 ; to if_else the items in the array instead of the array itself.
-(slot_colors
-   {if_else $egg5
-      gold
-   {if_else $roygb
-      green
-      red}}
-   {if_else $egg5
-      gold
-   {if_else $roygb
-      red
-      orange}}
-   {if_else $egg5
-      gold
-   {if_else $roygb
-      yellow
-      yellow}}
-   {if_else $egg5
-      gold
-   {if_else $roygb
-      blue
-      green}}
-   {if_else $egg5
-      gold
-   {if_else $roygb
-      orange
-      blue}})
+(slot_colors green red yellow blue orange)
 (smasher
    (mats
       (normal gem_smasher)
@@ -47,32 +22,7 @@
 
 ; Same goes for the sustain tails, which the game calls "strings".
 #define STRING_SET
-((gems
-   ({if_else $egg5
-        gold
-	 {if_else $roygb
-        green
-        red}}
-     {if_else $egg5
-        gold
-     {if_else $roygb
-        red
-        orange}}
-     {if_else $egg5
-        gold
-     {if_else $roygb
-        yellow
-        yellow}}
-     {if_else $egg5
-        gold
-     {if_else $roygb
-        blue
-        green}}
-     {if_else $egg5
-        gold
-     {if_else $roygb
-        orange
-        blue}})))
+((gems (green red yellow blue orange)))
 
 ; Drums are always GRYBO.
 #define DRUM_SET
