@@ -44,7 +44,8 @@
 (cheat_mtv_overlay "Song Title Always")
 (cheat_awesomeness "Cheats moved to Extras menu")
 (cheat_barf "Roxbury Mode")
-
+(cheat_nofail "No Fail")
+(cheat_funni "fast track entry")
 ; Easter eggs (don't tell anyone)
 (EASTER_EGG1 "MiloHax Community")
 (EASTER_EGG3 "DISCORD, INTERNET")
