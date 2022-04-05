@@ -184,6 +184,7 @@
       kDataUnhandled)
    (game_won_msg
       ($encore)
+      {mtv_overlay_panel show_overlay FALSE}
       {if {&&
       $focusmode
       {||
