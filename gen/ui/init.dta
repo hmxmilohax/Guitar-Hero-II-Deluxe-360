@@ -23,6 +23,9 @@
    (pause_panel pause_controller_panel tut_pause_panel pract_pause_panel tut_pause_controller_panel lose_panel helpbar endgame_encore_panel)
    {$p load}}
 {meta set_defaults}
+
+; Set all discs but Onyx and expansion to boot to the initial memory card
+; screens. Onyx and expansion go right to the main menu.
 {set $first_screen cut_scene_screen}
 {ui my_init}
 {do
@@ -36,7 +39,14 @@
 {set $interval_p0 50}
 {set $interval_p1 50}
 {set $interval_p2 50}
+{set $rbdrum FALSE}
+{set $game80s FALSE}
 {set $songtitle FALSE}
 {set $focusmode FALSE}
 {set $nofail FALSE}
+; We take advantage of the fact that Harmonix sets $first_screen as a
+; variable by sending the player to different first screens depending on the
+; version. Customs Edition and Expansion go to the main menu, while Mega goes
+; to the theme select. DX and Encore go to the "notice" (saving/loading)
+; screen as normal.
 {ui goto_screen $first_screen}

@@ -1,3 +1,11 @@
+; This is one of the most powerful scripts in the game. It's the bridge
+; between MIDI pitches and running script. Anything you can do in DTA, you
+; can give a pitch and call when the game's running and a song is playing.
+; 
+; You can also set new animation events in here, for giving the guitarist
+; far more intricate animation capabilities. We've specified some new
+; StrumMaps and HandMaps for open strums and for letting the bassist use a
+; pick, among other things.
 #define GUITARSTRUMMAPPINGS
 ((idle_event strum_open)
    (idle_length 3.52)
@@ -9,27 +17,33 @@
       (StrumMap_Default
          (events
             (default
-               {if_else
-                  {> $mp.length 0.25}
+               {if_else {> $mp.length 0.25}
                   (strum_short_01 strum_short_02 strum_short_03 strum_short_04)
                   (strum_pick_01 strum_pick_02)})
             (()
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   (strum_long_01 strum_long_02 strum_long_03 strum_long_04)
                   (strum_short_01 strum_short_02 strum_short_03 strum_short_04)})))
       (StrumMap_punk
          (events
             (default
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   strum_short_04
                   strum_short_01})
             (()
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   (strum_long_01 strum_long_02 strum_long_03 strum_long_04)
                   strum_short_01})))
+      (StrumMap_Open
+         (events
+            (default
+               {if_else {> $mp.length 0.25}
+                  (strum_open)
+                  (strum_open)})
+            (()
+               {if_else {> $mp.length 0.3}
+                  (strum_open)
+                  (strum_open)})))
       (StrumMap_softpick
          (events
             (default strum_short_04)
@@ -46,236 +60,453 @@
       (HandMap_Default
          (events
             (1
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   finger_vibrato_index
                   finger_hold_index})
             (2
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   finger_vibrato_middle
                   finger_hold_pinky})
             (3
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   finger_vibrato_ring
                   finger_hold_index_hi})
             (4
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   finger_vibrato_pinky
                   finger_hold_ring_hi})
             (5
-               {if_else
-                  {> $mp.length 0.3}
+               {if_else {> $mp.length 0.3}
                   (finger_vibrato_index finger_vibrato_ring)
                   finger_hold_middle_hi})
-            ((1)
-               finger_powerchord_1)
-            ((2)
-               finger_powerchord_1)
-            (()
-               finger_powerchord_2)))
-      (HandMap_Linear
-         (events
-            (1
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_index
-                  finger_hold_index})
-            (2
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_middle
-                  finger_hold_middle})
-            (3
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring
-                  finger_hold_ring})
-            (4
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_pinky
-                  finger_hold_pinky})
-            (5
-               {if_else
-                  {> $mp.length 0.3}
-                  (finger_vibrato_index finger_vibrato_ring)
-                  (finger_hold_index finger_hold_middle finger_hold_ring)})
-            ((1)
-               finger_powerchord_1)
-            ((2)
-               finger_powerchord_1)
-            (()
-               finger_powerchord_2)))
-      (HandMap_NoChords
-         (events
-            (1
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_index
-                  finger_hold_index})
-            (2
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_middle
-                  finger_hold_middle})
-            (3
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring
-                  finger_hold_ring})
-            (4
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_pinky
-                  finger_hold_pinky})
-            (5
-               {if_else
-                  {> $mp.length 0.3}
-                  (finger_vibrato_index finger_vibrato_ring)
-                  (finger_hold_index finger_hold_middle finger_hold_ring)})
-            ((1)
-               finger_hold_index)
-            ((2)
-               finger_hold_middle)
-            ((3)
-               finger_hold_ring)
-            ((4)
-               finger_hold_pinky)))
-      (HandMap_AllChords
-         (events
-            (1 finger_powerchord_1)
-            (2 finger_powerchord_1)
-            (3 finger_powerchord_1)
-            (4 finger_powerchord_2)
-            (5 finger_powerchord_2)
-            ((1)
-               finger_powerchord_1)
-            ((2)
-               finger_powerchord_1)
-            (()
-               finger_powerchord_2)))
-      (HandMap_DropD
-         (events
-            (1 finger_open)
-            (2 finger_powerchord_1)
-            (3 finger_powerchord_1)
-            (4 finger_powerchord_2)
-            (5 finger_powerchord_2)
-            ((1)
-               finger_powerchord_1)
-            ((2)
-               finger_powerchord_1)
-            (()
-               finger_powerchord_2)))
-      (HandMap_DropD2
-         (events
-            (1 finger_open)
-            (2
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_middle
-                  finger_hold_index_hi})
-            (3
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring
-                  finger_hold_middle_hi})
-            (4
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_pinky
-                  finger_hold_ring_hi})
-            (5
-               {if_else
-                  {> $mp.length 0.3}
-                  (finger_vibrato_index finger_vibrato_ring)
-                  finger_hold_pinky})
-            ((1)
-               finger_powerchord_1)
-            ((2)
-               finger_powerchord_1)
-            (()
-               finger_powerchord_2)))
-      (HandMap_Solo
-         (events
-            (1
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_index
-                  finger_hold_index})
-            (2
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_middle
-                  finger_hold_pinky})
-            (3
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring
-                  finger_hold_index_hi})
-            (4
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_pinky
-                  finger_hold_ring_hi})
-            (5
-               {if_else
-                  {> $mp.length 0.3}
-                  (finger_vibrato_index finger_vibrato_ring)
-                  finger_hold_middle_hi})
-            ((1 2)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_index
-                  finger_chord_dmajor})
-            ((1 3)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_middle
-                  finger_chord_dmajor})
-            ((1 4)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring
-                  finger_chord_dmajor})
-            ((1 5)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring
-                  finger_chord_dmajor})
-            ((2 3)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_pinky
-                  finger_chord_dmajor})
-            ((2 4)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_index_hi
-                  finger_chord_dmajor})
-            ((2 5)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_middle_hi
-                  finger_chord_dmajor})
-            ((3 4)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring_hi
-                  finger_chord_dmajor})
-            ((3 5)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_pinky_hi
-                  finger_chord_dmajor})
-            ((4 5)
-               {if_else
-                  {> $mp.length 0.3}
-                  finger_vibrato_ring_hi
-                  finger_chord_dmajor})))))
+            ((1) finger_powerchord_1)
+            ((2) finger_powerchord_1)
+            (() finger_powerchord_2)))
+       (HandMap_Linear
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             (5
+                {if_else {> $mp.length 0.3}
+                   (finger_vibrato_index finger_vibrato_ring)
+                   (finger_hold_index finger_hold_middle finger_hold_ring)})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_NoChords
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             (5
+                {if_else {> $mp.length 0.3}
+                   (finger_vibrato_index finger_vibrato_ring)
+                   (finger_hold_index finger_hold_middle finger_hold_ring)})
+             ((1) finger_hold_index)
+             ((2) finger_hold_middle)
+             ((3) finger_hold_ring)
+             ((4) finger_hold_pinky)))
+       (HandMap_AllChords
+          (events
+             (1 finger_powerchord_1)
+             (2 finger_powerchord_1)
+             (3 finger_powerchord_1)
+             (4 finger_powerchord_2)
+             (5 finger_powerchord_2)
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Chord_D
+          (events
+             (1 finger_chord_dmajor)
+             (2 finger_chord_dmajor)
+             (3 finger_chord_dmajor)
+             (4 finger_chord_dmajor)
+             (5 finger_chord_dmajor)
+             ((1) finger_chord_dmajor)
+             ((2) finger_chord_dmajor)
+             (() finger_chord_dmajor)))
+       (HandMap_DropD
+          (events
+             (1 finger_open)
+             (2 finger_powerchord_1)
+             (3 finger_powerchord_1)
+             (4 finger_powerchord_2)
+             (5 finger_powerchord_2)
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_DropD2
+          (events
+             (1 finger_open)
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_index_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_middle_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_ring_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   (finger_vibrato_index finger_vibrato_ring)
+                   finger_hold_pinky})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+           (HandMap_Open
+              (events
+                 (1 finger_open)
+                 (2 finger_open)
+                 (3 finger_open)
+                 (4 finger_open)
+                 (5 finger_open)
+                 ((1) finger_powerchord_1)
+                 ((2) finger_powerchord_1)
+                 (() finger_powerchord_2)))
+       (HandMap_Index
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Middle
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_middle})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Ring
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_ring})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Pinky
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_pinky})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Index_Hi
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Middle_Hi
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle_hi
+                   finger_hold_middle_hi})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle_hi
+                   finger_hold_middle_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle_hi
+                   finger_hold_middle_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle_hi
+                   finger_hold_middle_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle_hi
+                   finger_hold_middle_hi})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Ring_Hi
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_hold_ring_hi})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_hold_ring_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_hold_ring_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_hold_ring_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_hold_ring_hi})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Pinky_Hi
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Octave
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Octave2
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_hold_index_hi})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_hold_pinky_hi})
+             ((1) finger_powerchord_1)
+             ((2) finger_powerchord_1)
+             (() finger_powerchord_2)))
+       (HandMap_Solo
+          (events
+             (1
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_hold_index})
+             (2
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_hold_pinky})
+             (3
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_hold_index_hi})
+             (4
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_hold_ring_hi})
+             (5
+                {if_else {> $mp.length 0.3}
+                   (finger_vibrato_index finger_vibrato_ring)
+                   finger_hold_middle_hi})
+             ((1 2)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index
+                   finger_chord_dmajor})
+             ((1 3)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle
+                   finger_chord_dmajor})
+             ((1 4)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_chord_dmajor})
+             ((1 5)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring
+                   finger_chord_dmajor})
+             ((2 3)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky
+                   finger_chord_dmajor})
+             ((2 4)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_index_hi
+                   finger_chord_dmajor})
+             ((2 5)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_middle_hi
+                   finger_chord_dmajor})
+             ((3 4)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_chord_dmajor})
+             ((3 5)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_pinky_hi
+                   finger_chord_dmajor})
+             ((4 5)
+                {if_else {> $mp.length 0.3}
+                   finger_vibrato_ring_hi
+                   finger_chord_dmajor})))))
 (player0_fret
    (type gem)
    (inverted TRUE)
@@ -283,19 +514,22 @@
       (set_inactive_clip finger_open)
       (play finger_open))
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS1'
-            {switch
-               {game get_track_sym 0}
+            {switch {game get_track_sym 0}
                (bass 'PART BASS')
+               (drum 'PART GUITAR')
                (guitar 'PART GUITAR COOP')
                (rhythm 'PART RHYTHM')}}
          ''}
-      'PART GUITAR')
-   GUITARFRETMAPPINGS)
+      {switch {game get_track_sym 0}
+         (bass 'PART BASS')
+         (drum 'PART GUITAR')
+         (guitar 'PART GUITAR')
+         (lead 'PART GUITAR')
+         (rhythm 'PART RHYTHM')})
+      GUITARFRETMAPPINGS)
 (player1_fret
    (type gem)
    (inverted TRUE)
@@ -303,14 +537,12 @@
       (set_inactive_clip finger_open)
       (play finger_open))
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS2'
-            {switch
-               {game get_track_sym 1}
+            {switch {game get_track_sym 1}
                (bass 'PART BASS')
+               (drum 'PART GUITAR')
                (guitar 'PART GUITAR COOP')
                (rhythm 'PART RHYTHM')}}
          ''}
@@ -323,18 +555,22 @@
       (set_inactive_clip strum_open)
       (play strum_open))
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS1'
             {switch
                {game get_track_sym 0}
                (bass '')
+               (drum 'PART GUITAR')
                (guitar 'PART GUITAR COOP')
                (rhythm 'PART RHYTHM')}}
          ''}
-      'PART GUITAR')
+      {switch {game get_track_sym 0}
+         (bass 'PART BASS')
+         (guitar 'PART GUITAR')
+         (drum 'PART GUITAR')
+         (lead 'PART GUITAR')
+         (rhythm 'PART RHYTHM')})
    GUITARSTRUMMAPPINGS)
 (player1_strum
    (type gem)
@@ -343,14 +579,12 @@
       (set_inactive_clip strum_open)
       (play strum_open))
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS2'
-            {switch
-               {game get_track_sym 1}
+            {switch {game get_track_sym 1}
                (bass '')
+               (drum 'PART GUITAR')
                (guitar 'PART GUITAR COOP')
                (rhythm 'PART RHYTHM')}}
          ''}
@@ -376,28 +610,66 @@
             (default kBassPluck)
             (()
                kBassPluck)))
+      (StrumMap_Open
+         (idle_event bass_pluck_open)
+         (events
+            (default bass_pluck_open)
+            (()
+               bass_pluck_open)))
       (StrumMap_SlapBass
          (idle_event bass_slap_open)
          (events
             (default kBassSlap)
             (()
-               kBassSlap)))))
+               kBassSlap)))
+      (StrumMap_SlapBassOpen
+         (idle_event bass_slap_open)
+         (events
+            (default bass_slap_open)
+            (()
+               bass_slap_open)))
+      (StrumMap_Pick
+         (idle_event strum_open)
+         (events
+            (default
+               {if_else {> $mp.length 0.25}
+                  (strum_short_01 strum_short_02 strum_short_03 strum_short_04)
+                  (strum_pick_01 strum_pick_02)})
+            (()
+               {if_else {> $mp.length 0.3}
+                  (strum_long_01 strum_long_02 strum_long_03 strum_long_04)
+                  (strum_short_01 strum_short_02 strum_short_03 strum_short_04)})))
+      (StrumMap_PickOpen
+         (idle_event strum_open)
+            (events
+               (default
+                  {if_else {> $mp.length 0.25}
+                     (strum_open)
+                     (strum_open)})
+               (()
+                  {if_else {> $mp.length 0.3}
+                     (strum_open)
+                     (strum_open)})))))
 (player0_fret_pos
    (type midi)
    (inverted TRUE)
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
-            'PART GUITAR VS1'
-            {switch
-               {game get_track_sym 0}
-               (bass 'PART BASS')
-               (rhythm 'PART RHYTHM')
-               (guitar 'PART GUITAR COOP')}}
-         ''}
-      'PART GUITAR')
+    {if_else {game multiplayer}
+       {if_else {game multiplayer_vs}
+          'PART GUITAR VS1'
+          {switch {game get_track_sym 0}
+             (bass 'PART BASS')
+             (drum 'PART GUITAR')
+             (rhythm 'PART RHYTHM')
+             (guitar 'PART GUITAR COOP')}}
+          ''}
+       {switch
+          {game get_track_sym 0}
+          (bass 'PART BASS')
+          (guitar 'PART GUITAR')
+          (drum 'PART GUITAR')
+          (lead 'PART GUITAR')
+          (rhythm 'PART RHYTHM')})
    (min_gap 0.22)
    (mappings
       (default
@@ -426,18 +698,16 @@
    (inverted TRUE)
    (type midi)
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS2'
-            {switch
-               {game get_track_sym 1}
+            {switch {game get_track_sym 1}
                (bass 'PART BASS')
+               (drum 'PART GUITAR')
                (rhythm 'PART RHYTHM')
                (guitar 'PART GUITAR COOP')}}
-         ''}
-      'PART GUITAR')
+            ''}
+    'PART GUITAR')
    (min_gap 0.22)
    (mappings
       (default
@@ -465,34 +735,35 @@
 (player0_parser
    (type echo)
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS1'
-            {switch
-               {game get_track_sym 0}
+            {switch {game get_track_sym 0}
                (bass 'PART BASS')
+               (drum 'PART GUITAR')
                (rhythm 'PART RHYTHM')
                (guitar 'PART GUITAR COOP')}}
-         ''}
-      'PART GUITAR')
+            ''}
+      {switch {game get_track_sym 0}
+         (bass 'PART BASS')
+         (drum 'PART GUITAR')
+         (guitar 'PART GUITAR')
+         (lead 'PART GUITAR')
+         (rhythm 'PART RHYTHM')})
    (start_offset -1))
 (player1_parser
    (type echo)
    (track_name
-      {if_else
-         {game multiplayer}
-         {if_else
-            {game multiplayer_vs}
+      {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
             'PART GUITAR VS2'
-            {switch
-               {game get_track_sym 1}
-               (bass 'PART BASS')
-               (rhythm 'PART RHYTHM')
-               (guitar 'PART GUITAR COOP')}}
+             {switch {game get_track_sym 1}
+                (bass 'PART BASS')
+                (drum 'PART GUITAR')
+                (rhythm 'PART RHYTHM')
+                (guitar 'PART GUITAR COOP')}}
          ''}
-      'PART GUITAR')
+    'PART GUITAR')
    (start_offset -1))
 (bassist_parser
    (type echo)
@@ -509,22 +780,16 @@
    (mappings
       (default
          (events
-            (36
-               ({handle
-                     (world kick_drum)}))
-            (37
-               ({handle
-                     (world crash_symbal)}))))))
+            (36 ({handle (world kick_drum)}))
+            (37 ({handle (world crash_symbal)}))))))
 (speaker_pulse
    (type midi)
    (eval TRUE)
    (track_name 'BAND BASS')
    (mappings
       (default
-         (events
-            (36
-               ({handle
-                     (world bass_hit)}))))))
+	     (events
+		    (36 ({handle (world bass_hit)}))))))
 (keyboard_parser
    (type echo)
    (track_name 'BAND KEYS')
@@ -536,12 +801,11 @@
 (click_parser
    (type midi)
    (track_name TRIGGERS)
-   (mappings
-      (default
-         (events
-            (24 click_kick)
-            (25 click_snare)
-            (26 click_hat)))))
+   (mappings (default
+      (events
+         (24 click_kick)
+         (25 click_snare)
+         (26 click_hat)))))
 (lighting_parser
    (type midi)
    (eval TRUE)
@@ -551,15 +815,9 @@
    (mappings
       (default
          (events
-            (48
-               ({handle
-                     (world do_lighting_next_keyframe)}))
-            (49
-               ({handle
-                     (world do_lighting_prev_keyframe)}))
-            (50
-               ({handle
-                     (world do_lighting_first_keyframe)}))))))
+            (48 ({handle (world do_lighting_next_keyframe)}))
+            (49 ({handle (world do_lighting_prev_keyframe)}))
+            (50 ({handle (world do_lighting_first_keyframe)}))))))
 (effect_parser
    (type midi)
    (eval TRUE)
@@ -568,15 +826,11 @@
    (zero_length TRUE)
    (mappings
       (default
-         (events
-            (52
-               ({handle
-                     (world venue_effect)}))))))
-#define BIG_NOTE_MAPPING
-((mappings
-      (default
-         (events
-            (110 110)))))
+	     (events
+		    (52 ({handle (world venue_effect)}))))))
+
+#define BIG_NOTE_MAPPING ((mappings (default (events (110 110)))))
+
 (big_note_parser_guitar
    (type midi)
    (track_name 'PART GUITAR' 'PART GUITAR')
@@ -584,6 +838,10 @@
 (big_note_parser_bass
    (type midi)
    (track_name 'PART BASS')
+   BIG_NOTE_MAPPING)
+(big_note_parser_drum
+   (type midi)
+   (track_name 'PART DRUM' 'PART DRUM')
    BIG_NOTE_MAPPING)
 (big_note_parser_rhythm
    (type midi)
