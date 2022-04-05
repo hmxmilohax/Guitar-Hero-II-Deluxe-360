@@ -75,7 +75,10 @@
         blue}})))
 
 ; Drums are always GRYBO.
-#define DRUM_SET ((gems (kick4 snare_red tom_yellow tom_blue tom_orange)))
+#define DRUM_SET
+((gems (green red yellow blue orange)))
+;((gems (kick4 snare_red tom_yellow tom_blue tom_orange)))
+
 (gem
    (fps 30)
    (mat_formats
