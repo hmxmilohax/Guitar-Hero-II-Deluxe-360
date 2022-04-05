@@ -1,19 +1,19 @@
-{new
-   GHPanel
-   training_panel
-   (file training.milo)
+{new GHPanel training_panel
+   (file
+      {if_else $gamegh1
+         training_gh1.milo
+         {if_else $game80s
+            training_80s.milo
+            training.milo}})
    (focus practice.btn)
    (SELECT_START_MSG
-      {switch
-         $component
+      {switch $component
          (tutorials.btn
             {ui goto_screen tutorials_screen})
          (practice.btn
             {gamecfg set mode practice}
             {ui goto_screen practice_selsong_screen})})}
-{new
-   GHScreen
-   training_screen
+{new GHScreen training_screen
    (panels meta training_panel helpbar)
    (focus training_panel)
    (helpbar
