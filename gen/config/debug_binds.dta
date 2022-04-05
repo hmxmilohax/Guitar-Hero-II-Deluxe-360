@@ -1,0 +1,120 @@
+; File originally named cheats.dta and renamed for clarity
+;
+; These only work in the debug executables, obviously. Not all these binds
+; work (I know 0 and r don't), but USB keyboard binds were left as-is for
+; completeness. I totally rebound the controller stuff though.
+(keyboard
+   (KB_F1 {fake_player1_cheat 0})
+   (KB_F2 {fake_player1_cheat 1})
+   (KB_F4 {toggle_lights_debug})
+   (KB_F5 {cheat_empty_star_power})
+   (KB_F6 {track_panel toggle_gems})
+   (KB_F7 {track_panel toggle_surface})
+   (KB_F8 {track_panel toggle_nowbar})
+   (KB_F9 {toggle_scoring_debug})
+   (KB_F10 {track_panel toggle_mask})
+   (KB_F11 {test_screen_transitions})
+   (0 {toggle_time_paused})
+   (2 {next_character_driver})
+   (3 {toggle_char_lod})
+   (5 {if {meta is_up} {sel_song_panel beat_song 1000000}})
+   (6 {if {meta is_up} {sel_song_panel gold_song}})
+   (# {if {game is_up} {player0 win 3}})
+   ('$' {if_else {game is_up}
+           {player0 win 4}
+           {cheat_add_cash}})
+   ('%' {if {game is_up} {player0 win 5}})
+   ('+' {game cheat_force_encore})
+   (a {a_cheat})
+   (A {A_cheat})
+   (b {b_cheat})
+   (B {if_else $barf_cheat
+         {do
+            {set $barf_cheat FALSE}
+            {cheat_display show "Quick Roxbury: OFF"}}
+         {do
+            {set $barf_cheat TRUE}
+            {cheat_display show "Quick Roxbury: ON"}}})
+   (c {if {game is_up} {world cycle_shot}})
+   (C {rnd toggle_overlay camera})
+   (d {toggle_dual_perspective})
+   (e {adjust_crowd_rating -0.1})
+   (E {adjust_crowd_rating 0.1})
+   (f {toggle_fretboard})
+   (F {cycle_free_camera})
+   (g {waypoint_toggle_show}
+      {cheat_display show "Waypoint visibility toggled"})
+   (G {rnd toggle_overlay guitar})
+   (h {toggle_fretboard}
+      {handle (hud set_showing {! {hud showing}})})
+   (H {handle (hud set_showing {! {hud showing}})})
+   (i {handle (world toggle_lighting_events)}
+      {cheat_display show "World lighting toggled, starting on next lighting call"})
+   (I {rnd toggle_overlay light_preset})
+   (j {handle ({find_obj world guitarist0} start_walk)}
+      {cheat_display show "Walking to next waypoint (if supported by venue)"})
+   (J {set $guitarist_debug {mod {'+' $guitarist_debug 1} 3}}
+      {if_else {> $guitarist_debug 0}
+         {cheat_display show {sprint "Player " $guitarist_debug " debug"}}
+         {cheat_display show "Player debug: OFF"}})
+   (k {handle ({find_obj world guitarist0} teleport_next)}
+      {cheat_display show "Teleporting to next waypoint (if supported by venue)"})
+   (l {handle (player0 lose)})
+   (m {toggle_crowd_meter})
+   (M {toggle_mute_global})
+   (n {toggle_normalization})
+   (o {toggle_auto_solo})
+   (O {rnd save_objects dump.rnd ui})
+   (p {toggle_auto_play})
+   (P {cycle_music_speed})
+   (q {toggle_solo_quantize})
+   (Q {meta print_current_screen})
+   (r {reload_song})
+   (R {reload_track})
+   (s {if {game is_up} {rnd toggle_overlay score}})
+   (S {fill_star_meter})
+   (t {rnd toggle_overlay time})
+   (T {rnd toggle_timers}
+      {rnd toggle_overlay rate})
+   (u {next_tutorial_lesson})
+   (U {prev_tutorial_lesson})
+   (v {show_version})
+   (V {world toggle_pick_shot}
+      {cheat_display show "Static camera toggled"})
+   (w {handle (player0 win 3)})
+   (W {toggle_walks})
+   (x {toggle_cam})
+   (X {toggle_shuttle})
+   (> {tutorial reset_vo}))
+(left
+   (kPad_DLeft {cycle_free_camera})
+   (kPad_DUp {rnd toggle_overlay light_preset})
+   (kPad_DRight {rnd toggle_overlay camera})
+   (kPad_DDown {rnd toggle_timers})
+   (kPad_Square {if {game is_up}
+                   {if_else $debug.beep
+                      {do
+                         {set $debug.beep FALSE}
+                         {set $barf_cheat FALSE}
+                         {cheat_display show "Tempomap debug: OFF"}}
+                      {do
+                         {set $debug.beep TRUE}
+                         {set $barf_cheat TRUE}
+                         {cheat_display show "Tempomap debug: ON"}}}})
+   (kPad_Tri {if_else {== {rnd screen_width} 640}
+                {do
+                   {rnd reset 512 448 16 0 0}
+                   {cheat_display show "Quick Progressive: OFF"}}
+                {do
+                   {rnd reset 640 448 16 0 1}
+                   {cheat_display show "Quick Progressive: ON"}}})
+   (kPad_Circle {rnd toggle_overlay stats})
+   (kPad_Start {a_cheat}))
+(right
+   (kPad_DLeft {adjust_crowd_rating -0.1})
+   (kPad_DUp {fill_star_meter})
+   (kPad_DRight {adjust_crowd_rating 0.1})
+   (kPad_DDown {cheat_empty_star_power})
+   (kPad_Square {toggle_auto_play})
+   (kPad_Tri {if {game is_up} {player0 win 5}})
+   (kPad_Circle {toggle_crowd_meter}))

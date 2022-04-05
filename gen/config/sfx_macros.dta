@@ -1,8 +1,0 @@
-#define CLAP_SEQUENCE
-(claps)
-#define CLAP_DELAY_BEATS
-(0.9)
-#define TRACK_EXTEND_SFX
-(track_unfurl)
-#define TRACK_EXPLODE_SFX
-(track_exp)

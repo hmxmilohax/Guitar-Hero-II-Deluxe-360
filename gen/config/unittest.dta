@@ -1,5 +1,0 @@
-(track_graphics
-   (slot_colors green red yellow blue orange))
-(objects
-   #include objects.dta)
-#merge ../../../system/run/config/default.dta

@@ -1,4 +1,0 @@
-(objects
-   #include objects.dta)
-(speakers alterna1 alterna2 classic deathmetal1 deathmetal2 female_singer funk1 glam1 glam2 goth1 goth2 grim metal_singer metal1 metal2 punk1 punk2 rock1 rock2 rockabill1 rockabill2)
-#merge ../../../system/run/config/facefx.dta

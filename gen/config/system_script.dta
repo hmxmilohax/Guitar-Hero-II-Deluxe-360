@@ -1,98 +1,82 @@
+; This is all just a bunch of "mid-level" (lower-level than content, like
+; songs or colors, but higher-level than graphical/sound routines and
+; initialization) functions the game calls in various scripts. As an
+; example, "animate_forever_30fps" is used for the loading screen, at least
+; in the vanilla game, to animate the cassette with wings. Doubt you'd need
+; anything in here.
 #include ../../../system/run/config/system_init.dta
-#define FOREVER_PERIOD
-(604800)
-#define FOREVER_30FPS
-(18144000)
-#define CHEAT_DISPLAY_S
-(5)
-{func
-   animate_forever_30fps
+#define FOREVER_PERIOD (604800)
+#define FOREVER_30FPS (18144000)
+#define CHEAT_DISPLAY_S (5)
+{func animate_forever_30fps
    ($panel $animatable)
    {{$panel find $animatable}
       animate
       (range 0 FOREVER_30FPS)
       (period FOREVER_PERIOD)
       (units kTaskUISeconds)}}
-{func
-   game_restart
-   {if_else
-      {==
-         {gamecfg get mode}
-         practice}
+{func game_restart
+   {if_else {== {gamecfg get mode} practice}
       {practice_restart}
       {do
          {game exit}
-         {if
-            {world_panel is_up}
-            {world_panel exit}}
+         {if {world_panel is_up} {world_panel exit}}
          {ui
             goto_screen
             {gamecfg get game_screen}}}}}
-{func
-   game_restart_fast
+{func game_restart_fast
    {game set fast_intro TRUE}
    {game_restart}}
-{func
-   set_all_hud_showing
+{func set_all_hud_showing
    ($show)
    {hud set_showing $show}
    {track_panel set_showing $show}}
 {set $camera.stare_at_singer FALSE}
-{func
-   player_pan
+{func autosave_goto
+   ($next_screen)
+   {if_else {&& {campaign needs_save} {! {campaign all_access}} $autosave {! $disable_save}}
+      {do
+         {set $mc_save_success_screen $next_screen}
+         {set $mc_save_failed_screen $next_screen}
+         {ui goto_screen autosave}}
+      {ui goto_screen $next_screen}}}
+{func player_pan
    ($player)
-   {if_else
-      {game multiplayer}
-      {elem
-         (-1 1 1)
-         $player}
+   {if_else {game multiplayer}
+      {elem (-1 1 1) $player}
       0}}
-{func
-   play_game_sfx
+{func play_game_sfx
    ($sfx)
    {play_sfx
       $sfx
-      (volume
-         {options get_fx_volume})}}
-{func
-   play_game_sfx_player
+      (volume {options get_fx_volume})}}
+{func play_game_sfx_player
    ($sfx_single $sfx_multi $player)
    {do
       ($sfx
-         {if_else
-            {game multiplayer}
+         {if_else {game multiplayer}
             $sfx_multi
             $sfx_single})
       {play_sfx
          $sfx
-         (volume
-            {options get_fx_volume})
-         (pan
-            {player_pan $player})}}}
-{func
-   play_game_sequence
+         (volume {options get_fx_volume})
+         (pan {player_pan $player})}}}
+{func play_game_sequence
    ($seq)
-   {synth
-      play_sequence
+   {synth play_sequence
       $seq
-      (volume
-         {options get_fx_volume})}}
-{func
-   play_game_sequence_player
+      (volume {options get_fx_volume})}}
+{func play_game_sequence_player
    ($seq_single $seq_multi $player)
    {do
       ($seq
-         {if_else
-            {game multiplayer}
+         {if_else {game multiplayer}
             $seq_multi
             $seq_single})
-      {synth
-         play_sequence
+      {synth play_sequence
          $seq
-         (volume
-            {options get_fx_volume})
-         (pan
-            {player_pan $player})}}}
+         (volume {options get_fx_volume})
+         (pan {player_pan $player})}}}
 {func
    get_text_entry_help_text
    ($ten $back)
@@ -126,5 +110,4 @@
             $array
             (strum help_updown)}}
       {eval $array}}}
-#include cheats_funcs.dta
-#include long_cheats_funcs.dta
+#include debug_funcs.dta

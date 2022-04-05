@@ -1,6 +1,28 @@
 #include macros.dta
+(rnd
+   (force_hd TRUE))
 (mem
-   #include mem.dta)
+   (heaps
+   #ifdef HX_EE
+   (main
+      (size 19118000))
+   (rnd
+      (size 5900000)
+      (handle TRUE))
+   #else
+   #ifdef HX_PC
+   (main
+      (size 256000000))
+   (synth
+      (size 20000000))
+   #else
+   (main
+      (size 345000000))
+   #endif
+   #endif)
+   (pool
+   (big_hunk 3100000)
+   (small_hunk 50000)))
 (system
    (ng TRUE)
    (init
@@ -43,8 +65,7 @@
    (ignore)
    (hold_ms 1000)
    (repeat_ms 80))
-(spew
-   #include spew.dta)
+(spew)
 #define NON_GAME_TIMERS
 (world hud track file_read tasks)
 (timer NON_GAME_TIMERS game cpu gs)
@@ -107,25 +128,111 @@
                $tot}}}))
 (ui
    #include ../ui/ui.dta)
-(objects
-   #include objects.dta)
+(objects ; block originally from config/objects.dta
+   #define INIT_BAND (1)
+   #include ../char/char_objects.dta
+   #include ../world/world_objects.dta
+   #include ../ui/ui_objects.dta
+   #include ../hud/hud_objects.dta)
 (locale ../ui/eng/locale_milo.dta ../ui/eng/locale.dta ../ui/eng/locale_newspaper.dta)
 (venues battle small1 small2 big theatre fest arena stone)
 (default_band metal_singer metal_bass metal_drummer)
 (quick_cheats
-   #include cheats.dta)
+   #include debug_binds.dta)
 (long_cheats
    #include long_cheats.dta)
 (beatmatcher
    #include beatmatcher.dta)
 (beatmatch
-   #include beatmatch.dta)
+   (player_matcher_handlers
+   (hit
+      ($slot $star $hopoable $hopoed $player_num)
+      {if
+         $star
+         {play_game_sequence_player sp_gemhit sp_gemhit $player_num}})
+   (hopo
+      {handle
+         ($this hopo_callback)})
+   (swingAtHopo
+      {handle
+         ($this swingAtHopo_callback)})
+   (miss
+      ($player_num)
+      {do
+         ($seq
+            {switch
+               {game get_track_type $player_num}
+               (kTrackBass miss_bass)
+               miss_gtr})
+         {play_game_sequence_player $seq $seq $player_num}})
+   (swing))
+(solo_handlers
+   (pick_done
+      {print
+         "pick_done\n"})
+   (all_done
+      {print
+         "all_done\n"})))
 (modes
    #include modes.dta)
-(player
-   #include player.dta)
-(track
-   #include track.dta)
+(player ; block originally from config/player.dta
+   (handlers
+   (end_streak)
+   (whammy_start
+      {handle
+         ($this whammy_start_callback)})
+   (whammy_end
+      {handle
+         ($this whammy_end_callback)})
+   (star_gem_hit
+      {handle
+         ($this star_gem_hit_callback)})
+   (phrase_captured
+      ($player_num)
+      {script_task
+         (delay 0.2)
+         (script
+            {play_game_sequence_player sp_awarded sp_awarded_multi $player_num})}
+      {handle
+         ($this star_phrase_captured_callback)})
+   (phrase_miss
+      ($gem_id)
+      {{$this track}
+         on_miss_phrase
+         $gem_id}
+      {handle
+         ($this star_phrase_miss_callback)})
+   (start_using
+      ($player_num)
+      {{{$this track}
+            extend_anim}
+         animate
+         (range 2000 2025)
+         (period 0.8)}
+      {{$this player_matcher}
+         on_start_starpower}
+      {play_game_sfx_player sp_deployed sp_deployed_multi $player_num}
+      {handle
+         (world stop_sfx crowd_upto_good)}
+      {handle
+         (world play_sfx crowd_upto_good)}
+      {{$this track}
+         set_bonus_gems
+         TRUE}
+      {handle
+         (game star_power_start $player_num)})
+   (stop_using
+      ($player_num)
+      {play_game_sfx_player sp_depleted sp_depleted_multi $player_num}
+      {{$this player_matcher}
+         on_stop_starpower}
+      {{$this track}
+         set_bonus_gems
+         FALSE}
+      {handle
+         (game star_power_stop $player_num)})
+   (depleted)))
+(track (handlers)) ; originally from config/track.dta
 (scoring
    #include scoring.dta)
 (track_graphics
@@ -133,7 +240,36 @@
 (songs
    #include songs.dta)
 (sound
-   #include sound.dta)
+   (banks
+   (game sfx/ingame_bank)
+   (meta sfx/metagame_bank)
+   (tutorial tutorial/tutorial_bank))
+(crowd_volume -2)
+(crowd_reactions TRUE)
+(crowd_audio_delay 1)
+(tutorial
+   (streaming_vo
+      (volume 0.0)
+      (dir tutorial/streams/eng)
+      (events
+         #include ../tutorial/tutorial_vo.dta)))
+(star_power_fx_volume 0)
+(master_volume -2.0)
+(options_screen
+   (slider -96 -28 -24 -20 -16 -12 -10 -8 -6 -4 -2 0))
+(practice_mode
+   (default_speeds
+      (100 90 80 60))
+   (pitch_correct
+      (slice_frames 3)
+      (attack_ms 5)
+      (release_ms 5)
+      (linear_attack FALSE)
+      (linear_release FALSE)))
+(song_select
+   (loop_forever TRUE)
+   (fade_rate 1.0)
+   (attenuation 6.0)))
 (hud
    (lead_meter
       (max_lead 10000))
@@ -182,12 +318,260 @@
 (downloads)
 (tips
    #include tips.dta)
-(version
-   #include gh2_version.dta)
+(version "Build: 211107") ; originally from config/gh2_version.dta
 (achievements
    #include achievements.dta)
 (leaderboards
-   #include leaderboards.dta)
+   (_properties PROPERTY_PROP_RATING)
+(_career
+   (STATS_VIEW_LBP_CAREER kLeaderboardInvalid))
+(_campaign
+   (STATS_VIEW_LBP_CAMPAIGN kLeaderboardInvalid))
+(badreputation
+   (STATS_VIEW_LBP_001 STATS_VIEW_LBW_001))
+(beastandtheharlot
+   (STATS_VIEW_LBP_002 STATS_VIEW_LBW_002))
+(cantyouhearme
+   (STATS_VIEW_LBP_003 STATS_VIEW_LBW_003))
+(carrymehome
+   (STATS_VIEW_LBP_004 STATS_VIEW_LBW_004))
+(carryonwayward
+   (STATS_VIEW_LBP_005 STATS_VIEW_LBW_005))
+(cherrypie
+   (STATS_VIEW_LBP_006 STATS_VIEW_LBW_006))
+(crazyonyou
+   (STATS_VIEW_LBP_007 STATS_VIEW_LBW_007))
+(freebird
+   (STATS_VIEW_LBP_008 STATS_VIEW_LBW_008))
+(freya
+   (STATS_VIEW_LBP_009 STATS_VIEW_LBW_009))
+(girlfriend
+   (STATS_VIEW_LBP_010 STATS_VIEW_LBW_010))
+(hangar18
+   (STATS_VIEW_LBP_011 STATS_VIEW_LBW_011))
+(heartshapedbox
+   (STATS_VIEW_LBP_012 STATS_VIEW_LBW_012))
+(institutionalized
+   (STATS_VIEW_LBP_013 STATS_VIEW_LBW_013))
+(jessica
+   (STATS_VIEW_LBP_014 STATS_VIEW_LBW_014))
+(johnthefisherman
+   (STATS_VIEW_LBP_015 STATS_VIEW_LBW_015))
+(killinginthenameof
+   (STATS_VIEW_LBP_016 STATS_VIEW_LBW_016))
+(laidtorest
+   (STATS_VIEW_LBP_017 STATS_VIEW_LBW_017))
+(lastchild
+   (STATS_VIEW_LBP_018 STATS_VIEW_LBW_018))
+(madhouse
+   (STATS_VIEW_LBP_019 STATS_VIEW_LBW_019))
+(messageinabottle
+   (STATS_VIEW_LBP_020 STATS_VIEW_LBW_020))
+(misirlou
+   (STATS_VIEW_LBP_021 STATS_VIEW_LBW_021))
+(mother
+   (STATS_VIEW_LBP_022 STATS_VIEW_LBW_022))
+(monkeywrench
+   (STATS_VIEW_LBP_023 STATS_VIEW_LBW_023))
+(psychobilly
+   (STATS_VIEW_LBP_024 STATS_VIEW_LBW_024))
+(rockthistown
+   (STATS_VIEW_LBP_025 STATS_VIEW_LBW_025))
+(searchanddestroy
+   (STATS_VIEW_LBP_026 STATS_VIEW_LBW_026))
+(shoutatthedevil
+   (STATS_VIEW_LBP_027 STATS_VIEW_LBW_027))
+(stop
+   (STATS_VIEW_LBP_028 STATS_VIEW_LBW_028))
+(strutter
+   (STATS_VIEW_LBP_029 STATS_VIEW_LBW_029))
+(surrender
+   (STATS_VIEW_LBP_030 STATS_VIEW_LBW_030))
+(sweetchild
+   (STATS_VIEW_LBP_031 STATS_VIEW_LBW_031))
+(tattooedloveboys
+   (STATS_VIEW_LBP_032 STATS_VIEW_LBW_032))
+(thembones
+   (STATS_VIEW_LBP_033 STATS_VIEW_LBW_033))
+(tonightimgonna
+   (STATS_VIEW_LBP_034 STATS_VIEW_LBW_034))
+(trippinonahole
+   (STATS_VIEW_LBP_035 STATS_VIEW_LBW_035))
+(warpigs
+   (STATS_VIEW_LBP_036 STATS_VIEW_LBW_036))
+(whowasinmyroom
+   (STATS_VIEW_LBP_037 STATS_VIEW_LBW_037))
+(woman
+   (STATS_VIEW_LBP_038 STATS_VIEW_LBW_038))
+(youreallygotme
+   (STATS_VIEW_LBP_039 STATS_VIEW_LBW_039))
+(yyz
+   (STATS_VIEW_LBP_040 STATS_VIEW_LBW_040))
+(arterialblack
+   (STATS_VIEW_LBP_041 STATS_VIEW_LBW_041))
+(collide
+   (STATS_VIEW_LBP_042 STATS_VIEW_LBW_042))
+(elephantbones
+   (STATS_VIEW_LBP_043 STATS_VIEW_LBW_043))
+(fallofpangea
+   (STATS_VIEW_LBP_044 STATS_VIEW_LBW_044))
+(ftk
+   (STATS_VIEW_LBP_045 STATS_VIEW_LBW_045))
+(gemini
+   (STATS_VIEW_LBP_046 STATS_VIEW_LBW_046))
+(jordan
+   (STATS_VIEW_LBP_047 STATS_VIEW_LBW_047))
+(ladylightning
+   (STATS_VIEW_LBP_048 STATS_VIEW_LBW_048))
+(laughtrack
+   (STATS_VIEW_LBP_049 STATS_VIEW_LBW_049))
+(lesstalkmorerokk
+   (STATS_VIEW_LBP_050 STATS_VIEW_LBW_050))
+(mrfixit
+   (STATS_VIEW_LBP_051 STATS_VIEW_LBW_051))
+(newblack
+   (STATS_VIEW_LBP_052 STATS_VIEW_LBW_052))
+(onefortheroad
+   (STATS_VIEW_LBP_053 STATS_VIEW_LBW_053))
+(parasite
+   (STATS_VIEW_LBP_054 STATS_VIEW_LBW_054))
+(radiumeyes
+   (STATS_VIEW_LBP_055 STATS_VIEW_LBW_055))
+(redlottery
+   (STATS_VIEW_LBP_056 STATS_VIEW_LBW_056))
+(rawdog
+   (STATS_VIEW_LBP_057 STATS_VIEW_LBW_057))
+(six
+   (STATS_VIEW_LBP_058 STATS_VIEW_LBW_058))
+(soybomb
+   (STATS_VIEW_LBP_059 STATS_VIEW_LBW_059))
+(thelightthatblinds
+   (STATS_VIEW_LBP_060 STATS_VIEW_LBW_060))
+(thunderhorse
+   (STATS_VIEW_LBP_061 STATS_VIEW_LBW_061))
+(trogdor
+   (STATS_VIEW_LBP_062 STATS_VIEW_LBW_062))
+(xstream
+   (STATS_VIEW_LBP_063 STATS_VIEW_LBW_063))
+(yeswecan
+   (STATS_VIEW_LBP_064 STATS_VIEW_LBW_064))
+(billiondollar
+   (STATS_VIEW_LBP_065 STATS_VIEW_LBW_065))
+(possum
+   (STATS_VIEW_LBP_066 STATS_VIEW_LBW_066))
+(salvation
+   (STATS_VIEW_LBP_067 STATS_VIEW_LBW_067))
+(drinkup
+   (STATS_VIEW_LBP_068 STATS_VIEW_LBW_068))
+(lifewasted
+   (STATS_VIEW_LBP_069 STATS_VIEW_LBW_069))
+(rockandroll
+   (STATS_VIEW_LBP_070 STATS_VIEW_LBW_070))
+(dead
+   (STATS_VIEW_LBP_071 STATS_VIEW_LBW_071))
+(hush
+   (STATS_VIEW_LBP_072 STATS_VIEW_LBW_072))
+(kicked
+   (STATS_VIEW_LBP_073 STATS_VIEW_LBW_073))
+(trooper
+   (STATS_VIEW_LBP_074 STATS_VIEW_LBW_074)))
 (contexts
-   #include contexts.dta)
+   (difficulty
+   CONTEXT_DIFFICULTY
+   (CONTEXT_DIFFICULTY_EASY CONTEXT_DIFFICULTY_MEDIUM CONTEXT_DIFFICULTY_HARD CONTEXT_DIFFICULTY_EXPERT))
+(difficulty_2nd
+   CONTEXT_DIFFICULTY_2ND
+   (CONTEXT_DIFFICULTY_2ND_EASY CONTEXT_DIFFICULTY_2ND_MEDIUM CONTEXT_DIFFICULTY_2ND_HARD CONTEXT_DIFFICULTY_2ND_EXPERT))
+(presence
+   (default CONTEXT_PRESENCE_RPS_SHELL)
+   (shell CONTEXT_PRESENCE_RPS_SHELL)
+   (attract CONTEXT_PRESENCE_RPS_WATCHING)
+   (watching CONTEXT_PRESENCE_RPS_WATCHING)
+   (career CONTEXT_PRESENCE_RPS_CAREER)
+   (quickplay CONTEXT_PRESENCE_RPS_QUICKPLAY)
+   (practice CONTEXT_PRESENCE_RPS_PRACTICE)
+   (tutorial CONTEXT_PRESENCE_RPS_TUTORIAL)
+   (multi_coop CONTEXT_PRESENCE_RPS_COOP)
+   (multi_fo CONTEXT_PRESENCE_RPS_PROFACEOFF)
+   (multi_vs CONTEXT_PRESENCE_RPS_FACEOFF))
+(songlist
+   CONTEXT_SONGLIST
+   (_song_not_found_ CONTEXT_SONGLIST_VAL_NULL)
+   (badreputation CONTEXT_SONGLIST_VAL_BADREPUTATION)
+   (beastandtheharlot CONTEXT_SONGLIST_VAL_BEASTANDTHEHARLOT)
+   (billiondollar CONTEXT_SONGLIST_VAL_BILLIONDOLLAR)
+   (cantyouhearme CONTEXT_SONGLIST_VAL_CANTYOUHEARME)
+   (carrymehome CONTEXT_SONGLIST_VAL_CARRYMEHOME)
+   (carryonwayward CONTEXT_SONGLIST_VAL_CARRYONWAYWARD)
+   (cherrypie CONTEXT_SONGLIST_VAL_CHERRYPIE)
+   (crazyonyou CONTEXT_SONGLIST_VAL_CRAZYONYOU)
+   (dead CONTEXT_SONGLIST_VAL_DEAD)
+   (drinkup CONTEXT_SONGLIST_VAL_DRINKUP)
+   (freebird CONTEXT_SONGLIST_VAL_FREEBIRD)
+   (freya CONTEXT_SONGLIST_VAL_FREYA)
+   (girlfriend CONTEXT_SONGLIST_VAL_GIRLFRIEND)
+   (hangar18 CONTEXT_SONGLIST_VAL_HANGAR18)
+   (heartshapedbox CONTEXT_SONGLIST_VAL_HEARTSHAPEDBOX)
+   (hush CONTEXT_SONGLIST_VAL_HUSH)
+   (institutionalized CONTEXT_SONGLIST_VAL_INSTITUTIONALIZED)
+   (jessica CONTEXT_SONGLIST_VAL_JESSICA)
+   (johnthefisherman CONTEXT_SONGLIST_VAL_JOHNTHEFISHERMAN)
+   (kicked CONTEXT_SONGLIST_VAL_KICKED)
+   (killinginthenameof CONTEXT_SONGLIST_VAL_KILLINGINTHENAMEOF)
+   (laidtorest CONTEXT_SONGLIST_VAL_LAIDTOREST)
+   (lastchild CONTEXT_SONGLIST_VAL_LASTCHILD)
+   (lifewasted CONTEXT_SONGLIST_VAL_LIFEWASTED)
+   (madhouse CONTEXT_SONGLIST_VAL_MADHOUSE)
+   (messageinabottle CONTEXT_SONGLIST_VAL_MESSAGEINABOTTLE)
+   (misirlou CONTEXT_SONGLIST_VAL_MISIRLOU)
+   (mother CONTEXT_SONGLIST_VAL_MOTHER)
+   (monkeywrench CONTEXT_SONGLIST_VAL_MONKEYWRENCH)
+   (psychobilly CONTEXT_SONGLIST_VAL_PSYCHOBILLY)
+   (rockandroll CONTEXT_SONGLIST_VAL_ROCKANDROLL)
+   (rockthistown CONTEXT_SONGLIST_VAL_ROCKTHISTOWN)
+   (salvation CONTEXT_SONGLIST_VAL_SALVATION)
+   (searchanddestroy CONTEXT_SONGLIST_VAL_SEARCHANDDESTROY)
+   (shoutatthedevil CONTEXT_SONGLIST_VAL_SHOUTATTHEDEVIL)
+   (stop CONTEXT_SONGLIST_VAL_STOP)
+   (strutter CONTEXT_SONGLIST_VAL_STRUTTER)
+   (surrender CONTEXT_SONGLIST_VAL_SURRENDER)
+   (sweetchild CONTEXT_SONGLIST_VAL_SWEETCHILD)
+   (tattooedloveboys CONTEXT_SONGLIST_VAL_TATTOOEDLOVEBOYS)
+   (thembones CONTEXT_SONGLIST_VAL_THEMBONES)
+   (tonightimgonna CONTEXT_SONGLIST_VAL_TONIGHTIMGONNA)
+   (trippinonahole CONTEXT_SONGLIST_VAL_TRIPPINONAHOLE)
+   (warpigs CONTEXT_SONGLIST_VAL_WARPIGS)
+   (whowasinmyroom CONTEXT_SONGLIST_VAL_WHOWASINMYROOM)
+   (woman CONTEXT_SONGLIST_VAL_WOMAN)
+   (youreallygotme CONTEXT_SONGLIST_VAL_YOUREALLYGOTME)
+   (yyz CONTEXT_SONGLIST_VAL_YYZ)
+   (arterialblack CONTEXT_SONGLIST_VAL_ARTERIALBLACK)
+   (collide CONTEXT_SONGLIST_VAL_COLLIDE)
+   (elephantbones CONTEXT_SONGLIST_VAL_ELEPHANTBONES)
+   (fallofpangea CONTEXT_SONGLIST_VAL_FALLOFPANGEA)
+   (ftk CONTEXT_SONGLIST_VAL_FTK)
+   (gemini CONTEXT_SONGLIST_VAL_GEMINI)
+   (jordan CONTEXT_SONGLIST_VAL_JORDAN)
+   (ladylightning CONTEXT_SONGLIST_VAL_LADYLIGHTNING)
+   (laughtrack CONTEXT_SONGLIST_VAL_LAUGHTRACK)
+   (lesstalkmorerokk CONTEXT_SONGLIST_VAL_LESSTALKMOREROKK)
+   (mrfixit CONTEXT_SONGLIST_VAL_MRFIXIT)
+   (newblack CONTEXT_SONGLIST_VAL_NEWBLACK)
+   (onefortheroad CONTEXT_SONGLIST_VAL_ONEFORTHEROAD)
+   (parasite CONTEXT_SONGLIST_VAL_PARASITE)
+   (possum CONTEXT_SONGLIST_VAL_POSSUM)
+   (radiumeyes CONTEXT_SONGLIST_VAL_RADIUMEYES)
+   (redlottery CONTEXT_SONGLIST_VAL_REDLOTTERY)
+   (rawdog CONTEXT_SONGLIST_VAL_RAWDOG)
+   (six CONTEXT_SONGLIST_VAL_SIX)
+   (soybomb CONTEXT_SONGLIST_VAL_SOYBOMB)
+   (thelightthatblinds CONTEXT_SONGLIST_VAL_THELIGHTTHATBLINDS)
+   (thunderhorse CONTEXT_SONGLIST_VAL_THUNDERHORSE)
+   (trogdor CONTEXT_SONGLIST_VAL_TROGDOR)
+   (trooper CONTEXT_SONGLIST_VAL_TROOPER)
+   (xstream CONTEXT_SONGLIST_VAL_XSTREAM)
+   (yeswecan CONTEXT_SONGLIST_VAL_YESWECAN))
+(dl_songlist
+   CONTEXT_DL_SONGLIST
+   (_song_not_found_ CONTEXT_DL_SONGLIST_VAL_NULL)))
 #merge ../../../system/run/config/default.dta

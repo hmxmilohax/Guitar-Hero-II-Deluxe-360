@@ -1,0 +1,430 @@
+; File originally named cheats_funcs.dta and renamed for clarity
+;
+; These are the functions that go to the binds in debug_binds.dta. Messy
+; internal engine stuff, by and large. Do not want.
+{new Object cheat_display
+   (show
+      ($msg)
+      {rnd show_overlay cheats TRUE}
+      {rnd reflect cheats {print $msg "\n"}}
+      {set [refs] {'+' [refs] 1}}
+      {script_task
+         (delay CHEAT_DISPLAY_S)
+         (units kTaskUISeconds)
+         (script
+		    {set [refs] {- [refs] 1}}
+            {if {== [refs] 0}
+               {rnd show_overlay cheats FALSE}})})
+   (show_bool
+      ($label $val)
+      {$this show {sprint $label ": " {if_else $val "ON" "OFF"}}}
+      {set [refs] {'+' [refs] 1}}
+      {script_task
+         (delay CHEAT_DISPLAY_S)
+         (units kTaskUISeconds)
+         (script
+            {set [refs] {- [refs] 1}}
+            {if {== [refs] 0}
+               {rnd show_overlay cheats FALSE}})})
+   (refs 0)}
+{func audio_array
+   {find $syscfg beatmatch audio}}
+{func get_audio
+   {elem {elem {audio_array} 1} 0}}
+{func set_audio
+   ($val)
+   {set {elem_var {elem {audio_array} 1} 0} $val}
+   {cheat_display show {sprint "New audio mode: " $val}}}
+{func a_cheat
+   {if {find_obj world}
+      {do
+	     ($quickfocus {! {world_panel showing}})
+		 {world_panel set_showing $quickfocus}
+         {cheat_display show_bool "World rendering" $quickfocus}}}}
+{func A_cheat
+   {if_else {meta is_up}
+      {if {! {sel_song_panel is_up}}
+         {do
+            ($new {! {campaign all_access}})
+            {campaign set_all_access $new}
+            {campaign set_tutorial_access $new}
+            {cheat_display show_bool "All Access" $new}
+            {if {== {ui current_screen} main_screen}
+               {main_screen access_all}}}}
+      {toggle_crowd_audio}}}
+{func b_cheat
+   {if_else {meta is_up}
+      {sel_song_panel beat_song 1}
+      {set $debug.beep {! $debug.beep}}}}
+{func cycle_free_camera
+   {if_else {track0 free_camera_active}
+      {do
+         {track0 free_camera FALSE}
+         {cheat_display show "Free camera: off"}}
+      {do
+         {if_else {world free_cam_active}
+            {do
+               {track0 free_camera TRUE $cheat.controller}
+               {cheat_display show "Free camera: Fretboard"}}
+            {do
+               {cheat_display show "Free camera: world"}}}
+         {world toggle_free_cam $cheat.controller}}}}
+{func toggle_crowd_meter
+   {if {exists player0}
+      {do
+         ($new
+            {! {player0 crowd_rating_active}})
+         {player0 set_crowd_rating_active $new}
+         {cheat_display show_bool "Crowd meter" $new}}}}
+{func start_shuttle
+   {if_else {rnd overlay_showing time}
+      {set $cheat.show_time FALSE}
+      {do
+         {rnd show_overlay time TRUE}
+         {set $cheat.show_time TRUE}}}
+   {game set_time_paused TRUE}
+   {player0 set_crowd_rating_active FALSE}
+   {beatmatch set_shuttle TRUE $cheat.controller}}
+{func stop_shuttle
+   {beatmatch set_shuttle FALSE}
+   {game set_time_paused FALSE}
+   {if $cheat.show_time
+      {rnd show_overlay time FALSE}}}
+{func toggle_shuttle
+   {if {find_obj beatmatch}
+      {print " shuttle_active " {beatmatch shuttle_active} "\n"}
+      {if_else {beatmatch shuttle_active}
+         {stop_shuttle}
+         {start_shuttle}}}}
+{set $mute_cheat FALSE}
+{func toggle_mute_global
+   {set $mute_cheat {! $mute_cheat}}
+   {if_else $mute_cheat
+      {do
+         {synth set_master_vol kDbSilence}
+         {cheat_display show "Mute all: TRUE"}}
+      {do
+         {synth set_master_vol 0}
+         {cheat_display show "Mute all: FALSE"}}}}
+{func next_tutorial_lesson
+   {if_else {&& {exists tutorial} {tutorial is_up}}
+      {tutorial tutorial_inc 1}
+      {do
+         {if_else $win_campaign}
+         {do
+            {set $win_campaign FALSE}
+            {cheat_display show "Final Win Sequence (UFO in stone): FALSE"}}
+         {do
+            {set $win_campaign TRUE}
+            {cheat_display show "Final Win Sequence (UFO in stone): TRUE"}}}}}
+{func prev_tutorial_lesson
+   {if {tutorial is_up}
+      {tutorial tutorial_inc -1}}}
+{func toggle_crowd_audio
+   {if {exists crowd_audio}
+      {do
+         ($new {! {crowd_audio enabled}})
+         {crowd_audio set_enabled $new}
+         {cheat_display show_bool "CrowdAudio" $new}}}}
+{func toggle_walks
+   {do
+      ($g
+         {find_obj world guitarist0})
+      {if $g
+         {cheat_display show_bool "Walks" {$g toggle_walks}}}}}
+{func toggle_auto_solo
+   {do
+      ($new {! {player_matcher0 auto_solo}})
+      {player_matcher0 set_auto_solo $new}
+      {cheat_display show_bool "Auto freestyle" $new}}}
+{func toggle_solo_quantize
+   {player_matcher0 toggle_solo_quantize}}
+{func toggle_auto_play
+   {cycle_multiplayer_auto_play}}
+#define MULTI_AUTO_STATES
+(((FALSE
+         FALSE
+         "off")
+      (TRUE
+         FALSE
+         "player1")
+      (FALSE
+         TRUE
+         "player2")
+      (TRUE
+         TRUE
+         "all")))
+{set $multi_auto_index 0}
+{func cycle_multiplayer_auto_play
+   {do
+      ($new_index
+         {mod
+            {'+' $multi_auto_index 1}
+            {size MULTI_AUTO_STATES}})
+      ($state)
+      ($pc0 {game get_player_config 0})
+      ($pc1 {game get_player_config 1})
+      {set $state {elem MULTI_AUTO_STATES $new_index}}
+      {$pc0 set autoplay {elem $state 0}}
+      {$pc1 set autoplay {elem $state 1}}
+      {handle (player_matcher0 set_auto_play {elem $state 0})}
+      {handle (player_matcher1 set_auto_play {elem $state 1})}
+      {cheat_display show {sprint "Autoplay: " {elem $state 2}}}
+      {set $multi_auto_index $new_index}}}
+{func adjust_crowd_rating
+   ($delta)
+   {handle (player0 set_crowd_rating {'+' {player0 crowd_rating} $delta})}}
+{func fake_player1_cheat
+   ($player)
+   {set_fake_player1 $player}
+   {gamecfg set controller_checks FALSE}
+   {cheat_display show {sprint "Faking Player " {'+' $player 1}}}}
+{func toggle_dual_perspective
+   {do
+      ($new {! {track_panel dual_perspective}})
+      {track_panel set_dual_perspective $new}
+      {cheat_display show_bool "Dual-perspective" $new}}}
+{func reload_song
+   {game thread_task
+      {game set_time_paused TRUE}
+      {set $ms {game ms}}
+      {game load_song {game get_song}}
+      {$task wait {! {game loaded}}}
+      {cheat_display show {sprint "Reloaded song: " {game get_song}}}
+      {gamecfg set skip_intro TRUE}
+      {game set_start_paused TRUE}
+      {game start_song_now}
+      {track_panel set_track_out}
+      {beatmatch jump $ms}
+      {gamecfg set skip_intro FALSE}
+      {game set_start_paused TRUE}}}
+{func toggle_time_paused
+   {do
+      ($new {! {game time_paused}})
+      {game set_time_paused $new}
+      {crowd_audio set_paused $new}}}
+{func toggle_fretboard
+   {if {&& {exists meta} {! {meta is_up}}}
+      {track_panel set_showing {! {track_panel showing}}}}}
+{func reload_track
+   {ui goto_screen reload_track_screen}}
+#define MUSIC_SPEEDS
+((1.0 0.5 0.25 0.1))
+{set $speed_index 0}
+{func cycle_music_speed
+   {if {! {meta is_up}}
+      {do
+         ($new_index {mod {'+' $speed_index 1} {size MUSIC_SPEEDS}})
+         ($speed {elem MUSIC_SPEEDS $new_index})
+         {beatmatch set_music_speed $speed}
+         {cheat_display show {sprint "Track speed: " $speed}}
+         {set $speed_index $new_index}}}}
+#define DEBUG_TASK
+((init
+   {$this set [active] FALSE})
+   (start
+      {$this set [active] TRUE}
+      {$this on_start}
+      {$this poll})
+   (is_active
+      {$this get [active]})
+   (stop
+      {$this on_stop}
+      {$this set [active] FALSE})
+   (poll
+      {$this on_poll}
+      {if {$this get [active]}
+         {game delay_task 15 (preserve $this) {$this poll}}}))
+{new Object scoring_debug
+   DEBUG_TASK
+   (on_start {rnd show_overlay score_debug TRUE})
+   (on_stop {rnd show_overlay score_debug FALSE})
+   (on_poll
+      {if_else {game is_up}
+         {rnd reflect score_debug
+            {printf
+               "Crowd: %.2f-%.2f Notes: %d-%d-%d Mult: %.2f\n"
+               {player0 raw_crowd_rating}
+               {player0 crowd_rating}
+               {player0 current_streak}
+               {player0 longest_streak}
+               {player0 notes_hit}
+               {/ {player0 score} {beatmatch base_max_score 0}}}}
+         {$this stop}})}
+{func toggle_scoring_debug
+   {if_else {scoring_debug is_active}
+      {scoring_debug stop}
+      {scoring_debug start}}}
+{func toggle_lights_debug
+   {do
+      ($new_state
+         {! {rnd overlay_showing lights}})
+      {rnd show_overlay lights $new_state}}}
+{func lights_debug
+   ($msg)
+   {rnd reflect lights
+      {print "Lights: " $msg "\n"}}}
+{func toggle_cam
+   {if {find_obj cam}
+      {cam toggle_enabled}
+      {cheat_display show_bool "camera logic" {cam get_enabled}}}}
+{func cheat_add_cash
+   {if {store_panel is_up}
+      {campaign add_cash 200}
+      {store_panel update_total_cash_display}}}
+{func fill_star_meter
+   {if {! {meta is_up}}
+      {if_else {game multiplayer}
+         {switch
+            {fake_player1}
+            (2
+               {do
+			      {player2 fill_star_power}
+                  {cheat_display show "Filling Star Power for Player 2..."}})
+            (1
+               {do
+			      {player1 fill_star_power}
+                  {cheat_display show "Filling Star Power for Player 1..."}})
+            (0
+               {do
+			      {player0 fill_star_power}
+                  {cheat_display show "Filling Star Power for Player 0..."}})}
+         {do
+		    {player0 fill_star_power}
+            {cheat_display
+               show
+               "Filling Star Power..."}}}}}
+{func cheat_empty_star_power
+   {if {! {meta is_up}}
+      {if_else {game multiplayer}
+         {switch {fake_player1}
+            (2
+               {do
+			      {player2 empty_star_power}
+                  {cheat_display show "Emptying Star Power for Player 2..."}})
+            (1
+               {do
+			      {player1 empty_star_power}
+                  {cheat_display show "Emptying Star Power for Player 1..."}})
+            (0
+               {do
+			      {player0 empty_star_power}
+                  {cheat_display show "Emptying Star Power for Player 0..."}})}
+         {do
+		    {player0 empty_star_power}
+            {cheat_display show "Emptying Star Power..."}}}}}
+{func print_transition_test_status
+   {if {&& $transition_screen_0 $transition_screen_1}
+      {rnd reflect transition_test
+         {printf "%s - %s - %d\n" {$transition_screen_0 name} {$transition_screen_1 name} $transition_count}}}}
+{func test_screen_transitions
+   {if {meta is_up}
+      {if_else {! $transition_screen_0}
+         {do
+            {set $transition_screen_0 {ui current_screen}}
+            {rnd show_overlay transition_test TRUE}
+            {rnd reflect transition_test
+			   {print {$transition_screen_0 name} " -\n"}}}
+         {if_else {! $transition_screen_1}
+            {do
+               {set $transition_screen_1
+                  {ui current_screen}}
+               {set $transition_test_active TRUE}
+               {set $transition_count 0}
+               {print_transition_test_status}
+               {run_transition_test}}
+            {do
+               {set $transition_screen_0 FALSE}
+               {set $transition_screen_1 FALSE}
+               {set $transition_test_active FALSE}
+               {set $transition_count 0}
+               {rnd show_overlay transition_test FALSE}}}}}}
+{func run_transition_test
+   {ui thread_task
+      {ui goto_screen $transition_screen_0}
+      {$task wait {ui in_transition}}
+      {'++' $transition_count 1}
+      {print_transition_test_status}
+      {ui goto_screen $transition_screen_1}
+      {$task wait {ui in_transition}}
+      {'++' $transition_count 1}
+      {print_transition_test_status}
+      {if $transition_test_active
+         {run_transition_test}}}}
+{func next_character_driver
+   {if {find_obj world}
+      {if {== $char_debug_driver 0}
+         {if {! {char_debug {find_obj world guitarist0 main.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 1}
+         {if {! {char_debug {find_obj world guitarist0 left_hand.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 2}
+         {if {! {char_debug {find_obj world guitarist0 right_hand.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 3}
+         {if {! {char_debug {find_obj world guitarist0 fret.ik}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 4}
+         {if {! {char_debug {find_obj world guitarist0 wings.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 5}
+         {if {! {char_debug {find_obj world guitarist1 main.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 6}
+         {if {! {char_debug {find_obj world guitarist1 left_hand.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 7}
+         {if {! {char_debug {find_obj world guitarist1 right_hand.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 8}
+         {if {! {char_debug {find_obj world guitarist1 fret.ik}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 9}
+         {if {! {char_debug {find_obj world guitarist1 wings.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 10}
+         {if {! {char_debug {find_obj world singer main.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 11}
+         {if {! {char_debug {find_obj world drummer main.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 12}
+         {if {! {char_debug {find_obj world bassist main.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 13}
+         {if {! {char_debug {find_obj world keyboardist main.drv}}}
+            {'++' $char_debug_driver}}}
+      {if {== $char_debug_driver 14}
+         {char_debug}}
+      {set $char_debug_driver {mod {'+' 1 $char_debug_driver} 15}}}}
+{func show_lod_char
+   ($char_name $show)
+   {do
+      ($char {find_obj world $char_name})
+      {if $char
+         {$char set (CharacterTesting show_screen_size) $show}}}}
+{func toggle_char_lod
+   {set $show_lod {! $show_lod}}
+   {show_lod_char guitarist0 $show_lod}
+   {show_lod_char guitarist1 $show_lod}
+   {show_lod_char bassist $show_lod}
+   {show_lod_char singer $show_lod}
+   {show_lod_char keyboardist $show_lod}
+   {show_lod_char drummer $show_lod}}
+{func
+   show_version
+   {cheat_display
+      show
+      {sprint
+         {elem
+            {find $syscfg version}
+            1}}}}
+{func toggle_normalization
+   {do
+      ($new {! {gamecfg get use_normalization}})
+      ($s "using normalization")
+      {gamecfg set use_normalization $new}
+      {if {! $new}
+         {set $s "not using normalization"}}
+      {cheat_display show $s}}}
