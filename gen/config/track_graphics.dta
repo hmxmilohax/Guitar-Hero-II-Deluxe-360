@@ -1,9 +1,32 @@
+; Rainbow toggle!
+; This is a nice microcosm of the mess going on in synth.dta, where we have
+; to if_else the items in the array instead of the array itself.
 (slot_colors
-   {if_else $roygb green red}
-   {if_else $roygb red orange} 
-   yellow
-   {if_else $roygb blue green}
-   {if_else $roygb orange blue})
+   {if_else $egg5
+      gold
+   {if_else $roygb
+      green
+      red}}
+   {if_else $egg5
+      gold
+   {if_else $roygb
+      red
+      orange}}
+   {if_else $egg5
+      gold
+   {if_else $roygb
+      yellow
+      yellow}}
+   {if_else $egg5
+      gold
+   {if_else $roygb
+      blue
+      green}}
+   {if_else $egg5
+      gold
+   {if_else $roygb
+      orange
+      blue}})
 (smasher
    (mats
       (normal gem_smasher)
@@ -21,10 +44,38 @@
       (normal 0)
       (whammy 10)
       (bonus 20)))
+
+; Same goes for the sustain tails, which the game calls "strings".
 #define STRING_SET
-((gems (green red yellow blue orange)))
-;((gems
-;      (red orange yellow green blue)))
+((gems
+   ({if_else $egg5
+        gold
+	 {if_else $roygb
+        green
+        red}}
+     {if_else $egg5
+        gold
+     {if_else $roygb
+        red
+        orange}}
+     {if_else $egg5
+        gold
+     {if_else $roygb
+        yellow
+        yellow}}
+     {if_else $egg5
+        gold
+     {if_else $roygb
+        blue
+        green}}
+     {if_else $egg5
+        gold
+     {if_else $roygb
+        orange
+        blue}})))
+
+; Drums are always GRYBO.
+#define DRUM_SET ((gems (kick4 snare_red tom_yellow tom_blue tom_orange)))
 (gem
    (fps 30)
    (mat_formats
@@ -38,43 +89,40 @@
    (sparkle_len 1.0)
    (parts
       ((gem
-            (type kMeshGem))
-         (glow
-            (type kMeshGemGlow))
-         (top
-            (type kMeshTop))
-         (miss
-            (type kMeshGemMiss)
-            (default kMeshGem))
-         (hopo
-            (type kMeshHopoTop)
-            (default kMeshTop))
-         (star
-            (type kMeshStar)
-            (default kMeshGem))
-         (top_star
-            (type kMeshStarTop)
-            (default kMeshTop))))
+          (type kMeshGem))
+       (glow
+          (type kMeshGemGlow))
+       (top
+          (type kMeshTop))
+       (miss
+          (type kMeshGemMiss)
+          (default kMeshGem))
+       (hopo
+          (type kMeshHopoTop)
+          (default kMeshTop))
+       (star
+          (type kMeshStar)
+          (default kMeshGem))
+       (top_star
+          (type kMeshStarTop)
+          (default kMeshTop))))
    (sets
       (guitar STRING_SET)
       (bass STRING_SET)
+      (drum DRUM_SET)
       (rhythm STRING_SET)))
 (track_width 20)
-(horizon_y 120)
+(horizon_y 110)
 (remove_y -15)
 (track_speed
-   (kDifficultyEasy
-      {/ $trackspd $speedmod})
-   (kDifficultyMedium
-      {/ $trackspd $speedmod})
-   (kDifficultyHard
-      {/
-         {'*' $trackspd 1.4}
-         $speedmod})
-   (kDifficultyExpert
-      {/
-         {'*' $trackspd 1.4}
-         $speedmod}))
+   ; In vanilla GH2, the game set a single track speed that gets multiplied
+   ; by 1.4 for Hard and Expert, thus creating the "normal" track speed.
+   ; In DX, we do this, but divide that value (or the value on its own) by
+   ; the $speedmod value, which is set by a slider in ui/modifiers.dta.
+   (kDifficultyEasy {/ $trackspd $speedmod})
+   (kDifficultyMedium {/ $trackspd $speedmod})
+   (kDifficultyHard {/ {'*' $trackspd 1.4} $speedmod})
+   (kDifficultyExpert {/ {'*' $trackspd 1.4} $speedmod}))
 (alpha_dist 40)
 (horizon_tail_clip 7)
 (nowbar_tail_clip 1.5)
