@@ -83,9 +83,7 @@
 (quickplay
    (continue_screen qp_selsong_screen)
    (hud_file 
-      {if_else {== {gamecfg get_track_sym 0} drum} ;no SP meter if drums
-         hud_sp_drum.milo
-         hud_sp.milo})
+         hud_sp.milo)
    (win_preload_panel endgame_panel)
    (update_song_leaderboard TRUE))
 (career
@@ -93,9 +91,7 @@
    (continue_screen sel_song_screen)
    (win_preload_panel endgame_panel)
    (hud_file
-      {if_else {== {gamecfg get_track_sym 0} drum} ;no SP meter if drums
-         hud_sp_drum.milo
-         hud_sp.milo})
+         hud_sp.milo)
    (encore_fx TRUE)
    (update_song_leaderboard TRUE)
    (update_career_leaderboard TRUE))

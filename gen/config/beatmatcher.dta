@@ -29,8 +29,20 @@
    (cheat_error 0)
    (pitch_bend_range 1)
    (ms_to_full_pitch_bend 1000))
+; originally from ../../../system/run/config/beatmatch.dta
 (parser
-   (hopo_threshold 170))
+   (hopo_threshold 170) ; Where the default hopo_threshold is set!
+   (track_mapping
+      (GUITAR guitar)
+      (RHYTHM rhythm)
+      (BASS bass)
+      (KEYS keys)
+      (DRUM drum)
+      (VOCALS vocals)
+      (SINGER vocals)
+      (RAP rap)
+      (DJ dj)))
+; end manual merge
 (ingame_stats
    (missed_slop_threshold 200))
 (audio
