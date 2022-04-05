@@ -186,6 +186,7 @@
          {if {exists world}
             {world toggle_pick_shot}}}
       {world_panel set_showing TRUE}
+      {mtv_overlay_panel show_overlay FALSE}
 	  {if_else
          {== {gamecfg get mode} practice}
 		 0
@@ -221,6 +222,7 @@
             {world toggle_pick_shot}}}
       {world_panel set_showing TRUE}
       {track_panel set_showing FALSE}
+      {mtv_overlay_panel show_overlay FALSE}
       {game set_realtime TRUE}
       {$this slow_music}
       kDataUnhandled)
