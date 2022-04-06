@@ -1,5 +1,4 @@
-#define METER_MOVE_MS
-(500)
+#define METER_MOVE_MS (500)
 {tut_part.lbl set_text tut1_6_part}
 {$this size_left_box TUT1_6_BOX}
 {tut_task.lbl set_showing FALSE}
@@ -19,50 +18,33 @@ LONG_VO_GAP
 {$this set_beatmatch_muting TRUE}
 {hud slide_meter_in}
 {hud set_showing TRUE}
-{t1_highlights.view
-   animate
-   (loop
-      0
-      {t1_highlights.view end_frame})
+{t1_highlights.view animate
+   (loop 0 {t1_highlights.view end_frame})
    (units kTaskTutorialSeconds)}
 {tut_rock_highlight.view set_showing TRUE}
 {$this play_vo interface_rock_meter}
 WAIT_FOR_VO
 {tut_rock_highlight.view set_showing FALSE}
 SHORT_VO_GAP
-{set
-   $current_info
-   {localize tut1_6_yellow}}
+{set $current_info {localize tut1_6_yellow}}
 {tut_info.lbl set_localized_text $current_info}
 {tut_info.lbl set_showing TRUE}
 {$this play_vo interface_yellow}
 WAIT_FOR_VO
 SHORT_VO_GAP
-{set
-   $current_info
-   {sprint
-      $current_info
-      {localize tut1_6_green}}}
+{set $current_info {sprint $current_info {localize tut1_6_green}}}
 {tut_info.lbl set_localized_text $current_info}
 {$this play_vo interface_green}
 {player0 set_crowd_rating 0.88}
 WAIT_FOR_VO
 SHORT_VO_GAP
-{set
-   $current_info
-   {sprint
-      $current_info
-      {localize tut1_6_red}}}
+{set $current_info {sprint $current_info {localize tut1_6_red}}}
 {tut_info.lbl set_localized_text $current_info}
 {$this play_vo interface_red}
 {player0 set_crowd_rating 0.2}
 WAIT_FOR_VO
 LONG_VO_GAP
-{set
-   $current_info
-   {sprint
-      $current_info
-      {localize tut1_6_blink}}}
+{set $current_info {sprint $current_info {localize tut1_6_blink}}}
 {tut_info.lbl set_localized_text $current_info}
 {$this play_vo interface_blink}
 {player0 set_crowd_rating 1.0e-2}
@@ -76,11 +58,7 @@ WAIT_FOR_VO
 LONG_VO_GAP
 {t1_score_highlight.view set_showing TRUE}
 {$this play_vo interface_score}
-{set
-   $current_info
-   {sprint
-      $current_info
-      {localize tut1_6_score}}}
+{set $current_info {sprint $current_info {localize tut1_6_score}}}
 {tut_info.lbl set_localized_text $current_info}
 WAIT_FOR_VO
 LONG_VO_GAP

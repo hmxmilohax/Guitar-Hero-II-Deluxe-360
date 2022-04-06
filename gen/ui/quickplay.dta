@@ -23,12 +23,18 @@
    UIPanel
    qp_selpart_bg_panel
    (file
-      selpart_bg.milo)}
+	{if_else
+      $game80s
+      selpart_bg_80s.milo
+      selpart_bg.milo})}
 {new
    GHPanel
    qp_selpart_panel
    (file
-      practice_selpart.milo)
+	{if_else
+      $game80s
+      practice_selpart_80s.milo
+      practice_selpart.milo})
    (focus part0.btn)
    (sel_buttons part0.btn part1.btn part2.btn)
    (set_button_text
@@ -55,22 +61,15 @@
             {part0.btn
                set_text
                "sg_lead"}}
-      {if_else
-            {==
-               {song_provider get_instrument $song 2}
-               "drum"}
-            {part2.btn
-               set_text
-               "sg_drum"}
-				{part2.btn set_state kDisabled}}
-      {if_else
-            {==
-               {song_provider get_instrument $song 2}
-               "drum"}
-            {part2.btn
-               set_text
-               "sg_drum"}
-               {part2.btn set_showing FALSE}}
+{if $drumenabled
+   {if_else
+         {== {song_provider get_instrument $song 2} "drum"}
+            {part2.btn set_text "sg_drum"}
+			{part2.btn set_state kDisabled}}
+   {if_else {== {song_provider get_instrument $song 2} "drum"}
+            {part2.btn set_text "sg_drum"}
+            {part2.btn set_showing FALSE}}}
+{if {! $drumenabled} {part2.btn set_state kDisabled} {part2.btn set_showing FALSE}}
 })
    (enter
       {do
@@ -109,7 +108,10 @@
    GHPanel
    sel_diff_qp_panel
    (file
-      sel_diff_qp.milo)
+	{if_else
+      $game80s
+      sel_diff_qp_80s.milo
+      sel_diff_qp.milo})
    SEL_DIFFICULTY_COMMON
    (enter
       {$this update_focus})
@@ -142,7 +144,10 @@
    GHPanel
    manage_gig_panel
    (file
-      manage_gig.milo)
+	{if_else
+      $game80s
+      manage_gig_80s.milo
+      manage_gig.milo})
    (focus speed0.btn)
    (set_button_text
 	{if_else $focusmode
@@ -190,7 +195,7 @@
    (orig_sync 0)
 (enter
       {lefty1.chk set_check $songtitle}
-      {fuck.chk set_check $cheat_enabled_horse_head_mode}
+      {fuck.chk set_check #ifdef HX_EE $cheat_enabled_horse_head_mode #else $drumenabled #endif}
       {lefty3.chk set_check $barf_cheat}
       {lefty4.chk set_check $cheat_enabled_performance_mode}
       {lefty5.chk set_check $nofail}
@@ -245,7 +250,11 @@
                {do
                   {set $cheat_enabled_flaming_head TRUE}
                   {fuck.chk set_check FALSE}
-                  {set $cheat_enabled_horse_head_mode FALSE}}
+                  #ifdef HX_EE
+                  {set $cheat_enabled_horse_head_mode FALSE}
+                  #else
+                  {set $drumenabled FALSE}
+                  #endif}
                {set $cheat_enabled_flaming_head FALSE}})
 
          (widescreen.btn
@@ -265,10 +274,18 @@
             {fuck.chk toggle}
             {if_else {fuck.chk get_check}
                {do
+                  #ifdef HX_EE
                   {set $cheat_enabled_horse_head_mode TRUE}
+                  #else
+                  {set $drumenabled TRUE}
+                  #endif
                   {p_scan.chk set_check FALSE}
                   {set $cheat_enabled_flaming_head FALSE}}
-               {set $cheat_enabled_horse_head_mode FALSE}})
+                  #ifdef HX_EE
+                  {set $cheat_enabled_horse_head_mode FALSE}
+                  #else
+                  {set $drumenabled FALSE}
+                  #endif})
 
          (gs_left_p3.btn
             {lefty3.chk toggle}
@@ -337,8 +354,33 @@
 {new
    GHPanel
    sel_character_panel_qp
+#ifdef HX_EE
+;;;;;if not debug
+#ifndef 8DBUG
+#ifndef 2DBUG
+   (file
+	{if_else
+      $game80s
+      sel_character_80s.milo
+      sel_character.milo})
+#endif
+#endif
+;;;;;if debug
+#ifndef _SHIP
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef GH1RX
+   (file sel_character_debug.milo)
+#endif
+#endif
+#endif
+#endif
+#endif
+#else
    (file
       sel_character.milo)
+#endif
    (char_focus rockabill)
    (char_outfit rockabill1)
    (old_scroll_pos 0)
@@ -833,6 +875,10 @@
             $venue}})
    (enter
 	; disable 2 stages if gh1rdx
+	#ifdef GH1RX
+      {$this disable {sel_venue_panel_qp find sv_small2.btn}}														  
+      {$this disable {sel_venue_panel_qp find sv_stone.btn}}
+	#endif
       {campaign
          foreach_venue
          $venue
@@ -868,6 +914,13 @@
          (dest $frame)
          (period VENUE_MAP_SCROLL_SEC)
          (units kTaskUISeconds)})
+#ifdef HX_EE
+;;;;;if 8 tiers (gh2/gh2debug)
+#ifndef 8DBUG
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef GH1RX
    (FOCUS_MSG
       {if
          {!
@@ -898,6 +951,169 @@
             (sv_stone.btn
                {$this set_venue_map_frame 8}
                {game set_venue stone})}})
+#endif
+#endif
+#endif
+#endif
+#endif
+;;;;;if 6 tiers (gh80s/gh80sdebug)
+#ifndef _SHIP
+#ifndef 2DBUG
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef GH1RX
+   (FOCUS_MSG
+      {if
+         {!
+            {ui in_transition}}
+         {switch
+            $new_focus
+            (sv_battle2.btn
+               {$this set_venue_map_frame 1}
+               {game set_venue battle2})
+            (sv_small3.btn
+               {$this set_venue_map_frame 2}
+               {game set_venue small3})
+            (sv_small4.btn
+               {$this set_venue_map_frame 3}
+               {game set_venue small4})
+            (sv_theatre2.btn
+               {$this set_venue_map_frame 4}
+               {game set_venue theatre2})
+            (sv_fest2.btn
+               {$this set_venue_map_frame 5}
+               {game set_venue fest2})
+            (sv_arena2.btn
+               {$this set_venue_map_frame 6}
+               {game set_venue arena2})}})
+#endif
+#endif
+#endif
+#endif
+#endif
+;;;;;if 14 tiers (mega/onyx)
+#ifndef _SHIP
+#ifndef 2DBUG
+#ifndef 8DBUG
+#ifndef _ENCO
+#ifndef GH1RX
+   (FOCUS_MSG
+      {if
+         {!
+            {ui in_transition}}
+         {switch
+            $new_focus
+            (sv_battle.btn
+               {$this set_venue_map_frame 1}
+               {game set_venue battle})
+            (sv_battle2.btn
+               {$this set_venue_map_frame 1}
+               {game set_venue battle2})
+            (sv_small1.btn
+               {$this set_venue_map_frame 2}
+               {game set_venue small1})
+            (sv_small3.btn
+               {$this set_venue_map_frame 2}
+               {game set_venue small3})
+            (sv_small2.btn
+               {$this set_venue_map_frame 3}
+               {game set_venue small2})
+            (sv_small4.btn
+               {$this set_venue_map_frame 3}
+               {game set_venue small4})
+            (sv_big.btn
+               {$this set_venue_map_frame 4}
+               {game set_venue big})
+            (sv_theatre.btn
+               {$this set_venue_map_frame 5}
+               {game set_venue theatre})
+            (sv_theatre2.btn
+               {$this set_venue_map_frame 5}
+               {game set_venue theatre2})
+            (sv_fest.btn
+               {$this set_venue_map_frame 6}
+               {game set_venue fest})
+            (sv_fest2.btn
+               {$this set_venue_map_frame 6}
+               {game set_venue fest2})
+            (sv_arena.btn
+               {$this set_venue_map_frame 7}
+               {game set_venue arena})
+            (sv_arena2.btn
+               {$this set_venue_map_frame 7}
+               {game set_venue arena2})
+            (sv_stone.btn
+               {$this set_venue_map_frame 8}
+               {game set_venue stone})}})
+#endif
+#endif
+#endif
+#endif
+#endif
+;;;;;if 6 tiers (gh1rdx)
+#ifdef GH1RX
+ (FOCUS_MSG
+  {if
+   {'!'
+    {ui in_transition}}
+   {switch
+    $new_focus
+    (sv_battle.btn
+     {$this set_venue_map_frame 1}
+     {game set_venue battle})
+    (sv_small1.btn
+     {$this set_venue_map_frame 2}
+     {game set_venue small1})
+    (sv_small2.btn
+     {$this set_venue_map_frame 4}
+     {game set_venue small2})
+    (sv_big.btn
+     {$this set_venue_map_frame 4}
+     {game set_venue small2})
+    (sv_theatre.btn
+     {$this set_venue_map_frame 5}
+     {game set_venue theatre})
+    (sv_fest.btn
+     {$this set_venue_map_frame 6}
+     {game set_venue fest})
+    (sv_arena.btn
+     {$this set_venue_map_frame 7}
+     {game set_venue arena})}})
+#endif
+#endif
+
+#ifdef HX_XBOX
+(FOCUS_MSG
+      {if
+         {!
+            {ui in_transition}}
+         {switch
+            $new_focus
+            (sv_battle.btn
+               {$this set_venue_map_frame 1}
+               {game set_venue battle})
+            (sv_small1.btn
+               {$this set_venue_map_frame 2}
+               {game set_venue small1})
+            (sv_small2.btn
+               {$this set_venue_map_frame 3}
+               {game set_venue small2})
+            (sv_big.btn
+               {$this set_venue_map_frame 4}
+               {game set_venue big})
+            (sv_theatre.btn
+               {$this set_venue_map_frame 5}
+               {game set_venue theatre})
+            (sv_fest.btn
+               {$this set_venue_map_frame 6}
+               {game set_venue fest})
+            (sv_arena.btn
+               {$this set_venue_map_frame 7}
+               {game set_venue arena})
+            (sv_stone.btn
+               {$this set_venue_map_frame 8}
+               {game set_venue stone})}})
+#endif
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; DONT MISS THIS, THIS HAS NO IFDEF
    (SELECT_START_MSG
       {game set_career}
@@ -907,9 +1123,56 @@
    GHPanel
    sel_venue_panel_qp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+#ifdef HX_XBOX
    (file sel_venue_gh2.milo)
    (focus sv_battle.btn)
+#endif
+#ifdef HX_EE
+;;;;;if 8 tiers (gh2/gh2debug)
+#ifndef 8DBUG
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef GH1RX
+   (file sel_venue_gh2.milo)
+   (focus sv_battle.btn)
+#endif
+#endif
+#endif
+#endif
+#endif
+;;;;;if 6 tiers (gh80s/gh80sdebug)
+#ifndef _SHIP
+#ifndef 2DBUG
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef GH1RX
+   (file sel_venue_80s.milo)
+   (focus sv_battle2.btn)
+#endif
+#endif
+#endif
+#endif
+#endif
+;;;;;if 14 tiers (mega/onyx)
+#ifndef _SHIP
+#ifndef 2DBUG
+#ifndef 8DBUG
+#ifndef _ENCO
+#ifndef GH1RX
+   (file sel_venue_mega.milo)
+   (focus sv_battle.btn)
+#endif
+#endif
+#endif
+#endif
+#endif
+;;;;;if gh1rdx
+#ifdef GH1RX
+   (file sel_venue_gh1.milo)
+   (focus sv_battle.btn)
+#endif
+#endif
 }
 {new
    GHScreen

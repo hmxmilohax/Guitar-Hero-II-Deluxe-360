@@ -1,5 +1,4 @@
-#define SCREEN_DIM_SECS
-(0.5)
+#define SCREEN_DIM_SECS (0.5)
 {tut_part.lbl set_showing FALSE}
 {tut_task.lbl set_showing FALSE}
 {tut_score.lbl set_showing FALSE}
@@ -8,8 +7,7 @@
 {hud set_showing FALSE}
 {track_panel set_showing FALSE}
 {tut_screen_dim.view set_showing TRUE}
-{tut_screen_dim.view
-   animate
+{tut_screen_dim.view animate
    (units kTaskTutorialSeconds)
    (period SCREEN_DIM_SECS)
    (range 0 30)}

@@ -20,11 +20,8 @@
 WAIT_FOR_VO
 {$task sleep 0.4}
 {stop_sfx bkgd_music}
-{t1_highlights.view
-   animate
-   (loop
-      0
-      {t1_highlights.view end_frame})
+{t1_highlights.view animate
+   (loop 0 {t1_highlights.view end_frame})
    (units kTaskTutorialSeconds)}
 {tut_star_highlight.view set_showing TRUE}
 {$this play_vo star_combos_2}
@@ -33,60 +30,35 @@ WAIT_FOR_VO
 {tut_header.lbl set_showing TRUE}
 {tut_task.lbl set_text tut2_2_task}
 {tut_task.lbl set_showing TRUE}
-{new
-   Object
-   tut_22_callback
+{new Object tut_22_callback
    (star_phrase_miss_callback
-      {if
-         {>
-            [gem_streak]
-            6}
+      {if {> [gem_streak] 6}
          {tutorial play_vo near_miss_vo}}
-      {set
-         [gem_streak]
-         0})
-   (star_phrase_captured_callback
-      {set
-         [star_phrase_captured]
-         TRUE})
+      {set [gem_streak] 0})
+   (star_phrase_captured_callback {set [star_phrase_captured] TRUE})
    (star_gem_hit_callback
-      {set
-         [gem_streak]
-         {'+'
-            [gem_streak]
-            1}})
+      {set [gem_streak] {'+' [gem_streak] 1}})
    (lesson_running
       {&&
-         {!
-            [star_phrase_captured]}
-         {<
-            {player0 percent_complete}
-            END_OF_SONG_PERCENT}})
-   (passed
-      [star_phrase_captured])
-   (failed
-      {!
-         {$this passed}})
+         {! [star_phrase_captured]}
+         {< {player0 percent_complete} END_OF_SONG_PERCENT}})
+   (passed [star_phrase_captured])
+   (failed {! {$this passed}})
    (star_phrase_captured FALSE)
    (gem_streak 0)}
 {player0 add_sink tut_22_callback}
 {player0 set_whammystarpowerenabled FALSE}
 {player0 set_mercuryswitchenabled FALSE}
 {beatmatch set_paused FALSE}
-{$task
-   wait
-   {tut_22_callback lesson_running}}
+{$task wait {tut_22_callback lesson_running}}
 {track_panel animate_track_in_fast}
-{if
-   {!
-      {tut_22_callback failed}}
+{if {! {tut_22_callback failed}}
    {$task sleep 1}}
 {game set_paused TRUE}
 {hud set_showing FALSE}
 {tut_star_highlight.view set_showing FALSE}
 {tut_top_text.view set_showing FALSE}
-{if_else
-   {tut_22_callback failed}
+{if_else {tut_22_callback failed}
    {do
       {tut_banner.lbl set_text tut_timeout}
       {tut_banner.lbl set_showing TRUE}

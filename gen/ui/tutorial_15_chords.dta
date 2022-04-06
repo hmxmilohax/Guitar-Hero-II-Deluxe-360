@@ -19,11 +19,8 @@
 {tut_info.lbl set_showing TRUE}
 {$this play_vo chords_1}
 {$task sleep 1}
-{t1_highlights.view
-   animate
-   (loop
-      0
-      {t1_highlights.view end_frame})
+{t1_highlights.view animate
+   (loop 0 {t1_highlights.view end_frame})
    (units kTaskTutorialSeconds)}
 {t1_chord_highlight.view set_showing TRUE}
 WAIT_FOR_VO
@@ -36,63 +33,33 @@ WAIT_FOR_VO
 {tut_header.lbl set_showing TRUE}
 {tut_task.lbl set_text tut1_5_task}
 {tut_task.lbl set_showing TRUE}
-#define CHORDS_TO_HIT
-(6)
-{new
-   Object
-   tut_15_callback
+#define CHORDS_TO_HIT (6)
+{new Object tut_15_callback
    (gem_hit_callback
       ($slot $hopoable $hopoed)
-      {if
-         {<
-            [num_chords_hit]
-            CHORDS_TO_HIT}
-         {set
-            [num_chords_hit]
-            {'+'
-               [num_chords_hit]
-               1}}
+      {if {< [num_chords_hit] CHORDS_TO_HIT}
+         {set [num_chords_hit] {'+' [num_chords_hit] 1}}
          {tutorial play_vo hit_vo}
-         {tutorial
-            update_tut_score
-            {localize tut1_5_score}
-            [num_chords_hit]
-            CHORDS_TO_HIT}
-         {tut_score.tnm
-            animate
+         {tutorial update_tut_score
+            {localize tut1_5_score} [num_chords_hit] CHORDS_TO_HIT}
+         {tut_score.tnm animate
             (period 0.15)
             (range 0 2)}})
-   (passed
-      {>=
-         [num_chords_hit]
-         CHORDS_TO_HIT})
-   (failed
-      {!
-         {$this passed}})
+   (passed {>= [num_chords_hit] CHORDS_TO_HIT})
+   (failed {! {$this passed}})
    (lesson_running
       {&&
-         {<
-            [num_chords_hit]
-            CHORDS_TO_HIT}
-         {<
-            {player0 percent_complete}
-            END_OF_SONG_PERCENT}})
+         {< [num_chords_hit] CHORDS_TO_HIT}
+         {< {player0 percent_complete} END_OF_SONG_PERCENT}})
    (num_chords_hit 0)}
 {player_matcher0 add_sink tut_15_callback}
-{$this
-   update_tut_score
-   {localize tut1_5_score}
-   0
-   CHORDS_TO_HIT}
+{$this update_tut_score
+   {localize tut1_5_score} 0 CHORDS_TO_HIT}
 {tut_score.lbl set_showing TRUE}
 {beatmatch set_paused FALSE}
-{$task
-   wait
-   {tut_15_callback lesson_running}}
+{$task wait {tut_15_callback lesson_running}}
 {track_panel animate_track_in_fast}
-{if
-   {!
-      {tut_15_callback failed}}
+{if {! {tut_15_callback failed}}
    {$task sleep 1}}
 {game set_paused TRUE}
 {tut_top_text.view set_showing FALSE}

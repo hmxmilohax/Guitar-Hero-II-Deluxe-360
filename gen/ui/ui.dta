@@ -1,9 +1,123 @@
+#ifdef HX_EE
+; Use these characters for debug ELFs (ifndef = if not def)
+#ifndef _SHIP
+#ifndef _ENCO
+#ifndef _ONYX
+#ifndef _MEGA
+#ifndef GH1RX
+   #define CHARACTERS ((punk alterna glam goth metal rockabill rock deathmetal classic funk1 grim))
+   #define LOAD_CHARACTERS ((punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim))
+   #define STORE_CHARACTERS (classic funk1 grim)
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; Use these characters for retail ELFs
+#ifndef 2DBUG
+#ifndef 8DBUG
+#ifndef GH1RX
+   #define CHARACTERS ((punk punkencore alterna alternaencore glam glamencore goth gothencore metal metalencore rockabill rock deathmetal classic funk1 grim grimencore))
+   #define LOAD_CHARACTERS ((punk1 punk2 punkencore alterna1 alterna2 alternaencore glam1 glam2 glamencore goth2 goth1 gothencore metal1 metal2 metalencore rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim grimencore))
+   #define STORE_CHARACTERS (classic funk1)
+#endif
+#endif
+#endif
+
+; Use these characters for GH1 Redux
+#ifdef GH1RX
+   #define CHARACTERS ((punkgh1 alternagh1 glam gothgh1 metalgh1 rockabill rock deathmetal classicgh1 funkgh1 grim))
+   #define LOAD_CHARACTERS ((punkgh1 punk2 alternagh1 alterna2 glamgh1 glam2 gothgh1 goth1 metalgh1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classicgh1 funkgh1 grim))
+   #define STORE_CHARACTERS (classicgh1 funkgh1 grim)
+#endif
+
+; MULTIPLAYER Specifically handle characters
+#ifndef GH1RX
+   #define MULTCHARACTERS ((punkencore alternaencore glamencore gothencore metalencore rockabill rock deathmetal classic funk1 grimencore))
+   #define 80SMULTCHARACTERS ((punkencore alternaencore glamencore gothencore metalencore rockabill rock deathmetal classic funk1 grimencore))
+   #define 80SMULT_LOAD_CHARACTERS ((
+      {if_else $game80s
+         punkencore
+         punk1}
+      punk2
+      {if_else $game80s
+         alternaencore
+         alterna1}
+      alterna2
+      {if_else $game80s
+         glamencore
+         glam1}
+      glam2
+      {if_else $game80s
+         gothencore
+         goth2}
+      goth1
+      {if_else $game80s
+         metalencore
+         metal1}
+      metal2
+      rockabill1
+      rockabill2
+      rock2
+      rock1
+      deathmetal1
+      deathmetal2
+      classic
+      funk1
+      {if_else $game80s
+         grimencore
+         grim}))
+   #define MULT_LOAD_CHARACTERS ((
+   {if_else $game80s
+      punkencore
+	  punk1}
+   punk2
+   {if_else $game80s
+      alternaencore
+	  alterna1}
+   alterna2
+   {if_else $game80s
+      glamencore
+	  glam1}
+   glam2
+   {if_else $game80s
+      gothencore
+	  goth2}
+   goth1
+   {if_else $game80s
+      metalencore
+	  metal1}
+   metal2
+   rockabill1
+   rockabill2
+   rock2
+   rock1
+   deathmetal1
+   deathmetal2
+   classic
+   funk1
+   {if_else $game80s
+      grimencore
+      grim}))
+#endif
+
+; MULTIPLAYER use characters for GH1 Redux
+#ifdef GH1RX
+   #define MULTCHARACTERS ((punkgh1 alterngh1 glamgh1 gothgh1 metalgh1 rockabill rock deathmetal classicgh1 funkgh1 grimencore))
+   #define 80SMULT_LOAD_CHARACTERS ((punkgh1 punk2 alternagh1 alterna2 glamgh1 glam2 gothgh1 goth1 metalgh1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classicgh1 funkgh1 grim))
+   #define MULT_LOAD_CHARACTERS ((punkgh1 punk2 alternagh1 alterna2 glamgh1 glam2 gothgh1 goth1 metalgh1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classicgh1 funkgh1 grim))
+#endif
+#endif
+
+#ifdef HX_XBOX
 #define CHARACTERS
 ((punk alterna glam goth metal rockabill rock deathmetal classic funk1 grim))
 #define LOAD_CHARACTERS
 ((punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim))
 #define STORE_CHARACTERS
 (classic funk1 grim)
+#endif
 
 #define STORE_OUTFITS (punk2 alterna2 glam2 goth1 metal2 rockabill2 rock1 deathmetal2)
 #define SKIN_ANIM_TIME (0.4)

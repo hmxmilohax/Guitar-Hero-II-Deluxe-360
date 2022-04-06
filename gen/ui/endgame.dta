@@ -27,6 +27,13 @@
                {gamecfg set continue_screen career_screen}}
             {if {get_highscore_index $score}
                {highscores add {campaign profile_name {campaign profile_slot}} $score}}}}
+#ifdef HX_EE
+; GH2 ELF
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef 8DBUG
+#ifndef GH1RX
       {do
          ($win_screen $freebird)
          {set $win_screen
@@ -45,6 +52,57 @@
          {if {== $win_screen endgame_encore_screen}
             {endgame_encore_panel set freebird $freebird}}
          {ui goto_screen $win_screen}}
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; All other ELFs
+#ifndef _SHIP
+#ifndef 2DBUG
+      {do
+         ($win_screen $is_final_song)
+         {set $win_screen
+            {if_else {meta get won_campaign} win_game_screen
+               {if_else {'||'
+               {game get force_encore}
+               {&&
+               {game get encore_unlock_check}
+               {campaign encore_newly_unlocked $is_final_song}}}
+                  endgame_encore_screen
+                  {gamecfg get win_screen}}}}
+         {script_task
+            (units kTaskUISeconds)
+            (delay 0.3)
+            (script {play_sfx postshow_loop})}
+         {if {== $win_screen endgame_encore_screen}
+            {endgame_encore_panel set is_final_song $is_final_song}}
+         {ui goto_screen $win_screen}}
+#endif
+#endif
+#endif
+
+#ifdef HX_XBOX
+      {do
+         ($win_screen $freebird)
+         {set $win_screen
+            {if_else {meta get won_campaign} win_game_screen
+               {if_else {'||'
+               {game get force_encore}
+               {&&
+               {game get encore_unlock_check}
+               {campaign encore_newly_unlocked $freebird}}}
+                  endgame_encore_screen
+                  {gamecfg get win_screen}}}}
+         {script_task
+            (units kTaskUISeconds)
+            (delay 0.3)
+            (script {play_sfx postshow_loop})}
+         {if {== $win_screen endgame_encore_screen}
+            {endgame_encore_panel set freebird $freebird}}
+         {ui goto_screen $win_screen}}
+#endif
 )}
 
 {func goto_endgame_complete
@@ -413,6 +471,14 @@
    {game set_song {campaign get_cur_encore}}
    {game retain_world_bank}
    {ui goto_screen endgame_encore_unload_screen})
+
+#ifdef HX_EE
+; If GH2 ELF
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef _ONYX
+#ifndef 8DBUG
+#ifndef GH1RX
 #define ENDGAME_ENCORE_LETTERS
 ((endgame_encore_letter3 endgame_encore_letter4 endgame_encore_letter5 endgame_encore_letter6))
 {new GHPanel endgame_encore_panel
@@ -484,6 +550,160 @@
    (enter
       {world_panel set_showing FALSE}
       {$this set_focus_panel endgame_encore_panel})}
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; If not GH2 ELF
+#ifndef _SHIP
+#ifndef 2DBUG
+#define ENDGAME_ENCORE_LETTERS ((endgame_encore_letter3 endgame_encore_letter4 endgame_encore_letter5 endgame_encore_letter6))
+{new GHPanel endgame_encore_panel
+   (file endgame_encore_80s.milo)
+   (focus no.btn)
+   (cash_award 0)
+   (is_final_song 0)
+   (enter
+      {finalsong_moves.tnm set_frame 0.0}
+      {finalsong1.grp set_showing FALSE}
+      {finalsong2.grp set_showing FALSE}
+      {finalsong3.grp set_showing FALSE}
+      {$this set_focus yes.btn}
+      {set [cash_award] {cashaward_screen get new_cash}}
+      {score.lbl set_localized_text {sprintf {localize endgame_encore_score} {player0 score}}}
+      {review.lbl set_localized_text {sprintf {localize endgame_encore_review} {player0 num_stars}}}
+      {money.lbl set_localized_text
+         {if_else [cash_award]
+            {sprintf {localize endgame_encore_money} [cash_award]}
+            ""}}
+      {letter2.lbl set_text
+         {if_else [is_final_song]
+            endgame_encore_finalsong1
+            {random_elem ENDGAME_ENCORE_LETTERS}}})
+   (SELECT_START_MSG
+      {synth play_sequence button_select}
+      {switch $component
+         (yes.btn
+            {if_else [is_final_song]
+               {do
+                  {finalsong_moves.tnm animate
+                     (range 0.0 1.0)
+                     (period 0.15)
+                     (units k30_fps_ui)}
+                  {finalsong1.grp set_showing TRUE}
+                  {$this set_focus yes_finalsong1.btn}}
+               {do START_ENCORE}})
+         ((no.btn no_finalsong1.btn no_finalsong2.btn no_finalsong3.btn)
+            {encore_stream stop}
+            {ui goto_screen endgame_screen})
+         (yes_finalsong1.btn
+            {finalsong_moves.tnm animate
+               (range 1.0 2.0)
+               (period 0.15)
+               (units k30_fps_ui)}
+            {finalsong2.grp set_showing TRUE}
+            {$this set_focus yes_finalsong2.btn})
+         (yes_finalsong2.btn
+            {finalsong_moves.tnm animate
+               (range 2.0 3.0)
+               (period 0.15)
+               (units k30_fps_ui)}
+            {finalsong3.grp set_showing TRUE}
+            {$this set_focus yes_finalsong3.btn})
+         (yes_finalsong3.btn START_ENCORE)}
+      kDataUnhandled)}
+{new GHScreen endgame_encore_screen
+   (panels GAME_PANELS endgame_encore_panel helpbar)
+   (focus endgame_panel)
+   (clear_vram TRUE)
+   (animate_transition FALSE)
+   (allow_back FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))
+   (enter
+      {world_panel set_showing FALSE}
+      {$this set_focus_panel endgame_encore_panel})}
+#endif
+#endif
+#endif
+
+#ifdef HX_XBOX
+#define ENDGAME_ENCORE_LETTERS
+((endgame_encore_letter3 endgame_encore_letter4 endgame_encore_letter5 endgame_encore_letter6))
+{new GHPanel endgame_encore_panel
+   (file endgame_encore.milo)
+   (focus no.btn)
+   (cash_award 0)
+   (freebird 0)
+   (enter
+      {freebird_moves.tnm set_frame 0.0}
+      {freebird1.grp set_showing FALSE}
+      {freebird2.grp set_showing FALSE}
+      {freebird3.grp set_showing FALSE}
+      {$this set_focus yes.btn}
+      {set [cash_award] {cashaward_screen get new_cash}}
+      {score.lbl set_localized_text {sprintf {localize endgame_encore_score} {player0 score}}}
+      {review.lbl set_localized_text {sprintf {localize endgame_encore_review} {player0 num_stars}}}
+      {money.lbl set_localized_text
+         {if_else [cash_award]
+            {sprintf {localize endgame_encore_money} [cash_award]}
+            ""}}
+      {letter2.lbl set_text
+         {if_else
+            [freebird]
+            endgame_encore_freebird1
+            {random_elem ENDGAME_ENCORE_LETTERS}}})
+   (SELECT_START_MSG
+      {synth play_sequence button_select}
+      {switch
+         $component
+         (yes.btn
+            {if_else [freebird]
+               {do
+                  {freebird_moves.tnm animate
+                     (range 0.0 1.0)
+                     (period 0.15)
+                     (units k30_fps_ui)}
+                  {freebird1.grp set_showing TRUE}
+                  {$this set_focus yes_freebird1.btn}}
+               {do START_ENCORE}})
+         ((no.btn no_freebird1.btn no_freebird2.btn no_freebird3.btn)
+            {encore_stream stop}
+            {ui goto_screen endgame_screen})
+         (yes_freebird1.btn
+            {freebird_moves.tnm animate
+               (range 1.0 2.0)
+               (period 0.15)
+               (units k30_fps_ui)}
+            {freebird2.grp set_showing TRUE}
+            {$this set_focus yes_freebird2.btn})
+         (yes_freebird2.btn
+            {freebird_moves.tnm animate
+               (range 2.0 3.0)
+               (period 0.15)
+               (units k30_fps_ui)}
+            {freebird3.grp set_showing TRUE}
+            {$this set_focus yes_freebird3.btn})
+         (yes_freebird3.btn START_ENCORE)}
+      kDataUnhandled)}
+{new GHScreen endgame_encore_screen
+   (panels GAME_PANELS endgame_encore_panel helpbar)
+   (focus endgame_panel)
+   (clear_vram TRUE)
+   (animate_transition FALSE)
+   (allow_back FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))
+   (enter
+      {world_panel set_showing FALSE}
+      {$this set_focus_panel endgame_encore_panel})}
+#endif
 {new GHScreen endgame_encore_unload_screen
    (panels endgame_encore_panel helpbar)
    (animate_transition FALSE)

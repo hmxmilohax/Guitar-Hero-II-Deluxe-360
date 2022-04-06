@@ -82,7 +82,10 @@
 (gig_extras "EXTRAS")
 (milo_extras "EXTRAS")
 (extras_songtitle "SONG TITLE ALWAYS")
+#ifdef HX_EE
 (extras_horse "HORSE HEAD")
+#else
+(extras_horse "ENABLE DRUMS")
 (extras_roxbury "ROXBURY MODE")
 (extras_performance "PERFORMANCE MODE")
 (extras_nofail "NO FAIL MODE")

@@ -19,108 +19,54 @@ SHORT_VO_GAP
 {tut_header.lbl set_showing TRUE}
 {tut_task.lbl set_text tut1_3_task}
 {tut_task.lbl set_showing TRUE}
-#define DIFF_NOTES_TO_HIT
-(8)
-{new
-   Object
-   tut_13_callback
+#define DIFF_NOTES_TO_HIT (8)
+{new Object tut_13_callback
    (gem_hit_callback
       ($slot $hopoable $hopoed)
-      {set
-         [num_gems_hit]
-         {'+'
-            [num_gems_hit]
-            1}}
-      {if
-         {<=
-            [num_gems_hit]
-            DIFF_NOTES_TO_HIT}
-         {tutorial
-            update_tut_score
-            {localize tut1_3_score}
-            [num_gems_hit]
-            DIFF_NOTES_TO_HIT}
-         {tut_score.tnm
-            animate
+      {set [num_gems_hit] {'+' [num_gems_hit] 1}}
+      {if {<= [num_gems_hit] DIFF_NOTES_TO_HIT}
+         {tutorial update_tut_score
+            {localize tut1_3_score} [num_gems_hit] DIFF_NOTES_TO_HIT}
+         {tut_score.tnm animate
             (period 0.15)
             (range 0 2)}})
    (gem_miss_callback
       ($slot_hit $real_slot $timing_error)
-      {set
-         [perfect]
-         FALSE}
-      {if_else
-         {== $slot_hit $real_slot}
-         {if
-            {< $timing_error 500}
+      {set [perfect] FALSE}
+      {if_else {== $slot_hit $real_slot}
+         {if {< $timing_error 500}
             {tutorial play_vo near_miss_vo}}
          {cond
-            ({==
-                  [last_slot_hit]
-                  $slot_hit}
-               {set
-                  [slot_rep_count]
-                  {'+'
-                     [slot_rep_count]
-                     1}}
-               {if
-                  {>=
-                     [slot_rep_count]
-                     4}
-                  {if
-                     {!
-                        [feedback_1_played]}
+            ({== [last_slot_hit] $slot_hit}
+               {set [slot_rep_count] {'+' [slot_rep_count] 1}}
+               {if {>= [slot_rep_count] 4}
+                  {if {! [feedback_1_played]}
                      {tutorial play_vo diff_notes_same_note}
-                     {set
-                        [feedback_1_played]
-                        TRUE}}})
+                     {set [feedback_1_played] TRUE}}})
             (TRUE
-               {set
-                  [last_slot_hit]
-                  $slot_hit}
-               {set
-                  [slot_rep_count]
-                  1})}})
-   (gem_pass_callback
-      {set
-         [perfect]
-         FALSE})
-   (passed
-      {>=
-         [num_gems_hit]
-         DIFF_NOTES_TO_HIT})
-   (failed
-      {!
-         {$this passed}})
+               {set [last_slot_hit] $slot_hit}
+               {set [slot_rep_count] 1})}})
+   (gem_pass_callback {set [perfect] FALSE})
+   (passed {>= [num_gems_hit] DIFF_NOTES_TO_HIT})
+   (failed {! {$this passed}})
    (lesson_running
       {&&
-         {<
-            [num_gems_hit]
-            DIFF_NOTES_TO_HIT}
-         {<
-            {player0 percent_complete}
-            END_OF_SONG_PERCENT}})
+         {< [num_gems_hit] DIFF_NOTES_TO_HIT}
+         {< {player0 percent_complete} END_OF_SONG_PERCENT}})
    (num_gems_hit 0)
    (perfect TRUE)
    (last_slot_hit -1)
    (slot_rep_count 1)
    (feedback_1_played FALSE)}
 {player_matcher0 add_sink tut_13_callback}
-{$this
-   update_tut_score
-   {localize tut1_3_score}
-   0
-   DIFF_NOTES_TO_HIT}
+{$this update_tut_score
+   {localize tut1_3_score} 0 DIFF_NOTES_TO_HIT}
 {tut_score.lbl set_showing TRUE}
 {beatmatch set_paused FALSE}
-{$task
-   wait
-   {tut_13_callback lesson_running}}
+{$task wait {tut_13_callback lesson_running}}
 {track_panel animate_track_in_fast}
 {$this reset_vo}
-{if
-   {!
-      {tut_13_callback failed}}
+{if {! {tut_13_callback failed}}
    {$task sleep 1}}
 {game set_paused TRUE}
 WAIT_FOR_VO
@@ -133,10 +79,8 @@ WAIT_FOR_VO
    (TRUE
       {tut_banner.lbl set_text tut1_3_done}
       {tut_banner.lbl set_showing TRUE}
-      {$this
-         play_vo
-         {if_else
-            {tut_13_callback get perfect}
+      {$this play_vo
+         {if_else {tut_13_callback get perfect}
             diff_notes_done_perfect
             diff_notes_done}})}
 {play_sfx bkgd_music}

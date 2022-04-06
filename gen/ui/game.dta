@@ -319,9 +319,8 @@
          {handle ($this single_player)}}
       {$this set_showing {! $focusmode}}
       {$this set_paused FALSE})
-	  #ifdef HX_XBOX
-   (unload
-      {rnd suspend})
+      #ifdef HX_XBOX
+   (unload {rnd suspend})
    #endif}
 #define ATTRACT_LENGTH_SEC (120)
 #define FADE_LENGTH_SEC (2)

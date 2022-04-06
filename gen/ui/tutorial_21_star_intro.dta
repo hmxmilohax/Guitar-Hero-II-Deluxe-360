@@ -1,16 +1,12 @@
-#define METER_MOVE_MS
-(4000)
+#define METER_MOVE_MS (4000)
 {$this set_beatmatch_muting TRUE}
 {hud set_showing FALSE}
 {track_panel set_showing FALSE}
 {tutorial1.view set_showing FALSE}
 {tutorial2.view set_showing TRUE}
 {t1_stamps.view set_showing FALSE}
-{t1_highlights.view
-   animate
-   (loop
-      0
-      {t1_highlights.view end_frame})
+{t1_highlights.view animate
+   (loop 0 {t1_highlights.view end_frame})
    (units kTaskTutorialSeconds)}
 {tut_task.lbl set_showing FALSE}
 {tut_score.lbl set_showing FALSE}
@@ -30,8 +26,7 @@ WAIT_FOR_VO
 SHORT_VO_GAP
 {tut_banner.lbl set_showing FALSE}
 {hud intro_skip}
-{handle
-   (hud start)}
+{handle (hud start)}
 {hud set_showing TRUE}
 {beatmatch set_paused TRUE}
 {$this play_vo star_intro_3}
