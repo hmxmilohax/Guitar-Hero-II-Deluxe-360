@@ -1,53 +1,50 @@
-{new
-   GHPanel
-   pause_panel
-   (file pause.milo)
+{new GHPanel pause_panel
+   (file
+      {if_else $gamegh1
+         pause_gh1.milo
+         pause.milo})
    (focus resume.btn)
    (reset_focus TRUE)}
 #define PAUSE_SCREEN_HANDLERS
 ((allow_back FALSE)
    (animate_transition FALSE)
    (enter
-      {if
-         {world_panel is_up}
+      {if {world_panel is_up}
          {world_panel set_paused TRUE}})
    (resume
-      {if
-         {==
-            {gamecfg get mode}
-            practice}
-         {practice_panel set keep_section_text TRUE}}
+      {if {== {gamecfg get mode} practice}
+         {if_else $focusmode
+            {practice_focus_panel set keep_section_text TRUE}
+            {practice_panel set keep_section_text TRUE}}}
       {set $game_unpause_on_enter TRUE}
-      {ui
-         goto_screen
-         {gamecfg get game_screen}})
+      {if_else {&&
+      {== {gamecfg get game_screen} practice_game_screen}
+      $focusmode}
+         {ui goto_screen practice_game_focus_screen}
+         {ui goto_screen {gamecfg get game_screen}}})
    (restart
       {synth stop_all_sfx}
       {synth play_sequence button_play}
-      {if_else
-         {game get intro_complete}
+      {if_else {game get intro_complete}
          {game_restart_fast}
          {game_restart}}))
 #define PAUSE_SELECT_START_HANDLER
 ((SELECT_START_MSG
-      {switch
-         $component
-         (resume.btn
-            {$this resume})
-         (restart.btn
-            {pause_confirm_restart_screen set pause_screen $this}
-            {ui goto_screen pause_confirm_restart_screen})
-         (audio_options.btn
-            {ui goto_screen pause_audio_settings_screen})
-         (video_options.btn
-            {pause_video_settings_screen set stash_lefty_settings TRUE}
-            {ui goto_screen pause_video_settings_screen})
+      {switch $component
+         (resume.btn {$this resume})
+         (restart.btn {$this restart})
+         (change_speed.btn {ui goto_screen pause_audio_settings_screen})
+         (section.btn {ui goto_screen pause_video_settings_screen})
+         (newsong.btn
+            {gamecfg set mode practice}
+            {gamecfg set_track 0 0}
+            {practice_selpart_screen set career_mode FALSE}
+            {meta_loading_goto practice_selpart_screen})
          (quit.btn
-            {pause_confirm_quit_screen set pause_screen $this}
-            {ui goto_screen pause_confirm_quit_screen})}))
-{new
-   GHScreen
-   pause_screen
+            {if {== career {gamecfg get mode}}
+               {gamecfg set continue_screen sel_song_screen}}
+            {meta_loading_goto {gamecfg get continue_screen}})}))
+{new GHScreen pause_screen
    (panels GAME_PANELS pause_panel)
    (focus pause_panel)
    (clear_vram TRUE)
@@ -55,86 +52,91 @@
    PAUSE_SCREEN_HANDLERS
    PAUSE_SELECT_START_HANDLER
    (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Start}
+      {if {== $button kPad_Start}
          {$this resume}}
       kDataUnhandled)}
-{new
-   GHPanel
-   pract_pause_panel
-   (file pract_pause.milo)
+{new GHPanel pract_pause_panel
+   (file
+      {if_else $gamegh1
+         pract_pause_gh1.milo
+         pract_pause.milo})
    (enter
       {do
-         ($career
-            {practice_sel_section_screen get career_mode})
+         ($career {practice_selpart_screen get career_mode})
          {tut_pause_career_buttons.view set_showing $career}
-         {tut_pause_buttons.view
-            set_showing
-            {! $career}}
-         {$this
-            set_focus
-            {if_else $career resume_career.btn resume.btn}}})}
-{new
-   GHScreen
-   pract_pause_screen
+         {tut_pause_buttons.view set_showing {! $career}}
+         {$this set_focus {if_else $career resume_career.btn resume.btn}}})}
+{new GHScreen pract_pause_screen
    (panels PRACTICE_PANELS pract_pause_panel)
    (focus pract_pause_panel)
    (clear_vram TRUE)
    (in_game TRUE)
    PAUSE_SCREEN_HANDLERS
    (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Start}
+      {if {== $button kPad_Start}
          {$this resume}}
       kDataUnhandled)
    (SELECT_START_MSG
-      {switch
-         $component
-         (resume.btn
-            {$this resume})
-         (resume_career.btn
-            {$this resume})
-         (restart.btn
-            {$this restart})
-         (restart_career.btn
-            {$this restart})
-         (section.btn
-            {meta_loading_nosave_goto practice_sel_section_screen})
-         (section_career.btn
-            {meta_loading_goto practice_sel_section_screen})
+      {switch $component
+         (resume.btn {$this resume})
+         (resume_career.btn {$this resume})
+         (restart.btn {$this restart})
+         (restart_career.btn {$this restart})
+         (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
+         (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (change_speed.btn
-            {practice_change_speed_screen set back_screen pract_pause_screen}
-            {ui goto_screen practice_change_speed_screen})
+            {modifiers_screen_pract set back_screen pract_pause_screen}
+            {meta_loading_nosave_goto modifiers_screen_pract})
          (change_speed_career.btn
-            {practice_change_speed_screen set back_screen pract_pause_screen}
-            {ui goto_screen practice_change_speed_screen})
-         (newsong.btn
-            {meta_loading_nosave_goto practice_selsong_screen})
+            {modifiers_screen_pract set back_screen pract_pause_screen}
+            {meta_loading_nosave_goto modifiers_screen_pract})
+         (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
          (quit_career.btn
             {career_screen resume_from_practice}
             {meta_loading_goto career_screen})
-         (quit.btn
-            {meta_loading_goto
-               {gamecfg get continue_screen}})})}
-{func
-   meta_loading_goto
+         (quit.btn {meta_loading_goto {gamecfg get continue_screen}})})}
+{new GHScreen pract_pause_focus_screen
+   (panels PRACTICE_FOCUS_PANELS pract_pause_panel)
+   (focus pract_pause_panel)
+   (clear_vram TRUE)
+   (in_game TRUE)
+   PAUSE_SCREEN_HANDLERS
+   (BUTTON_DOWN_MSG
+      {if {== $button kPad_Start}
+         {$this resume}}
+      kDataUnhandled)
+   (SELECT_START_MSG
+      {switch $component
+         (resume.btn {$this resume})
+         (resume_career.btn {$this resume})
+         (restart.btn {$this restart})
+         (restart_career.btn {$this restart})
+         (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
+         (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
+         (change_speed.btn
+            {modifiers_screen_pract set back_screen pract_pause_screen}
+            {meta_loading_nosave_goto modifiers_screen_pract})
+         (change_speed_career.btn
+            {modifiers_screen_pract set back_screen pract_pause_screen}
+            {meta_loading_nosave_goto modifiers_screen_pract})
+         (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
+         (quit_career.btn
+            {career_screen resume_from_practice}
+            {meta_loading_goto career_screen})
+         (quit.btn {meta_loading_goto {gamecfg get continue_screen}})})}
+{func meta_loading_goto
    ($next_screen)
    {meta_loading_screen set next_screen $next_screen}
    {ui goto_screen meta_loading_screen}}
-{func
-   meta_loading_nosave_goto
+{func meta_loading_nosave_goto
    ($next_screen)
    {meta_loading_screen set autosave FALSE}
    {meta_loading_goto $next_screen}}
-{new
-   UIPanel
-   meta_loading_panel
+{new UIPanel meta_loading_panel
    (file meta_loading.milo)
    (enter
       {animate_forever_30fps $this meta_loading.view})}
-{new
-   GHScreen
-   meta_loading_screen
+{new GHScreen meta_loading_screen
    (panels meta_loading_panel)
    (clear_vram TRUE)
    (allow_back FALSE)
@@ -142,43 +144,31 @@
    (autosave TRUE)
    (next_screen main_screen)
    (TRANSITION_COMPLETE_MSG
-      {{game get_bank_loader}
-         reset}
+      {{game get_bank_loader} reset}
       {if_else
-         {&&
+            #ifdef HX_XBOX
+            {&&
             [autosave]
             {! $signin_changed_notification}}
-         {autosave_goto
-            [next_screen]}
+            #else
+            [autosave]
+            #endif
+         {autosave_goto [next_screen]}
          {do
-            {set
-               [autosave]
-               TRUE}
-            {ui
-               goto_screen
-               [next_screen]}}})}
-{new
-   GHPanel
-   pause_controller_panel
+            {set [autosave] TRUE}
+            {ui goto_screen [next_screen]}}})}
+{new GHPanel pause_controller_panel
    (file pause_controller.milo)
    (focus resume.btn)
    (enter
-      {pause_controller_msg.lbl
-         set_text
-         {if_else
-            {game multiplayer}
+      {pause_controller_msg.lbl set_text {if_else {game multiplayer}
             controller_loss_msg_multi
             controller_loss_msg}})
    (poll
-      {if_else
-         {game is_missing_controller}
-         {$this disable resume.btn}
-         {do
-            {$this enable resume.btn}
-            {$this set_focus resume.btn}}})}
-{new
-   GHScreen
-   pause_controller_screen
+      {if_else {game is_missing_controller}
+         {resume.btn set_state kDisabled}
+         {resume.btn set_state kFocused}})}
+{new GHScreen pause_controller_screen
    (panels GAME_PANELS pause_controller_panel)
    (focus pause_controller_panel)
    (clear_vram TRUE)
@@ -186,13 +176,10 @@
    PAUSE_SCREEN_HANDLERS
    PAUSE_SELECT_START_HANDLER
    (BUTTON_DOWN_MSG
-      {if_else
-         {game is_missing_controller}
+      {if_else {game is_missing_controller}
          TRUE
          kDataUnhandled})}
-{new
-   GHScreen
-   practice_pause_controller_screen
+{new GHScreen practice_pause_controller_screen
    (panels PRACTICE_PANELS pause_controller_panel)
    (focus pause_controller_panel)
    (clear_vram TRUE)
@@ -200,149 +187,41 @@
    PAUSE_SCREEN_HANDLERS
    PAUSE_SELECT_START_HANDLER
    (BUTTON_DOWN_MSG
-      {if_else
-         {game is_missing_controller}
-         TRUE
-         kDataUnhandled})}
-{new
-   GHPanel
-   multi_pause_controller_panel
+      {if_else {game is_missing_controller}
+	     TRUE
+		 kDataUnhandled})}
+{new GHPanel multi_pause_controller_panel
    (file multi_pause_controller.milo)
    (focus quit.btn)
    (enter
-      {pause_controller_msg.lbl
-         set_text
-         {if_else
-            {game multiplayer}
+      {pause_controller_msg.lbl set_text
+         {if_else {game multiplayer}
             controller_loss_msg_multi
             controller_loss_msg}})
    (poll
-      {if_else
-         {game is_multiple_controllers}
-         {if
-            {==
-               {resume.btn get_state}
-               kDisabled}
-            {$this enable resume.btn}
-            {$this set_focus resume.btn}}
+      {if_else {game is_missing_multi_controller}
          {do
-            {$this disable resume.btn}
-            {$this set_focus quit.btn}}})}
-{new
-   GHScreen
-   multi_pause_controller_screen
+            {resume.btn set_state kDisabled}
+            {$this set_focus quit.btn}}
+         {if {== {resume.btn get_state} kDisabled}
+            {$this set_focus resume.btn}}})}
+{new GHScreen multi_pause_controller_screen
    (panels GAME_PANELS multi_pause_controller_panel)
    (focus multi_pause_controller_panel)
    (clear_vram TRUE)
    (in_game TRUE)
    PAUSE_SCREEN_HANDLERS
    PAUSE_SELECT_START_HANDLER}
-{new
-   GHPanel
-   lefty_restart_panel
+{new GHPanel lefty_restart_panel
    (file lefty_restart.milo)
    (focus reset.btn)}
-{new
-   GHScreen
-   lefty_restart_screen
+{new GHScreen lefty_restart_screen
    (panels GAME_PANELS lefty_restart_panel helpbar)
    (focus lefty_restart_panel)
    (in_game TRUE)
    (lefty_switch 0)
    PAUSE_SCREEN_HANDLERS
+   PAUSE_SELECT_START_HANDLER
    (helpbar
       (default
-         ((fret1 help_continue))))
-   (SELECT_START_MSG
-      {switch
-         $component
-         (restart.btn
-            {lefty_restart_screen restart})
-         (reset.btn
-            {switch
-               [lefty_switch]
-               (0
-                  {options
-                     set_lefty
-                     0
-                     {!
-                        {options get_lefty 0}}})
-               (1
-                  {options
-                     set_lefty
-                     1
-                     {!
-                        {options get_lefty 1}}})
-               (2
-                  {options
-                     set_lefty
-                     0
-                     {!
-                        {options get_lefty 0}}}
-                  {options
-                     set_lefty
-                     1
-                     {!
-                        {options get_lefty 1}}})}
-            {ui goto_screen pause_video_settings_screen})})}
-{new
-   GHPanel
-   pause_confirm_quit_panel
-   (file pause_quit.milo)
-   (focus quit.btn)
-   (enter
-      {$this set_focus quit.btn})}
-{new
-   GHScreen
-   pause_confirm_quit_screen
-   (panels GAME_PANELS pause_confirm_quit_panel)
-   (focus pause_confirm_quit_panel)
-   (in_game TRUE)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (pause_screen pause_screen)
-   (SELECT_START_MSG
-      {switch
-         $component
-         (quit.btn
-            {if
-               {==
-                  career
-                  {gamecfg get mode}}
-               {gamecfg set continue_screen sel_song_screen}
-               {print
-                  "quit career\n"}}
-            {meta_loading_goto
-               {gamecfg get continue_screen}})
-         (cancel.btn
-            {ui
-               goto_screen
-               [pause_screen]})
-         kDataUnhandled})}
-{new
-   GHPanel
-   pause_confirm_restart_panel
-   (file pause_restart.milo)
-   (focus restart.btn)
-   (enter
-      {$this set_focus restart.btn})}
-{new
-   GHScreen
-   pause_confirm_restart_screen
-   (panels GAME_PANELS pause_confirm_restart_panel)
-   (focus pause_confirm_restart_panel)
-   (in_game TRUE)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (pause_screen pause_screen)
-   (SELECT_START_MSG
-      {switch
-         $component
-         (restart.btn
-            {[pause_screen]
-               restart})
-         (cancel.btn
-            {ui
-               goto_screen
-               [pause_screen]})
-         kDataUnhandled})}
+         ((fret1 help_continue))))}
