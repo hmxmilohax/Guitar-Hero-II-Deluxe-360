@@ -1,8 +1,10 @@
 (defaults
    (hud_file hud_blank.milo)
+   #ifdef HX_XBOX
    (allow_achievements TRUE)
    (update_song_leaderboard FALSE)
    (update_career_leaderboard FALSE)
+   #endif
    (crowd_rating_active TRUE)
    (separate_parts TRUE)
    (num_players 1)
@@ -36,13 +38,17 @@
    (practice_speed 0)
    (practice_sections (0 0)))
 (attract
+   #ifdef HX_XBOX
    (allow_achievements FALSE)
+   #endif
    (star_power_disable TRUE)
    (show_hud FALSE)
    (show_track FALSE)
    (force_autoplay TRUE))
 (practice
+   #ifdef HX_XBOX
    (allow_achievements FALSE)
+   #endif
    (skip_intro TRUE)
    (star_power_disable TRUE)
    (game_over_sequence FALSE)
@@ -82,19 +88,34 @@
          kDataUnhandled}))
 (quickplay
    (continue_screen qp_selsong_screen)
-   (hud_file 
+   #ifdef HX_EE
+   (hud_file
+      {if_else {== {gamecfg get_track_sym 0} drum} ;no SP meter if drums
+         hud_sp_drum.milo
+         hud_sp.milo})
+   #else
+   (hud_file
          hud_sp.milo)
+   #endif
    (win_preload_panel endgame_panel)
-   (update_song_leaderboard TRUE))
+   #ifdef HX_XBOX (update_song_leaderboard TRUE) #endif)
 (career
    (main_screen career_screen)
    (continue_screen sel_song_screen)
    (win_preload_panel endgame_panel)
+   #ifdef HX_EE
+   (hud_file
+      {if_else {== {gamecfg get_track_sym 0} drum} ;no SP meter if drums
+         hud_sp_drum.milo
+         hud_sp.milo})
+   #else
    (hud_file
          hud_sp.milo)
+   #endif
    (encore_fx TRUE)
+   #ifdef HX_XBOX
    (update_song_leaderboard TRUE)
-   (update_career_leaderboard TRUE))
+   (update_career_leaderboard TRUE) #endif)
 (multi_vs
    (num_players 2)
    (competitive TRUE)
@@ -136,7 +157,9 @@
          {stop_sfx sp_deploystart.cue}}
       kDataUnhandled))
 (tutorial
+   #ifdef HX_XBOX
    (allow_achievements FALSE)
+   #endif
    (skip_intro TRUE)
    (crowd_rating_active FALSE)
    (show_hud FALSE)
