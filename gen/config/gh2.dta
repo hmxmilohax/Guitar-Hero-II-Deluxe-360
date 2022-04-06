@@ -135,6 +135,9 @@
    #include ../ui/ui_objects.dta
    #include ../hud/hud_objects.dta)
 (locale
+#ifdef HX_XBOX
+../ui/eng/locale_xbox.dta
+#endif
 ../ui/eng/locale_milo.dta ../ui/eng/locale.dta ../ui/eng/locale_authors.dta
 ../ui/eng/locale_career.dta ../ui/eng/locale_chars.dta ../ui/eng/locale_drums.dta
 ../ui/eng/locale_guitars.dta ../ui/eng/locale_loading_general.dta
