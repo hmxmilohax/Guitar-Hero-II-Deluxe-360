@@ -1,23 +1,197 @@
-(base_dir
-   "BAGHCE-00001")
-(elf_name
-   "GHCE_000.01")
+; base_dir is the directory on your memory card where the game saves to.
+; You should always change this for custom discs so as to not conflict with
+; normal (or other custom discs') saves.
+#ifdef _SHIP (base_dir "BAGHCE-00020") #endif
+#ifdef _MEGA (base_dir "BAGHCE-08008") #endif
+#ifdef _ENCO (base_dir "BAGHCE-00080") #endif
+#ifdef GH1RX (base_dir "BAGHCE-11111") #endif
+#ifdef _DRUM (base_dir "BAGHCE-12123") #endif
+#ifdef 2DBUG (base_dir "BAGHCE-01001") #endif
+#ifdef 8DBUG (base_dir "BAGHCE-01801") #endif
+
+#ifndef _SHIP
+#ifndef _DRUM
+#ifndef _ENCO
+#ifndef _MEGA
+#ifndef GH1RX
+#ifndef 8DBUG
+#ifndef 2DBUG
+(base_dir "BAGHCE-68878")
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+
+; I'm not sure elf_name is too important? But can't hurt.
+#ifdef _SHIP (elf_name "GH2DX.ELF") #endif
+
+#ifndef _SHIP
+#ifndef _DRUM
+#ifndef _ONYX
+#ifndef _MEGA
+#ifndef GH1RX
+#ifndef 8DBUG
+#ifndef 2DBUG
+(elf_name "CUSTOMDX.ELF")
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+
+#ifdef _MEGA (elf_name "GHMEGADX.ELF") #endif
+#ifdef _ENCO (elf_name "GH80SDX.ELF") #endif
+#ifdef _DRUM (elf_name "GHEXTRA.ELF") #endif
+#ifdef GH1RX (elf_name "GH1RDX.ELF") #endif
+#ifdef 2DBUG (elf_name "GH2DEBUG.ELF") #endif
+#ifdef 8DBUG (elf_name "80SDEBUG.ELF") #endif
+
+#ifdef _SHIP
 (ps2_icon
-   (file
-      "gh.icn")
+   (file "2dx.icn") ; it always looks for this in mc/ in the ark
+   ; bg_transparency sets the opacity of the background colors for each save
+   ; when you select it in the BIOS. 255 is opaque, 0 is invisibly clear.
+   (bg_transparency 128)
+   (bg_colors
+      (0 0 0) ; top left
+      (0 0 0) ; top right
+      (119 102 163) ; bottom left
+      (119 102 163)) ; bottom right
+   (lit_dirs
+   ; Three lights, positions as floats. These are annoying but my best
+   ; guesses...
+   ; First value, -1 is far left of the model, 1 is far right of the model
+   ; Second value, -1 is back of the model, 1 is front of the model
+   ; Third value, -1 is underneath, 1 is above
+      (0.2 1 0) ; XYZ, light one (default 0.2 1 0)
+      (1 0 1) ; XYZ, light two (default 1 0 1)
+      (1 -1 0)) ; XYZ, light three (default 1 -1 0)
+   (lit_colors
+      ; Light colors as RGB floats. Same goes for ambient.
+	  ; Just set it all to white (the same value) unless you like your icon
+	  ; being tinged horribly. White always just multiplies the albedo.
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7))
+   (ambient 0.7 0.7 0.7))
+#endif
+
+; Customs Edition (but you'll never see this :tim:)
+#ifdef _ONYX
+(ps2_icon
+   (file "2dx.icn")
    (bg_transparency 128)
    (bg_colors
       (0 0 0)
       (0 0 0)
-      (192 0 0)
-      (80 0 0))
+      (119 102 163)
+      (119 102 163))
    (lit_dirs
       (0.2 1 0)
       (1 0 1)
       (1 -1 0))
    (lit_colors
-      (1 1 1)
-      (1 0.75 0)
-      (1 0.75 0))
-   (ambient 0.5 0.8 0.5))
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7))
+   (ambient 0.7 0.7 0.7))
+#endif
+
+; Encore DX
+#ifdef _ENCO
+(ps2_icon
+   (file "80sdx.icn")
+   (bg_transparency 128)
+   (bg_colors
+      (255 255 0)
+      (0 191 255)
+      (255 105 180)
+      (0 238 2))
+   (lit_dirs
+      (0.2 1 0)
+      (1 0 1)
+      (1 -1 0))
+   (lit_colors
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7))
+   (ambient 0.7 0.7 0.7))
+#endif
+
+; Mega DX
+#ifdef _MEGA
+(ps2_icon
+   (file "mega.icn")
+   (bg_transparency 128)
+   (bg_colors
+      (0 0 0)
+      (0 0 0)
+      (160 69 69)
+      (160 69 69))
+   (lit_dirs
+      (0.2 1 0)
+      (1 0 1)
+      (1 -1 0))
+   (lit_colors
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7))
+   (ambient 0.7 0.7 0.7))
+#endif
+
+; GH1 Redux
+#ifdef GH1RX
+(ps2_icon
+   (file "redux.icn")
+   (bg_transparency 128)
+   (bg_colors
+      (180 180 180)
+      (180 180 180)
+      (0 0 0)
+      (0 0 0))
+   (lit_dirs
+      (0.2 1 0)
+      (1 0 1)
+      (1 -1 0))
+   (lit_colors
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7))
+   (ambient 0.7 0.7 0.7))
+#endif
+
+; Debug executables
+#ifndef _SHIP
+#ifndef _ENCO
+#ifndef _ONYX
+#ifndef _MEGA
+#ifndef GH1RX
+(ps2_icon
+   (file "debug.icn")
+   (bg_transparency 255)
+   (bg_colors
+      (1 1 86)
+      (1 1 86)
+      (1 1 86)
+      (1 1 86))
+   (lit_dirs
+      (0.2 1 0)
+      (1 0 1)
+      (1 -1 0))
+   (lit_colors
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7)
+      (0.7 0.7 0.7))
+   (ambient 0.7 0.7 0.7))
+#endif
+#endif
+#endif
+#endif
+#endif
+
 (testing FALSE)
