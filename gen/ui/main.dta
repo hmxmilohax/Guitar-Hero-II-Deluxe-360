@@ -36,11 +36,10 @@
       {set
          [msg_last_frame]
          0}
-	   {gamecfg
+      {gamecfg
          set_player
          0
          {profilemgr active_padnum}}
-      {gamecfg set mode quickplay}
       {content_mgr start_enumeration})
    (SELECT_START_MSG
       {switch
@@ -65,6 +64,7 @@
             {ui goto_screen multi_screen})
          (main_tutorial.btn
             {ui goto_screen training_screen})
+#ifdef HX_XBOX
          (main_leaderboards.btn
             {if_else
                {profilemgr is_active_pad_signed_in_live}
@@ -78,6 +78,7 @@
                      set_display
                      ((fret1 help_continue))}
                   {ui push_screen main_not_logged_in_screen}}})
+#endif
          (main_options.btn
             {ui goto_screen options_screen})})
    (poll
@@ -94,9 +95,57 @@
       {{game get_player_config 0}
          set_difficulty
          kDifficultyExpert}
+#ifdef HX_EE
+;if gh2 retail Elf
+#ifdef _SHIP
+      {game set_venue fest}
+      {game set_song_index 0}
+      {game set_character 
+      {if_else $game80s metalencore metal1} TRUE}
+	  #endif
+;if 80's retail Elf
+#ifdef _ENCO
+      {game set_venue fest2}
+      {game set_song_index 0}
+      {game set_character 
+      {if_else $game80s metalencore metal1} TRUE}
+	  #endif
+;if Mega Elf
+#ifdef _MEGA
+      {game set_venue fest}
+      {game set_song_index 0}
+      {game set_character 
+      {if_else $game80s metalencore metal1} TRUE}
+	  #endif
+;if ONYX Elf
+#ifdef _ONYX
+      {game set_venue fest}
+      {game set_song_index 0}
+      {game set_character streamer TRUE}
+	  #endif
+;if gh1 redux demo
+#ifdef GH1RX
+      {game set_venue fest}
+      {game set_song_index 0}
+      {game set_character punkgh1 TRUE}
+	  #endif
+;if 80's debug Elf
+#ifdef 8DBUG
+      {game set_venue fest2}
+      {game set_song_index 0}
+      {game set_character metal1 TRUE}
+	  #endif
+;if gh2dbug Elf
+#ifdef _2DBUG
       {game set_venue fest}
       {game set_song_index 0}
       {game set_character metal1 TRUE}
+#endif
+#else
+      {game set_venue fest}
+      {game set_song_index 0}
+      {game set_character metal1 TRUE}
+#endif
       {game set_guitar_index 1}
       {do
          ($player2_config
