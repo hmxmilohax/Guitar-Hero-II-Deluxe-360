@@ -60,7 +60,12 @@
 {new
    UIPanel
    splash_panel
-   (file splash.milo)
+   (file
+      {if_else $gamegh1
+         splash_gh1.milo
+         {if_else $game80s
+            splash_80s.milo
+            splash.milo}})
    (player_num 0)
    (finish_load
       {splash.view set_frame 0}
@@ -142,7 +147,10 @@
 {new
    UIPanel
    guitar_help_panel
-   (file guitar_help.milo)
+   (file
+      {if_else $gamegh1
+         guitar_help_gh1.milo
+         guitar_help.milo})
    (BUTTON_DOWN_MSG
       {if
          {== $button kPad_X}
