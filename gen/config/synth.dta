@@ -1,4 +1,8 @@
-(use_xma FALSE)
+; Mostly, you'll need to poke in here for menu music, which should go in
+; sfx/streams in the ark.
+; 
+; Enjoy the nastiest script in the entire game (and no, you can't if_else
+; these arrays, so we need to if_else the stuff IN the arrays):
 (iop
    (max_streams 15)
    (spu_buffers 60)
@@ -6,7 +10,163 @@
 (metamusic
    (volume -6.0)
    (fade_rate 1.0)
-   (music metaloop1_warpigs metaloop2_psycho metaloop3_whowas metaloop_artillery metaloop_crowns metaloop_ftk metaloop_hoods metaloop_rawdog metaloop_voivod)
+   (music ; lol
+      {if_else $egg5
+         metaloop_voivod
+         {if_else $egg4
+            gh3menu
+            {if_else $egg3
+               metaloop_shakin
+               {if_else $egg2
+                  meta_loop1a
+                  {if_else $egg1
+                     metaloop_voivod
+                     {if_else $game80s
+                        metaloop_shakin
+                        metaloop_voivod}}}}}}
+      {if_else $egg5
+         metaloop_rawdog
+         {if_else $egg4
+            gh3menu2
+            {if_else $egg3
+               metaloop_iran
+               {if_else $egg2
+                  meta_loop1b
+                  {if_else $egg1
+                     metaloop_rawdog
+                     {if_else $game80s
+                        metaloop_iran
+                        metaloop_rawdog}}}}}}
+      {if_else $egg5
+         metaloop_hoods
+         {if_else $egg4
+            gh3menu2
+            {if_else $egg3
+               metaloop_bangyourhead
+               {if_else $egg2
+                  meta_loop1c
+                  {if_else $egg1
+                     metaloop_hoods
+                     {if_else $game80s
+                        metaloop_bangyourhead
+                        metaloop_hoods}}}}}}
+      {if_else $egg5
+         metaloop_ftk
+         {if_else $egg4
+            gh3menu3
+            {if_else $egg3
+               metaloop_holydiver
+               {if_else $egg2
+                  meta_loop1d
+                  {if_else $egg1
+                     metaloop_ftk
+                     {if_else $game80s
+                        metaloop_holydiver
+                        metaloop_ftk}}}}}}
+      {if_else $egg5
+         metaloop_crowns
+         {if_else $egg4
+            gh3menu4
+            {if_else $egg3
+               metaloop_wegotthebeat
+               {if_else $egg2
+                  meta_loop1e
+                  {if_else $egg1
+                     metaloop_crowns
+                     {if_else $game80s
+                        metaloop_wegotthebeat
+                        metaloop_crowns}}}}}}
+      {if_else $egg5
+         metaloop_artillery
+         {if_else $egg4
+            gh3menu5
+            {if_else $egg3
+               metaloop_iwantcandy
+               {if_else $egg2
+                  meta_loop1f
+                  {if_else $egg1
+                     metaloop_artillery
+                     {if_else $game80s
+                        metaloop_iwantcandy
+                        metaloop_artillery}}}}}}
+      {if_else $egg5
+         metaloop6_trogdor
+         {if_else $egg4
+            gh3menu6
+            {if_else $egg3
+               metaloop_shakin
+               {if_else $egg2
+                  meta_loop1g
+                  {if_else $egg1
+                     metaloop6_trogdor
+                     {if_else $game80s
+                        metaloop_shakin
+                        metaloop6_trogdor}}}}}}
+      {if_else $egg5
+         metaloop5_arterial
+         {if_else $egg4
+            gh3menu5
+            {if_else $egg3
+               metaloop_radarlove
+               {if_else $egg2
+                  meta_loop2
+                  {if_else $egg1
+                     metaloop5_arterial
+                     {if_else $game80s
+                        metaloop_radarlove
+                        metaloop5_arterial}}}}}}
+      {if_else $egg5
+         metaloop4_youreally
+         {if_else $egg4
+            gh3menu4
+            {if_else $egg3
+               metaloop_noonelikeyou
+               {if_else $egg2
+                  meta_loop3
+                  {if_else $egg1
+                     metaloop4_youreally
+                     {if_else $game80s
+                        metaloop_noonelikeyou
+                        metaloop4_youreally}}}}}}
+      {if_else $egg5
+         metaloop3_whowas
+         {if_else $egg4
+            gh3menu3
+            {if_else $egg3
+               metaloop_iran
+               {if_else $egg2
+                  meta_loop2
+                  {if_else $egg1
+                     metaloop3_whowas
+                     {if_else $game80s
+                        metaloop_iran
+                        metaloop3_whowas}}}}}}
+      {if_else $egg5
+         metaloop2_psycho
+         {if_else $egg4
+            gh3menu2
+            {if_else $egg3
+               metaloop_holydiver
+               {if_else $egg2
+                  meta_loop1g
+                  {if_else $egg1
+                     metaloop2_psycho
+                     {if_else $game80s
+                        metaloop_holydiver
+                        metaloop2_psycho}}}}}}
+      {if_else $egg5
+         metaloop1_warpigs
+         {if_else $egg4
+            gh3menu1
+            {if_else $egg3
+               metaloop_bangyourhead
+               {if_else $egg2
+                  meta_loop1f
+                  {if_else $egg1
+                     metaloop1_warpigs
+                     {if_else $game80s
+                        metaloop_bangyourhead
+                        metaloop1_warpigs}}}}}})
    (background_sfx
       (sequence meta_people)
       (min_delay_sec 10)
