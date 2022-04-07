@@ -57,9 +57,13 @@
       (max_y float)
       (min_z float)
       (max_z float)))
+#ifdef HX_EE
+#include ../milo/milo_objects.dta
+#endif
 (Object
    (description
-      "The Object class is the root of the class hierarchy. Every\n        class has Object as a superclass.")
+      "The Object class is the root of the class hierarchy. Every
+\n        class has Object as a superclass.")
    (types)
    (views
       (Note
@@ -93,15 +97,12 @@
          (hide
             {!
                {$this is_proxy}}))))
+#ifdef HX_XBOX
 #include rnd_objects.dta
 #include synth_objects.dta
+#include ../band/band_objects.dta
+#endif
 #include ../char/char_objects.dta
 #include ../ui/ui_objects.dta
 #include ../track/track_objects.dta
 #include ../world/world_objects.dta
-#ifdef INIT_M2
-#include ../m2/m2_objects.dta
-#endif
-#ifdef INIT_BAND
-#include ../band/band_objects.dta
-#endif
