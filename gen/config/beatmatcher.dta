@@ -1,3 +1,84 @@
+; This file defines which buttons go to each smasher. joypad is DualShock,
+; joypad_guitar is guitar, lefty_joypad_guitar is guitar in Lefty Flip.
+; 
+; A lot of our work was done redefining button mappings if in drum mode.
+; Debug has no drums, so they get the default smasher configuration.
+#ifdef HX_EE
+(controller ; originally from config/beatmatch_controller.dta
+   (joypad
+      #ifndef 2DBUG
+      #ifndef 8DBUG
+      (slots
+         {if_else $rbdrum kPad_R1 kpad_null} ; use r1 for kick (green)
+         {if_else $rbdrum 0 0}
+         {if_else $rbdrum kPad_L1 kPad_L2} ; use L1 for kick (green)
+         {if_else $rbdrum 0 0}
+         {if_else $rbdrum kPad_Circle kPad_L1} ; use Circle for snare (red)
+         {if_else $rbdrum 1 1}
+         {if_else $rbdrum kPad_Tri kPad_R1} ; use Tri for ride? (yellow)
+         {if_else $rbdrum 2 2}
+         {if_else $rbdrum kPad_Square kPad_R2} ; use Square for tom (blue)
+         {if_else $rbdrum 3 3}
+         {if_else $rbdrum kPad_X kPad_X} ; use Square for crash (orange)
+         {if_else $rbdrum 4 4})
+      #endif
+      #endif
+      #ifdef 2DBUG (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4) #endif
+      #ifdef 8DBUG (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4) #endif
+      (force_mercury kPad_Select)
+      (dpad_for_navigation FALSE))
+   (joypad_guitar
+      #ifndef 2DBUG
+      #ifndef 8DBUG
+      (slots
+         {if_else $rbdrum kPad_R1 kpad_null} ; use r1 for kick (green)
+         {if_else $rbdrum 0 0}
+         {if_else $rbdrum kPad_L1 kPad_L2} ; use L1 for kick (green)
+         {if_else $rbdrum 0 0}
+         {if_else $rbdrum kPad_Circle kPad_L1} ; use Circle for snare (red)
+         {if_else $rbdrum 1 1}
+         {if_else $rbdrum kPad_Tri kPad_R1} ; use Tri for ride? (yellow)
+         {if_else $rbdrum 2 2}
+         {if_else $rbdrum kPad_Square kPad_R2} ; use Square for tom (blue)
+         {if_else $rbdrum 3 3}
+         {if_else $rbdrum kPad_X kPad_X} ; use X for crash (orange)
+         {if_else $rbdrum 4 4})
+      #endif
+      #endif
+      #ifdef 2DBUG (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4) #endif
+      #ifdef 8DBUG (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4) #endif
+      (force_mercury kPad_Select)
+      (dpad_for_navigation FALSE))
+   (lefty_joypad_guitar
+      #ifndef 2DBUG
+      #ifndef 8DBUG
+      (slots
+         {if_else $rbdrum kPad_R1 kpad_null} ; use r1 for kick (green)
+         {if_else $rbdrum 4 4}
+         {if_else $rbdrum kPad_X kPad_X} ; use X for crash (orange)
+         {if_else $rbdrum 0 0}
+         {if_else $rbdrum kPad_Square kPad_R2} ; use Square for snare (red)
+         {if_else $rbdrum 1 1}
+         {if_else $rbdrum kPad_Tri kPad_R1} ; use Tri for ride? (yellow)
+         {if_else $rbdrum 2 2}
+         {if_else $rbdrum kPad_Circle kPad_L1} ; use Circle for tom (blue)
+         {if_else $rbdrum 3 3}
+         {if_else $rbdrum kPad_L1 kPad_L2} ; use L1 for crash (orange)
+         {if_else $rbdrum 4 4})
+      #endif
+      #endif
+      #ifdef 2DBUG (slots kPad_X 0 kPad_R2 1 kPad_R1 2 kPad_L1 3 kPad_L2 4) #endif
+      #ifdef 8DBUG (slots kPad_X 0 kPad_R2 1 kPad_R1 2 kPad_L1 3 kPad_L2 4) #endif
+      (force_mercury kPad_Select)
+      (dpad_for_navigation FALSE))
+   (guitar
+      (slots kPad_R2 0 kPad_Circle 1 kPad_Tri 2 kPad_X 3 kPad_Square 4)
+      (force_mercury kPad_Select))
+   (guitar_xbox
+      (slots kPad_X 0 kPad_Tri 1 kPad_Square 2 kPad_Circle 3 kPad_L1 4)
+      (force_mercury kPad_Select)
+      (mercury_switch kPad_RStickUp)))
+#else
 (controller
    (joypad
    (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4)
@@ -22,13 +103,14 @@
    (slots kPad_X 0 kPad_Tri 1 kPad_Circle 2 kPad_Square 3 kPad_L1 4)
    (controller_style ro_xbox)
    (force_mercury kPad_Select)))
-(midi_parsers
-   #include midi_parsers.dta)
+#endif
+(midi_parsers #include midi_parsers.dta)
 (watcher
-   (slop 100)
+   (slop 100) ; In ms, how much you can be off by and still hit the note
    (cheat_error 0)
    (pitch_bend_range 1)
    (ms_to_full_pitch_bend 1000))
+
 ; originally from ../../../system/run/config/beatmatch.dta
 (parser
    (hopo_threshold 170) ; Where the default hopo_threshold is set!
@@ -43,6 +125,7 @@
       (RAP rap)
       (DJ dj)))
 ; end manual merge
+
 (ingame_stats
    (missed_slop_threshold 200))
 (audio
@@ -51,6 +134,9 @@
    (multiplayer_common_attenuation 1.5)
    (background_attenuation 5.0)
    (practice_attenuation 7.5)
+   #ifdef HX_EE
+   (submixes)
+   #else
    (submixes
       (basic
          (0 1 2 3 4))
@@ -95,9 +181,17 @@
             (0 1 2 3 4 5 6)
             (0 1 2 3 4 5 6)
             (0 1 2 3 4 5 6)
-            (0 1 2 3 4 5 6)))))
+            (0 1 2 3 4 5 6))))
+       #endif)
+
+; originally from ../../../system/run/config/beatmatch.dta
 (mercury_switch_filter
    (any_sign_filter
       (window 0.5)
+      #ifdef HX_EE
+      (num_frames 3)
+      #else
       (num_frames 12)
-      (threshold 0.93)))
+      (threshold 0.93)
+      #endif))
+; end manual merge
