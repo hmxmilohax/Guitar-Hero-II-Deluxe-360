@@ -1580,6 +1580,7 @@
 {new
    GHPanel
    sel_song_panel
+#ifdef HX_EE
    (file
       {switch
          {gamecfg get mode}
@@ -1590,6 +1591,19 @@
 			{if_else $gamegh1
          sel_song_quickplay_gh1.milo
          sel_song_quickplay.milo}})
+#else
+(file
+      {do
+         ($cfg
+            {gamecfg get mode})
+         {cond
+            ($leaderboards_mode sel_song_leaderboards.milo)
+            ({'||'
+                  {== career $cfg}
+                  {== multi_coop $cfg}}
+               {if_else $gamegh1 sel_song_gh1.milo sel_song.milo})
+            (TRUE {if_else $gamegh1 sel_song_quickplay_gh1.milo sel_song_quickplay.milo})}})
+#endif
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
@@ -1606,18 +1620,7 @@
    (enter
       {{ui current_screen}
          turn_off_ambient}
-      {if
-         {!
-            {{ui current_screen}
-               sel_song_career}}
-         {song_provider set_quickplay TRUE}}
-      {ss_song.lst set_provider song_provider}
-      {if
-         {==
-            {game get_song_index}
-            -1}
-         {game set_song_index 0}}
-      {$this update_song_info})
+      {$this refresh})
    (update_song_info
       {if
          {==
