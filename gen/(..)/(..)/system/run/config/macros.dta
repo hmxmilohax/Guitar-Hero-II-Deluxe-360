@@ -8,6 +8,8 @@
 (0)
 #define kPlatformPS2
 (1)
+#define kPlatformGamecube
+(2)
 #define kPlatformXBox
 (2)
 #define kPlatformPC
@@ -36,6 +38,8 @@
 (1)
 #define kCopyFromMax
 (2)
+#define kCopyProxy
+(3)
 #define kTaskSeconds
 (0)
 #define kTaskBeats
@@ -364,8 +368,15 @@
 (31)
 #define kMutableFaces
 (32)
+#define kMutableEdges
+(64)
+#ifdef HX_EE
+#define kMutableAll
+(127)
+#else
 #define kMutableAll
 (63)
+#endif
 #define kConstraintNone
 (0)
 #define kConstraintLocalRotate
@@ -724,6 +735,9 @@
 #define SYSTEM_SUBDIRS
 ("../../system/run/char"
    "../../system/run/config"
+#ifdef HX_EE
+   "../../system/run/milo"
+#endif
    "../../system/run/shaders"
    "../../system/run/track"
    "../../system/run/ui"
@@ -743,8 +757,13 @@
 (3)
 #define kTriggerDisable
 (4)
+#ifdef HX_EE
+#define SYSTEMWORLDEVENTS
+('' start)
+#else
 #define SYSTEMWORLDEVENTS
 (start)
+#endif
 #define WORLDEVENTS
 ((SYSTEMWORLDEVENTS))
 #define SYSTEMUIEVENTS
