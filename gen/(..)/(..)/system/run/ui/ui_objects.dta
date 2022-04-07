@@ -1,6 +1,7 @@
 (PanelDir
    (description
-      "Top-level UI Object,\n    contains UI components and an optional camera")
+      "Top-level UI Object,
+\n    contains UI components and an optional camera")
    (superclasses RndDir)
    (allowed_dirs)
    (editor
@@ -25,9 +26,16 @@
          (help
             "fire first test")))
    (types))
+(UIPanel
+   (allowed_dirs)
+   (types))
+(UIScreen
+   (allowed_dirs)
+   (types))
 (UIComponent
    (description
-      "Base class of all UI components, \n   defines navigation and component state")
+      "Base class of all UI components, 
+\n   defines navigation and component state")
    (superclasses Draw Trans Poll)
    (allowed_dirs)
    (editor
@@ -59,7 +67,8 @@
    (select_frames 30))
 (UIButton
    (description
-      "Simple button, basically just a \n   label that can be selected")
+      "Simple button, basically just a 
+\n   label that can be selected")
    (superclasses UILabel)
    (allowed_dirs PanelDir)
    (ext but)
@@ -82,7 +91,8 @@
                   "selecting.font"))))))
 (UILabel
    (description
-      "Simple label, provides localization of tokens and can\n    have different fonts for each state")
+      "Simple label, provides localization of tokens and can
+\n    have different fonts for each state")
    (superclasses UIComponent)
    (allowed_dirs PanelDir)
    (ext lbl)
@@ -112,6 +122,7 @@
                   "normal.font")
                (disabled
                   "disabled.font"))))
+#ifdef HX_XBOX
       (cheat
          (resource_file
             "label.milo")
@@ -123,10 +134,11 @@
                (focused
                   "normal.font")
                (disabled
-                  "disabled.font"))))))
+                  "disabled.font"))))
+#endif))
 (UIList
    (description
-      "Component for displaying 1- or 2-dimensional lists of data.\n   Can be oriented horizontally or vertically, can scroll normally or\n   circularly, and can have any number of visible elements (even just\n   one, a.k.a. a spin button).")
+      "Component for displaying 1- or 2-dimensional lists of data. Can be oriented horizontally or vertically, can scroll normally or circularly, and can have any number of visible elements (even just one, a.k.a. a spin button).")
    (superclasses UIComponent)
    (allowed_dirs PanelDir)
    (ext lst)
@@ -143,7 +155,11 @@
             "Space between arrows and elements"))
       (display_num
          int
+         #ifdef HX_EE
+         (range 1 100)
+         #else
          (range 1 200)
+         #endif
          (help
             "Number of rows/columns"))
       (circular
@@ -160,10 +176,12 @@
          (range 0 5)
          (help
             "Time (seconds) to scroll one step - 0 for instant scrolling"))
-      (paginate
+       #ifdef HX_XBOX
+       (paginate
          bool
          (help
-            "Allow scrolling by pages?")))
+            "Allow scrolling by pages?"))
+       #endif)
    (init
       (type default))
    (types
@@ -219,7 +237,8 @@
                      (selecting 1 1 0)))))
          (provider
             ("option")))
-      (cheat
+         #ifdef HX_XBOX
+         (cheat
          (resource_file
             "list_cheat.milo")
          (vertical TRUE)
@@ -257,7 +276,8 @@
                      (selecting 1 1 0)))))
          (provider
             ("key"
-               "cheat description")))))
+               "cheat description")))
+          #endif))
 (UIPicture
    (description
       "A picture object with asynchronously loading texture")
@@ -276,7 +296,7 @@
             "image/picture_keep.png"))))
 (UIProxy
    (description
-      "A UIProxy object allows artists to position dynamically\n   loaded resources (e.g. a character) in Milo. The app will then load\n   the appropriate resources into it.")
+      "A UIProxy object allows artists to position dynamically loaded resources (e.g. a character) in Milo. The app will then load the appropriate resources into it.")
    (superclasses UIComponent)
    (allowed_dirs PanelDir)
    (init
@@ -287,7 +307,7 @@
             "proxy.milo"))))
 (UISlider
    (description
-      "A component with animatable whose frames correspond to a\n   range of values. The resources don't have to look like a slider;\n   they could easily be a knob, dial, etc.")
+      "A component with animatable whose frames correspond to a range of values. The resources don't have to look like a slider; they could easily be a knob, dial, etc.")
    (superclasses UIComponent)
    (allowed_dirs PanelDir)
    (ext sld)
@@ -337,8 +357,6 @@
          (help
             "Trigger the anim"))))
 (Screenshot
-   (description
-      "Object to draw a screensot in Milo, to help with positioning.\n      The screenshot will not be drawn or even loaded in-game.")
    (superclasses Draw)
    (ext ss)
    (types)
@@ -346,4 +364,4 @@
       (tex_path
          file
          (help
-            "File containing the screenshot to display.  This file will only be loaded in Milo, not in game."))))
+            "File containing the screenshot to display. This file will only be loaded in Milo, not in game."))))
