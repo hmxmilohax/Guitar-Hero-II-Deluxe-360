@@ -209,6 +209,43 @@
                         {handle ($this drummer_explode)}
                         {play_sfx drummer_exp}
                         {handle ({{world_panel loaded_dir} find guitarist0} game_won_msg $encore)})}}}
+#ifdef HX_XBOX
+{if
+               {!
+                  {gamecfg multiplayer}}
+               {achievements
+                  submit_points
+                  {player0 score}}
+               {if
+                  {==
+                     {player0 percent_hit}
+                     100}
+                  {achievements submit perfect}}
+               {if
+                  {options get_lefty 0}
+                  {achievements submit lefty}}
+               {if
+                  {&&
+                     {==
+                        {gamecfg get_difficulty 0}
+                        kDifficultyExpert}
+                     {==
+                        {gamecfg get_song}
+                        jordan}}
+                  {achievements submit jordan}}}
+            {if
+               {==
+                  multi_coop
+                  {gamecfg get mode}}
+               {if
+                  {==
+                     {band percent_hit}
+                     100}
+                  {achievements submit_coop perfect}}
+               {achievements
+                  submit_coop_points
+                  {band score}}}
+#endif
             {track_panel explode}
             {play_game_sfx TRACK_EXPLODE_SFX}
             {game set_realtime TRUE}
@@ -231,6 +268,16 @@
       {track_panel set_showing FALSE}
       {game set_realtime TRUE}
       {$this slow_music}
+#ifdef HX_XBOX
+      {if
+         {&&
+            {==
+               {gamecfg get_difficulty 0}
+               kDifficultyEasy}
+            {!
+               {gamecfg multiplayer}}}
+         {achievements submit faileasy}}
+#endif
       kDataUnhandled)
    (game_outro_complete
       {synth stop_all_sfx}
@@ -311,7 +358,8 @@
                "_coop.milo"}
             ".milo"}})
    (finish_load
-      {{$this loaded_dir} set_name world main})
+      {{$this loaded_dir} set_name world main}
+      #ifdef HX_XBOX {world set echo_msgs $echo_world_events} #endif)
    (enter
       {if $focusmode {crowd_audio set_enabled FALSE}}
       {if_else {game multiplayer}
@@ -327,10 +375,17 @@
 {new FadePanel fade_panel
    (file fade.milo)
    (enter
-      {press_any_button.lbl set_showing {game_screen get attract_mode}})}
-
+      {do
+         ($attract
+            {==
+               {gamecfg get mode}
+               attract})
+         {press_any_button.lbl set_showing $attract}
+         #ifdef HX_XBOX {logo.mesh set_showing $attract} #endif})}
+#ifndef HX_XBOX
 #define TRACK_MASK ()
-#define GAME_PANELS (midi_loader_panel game TRACK_MASK world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
+#endif
+#define GAME_PANELS (midi_loader_panel game #ifndef HX_XBOX TRACK_MASK #else track_mask world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
 {new GHScreen game_screen
    (panels GAME_PANELS fade_panel)
    (allow_back FALSE)
@@ -338,14 +393,24 @@
    (in_game TRUE)
    (attract_mode FALSE)
    (BUTTON_DOWN_MSG
-      {if_else [attract_mode]
-      {if {meta is_any_button $button $player_num}
-         {set $leaving {- {taskmgr ui_seconds} $enter_time}}}
-         {if {&&
-         {== $button kPad_Start}
-         {! {game get game_over}}}
-            {game set_paused TRUE}
-            {ui goto_screen pause_screen}}})
+      {if_else
+         [attract_mode]
+         {if
+            {meta is_any_button $button $player_num}
+            {set
+               $leaving
+               {-
+                  {taskmgr ui_seconds}
+                  $enter_time}}}
+         {if
+            {&&
+               {== $button kPad_Start}
+               {!
+                  {game get game_over}}}
+            {$this pause_game}}})
+   (pause_game
+      {game set_paused TRUE}
+      {ui goto_screen pause_screen})
    (poll
       {if_else [attract_mode]
          {do
@@ -367,7 +432,21 @@
             {game set_paused TRUE}
             {if_else {game multiplayer}
                {ui goto_screen multi_pause_controller_screen}
-               {ui goto_screen pause_controller_screen}}}})
+               {ui goto_screen pause_controller_screen}}}}
+#ifdef HX_XBOX
+      {if
+         {&&
+            {profilemgr guide_showing}
+            {!
+               {game paused}}
+            {!
+               {game get game_over}}
+            {!
+               {ui in_transition}}
+            {!
+               [attract_mode]}}
+         {$this pause_game}}
+#endif)
    (TRANSITION_COMPLETE_MSG
       {if $game_unpause_on_enter
          {game set_paused FALSE}
@@ -380,7 +459,13 @@
          {set $started_fade FALSE}
          {set $song_dur {'+' 10 {'*' 0.75 {game song_duration_sec}}}}
          {set $attract_length_sec {min ATTRACT_LENGTH_SEC $song_dur}}
-         {track_panel set_showing FALSE}})}
+         {track_panel set_showing FALSE}}
+         #ifdef HX_XBOX
+         {track_mask
+         set_showing
+         {!
+            [attract_mode]}}
+         #endif)}
 {new GHScreen finish_fade
    (panels fade_panel)
    (enter
@@ -393,4 +478,10 @@
       {game set_paused TRUE}
       {cheat_display show "Reloading track..."}
       {game_restart_fast})}
-; #include hud_budget.dta (commented because it's otherwise unused)
+{new
+   GHScreen
+   glitch_screen
+   (panels)
+   (enter
+      {print
+         "entered glitch screen"})}
