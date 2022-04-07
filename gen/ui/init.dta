@@ -26,7 +26,7 @@
 
 ; Set all discs but Onyx and expansion to boot to the initial memory card
 ; screens. Onyx and expansion go right to the main menu.
-#ifdef HX_EE
+#ifndef HX_XBOX
 #ifndef _ONYX {set $first_screen bootup_load} #endif
 #ifdef _ONYX {set $first_screen main_screen} #endif
 #endif
@@ -50,7 +50,7 @@
 {set $interval_p2 50}
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
-#ifdef HX_EE
+#ifndef HX_XBOX
 ; GH2 ELFs never boot in 80s mode.
 #ifdef _SHIP
    {set $game80s FALSE}

@@ -517,7 +517,7 @@
             {gamecfg get practice_speed}
             0}
          {beatmatch set_music_speed $speedmod}})
-#ifdef HX_EE
+#ifndef HX_XBOX
    (update
       {click_parser remove_sink $this}
       {if
@@ -605,7 +605,7 @@
             {gamecfg get practice_speed}
             0}
          {beatmatch set_music_speed $speedmod}})
-#ifdef HX_EE
+#ifndef HX_XBOX
    (update
       {click_parser remove_sink $this}
       {if

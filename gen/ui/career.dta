@@ -264,7 +264,7 @@
 {new
    GHPanel
    sel_character_panel
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;if not debug
 #ifndef 8DBUG
 #ifndef 2DBUG
@@ -1305,7 +1305,7 @@
          (dest $frame)
          (period VENUE_MAP_SCROLL_SEC)
          (units kTaskUISeconds)})
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;;;;;if 8 tiers (gh2/gh2debug)
 #ifndef 8DBUG
 #ifndef _ENCO
@@ -1514,7 +1514,7 @@
    GHPanel
    sel_venue_panel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;;;;;if 8 tiers (gh2/gh2debug)
 #ifndef 8DBUG
 #ifndef _ENCO
@@ -1580,7 +1580,7 @@
 {new
    GHPanel
    sel_song_panel
-#ifdef HX_EE
+#ifndef HX_XBOX
    (file
       {switch
          {gamecfg get mode}
@@ -1653,7 +1653,7 @@
       {set
          [metamusic_on_exit]
          TRUE}
-      #ifdef HX_EE
+      #ifndef HX_XBOX
       {song_provider set_quickplay FALSE}
       #else
       {song_provider set_mode kSongsCareer}

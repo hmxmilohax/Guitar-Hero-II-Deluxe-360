@@ -88,7 +88,7 @@
          kDataUnhandled}))
 (quickplay
    (continue_screen qp_selsong_screen)
-   #ifdef HX_EE
+   #ifndef HX_XBOX
    (hud_file
       {if_else {== {gamecfg get_track_sym 0} drum} ;no SP meter if drums
          hud_sp_drum.milo
@@ -103,7 +103,7 @@
    (main_screen career_screen)
    (continue_screen sel_song_screen)
    (win_preload_panel endgame_panel)
-   #ifdef HX_EE
+   #ifndef HX_XBOX
    (hud_file
       {if_else {== {gamecfg get_track_sym 0} drum} ;no SP meter if drums
          hud_sp_drum.milo

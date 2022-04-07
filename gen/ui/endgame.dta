@@ -27,7 +27,7 @@
                {gamecfg set continue_screen career_screen}}
             {if {get_highscore_index $score}
                {highscores add {campaign profile_name {campaign profile_slot}} $score}}}}
-#ifdef HX_EE
+#ifndef HX_XBOX
 ; GH2 ELF
 #ifndef _ENCO
 #ifndef _MEGA
@@ -472,7 +472,7 @@
    {game retain_world_bank}
    {ui goto_screen endgame_encore_unload_screen})
 
-#ifdef HX_EE
+#ifndef HX_XBOX
 ; If GH2 ELF
 #ifndef _ENCO
 #ifndef _MEGA

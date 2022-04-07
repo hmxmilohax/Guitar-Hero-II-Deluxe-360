@@ -1,5 +1,5 @@
 #include ..\config\macros.dta
-#ifdef HX_EE
+#ifndef HX_XBOX
 (PanelDir
    (types
       (default)
@@ -1212,147 +1212,6 @@
             #else
             list_song2_gh1.milo
             #endif)
-       #ifdef HX_XBOX
-         (vertical TRUE)
-         (element
-            ((text
-                  "header.txt")
-               (text
-                  "list.txt")
-               (text
-                  "stars.txt")
-               (mesh
-                  "stars_gold.mesh")
-               (text
-                  "score.txt")
-               (mesh
-                  "checkmark.mesh")
-               (text
-                  "blurb.txt")))
-         (back_arrow
-            "")
-         (next_arrow
-            "")
-         (highlight
-            "")
-         (colors
-            (((normal
-                     (normal 0.7 0 0)
-                     (focused 0.7 0 0)
-                     (disabled 0.7 0 0)
-                     (selecting 0.7 0 0))
-                  (highlight
-                     (normal 0.7 0 0)
-                     (focused 0.7 0 0)
-                     (disabled 0.7 0 0)
-                     (selecting 0.7 0 0))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))
-               ((normal
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.1 0.1 0.1))
-                  (highlight
-                     (normal 0.1 0.1 0.1)
-                     (focused 0 0 1)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 1 0 0))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))
-               ((normal
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.1 0.1 0.1))
-                  (highlight
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 1 0 0))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))
-               ((normal
-                     (normal 1 1 1)
-                     (focused 1 1 1)
-                     (disabled 1 0 0)
-                     (selecting 1 1 1))
-                  (highlight
-                     (normal 1 1 1)
-                     (focused 1 1 1)
-                     (disabled 1 0 0)
-                     (selecting 1 1 1))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))
-               ((normal
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.1 0.1 0.1))
-                  (highlight
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 1 0 0))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))
-               ((normal
-                     (normal 1 0 0)
-                     (focused 1 0 0)
-                     (disabled 1 0 0)
-                     (selecting 1 0 0))
-                  (highlight
-                     (normal 1 0 0)
-                     (focused 1 0 0)
-                     (disabled 1 0 0)
-                     (selecting 1 0 0))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))
-               ((normal
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.1 0.1 0.1)
-                     (selecting 0.1 0.1 0.1))
-                  (highlight
-                     (normal 0.1 0.1 0.1)
-                     (focused 0.1 0.1 0.1)
-                     (disabled 0.1 0.1 0.1)
-                     (selecting 0.1 0.1 0.1))
-                  (disabled
-                     (normal 0.5 0.5 0.5)
-                     (focused 0.5 0.5 0.5)
-                     (disabled 0.5 0.5 0.5)
-                     (selecting 0.5 0.5 0.5)))))
-         (provider
-            ("header"
-               "text"
-               "stars"
-               "stars_gold_5.mat"
-               "scores"
-               "checkmark.mat"
-               "blurb")))
-      (song3
-         (resource_file
-            "list_song3.milo")
-      #endif
          (vertical TRUE)
          (element
             ((text
@@ -1624,6 +1483,7 @@
                      (selecting 0.7 0.7 0.7)))))
          (provider
             ("text")))
+#ifdef HX_XBOX
      (leaderboard
          (resource_file
             "list_leaderboard.milo")
@@ -1689,4 +1549,5 @@
             ("rank"
                "name"
                "score"
-               "diff")))))
+               "diff")))
+#endif))

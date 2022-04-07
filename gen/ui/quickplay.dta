@@ -195,7 +195,7 @@
    (orig_sync 0)
 (enter
       {lefty1.chk set_check $songtitle}
-      {fuck.chk set_check #ifdef HX_EE $cheat_enabled_horse_head_mode #else $drumenabled #endif}
+      {fuck.chk set_check #ifndef HX_XBOX $cheat_enabled_horse_head_mode #else $drumenabled #endif}
       {lefty3.chk set_check $barf_cheat}
       {lefty4.chk set_check $cheat_enabled_performance_mode}
       {lefty5.chk set_check $nofail}
@@ -250,7 +250,7 @@
                {do
                   {set $cheat_enabled_flaming_head TRUE}
                   {fuck.chk set_check FALSE}
-                  #ifdef HX_EE
+                  #ifndef HX_XBOX
                   {set $cheat_enabled_horse_head_mode FALSE}
                   #else
                   {set $drumenabled FALSE}
@@ -274,14 +274,14 @@
             {fuck.chk toggle}
             {if_else {fuck.chk get_check}
                {do
-                  #ifdef HX_EE
+                  #ifndef HX_XBOX
                   {set $cheat_enabled_horse_head_mode TRUE}
                   #else
                   {set $drumenabled TRUE}
                   #endif
                   {p_scan.chk set_check FALSE}
                   {set $cheat_enabled_flaming_head FALSE}}
-                  #ifdef HX_EE
+                  #ifndef HX_XBOX
                   {set $cheat_enabled_horse_head_mode FALSE}
                   #else
                   {set $drumenabled FALSE}
@@ -354,7 +354,7 @@
 {new
    GHPanel
    sel_character_panel_qp
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;;;;;if not debug
 #ifndef 8DBUG
 #ifndef 2DBUG
@@ -914,7 +914,7 @@
          (dest $frame)
          (period VENUE_MAP_SCROLL_SEC)
          (units kTaskUISeconds)})
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;;;;;if 8 tiers (gh2/gh2debug)
 #ifndef 8DBUG
 #ifndef _ENCO
@@ -1127,7 +1127,7 @@
    (file sel_venue_gh2.milo)
    (focus sv_battle.btn)
 #endif
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;;;;;if 8 tiers (gh2/gh2debug)
 #ifndef 8DBUG
 #ifndef _ENCO

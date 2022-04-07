@@ -25,7 +25,7 @@
       (disable FALSE))
    (multitap
       (disable TRUE))
-#ifdef HX_EE
+#ifndef HX_XBOX
 (language)
 #else
 (language
@@ -41,7 +41,7 @@
    #include objects.dta)
 (mem
    (heaps
-      #ifdef HX_EE
+      #ifndef HX_XBOX
       (main
          (size 18000000))
       (rnd
@@ -62,7 +62,7 @@
    (enable_tracking FALSE)
    (track_stl FALSE)
    (check_consistency FALSE)
-#ifdef HX_EE (ps2_clamp_32 TRUE) #endif)
+#ifndef HX_XBOX (ps2_clamp_32 TRUE) #endif)
 (joypad
    #include joypad.dta)
 (synth
@@ -102,7 +102,7 @@
       (fx TRUE)
       (dma FALSE)
       (compressor TRUE 0.7))
-#ifdef HX_EE
+#ifndef HX_XBOX
    (sfx
       (distance_scale 1.0)
       (listener_radius 1.5)
@@ -164,7 +164,7 @@
       (kPad_Square
          "Print Symbol Table"
          {print_symbol_table})
-      #ifdef HX_EE
+      #ifndef HX_XBOX
       (kPad_Tri
          "Toggle Progressive Scan"
          {if_else
@@ -207,7 +207,7 @@
    (bsp_max_depth 40))
 (timer task draw 'task+draw' cpu gs light)
 (rnd
-   #ifdef HX_EE
+   #ifndef HX_XBOX
    (width 512)
    (height 448)
    #else
@@ -220,7 +220,7 @@
    (guard_band 0 0)
    (title
       "Hmx App")
-#ifdef HX_EE
+#ifndef HX_XBOX
 (show_timers FALSE)
    (timer_maxms 50)
    (clear_color 0.3 0.3 0.3)
@@ -263,7 +263,7 @@
          (color 0 0.2 0 0.2))
       (heap)
       (stats
-         #ifdef HX_EE
+         #ifndef HX_XBOX
          (lines 10)
          #endif)
       (timers)

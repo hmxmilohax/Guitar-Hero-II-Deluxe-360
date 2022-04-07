@@ -1,6 +1,6 @@
 #define TRACK_END_FRAME (1920)
 {new TrackPanel track_panel
-#ifdef HX_EE
+#ifndef HX_XBOX
    (file
       {switch {game get_track_sym 0}
          (bass '../track/track.milo')

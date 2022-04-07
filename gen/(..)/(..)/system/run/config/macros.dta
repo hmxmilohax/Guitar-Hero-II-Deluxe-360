@@ -370,7 +370,7 @@
 (32)
 #define kMutableEdges
 (64)
-#ifdef HX_EE
+#ifndef HX_XBOX
 #define kMutableAll
 (127)
 #else
@@ -735,7 +735,7 @@
 #define SYSTEM_SUBDIRS
 ("../../system/run/char"
    "../../system/run/config"
-#ifdef HX_EE
+#ifndef HX_XBOX
    "../../system/run/milo"
 #endif
    "../../system/run/shaders"
@@ -757,7 +757,7 @@
 (3)
 #define kTriggerDisable
 (4)
-#ifdef HX_EE
+#ifndef HX_XBOX
 #define SYSTEMWORLDEVENTS
 ('' start)
 #else

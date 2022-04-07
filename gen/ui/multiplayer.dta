@@ -108,7 +108,7 @@
 {new
    MultiCharSelPanel
    multi_sel_character_panel
-#ifdef HX_EE
+#ifndef HX_XBOX
    #ifndef 8DBUG
    #ifndef 2DBUG
    (file
@@ -150,7 +150,7 @@
          (units kTaskUISeconds)}
       {foreach
          $c
-         #ifdef HX_EE
+         #ifndef HX_XBOX
          #ifndef 8DBUG
          #ifndef 2DBUG
          {if_else $game80s 80SMULTCHARACTERS MULTCHARACTERS}
@@ -198,7 +198,7 @@
                [skin_select2]
                TRUE}}})
    (char_navigator
-      #ifdef HX_EE
+      #ifndef HX_XBOX
       #ifndef 8DBUG
       #ifndef 2DBUG
       {if_else $game80s 80SMULTCHARACTERS MULTCHARACTERS}
@@ -223,7 +223,7 @@
    char_multi
    (file char_multi.milo)
    (num_placers 2)
-   #ifdef HX_EE
+   #ifndef HX_XBOX
    #ifndef 8DBUG
    #ifndef 2DBUG
    (load_order

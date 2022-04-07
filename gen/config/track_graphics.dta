@@ -1,7 +1,7 @@
 ; Rainbow toggle!
 ; This is a nice microcosm of the mess going on in synth.dta, where we have
 ; to if_else the items in the array instead of the array itself.
-#ifdef HX_EE
+#ifndef HX_XBOX
 (slot_colors
    {if_else $egg5
       gold
@@ -50,7 +50,7 @@
       (bonus 20)))
 
 ; Same goes for the sustain tails, which the game calls "strings".
-#ifdef HX_EE
+#ifndef HX_XBOX
 #define STRING_SET
 ((gems
    ({if_else $egg5
@@ -83,7 +83,7 @@
 ((gems (green red yellow blue orange)))
 #endif
 ; Drums are always GRYBO.
-#ifdef HX_EE
+#ifndef HX_XBOX
 #define DRUM_SET ((gems (kick4 snare_red tom_yellow tom_blue tom_orange)))
 #else
 #define DRUM_SET

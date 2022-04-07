@@ -57,7 +57,7 @@
       (max_y float)
       (min_z float)
       (max_z float)))
-#ifdef HX_EE
+#ifndef HX_XBOX
 #include ../milo/milo_objects.dta
 #endif
 (Object

@@ -3,7 +3,7 @@
    (force_hd TRUE))
 (mem
    (heaps
-   #ifdef HX_EE
+   #ifndef HX_XBOX
    (main
       (size 19118000))
    (rnd

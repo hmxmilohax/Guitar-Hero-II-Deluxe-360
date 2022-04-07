@@ -1,4 +1,4 @@
-#ifdef HX_EE
+#ifndef HX_XBOX
 ; Use these characters for debug ELFs (ifndef = if not def)
 #ifndef _SHIP
 #ifndef _ENCO

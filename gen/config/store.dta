@@ -182,7 +182,7 @@
       (price 2000)))
 (video
    (video3
-      #ifdef HX_EE
+      #ifndef HX_XBOX
       (file hmx.pss)
       #endif
       #ifdef HX_XBOX
@@ -190,7 +190,7 @@
       #endif
       (price 1500))
    (video2
-      #ifdef HX_EE
+      #ifndef HX_XBOX
       (file wg.pss)
       #endif
       #ifdef HX_XBOX

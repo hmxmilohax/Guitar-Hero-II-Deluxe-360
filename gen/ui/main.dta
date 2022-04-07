@@ -36,11 +36,8 @@
       {set
          [msg_last_frame]
          0}
-      {gamecfg
-         set_player
-         0
-         {profilemgr active_padnum}}
-      {content_mgr start_enumeration})
+#ifdef HX_XBOX {gamecfg set_player 0 {profilemgr active_padnum}}
+               {content_mgr start_enumeration} #endif)
    (SELECT_START_MSG
       {switch
          $component
@@ -95,7 +92,7 @@
       {{game get_player_config 0}
          set_difficulty
          kDifficultyExpert}
-#ifdef HX_EE
+#ifndef HX_XBOX
 ;if gh2 retail Elf
 #ifdef _SHIP
       {game set_venue fest}

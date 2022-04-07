@@ -82,7 +82,7 @@
 (gig_extras "EXTRAS")
 (milo_extras "EXTRAS")
 (extras_songtitle "SONG TITLE ALWAYS")
-#ifdef HX_EE
+#ifndef HX_XBOX
 (extras_horse "HORSE HEAD")
 #else
 (extras_horse "ENABLE DRUMS")
