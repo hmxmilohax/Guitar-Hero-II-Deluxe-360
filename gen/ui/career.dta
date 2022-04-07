@@ -1804,44 +1804,15 @@
             {part0.btn
                set_text
                "sg_lead"}}
-;;;;;;;;if not debug Elf
-#ifndef 2DBUG
-#ifndef 8DBUG
-      {if_else
-            {==
-               {song_provider get_instrument $song 2}
-               "drum"}
-            {part2.btn
-               set_text
-               "sg_drum"}
-				{part2.btn set_state kDisabled}}
-      {if_else
-            {==
-               {song_provider get_instrument $song 2}
-               "drum"}
-            {part2.btn
-               set_text
-               "sg_drum"}
-               {part2.btn set_showing FALSE}}
-#endif
-#endif
-;;;;;;;;if debug Elf
-#ifndef _SHIP
-#ifndef _ENCO
-#ifndef _ONYX
-#ifndef _MEGA
-#ifndef GH1RX
-            {part2.btn
-               set_state
-               kDisabled}
-            {part2.btn
-               set_showing
-               FALSE}
-#endif
-#endif
-#endif
-#endif
-#endif
+{if $drumenabled
+   {if_else
+         {== {song_provider get_instrument $song 2} "drum"}
+            {part2.btn set_text "sg_drum"}
+			{part2.btn set_state kDisabled}}
+   {if_else {== {song_provider get_instrument $song 2} "drum"}
+            {part2.btn set_text "sg_drum"}
+            {part2.btn set_showing FALSE}}}
+{if {! $drumenabled} {part2.btn set_state kDisabled} {part2.btn set_showing FALSE}}
 })
    (enter
       {do
