@@ -25,8 +25,12 @@
       (disable FALSE))
    (multitap
       (disable TRUE))
-   (language
+#ifdef HX_EE
+(language)
+#else
+(language
       (default eng))
+#endif
    (fp_exceptions TRUE)
    (main_dir 19997 150000)
    (dir_sort Tex Mat Font Text Mesh Blur Group Trans OutfitLoader Waypoint CharDriver CharDriverMidi CharClipGroup CharClipSetCallback CharClipSamples)
@@ -57,7 +61,8 @@
    (disable_mgr FALSE)
    (enable_tracking FALSE)
    (track_stl FALSE)
-   (check_consistency FALSE))
+   (check_consistency FALSE)
+#ifdef HX_EE (ps2_clamp_32 TRUE) #endif)
 (joypad
    #include joypad.dta)
 (synth
@@ -66,7 +71,7 @@
    (mute FALSE)
    (stream_buf_size 1.2)
    (stream_readahead 0)
-   (use_xma TRUE)
+#ifdef HX_XBOX (use_xma TRUE) #endif
    (oggvorbis
       #ifdef HX_XBOX
       #ifdef _DEBUG
@@ -97,10 +102,18 @@
       (fx TRUE)
       (dma FALSE)
       (compressor TRUE 0.7))
+#ifdef HX_EE
+   (sfx
+      (distance_scale 1.0)
+      (listener_radius 1.5)
+      (sound_speed 250.0)
+      (max_angle_delta 0.4))
+#else
    (limiter
       (attack_ms 1)
       (release_ms 50)
       (threshold -2))
+#endif
    (fx
       (chain FALSE)
       (core_0
@@ -119,8 +132,7 @@
       (fade_rate 1.0)
       (play_from_memory TRUE)
       (use_rnd_heap FALSE))
-   (scratcher
-      #include scratcher.dta))
+   (scratcher))
 (disable_cheats FALSE)
 (quick_cheats
    (left
@@ -170,12 +182,20 @@
          {show_cheats}))
    (right)
    (keyboard
+      (KB_LEFT
+         {paramedit inc -1})
+      (KB_RIGHT
+         {paramedit inc 1})
+      (KB_UP
+         {paramedit scroll -1})
+      (KB_DOWN
+         {paramedit scroll 1})
+      (KB_PAGE_DOWN
+         {paramedit step 0.1})
+      (KB_PAGE_UP
+         {paramedit step 10})
       (KB_ESCAPE
-         "Toggle Console"
-         {rnd show_console})
-      (KB_F1
-         "Show Cheats"
-         {show_cheats})))
+         {rnd show_console})))
 (long_cheats)
 (spew)
 (math
@@ -200,6 +220,42 @@
    (guard_band 0 0)
    (title
       "Hmx App")
+#ifdef HX_EE
+(show_timers FALSE)
+   (timer_maxms 50)
+   (clear_color 0.3 0.3 0.3)
+   (overlays
+      (rate
+         (lines 1)
+         (showing FALSE)
+         (color 0 0.2 0 0.2))
+      (heap
+         (lines 1)
+         (showing FALSE))
+      (stats
+         (lines 10)
+         (showing FALSE))
+      (input
+         (lines 1)
+         (showing FALSE)
+         (color 0 0.4 0.4 1))
+      (output
+         (lines 23)
+         (showing FALSE))
+      (paramedit
+         (lines 1)
+         (showing FALSE)
+         (color 0 0 0 0.5))
+      (camera
+         (lines 3)
+         (showing FALSE))
+      (free_camera
+         (lines 1)
+         (showing FALSE))
+      (gpu_queue
+         (lines 1)
+         (showing FALSE)))
+#else
    (maximize FALSE)
    (clear_color 0.3 0.3 0.3)
    (overlays
@@ -236,6 +292,7 @@
    (movie_readahead 0)
    (font
       #include rnd_font.dta))
+#endif
 (world
    (free_camera
       (rotate_rate 1.0e-3)
@@ -253,8 +310,10 @@
       (ambient 1 1 1))
    (transition_time 0.5)
    (min_splash_time 1.0)
-   (cheat_init
-      #include cheat_init.dta))
+#ifdef HX_XBOX
+(cheat_init
+      #include cheat_init.dta)
+#endif)
 (locale)
 (digimask
    (namespace 400 5000)
@@ -334,7 +393,13 @@
             ((EBRR EBRL)))
          (bones BROL BROR BRIL BRIR))))
 (charsys
-   #include charsys.dta)
+   (CharEyes
+      (camera_max_offset 12)
+      (camera_interval 1920 3840)
+      (forward_distance 80)
+      (forward_max_offset 12)
+      (forward_interval 960 2000)
+      (crowd_interval 960 1920)))
 (audio_analysis
    (num_slots
       (2 2 3 4))
