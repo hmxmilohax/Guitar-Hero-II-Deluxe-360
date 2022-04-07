@@ -96,4 +96,8 @@
             (0 1 2 3 4 5 6)
             (0 1 2 3 4 5 6)
             (0 1 2 3 4 5 6)))))
-#merge ../../../system/run/config/beatmatch.dta
+(mercury_switch_filter
+   (any_sign_filter
+      (window 0.5)
+      (num_frames 12)
+      (threshold 0.93)))
