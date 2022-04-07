@@ -52,25 +52,6 @@
                {main_screen_egg display_cheat_msg cheat_nofail TRUE}
                {main_screen display_cheat_msg cheat_nofail TRUE}}
                {play_sfx cheat}}}})
-((G_YELLOW G_RED G_YELLOW G_RED)
-   {if
-      CHEATS_ALLOWED
-      {if_else
-         $focusmode
-         {do
-            {set $focusmode FALSE}
-            {if_else
-               $egg5
-               {main_screen_egg display_cheat_msg cheat_focusmode FALSE}
-               {main_screen display_cheat_msg cheat_focusmode FALSE}}
-            {play_sfx cheat_off}}
-         {do
-            {set $focusmode TRUE}
-            {if_else
-               $egg5
-               {main_screen_egg display_cheat_msg cheat_focusmode TRUE}
-               {main_screen display_cheat_msg cheat_focusmode TRUE}}
-            {play_sfx cheat}}}})
 ((G_RED G_RED G_RED G_RED)
    {if
       CHEATS_ALLOWED
