@@ -1,4 +1,45 @@
 #include ..\config\macros.dta
+#ifdef HX_EE
+(PanelDir
+   (types
+      (default)
+      (GH2
+         (normal_color
+            {pack_color 1 0 0})
+         (focus_color
+            {pack_color 0 1 0})
+         (disabled_color
+            {pack_color 0.3 0.3 0.3})
+         (selecting_color
+            {pack_color 1 1 1})
+         (focus_scale 1.05)
+         (focus_jitter_interval 0.0)
+         (editor
+            (normal_color
+               color
+               (help
+                  "set the color when this button is in normal state"))
+            (focus_color
+               color
+               (help
+                  "set the color when this button is in focussed state"))
+            (disabled_color
+               color
+               (help
+                  "set the color when this button is in disabled state"))
+            (selecting_color
+               color
+               (help
+                  "set the color when this button is in selecting state"))
+            (focus_scale
+               float
+               (help
+                  "exactly how big a button should grow when it gains focus (affects x & z)"))
+            (focus_jitter_interval
+               float
+               (help
+                  "when a button has focus, jitter every x seconds"))))))
+#else
 #define DEFAULT_GH2_PANELDIR_TYPE
 ((normal_color
       {pack_color 1 0 0})
@@ -116,7 +157,84 @@
                      {exists youwin.mat}
                      {exists $tex}}
                   {youwin.mat set diffuse_tex $tex}}}))))
+#endif
 (BandLabel
+   (superclasses UILabel)
+   (ext lbl)
+   (editor
+      (fit_text
+         int
+         (list
+            ("kNormal"
+               "kStretched"
+               "kJustFit"))
+         (help
+            "Whether or not to force this label into specified width/height"))
+      (width
+         float
+         (help
+            "Maximum width this label should take up"))
+      (height
+         float
+         (help
+            "Maximum height this label should take up"))
+      (wrap_width
+         float
+         (help
+            "Corresponds to RndText wrap width"))
+      (text_size
+         float
+         (help
+            "text size of underlying text object"))
+      (leading
+         float
+         (help
+            "Space between lines"))
+      (kerning
+         float
+         (help
+            "additional kerning applied to text object"))
+      (alignment
+         int
+         (list
+            ("kTopLeft"
+               "kTopCenter"
+               "kTopRight"
+               "kMiddleLeft"
+               "kMiddleCenter"
+               "kMiddleRight"
+               "kBottomLeft"
+               "kBottomCenter"
+               "kBottomRight"))
+         (help
+            "text alignment"))
+      (all_caps
+         bool
+         (help
+            "set text to uppercase?"))
+      (deltaX
+         float
+         (help
+            "max change in X when jitter character"))
+      (deltaZ
+         float
+         (help
+            "max change in Z when jitter character"))
+      (deltaRot
+         float
+         (help
+            "max rotation when jitter character"))
+      (jitter
+         script
+         (script
+            {handle
+               ($this jitter_text)})
+         (help
+            "jitter the letters"))
+      (color
+         color
+         (help
+            "set the specific color for this label")))
    (init
       (type default))
    (types
@@ -209,10 +327,13 @@
             (text
                "stars.txt")))
       (starsfc
-         (name "StarsFC")
-         (resource_file "starsfc.milo")
+         (name
+            "StarsFC")
+         (resource_file
+            "starsfc.milo")
          (texts
-            (text "starsfc.txt")))
+            (text
+               "starsfc.txt")))
       (tapeworm
          (name
             "Tapeworm")
@@ -309,6 +430,14 @@
          (texts
             (text
                "helveticablackcondensed.txt")))
+      (gh3veticablackcondensed
+         (name
+            "gh3vetica Black Condensed")
+         (resource_file
+            "gh3veticablackcondensed.milo")
+         (texts
+            (text
+               "gh3veticablackcondensed.txt")))
       (receipt
          (name
             "Receipt")
@@ -326,8 +455,82 @@
             (text
                "gunsho.txt")))))
 (BandButton
+   (superclasses UIButton)
    (resource_file
       "../ui/button.milo")
+   (select_frames 10)
+   (focus_anim_duration 0.1)
+   (ext btn)
+   (editor
+      (fit_text
+         int
+         (list
+            ("kNormal"
+               "kStretched"
+               "kJustFit"))
+         (help
+            "Whether or not to force this label into specified width/height"))
+      (width
+         float
+         (help
+            "Maximum width this label should take up"))
+      (height
+         float
+         (help
+            "Maximum height this label should take up"))
+      (wrap_width
+         float
+         (help
+            "Corresponds to RndText wrap width"))
+      (text_size
+         float
+         (help
+            "text size of underlying text object"))
+      (leading
+         float
+         (help
+            "Space between lines"))
+      (kerning
+         float
+         (help
+            "additional kerning applied to text object"))
+      (alignment
+         int
+         (list
+            ("kTopLeft"
+               "kTopCenter"
+               "kTopRight"
+               "kMiddleLeft"
+               "kMiddleCenter"
+               "kMiddleRight"
+               "kBottomLeft"
+               "kBottomCenter"
+               "kBottomRight"))
+         (help
+            "text alignment"))
+      (all_caps
+         bool
+         (help
+            "set text to uppercase?"))
+      (deltaX
+         float
+         (help
+            "max change in X when jitter character"))
+      (deltaZ
+         float
+         (help
+            "max change in Z when jitter character"))
+      (deltaRot
+         float
+         (help
+            "max rotation when jitter character"))
+      (jitter
+         script
+         (script
+            {handle
+               ($this jitter_text)})
+         (help
+            "jitter the letters")))
    (init
       (type default))
    (types
@@ -499,6 +702,14 @@
          (texts
             (text
                "helveticablackcondensed.txt")))
+      (gh3veticablackcondensed
+         (name
+            "gh3vetica Black Condensed")
+         (resource_file
+            "gh3veticablackcondensed.milo")
+         (texts
+            (text
+               "gh3veticablackcondensed.txt")))
       (receipt
          (name
             "Receipt")
@@ -561,6 +772,8 @@
          (tex_file
             "image/og/us_logo_generic_keep.png"))))
 (BandPlacer
+   (superclasses Trans Draw)
+   (ext place)
    (types
       (char
          (resource_file
@@ -571,10 +784,51 @@
          (resource_file
             "ui/dummy_guitar.RND")
          (group
-            "guitar.view"))))
+            "guitar.view")))
+   (editor
+      (proxy
+         object
+         (class RndDir)
+         (no_test)
+         (help
+            "test out and see an object to be placed"))
+      (center
+         string
+         (help
+            "Name of RndTransformable to center proxy about"))))
 (BandTextEntry
+   (superclasses UIComponent)
+   (ext texten)
    (resource_file
       "../ui/textentry.milo")
+   (editor
+      (default_text
+         string
+         (no_test)
+         (help
+            "Check how it looks with some default text"))
+      (flash_time
+         float
+         (help
+            "blinking cursor interval"))
+      (text_scale
+         float
+         (no_test)
+         (help
+            "scale of highlighted character"))
+      (arrow_offset
+         float
+         (no_test)
+         (help
+            "adjust the arrow up/down by this much"))
+      (entered_color
+         color
+         (help
+            "set the color of already entered text"))
+      (dynamic_color
+         color
+         (help
+            "set the color of the current text")))
    (init
       (type default))
    (types
@@ -607,8 +861,19 @@
          (main_trans
             "guitar.mesh"))))
 (BandSlider
+   (superclasses UISlider)
    (resource_file
       "../ui/slider.milo")
+   (ext sld)
+   (colors
+      (mesh_color mesh)
+      (text_color text))
+   (editor
+      (text_token
+         symbol
+         (no_test)
+         (help
+            "Specify the localization token for the slider label")))
    (init
       (type default))
    (types
@@ -718,6 +983,8 @@
                (selecting
                   "aaron_slider_pod_selected.mat"))))))
 (CheckBox
+   (superclasses UIComponent)
+   (ext chk)
    (resource_file
       "../ui/checkbox.milo")
    (init
@@ -797,7 +1064,11 @@
    (types
       (song
          (resource_file
-            "list_song.milo")
+            #ifndef GH1RX
+            list_song.milo
+            #else
+            list_song_gh1.milo
+            #endif)
          (vertical TRUE)
          (element
             ((text
@@ -936,7 +1207,12 @@
                "blurb")))
       (song2
          (resource_file
-            "list_song2.milo")
+            #ifndef GH1RX
+            list_song2.milo
+            #else
+            list_song2_gh1.milo
+            #endif)
+       #ifdef HX_XBOX
          (vertical TRUE)
          (element
             ((text
@@ -1076,6 +1352,7 @@
       (song3
          (resource_file
             "list_song3.milo")
+      #endif
          (vertical TRUE)
          (element
             ((text
@@ -1347,7 +1624,7 @@
                      (selecting 0.7 0.7 0.7)))))
          (provider
             ("text")))
-      (leaderboard
+     (leaderboard
          (resource_file
             "list_leaderboard.milo")
          (vertical TRUE)

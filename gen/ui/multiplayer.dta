@@ -1,7 +1,8 @@
 {new
    GHPanel
    multi_panel
-   (file multi.milo)
+   (file
+      {if_else $game80s multi_80s.milo multi.milo})
    (focus coop.btn)
    (enter
       {if_else
@@ -107,7 +108,27 @@
 {new
    MultiCharSelPanel
    multi_sel_character_panel
+#ifdef HX_EE
+   #ifndef 8DBUG
+   #ifndef 2DBUG
+   (file
+      {if_else $game80s multi_sel_character80s.milo multi_sel_character.milo})
+   #endif
+   #endif
+   #ifndef _SHIP
+   #ifndef _ENCO
+   #ifndef _MEGA
+   #ifndef _ONYX
+   #ifndef GH1RX
+   (file multi_sel_character_debug.milo)
+   #endif
+   #endif
+   #endif
+   #endif
+   #endif
+#else
    (file multi_sel_character.milo)
+#endif
    (skin_select1 FALSE)
    (skin_select2 FALSE)
    (enter
@@ -129,7 +150,26 @@
          (units kTaskUISeconds)}
       {foreach
          $c
+         #ifdef HX_EE
+         #ifndef 8DBUG
+         #ifndef 2DBUG
+         {if_else $game80s 80SMULTCHARACTERS MULTCHARACTERS}
+         #endif
+         #endif
+         #ifndef _SHIP
+         #ifndef _ENCO
+         #ifndef _MEGA
+         #ifndef _ONYX
+         #ifndef GH1RX
          CHARACTERS
+         #endif
+         #endif
+         #endif
+         #endif
+         #endif
+         #else
+         CHARACTERS
+         #endif
          {do
             ($mesh
                {sprint
@@ -157,13 +197,53 @@
             {set
                [skin_select2]
                TRUE}}})
-   (char_navigator CHARACTERS)}
+   (char_navigator
+      #ifdef HX_EE
+      #ifndef 8DBUG
+      #ifndef 2DBUG
+      {if_else $game80s 80SMULTCHARACTERS MULTCHARACTERS}
+      #endif
+      #endif
+      #ifndef _SHIP
+      #ifndef _ENCO
+      #ifndef _MEGA
+      #ifndef _ONYX
+      #ifndef _ONYX
+      CHARACTERS
+      #endif
+      #endif
+      #endif
+      #endif
+      #endif
+      #else
+      CHARACTERS
+      #endif)}
 {new
    CharsysPanel
    char_multi
    (file char_multi.milo)
    (num_placers 2)
+   #ifdef HX_EE
+   #ifndef 8DBUG
+   #ifndef 2DBUG
+   (load_order
+      {if_else $game80s 80SMULT_LOAD_CHARACTERS MULT_LOAD_CHARACTERS})
+   #endif
+   #endif
+   #ifndef _SHIP
+   #ifndef _ENCO
+   #ifndef _MEGA
+   #ifndef _ONYX
+   #ifndef GH1RX
    (load_order LOAD_CHARACTERS)
+   #endif
+   #endif
+   #endif
+   #endif
+   #endif
+   #else
+   (load_order LOAD_CHARACTERS)
+   #endif
    (enter
       {$this
          show_char
@@ -188,7 +268,7 @@
             (fret2 help_back)
             (strum help_updown))))
    (exclusive FALSE)
-   (alt_cam_anim TRUE)
+#ifdef HX_XBOX (alt_cam_anim TRUE) #endif
    (get_selection
       ($player)
       {if_else
@@ -528,7 +608,7 @@
             (fret2 help_back)
             (strum help_updown))))
    (focus multi_sel_guitar_panel)
-   (alt_cam_anim TRUE)
+#ifdef HX_XBOX (alt_cam_anim TRUE) #endif
    (enter
       {multi_sel_guitar_panel
          set_select_done
@@ -670,11 +750,13 @@
 {new
    UIPanel
    seldiff_bg_panel
-   (file seldiff_bg.milo)}
+   (file
+      {if_else $game80s seldiff_bg_80s.milo seldiff_bg.milo})}
 {new
    MultiSelectPanel
    seldiff0
-   (file seldiff0.milo)
+   (file
+      {if_else $game80s seldiff0_80s.milo seldiff0.milo})
    (player_num 0)
    (ready_label
       "ready.lbl")
@@ -683,7 +765,8 @@
 {new
    MultiSelectPanel
    seldiff1
-   (file seldiff1.milo)
+   (file
+      {if_else $game80s seldiff1_80s.milo seldiff1.milo})
    (player_num 1)
    (ready_label
       "ready.lbl")
@@ -751,7 +834,8 @@
 {new
    MultiSelectPanel
    selpart0
-   (file selpart0.milo)
+   (file
+      {if_else $game80s selpart0_80s.milo selpart0.milo})
    (player_num 0)
    (ready_label
       "ready.lbl")
@@ -761,7 +845,8 @@
 {new
    MultiSelectPanel
    selpart1
-   (file selpart1.milo)
+   (file
+      {if_else $game80s selpart1_80s.milo selpart1.milo})
    (player_num 1)
    (ready_label
       "ready.lbl")
@@ -770,13 +855,14 @@
       {$this set_button_text})}
 {new
    UIPanel
-   selpart_bg_panel
-   (file selpart_bg.milo)}
+   mp_selpart_bg_panel
+   (file
+      {if_else $game80s selpart_bg_80s.milo selpart_bg.milo})}
 {new
    MultiSelectScreen
    selpart_screen
-   (panels meta selpart_bg_panel selpart0 selpart1 helpbar)
-   (focus selpart_bg_panel)
+   (panels meta mp_selpart_bg_panel selpart0 selpart1 helpbar)
+   (focus mp_selpart_bg_panel)
    (panel_base_name selpart)
    (helpbar
       (default
@@ -864,19 +950,39 @@
 #define MULTI_COMPETE_COMMON_PANEL_HANDLERS
 ((update_common_info
       {$this set_headline me_winner.lbl}
-      {me_song_data.lbl
-         set_localized_text
+      {set
+         $song_text1
          {game get_song_text}}
+      {if_else
+         {!= $speedmod 1}
+         {set
+            $song_text2
+            {sprint
+               $song_text1
+               " ("
+               {int
+                  {'+'
+                     0.5
+                     {'*' $speedmod 100}}}
+               "%)"}}
+         {set $song_text2 $song_text1}}
+      {me_song_data.lbl set_text $song_text2}
       {if_else
          {>
             {player0 percent_hit}
             50}
          {do
-            {me_percent_data1.lbl
-               set_localized_text
-               {sprintf
-                  {localize me_percent_format}
-                  {player0 percent_hit}}}
+            {if_else
+               $player0_fc
+               {me_percent_data1.lbl
+                  set_localized_text
+                  {sprint
+                     {localize fullcombo}}}
+               {me_percent_data1.lbl
+                  set_localized_text
+                  {sprintf
+                     {localize me_percent_format}
+                     {player0 percent_hit}}}}
             {me_percent_data1b.lbl
                set_localized_text
                ""}}
@@ -894,11 +1000,17 @@
             {player1 percent_hit}
             50}
          {do
-            {me_percent_data2.lbl
-               set_localized_text
-               {sprintf
-                  {localize me_percent_format}
-                  {player1 percent_hit}}}
+            {if_else
+               $player1_fc
+               {me_percent_data2.lbl
+                  set_localized_text
+                  {sprint
+                     {localize fullcombo}}}
+               {me_percent_data2.lbl
+                  set_localized_text
+                  {sprintf
+                     {localize me_percent_format}
+                     {player1 percent_hit}}}}
             {me_percent_data2b.lbl
                set_localized_text
                ""}}
@@ -911,6 +1023,12 @@
                {sprintf
                   {localize me_percent_format}
                   {player1 percent_hit}}}}}
+      {if
+         {player_matcher0 auto_play}
+         {me_percent_data1.lbl set_text toogle_label}}
+      {if
+         {player_matcher1 auto_play}
+         {me_percent_data2.lbl set_text toogle_label}}
       {percentbar_p1.mesh
          set_local_scale
          {/
@@ -1053,6 +1171,9 @@
       {me_stars.lbl
          set_text
          {band star_rating}}
+      {me_stars_fc.lbl
+         set_text
+         {band star_rating}}
       {me_streak_data2.lbl
          set_localized_text
          {sprintf
@@ -1064,6 +1185,21 @@
       {me_diff_data2.lbl
          set_text
          {game get_difficulty_sym 1}}
+      {if_else
+         $player2_fc
+         {do
+            {me_stars.lbl set_showing FALSE}
+            {me_stars_fc.lbl set_showing TRUE}}
+         {do
+            {me_stars_fc.lbl set_showing FALSE}
+            {me_stars.lbl set_showing TRUE}}}
+      {if
+         {'||'
+            {player_matcher0 auto_play}
+            {player_matcher1 auto_play}}
+         {do
+            {me_stars_fc.lbl set_showing FALSE}
+            {me_stars.lbl set_showing TRUE}}}
       {$this set_focus me_continue.btn})
    (next_screen
       {if_else
