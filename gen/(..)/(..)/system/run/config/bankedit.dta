@@ -1,4 +1,0 @@
-#include macros.dta
-(synth
-   (build_banks FALSE))
-#merge default.dta
