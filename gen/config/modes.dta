@@ -60,7 +60,7 @@
    (game_screen practice_game_screen)
    ; Can't set characters in practice, so make sure focus folks always get
    ; the off-black fretboard
-   (track_surface_override {if_else $focusmode streamer rosewood})
+   (track_surface_override #ifndef HX_XBOX {if_else $focusmode streamer rosewood} #else rosewood #endif)
    (song_block
       ; If the game detects that a song has custom practice audio, it'll use
 	  ; the song block of the speed set by the player, full, slow, slower, or
@@ -168,4 +168,4 @@
    (loading_screen tut_loading_screen)
    (blown_streak_feedback FALSE)
    (hud_file hud_sp.milo)
-   (track_surface_override {if_else $focusmode streamer rosewood}))
+   (track_surface_override #ifndef HX_XBOX {if_else $focusmode streamer rosewood} #else rosewood #endif))
