@@ -50,7 +50,7 @@
    (allow_achievements FALSE)
    #endif
    (skip_intro TRUE)
-   (star_power_disable TRUE)
+   ;(star_power_disable TRUE)
    (game_over_sequence FALSE)
    (crowd_rating_active FALSE)
    (crowd_audio FALSE)
