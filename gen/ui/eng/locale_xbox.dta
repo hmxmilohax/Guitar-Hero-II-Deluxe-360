@@ -2711,7 +2711,7 @@
 (mc_overwrite
    "Overwrite")
 (leaderboards
-   "extras")
+   "custom menu")
 (lb_career_leaderboard
    "Career Score")
 (lb_campaign_leaderboard
