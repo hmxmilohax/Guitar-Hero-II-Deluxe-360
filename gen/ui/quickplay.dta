@@ -168,7 +168,7 @@
          (speed3.btn
             {ui goto_screen sel_venue_screen_qp})
          (speed4.btn
-            {ui goto_screen milo_extras_screen})})}
+            {ui goto_screen milo_extras_screen_qp})})}
 {new
    GHScreen
    manage_gig_screen
@@ -330,20 +330,20 @@
       {$this update_help_display}))
 {new
    SliderPanel
-   milo_extras_panel
+   milo_extras_panel_qp
    (file milo_extras.milo)
    MILO_EXTRAS_PANEL_HANDLERS
    (pscan_warning pscan_warning_screen)}
 {new
    GHScreen
-   milo_extras_screen
-   (panels meta milo_extras_panel helpbar)
-   (focus milo_extras_panel)
+   milo_extras_screen_qp
+   (panels meta milo_extras_panel_qp helpbar)
+   (focus milo_extras_panel_qp)
    (allow_back FALSE)
    (enter
       {$this
          enable
-         {milo_extras_panel find gs_left_p2.btn}})
+         {milo_extras_panel_qp find gs_left_p2.btn}})
    (BUTTON_DOWN_MSG
       {if
          {== $button kPad_Tri}

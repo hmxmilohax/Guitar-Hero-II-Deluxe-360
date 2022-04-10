@@ -63,18 +63,7 @@
             {ui goto_screen training_screen})
 #ifdef HX_XBOX
          (main_leaderboards.btn
-            {if_else
-               {profilemgr is_active_pad_signed_in_live}
-               {do
-                  {gamecfg set mode quickplay}
-                  {leaderboards_song_screen set list_index 0}
-                  {set $leaderboards_mode TRUE}
-                  {ui goto_screen leaderboards_song_screen}}
-               {do
-                  {helpbar
-                     set_display
-                     ((fret1 help_continue))}
-                  {ui push_screen main_not_logged_in_screen}}})
+            {ui goto_screen milo_extras_screen})
 #endif
          (main_options.btn
             {ui goto_screen options_screen})})
@@ -194,3 +183,26 @@
          $component
          (continue.btn
             {ui pop_screen})})}
+{new
+   SliderPanel
+   milo_extras_panel
+   (file milo_extras.milo)
+   MILO_EXTRAS_PANEL_HANDLERS
+   (pscan_warning pscan_warning_screen)}
+{new
+   GHScreen
+   milo_extras_screen
+   (panels meta milo_extras_panel helpbar)
+   (focus milo_extras_panel)
+   (allow_back FALSE)
+   (enter
+      {$this
+         enable
+         {milo_extras_panel find gs_left_p2.btn}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen main_screen}}
+      kDataUnhandled)}
