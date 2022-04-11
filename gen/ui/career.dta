@@ -1607,8 +1607,11 @@
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
-      (hold_ms 500)
-      (repeat_ms 80))
+      (hold_ms 100)
+      (repeat_ms 30))
+   (page_down
+      {$this update_pos}
+	  {$this update_pos})
 #ifdef HX_XBOX
    (load
       {profilemgr add_sink $this storage_changed}
