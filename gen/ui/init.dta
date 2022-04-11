@@ -50,6 +50,7 @@
 {set $interval_p2 50}
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
+{set $emulatefps 60}
 #ifndef HX_XBOX
 ; GH2 ELFs never boot in 80s mode.
 #ifdef _SHIP
