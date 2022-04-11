@@ -54,7 +54,7 @@
    (game_over_sequence FALSE)
    (crowd_rating_active FALSE)
    (crowd_audio FALSE)
-   (hud_file hud_practice.milo)
+   (hud_file hud_sp.milo)
    (continue_screen main_screen)
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
