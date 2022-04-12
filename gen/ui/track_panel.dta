@@ -114,6 +114,7 @@
          (script
             {game foreach_player_matcher $m
                {$m refresh_track_buttons}}
+#ifndef HX_XBOX
 {{track_panel find track.cam} set_local_scale 1.6 1.0 1.0}
 ;{{track_panel find bar_line3.mesh} set_local_scale 0.6 1.0 1.0}
 ;{{track_panel find bar_line4.mesh} set_local_scale 0.6 1.0 1.0}
@@ -127,5 +128,6 @@
 {{track_panel find half_beat_line3.mesh} set_local_scale 0.6 1.0 1.0}
 {{track_panel find half_beat_line4.mesh} set_local_scale 0.6 1.0 1.0}
 {{track_panel find half_beat_line5.mesh} set_local_scale 0.6 1.0 1.0}
+#endif
 	  {track_panel reset})})}
 {new TrackMaskPanel track_mask}
