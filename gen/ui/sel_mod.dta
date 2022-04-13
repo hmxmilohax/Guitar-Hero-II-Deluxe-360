@@ -10,7 +10,7 @@
          ("Speed Settings"
           "Focus Mode"
           "No Fail"
-          "Song Title Always On")}
+          "Song Title Always")}
       {title.lbl set_text select_modifiers})
    (SELECT_START_MSG
       {switch
