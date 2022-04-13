@@ -1,0 +1,57 @@
+{new
+   MultiSelectListPanel
+   sel_mod_panel
+   (file
+      sel_modifiers.milo)
+   (focus sel_section.lst)
+   (enter
+      {sel_section.lst
+         set_data
+         ("Speed Settings"
+          "Focus Mode")}
+      {title.lbl set_text select_modifiers})
+   (SCROLL_MSG
+      {$this update_help_display})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+       ("Speed Settings"
+         {ui goto_screen modifiers_screen})
+       ("Focus Mode"
+         {if_else $focusmode
+            {set $focusmode FALSE}
+            {set $focusmode TRUE}}
+         ; {$this update_help_display}
+         )})
+   ; (update_help_display
+   ;    {switch
+   ;     {$component selected_sym}
+   ;     ("Speed Settings"
+   ;       {helpbar set_display
+   ;                ((fret1 help_select)
+   ;                   (fret2 help_back)
+   ;                   (strum help_updown))})
+   ;     ("Focus Mode"
+   ;       {if_else $focusmode
+   ;          {helpbar set_display
+   ;             ((fret1 help_off)
+   ;                (fret2 help_back)
+   ;                (strum help_updown))}
+   ;          {helpbar set_display
+   ;             ((fret1 help_on)
+   ;                (fret2 help_back)
+   ;                (strum help_updown))}})})
+				  }
+{new
+   GHScreen
+   sel_mod_screen
+   (panels meta midi_loader_panel sel_mod_panel helpbar)
+   (focus sel_mod_panel)
+   (BUTTON_DOWN_MSG
+      {if {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}}
+      kDataUnhandled)}

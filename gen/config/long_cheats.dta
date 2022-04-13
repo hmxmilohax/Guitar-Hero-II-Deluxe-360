@@ -266,7 +266,7 @@
          $modifier_exit
          {ui current_screen}}
       {synth play_sequence button_select}
-      {ui goto_screen modifiers_screen}})
+      {ui goto_screen sel_mod_screen}})
 ((G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_RED)
    {if
       CHEATS_ALLOWED

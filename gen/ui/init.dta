@@ -14,6 +14,7 @@
 #include tutorials.dta
 #include options.dta
 #include modifiers.dta
+#include sel_mod.dta
 #include practice.dta
 #include training.dta
 #include pause.dta

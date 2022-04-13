@@ -117,7 +117,5 @@
          {$this backwards_anim}
          {synth play_sequence button_back.cue}
          {$this set_speeds}
-         {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}}
+         {ui goto_screen sel_mod_screen}}
       kDataUnhandled)}
