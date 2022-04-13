@@ -1,259 +1,35 @@
-#define kPlayer1 (0)
-#define kPlayer2 (1)
-#define kPlayerNone (-1)
-#define kPlayerShared (-2)
-#define PLAYER_SETTINGS
-(("kPlayer1"
-      "kPlayer2"
-      "kPlayerNone"
-      "kPlayerShared"))
 (BandCrowdMeterDir
-   (superclasses RndDir)
    (init
       (type gh2))
    (types
       (gh2
          (enter
-            {if {exists game}
-               {{$this dir} add_sink $this}})
+            {if
+               {exists game}
+               {{$this dir}
+                  add_sink
+                  $this}})
          (exit
-            {{$this dir} remove_sink $this})))
-   (editor
-      (needle_anim object
-         (class Anim)
-         (help "anim to drive the needle")
-         HIDE_IN_PROXY)
-      (warning_anim object
-         (class Anim)
-         (help "animation that is played when below the warning level")
-         HIDE_IN_PROXY)
-      (red_anim object
-         (class Anim)
-         (help "animation that is played when in the red state")
-         HIDE_IN_PROXY)
-      (yellow_anim object
-         (class Anim)
-         (help "animation that is played when in the yellow state")
-         HIDE_IN_PROXY)
-      (green_anim object
-         (class Anim)
-         (help "animation that is played when in the green state")
-         HIDE_IN_PROXY)
-      (value float
-         (range 0 1)
-         (help "crowd value between 0 and 1"))
-      (test_red script
-         (script {$this set_value 0}))
-      (test_yellow script
-         (script {$this set_value 0.5}))
-      (test_green script
-         (script {$this set_value 1}))))
+            {{$this dir}
+               remove_sink
+               $this}))))
 (BandStarMeterDir
-   (superclasses RndDir)
    (init
       (type gh2))
    (types
-      (gh2))
-   (editor
-      (main_group object
-         (class Group)
-         (help "this group is always animated")
-         HIDE_IN_PROXY)
-      (ready_group object
-         (class Group)
-         (help "this group is drawn and animated only when star power is ready")
-         HIDE_IN_PROXY)
-      (fill_group object
-         (class Group)
-         (help "this group is drawn and animated only when star power is filling up")
-         HIDE_IN_PROXY)
-      (engage_anim_1 object
-         (class Anim)
-         (help "anim to drive when player 1 is trying to engage")
-         HIDE_IN_PROXY)
-      (engage_anim_2 object
-         (class Anim)
-         (help "anim to drive when player 2 is trying to engage")
-         HIDE_IN_PROXY)
-      (value float
-         (range 0 1)
-         (help "test value between 0 and 1"))
-      (using_star_power bool
-         (help "for testing; whether we're using star power or not.")
-         (no_test))
-      (engaging_1 bool
-         (help "whether player 1 is trying to engage, for testing."))
-      (engaging_2 bool
-         (help "whether player 2 is trying to engage, for testing."))
-      (player int
-         (list PLAYER_SETTINGS)
-         (help "which player to track"))))
+      (gh2)))
 (BandScoreDisplay
-   (superclasses RndDir)
    (init
       (type gh2))
    (types
-      (gh2))
-   (editor
-      (display_meshs
-         (array object
-            (class Mesh))
-         (help "mesh for each displayed digit")
-         HIDE_IN_PROXY)
-      (digit_mats
-         (array object
-            (class Mat))
-         (help "material for each digit (0-9)")
-         HIDE_IN_PROXY)
-      (blank_mat object
-         (class Mat)
-         (help "material for a blank space")
-         HIDE_IN_PROXY)
-      (score int
-         (help "enter the score for testing"))
-      (player int
-         (list PLAYER_SETTINGS)
-         (help "which player to track"))))
+      (gh2)))
 (BandStreakDisplay
-   (superclasses RndDir)
    (init
       (type gh2))
    (types
-      (gh2))
-   (editor
-      (color_anim object
-         (class MatAnim)
-         (help "mat anim specifying the color for each state")
-         HIDE_IN_PROXY)
-      (shake_anim object
-         (class Anim)
-         (help "anim that is fired when achieving a new streak")
-         HIDE_IN_PROXY)
-      (frame_mat object
-         (class Mat)
-         (help "material for the frame (has color applied to it)")
-         HIDE_IN_PROXY)
-      (mult_glow_mesh object
-         (class Mesh)
-         (help "glow mesh; hidden when no streak, color of its material is changed to match the streak color")
-         HIDE_IN_PROXY)
-      (mult_frame_mat object
-         (class Mat)
-         (help "material for multiplier frame")
-         HIDE_IN_PROXY)
-      (led_mats
-         (array object
-            (class Mat))
-         (help "material for LED's; one material per color.")
-         HIDE_IN_PROXY)
-      (led_meshs
-         (array object
-            (class Mesh))
-         (help "meshes for the LED streak indicators")
-         HIDE_IN_PROXY)
-      (digit_mats
-         (array object
-            (class Mat))
-         (help "one material per digit")
-         HIDE_IN_PROXY)
-      (mult_digit_mesh object
-         (class Mesh)
-         (help "mesh for the multiplier digit")
-         HIDE_IN_PROXY)
-      (x_digit_mesh object
-         (class Mesh)
-         (help "mesh for the X")
-         HIDE_IN_PROXY)
-      (blank_digit_mat object
-         (class Mat)
-         (help "material for a blank digit")
-         HIDE_IN_PROXY)
-      (x_digit_mat object
-         (class Mat)
-         (help "material for the X")
-         HIDE_IN_PROXY)
-      (blown_mesh_1 object
-         (class Mesh)
-         (help "mesh to indicate when player 1 blows a streak")
-         HIDE_IN_PROXY)
-      (blown_mesh_2 object
-         (class Mesh)
-         (help "mesh to indicate when player 2 blows a streak")
-         HIDE_IN_PROXY)
-      (blown_mat object
-         (class Mat)
-         (help "material used for the indicators when the streak is blown")
-         HIDE_IN_PROXY)
-      (blown_display_time float
-         (range 0 5)
-         (no_test serialize)
-         (help "length of time the blown streak indicator should light up for")
-         HIDE_IN_PROXY)
-      (player_1_blows script
-         (script {$this blow_streak 0}))
-      (player_2_blows script
-         (script {$this blow_streak 1}))
-      (multiplier int
-         (range 1 9)
-         (help "multiplier value for testing"))
-      (star_mode bool
-         (help "toggle star power for testing"))
-      (partial_streak int
-         (range 0 20)
-         (help "partial streak for testing"))
-      (player int
-         (list PLAYER_SETTINGS)
-         (help "which player to track"))
-      (refresh script
-         (script {$this refresh}))))
+      (gh2)))
 (BandLeadMeter
-   (superclasses RndDir)
    (init
       (type gh2))
    (types
-      (gh2))
-   (editor
-      (needle_anim object
-         (class Anim)
-         (help "anim to drive the needle")
-         HIDE_IN_PROXY)
-      (logo_glow_anim object
-         (class Anim)
-         (help "anim to make the logo glow different colors")
-         HIDE_IN_PROXY)
-      (glow_mesh_1 object
-         (class Mesh)
-         (help "mesh that is shown when player 1 is ahead")
-         HIDE_IN_PROXY)
-      (glow_mesh_2 object
-         (class Mesh)
-         (help "mesh that is shown when player 2 is ahead")
-         HIDE_IN_PROXY)
-      (pegged_anim_1 object
-         (class Anim)
-         (help "animation to play when player 1 has a huge lead")
-         HIDE_IN_PROXY)
-      (pegged_anim_2 object
-         (class Anim)
-         (help "animation to play when player 2 has a huge lead")
-         HIDE_IN_PROXY)
-      (lens_mesh object
-         (class Mesh)
-         (help "lens mesh")
-         HIDE_IN_PROXY)
-      (lens_mat_neutral object
-         (class Mat)
-         (help "lens mat to use when the score is tied")
-         HIDE_IN_PROXY)
-      (lens_mat_1 object
-         (class Mat)
-         (help "lens mat to use when player 1 is winning")
-         HIDE_IN_PROXY)
-      (lens_mat_2 object
-         (class Mat)
-         (help "lens mat to use when player 2 is winning")
-         HIDE_IN_PROXY)
-      (score_diff int
-         (help "difference in scores for testing. a positive number means the first player is ahead."))
-      (refresh script
-         (script {$this refresh}))))
+      (gh2)))

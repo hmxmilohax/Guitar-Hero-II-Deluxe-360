@@ -131,425 +131,1099 @@
 ()
 ()
 ()
-()
-()
+("GUITAR HERO II 360 CORE TEAM")
 ()
 ("HARMONIX MUSIC SYSTEMS, INC.")
 ()
 ("PROJECT MANAGEMENT")
-("Project Leader" "Daniel Sussman")
-("Producers" "Elena Siegman")
-("" "Tracy Rosenthal-Newsom")
-("Associate Producer" "Helen McWilliams")
+("Project Leader"
+   "Daniel Sussman")
+("Producer"
+   "Elena Siegman")
+("Associate Producer"
+   "Helen McWilliams")
 ()
 ("PROGRAMMERS")
-("Prog. Lead/Char. System" "James Fleming")
-("Engine Lead" "Eric Malafeew")
-("Asst. Prog. Lead/Game Sys." "Ethan Fenn")
-("Venue System" "Dan Ogles")
-("Game Shell" "Christine Legge Barrett")
-("" "Yang Yang")
-("Beatmatch System" "Dan Schmidt")
-("Milo" "Jeff Somers")
-("Build System" "Marc Flury")
-("Additional Programming" "Dan Brakeley")
-("" "Matthew Moss")
+("Programming Lead"
+   "Ethan Fenn")
+("Programmers"
+   "Dan Brakeley")
+(""
+   "Matthew Moss")
+(""
+   "Jeff Somers")
+("Additional Programming"
+   "Mark Finch")
+(""
+   "Dan Ogles")
+(""
+   "Eric Malafeew")
+(""
+   "Geoff Pitsch")
 ()
 ("AUDIO")
-("Audio Lead" "Eric Brosius")
-("Sound Designers" "Izzy Maxwell")
-("" "Jeff Allen")
-("" "Devon Newsom")
-("" "Peter Moore")
-("" "Sachi Sato")
-("Tutorial Voiceover" "Jason Kendall")
+("Audio Lead"
+   "Jeff Allen")
+("Sound Designers"
+   "Izzy Maxwell")
+(""
+   "Pete Maguire")
+(""
+   "Sachi Sato")
 ()
 ("DESIGN")
-("Game Designer" "Chris Canfield")
-("Copywriters" "Helen McWilliams")
-("" "Terri Brosius")
-("" "Christian Wissmuller")
+("Game Designer"
+   "Chris Canfield")
+("Additional Design"
+   "Keith \qAnarkeith\q Smith")
 ()
 ("ARTISTS")
-("Art Lead" "Dare Matheson")
-("Venue Lead" "Peter A. MacDonald")
-("Character Lead" "Matt Gilpin")
-("Art AP" "Jason Kendall")
-("Concept Artists" "Jennifer Hrabota Lesser")
-("" "Matt Gilpin")
-("" "Adolph Wong")
-("" "Matt Perlot")
-("" "Paul Lyons")
-("" "Matt Moore")
-("" "Steven Kimura")
-("" "Peter A. MacDonald")
-("" "Reiko Murakami")
-("" "Aaron DeMuth")
-("Character Tech" "Adolph Wong")
-("Character Animation" "Christopher Hartelius")
-("" "Kelly Scott")
-("" "Jeff Carroll")
-("" "Reiko Murakami")
-("Venue Modeling" "Peter A. MacDonald")
-("" "Steven Kimura")
-("" "Matt Moore")
-("" "Matt Perlot")
-("Venue Lighting" "Matt Moore")
-("" "Gayle Robertson")
-("Venue Effects" "David Boghdan")
-("" "Brian Gibson")
-("Game Shell" "Joe Kowalski")
-("Cinematographer" "Aaron DeMuth")
-("Track/HUD" "Elliot Clapp")
-("" "Brian Gibson")
-("" "Matt Perlot")
-("Lip Sync" "Noah Berkley")
-("" "Reiko Murakami")
-("Media Intern/HMX Video Ed." "Todd Robertson")
-("Additional Artists" "Kevin McGinnis")
-("" "Leeanne Williams")
-("Character Modeling" "Liquid Development")
-("" "RedOctane Technologies")
-("" "Andrew Hickinbottom")
-("Guitar Modeling" "Liquid Development")
-("" "Jason Kendall")
-("" "Matt Gilpin")
-("Intro Cutscene" "Ghostmilk Studios:")
-("" "Steve Wilson")
-("" "Arv Slabosevicius")
+("Art Lead"
+   "Dare Matheson")
+("Venue Lead"
+   "Matt Moore")
+("Character Lead"
+   "Matt Gilpin")
+("Art Associate Producer"
+   "Jason Kendall")
+("Character Animation"
+   "Christopher Hartelius")
+("Venue Modeling"
+   "Peter A. MacDonald")
+(""
+   "Matt Perlot")
+(""
+   "Steven Kimura")
+("Venue Lighting"
+   "Matt Moore")
+("Venue Effects"
+   "David Boghdan")
+(""
+   "Brian Gibson")
+("Game Shell"
+   "Joe Kowalski")
+("Track/HUD"
+   "John Dee")
+(""
+   "Brian Gibson")
+(""
+   "Matt Perlot")
+("Lip Sync"
+   "Kerry Roan")
+("Media Intern"
+   "Todd Robertson")
+("Character Modeling"
+   "Liquid Development")
+(""
+   "RedOctane Technologies")
+(""
+   "Andrew Hickinbottom")
+("Guitar Modeling"
+   "Liquid Development")
+(""
+   "Jason Kendall")
+(""
+   "Matt Gilpin")
+(""
+   "Matt Perlot")
+("Tattoo Artist"
+   "Jen Clinch Guertin")
 ()
 ("TECHNICAL ART")
-("Senior Tech Artist" "Jason Warburg")
-("Tech Artists" "Jason Booth")
-("" "Sean Baptiste")
-("Tech Art Intern" "Will Miller")
+("Senior Tech Artist"
+   "Jason Warburg")
+("Tech Artist"
+   "Sean Baptiste")
 ()
 ("QUALITY ASSURANCE TESTING")
-("QA Manager" "Luke Jacobs")
-("QA Coordinator" "Bill Cook")
-("Testers" "Arthur \qM-Cue\q Inasi")
-("" "Keith \qAnarkeith\q Smith")
-("" "Rob Stott")
-("" "Dan Meretzky")
-("" "Tim \qDestroyer of Worlds\q Cook")
-("" "Alex Rossi")
-("" "Heather Wilson")
-("" "Boston Livingstone")
+("QA Manager"
+   "Luke Jacobs")
+("QA Coordinator"
+   "Bill Cook")
+("QA Lead"
+   "Arthur \qM-Cue\q Inasi")
+("Testers"
+   "Keith \qAnarkeith\q Smith")
+(""
+   "Rob Stott")
+(""
+   "Tim \qOkiro\q Cook")
+(""
+   "Alex Rossi")
+(""
+   "Devon Newsom")
+(""
+   "Steven \qRazlo\q Bailey")
+(""
+   "Eliot Min")
+(""
+   "Andy Buch")
+(""
+   "Charlene Clark")
+(""
+   "Trevor Chamberlain")
+()
+()
+()
+("GUITAR HERO II DEVELOPMENT TEAM")
+()
+("HARMONIX MUSIC SYSTEMS, INC.")
+()
+("PROJECT MANAGEMENT")
+("Project Leader"
+   "Daniel Sussman")
+("Producers"
+   "Elena Siegman")
+(""
+   "Tracy Rosenthal-Newsom")
+("Associate Producer"
+   "Helen McWilliams")
+()
+("PROGRAMMERS")
+("Prog. Lead/Char. System"
+   "James Fleming")
+("Engine Lead"
+   "Eric Malafeew")
+("Asst. Prog. Lead/Game Sys."
+   "Ethan Fenn")
+("Venue System"
+   "Dan Ogles")
+("Game Shell"
+   "Christine Legge Barrett")
+(""
+   "Yang Yang")
+("Beatmatch System"
+   "Dan Schmidt")
+("Milo"
+   "Jeff Somers")
+("Build System"
+   "Marc Flury")
+("Additional Programming"
+   "Dan Brakeley")
+(""
+   "Matthew Moss")
+()
+("AUDIO")
+("Audio Lead"
+   "Eric Brosius")
+("Sound Designers"
+   "Izzy Maxwell")
+(""
+   "Jeff Allen")
+(""
+   "Devon Newsom")
+(""
+   "Peter Moore")
+(""
+   "Sachi Sato")
+("Tutorial Voiceover"
+   "Jason Kendall")
+()
+("DESIGN")
+("Game Designer"
+   "Chris Canfield")
+("Copywriters"
+   "Helen McWilliams")
+(""
+   "Terri Brosius")
+(""
+   "Christian Wissmuller")
+()
+("ARTISTS")
+("Art Lead"
+   "Dare Matheson")
+("Venue Lead"
+   "Peter A. MacDonald")
+("Character Lead"
+   "Matt Gilpin")
+("Art Associate Producer"
+   "Jason Kendall")
+("Concept Artists"
+   "Jennifer Hrabota Lesser")
+(""
+   "Matt Gilpin")
+(""
+   "Adolph Wong")
+(""
+   "Matt Perlot")
+(""
+   "Paul Lyons")
+(""
+   "Matt Moore")
+(""
+   "Steven Kimura")
+(""
+   "Peter A. MacDonald")
+(""
+   "Reiko Murakami")
+(""
+   "Aaron DeMuth")
+("Character Tech"
+   "Adolph Wong")
+("Character Animation"
+   "Christopher Hartelius")
+(""
+   "Kelly Scott")
+(""
+   "Jeff Carroll")
+(""
+   "Reiko Murakami")
+("Venue Modeling"
+   "Peter A. MacDonald")
+(""
+   "Steven Kimura")
+(""
+   "Matt Moore")
+(""
+   "Matt Perlot")
+("Venue Lighting"
+   "Matt Moore")
+(""
+   "Gayle Robertson")
+("Venue Effects"
+   "David Boghdan")
+(""
+   "Brian Gibson")
+("Game Shell"
+   "Joe Kowalski")
+("Cinematographer"
+   "Aaron DeMuth")
+("Track/HUD"
+   "Elliot Clapp")
+(""
+   "Brian Gibson")
+(""
+   "Matt Perlot")
+("Lip Sync"
+   "Noah Berkley")
+(""
+   "Reiko Murakami")
+("Media Intern/HMX Video Ed."
+   "Todd Robertson")
+("Additional Artists"
+   "Kevin McGinnis")
+(""
+   "Leeanne Williams")
+("Character Modeling"
+   "Liquid Development")
+(""
+   "RedOctane Technologies")
+(""
+   "Andrew Hickinbottom")
+("Guitar Modeling"
+   "Liquid Development")
+(""
+   "Jason Kendall")
+(""
+   "Matt Gilpin")
+("Guitar Hero II Logo"
+   "Joe Kowalski")
+("Intro Cutscene"
+   "Ghostmilk Studios:")
+(""
+   "Steve Wilson")
+(""
+   "Arv Slabosevicius")
+()
+("TECHNICAL ART")
+("Senior Tech Artist"
+   "Jason Warburg")
+("Tech Artists"
+   "Jason Booth")
+(""
+   "Sean Baptiste")
+("Tech Art Intern"
+   "Will Miller")
+()
+("QUALITY ASSURANCE TESTING")
+("QA Manager"
+   "Luke Jacobs")
+("QA Coordinator"
+   "Bill Cook")
+("Testers"
+   "Arthur \qM-Cue\q Inasi")
+(""
+   "Keith \qAnarkeith\q Smith")
+(""
+   "Rob Stott")
+(""
+   "Dan Meretzky")
+(""
+   "Tim \qOkiro\q Cook")
+(""
+   "Alex Rossi")
+(""
+   "Heather Wilson")
+(""
+   "Boston Livingstone")
 ()
 ("POSTER ARTISTS")
-("Data Dialog" "Shepard Fairey")
-("Main Screen" "DWITT")
-("Career Difficulty Select" "DWITT")
-("Career Home" "James Quigley")
-("End Game Screen" "James Quigley")
-("Quickplay Difficulty Select" "Little Friends of Printmaking")
-("Co-op Part Select" "Steven Kimura")
-("Multiplayer Difficulty Select" "Brian Ralph")
-("Multiplayer Mode Select" "Jeremy Wabiszczewicz")
-("Training Select" "Jen Corace")
-("Tutorial Select" "Jay Ryan")
-("Practice Part Select" "Steven Kimura")
-("Practice Difficulty Select" "Matt Perlot")
-("Practice Section Select" "John Dee")
-("Practice Speed Select" "Jeremy Fish")
-("Options" "Jesse Lefkowitz")
-("Audio Settings" "Aaron DeMuth")
-("Video Settings" "Dare Matheson")
-("Calibrate Lag" "Shawn Witt")
-("Data Settings" "Mark Dancey")
-("Bonus Videos" "Paul Lyons")
+("Data Dialog"
+   "Shepard Fairey")
+("Main Screen"
+   "DWITT")
+("Career Difficulty Select"
+   "DWITT")
+("Career Home"
+   "James Quigley")
+("End Game Screen"
+   "James Quigley")
+("Quickplay Difficulty Select"
+   "Little Friends of Printmaking")
+("Co-op Part Select"
+   "Steven Kimura")
+("Multiplayer Difficulty Select"
+   "Brian Ralph")
+("Multiplayer Mode Select"
+   "Jeremy Wabiszczewicz")
+("Training Select"
+   "Jen Corace")
+("Tutorial Select"
+   "Jay Ryan")
+("Practice Part Select"
+   "Steven Kimura")
+("Practice Difficulty Select"
+   "Matt Perlot")
+("Practice Section Select"
+   "John Dee")
+("Practice Speed Select"
+   "Jeremy Fish")
+("Options"
+   "Jesse Lefkowitz")
+("Audio Settings"
+   "Aaron DeMuth")
+("Video Settings"
+   "Dare Matheson")
+("Calibrate Lag"
+   "Shawn Witt")
+("Data Settings"
+   "Mark Dancey")
+("Bonus Videos"
+   "Paul Lyons")
+("Controller Select"
+   "Joe Kowalski")
 ()
 ("HARMONIX MANAGEMENT")
-("CEO/President" "Alex Rigopulos")
-("CTO" "Eran Egozy")
-("EVP + COO" "Mike Dornbrook")
-("VP Product Development" "Greg LoPiccolo")
-("VP Business Development" "Joe Brisbois")
-("Creative Director" "Josh \qRobotkid\q Randall")
-("Art Director" "Ryan Lesser")
-("Audio Director" "Kasson Crooker")
+("General Manager"
+   "Alex Rigopulos")
+("VP Engineering"
+   "Eran Egozy")
+("VP Operations"
+   "Mike Dornbrook")
+("VP Product Development"
+   "Greg LoPiccolo")
+("VP Business Development"
+   "Joe Brisbois")
+("VP Int'l Business Development"
+   "Bernie Yee")
+("Creative Director"
+   "Josh \qRobotkid\q Randall")
+("Art Director"
+   "Ryan Lesser")
+("Art Manager"
+   "Jason Arnone")
+("Audio Director"
+   "Kasson Crooker")
 ()
 ("SUPPORT")
-("Seneschal" "Kris Fell")
-("IT Manager" "Greg Rich")
-("IT Intern" "Chris Welch")
-("Librarian/Admin. Asst." "Heather Wilson")
-("Admin. Asst. / Muscle" "Jim \qJimtern\q McKenna")
-("The Interns" "Keith Emmanuel")
-("" "Adrian Rigopulos")
-("" "Kevin Chudyk")
-("Accounting Services" "Melonie Newman")
+("Seneschal"
+   "Kris Fell")
+("Administrative Assistant"
+   "Kurt Davis")
+("IT Manager"
+   "Greg Rich")
+("IT Intern"
+   "Chris Welch")
+("Librarian/Admin. Asst."
+   "Heather Wilson")
+("Admin. Asst. / Muscle"
+   "Jim \qJimtern\q McKenna")
+("Exalted Intern"
+   "Adrian Rigopulos")
+("The Interns"
+   "Keith Emmanuel")
+(""
+   "Kevin Chudyk")
+("Accounting Services"
+   "Melonie Newman")
 ()
-("Special Thanks To")
+("Special Thanks To:")
 ()
-("" "The entire HMX crew, our awesome focus testers, Gene Landy," "")
-("" "John Lanza, Candy Nguyen, Seamus Blackley, Jeff Light," "")
-("" "Tien-Yi Lee, 1369 Coffee House, Wooly Mammoth Studios," "")
-("" "whoever invented throwing horns, Avril Lavigne," "")
-("" "and especially Leif Barrett" "")
+(""
+   "The entire HMX crew, our awesome focus testers,"
+   "")
+(""
+   "Charlie Harris, Penny Arcade, Daniel Chace,"
+   "")
+(""
+   "Earnest Mazique, Jonathan Cresswell, Peter Jamieson,"
+   "")
+(""
+   "Sanctum Sound, Gene Landy, John Lanza, Candy Nguyen,"
+   "")
+(""
+   "Seamus Blackley, Jeff Light, Tien-Yi Lee,"
+   "")
+(""
+   "1369 Coffee House, Wooly Mammoth Studios,"
+   "")
+(""
+   "whoever invented throwing horns, Avril Lavigne,"
+   "")
+(""
+   "everyone at MTV Networks,"
+   "")
+(""
+   "and especially..."
+   "")
+(""
+   "Leif Barrett."
+   "")
 ()
 ("Very Special Thanks")
-("To The Real Guitar Heroes")
+("To The Real Guitar Heroes:")
 ()
-("" "Willie Adler, Joey Allen, Duane Allman (RIP)," "")
-("" "Gregg Allman, Ron Asheton, Dickey Betts, Jerry Cantrell," "")
-("" "Chris Cheney, John Christ, Kurt Cobain (RIP)," "")
-("" "Allen Collins (RIP), J.D. Cronise, Dick Dale, Dean DeLeo," "")
-("" "Grant Estes, Roger Fisher, Ace Frehley, Marty Friedman," "")
-("" "Synyster Gates, Scott Gorham, Dave Grohl," "")
-("" "Jim \qReverend Horton\q Heath, James Honeyman-Scott (RIP)," "")
-("" "Chrissie Hynde, Scott Ian, Tony Iommi, Larry LaLonde," "")
-("" "Jani Lane, Paul Leary, Howard Leese, Alex Lifeson," "")
-("" "Kerry Livgren, Mick Mars, Tom Morello, Mark Morton," "")
-("" "Dave Mustaine, Dave Navarro, Jon Nelson, Rick Neilsen," "")
-("" "Joe Perry, Keith Richards, Brian Robertson, Gary Rossington," "")
-("" "Brian Setzer, Kyle Shutt, Slash, Pat Smear, Dan Spitz," "")
-("" "David St. Hubbins, Paul Stanley, Andrew Stockdale" "")
-("" "Izzy Stradlin, Andy Summers, Matthew Sweet, Mick Taylor," "")
-("" "Nigel Tufnel, Erik Turner, Eddie Van Halen, Zacky Vengeance," "")
-("" "Brad Whitford, Rich Williams, James Williamson, Ann Wilson," "")
-("" "Nancy Wilson, Robin Zander, and Sir David Minehan" "")
+(""
+   "Willie Adler, Joey Allen, Duane Allman (RIP),"
+   "")
+(""
+   "Gregg Allman, Tim Armstrong, Ron Asheton,"
+   "")
+(""
+   "Dickey Betts, Ritchie Blackmore, Marc Bolan (RIP),"
+   "")
+(""
+   "Michael Bruce, Glen Buxton (RIP), Jerry Cantrell,"
+   "")
+(""
+   "Chris Cheney, John Christ, Kurt Cobain (RIP),"
+   "")
+(""
+   "Allen Collins (RIP), J.D. Cronise, Dick Dale,"
+   "")
+(""
+   "Dean DeLeo, Rick Derringer, Grant Estes,"
+   "")
+(""
+   "Roger Fisher, Ace Frehley, Lars Frederiksen,"
+   "")
+(""
+   "Marty Friedman, Synyster Gates, Stone Goddard,"
+   "")
+(""
+   "Scott Gorham, Dave Grohl, Jim \qReverend Horton\q Heath,"
+   "")
+(""
+   "Darrel Herbert, James Honeyman-Scott (RIP),"
+   "")
+(""
+   "Chrissie Hynde, Scott Ian, Frank Iero, Tony Iommi,"
+   "")
+(""
+   "Larry LaLonde, Jani Lane, Paul Leary, Howard Leese,"
+   "")
+(""
+   "Todd Lewis, Alex Lifeson, Kerry Livgren, Mick Mars,"
+   "")
+(""
+   "Mike McCready, Tom Morello, Mark Morton,"
+   "")
+(""
+   "Dave Murray, Dave Mustaine, Dave Navarro, Jon Nelson,"
+   "")
+(""
+   "Rick Neilsen, Joe Perry, Keith Richards, Brian Robertson,"
+   "")
+(""
+   "Gary Rossington, Brian Setzer, Kyle Shutt, Slash,"
+   "")
+(""
+   "Pat Smear, Adrian Smith, Dan Spitz, David St. Hubbins,"
+   "")
+(""
+   "Paul Stanley, Andrew Stockdale, Izzy Stradlin,"
+   "")
+(""
+   "Andy Summers, Matthew Sweet, Mick Taylor, Ray Toro,"
+   "")
+(""
+   "Nigel Tufnel, Erik Turner, Eddie Van Halen,"
+   "")
+(""
+   "Zacky Vengeance, Brad Whitford, Rich Williams,"
+   "")
+(""
+   "James Williamson, Ann Wilson, Nancy Wilson,"
+   "")
+(""
+   "Reggie Vinson, Robin Zander,"
+   "")
+(""
+   "and Sir David Minehan."
+   "")
 ()
-("" "RIP Dimebag Darrell" "")
+(""
+   "RIP Dimebag Darrell"
+   "")
 ()
 ("Developed by Harmonix Music Systems, Inc.")
-("" "Protected by US patent number 6,429,863" "")
+(""
+   "Protected by US patent number 6,429,863"
+   "")
 ()
 ()
 ()
 ("RedOctane®")
 ()
 ("SOFTWARE PRODUCTION")
-("Executive Producer" "John Tam")
-("Associate Producer" "Ted Lange")
+("Executive Producers"
+   "John Tam")
+(""
+   "Jeff Matsushita")
+("Associate Producer"
+   "Ted Lange")
 ()
-("QA Lead" "Daniyel Garcia")
-("QA Analysts" "Jordan Dodge")
-("" "Mark Johnson")
-("" "Raul Renteria")
-("" "Amanda Amezcua")
-("" "Cas Agustin")
-("" "Barry Jackson")
-("" "James Hui")
+("QA Lead"
+   "Daniyel Garcia")
+("QA Analysts"
+   "Jordan Dodge")
+(""
+   "Mark Johnson")
+(""
+   "Raul Renteria")
+(""
+   "Amanda Amezcua")
+(""
+   "Casimero Agustin")
+(""
+   "Barry Jackson")
+(""
+   "James Hui")
 ()
-("Rock-sultant" "Marcus Henderson")
+("Rock-sultant"
+   "Marcus Henderson")
 ()
 ("PUBLISHING")
-("VP of Marketing" "Stacey Hirata")
-("Brand Manager" "Corey Fong")
-("Licensing Associate" "Chris Larkin")
-("Marketing Assistant" "Kyle Rechsteiner")
+("VP of Marketing"
+   "Stacey Hirata")
+("Brand Manager"
+   "Corey Fong")
+("Licensing Associate"
+   "Chris Larkin")
+("Marketing Assistant"
+   "Kyle Rechsteiner")
 ()
-("Sr. PR Specialist" "Bryan Lam")
+("Sr. PR Specialist"
+   "Bryan Lam")
 ()
-("Creative Services Manager" "Mike Doan")
-("Graphic Designer" "Maly Bun")
+("Creative Services Manager"
+   "Mike Doan")
+("Graphic Designers"
+   "Maly Bun")
+(""
+   "Minna Hu")
 ()
-("President" "Kai Huang")
-("Vice President" "Dusty Welch")
-("COO" "Charles Huang")
-("Controller" "Richard Santiago")
-("Accounting" "Tina Xu")
-("Logistics Manager" "Candy Lu")
-("Logistics Specialist" "Scott Yang")
-("HR Generalist" "Kathryn Fernandez")
+("President"
+   "Kai Huang")
+("COO"
+   "Charles Huang")
+("Head of Publishing"
+   "Dusty Welch")
+("Controller"
+   "Richard Santiago")
+("Accounting"
+   "Tina Xu")
+("Logistics Manager"
+   "Candy Lu")
+("Logistics Specialist"
+   "Scott Yang")
+("HR Generalist"
+   "Kathryn Fernandez")
+()
+("Worldwide Exec. of Music"
+   "Tim Riley")
+()
+("Music Superviser"
+   "Brandon Young")
+()
+("HARDWARE GROUP")
+("VP of Accessories"
+   "Lee Guinchard")
+("Director of R&D"
+   "Jack McCauley")
+("Product Managers"
+   "Jamie Yang")
+(""
+   "Steve Withers")
+()
+("ACTIVISION TRG")
+()
+("Techincal Requirements Group")
+("Sr. Manager"
+   "Christopher Wilson")
+("Lead"
+   "Marc Villanueva")
+()
+("Testers"
+   "David Wilkinson")
+(""
+   "Teak Holley")
+(""
+   "Red Rahm")
+(""
+   "Jared Baca")
+(""
+   "Christian Haile")
+(""
+   "Melody Villaflores")
+(""
+   "Marty Quinn")
+(""
+   "Alex Hersch")
+(""
+   "James Rose")
+(""
+   "Ben Abel")
 ()
 ("The rest at RedOctane")
 ()
-("" "Specifically: Jamie Yang, Hana Kakinami, Henry Okamoto," "")
-("" "Michael Pan, Patty Simoneli, Trina Kratz, Lee Guinchard," "")
-("" "Steve Withers, Jack McCauley, Dean Ku, James Goodwin," "")
-("" "J.J. Pan, Kelly Sumner, Chris Deering, Gerry Tucker," "")
-("" "and Swami Venkat" "")
+(""
+   "Specifically Hana Kakinami, Trina Katz, Henry Okamoto,"
+   "")
+(""
+   "Michael Pan, Patty Simoneli, Dean Ku, James Goodwin,"
+   "")
+(""
+   "J.J. Pan, Kelly Sumner, Chris Deering, Dave Noble,"
+   "")
+(""
+   "Gerry Tucker, and Swami Venkat."
+   "")
 ()
-("MUSIC CONSULTING AND LICENSING")
-("" "Eckhardt Consulting Inc." "")
+("All the folks at Activision Corporate")
+()
+(""
+   "Specifically Mike Griffith, Ron Doornick, Thomas Tippl,"
+   "")
+(""
+   "Brian Kelly, Bobby Kotick, Robin Kaminsky, Maria Stipp,"
+   "")
+(""
+   "Steve Young, Josh Taub, Laura Hoegler,"
+   "")
+(""
+   "Jennifer Sullivan, Wade Pottinger, Sean Dexheimer,"
+   "")
+(""
+   "Dan Schaffer, Molly Hinchey, George Rose, Greg Deutsch,"
+   "")
+(""
+   "Mary Tuck, Kap Kang, Dani Kim, Dave Anderson,"
+   "")
+(""
+   "Justin Berenbaum, Tina Kwon, Susan Rude, John Dillulo,"
+   "")
+(""
+   "Ami Sheth, Maryanne Lataif, Michelle Schroder,"
+   "")
+(""
+   "Chris Wilson, Steve Rosenthal, Justin Bennett,"
+   "")
+(""
+   "Jamie Bafus, Phil Terzian, Jay Komas, Neil Armstrong,"
+   "")
+(""
+   "Peter Oey, Steve Wereb, Todd Szalla, Nikunj Dalal,"
+   "")
+(""
+   "Activision APAC and Activision Europe."
+   "")
+()
+(""
+   "Music Consulting and Licensing by Eckhardt Consulting Inc."
+   "")
 ()
 ("REVERB COMMUNICATIONS INC")
-("VP of Business Development" "Doug Kennedy")
-("VP of Public Relations" "Tracie Snitker")
-("Retail Sales" "Matt Krumwiede")
-("Account Director" "Matt Moss")
-("" "Mike Zildjian")
+("VP of Business Development"
+   "Doug Kennedy")
+("VP of Public Relations"
+   "Tracie Snitker")
+("Retail Sales"
+   "Matt Krumwiede")
+("Account Director"
+   "Matt Moss")
+(""
+   "Mike Zildjian")
 ()
-("All of the folks at")
-("Activision Corporate")
-()
-("" "Specifically: Mike Griffith, Ron Doornick, Thomas Tippl," "")
-("" "Brian Kelly, Bobby Kotick, Robin Kaminsky, Maria Stipp," "")
-("" "Steve Young, Josh Taub, Laura Hoegler, Jennifer Sullivan," "")
-("" "Wade Pottinger, Sean Dexheimer, Dan Schaffer, Molly Hinchey," "")
-("" "George Rose, Greg Deutsch, Mary Tuck, Kap Kang, Dani Kim," "")
-("" "Dave Anderson, Justin Berenbaum, Tina Kwon, Susan Rude," "")
-("" "John Dillulo, Ami Sheth, Maryanne Lataif, Michelle Schroder," "")
-("" "Chris Wilson, Steve Rosenthal, Justin Bennett," "")
-("" "and Jamie Bafus" "")
-()
-("Our Wonderful In-Game Partners")
+("Our Wonderful \qIn-Game\q Partners")
 ()
 ("Gibson USA")
-("" "Specifically Henry Juszkiewicz, David Berryman," "")
-("" "Jim Rosenberg, Rob Senn, Caroline Galloway, Katey Twombly," "")
-("" "Kevin Philbin, Jason Sanders, Eric Marlow, Cara Hogan," "")
-("" "Alex Madrid, Don Pitts, Ellen Canas, Jon Grimson," "")
-("" "and Deborah Orsland" "")
+(""
+   "Specifically Henry Juszkiewicz, David Berryman,"
+   "")
+(""
+   "Jim Rosenberg, Rob Senn, Caroline Galloway, Katey Twombly,"
+   "")
+(""
+   "Kevin Philbin, Jason Sanders, Eric Marlow, Cara Hogan,"
+   "")
+(""
+   "Alex Madrid, Don Pitts, Ellen Canas, Jon Grimson,"
+   "")
+(""
+   "and Deborah Orsland."
+   "")
 ()
 ("Ernie Ball")
-("" "Specifically Sterling Ball," "")
-("" "Brian Ball, Casey Ball, and Dudley Gimpel" "")
+(""
+   "Specifically Sterling Ball,"
+   "")
+(""
+   "Brian Ball, Casey Ball, and Dudley Gimpel"
+   "")
 ()
 ("Classical Musical Instruments")
-("" "Specifically Rob Olsen and Tom Belotti" "")
+(""
+   "Specifically Rob Olsen and Tom Belotti"
+   "")
 ()
-("Mesa/Boogie")
-("" "Specifically Randall Smith, Doug West," "")
-("" "Steve Mueller, and Tien Lawrence" "")
+("Mesa Boogie Ltd")
+(""
+   "Specifically Randall Smith and Doug West"
+   "")
 ()
 ("U.S. Music Corp.")
-("" "Specifically Kevin Lello and Doug Reynolds" "")
+(""
+   "Specifically Kevin Lello and Doug Reynolds"
+   "")
 ()
-("Orange USA")
-("" "Specifically Jason Green and Graham Gulden" "")
+("Orange")
+(""
+   "Specifically Jason Green and Graham Gulden"
+   "")
 ()
-("Krank Amplification")
-("" "Specifically Martin Chan, Jody Dankberg, and Pat Flanagan" "")
+("Krank")
+(""
+   "Specifically Martin Chan, Jody Dankberg, and Pat Flanagan"
+   "")
 ()
-("VHT Amplification")
-("" "Specifically Marcus Schefer and Steve Fryette" "")
+("VHT")
+(""
+   "Specifically Marcus Schefer and Steve Fryette"
+   "")
 ()
 ("Line 6")
-("" "Specifically Erik Tarkiainen, Marcus Ryle," "")
-("" "Krista Gariano Shue, and Ethan Tufts" "")
+(""
+   "Specifically Erik Tarkiainen, Marcus Ryle,"
+   "")
+(""
+   "Krista Gariano Shue, and Ethan Tufts"
+   "")
+()
+("Vox Amplification")
+(""
+   "Specifically Michael Bradley"
+   "")
 ()
 ("Boss U.S.")
-("" "Specifically Paul Youngblood, Octavio Padilla," "")
-("" "and Tara Callahan" "")
+(""
+   "Specifically Paul Youngblood, Octavio Padilla,"
+   "")
+(""
+   "and Tara Callahan"
+   "")
 ()
 ("Drum Workshop")
-("" "Specifically Scott Donnell" "")
+(""
+   "Specifically Scott Donnell"
+   "")
 ()
 ("Avedis Zildjian Co.")
-("" "Specifically Craigie Zildjian, John Sorenson," "")
-("" "Brad Baker, and Annette R. Macamaux" "")
+(""
+   "Specifically Craigie Zildjian, John Sorenson,"
+   "")
+(""
+   "Brad Baker, and Annette R. Macamaux"
+   "")
 ()
 ("Vans")
-("" "Specifically Kurt Soto and Doug Palladini" "")
+(""
+   "Specifically Kurt Soto and Doug Palladini"
+   "")
 ()
 ("Guitar Center")
-("" "Specifically Marty Alberson and Andy Heyneman" "")
+(""
+   "Specifically Marty Alberson and Andy Heyneman"
+   "")
 ()
-("EMG Pickups")
-("" "Specifically Rob Turner, Jack Nau," "")
-("" "Scott Ferrara, and Happ" "")
+("EMG")
+(""
+   "Specifically Rob Turner, Jack Nau,"
+   "")
+(""
+   "Scott Ferrara, and Happ"
+   "")
 ()
 ("Consolidated Skateboards")
-("" "Specifically Leticia Ruano" "")
+(""
+   "Specifically Leticia Ruano"
+   "")
 ()
-("An Industry Thanks To")
+("An Industry Thanks To:")
 ()
-("" "Kimi Matsuzaki, Jessica Chobot, Tommy Tallarico, Ryan Higa," "")
-("" "Daryle Tumacder, James Guirao, Sandie Fitzgerald," "")
-("" "Ricardo Torres, Ryan Davis, Rich Gallup, Jeff Gershman," "")
-("" "Brad Shoemaker, Chris Roper, Tal Blevins, Aaron Boulding," "")
-("" "Chris Carle, Andrew Pfister, Patrick Klepek, Jennifer Tsao," "")
-("" "Crispin Boyer, Michael Donahoe, Randy Falk, Terry Smith," "")
-("" "Ruby Lopez, Wil Wheaton, Kristeen Kennedy, Rich Amtower," "")
-("" "Erik Peterson, Thomas Connery, Brett Gow, Cam Le," "")
-("" "Denise Garcia, Zoe Flower, Tina Wood, Laura Foy," "")
-("" "Jamil Moledina, Lori Solomon, Rey Jimenez, Robert Johnson," "")
-("" "Robert Hamiter, Tony Pereira, Phil Navidad," "")
-("" "Aletheia Simonson, Geoff Keighley, Paul Rivera and family," "")
-("" "Joe Barresi, Mike Novitski, Joanna Newman, Ted Staloch," "")
-("" "Elizabeth Howard, Chacko Sonny, Fargo, Sluggo, Mark Lamia," "")
-("" "Lindsay Harris, Julianne Hintz, and Matthew Peacock" "")
+(""
+   "Kimi Matsuzaki, Jessica Chobot, Tommy Tallarico,"
+   "")
+(""
+   "Ryan Higa, Daryle Tumacder, James Guirao,"
+   "")
+(""
+   "Sandie Fitzgerald, Ricardo Torres, Ryan Davis,"
+   "")
+(""
+   "Rich Gallup, Jeff Gershman, Brad Shoemaker, Chris Roper,"
+   "")
+(""
+   "Tal Blevins, Aaron Boulding, Chris Carle, Andrew Pfister,"
+   "")
+(""
+   "Patrick Klepek, Jennifer Tsao, Crispin Boyer,"
+   "")
+(""
+   "Michael Donahoe, Randy Falk, Terry Smith, Ruby Lopez,"
+   "")
+(""
+   "Wil Wheaton, Kristeen Kennedy, Rich Amtower,"
+   "")
+(""
+   "Erik Peterson, Thomas Connery, Brett Gow, Cam Le,"
+   "")
+(""
+   "Denise Garcia, Zoe Flower, Tina Wood, Laura Foy,"
+   "")
+(""
+   "Jamil Moledina, Lori Solomon, Rey Jimenez, Robert Johnson,"
+   "")
+(""
+   "Robert Hamiter, Tony Pereira, Phil Navidad,"
+   "")
+(""
+   "Aletheia Simonson, Kathleen Sanders, Geoff Keighley,"
+   "")
+(""
+   "Paul Rivera and family, Joe Barresi, Mike Novitski,"
+   "")
+(""
+   "Joanna Newman, Ted Staloch, Elizabeth Howard,"
+   "")
+(""
+   "Chacko Sonny, Fargo, Sluggo, Mark Lamia, Lindsay Harris,"
+   "")
+(""
+   "Julianne Hintz, Oggie Kim, and Matthew Peacock."
+   "")
 ()
-("Sony Computer Entertainment America")
-("" "Including Chris Clark, Nathan Bosia, Carlone Fabri," "")
-("" "Mark Vitello, Jerry Jessup, Amanda Cinfio, and Ted Regulski" "")
+("Microsoft Xbox")
 ()
-("Our Personal Thanks To")
+(""
+   "Specifically Vik Long, Scott Loomis, Andre Botha,"
+   "")
+(""
+   "Stone Chin, Rashmi Chopra, and John Smith."
+   "")
 ()
-("" "Cathy Chang Tam, Keith and Clark Tam, Ford Hirata," "")
-("" "Lillian Qian, The Huang family, Virgina Fong, Kaiana Fong," "")
-("" "Jaden Fong, Kaelea Fong, Manny Lorenzo, Skye Lange," "")
-("" "Dream Lange, the Larkin family, Melissa Harold, Luke Welch," "")
-("" "Brooke Welch, Jeffrey Lee, Kim Donovan, Jim Govoni," "")
-("" "Roman Kennedy, The Koo's Pics Posse, Chucky Digital," "")
-("" "Nick Martinez, Don Schem, G.H.O.U.L, the GH MySpace army," "")
-("" "Katy Dewitt, Penny Flame, the Brethren, Jeff Leung," "")
-("" "Miko Garcia, Teri Nguyen, Jonas Juco, TG.FW.OB," "")
-("" "the Amezquita family, The Block Family Rockers," "")
-("" "and Kal's BBQ" "")
+("Our Personal Thanks To:")
 ()
-("And Lastly RedOctane Dogs")
-("" "Abby, Harley, Rolly, Mocha, Molly, Tank, Messiah, and Snoop" "")
+(""
+   "Cathy Chang Tam, Keith and Clark Tam, Ford Hirata,"
+   "")
+(""
+   "Lillian Qian, The Huang family, Virginia Fong, Kaiana Fong,"
+   "")
+(""
+   "Jaden Fong, Kaelea Fong, Manny Lorenzo, Skye Lange,"
+   "")
+(""
+   "Dream Lange, the Larkin family, Melissa Harold, Luke Welch,"
+   "")
+(""
+   "Brooke Welch, the Block Family, Mark Lamia, Dave Stohl,"
+   "")
+(""
+   "the Santiago Family and Friends, Jeffrey Lee, Kim Donovan,"
+   "")
+(""
+   "Jim Govoni, Roman Kennedy, The Koo's Pics Posse,"
+   "")
+(""
+   "Chucky Digital, Nick Martinez, Don Schem, G.H.O.U.L.,"
+   "")
+(""
+   "the GH MySpace army, Judita Wignall, Katy Dewitt,"
+   "")
+(""
+   "Penny Flame, the Brethren, Jeff Leung, Miko Garcia,"
+   "")
+(""
+   "Teri Nguyen, Jonas Juco, TG.FW.OB, the Amezquita family,"
+   "")
+(""
+   "Meetrove, Monte Christo, the Block Family Rockers, "
+   "")
+(""
+   "Tony Jeler and Swift Signs, RockyPoint, Maly's Buns,"
+   "")
+(""
+   "and Kal's BBQ."
+   "")
+()
+("And Lastly RedOctane Dogs:")
+(""
+   "Abby, Harley, Rolly, Mocha, Molly, Tank, Snoop and Messiah"
+   "")
 ()
 ()
 ()
 ("WAVEGROUP SOUND")
-("" "Music/Vocals Recorded + Produced at" "")
-("" "WaveGroup Sound (Fremont, CA)" "")
-("" "Additional Music Recorded and Produced by" "")
-("" "Lance Taber (Sacramento, CA)" "")
-("" "Additional Music Recorded and Produced by" "")
-("" "Lyle Workman (Glendale, CA)" "")
+(""
+   "Music/Vocals Recorded & Produced at:"
+   "")
+(""
+   "WaveGroup Sound (Fremont, CA; San Francisco, CA)"
+   "")
+(""
+   "Additional Music Recorded and Produced by:"
+   "")
+(""
+   "Lyle Workman (Glendale, CA)"
+   "")
+(""
+   "Additional Music Recorded and Produced by:"
+   "")
+(""
+   "Lance Taber (Sacramento, CA)"
+   "")
 ()
-("Lead Music Producer + Mixer" "Will Littlejohn")
-("Additional Mixing" "Nick Gallant")
-("Additional Production Services" "Scott Dugdale")
-("" "Bill Frank")
-("" "Nick Gallant")
-("" "Lance Taber")
-("" "David Dees Urrutia")
-("Guitar" "Nick Gallant")
-("" "Marcus Henderson")
-("" "Lance Taber")
-("" "Lyle Workman")
-("Bass" "Darryl C. Anders")
-("" "Nick Gallant")
-("" "Will Littlejohn")
-("" "Lyle Workman")
-("Drums, Percussion" "Scott Dugdale")
-("" "Joel Taylor")
-("" "Mike Urbano")
-("Keyboards, Piano, Organ" "Scott Dugdale")
-("Sax" "Melecio Magdaluyo")
-("Vocalists" "Leslie Barton")
-("" "Lindsay Bauer")
-("" "Brad Brooks")
-("" "Dunning Butler")
-("" "Moorea Dickason")
-("" "Scott Dugdale")
-("" "Rich Elkerton")
-("" "Bill Frank")
-("" "Nick Gallant")
-("" "Marcus Henderson")
-("" "Kid Beyond")
-("" "Mark David Lee")
-("" "Will Littlejohn")
-("" "Brooks Lundy")
-("" "Kimberly A. Nieva")
-("" "Chris Perry")
-("" "Andrew Rothwell")
-("" "Casey Sealund")
-("" "Danny Shorago")
-("" "Ray J. Sutton")
-("" "David Dees Urrutia")
-("" "Austin Willacy")
-("Engineers" "Scott Dugdale")
-("" "Bill Frank")
-("" "Nick Gallant")
-("" "Mark David Lee")
-("" "Will Littlejohn")
-("" "Sue Pelmulder")
-("" "Lance Taber")
-("" "David Dees Urrutia")
-("" "Lyle Workman")
-("Assistant Engineers" "Lindsay Bauer")
-("" "Kimberly A. Nieva")
-("" "Ray J. Sutton")
-("Programming" "Scott Dugdale")
-("Casting" "Leslie Barton")
+("Lead Music Producer & Mixer"
+   "Will Littlejohn")
+("Additional Mixing"
+   "Nick Gallant")
+("Add'l Production Services"
+   "Scott Dugdale")
+(""
+   "Nick Gallant")
+(""
+   "Lance Taber")
+("Guitar"
+   "Nick Gallant")
+(""
+   "Marcus Henderson")
+(""
+   "Lance Taber")
+(""
+   "Lyle Workman")
+("Bass"
+   "Darryl C. Anders")
+(""
+   "Nick Gallant")
+(""
+   "Lyle Workman")
+("Drums, Percussion"
+   "Scott Dugdale")
+(""
+   "Joel Taylor")
+(""
+   "Mike Urbano")
+("Keyboards, Piano, Organ"
+   "Scott Dugdale")
+(""
+   "Will Littlejohn")
+("Sax"
+   "Melecio Magdaluyo")
+("Vocalists"
+   "Leslie Barton")
+(""
+   "Lindsay Bauer")
+(""
+   "Brandon Bayless")
+(""
+   "Wyatt Bradshaw")
+(""
+   "Brad Brooks")
+(""
+   "Dunning Butler")
+(""
+   "Moorea Dickason")
+(""
+   "Scott Dugdale")
+(""
+   "Rich Elkerton")
+(""
+   "Bill Frank")
+(""
+   "Nick Gallant")
+(""
+   "Marcus Henderson")
+(""
+   "Kid Beyond")
+(""
+   "Mark David Lee")
+(""
+   "Will Littlejohn")
+(""
+   "Brooks Lundy")
+(""
+   "Kimberly A. Nieva")
+(""
+   "Chris Perry")
+(""
+   "Andrew Rothwell")
+(""
+   "Casey Sealund")
+(""
+   "Danny Shorago")
+(""
+   "Ray J. Sutton")
+(""
+   "David Dees Urrutia")
+(""
+   "Austin Willacy")
+("Engineers"
+   "Scott Dugdale")
+(""
+   "Bill Frank")
+(""
+   "Nick Gallant")
+(""
+   "Mark David Lee")
+(""
+   "Will Littlejohn")
+(""
+   "Sue Pelmulder")
+(""
+   "Lance Taber")
+(""
+   "David Dees Urrutia")
+(""
+   "Lyle Workman")
+("Assistant Engineers"
+   "Lindsay A. Bauer")
+(""
+   "Kimberly A. Nieva")
+(""
+   "Ray J. Sutton")
+("Programmers"
+   "Scott Dugdale")
+(""
+   "Will Littlejohn")
+("Video Editor"
+   "Kimberly A. Nieva")
+("Casting"
+   "Leslie Barton")
+("Additional Assistance"
+   "Wyatt Bradshaw")
+(""
+   "Jon Beerman")
 ()
 ()
 ()
@@ -558,918 +1232,2033 @@
 ("HOUSE OF MOVES, INC.")
 ()
 ("MANAGEMENT")
-("CEO" "Tom Tolles")
-("Executive Producer" "Scott Gagain")
-("Associate Producer" "Greta Anderson")
-("COO" "Matt Lawrence")
-("Production Manager" "Chris Bellaci")
-("Sales + Marketing Coordinator" "Jennifer Becherer")
-("IT Manager" "Scott Webster")
+("CEO"
+   "Tom Tolles")
+("Executive Producer"
+   "Scott Gagain")
+("Associate Producer"
+   "Greta Anderson")
+("COO"
+   "Matt Lawrence")
+("Production Manager"
+   "Chris Bellaci")
+("Sales & Marketing Coordinator"
+   "Jennifer Becherer")
+("IT Manager"
+   "Scott Webster")
 ()
 ("PRODUCTION")
-("Capture Supervisor" "Gary Roberts")
-("Capture Operator" "Andre Petrossian")
-("QA Lead" "Laura Siewert")
-("QA Assistant" "Vince Argentine")
-("Video Lead" "Nikola Dupkanic")
-("Production Assistant" "Josephine Darkwah")
-("Production Manager" "Chris Bellaci")
-("Executive Producer" "Scott Gagain")
-("IT Manager" "Scott Webster")
-("Associate Producer" "Greta Anderson")
+("Capture Supervisor"
+   "Gary Roberts")
+("Capture Operator"
+   "Andre Petrossian")
+("QA Lead"
+   "Laura Siewert")
+("QA Assistant"
+   "Vince Argentine")
+("Video Lead"
+   "Nikola Dupkanic")
+("Production Assistant"
+   "Josephine Darkwah")
+("Production Manager"
+   "Chris Bellaci")
+("Executive Producer"
+   "Scott Gagain")
+("IT Manager"
+   "Scott Webster")
+("Associate Producer"
+   "Greta Anderson")
 ()
-("Motion Capture Actors" "Judita Wignall")
-("" "Matt Wignall")
-("" "Ryan Lesser")
-("" "Dare Matheson")
+("Motion Capture Actors"
+   "Judita Wignall")
+(""
+   "Matt Wignall")
+(""
+   "Ryan Lesser")
+(""
+   "Dare Matheson")
 ()
 ()
 ()
 ("FONTS")
 ()
-("" "Tapeworm(TM) Regular" "")
-("" "(Lloyd Springer)" "")
-("" "© 1998-2002 TypeArt Foundry Inc. All Rights Reserved" "")
-("" "TypeArt® and Tapeworm are registered trademarks" "")
-("" "of the TypeArt Foundry Inc." "")
-("" "Used With Permission" "")
+(""
+   "Tapeworm(TM) Regular"
+   "")
+(""
+   "(Lloyd Springer)"
+   "")
+(""
+   "© 1998-2002 TypeArt Foundry Inc. All Rights Reserved"
+   "")
+(""
+   "TypeArt® and Tapeworm are registered trademarks"
+   "")
+(""
+   "of the TypeArt Foundry Inc."
+   "")
+(""
+   "Used With Permission"
+   "")
 ()
-("" "Helvetica(TM) Black" "")
-("" "Helvetica(TM) Black Condensed" "")
-("" "(Max Miedinger)" "")
-("" "© 1961 Heidelberger Druckmaschinen AG + Linotype GmbH" "")
-("" "Helvetica is a trademark of Linotype GmbH" "")
-("" "Used With Permission" "")
+(""
+   "Helvetica(TM) Black"
+   "")
+(""
+   "Helvetica(TM) Black Condensed"
+   "")
+(""
+   "(Max Miedinger)"
+   "")
+(""
+   "© 1961 Heidelberger Druckmaschinen AG + Linotype GmbH"
+   "")
+(""
+   "Helvetica is a trademark of Linotype GmbH"
+   "")
+(""
+   "Used With Permission"
+   "")
 ()
-("" "Clarendon(TM)" "")
-("" "(Hermann Eidenbenz)" "")
-("" "© 1953 Heidelberger Druckmaschinen AG + Linotype GmbH" "")
-("" "Clarendon is a trademark of Linotype GmbH" "")
-("" "Used With Permission" "")
+(""
+   "Clarendon(TM)"
+   "")
+(""
+   "(Hermann Eidenbenz)"
+   "")
+(""
+   "© 1953 Heidelberger Druckmaschinen AG + Linotype GmbH"
+   "")
+(""
+   "Clarendon is a trademark of Linotype GmbH"
+   "")
+(""
+   "Used With Permission"
+   "")
 ()
 ()
 ()
 ("MUSIC")
 ()
-("" "All songs selected for Guitar Hero were in collaboration with" "")
-("" "RedOctane®, Harmonix, and Eckhardt Consulting" "")
+(""
+   "All songs selected for Guitar Hero were in collaboration with"
+   "")
+(""
+   "RedOctane®, Harmonix, and Eckhardt Consulting"
+   "")
 ()
 ("ARTERIAL BLACK")
-("" "(Drist and Marcus Henderson)" "")
-("" "© 2006 DRIST MUSIC (ASCAP)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Drist and Marcus Henderson" "")
-("Guitars" "Marcus Henderson")
-("Vocals" "Tyson Yen")
-("Drums" "Kyle Freeze")
-("Bass" "Dave Pearl")
+(""
+   "(Drist and Marcus Henderson)"
+   "")
+(""
+   "© 2006 DRIST MUSIC (ASCAP)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Drist and Marcus Henderson"
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Vocals"
+   "Tyson Yen")
+("Drums"
+   "Kyle Freeze")
+("Bass"
+   "Dave Pearl")
 ()
 ("BAD REPUTATION")
-("" "(Philip Parris Lynott, Brian Michael Downey," "")
-("" "William Scott Gorham)" "")
-("" "© 1977 Pippin The Friendly Ranger Music Co. Ltd." "")
-("" "All Rights Administered by Universal - Polygram" "")
-("" "International Publishing, Inc. (ASCAP) All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Nick Gallant")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(Philip Parris Lynott, Brian Michael Downey,"
+   "")
+(""
+   "William Scott Gorham)"
+   "")
+(""
+   "© 1977 Pippin The Friendly Ranger Music Co. Ltd."
+   "")
+(""
+   "All Rights Administered by Universal - Polygram"
+   "")
+(""
+   "International Publishing, Inc. (ASCAP) All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Nick Gallant")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("THE BEAST AND THE HARLOT")
-("" "(Matthew Sanders, James Sullivan," "")
-("" "Brian Haner, Jr., Zachary Baker)" "")
-("" "© 2005 EMI APRIL MUSIC INC. and" "")
-("" "DARKNESS COATS US PUBLISHING" "")
-("" "All Rights Controlled and Administered by" "")
-("" "EMI APRIL MUSIC INC. (ASCAP) All Rights Reserved." " ")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
-("" "Kid Beyond")
+(""
+   "(Matthew Sanders, James Sullivan,"
+   "")
+(""
+   "Brian Haner, Jr., Zachary Baker)"
+   "")
+(""
+   "© 2005 EMI APRIL MUSIC INC. and"
+   "")
+(""
+   "DARKNESS COATS US PUBLISHING"
+   "")
+(""
+   "All Rights Controlled and Administered by"
+   "")
+(""
+   "EMI APRIL MUSIC INC. (ASCAP) All Rights Reserved."
+   " ")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
+(""
+   "Kid Beyond")
 ()
 ("BILLION DOLLAR BABIES")
-("" "(Michael Bruce, Reggie Vinson & Alice Cooper)" "")
-("" "Sony/ATV Songs, LLC (BMI)" "")
-("Guitars, Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
-("" "Nick Gallant")
+(""
+   "(Michael Bruce, Reggie Vinson & Alice Cooper)"
+   "")
+(""
+   "Sony/ATV Songs, LLC (BMI)"
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
+(""
+   "Nick Gallant")
 ()
 ("CAN'T YOU HEAR ME KNOCKING")
-("" "(M. Jagger & K. Richards)" "")
-("" "Published by Abkco Music, Inc" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Lance Taber")
-("Bass" "Darryl C. Anders")
-("Drums" "Joel Taylor")
-("Sax" "Melecio Magdaluyo")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Brad Brooks")
-("Background Vocals" "David Dees Urrutia")
+(""
+   "(M. Jagger & K. Richards)"
+   "")
+(""
+   "Published by Abkco Music, Inc"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Darryl C. Anders")
+("Drums"
+   "Joel Taylor")
+("Sax"
+   "Melecio Magdaluyo")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Brad Brooks")
+("Background Vocals"
+   "David Dees Urrutia")
 ()
 ("CARRY ME HOME")
-("" "(Chris Cheney, Scott Owen, and Travis Demsey)" "")
-("" "© 2001 EMI APRIL MUSIC INC. and" "")
-("" "THE LIVING END PTY LTD" "")
-("" "All Rights Controlled and Administered by" "")
-("" "EMI APRIL MUSIC INC. (ASCAP)  All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Programming, Bass" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
-("Group Vocals" "Bill Frank")
-("" "Nick Gallant")
-("" "Marcus Henderson")
-("" "David Dees Urrutia")
+(""
+   "(Chris Cheney, Scott Owen, and Travis Demsey)"
+   "")
+(""
+   "© 2001 EMI APRIL MUSIC INC. and"
+   "")
+(""
+   "THE LIVING END PTY LTD"
+   "")
+(""
+   "All Rights Controlled and Administered by"
+   "")
+(""
+   "EMI APRIL MUSIC INC. (ASCAP)  All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Programming, Bass"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
+("Group Vocals"
+   "Bill Frank")
+(""
+   "Nick Gallant")
+(""
+   "Marcus Henderson")
+(""
+   "David Dees Urrutia")
 ()
 ("CARRY ON MY WAYWARD SON")
-("" "(Kerry Livgren)" "")
-("" "© 1976 EMI BLACKWOOD MUSIC INC. /" "")
-("" "DON KIRSHNER MUSIC, INC." "")
-("" "All Rights Controlled and Administered by" "")
-("" "EMI BLACKWOOD MUSIC INC. All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Nick Gallant")
-("Bass" "Darryl C. Anders")
-("Drums" "Joel Taylor")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Rich Elkerton")
+(""
+   "(Kerry Livgren)"
+   "")
+(""
+   "© 1976 EMI BLACKWOOD MUSIC INC. /"
+   "")
+(""
+   "DON KIRSHNER MUSIC, INC."
+   "")
+(""
+   "All Rights Controlled and Administered by"
+   "")
+(""
+   "EMI BLACKWOOD MUSIC INC. All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Nick Gallant")
+("Bass"
+   "Darryl C. Anders")
+("Drums"
+   "Joel Taylor")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Rich Elkerton")
 ()
 ("CHERRY PIE")
-("" "(Jani Lane)" "")
-("" "© 1990 EMI VIRGIN SONGS, INC., DICK DRAGON MUSIC" "")
-("" "All Rights Controlled and Administered by" "")
-("" "EMI VIRGIN SONGS, INC. (BMI) All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Vocals, Guitars" "Nick Gallant")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Drums" "Joel Taylor")
-("Programming, Keyboards" "Scott Dugdale")
-("Group Vocals" "Will Littlejohn")
-("" "Andrew Rothwell")
-("" "David Dees Urrutia")
+(""
+   "(Jani Lane)"
+   "")
+(""
+   "© 1990 EMI VIRGIN SONGS, INC., DICK DRAGON MUSIC"
+   "")
+(""
+   "All Rights Controlled and Administered by"
+   "")
+(""
+   "EMI VIRGIN SONGS, INC. (BMI) All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Vocals, Guitars"
+   "Nick Gallant")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Drums"
+   "Joel Taylor")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Group Vocals"
+   "Will Littlejohn")
+(""
+   "Andrew Rothwell")
+(""
+   "David Dees Urrutia")
 ()
 ("COLLIDE")
-("" "(Adam Buhler (BMI) and Keith Smith (BMI))" "")
-("" "© 2006 Anarchy Club (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Anarchy Club" "")
+(""
+   "(Adam Buhler (BMI) and Keith Smith (BMI))"
+   "")
+(""
+   "© 2006 Anarchy Club (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Anarchy Club"
+   "")
 ()
 ("CRAZY ON YOU")
-("" "(Ann Wilson, Nancy Wilson, Roger Fisher)" "")
-("" " Andorra Music. ASCAP" "")
-("" "© 1976 Sony/ATV Tunes LLC (ASCAP) " "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Lance Taber")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Moorea Dickason")
+(""
+   "(Ann Wilson, Nancy Wilson, Roger Fisher)"
+   "")
+(""
+   " Andorra Music. ASCAP"
+   "")
+(""
+   "© 1976 Sony/ATV Tunes LLC (ASCAP) "
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Moorea Dickason")
 ()
 ("DEAD!")
-("" "Performed by My Chemical Romance" "")
-("" "Courtesy of Warner Bros. Records Inc." "")
-("" "By arrangement with " "")
-("" "Warner Music Group Video Game Licensing" "")
-("" "Published by" "")
-("" "Blow the Doors Off the Jersey Shore Music, Inc. (BMI)" "")
-("" "(P) 2006 Reprise Records" "")
+(""
+   "Performed by My Chemical Romance"
+   "")
+(""
+   "Courtesy of Warner Bros. Records Inc."
+   "")
+(""
+   "By arrangement with "
+   "")
+(""
+   "Warner Music Group Video Game Licensing"
+   "")
+(""
+   "Published by"
+   "")
+(""
+   "Blow the Doors Off the Jersey Shore Music, Inc. (BMI)"
+   "")
+(""
+   "(P) 2006 Reprise Records"
+   "")
 ()
 ("DRINK UP")
-("" "(Eddie Veliz, Gilbert Ramos, Tony Castaneda, Ramon Michel)" "")
-("" "© 2006 Bulldozer Music" "")
-("" "All Rights Reserved. Used By Permission." "")
-("" "Performed by Ounce of Self" "")
-("" "Produced by Ounce of Self and Metal \qDAN\q Ochoa" "")
+(""
+   "(Eddie Veliz, Gilbert Ramos, Tony Castaneda, Ramon Michel)"
+   "")
+(""
+   "© 2006 Bulldozer Music"
+   "")
+(""
+   "All Rights Reserved. Used By Permission."
+   "")
+(""
+   "Performed by Ounce of Self"
+   "")
+(""
+   "Produced by Ounce of Self and Metal \qDAN\q Ochoa"
+   "")
 ()
 ("ELEPHANT BONES")
-("" "(C. Oppel & J. Page Future Junk (ASCAP))" "")
-("" "© 2006 Stardust Records" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by That Handsome Devil" "")
-("Vocals" "Christian Oppel")
-("Guitar" "Martin Rodriguez")
-("Background Vocals" "Naoko Takamoto")
-("All Other Instrumentation" "Jeremy Page")
-("Production" "Jeremy Page")
+(""
+   "(C. Oppel & J. Page Future Junk (ASCAP))"
+   "")
+(""
+   "© 2006 Stardust Records"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by That Handsome Devil"
+   "")
+("Vocals"
+   "Christian Oppel")
+("Guitar"
+   "Martin Rodriguez")
+("Background Vocals"
+   "Naoko Takamoto")
+("All Other Instrumentation"
+   "Jeremy Page")
+("Production"
+   "Jeremy Page")
 ()
 ("FALL OF PANGEA")
-("" "(B. Powell, H. Abernethy, J. Aylward," "")
-("" "T. Wolf, M. Maxwell ASCAP)" "")
-("" "© 2006 Volcom Entertainment" "")
-("" "Performed by Valient Thorr" "")
-("" "From the album \qLegend Of The World\q" "")
-("Guitars" "Odin Thorr")
-("" "Eidan Thorr")
-("Vocals" "Valient Himself")
-("Drums" "Lucian Thorr")
-("Bass" "Nitewolf")
+(""
+   "(B. Powell, H. Abernethy, J. Aylward,"
+   "")
+(""
+   "T. Wolf, M. Maxwell ASCAP)"
+   "")
+(""
+   "© 2006 Volcom Entertainment"
+   "")
+(""
+   "Performed by Valient Thorr"
+   "")
+(""
+   "From the album \qLegend Of The World\q"
+   "")
+("Guitars"
+   "Odin Thorr")
+(""
+   "Eidan Thorr")
+("Vocals"
+   "Valient Himself")
+("Drums"
+   "Lucian Thorr")
+("Bass"
+   "Nitewolf")
 ()
 ("FREE BIRD")
-("" "(Ronnie Van Zant, Allen Collins)" "")
-("" "© 1973 Songs Of Universal, Inc. and Longitude Music Co." "")
-("" "All Rights Administered by Songs of Universal, Inc. (BMI)" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars" "Lance Taber")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Kid Beyond")
+(""
+   "(Ronnie Van Zant, Allen Collins)"
+   "")
+(""
+   "© 1973 Songs Of Universal, Inc. and Longitude Music Co."
+   "")
+(""
+   "All Rights Administered by Songs of Universal, Inc. (BMI)"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Kid Beyond")
 ()
 ("FREYA")
-("" "(JD Cronise)" "")
-("" "Courtesy of Blood of King Music" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brad Brooks")
+(""
+   "(JD Cronise)"
+   "")
+(""
+   "Courtesy of Blood of King Music"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brad Brooks")
 ()
 ("FTK")
-("" "(Helen McWilliams)" "")
-("" "© 2006 VAGIANT" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by VAGIANT" "")
-("Guitar, Lead Vocals" "Helen \qHellion\q McWilliams")
-("Guitar, Vocals" "Elena Siegman")
-("Bass" "Leeanne Williams")
-("Drums" "Lauren \qLoWreck\q Recchia")
-("Guest Guitar" "Christian Wissmuller")
-("Guest Bass, Guitar" "Daniel Sussman")
+(""
+   "(Helen McWilliams)"
+   "")
+(""
+   "© 2006 VAGIANT"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by VAGIANT"
+   "")
+("Guitar, Lead Vocals"
+   "Helen \qHellion\q McWilliams")
+("Guitar, Vocals"
+   "Elena Siegman")
+("Bass"
+   "Leeanne Williams")
+("Drums"
+   "Lauren \qLoWreck\q Recchia")
+("Guest Guitar"
+   "Christian Wissmuller")
+("Guest Bass, Guitar"
+   "Daniel Sussman")
 ()
 ("GEMINI")
-("" "© 2004 Redman Music" "")
-("" "All Rights Reserved Used By Permission." "")
-("All Guitars" "Brian Kahanek")
-("Drums" "Dustin Cunningham")
-("Bass" "Chris Golden")
-("Produced by" "Brian Kahanek")
+(""
+   "© 2004 Redman Music"
+   "")
+(""
+   "All Rights Reserved Used By Permission."
+   "")
+("All Guitars"
+   "Brian Kahanek")
+("Drums"
+   "Dustin Cunningham")
+("Bass"
+   "Chris Golden")
+("Produced by"
+   "Brian Kahanek")
 ()
 ("GIRLFRIEND")
-("" "(Matthew Sweet)" "")
-("" "© 1991 EMI BLACKWOOD MUSIC INC. and" "")
-("" "CHARM TRAP MUSIC INC. (BMI)  All Rights Controlled and" "")
-("" "Administered by EMI BLACKWOOD MUSIC INC." "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars" "Lance Taber")
-("Bass, Background Vocals" "Nick Gallant")
-("Drums" "Mike Urbano")
-("Percussion" "Scott Dugdale")
-("Vocals" "Kid Beyond")
+(""
+   "(Matthew Sweet)"
+   "")
+(""
+   "© 1991 EMI BLACKWOOD MUSIC INC. and"
+   "")
+(""
+   "CHARM TRAP MUSIC INC. (BMI)  All Rights Controlled and"
+   "")
+(""
+   "Administered by EMI BLACKWOOD MUSIC INC."
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass, Background Vocals"
+   "Nick Gallant")
+("Drums"
+   "Mike Urbano")
+("Percussion"
+   "Scott Dugdale")
+("Vocals"
+   "Kid Beyond")
 ()
 ("HANGAR 18")
-("" "(Dave Mustaine)" "")
-("" "© 1990 MUSTAINE MUSIC + THEORY MUSIC" "")
-("" "Rights for MUSTAINE MUSIC Controlled and Administered" "")
-("" "by EMI BLACKWOOD MUSIC INC. (BMI) All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Casey Sealund")
+(""
+   "(Dave Mustaine)"
+   "")
+(""
+   "© 1990 MUSTAINE MUSIC + THEORY MUSIC"
+   "")
+(""
+   "Rights for MUSTAINE MUSIC Controlled and Administered"
+   "")
+(""
+   "by EMI BLACKWOOD MUSIC INC. (BMI) All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Casey Sealund")
 ()
 ("HEART-SHAPED BOX")
-("" "(Kurt Cobain)" "")
-("" "© 1993 EMI VIRGIN SONGS, INC./THE END OF MUSIC" "")
-("" "All Rights Controlled and Administered by" "")
-("" "EMI VIRGIN SONGS, INC. All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(Kurt Cobain)"
+   "")
+(""
+   "© 1993 EMI VIRGIN SONGS, INC./THE END OF MUSIC"
+   "")
+(""
+   "All Rights Controlled and Administered by"
+   "")
+(""
+   "EMI VIRGIN SONGS, INC. All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("HUSH")
-("" "(Joe South)" "")
-("" "Sony/ATV Songs, LLC (BMI)" "")
-("Guitars" "Lance Taber")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Danny Shorago")
-("Background Vocals" "David Dees Urrutia")
+(""
+   "(Joe South)"
+   "")
+(""
+   "Sony/ATV Songs, LLC (BMI)"
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Danny Shorago")
+("Background Vocals"
+   "David Dees Urrutia")
 ()
 ("INSTITUTIONALIZED")
-("" "(Mike Muir and Louiche Mayorga)" "")
-("" "Published by YOU'LL BE SORRY MUSIC," "")
-("" "AMERICAN LESION MUSIC, and BUG MUSIC (BMI) /" "")
-("" "Administered by Bug.  All Rights Reserved." "")
-("" "Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "David Dees Urrutia")
+(""
+   "(Mike Muir and Louiche Mayorga)"
+   "")
+(""
+   "Published by YOU'LL BE SORRY MUSIC,"
+   "")
+(""
+   "AMERICAN LESION MUSIC, and BUG MUSIC (BMI) /"
+   "")
+(""
+   "Administered by Bug.  All Rights Reserved."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "David Dees Urrutia")
 ()
 ("JESSICA")
-("" "(Forrest Richard Betts)" "")
-("" "© 1973 (RENEWED) UNICHAPPELL MUSIC INC. (BMI)" "")
-("" "+ FORREST RICHARD BETTS MUSIC (BMI)" "")
-("" "All Rights Administered By UNICHAPPELL MUSIC INC." "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Lance Taber")
-("Programming, Keyboard" "Scott Dugdale")
-("Drums" "Scott Dugdale")
+(""
+   "(Forrest Richard Betts)"
+   "")
+(""
+   "© 1973 (RENEWED) UNICHAPPELL MUSIC INC. (BMI)"
+   "")
+(""
+   "+ FORREST RICHARD BETTS MUSIC (BMI)"
+   "")
+(""
+   "All Rights Administered By UNICHAPPELL MUSIC INC."
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Programming, Keyboard"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
 ()
 ("JOHN THE FISHERMAN")
-("" "(Claypool, LaLonde, and Alexander)" "")
-("" "(c)+(p)Primus 1990. Published by Sturgeon (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Primus" "")
+(""
+   "(Claypool, LaLonde, and Alexander)"
+   "")
+(""
+   "(c)+(p)Primus 1990. Published by Sturgeon (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Primus"
+   "")
 ()
 ("JORDAN")
-("" "(Buckethead)" "")
-("" "© 2006 Katella Music (BMI)" "")
-("" "Performed by Buckethead" "")
+(""
+   "(Buckethead)"
+   "")
+(""
+   "© 2006 Katella Music (BMI)"
+   "")
+(""
+   "Performed by Buckethead"
+   "")
 ()
 ("KICKED TO THE CURB")
-("" "(Noble Rot)" "")
-("" "© 2006 noblerottenmusic (ASCAP)" "")
-("" "All Rights Reserved. Used By Permission." "")
-("" "Performed by Noble Rot" "")
-("Bass, Lead Vocals" "Rich Hoss")
-("Guitar, Vocals" "Rodrigo Van Stoli")
-("Lead Guitar" "Adi Luv")
-("Drums" "Wes Narron Junior")
+(""
+   "(Noble Rot)"
+   "")
+(""
+   "© 2006 noblerottenmusic (ASCAP)"
+   "")
+(""
+   "All Rights Reserved. Used By Permission."
+   "")
+(""
+   "Performed by Noble Rot"
+   "")
+("Bass, Lead Vocals"
+   "Rich Hoss")
+("Guitar, Vocals"
+   "Rodrigo Van Stoli")
+("Lead Guitar"
+   "Adi Luv")
+("Drums"
+   "Wes Narron Junior")
 ()
 ("KILLING IN THE NAME")
-("" "(T. Morello, Z. De La Rocha, T. Commerford, B. Wilk)" "")
-("" "Courtesy of Wixen Publishing o/b/o of Retribution Music" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission" "")
-("Guitars" "Marcus Henderson")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Casey Sealund")
+(""
+   "(T. Morello, Z. De La Rocha, T. Commerford, B. Wilk)"
+   "")
+(""
+   "Courtesy of Wixen Publishing o/b/o of Retribution Music"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission"
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Casey Sealund")
 ()
 ("LAID TO REST")
-("" "(David Blythe, Mark Morton, Will Adler," "")
-("" "John Campbell, Chris Adler)" "")
-("" "© 2004 Sony/ATV Songs LLC (BMI)" "")
-("" "o/b/o Subtle Arts of Publishing " "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Casey Sealund")
-("Additional Vocals" "Scott Dugdale")
+(""
+   "(David Blythe, Mark Morton, Will Adler,"
+   "")
+(""
+   "John Campbell, Chris Adler)"
+   "")
+(""
+   "© 2004 Sony/ATV Songs LLC (BMI)"
+   "")
+(""
+   "o/b/o Subtle Arts of Publishing "
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Casey Sealund")
+("Additional Vocals"
+   "Scott Dugdale")
 ()
 ("LAST CHILD")
-("" "(Tyler/Whitford)" "")
-("" "© 1977 Music of Stage Three (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Nick Gallant")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Joel Taylor")
-("Vocals" "Brooks Lundy")
+(""
+   "(Tyler/Whitford)"
+   "")
+(""
+   "© 1977 Music of Stage Three (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Nick Gallant")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Joel Taylor")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("LAUGHTRACK")
-("" "(C. Wissmuller (BMI), D. Sussman(BMI))" "")
-("" "© 2006 The Acro-brats (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by The Acro-brats" "")
-("Guitar, Lead Vocals" "Christian Wissmuller")
-("Guitar, Vocals" "Daniel Sussman")
-("Bass" "Michael 'Swid' Swiderek")
-("Drums" "Eliahu Sussman")
+(""
+   "(C. Wissmuller (BMI), D. Sussman(BMI))"
+   "")
+(""
+   "© 2006 The Acro-brats (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by The Acro-brats"
+   "")
+("Guitar, Lead Vocals"
+   "Christian Wissmuller")
+("Guitar, Vocals"
+   "Daniel Sussman")
+("Bass"
+   "Michael 'Swid' Swiderek")
+("Drums"
+   "Eliahu Sussman")
 ()
 ("LESS TALK, MORE ROKK")
-("" "(K. Crooker (BMI) / J. Gamache (BMI))" "")
-("" "© 2006 Freezepop" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Freezepop" "")
+(""
+   "(K. Crooker (BMI) / J. Gamache (BMI))"
+   "")
+(""
+   "© 2006 Freezepop"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Freezepop"
+   "")
 ()
 ("LIFE WASTED")
-("" "(Stone Gossard and Eddie Veddier)" "")
-("" "Innocent Bystander % King, Holmes, Paterno & Berliner, LLP" "")
-("Guitars, Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Casey Sealund")
+(""
+   "(Stone Gossard and Eddie Veddier)"
+   "")
+(""
+   "Innocent Bystander % King, Holmes, Paterno & Berliner, LLP"
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Casey Sealund")
 ()
 ("THE LIGHT THAT BLINDS")
-("" "(Brian Fair, Matthew Bachand," "")
-("" "Jonathan Donais, Paul Romanko, Jason Bittner)" "")
-("" "© 2004 Is That A Banana In Your Pocket Publishing (SESAC)" "")
-("" "(p) 2006 Century Media Records" "")
-("" "All Rights Reserved. Used By Permission." "")
-("" "Performed By Shadows Fall" "")
-("Vocals" "Brian Fair")
-("Guitar, Vocals" "Matthew Bachand")
-("Lead Guitar, Vocals" "Jonathan Donais")
-("Bass" "Paul Romanko")
-("Drums" "Jason Bittner")
+(""
+   "(Brian Fair, Matthew Bachand,"
+   "")
+(""
+   "Jonathan Donais, Paul Romanko, Jason Bittner)"
+   "")
+(""
+   "© 2004 Is That A Banana In Your Pocket Publishing (SESAC)"
+   "")
+(""
+   "(p) 2006 Century Media Records"
+   "")
+(""
+   "All Rights Reserved. Used By Permission."
+   "")
+(""
+   "Performed By Shadows Fall"
+   "")
+("Vocals"
+   "Brian Fair")
+("Guitar, Vocals"
+   "Matthew Bachand")
+("Lead Guitar, Vocals"
+   "Jonathan Donais")
+("Bass"
+   "Paul Romanko")
+("Drums"
+   "Jason Bittner")
 ()
 ("MADHOUSE")
-("" "(Spitz, Joseph Bellardini, Frank Bello," "")
-("" "Charles Benante, Scott Ian Rosenfeld )" "")
-("" "© 1985 Zomba Enterprises, Inc. (ASCAP) /" "")
-("" "NFP Music (ASCAP) All Rights for the World" "")
-("" "On Behalf of NFP Music (ASCAP) Administered" "")
-("" "by Zomba Enterprises, Inc. (ASCAP)" "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Rich Elkerton")
-("Additional Vocals" "Scott Dugdale")
-("" "Leslie Barton")
-("Group Vocals" "Mark Lee")
-("" "Nick Gallant")
-("" "Ray J. Sutton")
-("" "Dunning Butler")
-("" "David Dees Urrutia")
+(""
+   "(Spitz, Joseph Bellardini, Frank Bello,"
+   "")
+(""
+   "Charles Benante, Scott Ian Rosenfeld )"
+   "")
+(""
+   "© 1985 Zomba Enterprises, Inc. (ASCAP) /"
+   "")
+(""
+   "NFP Music (ASCAP) All Rights for the World"
+   "")
+(""
+   "On Behalf of NFP Music (ASCAP) Administered"
+   "")
+(""
+   "by Zomba Enterprises, Inc. (ASCAP)"
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Rich Elkerton")
+("Additional Vocals"
+   "Scott Dugdale")
+(""
+   "Leslie Barton")
+("Group Vocals"
+   "Mark Lee")
+(""
+   "Nick Gallant")
+(""
+   "Ray J. Sutton")
+(""
+   "Dunning Butler")
+(""
+   "David Dees Urrutia")
 ()
 ("MESSAGE IN A BOTTLE")
-("" "(Sting)" "")
-("" "© 1979 G.M. Sumner" "")
-("" "Administered by EMI Music Publishing Limited." "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars, Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(Sting)"
+   "")
+(""
+   "© 1979 G.M. Sumner"
+   "")
+(""
+   "Administered by EMI Music Publishing Limited."
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("MISIRLOU")
-("" "(Nicholas Roubanis)" "")
-("" "© 1941, Renewed 1969 EMI GROVE PARK MUSIC INC. (BMI)" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars" "Lance Taber")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Group Vocals" "Leslie Barton")
-("" "Lindsay A. Bauer")
-("" "Nick Gallant")
-("" "Kimberly A. Nieva")
+(""
+   "(Nicholas Roubanis)"
+   "")
+(""
+   "© 1941, Renewed 1969 EMI GROVE PARK MUSIC INC. (BMI)"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Group Vocals"
+   "Leslie Barton")
+(""
+   "Lindsay A. Bauer")
+(""
+   "Nick Gallant")
+(""
+   "Kimberly A. Nieva")
 ()
 ("MONKEY WRENCH")
-("" "(David Grohl, Nate Mendel," "")
-("" "Georg Ruthenberg, and Pat Smear)" "")
-("" "© 1997 EMI VIRGIN SONGS, INC.; M.J. TWELVE MUSIC;" "")
-("" "FLYING EARFORM MUSIC; and Ruthensmear Music /" "")
-("" "Administered by Bug.  All Rights for M.J. TWELVE MUSIC" "")
-("" "and FLYING EARFORM MUSIC Controlled" "")
-("" "And Administered by EMI VIRGIN SONGS, INC. (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "International Copyright Secured." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Drums" "Joel Taylor")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Casey Sealund")
+(""
+   "(David Grohl, Nate Mendel,"
+   "")
+(""
+   "Georg Ruthenberg, and Pat Smear)"
+   "")
+(""
+   "© 1997 EMI VIRGIN SONGS, INC.; M.J. TWELVE MUSIC;"
+   "")
+(""
+   "FLYING EARFORM MUSIC; and Ruthensmear Music /"
+   "")
+(""
+   "Administered by Bug.  All Rights for M.J. TWELVE MUSIC"
+   "")
+(""
+   "and FLYING EARFORM MUSIC Controlled"
+   "")
+(""
+   "And Administered by EMI VIRGIN SONGS, INC. (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "International Copyright Secured."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Drums"
+   "Joel Taylor")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Casey Sealund")
 ()
 ("MOTHER")
-("" "(Glenn Danzig)" "")
-("" "© 1988 Sony/ATV Tunes LLC (ASCAP)" "")
-("" "o/b/o American Def Tunes, Inc. " "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars, Vocals, Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Background Vocals" "David Dees Urrutia")
+(""
+   "(Glenn Danzig)"
+   "")
+(""
+   "© 1988 Sony/ATV Tunes LLC (ASCAP)"
+   "")
+(""
+   "o/b/o American Def Tunes, Inc. "
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars, Vocals, Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Background Vocals"
+   "David Dees Urrutia")
 ()
 ("MR. FIX IT")
-("" "(Kendall, Burgess, Hanlon, Williams)" "")
-("" "© 1999 Time Bomb Recordings" "")
-("" "Published by Mr. Fix It Publishing" "")
-("" "Performed by The Amazing Crowns" "")
-("Guitars" "Greg Burgess")
-("String Bass" "Jack Hanlon")
-("Drums" "Judd Williams")
-("Vocals" "Jason \qKing\q Kendall")
+(""
+   "(Kendall, Burgess, Hanlon, Williams)"
+   "")
+(""
+   "© 1999 Time Bomb Recordings"
+   "")
+(""
+   "Published by Mr. Fix It Publishing"
+   "")
+(""
+   "Performed by The Amazing Crowns"
+   "")
+("Guitars"
+   "Greg Burgess")
+("String Bass"
+   "Jack Hanlon")
+("Drums"
+   "Judd Williams")
+("Vocals"
+   "Jason \qKing\q Kendall")
 ()
 ("THE NEW BLACK")
-("" "(Jordan Buckley, Keith Buckley," "")
-("" "Michael Novak Jr., Andrew Williams)" "")
-("" "© 2006 Ferret Music Publishing" "")
-("" "o/b/o Ram Island Songs (ASCAP)" "")
-("" "© 2006 Ferret Music, LLC" "")
-("" "All Rights Reserved. Used By Permission." "")
-("" "Performed by Every Time I Die" "")
-("Vocals" "Keith Buckley")
-("Drums" "Michael Novak Jr.")
-("Guitar" "Jordan Buckley")
-("" "Andy Williams")
-("Bass" "Kevin Faulk")
+(""
+   "(Jordan Buckley, Keith Buckley,"
+   "")
+(""
+   "Michael Novak Jr., Andrew Williams)"
+   "")
+(""
+   "© 2006 Ferret Music Publishing"
+   "")
+(""
+   "o/b/o Ram Island Songs (ASCAP)"
+   "")
+(""
+   "© 2006 Ferret Music, LLC"
+   "")
+(""
+   "All Rights Reserved. Used By Permission."
+   "")
+(""
+   "Performed by Every Time I Die"
+   "")
+("Vocals"
+   "Keith Buckley")
+("Drums"
+   "Michael Novak Jr.")
+("Guitar"
+   "Jordan Buckley")
+(""
+   "Andy Williams")
+("Bass"
+   "Kevin Faulk")
 ()
 ("ONE FOR THE ROAD")
-("" "(J. Allen, D. Rony)" "")
-("" "© 2006 Breaking Wheel" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Breaking Wheel" "")
-("Guitar, Vocals" "Dan Rony")
-("Bass" "Jason O' Quinn")
-("Drums" "Jeff Allen")
+(""
+   "(J. Allen, D. Rony)"
+   "")
+(""
+   "© 2006 Breaking Wheel"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Breaking Wheel"
+   "")
+("Guitar, Vocals"
+   "Dan Rony")
+("Bass"
+   "Jason O' Quinn")
+("Drums"
+   "Jeff Allen")
 ()
 ("PARASITE")
-("" "(David Minehan (BMI))" "")
-("" "© 2006 Minimum Music (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by The Neighborhoods 2006" "")
-("Lead Vocals, Guitars" "David Minehan")
-("Bass" "Lee Harrington")
-("Drums, Backing Vocals" "John Lynch")
+(""
+   "(David Minehan (BMI))"
+   "")
+(""
+   "© 2006 Minimum Music (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by The Neighborhoods 2006"
+   "")
+("Lead Vocals, Guitars"
+   "David Minehan")
+("Bass"
+   "Lee Harrington")
+("Drums, Backing Vocals"
+   "John Lynch")
 ()
 ("POSSUM KINGDOM")
-("" "Performed by The Toadies" "")
-("" "(Todd Lewis)" "")
-("" "(P) 1994 Interscope Records" "")
-("" "Published by Songs of Universal, Inc. (BMI)" "")
-("" "Courtesy of Interscope Records" "")
-("" "Under license from Universal Music Enterprises" "")
+(""
+   "Performed by The Toadies"
+   "")
+(""
+   "(Todd Lewis)"
+   "")
+(""
+   "(P) 1994 Interscope Records"
+   "")
+(""
+   "Published by Songs of Universal, Inc. (BMI)"
+   "")
+(""
+   "Courtesy of Interscope Records"
+   "")
+(""
+   "Under license from Universal Music Enterprises"
+   "")
 ()
 ("PSYCHOBILLY FREAKOUT")
-("" "(James C Heath)" "")
-("" "Published by Horton House Enterprises / BMI" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Lance Taber")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(James C Heath)"
+   "")
+(""
+   "Published by Horton House Enterprises / BMI"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("PUSH PUSH (LADY LIGHTNING)")
-("" "(Alex Necochea, Bryn Bennett, Dave Riley," "")
-("" "Maclaine Diemer, Andy Dole)" "")
-("" "© 2006 Bang Camaro" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Bang Camaro" "")
-("Lead Guitar" "Alex Necochea")
-("" "Bryn Bennett")
-("" "Maclaine Diemer")
-("Outro Guitar Solo" "John Brookhouse")
-("Bass" "Dave Riley")
-("Drums" "Dylan Halacy")
-("Lead Vocals" "Nick Given")
-("" "Keith Wales")
-("" "Max Heinegg")
-("" "Richie Hoss")
-("" "Mike McKay")
-("" "Jared Marsh")
-("" "Graeme Hall")
-("" "Rod Eymael")
-("" "Robb Waters")
-("" "Glen Fant")
-("" "James Fant")
-("" "Bleu")
-("" "Keith Smith")
-("" "Jabe")
-("" "Ian Kennedy")
-("" "Chris Pappas")
-("" "Joe Seiders")
-("" "Eli Scheer")
-("" "Thom Moran")
-("" "Christobal")
-("" "Nate Wells")
-("" "Dave Nugent")
-("" "Morgan Brown")
-("" "Maclaine Diemer")
+(""
+   "(Alex Necochea, Bryn Bennett, Dave Riley,"
+   "")
+(""
+   "Maclaine Diemer, Andy Dole)"
+   "")
+(""
+   "© 2006 Bang Camaro"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Bang Camaro"
+   "")
+("Lead Guitar"
+   "Alex Necochea")
+(""
+   "Bryn Bennett")
+(""
+   "Maclaine Diemer")
+("Outro Guitar Solo"
+   "John Brookhouse")
+("Bass"
+   "Dave Riley")
+("Drums"
+   "Dylan Halacy")
+("Lead Vocals"
+   "Nick Given")
+(""
+   "Keith Wales")
+(""
+   "Max Heinegg")
+(""
+   "Richie Hoss")
+(""
+   "Mike McKay")
+(""
+   "Jared Marsh")
+(""
+   "Graeme Hall")
+(""
+   "Rod Eymael")
+(""
+   "Robb Waters")
+(""
+   "Glen Fant")
+(""
+   "James Fant")
+(""
+   "Bleu")
+(""
+   "Keith Smith")
+(""
+   "Jabe")
+(""
+   "Ian Kennedy")
+(""
+   "Chris Pappas")
+(""
+   "Joe Seiders")
+(""
+   "Eli Scheer")
+(""
+   "Thom Moran")
+(""
+   "Christobal")
+(""
+   "Nate Wells")
+(""
+   "Dave Nugent")
+(""
+   "Morgan Brown")
+(""
+   "Maclaine Diemer")
 ()
 ("RADIUM EYES")
-("" "(Peter Moore)" "")
-("" "© 2006 PineApplePond Publishing (ASCAP)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Count Zero" "")
-("Vocals, Guitar" "Peter Moore")
-("Banjo, Trombone" "Peter Moore")
-("Guitar" "Will Ragano")
-("Bass" "Izzy Maxwell")
-("Drums" "Eric Paull")
-("Keyboards" "Joel Simches")
+(""
+   "(Peter Moore)"
+   "")
+(""
+   "© 2006 PineApplePond Publishing (ASCAP)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Count Zero"
+   "")
+("Vocals, Guitar"
+   "Peter Moore")
+("Banjo, Trombone"
+   "Peter Moore")
+("Guitar"
+   "Will Ragano")
+("Bass"
+   "Izzy Maxwell")
+("Drums"
+   "Eric Paull")
+("Keyboards"
+   "Joel Simches")
 ()
 ("RAW DOG")
-("" "(Arling / Wator / Arling)" "")
-("" "© 2006 More Rock Than a Crackhouse Music" "")
-("" "(BMI) All Rights Reserved. Used By Permission." "")
-("" "Performed by The Last Vegas" "")
-("Vocals" "Chad Cherry")
-("Guitar" "John Wator")
-("Drums" "Nathan Arling")
-("Bass" "Anthony Rubino")
-("Guitar" "Adam Arling")
+(""
+   "(Arling / Wator / Arling)"
+   "")
+(""
+   "© 2006 More Rock Than a Crackhouse Music"
+   "")
+(""
+   "(BMI) All Rights Reserved. Used By Permission."
+   "")
+(""
+   "Performed by The Last Vegas"
+   "")
+("Vocals"
+   "Chad Cherry")
+("Guitar"
+   "John Wator")
+("Drums"
+   "Nathan Arling")
+("Bass"
+   "Anthony Rubino")
+("Guitar"
+   "Adam Arling")
 ()
 ("RED LOTTERY")
-("" "(P. Lyons, D. Matheson, R. Lesser, J. Kendall)" "")
-("" "© 2006 Megasus" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Megasus" "")
-("Bass" "Paul Lyons")
-("Drums" "Dare Matheson")
-("Guitar" "Ryan Lesser")
-("Vocals" "Jason Kendall")
+(""
+   "(P. Lyons, D. Matheson, R. Lesser, J. Kendall)"
+   "")
+(""
+   "© 2006 Megasus"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Megasus"
+   "")
+("Bass"
+   "Paul Lyons")
+("Drums"
+   "Dare Matheson")
+("Guitar"
+   "Ryan Lesser")
+("Vocals"
+   "Jason Kendall")
 ()
-("ROCK AND ROLL, HOOCHIE KOO")
-("" "(Rick Derringer)" "")
-("" "BMG Music Publishing (BMI)" "")
-("Guitars" "Lance Taber")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Danny Shorago")
-("Group Vocals" "Moorea Dickason")
-("" "Nick Gallant")
-("" "David Dees Urrutia")
+("ROCK AND ROLL HOOCHIE KOO")
+(""
+   "(Rick Derringer)"
+   "")
+(""
+   "BMG Music Publishing (BMI)"
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Danny Shorago")
+("Group Vocals"
+   "Moorea Dickason")
+(""
+   "Nick Gallant")
+(""
+   "David Dees Urrutia")
 ()
 ("ROCK THIS TOWN")
-("" "(Brian Setzer)" "")
-("" "© 1981 EMI LONGITUDE MUSIC and ROCKIN' BONES MUSIC" "")
-("" "All Rights for ROCKIN' BONES MUSIC Controlled" "")
-("" "and Administered by EMI LONGITUDE MUSIC (BMI)" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars" "Lance Taber")
-("Drums" "Joel Taylor")
-("Programming, Bass" "Scott Dugdale")
-("Vocals" "Danny Shorago")
+(""
+   "(Brian Setzer)"
+   "")
+(""
+   "© 1981 EMI LONGITUDE MUSIC and ROCKIN' BONES MUSIC"
+   "")
+(""
+   "All Rights for ROCKIN' BONES MUSIC Controlled"
+   "")
+(""
+   "and Administered by EMI LONGITUDE MUSIC (BMI)"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Lance Taber")
+("Drums"
+   "Joel Taylor")
+("Programming, Bass"
+   "Scott Dugdale")
+("Vocals"
+   "Danny Shorago")
 ()
 ("SALVATION")
-(" " "(Tim Armstrong, Matt Freeman)" "")
-("" "Rancid Music % Ruminating Music" "")
-("" "c/o Wixen Music Publishing Inc." "")
-("Guitars, Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "David Dees Urrutia")
-("Group Vocals" "Wyatt Bradshaw")
-("" "Nick Gallant")
-("" "Will Littlejohn")
+(" "
+   "(Tim Armstrong, Matt Freeman)"
+   "")
+(""
+   "Rancid Music % Ruminating Music"
+   "")
+(""
+   "c/o Wixen Music Publishing Inc."
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "David Dees Urrutia")
+("Group Vocals"
+   "Wyatt Bradshaw")
+(""
+   "Nick Gallant")
+(""
+   "Will Littlejohn")
 ()
 ("SEARCH AND DESTROY")
-("" "(James Osterberg and James Williamson)" "")
-("" "© 1973 EMI Music Publishing Ltd., Strait James Music" "")
-("" "and James Osterberg Music. All Rights for" "")
-("" "EMI Music Publishing Ltd. Controlled and Administered by" "")
-("" "Screen Gems-EMI Music Inc. All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("" "Published by JAMES OSTERBERG MUSIC (BMI)." "")
-("" "Administered by Bug." "")
-("Guitars, Bass" "Nick Gallant")
-("Drums" "Mike Urbano")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Kid Beyond")
+(""
+   "(James Osterberg and James Williamson)"
+   "")
+(""
+   "© 1973 EMI Music Publishing Ltd., Strait James Music"
+   "")
+(""
+   "and James Osterberg Music. All Rights for"
+   "")
+(""
+   "EMI Music Publishing Ltd. Controlled and Administered by"
+   "")
+(""
+   "Screen Gems-EMI Music Inc. All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+(""
+   "Published by JAMES OSTERBERG MUSIC (BMI)."
+   "")
+(""
+   "Administered by Bug."
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Drums"
+   "Mike Urbano")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Kid Beyond")
 ()
 ("SHOUT AT THE DEVIL")
-("" "(Nikki Sixx)" "")
-("" "© 1983 WB MUSIC CORP. (ASCAP)," "")
-("" "MARS MOUNTAIN MUSIC (ASCAP)," "")
-("" "SIXX GUNNER MUSIC (ASCAP)," "")
-("" "and TOMMYLAND MUSIC (ASCAP)" "")
-("" "All Rights on Behalf of Itself," "")
-("" "MARS MOUNTAIN MUSIC and SIXX GUNNER MUSIC" "")
-("" "Administered by WB MUSIC CORP." "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Produced by Ballistic Music Services, Inc." "")
-("" "Provided Courtesy of Line 6, Inc. and GuitarPort.com" "")
+(""
+   "(Nikki Sixx)"
+   "")
+(""
+   "© 1983 WB MUSIC CORP. (ASCAP),"
+   "")
+(""
+   "MARS MOUNTAIN MUSIC (ASCAP),"
+   "")
+(""
+   "SIXX GUNNER MUSIC (ASCAP),"
+   "")
+(""
+   "and TOMMYLAND MUSIC (ASCAP)"
+   "")
+(""
+   "All Rights on Behalf of Itself,"
+   "")
+(""
+   "MARS MOUNTAIN MUSIC and SIXX GUNNER MUSIC"
+   "")
+(""
+   "Administered by WB MUSIC CORP."
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Produced by Ballistic Music Services, Inc."
+   "")
+(""
+   "Provided Courtesy of Line 6, Inc. and GuitarPort.com"
+   "")
 ()
 ("SIX")
-("" "(Philip Labonte, Oli Herbert, Mike Martin," "")
-("" "Jeanne Sagan (all writers SESAC))" "")
-("" "Published by 800-Pound Gorilla Music (SESAC)," "")
-("" "Administered by Paper Jam Music, Inc. (SESAC)" "")
-("" "(p) 2006 Razor + Tie Direct, LLC" "")
-("" "All Rights Reserved. Used By Permission" "")
-("Vocals" "Phil Labonte")
-("Guitars" "Mike Martin")
-("" "Oli Herbert")
-("Drums" "Shannon Lucas")
-("Bass" "Jeanne Sagan")
+(""
+   "(Philip Labonte, Oli Herbert, Mike Martin,"
+   "")
+(""
+   "Jeanne Sagan (all writers SESAC))"
+   "")
+(""
+   "Published by 800-Pound Gorilla Music (SESAC),"
+   "")
+(""
+   "Administered by Paper Jam Music, Inc. (SESAC)"
+   "")
+(""
+   "(p) 2006 Razor + Tie Direct, LLC"
+   "")
+(""
+   "All Rights Reserved. Used By Permission"
+   "")
+("Vocals"
+   "Phil Labonte")
+("Guitars"
+   "Mike Martin")
+(""
+   "Oli Herbert")
+("Drums"
+   "Shannon Lucas")
+("Bass"
+   "Jeanne Sagan")
 ()
 ("SOY BOMB")
-("" "(Dan Schmidt)" "")
-("" "© 2006 Zero Down Entertainment, LLC" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by" "")
-("" "Honest Bob and the Factory-to-Dealer Incentives" "")
-("Drums" "Bill Foster")
-("Bass" "Greg Huang")
-("Guitar" "Chris Rigopulos")
-("" "Dan Schmidt")
-()
-("SPEED TEST")
-("" "(Exilelord)" "")
-("" "2009, Expert charted by Exilelord" "")
-("" "Easy, Medium, Hard, Bass, Events, charted by mariteaux" "")
-("" "Performed by Exilelord" "")
+(""
+   "(Dan Schmidt)"
+   "")
+(""
+   "© 2006 Zero Down Entertainment, LLC"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by"
+   "")
+(""
+   "Honest Bob and the Factory-to-Dealer Incentives"
+   "")
+("Drums"
+   "Bill Foster")
+("Bass"
+   "Greg Huang")
+("Guitar"
+   "Chris Rigopulos")
+(""
+   "Dan Schmidt")
 ()
 ("STOP")
-("" "(Jane's Addiction)" "")
-("" "© 1990 BUBBLY ORANGE STUFF MUSIC," "")
-("" "I'll Hit You Back Music, Embryotic Music" "")
-("" "and Stephen Perkins Publishing Designee" "")
-("" "All Rights for BUBBLY ORANGE STUFF MUSIC" "")
-("" "Controlled and Administered by" "")
-("" "EMI BLACKWOOD MUSIC INC. (BMI)" "")
-("" "© I'll Hit You Back Music," "")
-("" "Embryotic Music And Swizzlestick Music." "")
-("" "All rights administered by Irving Music, Inc. (BMI)" "")
-("" "All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("" "Courtesy of Warner Bros. Records Inc. By arrangement with" "")
-("" "Warner Music Group Video Game Licensing" "")
-("" "(p) 1989 Warner Bros. Records Inc." "")
-("" "Performed by Jane's Addiction" "")
+(""
+   "(Jane's Addiction)"
+   "")
+(""
+   "© 1990 BUBBLY ORANGE STUFF MUSIC,"
+   "")
+(""
+   "I'll Hit You Back Music, Embryotic Music"
+   "")
+(""
+   "and Stephen Perkins Publishing Designee"
+   "")
+(""
+   "All Rights for BUBBLY ORANGE STUFF MUSIC"
+   "")
+(""
+   "Controlled and Administered by"
+   "")
+(""
+   "EMI BLACKWOOD MUSIC INC. (BMI)"
+   "")
+(""
+   "© I'll Hit You Back Music,"
+   "")
+(""
+   "Embryotic Music And Swizzlestick Music."
+   "")
+(""
+   "All rights administered by Irving Music, Inc. (BMI)"
+   "")
+(""
+   "All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+(""
+   "Courtesy of Warner Bros. Records Inc. By arrangement with"
+   "")
+(""
+   "Warner Music Group Video Game Licensing"
+   "")
+(""
+   "(p) 1989 Warner Bros. Records Inc."
+   "")
+(""
+   "Performed by Jane's Addiction"
+   "")
 ()
 ("STRUTTER")
-("" "(Paul Stanley, Gene Simmons)" "")
-("" "© 1974 Hori Productions America, Inc.," "")
-("" "Cafe Americana and Gladwyne Music Publishing Corporation" "")
-("" "Administered By Universal - Polygram" "")
-("" "International Publishing, Inc. (ASCAP) All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission" "")
-("Guitars, Background Vocals" "Nick Gallant")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brad Brooks")
-("Background Vocals" "David Dees Urrutia")
+(""
+   "(Paul Stanley, Gene Simmons)"
+   "")
+(""
+   "© 1974 Hori Productions America, Inc.,"
+   "")
+(""
+   "Cafe Americana and Gladwyne Music Publishing Corporation"
+   "")
+(""
+   "Administered By Universal - Polygram"
+   "")
+(""
+   "International Publishing, Inc. (ASCAP) All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission"
+   "")
+("Guitars, Background Vocals"
+   "Nick Gallant")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brad Brooks")
+("Background Vocals"
+   "David Dees Urrutia")
 ()
 ("SURRENDER")
-("" "(Rick Nielsen)" "")
-("" "© 1978 SCREEN GEMS-EMI MUSIC INC. and ADULT MUSIC" "")
-("" "All Rights Controlled and Administered by" "")
-("" "SCREEN GEMS-EMI MUSIC INC. (BMI)  All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars, Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Rich Elkerton")
-("Background Vocals" "Nick Gallant")
+(""
+   "(Rick Nielsen)"
+   "")
+(""
+   "© 1978 SCREEN GEMS-EMI MUSIC INC. and ADULT MUSIC"
+   "")
+(""
+   "All Rights Controlled and Administered by"
+   "")
+(""
+   "SCREEN GEMS-EMI MUSIC INC. (BMI)  All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Rich Elkerton")
+("Background Vocals"
+   "Nick Gallant")
 ()
 ("SWEET CHILD O' MINE")
-("" "(W. Axl Rose, Saul Hudson, Michael McKagan" "")
-("" "Jeffrey Isbell, Steven Adler)" "")
-("" "© 1987 Guns 'N Roses Music (ASCAP)  All Rights Reserved," "")
-("" "Used By Permission, International Copyright Secured." "")
-("Guitars" "Lance Taber")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(W. Axl Rose, Saul Hudson, Michael McKagan"
+   "")
+(""
+   "Jeffrey Isbell, Steven Adler)"
+   "")
+(""
+   "© 1987 Guns 'N Roses Music (ASCAP)  All Rights Reserved,"
+   "")
+(""
+   "Used By Permission, International Copyright Secured."
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("TATTOOED LOVE BOYS")
-("" "(Chrissie Hynde)" "")
-("" "© 1980 EMI MUSIC PUBLISHING LTD." "")
-("" "All Rights in the U.S. + Canada Controlled and" "")
-("" "Administered by EMI APRIL MUSIC INC. (ASCAP)" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars, Bass" "Nick Gallant")
-("Programming" "Scott Dugdale")
-("Drums, Percussion" "Scott Dugdale")
-("Lead Vocals" "Moorea Dickason")
+(""
+   "(Chrissie Hynde)"
+   "")
+(""
+   "© 1980 EMI MUSIC PUBLISHING LTD."
+   "")
+(""
+   "All Rights in the U.S. + Canada Controlled and"
+   "")
+(""
+   "Administered by EMI APRIL MUSIC INC. (ASCAP)"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars, Bass"
+   "Nick Gallant")
+("Programming"
+   "Scott Dugdale")
+("Drums, Percussion"
+   "Scott Dugdale")
+("Lead Vocals"
+   "Moorea Dickason")
 ()
 ("THEM BONES")
-("" "(Jerry Cantrell)" "")
-("" "Published by Buttnugget Publishing, Phlembot Music," "")
-("" "Jack Lord Music and Lungclam Music. All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Nick Gallant")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Casey Sealund")
+(""
+   "(Jerry Cantrell)"
+   "")
+(""
+   "Published by Buttnugget Publishing, Phlembot Music,"
+   "")
+(""
+   "Jack Lord Music and Lungclam Music. All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Nick Gallant")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Casey Sealund")
 ()
 ("THUNDERHORSE")
-("" "(written and played by Brendon Small)" "")
-("" "ADULT SWIM(TM), the logo, METALOCALYPSE(TM), and" "")
-("" "all related characters and elements are" "")
-("" "TM + © 2006 Cartoon Network." "")
-("" "All Rights Reserved.  A Time Warner Company." "")
-("Lead Guitar" "Skwisgaar Skwigelf")
-("Rhythm guitar (harmonies)" "Toki Wartooth")
-("Bass" "William Murderface")
-("Drums" "Pickles")
-("Vocals" "Nathan Explosion")
+(""
+   "(written and played by Brendon Small)"
+   "")
+(""
+   "ADULT SWIM(TM), the logo, METALOCALYPSE(TM), and"
+   "")
+(""
+   "all related characters and elements are"
+   "")
+(""
+   "TM + © 2006 Cartoon Network."
+   "")
+(""
+   "All Rights Reserved.  A Time Warner Company."
+   "")
+("Lead Guitar"
+   "Skwisgaar Skwigelf")
+("Rhythm guitar (harmonies)"
+   "Toki Wartooth")
+("Bass"
+   "William Murderface")
+("Drums"
+   "Pickles")
+("Vocals"
+   "Nathan Explosion")
 ()
 ("TONIGHT I'M GONNA ROCK YOU TONIGHT")
-("" "(Michael McKean, Christopher Guest," "")
-("" "Rob Reiner, Harry Shearer)" "")
-("" "© 1980, 1984 EMI BRILLIG MUSIC, INC. (ASCAP)" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars, Vocals" "Nick Gallant")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Background Vocals" "David Dees Urrutia")
-("" "Scott Dugdale")
+(""
+   "(Michael McKean, Christopher Guest,"
+   "")
+(""
+   "Rob Reiner, Harry Shearer)"
+   "")
+(""
+   "© 1980, 1984 EMI BRILLIG MUSIC, INC. (ASCAP)"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars, Vocals"
+   "Nick Gallant")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Background Vocals"
+   "David Dees Urrutia")
+(""
+   "Scott Dugdale")
 ()
 ("TRIPPIN' ON A HOLE IN A PAPER HEART")
-("" "(Music by E. Kretz, Words by S. Weiland)" "")
-("" "© 1996 EMI VIRGIN MUSIC, INC. and FLOATED MUSIC" "")
-("" "All Rights (excluding Print) Controlled and Administered by" "")
-("" "EMI VIRGIN MUSIC, INC. (ASCAP) © Milksongs." "")
-("" "All Rights Administered by Universal Music Corp. (ASCAP)" "")
-("" "All Rights Reserved. International Copyright Secured." "")
-("" "Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Chris Perry")
+(""
+   "(Music by E. Kretz, Words by S. Weiland)"
+   "")
+(""
+   "© 1996 EMI VIRGIN MUSIC, INC. and FLOATED MUSIC"
+   "")
+(""
+   "All Rights (excluding Print) Controlled and Administered by"
+   "")
+(""
+   "EMI VIRGIN MUSIC, INC. (ASCAP) © Milksongs."
+   "")
+(""
+   "All Rights Administered by Universal Music Corp. (ASCAP)"
+   "")
+(""
+   "All Rights Reserved. International Copyright Secured."
+   "")
+(""
+   "Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Chris Perry")
 ()
 ("TROGDOR")
-(" " "Written and performed by the Brothers Chap and Y-O-U" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Vocals" "Strong Bad")
+(" "
+   "Written and performed by the Brothers Chap and Y-O-U"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Vocals"
+   "Strong Bad")
 ()
 ("THE TROOPER")
-(" " "(Stephen Percy Harris)" "")
-(" " "Zomba Enterprises Inc. (ASCAP)/" "")
-(" " "Iron Maiden Holdings Limited (PRS)" "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brandon Bayless")
+(" "
+   "(Stephen Percy Harris)"
+   "")
+(" "
+   "Zomba Enterprises Inc. (ASCAP)/"
+   "")
+(" "
+   "Iron Maiden Holdings Limited (PRS)"
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brandon Bayless")
 ()
 ("WAR PIGS")
-("" "(Frank Iommi, John Osbourne," "")
-("" "William Ward, and Terence Butler)" "")
-("" "© Copyright 1970 (Renewed) and 1974 (Renewed)" "")
-("" "Westminster Music Ltd., London, England" "")
-("" "TRO - Essex Music International, Inc., New York, controls" "")
-("" "All Publication Rights for the U.S.A. and Canada." "")
-("" "International Copyright Secured.  Made In U.S.A." "")
-("" "All Rights Reserved Including Public Performance For Profit." "")
-("" "Used By Permission" "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(Frank Iommi, John Osbourne,"
+   "")
+(""
+   "William Ward, and Terence Butler)"
+   "")
+(""
+   "© Copyright 1970 (Renewed) and 1974 (Renewed)"
+   "")
+(""
+   "Westminster Music Ltd., London, England"
+   "")
+(""
+   "TRO - Essex Music International, Inc., New York, controls"
+   "")
+(""
+   "All Publication Rights for the U.S.A. and Canada."
+   "")
+(""
+   "International Copyright Secured.  Made In U.S.A."
+   "")
+(""
+   "All Rights Reserved Including Public Performance For Profit."
+   "")
+(""
+   "Used By Permission"
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("WHO WAS IN MY ROOM LAST NIGHT?")
-("" "(Butthole Surfers)" "")
-("" "Publishing by Latino Buggerveil (ASCAP)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Brooks Lundy")
+(""
+   "(Butthole Surfers)"
+   "")
+(""
+   "Publishing by Latino Buggerveil (ASCAP)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Brooks Lundy")
 ()
 ("WOMAN")
-("" "(Myles Heskett, Chris Ross, Andrew Stockdale)" "")
-("" "(p) Published by Wolfmother P/L (BMI)" "")
-("" "Produced by D Sardy" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars" "Nick Gallant")
-("" "Marcus Henderson")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
-("Vocals" "Austin Willacy")
+(""
+   "(Myles Heskett, Chris Ross, Andrew Stockdale)"
+   "")
+(""
+   "(p) Published by Wolfmother P/L (BMI)"
+   "")
+(""
+   "Produced by D Sardy"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars"
+   "Nick Gallant")
+(""
+   "Marcus Henderson")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
+("Vocals"
+   "Austin Willacy")
 ()
-("THE X-STREAM")
-("" "(D'Amour, Langevin, Belanger, Newsted)" "")
-("" "From the album \qKatorz\q available on The End Records," "")
-("" "Nuclear Blast and JVC Records." "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Voivod" "")
+("X-STREAM")
+(""
+   "(D'Amour, Langevin, Belanger, Newsted)"
+   "")
+(""
+   "From the album \qKatorz\q available on The End Records,"
+   "")
+(""
+   "Nuclear Blast and JVC Records."
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Voivod"
+   "")
 ()
 ("YES WE CAN")
-("" "(Jon Loper, Dare Matheson, Rebecca Mitchell, Jeff Schneider)" "")
-("" "© 2006 Made In Mexico (BMI)" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("" "Performed by Made in Mexico" "")
-("Vocals" "Rebecca Mitchell")
-("Guitar" "Jeff Schneider")
-("Bass" "Jon Loper")
-("Drums" "Dare Matheson")
+(""
+   "(Jon Loper, Dare Matheson, Rebecca Mitchell, Jeff Schneider)"
+   "")
+(""
+   "© 2006 Made In Mexico (BMI)"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+(""
+   "Performed by Made in Mexico"
+   "")
+("Vocals"
+   "Rebecca Mitchell")
+("Guitar"
+   "Jeff Schneider")
+("Bass"
+   "Jon Loper")
+("Drums"
+   "Dare Matheson")
 ()
 ("YOU REALLY GOT ME")
-("" "(Ray Davies)" "")
-("" "© 1964 Sony/ATV Songs LLC (BMI)" "")
-("" "o/b/o Jayboy Music Corp" "")
-("" "All Rights Reserved.  Used By Permission." "")
-("Guitars, Bass" "Lyle Workman")
-("Drums" "Gregg Bissonette")
-("Programming, Keyboards" "Scott Dugdale")
-("Vocals" "Chris Perry")
+(""
+   "(Ray Davies)"
+   "")
+(""
+   "© 1964 Sony/ATV Songs LLC (BMI)"
+   "")
+(""
+   "o/b/o Jayboy Music Corp"
+   "")
+(""
+   "All Rights Reserved.  Used By Permission."
+   "")
+("Guitars, Bass"
+   "Lyle Workman")
+("Drums"
+   "Gregg Bissonette")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Vocals"
+   "Chris Perry")
 ()
 ("YYZ")
-("" "(Geddy Lee, Neil Peart)" "")
-("" "© 1981 Core Music, All Rights Reserved." "")
-("" "International Copyright Secured. Used By Permission" "")
-("Guitars" "Lance Taber")
-("Bass" "Darryl C. Anders")
-("Programming, Keyboards" "Scott Dugdale")
-("Drums" "Scott Dugdale")
+(""
+   "(Geddy Lee, Neil Peart)"
+   "")
+(""
+   "© 1981 Core Music, All Rights Reserved."
+   "")
+(""
+   "International Copyright Secured. Used By Permission"
+   "")
+("Guitars"
+   "Lance Taber")
+("Bass"
+   "Darryl C. Anders")
+("Programming, Keyboards"
+   "Scott Dugdale")
+("Drums"
+   "Scott Dugdale")
 ()
 ()
 ()

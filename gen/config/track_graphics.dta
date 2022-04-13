@@ -125,7 +125,7 @@
       (drum DRUM_SET)
       (rhythm STRING_SET)))
 (track_width 20)
-(horizon_y 110)
+(horizon_y 120)
 (remove_y -15)
 (track_speed
    ; In vanilla GH2, the game set a single track speed that gets multiplied

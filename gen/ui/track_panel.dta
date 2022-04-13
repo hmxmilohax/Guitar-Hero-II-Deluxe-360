@@ -41,9 +41,6 @@
       {$this animate_track 0 TRACK_END_FRAME 0.6 kTaskTutorialSeconds})
    (animate_track_in_fast
       {$this animate_track TRACK_END_FRAME 0 0.6 kTaskTutorialSeconds})
-   (finish_load
-      {$this set_showing FALSE}
-      {$this set_track_out})
    (intro_start_msg
       {$this reset}
       {$this set_showing
@@ -64,8 +61,7 @@
                {! $neckless}}}}
       {$this set_track_out})
    (enter
-      {game add_sink $this blow_streak}
-      {$this set_smasher_glowing 0 TRUE})
+      {game add_sink $this blow_streak})
    (exit {game remove_sink $this})
    (do_extend_sequence
       {$this animate_track_out}
@@ -114,20 +110,29 @@
          (script
             {game foreach_player_matcher $m
                {$m refresh_track_buttons}}
+			   {set $trackcamx 1.6}
+			   {set $trackbeatx 1.6}
 #ifndef HX_XBOX
-{{track_panel find track.cam} set_local_scale 1.6 1.0 1.0}
-;{{track_panel find bar_line3.mesh} set_local_scale 0.6 1.0 1.0}
-;{{track_panel find bar_line4.mesh} set_local_scale 0.6 1.0 1.0}
-;{{track_panel find bar_line5.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find beat_line3.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find beat_line4.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find beat_line5.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find quarter_beat_line3.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find quarter_beat_line4.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find quarter_beat_line5.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find half_beat_line3.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find half_beat_line4.mesh} set_local_scale 0.6 1.0 1.0}
-{{track_panel find half_beat_line5.mesh} set_local_scale 0.6 1.0 1.0}
+{if_else $noflames
+{{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing FALSE}}
+{{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing TRUE}}
+}
+#endif
+;{{track_panel loaded_dir} iterate Cam $m {$m set_local_scale $trackcamx 1.0 1.0}}
+#ifndef HX_XBOX
+{{track_panel find beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find quarter_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find quarter_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find quarter_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find half_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find half_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
+{{track_panel find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+#else
+;{{{{track_panel loaded_dir} find track_new} find bar_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+;{{{{track_panel loaded_dir} find track_new} find beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+;{{{{track_panel loaded_dir} find track_new} find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 #endif
 	  {track_panel reset})})}
 {new TrackMaskPanel track_mask}
