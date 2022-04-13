@@ -32,7 +32,7 @@
             {set $nofail FALSE}}
             {set $nofail TRUE}}
          kDataUnhandled)
-       ("Song Title Always On"
+       ("Song Title Always"
          {if_else $songtitle
             {do
             {play_sfx button_error (volume 2) (stop TRUE)}
