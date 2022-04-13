@@ -55,15 +55,15 @@
    (load
       {set_loader_period 13})
    (enter
+      #ifdef HX_XBOX
+      {rnd suspend}
+      #endif
       {set $interval_p0 50}
       {set $interval_p1 50}
       {set $interval_p2 50}
       {set $player0_streak 0}
       {set $player1_streak 0}
       {set $player2_streak 0}
-	  #ifdef HX_XBOX
-      {rnd suspend}
-      #endif
       {set_loader_period 5}
       {set [encore_unlock_check]
          {&& {==
@@ -293,9 +293,18 @@
                {if_else $auto_restart
                   loading_screen
                   post_show_screen}}}
-         {ui
+         #ifndef HX_XBOX
+		 {ui
+            goto_screen
+            {gamecfg get lose_screen}}
+		 #else
+		 {do
+            {world_panel set_paused TRUE}
+	     
+		 {ui
             goto_screen
             {gamecfg get lose_screen}}}
+		#endif}
       kDataUnhandled)
    (blew_big_note
       ($player)
@@ -387,7 +396,7 @@
 #ifndef HX_XBOX
 #define TRACK_MASK ()
 #endif
-#define GAME_PANELS (midi_loader_panel game #ifndef HX_XBOX TRACK_MASK #else track_mask world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
+#define GAME_PANELS (midi_loader_panel game #ifndef HX_XBOX TRACK_MASK #else track_mask #endif world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
 {new GHScreen game_screen
    (panels GAME_PANELS fade_panel)
    (allow_back FALSE)
