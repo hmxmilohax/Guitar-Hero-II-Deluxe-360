@@ -8,49 +8,52 @@
       {sel_section.lst
          set_data
          ("Speed Settings"
-          "Focus Mode")}
+          "Focus Mode"
+          "No Fail"
+          "Song Title Always On")}
       {title.lbl set_text select_modifiers})
-   (SCROLL_MSG
-      {$this update_help_display})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
        ("Speed Settings"
-         {ui goto_screen modifiers_screen})
+         {ui goto_screen modifiers_screen}
+         kDataUnhandled)
        ("Focus Mode"
          {if_else $focusmode
-            {set $focusmode FALSE}
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $focusmode FALSE}}
             {set $focusmode TRUE}}
-         ; {$this update_help_display}
-         )})
-   ; (update_help_display
-   ;    {switch
-   ;     {$component selected_sym}
-   ;     ("Speed Settings"
-   ;       {helpbar set_display
-   ;                ((fret1 help_select)
-   ;                   (fret2 help_back)
-   ;                   (strum help_updown))})
-   ;     ("Focus Mode"
-   ;       {if_else $focusmode
-   ;          {helpbar set_display
-   ;             ((fret1 help_off)
-   ;                (fret2 help_back)
-   ;                (strum help_updown))}
-   ;          {helpbar set_display
-   ;             ((fret1 help_on)
-   ;                (fret2 help_back)
-   ;                (strum help_updown))}})})
+         kDataUnhandled)
+       ("No Fail"
+         {if_else $nofail
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $nofail FALSE}}
+            {set $nofail TRUE}}
+         kDataUnhandled)
+       ("Song Title Always On"
+         {if_else $songtitle
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $songtitle FALSE}}
+            {set $songtitle TRUE}}
+         kDataUnhandled)})
 				  }
 {new
    GHScreen
    sel_mod_screen
    (panels meta midi_loader_panel sel_mod_panel helpbar)
    (focus sel_mod_panel)
+   (helpbar
+      (default
+         ((fret1 help_select)
+            (fret2 help_back)
+            (strum help_updown))))
    (BUTTON_DOWN_MSG
       {if {== $button kPad_Tri}
          {$this backwards_anim}
-         {synth play_sequence button_back.cue}
+         {play_sfx button_error (volume 1) (stop TRUE)}
          {if_else {exists $modifier_exit}
             {ui goto_screen $modifier_exit}
             {ui goto_screen main_screen}}}
