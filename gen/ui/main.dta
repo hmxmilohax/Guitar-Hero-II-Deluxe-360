@@ -18,6 +18,7 @@
    (enter
       {set $main_entered TRUE}
       {$this disable main_career.btn}
+	  {$this disable main_options.btn}
       {set $cheat_enabled_unlock_all 1}
       {campaign set_all_access 1}
       {set $disable_career 1}
@@ -37,31 +38,14 @@
    (SELECT_START_MSG
       {switch
          $component
-         (main_career.btn
-            {gamecfg set mode career}
-            {if_else
-               {>
-                  {campaign num_profiles}
-                  0}
-               {ui goto_screen chooseprof_screen}
-               {do
-                  {nameprof_screen set back_screen main_screen}
-                  {nameprof_screen set is_editing FALSE}
-                  {nameprof_screen set profile_slot 0}
-                  {nameprof_screen set next_screen sel_difficulty_screen}
-                  {ui goto_screen nameprof_screen}}})
          (main_quickspin.btn
-            {gamecfg set mode quickplay}
-            {ui goto_screen qp_selsong_screen})
+            {gamecfg set mode career}
+            {ui goto_screen sel_song_screen})
          (main_multiplayer.btn
             {ui goto_screen multi_screen})
          (main_tutorial.btn
-            {ui goto_screen training_screen})
-#ifdef HX_XBOX
+            {ui goto_screen practice_selsong_screen})
          (main_leaderboards.btn
-            {ui goto_screen milo_extras_screen})
-#endif
-         (main_options.btn
             {ui goto_screen options_screen})})
    (poll
       {if_else

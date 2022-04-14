@@ -10,6 +10,7 @@
             (strum help_updown))))
    (sel_song_career FALSE)
    (enter
+      {gamecfg set mode practice}
       {gamecfg set practice_speed 0})
    (SELECT_START_MSG
       {ui goto_screen practice_selpart_screen}
@@ -77,7 +78,7 @@
          {== $component part2.btn}
          {gamecfg set_track 0 2}
 		 {set $roygb TRUE}}
-      {ui goto_screen practice_diff_screen})}
+      {ui goto_screen practice_sel_section_screen})}
 {new
    GHScreen
    practice_selpart_screen
@@ -90,34 +91,6 @@
          ((fret1 help_continue)
             (fret2 help_back)
             (strum help_updown))))}
-{new
-   GHPanel
-   sel_diff_practice_panel
-   (file
-	{if_else
-      $game80s
-      sel_diff_practice_80s.milo
-      sel_diff_practice.milo})
-   SEL_DIFFICULTY_COMMON
-   (enter
-      {$this update_focus})
-   (last_difficulty
-      {game get_difficulty 0})
-   (update_difficulty)}
-{new
-   GHScreen
-   practice_diff_screen
-   (panels meta sel_diff_practice_panel helpbar)
-   (focus sel_diff_practice_panel)
-   (back_screen practice_selpart_screen)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))
-   (SELECT_START_MSG
-      {ui goto_screen practice_sel_section_screen}
-      kDataUnhandled)}
 {new
    MultiSelectListPanel
    practice_sel_section_panel
@@ -171,7 +144,7 @@
                      set
                      (practice_sections 1)
                      $idx}
-                  {ui goto_screen modifiers_screen_pract}
+                  {ui goto_screen practice_loading_screen}
                   kDataUnhandled}}
             {if_else
                {== $idx -1}
@@ -184,7 +157,7 @@
                      set
                      (practice_sections 1)
                      -1}
-                  {ui goto_screen modifiers_screen_pract}
+                  {ui goto_screen practice_loading_screen}
                   kDataUnhandled}
                {do
                   {gamecfg
@@ -208,7 +181,7 @@
                   0}
                {practice_selpart_screen get career_mode}}
             {career_screen resume_from_practice}
-            {ui goto_screen career_screen}
+            {ui goto_screen main_screen}
             TRUE)
          ({&&
                {== $button kPad_Tri}
@@ -246,239 +219,8 @@
    practice_sel_section_screen
    (panels meta midi_loader_panel practice_sel_section_panel helpbar)
    (focus practice_sel_section_panel)
-   (back_screen practice_diff_screen)
+   (back_screen practice_part_screen)
    (career_mode FALSE)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))}
-{new
-   SliderPanel
-   modifiers_panel_pract
-   (file
-	{if_else
-      $game80s
-      game_modifiers_80s.milo
-      game_modifiers.milo})
-   (focus gs_guitar.sld)
-   (focus_component
-      "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_guitar.sld set_num_steps 21}
-      {if_else
-         {'||'
-            {== $modifier_exit multi_vs_selsong_screen}
-            {== $modifier_exit multi_coop_selsong_screen}
-            {== $modifier_exit multi_fo_selsong_screen}}
-         {gs_sfx.sld set_num_steps 31}
-         {gs_sfx.sld set_num_steps 41}})
-   (slider_changed
-      {'||'
-         {!=
-            {options get band_volume_idx}
-            {gs_guitar.sld current}}
-         {!=
-            {options get guitar_volume_idx}
-            {gs_sfx.sld current}}})
-   (enter
-      {gs_guitar.sld
-         set_current
-         {int
-            {'+'
-               0.5
-               {/
-                  {'+'
-                     {- $trackspd 1}
-                     0.5}
-                  0.1}}}}
-      {gs_sfx.sld
-         set_current
-         {int
-            {'+'
-               0.5
-               {/
-                  {'+'
-                     {- $speedmod 1}
-                     0.5}
-                  5.0e-2}}}}
-      {stereo.chk set_check $focusmode}
-      {$this display_speed_msg $trackspd $speedmod})
-   (poll
-      {gs_band.sld set_state kDisabled}
-      {gs_band.sld set_showing FALSE})
-   (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER})
-   (display_speed_msg
-      ($tspd $mspd)
-      {gs_title.lbl
-         set_localized_text
-         {sprintf
-            {localize speed_msg}
-            {int
-               {'+'
-                  0.5
-                  {'*' $tspd 100}}}
-            {int
-               {'+'
-                  0.5
-                  {'*' $mspd 100}}}}})
-   (set_speeds
-      {if
-         {$this slider_changed}
-         {do
-            {set
-               $trackspd
-               {-
-                  {'+'
-                     1
-                     {'*'
-                        {gs_guitar.sld current}
-                        0.1}}
-                  0.5}}
-            {set
-               $speedmod
-               {-
-                  {'+'
-                     1
-                     {'*'
-                        {gs_sfx.sld current}
-                        5.0e-2}}
-                  0.5}}
-            {$this display_speed_msg $trackspd $speedmod}}})
-   (slider_select_cancel
-      ($component)
-      {switch
-         $component
-         (gs_guitar.sld
-            {$component
-               set_current
-               [orig_vol]})
-         (gs_sfx.sld
-            {$component
-               set_current
-               [orig_vol]})}
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod}
-      kDataUnhandled)
-   (FOCUS_MSG
-      {$this
-         set
-         focus_component
-         {$new_focus name}}
-      {$this update_help_display})
-   (update_help_display
-      {if_else
-         {$this slider_selected}
-         {helpbar
-            set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjspd))}
-         {do
-            {if_else
-               {==
-                  [focus_component]
-                  "gs_stereo.btn"}
-               {helpbar
-                  set_display
-                  ((fret1 help_onoff)
-                     (fret2 help_back)
-                     (strum help_updown))}
-               {helpbar
-                  set_display
-                  ((fret1 help_select)
-                     (fret2 help_back)
-                     (strum help_updown))}}}})
-   (slider_start_msg
-      ($component)
-      {do
-         {switch
-            $component
-            (gs_guitar.sld
-               {do
-                  {play_sfx
-                     slider_band
-                     (volume 1)
-                     (stop TRUE)}
-                  {$this set_speeds}})
-            (gs_sfx.sld
-               {do
-                  {play_sfx
-                     slider_band
-                     (volume 1)
-                     (stop TRUE)}
-                  {$this set_speeds}})}})
-   (SELECT_START_MSG
-      {switch
-         $component
-         (gs_guitar.sld
-            {$this
-               set
-               orig_vol
-               {gs_guitar.sld current}})
-         (gs_sfx.sld
-            {$this
-               set
-               orig_vol
-               {gs_sfx.sld current}})
-         (gs_stereo.btn
-            {stereo.chk toggle}
-            {set
-               $focusmode
-               {stereo.chk get_check}})
-         kDataUnhandled}
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod})}
-{new
-   GHScreen
-   modifiers_screen_pract
-   (panels meta modifiers_panel_pract helpbar)
-   (focus modifiers_panel_pract)
-   (allow_back FALSE)
-   (BUTTON_DOWN_MSG
-      {if
-         {&&
-            {!
-               {modifiers_panel_pract slider_selected}}
-            {== $button kPad_Tri}}
-         {$this backwards_anim}
-         {synth play_sequence button_back.cue}
-         {$this set_speeds}
-         {ui goto_screen practice_loading_screen}}
-      kDataUnhandled)}
-{new
-   GHPanel
-   sel_speed_panel
-   (file
-	{if_else
-      $game80s
-      sel_speed_80s.milo
-      sel_speed.milo})
-   (focus speed0.btn)
-   (SELECT_START_MSG
-      {switch
-         $component
-         (speed0.btn
-            {gamecfg set practice_speed 0})
-         (speed1.btn
-            {gamecfg set practice_speed 1})
-         (speed2.btn
-            {gamecfg set practice_speed 2})
-         (speed3.btn
-            {gamecfg set practice_speed 3})})}
-{new
-   GHScreen
-   practice_sel_speed_screen
-   (panels meta sel_speed_panel helpbar)
-   (focus sel_speed_panel)
-   (SELECT_START_MSG
-      {ui goto_screen practice_loading_screen}
-      kDataUnhandled)
    (helpbar
       (default
          ((fret1 help_continue)

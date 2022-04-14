@@ -1,25 +1,4 @@
 {new
-   GHScreen
-   qp_selsong_screen
-   (panels meta sel_song_panel helpbar)
-   (focus sel_song_panel)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))
-   (sel_song_career FALSE)
-   (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Tri}
-         {$this backwards_anim}
-         {synth play_sequence button_back.cue}
-            {ui goto_screen main_screen}}
-      kDataUnhandled)
-   (SELECT_START_MSG
-      {ui goto_screen qp_selpart_screen}
-      kDataUnhandled)}
-{new
    UIPanel
    qp_selpart_bg_panel
    (file
