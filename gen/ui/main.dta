@@ -16,6 +16,7 @@
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter
+      {campaign set_profile_slot 0}
       {set $main_entered TRUE}
       {$this disable main_career.btn}
 	  {$this disable main_options.btn}

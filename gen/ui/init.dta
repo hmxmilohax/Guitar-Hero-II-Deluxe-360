@@ -31,7 +31,7 @@
 #ifndef _ONYX {set $first_screen bootup_load} #endif
 #ifdef _ONYX {set $first_screen main_screen} #endif
 #endif
-#ifdef HX_XBOX {set $first_screen cut_scene_screen} #endif
+#ifdef HX_XBOX {set $first_screen splash_screen} #endif
 
 ; Set various defaults on startup, including ELF specific bootups. $speedmod
 ; is the song speed, $trackspd is the note speed, $interval refers to the

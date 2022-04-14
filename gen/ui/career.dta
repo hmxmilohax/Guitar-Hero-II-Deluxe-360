@@ -183,11 +183,11 @@
          {== $button kPad_Tri}
          {$this backwards_anim}
          {synth play_sequence button_back.cue}
-         {ui goto_screen sel_venue_screen}}
+         {ui goto_screen main_screen}}
       kDataUnhandled)
    (SELECT_START_MSG
       {sel_song_panel set metamusic_on_exit TRUE}
-      {ui goto_screen career_selpart_screen}
+      {ui goto_screen qp_selpart_screen}
       kDataUnhandled)}
 {new
    GHScreen
