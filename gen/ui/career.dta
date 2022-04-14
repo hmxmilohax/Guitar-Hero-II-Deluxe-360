@@ -1621,6 +1621,7 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
+      {set $author FALSE}
       {{ui current_screen}
          turn_off_ambient}
       {$this refresh})
