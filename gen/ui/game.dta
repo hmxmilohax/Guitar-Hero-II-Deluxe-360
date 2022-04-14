@@ -29,7 +29,9 @@
 #ifndef 8DBUG
             {if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string
                {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}}}} ; If present, add newline to line 3 followed by author
-               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: Unknown"}}} ; If not, put unknown
+               {if_else $author ; check for a set $author in DLC contexts.dta
+               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " $author}} ;                             ^
+               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: Unknown"}}}} ; If not, put unknown
 #endif
 #endif
 ; If debug, just put artist text
@@ -184,6 +186,7 @@
       kDataUnhandled)
    (game_won_msg
       ($encore)
+      {set $author FALSE}
       {mtv_overlay_panel show_overlay FALSE}
       {if {&&
       $focusmode
@@ -256,6 +259,7 @@
             kDataUnhandled}
 		 0}})
    (game_lost
+      {set $author FALSE}
       {if {&&
       $focusmode
       {||

@@ -12,7 +12,7 @@
           "Focus Mode"
           "No Fail"
           "Song Title Always")}
-		  {title.lbl set_text select_modifiers})
+		  {title.lbl set_text ""})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
@@ -61,7 +61,6 @@
    (animate_transition FALSE)
    (BUTTON_DOWN_MSG
    {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
 		 {if_else {exists $modifier_exit}
             {ui goto_screen $modifier_exit}
             {ui goto_screen main_screen}}}
