@@ -1,3 +1,130 @@
+#define MODIFIER_SLIDER_HANDLERS
+((focus gs_guitar.sld)
+   (focus_component "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {gs_band.sld set_num_steps 60}
+      {gs_guitar.sld set_num_steps 21}
+      {if_else {'||'
+      {== $modifier_exit multi_vs_selsong_screen}
+      {== $modifier_exit multi_coop_selsong_screen}
+      {== $modifier_exit multi_fo_selsong_screen}}
+         {gs_sfx.sld set_num_steps 31}
+         {gs_sfx.sld set_num_steps 31}}) ; was 41 steps, dropped to 31 when disallowing <100%
+   (slider_changed {'||'
+      {!=
+         {options get band_volume_idx}
+         {gs_guitar.sld current}}
+      {!=
+         {options get guitar_volume_idx}
+         {gs_sfx.sld current}}
+      {!=
+         {options get guitar_volume_idx}
+         {gs_band.sld current}}})
+   (enter
+      {gs_guitar.sld set_current {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}}
+      {gs_sfx.sld set_current
+         {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}}
+      {gs_band.sld set_current
+         {int {- $emulatefps 1}}}
+      {stereo.chk set_check $focusmode}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps})
+   (reset_gm_title
+      {gs_title.lbl set_localized_text GAME_MODIFIER}
+	  )
+   (display_speed_msg
+      ($tspd $mspd $fps)
+      {gs_title.lbl set_localized_text {sprintf {localize speed_msg} {int {+ 0.5 {* $tspd 100}}} {int {+ 0.5 {* $mspd 100}}} {int $fps}}}
+	  )
+   (set_speeds
+      {if {$this slider_changed}
+         {do
+            {set $trackspd {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}}
+            {set $speedmod
+               {+ 1 {* {gs_sfx.sld current} 0.05}}}
+            {set $emulatefps {+ 1 {gs_band.sld current}}}
+            {$this display_speed_msg $trackspd $speedmod $emulatefps}}})
+   (slider_select_cancel
+      ($component)
+      {switch $component
+         (gs_guitar.sld {$component set_current [orig_vol]})
+         (gs_sfx.sld {$component set_current [orig_vol]})
+         (gs_band.sld {$component set_current [orig_vol]})}
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+      kDataUnhandled)
+   (FOCUS_MSG
+      {$this set focus_component {$new_focus name}}
+      {$this update_help_display})
+   (update_help_display
+      {if_else {$this slider_selected}
+         {helpbar set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjspd))}
+         {do
+            {if_else {== [focus_component] "gs_stereo.btn"}
+               {helpbar set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))}
+               {helpbar set_display
+                  ((fret1 help_select)
+                     (fret2 help_back)
+                     (strum help_updown))}}}})
+   (slider_start_msg
+      ($component)
+      {do
+         {switch $component
+            (gs_guitar.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}})
+            (gs_sfx.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}})
+            (gs_band.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}})}})
+   (SELECT_START_MSG
+      {switch $component
+         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
+         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
+         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
+         (gs_stereo.btn
+            {stereo.chk toggle}
+            {set $focusmode {stereo.chk get_check}})
+         kDataUnhandled}
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}))
+{new
+   SliderPanel
+   overshell_slider
+   (file overshell_slider.milo)
+   MODIFIER_SLIDER_HANDLERS}
+{new
+   GHScreen
+   overshell_slider_screen
+   (panels overshell_slider)
+   (focus overshell_slider)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {!
+               {overshell_slider slider_selected}}
+            {== $button kPad_Tri}}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+            {ui pop_screen}}
+      kDataUnhandled)}
 {new
    MultiSelectListPanel
    overshell_list
@@ -5,17 +132,18 @@
    (focus sel_section.lst)
    (enter
    {sel_section.lst set circular 1}
-   {sel_section.lst set_selected 1}
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
          (
           "No Fail"
           "Song Title Always"
+		  "Enable Drums"
 		  "Monkey Head Crowd"
 		  "Eyeball Head Crowd"
 		  "Flaming Head Mode"
 		  "Neckless Mode"
+		  "Performance Mode"
 		  "Roxbury Mode")}
 		  {gs_title.lbl set_text "MODIFIERS"})
    (SELECT_START_MSG
@@ -24,54 +152,95 @@
        ("No Fail"
          {if_else $nofail
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $nofail FALSE}}
-            {set $nofail TRUE}}
+			{do
+			{play_sfx cheat}
+            {set $nofail TRUE}}}
          kDataUnhandled)
        ("Song Title Always"
          {if_else $songtitle
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $songtitle FALSE}}
-            {set $songtitle TRUE}}
-         kDataUnhandled)})
+			{do
+			{play_sfx cheat}
+            {set $songtitle TRUE}}}
+         kDataUnhandled)
+	   ("Enable Drums"
+         {if_else $drumenabled
+            {do
+            {play_sfx cheat_off}
+            {set $drumenabled FALSE}}
+			{do
+			{play_sfx cheat}
+            {set $drumenabled TRUE}}}
+         kDataUnhandled)
+	   ("Horse Head (PS2)"
+         {if_else $cheat_enabled_horse_head_mode
+            {do
+            {play_sfx cheat_off}
+            {set $cheat_enabled_horse_head_mode FALSE}}
+			{do
+			{play_sfx cheat}
+            {set $cheat_enabled_horse_head_mode TRUE}}}
+         kDataUnhandled)
        ("Monkey Head Crowd"
          {if_else 
 		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $cheat_crowd_heads 0}}
-            {set $cheat_crowd_heads monkey_crowd_heads}}
+			{do
+			{play_sfx cheat}
+            {set $cheat_crowd_heads monkey_crowd_heads}}}
          kDataUnhandled)
        ("Eyeball Head Crowd"
          {if_else 
 		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $cheat_crowd_heads 0}}
-            {set $cheat_crowd_heads eyeball_crowd_heads}}
+			{do
+			{play_sfx cheat}
+            {set $cheat_crowd_heads eyeball_crowd_heads}}}
          kDataUnhandled)
        ("Flaming Head Mode"
          {if_else $cheat_enabled_flaming_head
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $cheat_enabled_flaming_head FALSE}}
-            {set $cheat_enabled_flaming_head TRUE}}
+			{do
+			{play_sfx cheat}
+            {set $cheat_enabled_flaming_head TRUE}}}
          kDataUnhandled)
       ("Neckless Mode"
          {if_else $neckless
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $neckless FALSE}}
-            {set $neckless TRUE}}
+			{do
+			{play_sfx cheat}
+            {set $neckless TRUE}}}
+         kDataUnhandled)
+	  ("Performance Mode"
+         {if_else $cheat_enabled_performance_mode
+            {do
+            {play_sfx cheat_off}
+            {set $cheat_enabled_performance_mode FALSE}}
+			{do
+			{play_sfx cheat}
+            {set $cheat_enabled_performance_mode TRUE}}}
          kDataUnhandled)
       ("Roxbury Mode"
          {if_else $barf_cheat
             {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
+            {play_sfx cheat_off}
             {set $barf_cheat FALSE}}
-            {set $barf_cheat TRUE}}
-         kDataUnhandled)
+			{do
+			{play_sfx cheat}
+            {set $barf_cheat TRUE}}}
+         kDataUnhandled)})
 	(BUTTON_DOWN_MSG
    {if {== $button kPad_Tri}
          {play_sfx button_error (volume 1) (stop TRUE)}
@@ -93,6 +262,63 @@
          {ui pop_screen}}
 		 kDataUnhandled)}
 {new
+   GHScreen
+   overshell_character_list_screen
+   (panels overshell_character_list)
+   (focus overshell_character_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+{new
+   MultiSelectListPanel
+   overshell_diff_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_data (Easy Medium Hard Expert)}
+		 {sel_section.lst set circular 0}
+         {sel_section.lst set_selected 3}}
+		 {gs_title.lbl set_text "DIFFICULTY"})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+	   (Easy {{game get_player_config 0} set_difficulty kDifficultyEasy}
+	   kDataUnhandled)
+	   (Medium {{game get_player_config 0} set_difficulty kDifficultyMedium}
+	   kDataUnhandled)
+	   (Hard {{game get_player_config 0} set_difficulty kDifficultyHard}
+	   kDataUnhandled)
+	   (Expert {{game get_player_config 0} set_difficulty kDifficultyExpert}
+	   kDataUnhandled)
+	   })
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
+				  }
+{new
+   GHScreen
+   overshell_diff_list_screen
+   (panels overshell_diff_list)
+   (focus overshell_diff_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+{new
    MultiSelectListPanel
    overshell_character_list
    (file overshell_list.milo)
@@ -100,8 +326,7 @@
    (enter
    {do
          {sel_section.lst set_data (punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
-		 {sel_section.lst set circular 1}
-         {sel_section.lst set_selected 1}}
+		 {sel_section.lst set circular 1}}
 		 {gs_title.lbl set_text "CHARACTERS"})
    (SELECT_START_MSG
       {switch
@@ -173,8 +398,7 @@
    (enter
    {do
          {sel_section.lst set_data (battle small1 small2 big theatre fest arena stone)}
-		 {sel_section.lst set circular 1}
-         {sel_section.lst set_selected 1}}
+		 {sel_section.lst set circular 1}}
 		 {gs_title.lbl set_text "VENUES"})
    (SELECT_START_MSG
       {switch
@@ -207,6 +431,227 @@
    overshell_venue_list_screen
    (panels overshell_venue_list)
    (focus overshell_venue_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+{new
+   GHScreen
+   overshell_character_list_screen
+   (panels overshell_character_list)
+   (focus overshell_character_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+{new
+   MultiSelectListPanel
+   overshell_guitar_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_data (
+		 lespaul lp_cayenne lp_goddessburst lp_zakk
+		 sg sg_white sg_gt sg_flames
+		 flying_v fv_v2 fv_century fv_red
+		 explorer exp_nat exp_sun exp_white exp_swirl
+		 lespaul_doublecut lp_dbl_resin
+		 firebird fb_blue fb_ebony fb_leopard
+		 epiphone_coronet coronet_cherry coronet_burst coronet_green
+		 kramer_vanguard van_yellow
+		 moderne mod_cherry
+		 corvus cor_nat
+		 es335 es_cherry
+		 kramer_650 650_white
+		 eds eds_white
+		 lespaul_doublecut_sticker lespaul_sonex lespaul_marauder
+		 epiphone_casino epiphone_sheraton chet_atkins fish_reward usa_reward
+		 coffin_reward viking_reward snaketapus_reward eyeball_reward
+		 battleaxe_reward log_reward scythe #ifndef HX_XBOX guitar_red_octane #endif
+         bass_musicman bass_musicman_lava bass_sg_mahogany bass_sg_cream bass_grabber_cherry
+		 bass_grabber_maple bass_thunderbird_ebony bass_thunderbird_burst bass_hofner)}
+		 {sel_section.lst set circular 1}}
+		 {gs_title.lbl set_text "VENUES"})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+	   (lespaul {game set_guitar lespaul lp_cherry}
+	   kDataUnhandled)
+	   (lespaul {game set_guitar lespaul lp_cherry}
+	   kDataUnhandled)
+	   (lespaul {game set_guitar lespaul lp_cayenne}
+	   kDataUnhandled)
+	   (lespaul {game set_guitar lespaul lp_goddessburst}
+	   kDataUnhandled)
+	   (lespaul {game set_guitar lespaul lp_zakk}
+	   kDataUnhandled)
+	   (sg {game set_guitar sg sg_cherry}
+	   kDataUnhandled)
+	   (sg_cherry {game set_guitar sg sg_cherry}
+	   kDataUnhandled)
+	   (sg_white {game set_guitar sg sg_white}
+	   kDataUnhandled)
+	   (sg_gt {game set_guitar sg sg_gt}
+	   kDataUnhandled)
+	   (sg_flames {game set_guitar sg sg_flames}
+	   kDataUnhandled)
+	   (flying_v {game set_guitar flying_v fv_white}
+	   kDataUnhandled)
+	   (fv_white {game set_guitar flying_v fv_white}
+	   kDataUnhandled)
+	   (fv_v2 {game set_guitar flying_v fv_v2}
+	   kDataUnhandled)
+	   (fv_century {game set_guitar flying_v fv_century}
+	   kDataUnhandled)
+	   (fv_red {game set_guitar flying_v fv_red}
+	   kDataUnhandled)
+	   (explorer {game set_guitar explorer exp_ebony}
+	   kDataUnhandled)
+	   (exp_ebony {game set_guitar explorer exp_ebony}
+	   kDataUnhandled)
+	   (exp_nat {game set_guitar explorer exp_nat}
+	   kDataUnhandled)
+	   (exp_sun {game set_guitar explorer exp_sun}
+	   kDataUnhandled)
+	   (exp_white {game set_guitar explorer exp_white}
+	   kDataUnhandled)
+	   (exp_swirl {game set_guitar explorer exp_swirl}
+	   kDataUnhandled)
+	   (lespaul_doublecut {game set_guitar lespaul_doublecut lp_dbl_white}
+	   kDataUnhandled)
+	   (lp_dbl_yellow {game set_guitar lespaul_doublecut lp_dbl_yellow}
+	   kDataUnhandled)
+	   (lp_dbl_resin {game set_guitar lespaul_doublecut lp_dbl_resin}
+	   kDataUnhandled)
+	   (firebird {game set_guitar firebird fb_burst}
+	   kDataUnhandled)
+	   (fb_burst {game set_guitar firebird fb_burst}
+	   kDataUnhandled)
+	   (fb_blue {game set_guitar firebird fb_blue}
+	   kDataUnhandled)
+	   (fb_ebony {game set_guitar firebird fb_ebony}
+	   kDataUnhandled)
+	   (fb_leopard {game set_guitar firebird fb_leopard}
+	   kDataUnhandled)
+ 	   (epiphone_coronet {game set_guitar epiphone_coronet coronet_brown}
+	   kDataUnhandled)
+	   (coronet_brown {game set_guitar epiphone_coronet coronet_brown}
+	   kDataUnhandled)
+	   (coronet_cherry {game set_guitar epiphone_coronet coronet_cherry}
+	   kDataUnhandled)
+	   (coronet_burst {game set_guitar epiphone_coronet coronet_burst}
+	   kDataUnhandled)
+	   (coronet_green {game set_guitar epiphone_coronet coronet_green}
+	   kDataUnhandled)
+	   (kramer_vanguard {game set_guitar kramer_vanguard van_black}
+	   kDataUnhandled)
+	   (van_black {game set_guitar kramer_vanguard van_black}
+	   kDataUnhandled)
+	   (van_yellow {game set_guitar kramer_vanguard van_yellow}
+	   kDataUnhandled)
+	   (moderne {game set_guitar moderne mod_nat}
+	   kDataUnhandled)
+	   (mod_nat {game set_guitar moderne mod_nat}
+	   kDataUnhandled)
+	   (mod_cherry {game set_guitar moderne mod_cherry}
+	   kDataUnhandled)
+	   (corvus {game set_guitar corvus cor_yellow}
+	   kDataUnhandled)
+	   (cor_yellow {game set_guitar corvus cor_yellow}
+	   kDataUnhandled)
+	   (cor_nat {game set_guitar corvus cor_nat}
+	   kDataUnhandled)
+	   (es335 {game set_guitar es335 es_maple}
+	   kDataUnhandled)
+	   (es_maple {game set_guitar es335 es_maple}
+	   kDataUnhandled)
+	   (es_cherry {game set_guitar es335 es_cherry}
+	   kDataUnhandled)
+	   (kramer_650 {game set_guitar kramer_650 650_stripe}
+	   kDataUnhandled)
+	   (650_stripe {game set_guitar kramer_650 650_stripe}
+	   kDataUnhandled)
+	   (650_white {game set_guitar kramer_650 650_white}
+	   kDataUnhandled)
+	   (eds {game set_guitar eds eds_cherry}
+	   kDataUnhandled)
+	   (eds_cherry {game set_guitar eds eds_cherry}
+	   kDataUnhandled)
+	   (eds_white {game set_guitar eds eds_white}
+	   kDataUnhandled)
+	   (lespaul_doublecut_sticker {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker}
+	   kDataUnhandled)
+	   (lespaul_sonex {game set_guitar lespaul_sonex lp_sonex}
+	   kDataUnhandled)
+	   (lespaul_marauder {game set_guitar lespaul_marauder lp_marauder}
+	   kDataUnhandled)
+	   (epiphone_casino {game set_guitar epiphone_casino casino}
+	   kDataUnhandled)
+	   (epiphone_sheraton {game set_guitar epiphone_sheraton sheraton}
+	   kDataUnhandled)
+	   (chet_atkins {game set_guitar chet_atkins chet_orange}
+	   kDataUnhandled)
+	   (fish_reward {game set_guitar fish_reward fish}
+	   kDataUnhandled)
+	   (usa_reward {game set_guitar usa_reward usa}
+	   kDataUnhandled)
+	   (coffin_reward {game set_guitar coffin_reward coffin}
+	   kDataUnhandled)
+	   (viking_reward {game set_guitar viking_reward snaketapus}
+	   kDataUnhandled)
+	   (snaketapus_reward {game set_guitar snaketapus_reward snaketapus}
+	   kDataUnhandled)
+	   (eyeball_reward {game set_guitar eyeball_reward eyeball}
+	   kDataUnhandled)
+	   (battleaxe_reward {game set_guitar battleaxe_reward battleaxe}
+	   kDataUnhandled)
+	   (log_reward {game set_guitar log_reward log}
+	   kDataUnhandled)
+	   (scythe {game set_guitar scythe scythe}
+	   kDataUnhandled)
+	   (guitar_red_octane {game set_guitar guitar_red_octane guitar_red_octane}
+	   kDataUnhandled)
+	   (bass_musicman {game set_guitar bass_musicman bass_music_black}
+	   kDataUnhandled)
+	   (bass_musicman_lava {game set_guitar bass_musicman_lava bass_music_lava}
+	   kDataUnhandled)
+	   (bass_sg_mahogany {game set_guitar bass_sg_mahogany bass_sg_mahog}
+	   kDataUnhandled)
+	   (bass_sg_cream {game set_guitar bass_sg_cream bass_sg_cream}
+	   kDataUnhandled)
+	   (bass_grabber_cherry {game set_guitar bass_grabber_cherry bass_grab_cherry}
+	   kDataUnhandled)
+	   (bass_grabber_maple {game set_guitar bass_grabber_maple bass_grab_maple}
+	   kDataUnhandled)
+	   (bass_thunderbird_ebony {game set_guitar bass_thunderbird_ebony bass_tb_ebony}
+	   kDataUnhandled)
+	   (bass_thunderbird_burst {game set_guitar bass_thunderbird_burst bass_tb_burst}
+	   kDataUnhandled)
+	   (bass_hofner {game set_guitar bass_hofner bass_hofner}
+	   kDataUnhandled)
+	   })
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
+				  }
+{new
+   GHScreen
+   overshell_guitar_list_screen
+   (panels overshell_guitar_list)
+   (focus overshell_guitar_list)
    (allow_back FALSE)
    (animate_transition FALSE)
    (BUTTON_DOWN_MSG

@@ -4,12 +4,12 @@
 #define OVERSHELL_SELECT_START_HANDLER
 ((SELECT_START_MSG
       {switch $component
-         (resume.btn {ui push_screen overshell_list_screen})
-         (restart.btn {ui push_screen overshell_character_list_screen})
-         (change_speed.btn {ui push_screen overshell_venue_list_screen})
-         (section.btn kDataUnhandled)
-         (newsong.btn kDataUnhandled)
-         (quit.btn {ui push_screen overshell_slider_screen})}))
+         (resume.btn {ui push_screen overshell_diff_list_screen})
+         (restart.btn {ui push_screen overshell_slider_screen})
+         (change_speed.btn {ui push_screen overshell_list_screen})
+         (section.btn {ui push_screen overshell_venue_list_screen})
+         (newsong.btn {ui push_screen overshell_character_list_screen})
+         (quit.btn {ui push_screen overshell_guitar_list_screen})}))
 #define OVERSHELL_BUTTON_DOWN_HANDLER
 ((BUTTON_DOWN_MSG
       {if {== $button kPad_Tri}
@@ -19,114 +19,11 @@
             {ui goto_screen main_screen}}
             {ui pop_screen}}
       kDataUnhandled))
-#define MODIFIER_SLIDER_HANDLERS
-((focus gs_guitar.sld)
-   (focus_component "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_band.sld set_num_steps 60}
-      {gs_guitar.sld set_num_steps 21}
-      {if_else {'||'
-      {== $modifier_exit multi_vs_selsong_screen}
-      {== $modifier_exit multi_coop_selsong_screen}
-      {== $modifier_exit multi_fo_selsong_screen}}
-         {gs_sfx.sld set_num_steps 31}
-         {gs_sfx.sld set_num_steps 31}}) ; was 41 steps, dropped to 31 when disallowing <100%
-   (slider_changed {'||'
-      {!=
-         {options get band_volume_idx}
-         {gs_guitar.sld current}}
-      {!=
-         {options get guitar_volume_idx}
-         {gs_sfx.sld current}}
-      {!=
-         {options get guitar_volume_idx}
-         {gs_band.sld current}}})
-   (enter
-      {gs_guitar.sld set_current {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}}
-      {gs_sfx.sld set_current
-         {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}}
-      {gs_band.sld set_current
-         {int {- $emulatefps 1}}}
-      {stereo.chk set_check $focusmode}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps})
-   (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
-	  )
-   (display_speed_msg
-      ($tspd $mspd $fps)
-      {gs_title.lbl set_localized_text {sprintf {localize speed_msg} {int {+ 0.5 {* $tspd 100}}} {int {+ 0.5 {* $mspd 100}}} {int $fps}}}
-	  )
-   (set_speeds
-      {if {$this slider_changed}
-         {do
-            {set $trackspd {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}}
-            {set $speedmod
-               {+ 1 {* {gs_sfx.sld current} 0.05}}}
-            {set $emulatefps {+ 1 {gs_band.sld current}}}
-            {$this display_speed_msg $trackspd $speedmod $emulatefps}}})
-   (slider_select_cancel
-      ($component)
-      {switch $component
-         (gs_guitar.sld {$component set_current [orig_vol]})
-         (gs_sfx.sld {$component set_current [orig_vol]})
-         (gs_band.sld {$component set_current [orig_vol]})}
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
-      kDataUnhandled)
-   (FOCUS_MSG
-      {$this set focus_component {$new_focus name}}
-      {$this update_help_display})
-   (update_help_display
-      {if_else {$this slider_selected}
-         {helpbar set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjspd))}
-         {do
-            {if_else {== [focus_component] "gs_stereo.btn"}
-               {helpbar set_display
-                  ((fret1 help_onoff)
-                     (fret2 help_back)
-                     (strum help_updown))}
-               {helpbar set_display
-                  ((fret1 help_select)
-                     (fret2 help_back)
-                     (strum help_updown))}}}})
-   (slider_start_msg
-      ($component)
-      {do
-         {switch $component
-            (gs_guitar.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}})
-            (gs_sfx.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}})
-            (gs_band.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}})}})
-   (SELECT_START_MSG
-      {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
-         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
-         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
-         (gs_stereo.btn
-            {stereo.chk toggle}
-            {set $focusmode {stereo.chk get_check}})
-         kDataUnhandled}
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}))
 {new GHPanel overshell_panel
    (file overshell_main.milo)
    (focus resume.btn)
    (reset_focus TRUE)
+   (enter {pause_title.lbl set_text "GHIIDX SETTINGS"})
 }
 {new GHScreen overshell_screen
    (panels overshell_panel)
@@ -135,26 +32,3 @@
    OVERSHELL_SCREEN_HANDLERS
    OVERSHELL_SELECT_START_HANDLER
    OVERSHELL_BUTTON_DOWN_HANDLER}
-{new
-   SliderPanel
-   overshell_slider
-   (file overshell_slider.milo)
-   MODIFIER_SLIDER_HANDLERS}
-{new
-   GHScreen
-   overshell_slider_screen
-   (panels overshell_slider)
-   (focus overshell_slider)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-      {if
-         {&&
-            {!
-               {overshell_slider slider_selected}}
-            {== $button kPad_Tri}}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-            {ui pop_screen}}
-      kDataUnhandled)}
