@@ -243,30 +243,19 @@
          {exists ui}
          {!
             {ui in_transition}}
-         {'||'
+         {!
             {==
                {ui current_screen}
-               sel_song_screen}
+               game_screen}}
+		 {!
             {==
                {ui current_screen}
-               qp_selsong_screen}
-            {==
-               {ui current_screen}
-               multi_vs_selsong_screen}
-            {==
-               {ui current_screen}
-               multi_coop_selsong_screen}
-            {==
-               {ui current_screen}
-               multi_fo_selsong_screen}
-            {==
-               {ui current_screen}
-               practice_selsong_screen}}}
+               overshell_screen}}}
       {set
          $modifier_exit
          {ui current_screen}}
       {synth play_sequence button_select}
-      {ui goto_screen sel_mod_screen}})
+      {ui push_screen overshell_screen}})
 ((G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_RED)
    {if
       CHEATS_ALLOWED

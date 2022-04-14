@@ -47,15 +47,10 @@
          {ui pop_screen}}
 		 kDataUnhandled)
 				  }
-{new GHPanel overshell_panel
-   (file pause_gh1.milo)
-   (enter
-      {overshell_panel iterate BandButton $b {$b set_showing FALSE}}
-      {overshell_panel iterate BandLabel $b {$b set_showing FALSE}})}
 {new
    GHScreen
    sel_mod_screen
-   (panels meta overshell_panel sel_mod_panel)
+   (panels meta sel_mod_panel)
    (focus sel_mod_panel)
    (allow_back FALSE)
    (animate_transition FALSE)

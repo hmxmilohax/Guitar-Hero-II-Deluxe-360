@@ -206,3 +206,4 @@
          {synth play_sequence button_back.cue}
          {ui goto_screen main_screen}}
       kDataUnhandled)}
+#include overshell.dta
