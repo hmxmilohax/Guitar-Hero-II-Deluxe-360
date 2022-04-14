@@ -1,16 +1,22 @@
 {new
    MultiSelectListPanel
    overshell_list
-   (file
-      overshell_list.milo)
+   (file overshell_list.milo)
    (focus sel_section.lst)
    (enter
+   {sel_section.lst set circular 1}
+   {sel_section.lst set_selected 1}
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
          (
           "No Fail"
-          "Song Title Always")}
+          "Song Title Always"
+		  "Monkey Head Crowd"
+		  "Eyeball Head Crowd"
+		  "Flaming Head Mode"
+		  "Neckless Mode"
+		  "Roxbury Mode")}
 		  {gs_title.lbl set_text "MODIFIERS"})
    (SELECT_START_MSG
       {switch
@@ -29,6 +35,43 @@
             {set $songtitle FALSE}}
             {set $songtitle TRUE}}
          kDataUnhandled)})
+       ("Monkey Head Crowd"
+         {if_else 
+		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $cheat_crowd_heads 0}}
+            {set $cheat_crowd_heads monkey_crowd_heads}}
+         kDataUnhandled)
+       ("Eyeball Head Crowd"
+         {if_else 
+		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $cheat_crowd_heads 0}}
+            {set $cheat_crowd_heads eyeball_crowd_heads}}
+         kDataUnhandled)
+       ("Flaming Head Mode"
+         {if_else $cheat_enabled_flaming_head
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $cheat_enabled_flaming_head FALSE}}
+            {set $cheat_enabled_flaming_head TRUE}}
+         kDataUnhandled)
+      ("Neckless Mode"
+         {if_else $neckless
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $neckless FALSE}}
+            {set $neckless TRUE}}
+         kDataUnhandled)
+      ("Roxbury Mode"
+         {if_else $barf_cheat
+            {do
+            {play_sfx button_error (volume 2) (stop TRUE)}
+            {set $barf_cheat FALSE}}
+            {set $barf_cheat TRUE}}
+         kDataUnhandled)
 	(BUTTON_DOWN_MSG
    {if {== $button kPad_Tri}
          {play_sfx button_error (volume 1) (stop TRUE)}
@@ -40,6 +83,130 @@
    overshell_list_screen
    (panels overshell_list)
    (focus overshell_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+{new
+   MultiSelectListPanel
+   overshell_character_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_data (punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
+		 {sel_section.lst set circular 1}
+         {sel_section.lst set_selected 1}}
+		 {gs_title.lbl set_text "CHARACTERS"})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+	   (punk1 {game set_character punk1 TRUE}
+	   kDataUnhandled)
+	   (punk2 {game set_character punk2 TRUE}
+	   kDataUnhandled)
+	   (alterna1 {game set_character alterna1 TRUE}
+	   kDataUnhandled)
+	   (alterna2 {game set_character alterna2 TRUE}
+	   kDataUnhandled)
+	   (glam1 {game set_character glam1 TRUE}
+	   kDataUnhandled)
+	   (glam2 {game set_character glam2 TRUE}
+	   kDataUnhandled)
+	   (goth2 {game set_character goth2 TRUE}
+	   kDataUnhandled)
+	   (goth1 {game set_character goth1 TRUE}
+	   kDataUnhandled)
+	   (metal1 {game set_character metal1 TRUE}
+	   kDataUnhandled)
+	   (metal2 {game set_character metal2 TRUE}
+	   kDataUnhandled)
+	   (rockabill1 {game set_character rockabill1 TRUE}
+	   kDataUnhandled)
+	   (rockabill2 {game set_character rockabill2 TRUE}
+	   kDataUnhandled)
+	   (rock2 {game set_character rock2 TRUE}
+	   kDataUnhandled)
+	   (rock1 {game set_character rock1 TRUE}
+	   kDataUnhandled)
+	   (deathmetal1 {game set_character deathmetal1 TRUE}
+	   kDataUnhandled)
+	   (deathmetal2 {game set_character deathmetal2 TRUE}
+	   kDataUnhandled)
+	   (classic {game set_character classic TRUE}
+	   kDataUnhandled)
+	   (funk1 {game set_character funk1 TRUE}
+	   kDataUnhandled)
+	   (grim {game set_character grim TRUE}
+	   kDataUnhandled)
+	   })
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
+				  }
+{new
+   GHScreen
+   overshell_character_list_screen
+   (panels overshell_character_list)
+   (focus overshell_character_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+{new
+   MultiSelectListPanel
+   overshell_venue_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_data (battle small1 small2 big theatre fest arena stone)}
+		 {sel_section.lst set circular 1}
+         {sel_section.lst set_selected 1}}
+		 {gs_title.lbl set_text "VENUES"})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+	   (battle {game set_venue battle TRUE}
+	   kDataUnhandled)
+	   (small1 {game set_venue small1 TRUE}
+	   kDataUnhandled)
+	   (small2 {game set_venue small2 TRUE}
+	   kDataUnhandled)
+	   (big {game set_venue big TRUE}
+	   kDataUnhandled)
+	   (theatre {game set_venue theatre TRUE}
+	   kDataUnhandled)
+	   (fest {game set_venue fest TRUE}
+	   kDataUnhandled)
+	   (arena {game set_venue arena TRUE}
+	   kDataUnhandled)
+	   (stone {game set_venue stone TRUE}
+	   kDataUnhandled)
+	   })
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
+				  }
+{new
+   GHScreen
+   overshell_venue_list_screen
+   (panels overshell_venue_list)
+   (focus overshell_venue_list)
    (allow_back FALSE)
    (animate_transition FALSE)
    (BUTTON_DOWN_MSG

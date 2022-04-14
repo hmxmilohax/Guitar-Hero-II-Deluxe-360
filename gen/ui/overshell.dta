@@ -5,8 +5,8 @@
 ((SELECT_START_MSG
       {switch $component
          (resume.btn {ui push_screen overshell_list_screen})
-         (restart.btn kDataUnhandled)
-         (change_speed.btn kDataUnhandled)
+         (restart.btn {ui push_screen overshell_character_list_screen})
+         (change_speed.btn {ui push_screen overshell_venue_list_screen})
          (section.btn kDataUnhandled)
          (newsong.btn kDataUnhandled)
          (quit.btn {ui push_screen overshell_slider_screen})}))

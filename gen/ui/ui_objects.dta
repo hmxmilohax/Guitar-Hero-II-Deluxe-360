@@ -1506,7 +1506,7 @@
                      (normal 1 1 1)
                      (focused 0.898 0.898 0)
                      (disabled 1 1 1)
-                     (selecting 0.898 0.898 0))
+                     (selecting 0.7 0 0))
                   (disabled
                      (normal 0.7 0.7 0.7)
                      (focused 0.7 0.7 0.7)
