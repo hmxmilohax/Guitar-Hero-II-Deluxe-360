@@ -20,6 +20,8 @@
       {set $main_entered TRUE}
       {$this disable main_career.btn}
 	  {$this disable main_options.btn}
+	  {main_career.btn set_showing FALSE}
+	  {main_options.btn set_showing FALSE}
       {set $cheat_enabled_unlock_all 1}
       {campaign set_all_access 1}
       {set $disable_career 1}

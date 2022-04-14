@@ -116,7 +116,7 @@
 (video1_shop_desc "Ever dreamed of taking an all-access tour of the Gibson USA factory? This is your chance.")
 (video2_shop_desc "Check out an exclusive behind-the-scenes video of the recording of the Guitar Hero II songs.")
 (video3_shop_desc "The Guitar Hero II development team takes you backstage to see what life is REALLY like at Harmonix.")
-(QUICK_PLAY "FREE PLAY")
+(QUICK_PLAY "SINGLEPLAYER")
 (QP_SELSONG "SELECT SONG")
 (E3_SINGLE_PLAYER "E3 SINGLE PLAYER")
 (E3_MULTI_COOP "E3 MULTI CO-OP")
