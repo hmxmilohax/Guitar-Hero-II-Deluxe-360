@@ -2,20 +2,22 @@
    MultiSelectListPanel
    sel_mod_panel
    (file
-      sel_modifiers.milo)
+      practice_sel_section.milo)
    (focus sel_section.lst)
    (enter
+   {sel_mod_panel iterate Mesh $m {$m set_showing FALSE}}
       {sel_section.lst
          set_data
          ("Speed Settings"
           "Focus Mode"
           "No Fail"
           "Song Title Always")}
-      {title.lbl set_text select_modifiers})
+		  {title.lbl set_text select_modifiers})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
        ("Speed Settings"
+	     {ui pop_screen}
          {ui goto_screen modifiers_screen}
          kDataUnhandled)
        ("Focus Mode"
@@ -39,22 +41,29 @@
             {set $songtitle FALSE}}
             {set $songtitle TRUE}}
          kDataUnhandled)})
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
 				  }
+{new GHPanel overshell_panel
+   (file pause_gh1.milo)
+   (enter
+      {overshell_panel iterate BandButton $b {$b set_showing FALSE}}
+      {overshell_panel iterate BandLabel $b {$b set_showing FALSE}})}
 {new
    GHScreen
    sel_mod_screen
-   (panels meta midi_loader_panel sel_mod_panel helpbar)
+   (panels meta overshell_panel sel_mod_panel)
    (focus sel_mod_panel)
-   (helpbar
-      (default
-         ((fret1 help_select)
-            (fret2 help_back)
-            (strum help_updown))))
+   (allow_back FALSE)
+   (animate_transition FALSE)
    (BUTTON_DOWN_MSG
-      {if {== $button kPad_Tri}
-         {$this backwards_anim}
+   {if {== $button kPad_Tri}
          {play_sfx button_error (volume 1) (stop TRUE)}
-         {if_else {exists $modifier_exit}
+		 {if_else {exists $modifier_exit}
             {ui goto_screen $modifier_exit}
             {ui goto_screen main_screen}}}
-      kDataUnhandled)}
+         {ui pop_screen}}
+		 kDataUnhandled)}
