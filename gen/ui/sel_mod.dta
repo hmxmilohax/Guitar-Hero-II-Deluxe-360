@@ -63,6 +63,6 @@
    {if {== $button kPad_Tri}
 		 {if_else {exists $modifier_exit}
             {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}}
+            {ui goto_screen main_screen}}
          {ui pop_screen}}
 		 kDataUnhandled)}
