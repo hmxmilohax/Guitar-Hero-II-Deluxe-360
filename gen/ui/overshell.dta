@@ -1,3 +1,24 @@
+#define OVERSHELL_SCREEN_HANDLERS
+((allow_back FALSE)
+(animate_transition FALSE))
+#define OVERSHELL_SELECT_START_HANDLER
+((SELECT_START_MSG
+      {switch $component
+         (resume.btn {ui push_screen overshell_list_screen})
+         (restart.btn kDataUnhandled)
+         (change_speed.btn kDataUnhandled)
+         (section.btn kDataUnhandled)
+         (newsong.btn kDataUnhandled)
+         (quit.btn {ui push_screen overshell_slider_screen})}))
+#define OVERSHELL_BUTTON_DOWN_HANDLER
+((BUTTON_DOWN_MSG
+      {if {== $button kPad_Tri}
+	     {$this backwards_anim}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+            {ui pop_screen}}
+      kDataUnhandled))
 #define MODIFIER_SLIDER_HANDLERS
 ((focus gs_guitar.sld)
    (focus_component "")
@@ -102,24 +123,35 @@
       {$this update_help_display}
       {$this set_speeds}
       {$this display_speed_msg $trackspd $speedmod $emulatefps}))
-
+{new GHPanel overshell_panel
+   (file overshell_main.milo)
+   (focus resume.btn)
+   (reset_focus TRUE)
+}
+{new GHScreen overshell_screen
+   (panels overshell_panel)
+   (focus overshell_panel)
+   (clear_vram TRUE)
+   OVERSHELL_SCREEN_HANDLERS
+   OVERSHELL_SELECT_START_HANDLER
+   OVERSHELL_BUTTON_DOWN_HANDLER}
 {new
    SliderPanel
-   overshell_panel
+   overshell_slider
    (file overshell_slider.milo)
    MODIFIER_SLIDER_HANDLERS}
 {new
    GHScreen
-   overshell_screen
-   (panels overshell_panel)
-   (focus overshell_panel)
+   overshell_slider_screen
+   (panels overshell_slider)
+   (focus overshell_slider)
    (allow_back FALSE)
    (animate_transition FALSE)
    (BUTTON_DOWN_MSG
       {if
          {&&
             {!
-               {overshell_panel slider_selected}}
+               {overshell_slider slider_selected}}
             {== $button kPad_Tri}}
 		 {if_else {exists $modifier_exit}
             {ui goto_screen $modifier_exit}

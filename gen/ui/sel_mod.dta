@@ -1,32 +1,20 @@
 {new
    MultiSelectListPanel
-   sel_mod_panel
+   overshell_list
    (file
-      practice_sel_section.milo)
+      overshell_list.milo)
    (focus sel_section.lst)
    (enter
-   {sel_mod_panel iterate Mesh $m {$m set_showing FALSE}}
+   {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
-         ("Speed Settings"
-          "Focus Mode"
+         (
           "No Fail"
           "Song Title Always")}
-		  {title.lbl set_text ""})
+		  {gs_title.lbl set_text "MODIFIERS"})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
-       ("Speed Settings"
-	     {ui pop_screen}
-         {ui goto_screen modifiers_screen}
-         kDataUnhandled)
-       ("Focus Mode"
-         {if_else $focusmode
-            {do
-            {play_sfx button_error (volume 2) (stop TRUE)}
-            {set $focusmode FALSE}}
-            {set $focusmode TRUE}}
-         kDataUnhandled)
        ("No Fail"
          {if_else $nofail
             {do
@@ -49,9 +37,9 @@
 				  }
 {new
    GHScreen
-   sel_mod_screen
-   (panels meta sel_mod_panel)
-   (focus sel_mod_panel)
+   overshell_list_screen
+   (panels overshell_list)
+   (focus overshell_list)
    (allow_back FALSE)
    (animate_transition FALSE)
    (BUTTON_DOWN_MSG

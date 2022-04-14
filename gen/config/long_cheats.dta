@@ -237,8 +237,8 @@
                   {do
                      {set $egg5 TRUE}
                      {ui goto_screen final_egg_screen}}})}}})
-((kPad_Select kPad_Select)
-   {if
+#define OVERSHELL_SHORTCUT
+({if
       {&&
          {exists ui}
          {!
@@ -256,6 +256,8 @@
          {ui current_screen}}
       {synth play_sequence button_select}
       {ui push_screen overshell_screen}})
+((kPad_Select kPad_Select)
+   OVERSHELL_SHORTCUT)
 ((G_YELLOW G_ORANGE G_RED G_YELLOW G_ORANGE G_RED)
    {if
       CHEATS_ALLOWED

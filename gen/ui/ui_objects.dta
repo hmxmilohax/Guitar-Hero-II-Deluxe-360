@@ -1483,6 +1483,37 @@
                      (selecting 0.7 0.7 0.7)))))
          (provider
             ("text")))
+	(list_modifiers
+         (resource_file
+            "list_modifiers.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "list.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 1 1 1)
+                     (focused 1 1 1)
+                     (disabled 1 1 1)
+                     (selecting 1 1 1))
+                  (highlight
+                     (normal 1 1 1)
+                     (focused 0.898 0.898 0)
+                     (disabled 1 1 1)
+                     (selecting 0.898 0.898 0))
+                  (disabled
+                     (normal 0.7 0.7 0.7)
+                     (focused 0.7 0.7 0.7)
+                     (disabled 0.7 0.7 0.7)
+                     (selecting 0.7 0.7 0.7)))))
+         (provider
+            ("text")))
 #ifdef HX_XBOX
      (leaderboard
          (resource_file
