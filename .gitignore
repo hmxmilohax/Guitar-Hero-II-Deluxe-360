@@ -17,3 +17,7 @@ xinput1_3.dll
 xinput1_4.dll
 xinput9_1_0.dll
 gen/*
+_ark/track/surfaces/*
+_ark/track/surfaces/gen/*
+_ark/track/surfaces/highways.dta
+_ark/track/surfaces/highways.dta
