@@ -9,7 +9,8 @@
       {set $interval_p0 100}} ;if streak is more than 50, set interval to 100
    {if {== {mod $player0_streak $interval_p0} 0}
       {hud show_message 0 note_streak_popup_p0}
-      {play_game_sfx_player meter_slide meter_slide 0}}} ;if streak is mod interval, fire popup
+      {if {! $focusmode} {play_game_sfx_player meter_slide meter_slide 0}}
+	  }} ;if streak is mod interval, fire popup
 
 {func note_streak_p1
    {set $player1_streak {player1 current_streak}} ;save P2 streak for later
@@ -410,7 +411,7 @@
          {if {== $player_num 0}
             {$this show_message kPlayerShared star_ready}}
          {$this show_message $player_num star_ready}}
-      {play_game_sfx_player sp_available sp_available_multi $player_num}
+      {if {! $focusmode} {play_game_sfx_player sp_available sp_available_multi $player_num}}
       kDataUnhandled)
    (game_won_msg
       {$this on_game_over}

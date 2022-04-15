@@ -107,6 +107,6 @@
       ($player $state)
       {if_else
          $state
-         {play_game_sfx_player sp_deploystart.cue sp_deploystart.cue $player}
+         {if {! $focusmode} {play_game_sfx_player sp_deploystart.cue sp_deploystart.cue $player}}
          {stop_sfx sp_deploystart.cue}}
       kDataUnhandled))

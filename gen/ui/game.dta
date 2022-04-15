@@ -355,7 +355,8 @@
       {do
          ($sfx
             {sprintf "streak_broken_%ix.cue" $mult})
-         {play_game_sfx_player $sfx $sfx $player}}
+         {if {! $focusmode} {play_game_sfx_player $sfx $sfx $player}}
+		 }
       kDataUnhandled)
    (cheat_force_encore
       {cheat_display show "Forcing encore intro/outro"}
