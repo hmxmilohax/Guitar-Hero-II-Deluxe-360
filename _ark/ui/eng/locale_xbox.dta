@@ -452,7 +452,7 @@
 (lose_diff
    "DIFFICULTY:")
 (lose_title
-   "SONG FAILED")
+   "PAUSED")
 (lose_quit
    "EXIT")
 (lose_restart

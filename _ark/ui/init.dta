@@ -6,7 +6,6 @@
 #include game.dta
 #include career.dta
 #include endgame.dta
-#include lose.dta
 #include quickplay.dta
 #include multiplayer.dta
 #include main.dta

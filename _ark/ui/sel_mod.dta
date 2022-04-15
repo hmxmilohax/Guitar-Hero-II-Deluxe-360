@@ -303,7 +303,8 @@
 	(BUTTON_DOWN_MSG
    {if {== $button kPad_Tri}
          {play_sfx button_error (volume 1) (stop TRUE)}
-         {ui pop_screen}}
+         {meta_loading_nosave_goto main_screen}
+		 {ui pop_screen}}
 		 kDataUnhandled)
 				  }
 {new
@@ -315,9 +316,7 @@
    (animate_transition FALSE)
    (BUTTON_DOWN_MSG
    {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
+         {meta_loading_nosave_goto main_screen}
          {ui pop_screen}}
 		 kDataUnhandled)}
 {new
@@ -935,3 +934,54 @@
             {ui goto_screen main_screen}}
             {ui pop_screen}}
       kDataUnhandled)}
+{new
+   MultiSelectListPanel
+   overshell_highway_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_local_pos -140 0 35}
+         {sel_section.lst set_data ({sprintf "../track/surfaces/%.bmp"})}
+		 {sel_section.lst set circular 1}}
+		 {gs_title.lbl set_text "VENUES"})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+	   (battle {game set_venue battle TRUE}
+	   kDataUnhandled)
+	   (small1 {game set_venue small1 TRUE}
+	   kDataUnhandled)
+	   (small2 {game set_venue small2 TRUE}
+	   kDataUnhandled)
+	   (big {game set_venue big TRUE}
+	   kDataUnhandled)
+	   (theatre {game set_venue theatre TRUE}
+	   kDataUnhandled)
+	   (fest {game set_venue fest TRUE}
+	   kDataUnhandled)
+	   (arena {game set_venue arena TRUE}
+	   kDataUnhandled)
+	   (stone {game set_venue stone TRUE}
+	   kDataUnhandled)
+	   })
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
+				  }
+{new
+   GHScreen
+   overshell_highway_list_screen
+   (panels overshell_highway_list)
+   (focus overshell_highway_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}

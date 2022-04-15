@@ -1,10 +1,17 @@
 {new GHPanel pause_panel
-   (file
-      {if_else $gamegh1
-         pause_gh1.milo
-         pause.milo})
-   (focus resume.btn)
-   (reset_focus TRUE)}
+   (file overshell_pause.milo)
+   (focus lose_resume_career.btn)
+   (reset_focus TRUE)
+   (enter
+   {lose_info.view set_local_pos 0 200 70}
+   {lose_song_data.lbl set_localized_text {game get_song_text}}
+      {lose_diff_data.lbl set_text
+         {if_else {== {gamecfg get mode} multi_coop}
+            {sprintf "%s/%s" {game get_difficulty_sym 0} {game get_difficulty_sym 1}}
+            {game get_difficulty_sym 0}}}
+   {lose_progress_data.lbl set_localized_text {sprintf {localize percent_complete_format} {player0 percent_complete}}}
+   {career_buttons.view set_showing TRUE}
+   {normal_buttons.view set_showing FALSE})}
 #define PAUSE_SCREEN_HANDLERS
 ((allow_back FALSE)
    (animate_transition FALSE)
@@ -31,17 +38,12 @@
 #define PAUSE_SELECT_START_HANDLER
 ((SELECT_START_MSG
       {switch $component
-         (resume.btn {$this resume})
-         (restart.btn {$this restart})
-         (change_speed.btn {ui goto_screen pause_audio_settings_screen})
-         (section.btn {ui goto_screen pause_video_settings_screen})
-         (newsong.btn
-            {gamecfg set mode practice}
-            {gamecfg set_track 0 0}
-            {practice_selpart_screen set career_mode FALSE}
-            {meta_loading_goto practice_selpart_screen})
-         (quit.btn
-            {meta_loading_goto sel_song_screen})}))
+	     (lose_resume_career.btn {$this resume})
+         (lose_restart_career.btn {$this restart})
+		 (lose_diff_career.btn {ui push_screen overshell_diff_list_screen})
+         (lose_practice_career.btn {$this goto_practice_mode})
+         (lose_selsong_career.btn {meta_loading_goto sel_song_screen})
+         (lose_quit_career.btn {meta_loading_goto main_screen})}))
 {new GHScreen pause_screen
    (panels GAME_PANELS pause_panel)
    (focus pause_panel)

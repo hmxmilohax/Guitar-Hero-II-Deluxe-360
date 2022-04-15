@@ -4,7 +4,7 @@
 #define OVERSHELL_SELECT_START_HANDLER
 ((SELECT_START_MSG
       {switch $component
-         (resume.btn {ui push_screen overshell_diff_list_screen})
+         (resume.btn {ui push_screen overshell_highway_list_screen})
          (restart.btn {ui push_screen overshell_slider_screen})
          (change_speed.btn {ui push_screen overshell_list_screen})
          (section.btn {ui push_screen overshell_venue_list_screen})
