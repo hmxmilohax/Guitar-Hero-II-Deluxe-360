@@ -1,7 +1,8 @@
 del /f %~dp0highways\highways.dta
 cd %~dp0highways
 forfiles /s /m *.* /C "cmd /e:on /v:on /c set \"Phile=@file\" & if @ISDIR==FALSE ren @file !Phile: =_!"
-forfiles /s /m *.* /C "cmd /e:on /v:on /c set \"Phile=@file\" & if @ISDIR==FALSE  ren @file !Phile:_=-!"
+forfiles /s /m *.* /C "cmd /e:on /v:on /c set \"Phile=@file\" & if @ISDIR==FALSE  ren @file !Phile:-=_!"
+for /f "Tokens=*" %%f in ('dir /l/b/a-d/s') do (move /y "%%f" "%%f")
 for %%i in (*.bmp) do @echo "%%~ni">> highways.dta
 for %%i in (*.png) do @echo "%%~ni">> highways.dta
 for %%i in (*.jpg) do @echo "%%~ni">> highways.dta
