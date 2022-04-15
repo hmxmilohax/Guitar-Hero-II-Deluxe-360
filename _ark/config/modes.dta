@@ -17,7 +17,7 @@
    (show_hud TRUE)
    (show_track TRUE)
    (encore_fx FALSE)
-   (track_surface_override '')
+   (track_surface_override $highway)
    (crowd_audio TRUE)
    (star_power_disable FALSE)
    (shared_star_meter FALSE)
@@ -47,7 +47,7 @@
    (continue_screen main_screen)
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
-   (track_surface_override rosewood)
+   (track_surface_override $highway)
    (song_block
       {if_else
          {==

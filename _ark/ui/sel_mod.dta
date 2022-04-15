@@ -942,32 +942,19 @@
    (enter
    {do
          {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (HIGHWAY_OBJECTS)}
+         {sel_section.lst set_data (#include ../track/surfaces/highways.dta)}
 		 {sel_section.lst set circular 1}}
-		 {gs_title.lbl set_text "VENUES"})
+		 {gs_title.lbl set_text "SET HIGHWAY"})
    (SELECT_START_MSG
+      {set $highway {$component selected_sym}}
       {switch
-       {$component selected_sym}
-	   (battle {game set_venue battle TRUE}
+         {$component selected_sym}
+         ("none"
+            {set $highway ""})}
 	   kDataUnhandled)
-	   (small1 {game set_venue small1 TRUE}
-	   kDataUnhandled)
-	   (small2 {game set_venue small2 TRUE}
-	   kDataUnhandled)
-	   (big {game set_venue big TRUE}
-	   kDataUnhandled)
-	   (theatre {game set_venue theatre TRUE}
-	   kDataUnhandled)
-	   (fest {game set_venue fest TRUE}
-	   kDataUnhandled)
-	   (arena {game set_venue arena TRUE}
-	   kDataUnhandled)
-	   (stone {game set_venue stone TRUE}
-	   kDataUnhandled)
-	   })
 	(BUTTON_DOWN_MSG
    {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
+         {synth play_sequence button_back.cue}
          {ui pop_screen}}
 		 kDataUnhandled)
 				  }
