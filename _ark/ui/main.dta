@@ -18,8 +18,6 @@
    (enter
       {campaign set_profile_slot 0}
       {set $main_entered TRUE}
-	  {$this disable main_options.btn}
-	  {main_options.btn set_showing FALSE}
       {set $cheat_enabled_unlock_all 1}
       {campaign set_all_access 1}
       {set $disable_career 1}
@@ -49,7 +47,9 @@
          (main_tutorial.btn
             {ui goto_screen practice_selsong_screen})
          (main_leaderboards.btn
-            {ui goto_screen options_screen})})
+            {ui goto_screen options_screen})
+	     (main_options.btn
+            {ui goto_screen credits_screen})})
    (poll
       {if_else
          {game is_missing_multi_controller}

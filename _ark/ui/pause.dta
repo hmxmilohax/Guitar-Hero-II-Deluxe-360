@@ -41,9 +41,7 @@
             {practice_selpart_screen set career_mode FALSE}
             {meta_loading_goto practice_selpart_screen})
          (quit.btn
-            {if {== career {gamecfg get mode}}
-               {gamecfg set continue_screen sel_song_screen}}
-            {meta_loading_goto {gamecfg get continue_screen}})}))
+            {meta_loading_goto sel_song_screen})}))
 {new GHScreen pause_screen
    (panels GAME_PANELS pause_panel)
    (focus pause_panel)
@@ -84,17 +82,16 @@
          (restart_career.btn {$this restart})
          (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
-         (change_speed.btn
-            {modifiers_screen_pract set back_screen pract_pause_screen}
-            {meta_loading_nosave_goto modifiers_screen_pract})
-         (change_speed_career.btn
-            {modifiers_screen_pract set back_screen pract_pause_screen}
-            {meta_loading_nosave_goto modifiers_screen_pract})
+         ;(change_speed.btn
+         ;   {modifiers_screen_pract set back_screen pract_pause_screen}
+         ;   {meta_loading_nosave_goto modifiers_screen_pract})
+         ;(change_speed_career.btn
+         ;   {modifiers_screen_pract set back_screen pract_pause_screen}
+         ;   {meta_loading_nosave_goto modifiers_screen_pract})
          (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
          (quit_career.btn
-            {career_screen resume_from_practice}
-            {meta_loading_goto career_screen})
-         (quit.btn {meta_loading_goto {gamecfg get continue_screen}})})}
+            {meta_loading_goto get sel_song_screen})
+         (quit.btn {meta_loading_goto get sel_song_screen})})}
 {new GHScreen pract_pause_focus_screen
    (panels PRACTICE_FOCUS_PANELS pract_pause_panel)
    (focus pract_pause_panel)
@@ -121,9 +118,8 @@
             {meta_loading_nosave_goto modifiers_screen_pract})
          (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
          (quit_career.btn
-            {career_screen resume_from_practice}
-            {meta_loading_goto career_screen})
-         (quit.btn {meta_loading_goto {gamecfg get continue_screen}})})}
+            {meta_loading_goto get sel_song_screen})
+         (quit.btn {meta_loading_goto get sel_song_screen})})}
 {func meta_loading_goto
    ($next_screen)
    {meta_loading_screen set next_screen $next_screen}

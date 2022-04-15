@@ -16,14 +16,16 @@
          {memory_card.btn set_state kDisabled}
          {memory_card.btn set_showing FALSE}
 		 {op_bonus.btn set_state kDisabled}
-		 {op_bonus.btn set_showing FALSE})
+		 {op_bonus.btn set_showing FALSE}
+		 {op_data.btn set_state kDisabled}
+		 {op_data.btn set_showing FALSE}
+		 {op_credit.btn set_state kDisabled}
+		 {op_credit.btn set_showing FALSE})
    (SELECT_START_MSG
       {switch
          $component
          (video_settings.btn
             {ui goto_screen video_settings_screen})
-         (op_data.btn
-            {ui goto_screen options_chooseprof_screen})
          (op_credit.btn
             {ui goto_screen credits_screen})}
       kDataUnhandled)}

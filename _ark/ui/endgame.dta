@@ -1151,9 +1151,9 @@
          {comp_selsong.btn set_text comp_selsong}})
    (SELECT_START_MSG
       {switch $component
-         (comp_selsong.btn {meta_loading_goto {gamecfg get continue_screen}})
+         (comp_selsong.btn {autosave_goto {gamecfg get continue_screen}})
          (comp_restart.btn {game_restart_fast})
-         (comp_quit.btn {meta_loading_goto main_screen})}
+         (comp_quit.btn {autosave_goto main_screen})}
       {stop_sfx postshow_loop}
       {if {== career {gamecfg get mode}}
          {gamecfg set continue_screen sel_song_screen}})}

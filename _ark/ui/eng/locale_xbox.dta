@@ -294,7 +294,7 @@
 (MULTIPLAYER
    "MULTIPLAYER")
 (OPTIONS
-   "OPTIONS")
+   "CREDITS")
 (EXTRAS
    "EXTRAS")
 (OFFSET
@@ -1366,41 +1366,41 @@
 (select_song
    "Select a Song")
 (song_header_battle
-   "1. Opening Licks")
+   " ")
 (song_header_small1
-   "2. Amp-Warmers")
+   " ")
 (song_header_small2
-   "3. String Snappers")
+   " ")
 (song_header_big
-   "4. Thrash and Burn")
+   " ")
 (song_header_theatre
-   "5. Return of the Shred")
+   " ")
 (song_header_fest
-   "6. Relentless Riffs")
+   " ")
 (song_header_arena
-   "7. Furious Fretwork")
+   " ")
 (song_header_stone
-   "8. Face-Melters")
+   " ")
 (song_header_store
-   "Bonus Tracks")
+   " ")
 (song_header_download
-   "Downloaded Tracks")
+   "Songs")
 (song_old_venue
-   "Play in the latest venue to continue your career")
+   " ")
 (song_current_venue
-   "Beat %i/5 songs to continue")
+   " ")
 (song_current_venue_encore
-   "Beat the encore to continue")
+   " ")
 (song_win_easy
-   "Beat %i/%i songs to win")
+   " ")
 (song_win_other
-   "Beat Free Bird to win")
+   " ")
 (song_quickplay
-   "Play Career Mode to get more songs")
+   " ")
 (encore_song_listing
-   "Encore: Play Career Mode to unlock")
+   " ")
 (encore_song_career_listing
-   "Encore: Get 4-star ratings to play")
+   " ")
 (sd_title
    "select tour difficulty")
 (sd_help

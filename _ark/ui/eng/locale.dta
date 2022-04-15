@@ -130,7 +130,7 @@
 (cheat_unlock_all "Unlock All (saving disabled)")
 (CAREER "USERNAME")
 (MULTIPLAYER "MULTIPLAYER")
-(OPTIONS "OPTIONS")
+(OPTIONS "CREDITS")
 (EXTRAS "EXTRAS")
 (OFFSET "OFFSET")
 (multi_campaign "CAREER")
