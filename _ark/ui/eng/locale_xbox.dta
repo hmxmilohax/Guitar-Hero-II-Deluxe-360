@@ -290,8 +290,7 @@
    "Eyeball Head Crowd")
 (cheat_monkey_head_crowd
    "Monkey Head Crowd")
-(CAREER
-   "CAREER")
+(CAREER "USERNAME")
 (MULTIPLAYER
    "MULTIPLAYER")
 (OPTIONS

@@ -128,7 +128,7 @@
 (cheat_enabled_fmt "CHEAT ENABLED:\n%s")
 (cheat_disabled_fmt "CHEAT DISABLED:\n%s")
 (cheat_unlock_all "Unlock All (saving disabled)")
-(CAREER "CAREER")
+(CAREER "USERNAME")
 (MULTIPLAYER "MULTIPLAYER")
 (OPTIONS "OPTIONS")
 (EXTRAS "EXTRAS")
@@ -228,15 +228,11 @@
 (comp_restart "Replay")
 (comp_quit "Exit")
 (select_song "Select a Song")
-
-#ifdef _ONYX
 (song_quickplay " ")
-#else
-(song_quickplay "Play Career Mode to get more songs")
-#endif
 
-(encore_song_listing "Encore: Play Career Mode to unlock")
-(encore_song_career_listing "Encore: Get 4-star ratings to play")
+
+(encore_song_listing " ")
+(encore_song_career_listing " ")
 (sd_title "select tour difficulty")
 (sd_help "SELECT   YOUR   DIFFICULTY")
 (sd_help_practice "select your difficulty")

@@ -36,45 +36,11 @@
 (3_star "***__")
 (4_star "****_")
 (5_star "*****")
-(song_old_venue "Play in the latest venue to continue your career")
-
-; Six-song tiers (DX)
-#ifndef 8DBUG
-#ifndef _ENCO
-#ifndef _MEGA
-#ifndef _ONYX
-(song_current_venue "Beat %i/5 songs to continue")
-#endif
-#endif
-#endif
-#endif
-
-; Five-song tiers (Encore)
-#ifndef _SHIP
-#ifndef 2DBUG
-#ifndef _MEGA
-#ifndef _ONYX
-#ifndef GH1RX
-(song_current_venue "Beat %i/4 songs to continue")
-#endif
-#endif
-#endif
-#endif
-#endif
-
-; Mega tiers
-#ifdef _MEGA
-(song_current_venue "Beat %i songs to continue")
-#endif
-
-; CE tiers (nothing)
-#ifdef _ONYX
+(song_old_venue " ")
 (song_current_venue " ")
-#endif
-
-(song_current_venue_encore "Beat the encore to continue")
-(song_win_easy "Beat %i/%i songs to win")
-(song_win_other "Beat the final song to win")
+(song_current_venue_encore " ")
+(song_win_easy " ")
+(song_win_other " ")
 (ca_reason "Congratulations on the killer show, amazing write-up, and perfect review score! Here's your cut.")
 (ca_blurb1 "Pay")
 (ca_deductions "minus deductions:")
