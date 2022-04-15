@@ -110,14 +110,3 @@
          {play_game_sfx_player sp_deploystart.cue sp_deploystart.cue $player}
          {stop_sfx sp_deploystart.cue}}
       kDataUnhandled))
-(tutorial
-   (allow_achievements FALSE)
-   (skip_intro TRUE)
-   (crowd_rating_active FALSE)
-   (show_hud FALSE)
-   (crowd_audio FALSE)
-   (game_screen tut_script_screen)
-   (loading_screen tut_loading_screen)
-   (blown_streak_feedback FALSE)
-   (hud_file hud_sp.milo)
-   (track_surface_override rosewood))

@@ -7,7 +7,7 @@
 ; include it. We think the game falls back to calculating it on the fly if
 ; it's not specified, and it's used for calculating star totals.
 ; DX songs
-(trogdor (23160 34310 51594 74904))
+(speedtest (57522 90429 154006 252956))
 
 ; GH1 Redux songs
 (allofthis (26087 44401 55707 62073))

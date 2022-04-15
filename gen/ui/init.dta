@@ -6,17 +6,14 @@
 #include game.dta
 #include career.dta
 #include endgame.dta
-#include eggs.dta
 #include lose.dta
 #include quickplay.dta
 #include multiplayer.dta
 #include main.dta
-#include tutorials.dta
 #include options.dta
 #include modifiers.dta
 #include sel_mod.dta
 #include practice.dta
-#include training.dta
 #include pause.dta
 #ifdef HX_XBOX
 #include leaderboards.dta

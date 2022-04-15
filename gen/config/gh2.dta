@@ -358,7 +358,7 @@
 (songlist
    CONTEXT_SONGLIST
    (_song_not_found_ CONTEXT_SONGLIST_VAL_NULL)
-   (trogdor CONTEXT_SONGLIST_VAL_TROGDOR))
+   ('speedtest' speedtest))
 (dl_songlist
    CONTEXT_DL_SONGLIST
    (_song_not_found_ CONTEXT_DL_SONGLIST_VAL_NULL)))
