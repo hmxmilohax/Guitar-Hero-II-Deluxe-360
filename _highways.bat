@@ -1,4 +1,4 @@
-del /f %~dp0highways\highways.dta
+del /f %~dp0_ark\track\surfaces\highways.dta
 cd %~dp0highways
 forfiles /s /m *.* /C "cmd /e:on /v:on /c set \"Phile=@file\" & if @ISDIR==FALSE ren @file !Phile: =_!"
 forfiles /s /m *.* /C "cmd /e:on /v:on /c set \"Phile=@file\" & if @ISDIR==FALSE  ren @file !Phile:-=_!"
