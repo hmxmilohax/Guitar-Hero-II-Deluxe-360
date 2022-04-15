@@ -96,7 +96,7 @@
          ($pos
             {ss_song.lst selected_pos})
          ($frame
-		    {'*' $pos 42 {'+' $pos
+		    {'*' $pos 40 {'+' $pos
 			{song_provider num_headers $pos}}})
          {game set_song_index $pos}
 		 {ss_song.lst set_local_pos 30 100 $frame}

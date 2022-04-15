@@ -102,60 +102,7 @@
       (price 550))
    (eds_white
       (price 550)))
-;(song)
-(song
-   (rawdog
-      (price 550))
-   (arterialblack
-      (price 550))
-   (collide
-      (price 550))
-   (drinkup
-      (price 550))
-   (elephantbones
-      (price 550))
-   (fallofpangea
-      (price 550))
-   (ftk
-      (price 550))
-   (gemini
-      (price 550))
-   (kicked
-      (price 550))
-   (ladylightning
-      (price 550))
-   (laughtrack
-      (price 550))
-   (lesstalkmorerokk
-      (price 550))
-   (jordan
-      (price 550))
-   (mrfixit
-      (price 550))
-   (newblack
-      (price 550))
-   (onefortheroad
-      (price 550))
-   (parasite
-      (price 550))
-   (radiumeyes
-      (price 550))
-   (redlottery
-      (price 550))
-   (six
-      (price 550))
-   (soybomb
-      (price 550))
-   (thelightthatblinds
-      (price 550))
-   (thunderhorse
-      (price 550))
-   (trogdor
-      (price 550))
-   (xstream
-      (price 550))
-   (yeswecan
-      (price 550)))
+(song)
 (character
    (classic
       (price 5000))
@@ -182,7 +129,7 @@
       (price 2000)))
 (video
    (video3
-      #ifndef HX_XBOX
+      #ifdef HX_EE
       (file hmx.pss)
       #endif
       #ifdef HX_XBOX
@@ -190,7 +137,7 @@
       #endif
       (price 1500))
    (video2
-      #ifndef HX_XBOX
+      #ifdef HX_EE
       (file wg.pss)
       #endif
       #ifdef HX_XBOX
