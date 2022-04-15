@@ -12,6 +12,7 @@
 #include main.dta
 #include options.dta
 #include modifiers.dta
+#include overshell.dta
 #include sel_mod.dta
 #include practice.dta
 #include pause.dta
@@ -49,49 +50,8 @@
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
 {set $emulatefps 60}
-#ifndef HX_XBOX
-; GH2 ELFs never boot in 80s mode.
-#ifdef _SHIP
-   {set $game80s FALSE}
-#endif
-
-
-; 80s ELFs always boot in 80s mode.
-#ifdef _ENCO
-   {set $game80s TRUE}
-#endif
-#ifdef 8DBUG
-   {set $game80s TRUE}
-#endif
-
-; $egg2 and $gamegh1 hook to Redux UI, the former for specifically the main
-; menu and the latter for everything else.
-#ifdef GH1RX
- {set $egg2 TRUE}
- {set $gamegh1 TRUE}
-#endif
-
-; Customs Edition always boots in GH2 mode and has $nofail on by default.
-#ifdef _ONYX
-   {set $game80s FALSE}
-   {set $nofail TRUE}
-#endif
-
-; We want focus on by default in Customs Edition, but not in Expansion.
-#ifndef _DRUM
-#ifdef _ONYX
-   {set $focusmode TRUE}
-#endif
-#endif
-
-; Only Customs Edition has the song title always on by default. Everywhere
-; else, it defaults to off.
-#ifndef _ONYX
-   {set $songtitle FALSE}
-#else
-   {set $songtitle TRUE}
-#endif
-#endif
+{set $songtitle FALSE}
+{set $game80s FALSE}
 ; We take advantage of the fact that Harmonix sets $first_screen as a
 ; variable by sending the player to different first screens depending on the
 ; version. Customs Edition and Expansion go to the main menu, while Mega goes

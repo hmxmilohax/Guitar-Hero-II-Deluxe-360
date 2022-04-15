@@ -667,3 +667,271 @@
             {ui goto_screen main_screen}}
          {ui pop_screen}}
 		 kDataUnhandled)}
+{new
+   MultiSelectListPanel
+   overshell_theme_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {sel_section.lst set_local_pos -140 0 35}
+   ;{sel_section.lst set circular 1}
+   {sel_section.lst set alignment kTopCenter}
+      {sel_section.lst
+         set_data
+         (
+          "Guitar Hero 1"
+          "Guitar Hero 2 Deluxe"
+		  "Guitar Hero 80s Deluxe"
+		  "Guitar Hero III"
+		  "All Eggs Found"
+		  )}
+		  {gs_title.lbl set_text "THEME SELECT"})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+       ("Guitar Hero 1"
+			{do
+			{set $game80s FALSE}
+			{set $egg5 FALSE}
+			{set $egg4 FALSE}
+			{set $egg2 TRUE}
+            {set $gamegh1 TRUE}
+			{ui pop_screen}
+			{meta_loading_nosave_goto main_screen}}
+         kDataUnhandled)
+       ("Guitar Hero 2 Deluxe"
+			{do
+            {set $game80s FALSE}
+			{set $egg5 FALSE}
+			{set $egg4 FALSE}
+			{set $egg2 FALSE}
+            {set $gamegh1 FALSE}
+			{ui pop_screen}
+			{meta_loading_nosave_goto main_screen}}
+         kDataUnhandled)
+	   ("Guitar Hero 80s Deluxe"
+			{do
+            {set $game80s TRUE}
+			{set $egg5 FALSE}
+			{set $egg4 FALSE}
+			{set $egg2 FALSE}
+            {set $gamegh1 FALSE}
+			{ui pop_screen}
+			{meta_loading_nosave_goto main_screen}}
+         kDataUnhandled)
+	   ("Guitar Hero III"
+			{do
+            {set $game80s FALSE}
+			{set $egg5 FALSE}
+			{set $egg4 TRUE}
+			{set $egg2 FALSE}
+            {set $gamegh1 FALSE}
+			{ui pop_screen}
+			{meta_loading_nosave_goto main_screen}}
+         kDataUnhandled)
+       ("All Eggs Found"
+			{do
+            {set $egg5 TRUE}
+			{ui pop_screen}
+			{meta_loading_nosave_goto main_screen}}
+         kDataUnhandled)})
+	(BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+         {play_sfx button_error (volume 1) (stop TRUE)}
+         {ui pop_screen}}
+		 kDataUnhandled)
+				  }
+{new
+   GHScreen
+   overshell_theme_list_screen
+   (panels overshell_theme_list)
+   (focus overshell_theme_list)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+   {if {== $button kPad_Tri}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+         {ui pop_screen}}
+		 kDataUnhandled)}
+#define SLIDER_LEVELS
+(12)
+#define AUDIO_SETTINGS_PANEL_HANDLERS
+((focus gs_band.sld)
+   (focus_component
+      "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {gs_band.sld set_num_steps SLIDER_LEVELS}
+      {gs_guitar.sld set_num_steps SLIDER_LEVELS}
+      {gs_sfx.sld set_num_steps SLIDER_LEVELS})
+   (slider_changed
+      {'||'
+         {!=
+            {options get band_volume_idx}
+            {gs_band.sld current}}
+         {!=
+            {options get guitar_volume_idx}
+            {gs_guitar.sld current}}
+         {!=
+            {options get fx_volume_idx}
+            {gs_sfx.sld current}}})
+   (enter
+      {gs_band.sld
+         set_current
+         {options get band_volume_idx}}
+      {gs_guitar.sld
+         set_current
+         {options get guitar_volume_idx}}
+      {gs_sfx.sld
+         set_current
+         {options get fx_volume_idx}}
+#ifndef HX_XBOX
+      {stereo.chk
+         set_check
+         {options get_stereo}}
+#endif)
+   (set_volumes
+      {if
+         {$this slider_changed}
+         {options
+            set
+            band_volume_idx
+            {gs_band.sld current}}
+         {options
+            set
+            guitar_volume_idx
+            {gs_guitar.sld current}}
+         {options
+            set
+            fx_volume_idx
+            {gs_sfx.sld current}}})
+   (slider_select_cancel
+      ($component)
+      {switch
+         $component
+         (gs_band.sld
+            {$component
+               set_current
+               [orig_vol]})
+         (gs_guitar.sld
+            {$component
+               set_current
+               [orig_vol]})
+         (gs_sfx.sld
+            {$component
+               set_current
+               [orig_vol]})}
+      {$this update_help_display}
+      kDataUnhandled)
+   (FOCUS_MSG
+      {$this
+         set
+         focus_component
+         {$new_focus name}}
+      {$this update_help_display})
+   (update_help_display
+      {if_else
+         {$this slider_selected}
+         {helpbar
+            set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjvol))}
+#ifndef HX_XBOX
+         {do
+            {if_else
+               {==
+                  [focus_component]
+                  "gs_stereo.btn"}
+               {helpbar
+                  set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))}
+               {helpbar
+                  set_display
+                  ((fret1 help_select)
+                     (fret2 help_back)
+                     (strum help_updown))}}}}
+#else
+          {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}
+#endif)
+   (slider_start_msg
+      ($component)
+      {do
+         ($vol
+            {options
+               get_volume_from_idx
+               {$component current}})
+         {switch
+            $component
+            (gs_band.sld
+               {play_sfx
+                  slider_band
+                  (volume $vol)
+                  (stop TRUE)})
+            (gs_guitar.sld
+               {play_sfx
+                  slider_gtr
+                  (volume $vol)
+                  (stop TRUE)})
+            (gs_sfx.sld
+               {play_sfx
+                  slider_sfx
+                  (volume $vol)
+                  (stop TRUE)})}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (gs_band.sld
+            {$this
+               set
+               orig_vol
+               {gs_band.sld current}})
+         (gs_guitar.sld
+            {$this
+               set
+               orig_vol
+               {gs_guitar.sld current}})
+         (gs_sfx.sld
+            {$this
+               set
+               orig_vol
+               {gs_sfx.sld current}})
+         (gs_stereo.btn
+            {stereo.chk toggle}
+            {options
+               set_stereo
+               {stereo.chk get_check}})
+         kDataUnhandled}
+      {$this update_help_display}))
+{new
+   SliderPanel
+   pause_audio_settings_panel
+   (file pause_audio_settings_gh1.milo)
+   AUDIO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   pause_audio_settings_screen
+   (panels pause_audio_settings_panel)
+   (focus pause_audio_settings_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {!
+               {overshell_slider slider_selected}}
+            {== $button kPad_Tri}}
+		 {if_else {exists $modifier_exit}
+            {ui goto_screen $modifier_exit}
+            {ui goto_screen main_screen}}
+            {ui pop_screen}}
+      kDataUnhandled)}

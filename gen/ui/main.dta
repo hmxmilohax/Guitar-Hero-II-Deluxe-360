@@ -64,57 +64,6 @@
       {{game get_player_config 0}
          set_difficulty
          kDifficultyExpert}
-#ifndef HX_XBOX
-;if gh2 retail Elf
-#ifdef _SHIP
-      {game set_venue fest}
-      {game set_song_index 0}
-      {game set_character 
-      {if_else $game80s metalencore metal1} TRUE}
-	  #endif
-;if 80's retail Elf
-#ifdef _ENCO
-      {game set_venue fest2}
-      {game set_song_index 0}
-      {game set_character 
-      {if_else $game80s metalencore metal1} TRUE}
-	  #endif
-;if Mega Elf
-#ifdef _MEGA
-      {game set_venue fest}
-      {game set_song_index 0}
-      {game set_character 
-      {if_else $game80s metalencore metal1} TRUE}
-	  #endif
-;if ONYX Elf
-#ifdef _ONYX
-      {game set_venue fest}
-      {game set_song_index 0}
-      {game set_character streamer TRUE}
-	  #endif
-;if gh1 redux demo
-#ifdef GH1RX
-      {game set_venue fest}
-      {game set_song_index 0}
-      {game set_character punkgh1 TRUE}
-	  #endif
-;if 80's debug Elf
-#ifdef 8DBUG
-      {game set_venue fest2}
-      {game set_song_index 0}
-      {game set_character metal1 TRUE}
-	  #endif
-;if gh2dbug Elf
-#ifdef _2DBUG
-      {game set_venue fest}
-      {game set_song_index 0}
-      {game set_character metal1 TRUE}
-#endif
-#else
-      {game set_venue fest}
-      {game set_song_index 0}
-      {game set_character metal1 TRUE}
-#endif
       {game set_guitar_index 1}
       {do
          ($player2_config
@@ -166,27 +115,3 @@
          $component
          (continue.btn
             {ui pop_screen})})}
-{new
-   SliderPanel
-   milo_extras_panel
-   (file milo_extras.milo)
-   MILO_EXTRAS_PANEL_HANDLERS
-   (pscan_warning pscan_warning_screen)}
-{new
-   GHScreen
-   milo_extras_screen
-   (panels meta milo_extras_panel helpbar)
-   (focus milo_extras_panel)
-   (allow_back FALSE)
-   (enter
-      {$this
-         enable
-         {milo_extras_panel find gs_left_p2.btn}})
-   (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Tri}
-         {$this backwards_anim}
-         {synth play_sequence button_back.cue}
-         {ui goto_screen main_screen}}
-      kDataUnhandled)}
-#include overshell.dta
