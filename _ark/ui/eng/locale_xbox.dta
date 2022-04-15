@@ -2710,7 +2710,7 @@
 (mc_overwrite
    "Overwrite")
 (leaderboards
-   "options")
+   "calibration")
 (lb_career_leaderboard
    "Career Score")
 (lb_campaign_leaderboard

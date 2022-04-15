@@ -1,74 +1,4 @@
 {new
-   UIPanel
-   options_panel
-   (file
-    {if_else
-	  $gamegh1
-	  options_gh1.milo
-	{if_else
-      $game80s
-      options_80s.milo
-      options.milo}})
-   (focus video_settings.btn)
-   (enter
-         {op_audio.btn set_state kDisabled}
-         {op_audio.btn set_showing FALSE}
-         {memory_card.btn set_state kDisabled}
-         {memory_card.btn set_showing FALSE}
-		 {op_bonus.btn set_state kDisabled}
-		 {op_bonus.btn set_showing FALSE}
-		 {op_data.btn set_state kDisabled}
-		 {op_data.btn set_showing FALSE}
-		 {op_credit.btn set_state kDisabled}
-		 {op_credit.btn set_showing FALSE})
-   (SELECT_START_MSG
-      {switch
-         $component
-         (video_settings.btn
-            {ui goto_screen video_settings_screen})
-         (op_credit.btn
-            {ui goto_screen credits_screen})}
-      kDataUnhandled)}
-{new
-   GHScreen
-   options_screen
-   (panels meta options_panel helpbar)
-   (focus options_panel)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))}
-{new
-   SliderPanel
-   audio_settings_panel
-   (file
-    {if_else
-	  $gamegh1
-	  game_settings_gh1.milo
-	{if_else
-      $game80s
-      game_settings_80s.milo
-      game_settings.milo}})
-   AUDIO_SETTINGS_PANEL_HANDLERS}
-{new
-   GHScreen
-   audio_settings_screen
-   (panels meta audio_settings_panel helpbar)
-   (focus audio_settings_panel)
-   (allow_back FALSE)
-   (BUTTON_DOWN_MSG
-      {if
-         {&&
-            {!
-               {audio_settings_panel slider_selected}}
-            {== $button kPad_Tri}}
-         {$this backwards_anim}
-         {synth play_sequence button_back.cue}
-         {$this set_volumes}
-         {autosave_goto options_screen}}
-      kDataUnhandled)}
-{new
    CreditsPanel
    credits_panel
    (file credits.milo)
@@ -107,7 +37,7 @@
    (file lag.milo)
    (focus autocalibrate.btn)
    (from_panel
-      "")
+      "main_panel")
    (state init)
    (lag 0)
    (hits
@@ -243,8 +173,8 @@
                {if_else
                   {==
                      [from_panel]
-                     video_settings_panel}
-                  {ui goto_screen video_settings_screen}
+                     main_panel}
+                  {ui goto_screen main_screen}
                   {ui goto_screen pause_video_settings_screen}})
             kDataUnhandled}})
    (SELECT_START_MSG
