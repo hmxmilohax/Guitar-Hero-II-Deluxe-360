@@ -15,65 +15,14 @@
    (thresholds
       (36 50))
    (come_first FALSE))
-#ifdef HX_PS3
-(controllers
-   (analog
-      (detect
-         (type kJoypadAnalog))
-      (bidirectional TRUE))
-   (dualshock
-      (detect
-         (type kJoypadDualShock))
-      (bidirectional TRUE)))
-#endif
-#ifdef HX_PC
-(controllers
-   (midi
-      (detect
-         (type kJoypadMidi)))
-   (ro_guitar
-      (detect
-         (stick kLeftAnalog X -1)
-         (stick kLeftAnalog Y 0)))
-   (digital
-      (detect
-         (button kPad_RStickRight)
-         (button kPad_RStickDown))
-      (bidirectional TRUE))
-   (hx_guitar_xbox
-      (detect
-         (button kPad_L1)))
-   (hx_xbox
-      (detect
-         (button kPad_RStickUp))
-      (bidirectional TRUE))
-   (analog
-      (detect)
-      (bidirectional TRUE))
-   (dualshock
-      (detect)
-      (bidirectional TRUE)))
-#endif
 #ifdef HX_XBOX
 (controllers
    (ro_guitar_xbox
-      (detect
-         (type kJoypadXboxGuitar))
+      (detect)
       (ignore_buttons kPad_L2 kPad_R2))
-   #ifndef _SHIP
-   (ro_guitar_xbox_old
-      (detect
-         (type kJoypadAnalog)
-         (button kPad_R2)))
-   (ro_guitar_xbox_old_2
-      (detect
-         (type kJoypadAnalog)
-         (button kPad_L2)))
-   #endif
    (analog
-      (detect
-         (type kJoypadAnalog))
-      (bidirectional TRUE)))
+      (detect)
+      (ignore_buttons kPad_L2 kPad_R2)))
 #endif
 (adapters
    (map
