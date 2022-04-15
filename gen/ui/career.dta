@@ -42,6 +42,7 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
+   ;{ss_song.lst set circular 1}
       {checkmark.mesh set_showing FALSE}
       {set $author FALSE}
       {{ui current_screen}
@@ -95,14 +96,14 @@
          ($pos
             {ss_song.lst selected_pos})
          ($frame
-            {'+'
-               $pos
-               {song_provider num_headers $pos}})
+		    {'*' $pos 42 {'+' $pos
+			{song_provider num_headers $pos}}})
          {game set_song_index $pos}
+		 {ss_song.lst set_local_pos 30 100 $frame}
 #ifdef HX_XBOX {$this cache_song} #endif
          {song_preview
             {game get_song}}
-         {sel_song.view set_frame $frame}})
+		 {sel_song.view set_frame 3}})
    (beat_song
       ($score)
       {if
