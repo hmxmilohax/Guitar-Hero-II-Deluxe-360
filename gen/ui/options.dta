@@ -11,8 +11,8 @@
       options.milo}})
    (focus video_settings.btn)
    (enter
-         {op_data.btn set_state kDisabled}
-         {op_data.btn set_showing FALSE}
+         {op_audio.btn set_state kDisabled}
+         {op_audio.btn set_showing FALSE}
          {memory_card.btn set_state kDisabled}
          {memory_card.btn set_showing FALSE}
 		 {op_bonus.btn set_state kDisabled}
