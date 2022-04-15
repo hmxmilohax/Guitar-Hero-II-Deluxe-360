@@ -942,7 +942,7 @@
    (enter
    {do
          {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data ({sprintf "../track/surfaces/%.bmp"})}
+         {sel_section.lst set_data (HIGHWAY_OBJECTS)}
 		 {sel_section.lst set circular 1}}
 		 {gs_title.lbl set_text "VENUES"})
    (SELECT_START_MSG
