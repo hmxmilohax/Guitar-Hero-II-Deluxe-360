@@ -84,16 +84,14 @@
          (restart_career.btn {$this restart})
          (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
-         ;(change_speed.btn
-         ;   {modifiers_screen_pract set back_screen pract_pause_screen}
-         ;   {meta_loading_nosave_goto modifiers_screen_pract})
-         ;(change_speed_career.btn
-         ;   {modifiers_screen_pract set back_screen pract_pause_screen}
-         ;   {meta_loading_nosave_goto modifiers_screen_pract})
+         (change_speed.btn
+            {ui push_screen overshell_slider_screen})
+         (change_speed_career.btn
+            {ui push_screen overshell_slider_screen})
          (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
          (quit_career.btn
-            {meta_loading_goto get sel_song_screen})
-         (quit.btn {meta_loading_goto get sel_song_screen})})}
+            {meta_loading_goto main_screen})
+         (quit.btn {meta_loading_goto main_screen})})}
 {new GHScreen pract_pause_focus_screen
    (panels PRACTICE_FOCUS_PANELS pract_pause_panel)
    (focus pract_pause_panel)
@@ -113,15 +111,13 @@
          (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (change_speed.btn
-            {modifiers_screen_pract set back_screen pract_pause_screen}
-            {meta_loading_nosave_goto modifiers_screen_pract})
+            {ui push_screen overshell_slider_screen})
          (change_speed_career.btn
-            {modifiers_screen_pract set back_screen pract_pause_screen}
-            {meta_loading_nosave_goto modifiers_screen_pract})
+            {ui push_screen overshell_slider_screen})
          (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
          (quit_career.btn
-            {meta_loading_goto get sel_song_screen})
-         (quit.btn {meta_loading_goto get sel_song_screen})})}
+            {meta_loading_goto main_screen})
+         (quit.btn {meta_loading_goto main_screen})})}
 {func meta_loading_goto
    ($next_screen)
    {meta_loading_screen set next_screen $next_screen}
