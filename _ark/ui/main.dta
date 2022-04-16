@@ -20,7 +20,6 @@
       {set $main_entered TRUE}
       {set $cheat_enabled_unlock_all 1}
       {campaign set_all_access 1}
-      {set $disable_career 1}
       {$this reset_player_settings}
       {if
          {!
