@@ -11,7 +11,7 @@
          (section.btn {ui push_screen overshell_venue_list_screen})
          (newsong.btn {ui push_screen overshell_character_list_screen})
          (quit.btn {ui push_screen overshell_guitar_list_screen})
-		 (extra1.btn {ui push_screen overshell_theme_list_screen})
+		 ;(extra1.btn {ui push_screen overshell_theme_list_screen})
 		 (extra2.btn {ui push_screen pause_audio_settings_screen})}))
 #define OVERSHELL_BUTTON_DOWN_HANDLER
 ((BUTTON_DOWN_MSG
@@ -26,7 +26,8 @@
    (file overshell_main.milo)
    (focus resume.btn)
    (reset_focus TRUE)
-   (enter {pause_title.lbl set_text "GHIIDX SETTINGS"})
+   (enter {pause_title.lbl set_text "GHIIDX SETTINGS"}
+          )
 }
 {new GHScreen overshell_screen
    (panels overshell_panel)
