@@ -1,7 +1,18 @@
 # Guitar-Hero-II-Deluxe-360
 
+## Introduction
+
 This Repo contains everything you need to build an ark for gh2dx 360, and also runs the included xex on a PC with an included build of Xenia.
 Xenia is pre setup for portable installation with its own config file that disables vsync, and sets an option in this specific build (max_queued_frames = 3)
+
+Unlock all is enabled by default, and the goal of this specific version of gh2 is to strip out as much fluff as possible. The ui philosophy is deliberately taking cues from [Clone Hero](https://clonehero.net/)  
+Pad play is not currently available in this build.
+Instead, we have opted to treat all connected controllers as a guitar.
+This can allow more controller compatibility, but also allow online coop via parsec. We tried it, it's really fun.
+
+A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar mappings is also included if you need it.
+
+## Songs + DLC
 
 Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Speed Test](https://www.youtube.com/watch?v=DoHeIiDHbdk).
 
@@ -13,13 +24,6 @@ Where XXXXXX is the name of your song pack, containing both a "songs" and a "con
 con/live files are not supported.
 
 You can find Vanilla song packs for [GHIIDX](https://drive.google.com/file/d/1xwX_Dv17WDFldZ0mDWZu71FLUI-CTywx/view?usp=sharing) and [GH80SDX](https://drive.google.com/file/d/1KJxH51N2yQdQXlNA9MmyrI1bGfdB6Hxz/view?usp=sharing) here.
-
-Unlock all is enabled by default, and the goal of this specific version of gh2 is to strip out as much fluff as possible. The ui philosophy is deliberately taking cues from [Clone Hero](https://clonehero.net/)  
-Pad play is not currently available in this build.
-Instead, we have opted to treat all connected controllers as a guitar.
-This can allow more controller compatibility, but also allow online coop via parsec. We tried it, it's really fun.
-
-A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar mappings is also included if you need it.
 
 ## Install
 
