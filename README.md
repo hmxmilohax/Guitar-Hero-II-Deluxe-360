@@ -38,7 +38,7 @@ You can setup git with all default options, same with dot net.
 
 Once the dependencies are installed, git will pull the repo and make sure you are completely up to date.
 
-From then on simply run "_gh2.bat" This script will pull the repo again for updates, build the ARK for you, and finally, launch the game in Xenia.
+From then on simply run "_gh2.bat". This script will pull the repo again for updates, build the ARK for you, and finally, launch the game in Xenia.
 All in one script. It is recommended to always run the game with gh2.bat to ensure everything is up to date, as currently this project is highly WIP
 
 ## Custom Highways
