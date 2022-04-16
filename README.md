@@ -1,8 +1,8 @@
 # Guitar-Hero-II-Deluxe-360
 
-This Repo contains everything you need to build an ark for gh2dx 360, and also run the included xex on PC with an included build of Xenia.
+This Repo contains everything you need to build an ark for gh2dx 360, and also runs the included xex on a PC with an included build of Xenia.
 
-Xenia is pre setup for portable instalation with it's own config file that disables vsync, and sets an option in this specific build (max_queued_frames = 3)
+Xenia is pre setup for portable installation with its own config file that disables vsync, and sets an option in this specific build (max_queued_frames = 3)
 
 You can install song packs directly in your local copy of this repo in
 
@@ -16,7 +16,7 @@ You can find Vanilla song packs for [GHIIDX](https://drive.google.com/file/d/1xw
 
 Pad play is not currently available in this build.
 
-Instead we have opted to treat all connected controllers as a guitar.
+Instead, we have opted to treat all connected controllers as a guitar.
 
 This can allow more controller compatibility, but also allow online coop via parsec. We tried it, it's really fun.
 
@@ -24,7 +24,7 @@ This can allow more controller compatibility, but also allow online coop via par
 
 Setting up GHIIDX 360 for the first time is meant to be as easy as possible.
 
-As well, it is designed to allow you to automatically recieve updates as the repo is updated.
+As well, it is designed to allow you to automatically receive updates as the repo is updated.
 
 Simply run "_init_repo.bat".
 
@@ -38,7 +38,7 @@ You can setup git with all default options, same with dot net.
 
 Once the dependencies are installed, git will pull the repo and make sure you are completely up to date.
 
-Once all has completed simply run "_gh2.bat"
+Once all has completed, simply run "_gh2.bat"
 
 This script will pull the repo again for updates, build the ARK for you, and finally, launch the game in Xenia. All in one script.
 
