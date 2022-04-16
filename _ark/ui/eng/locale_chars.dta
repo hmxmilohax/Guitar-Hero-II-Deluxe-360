@@ -4,12 +4,18 @@
 
 ; DX names
 (alterna "Judy Nails")
+(alterna1 "Judy Nails")
 (alterna2 "Judy Nails")
 (classic "Clive Winston")
 (deathmetal "Lars Ümlaüt")
+(deathmetal1 "Lars Ümlaüt")
 (deathmetal2 "Lars Ümlaüt")
 (funk1 "Xavier Stone")
 (glam
+   {if_else $egg5
+      "Hair Matheson"
+      "Izzy Sparks"})
+(glam1
    {if_else $egg5
       "Hair Matheson"
       "Izzy Sparks"})
@@ -18,8 +24,13 @@
       "Hair Matheson"
       "Izzy Sparks"})
 (goth "Pandora")
+(goth2 "Pandora")
 (goth1 "Pandora")
 (grim "Grim Ripper")
+(metal1
+   {if_else $egg5
+      "Hazzard"
+      "Axel Steel"})
 (metal
    {if_else $egg5
       "Hazzard"
@@ -29,7 +40,12 @@
       "Hazzard"
       "Axel Steel"})
 (punk "Johnny Napalm")
+(punk1 "Johnny Napalm")
 (punk2 "Johnny Napalm")
+(rock2
+   {if_else $egg5
+      "Gina Hazard"
+      "Casey Lynch"})
 (rock
    {if_else $egg5
       "Gina Hazard"
@@ -38,6 +54,10 @@
    {if_else $egg5
       "Gina Hazard"
       "Casey Lynch"})
+(rockabill1
+   {if_else $egg5
+      "Dax Deville"
+      "Eddie Knox"})
 (rockabill
    {if_else $egg5
       "Dax Deville"
