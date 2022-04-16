@@ -49,11 +49,13 @@ You can find Vanilla song packs for [GHIIDX](https://drive.google.com/file/d/1xw
 You can also use [Onyx Music Game Toolkit](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for GH2 360.
 
 ## Custom Highways
-This repo also supports the usage of custom highways via the use of an all in one bat and a couple external dependencies also included.
+This repo also supports the import of custom highways via the use of an all in one bat file and a couple external dependencies included.
 
 Simply drag in a .jpg/.png/.bmp into the "highways" folder at the root of the repo, then run "_highways.bat"
 This will size your images accordingly (supports arbitrary resolutions), and convert them to the proper format for gh2 to read.
 ARK files will be generated for a list of your custom highways in game to choose from at will using the overshell (select select on most all menues)
+
+The highway "Rosewood" is marked as the default in game. If you delete this highway from the custom highways folder, you must select your new highway in game or you will experience a crash.
 
 After running "_highways.bat" you will need to run "_gh2.bat" again to build your new ARK.
 
