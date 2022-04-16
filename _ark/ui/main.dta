@@ -43,7 +43,7 @@
             {gamecfg set mode career}
             {ui goto_screen sel_song_screen})
          (main_multiplayer.btn
-            {ui goto_screen multi_screen})
+            {ui goto_screen multi_controller_select_screen})
          (main_tutorial.btn
             {ui goto_screen practice_selsong_screen})
          (main_leaderboards.btn
