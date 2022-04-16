@@ -306,6 +306,10 @@
    (reset_focus TRUE)
    HEADLINE_HANDLERS
    (enter
+     {sel_section.lst
+         set_data
+         (
+          " ")}
    ;this is exclusive to gh1 redux. Redux does not have any buttons to continue, so I have to force you to the next screen
 	{if $gamegh1 {script_task (delay 6) (units kTaskUISeconds) (script {goto_endgame_complete})}}
       {set $song_text1 {game get_song_text}}
