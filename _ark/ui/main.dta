@@ -33,7 +33,8 @@
          [msg_last_frame]
          0}
 	  {gamecfg set_player 0 {profilemgr active_padnum}}
-      {content_mgr start_enumeration})
+      {content_mgr start_enumeration}
+	  {set $autosave TRUE})
    (SELECT_START_MSG
       {switch
          $component

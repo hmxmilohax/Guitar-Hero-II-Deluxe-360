@@ -22,12 +22,6 @@
 {meta set_defaults}
 
 
-; Set all discs but Onyx and expansion to boot to the initial memory card
-; screens. Onyx and expansion go right to the main menu.
-#ifndef HX_XBOX
-#ifndef _ONYX {set $first_screen bootup_load} #endif
-#ifdef _ONYX {set $first_screen main_screen} #endif
-#endif
 #ifdef HX_XBOX {set $first_screen splash_screen} #endif
 
 ; Set various defaults on startup, including ELF specific bootups. $speedmod
