@@ -215,7 +215,7 @@
                {synth play_sequence button_back.cue}
                {ui
                   goto_screen
-                  {$this get back_screen}}})}
+                  main_screen}})}
       kDataUnhandled)
    (TRANSITION_COMPLETE_MSG
       {do
@@ -274,5 +274,5 @@
       {if
          {== $button kPad_Tri}
          {$this backwards_anim}
-         {ui goto_screen options_chooseprof_screen}}
+         {ui goto_screen main_screen}}
       kDataUnhandled)}
