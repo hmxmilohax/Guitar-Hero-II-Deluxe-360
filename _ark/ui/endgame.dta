@@ -378,8 +378,10 @@
          endgame_stats.milo})
    (is_scrolling FALSE)
    (reset_focus TRUE)
-   (focus '')
+   (focus 'stats_sections.lst')
    (enter
+      {stats_sections.lst set_local_pos 0 20 0}
+      ;{stats_sections.lst set_circular 1)
       {set $song_text1 {game get_song_text}}
       {if_else {!= $speedmod 1}
          {set $song_text2 {sprint $song_text1 " (" {int  {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
@@ -398,6 +400,16 @@
          {$this update_multiplayer_stats}
          {$this update_singleplayer_stats}}
       {stats_sections.lst set_provider {new StatsProvider stats_provider}})
+   (update_pos
+      {do
+         ($pos
+            {stats_sections.lst selected_pos})
+         ($frame
+		    {'*' $pos 20 {'+' $pos
+			{{stats_provider num_data} $pos}}})
+		 {stats_sections.lst set_local_pos 0 20 $frame}})
+    (SCROLL_MSG
+      {$this update_pos})
    (update_singleplayer_stats
       {do
          ($avg_multi {max 1 {player0 avg_multiplier}})
@@ -435,15 +447,15 @@
          {receipt_scroll.tnm stop_animation}
          {set [is_scrolling] FALSE}})
    (BUTTON_DOWN_MSG
-      {if {is_updown_button $button}
-         {$this stop_scrolling}
-         {receipt_scroll.tnm animate
-            (dest
-               {if_else {== $button kPad_DDown}
-                  {'*' 2 {stats_provider num_data}}
-                  0})
-            (units kTaskUISeconds)}
-         {set [is_scrolling] TRUE}}
+      ;{if {is_updown_button $button}
+      ;   {$this stop_scrolling}
+      ;   {receipt_scroll.tnm animate
+      ;      (dest
+      ;         {if_else {== $button kPad_DDown}
+      ;            {'*' 2 {stats_provider num_data}}
+      ;            0})
+      ;      (units kTaskUISeconds)}
+      ;   {set [is_scrolling] TRUE}}
       kDataUnhandled)
    (BUTTON_UP_MSG
       {if {is_updown_button $button}
