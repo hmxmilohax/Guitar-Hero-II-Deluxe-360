@@ -64,11 +64,11 @@
          {if_else
             {!
                {campaign is_empty_profile $index}}
-            {ui goto_screen main_screen}
+            {ui goto_screen sel_difficulty_screen}
             {do
                {nameprof_screen set profile_slot $index}
-               {nameprof_screen set back_screen main_screen}
-               {nameprof_screen set next_screen main_screen}
+               {nameprof_screen set back_screen chooseprof_screen}
+               {nameprof_screen set next_screen sel_difficulty_screen}
                {nameprof_screen set is_editing FALSE}
                {ui goto_screen nameprof_screen}}}}
       kDataUnhandled)
@@ -104,8 +104,8 @@
                {ui goto_screen manage_band_screen}}
             {do
                {nameprof_screen set profile_slot $index}
-               {nameprof_screen set back_screen main_screen}
-               {nameprof_screen set next_screen main_screen}
+               {nameprof_screen set back_screen options_chooseprof_screen}
+               {nameprof_screen set next_screen options_screen}
                {nameprof_screen set is_editing FALSE}
                {ui goto_screen nameprof_screen}}}}
       kDataUnhandled)}
@@ -122,7 +122,7 @@
    (allow_back FALSE)
    (is_editing FALSE)
    (initial_text 0)
-   (profile_slot -1)
+   (profile_slot 0)
    (back_screen 0)
    (next_screen 0)
    (prof_ten NULL)
@@ -174,7 +174,7 @@
                {campaign
                   set_profile_name
                   $profile
-                  [profile_slot]}
+                  0}
                {synth play_sequence button_select}
                {autosave_goto main_screen})}}
       kDataUnhandled)
@@ -205,16 +205,7 @@
    (BUTTON_DOWN_MSG
       {switch
          $button
-         (kPad_Tri
-            {if
-               {[prof_ten]
-                  no_text_entered}
-               {$this set profile_slot -1}
-               {$this backwards_anim}
-               {synth play_sequence button_back.cue}
-               {ui
-                  goto_screen
-                  main_screen}})}
+         (kPad_Tri {ui goto_screen main_screen})}
       kDataUnhandled)
    (TRANSITION_COMPLETE_MSG
       {do
@@ -236,7 +227,7 @@
    manage_band_screen
    (panels meta manage_band_panel helpbar)
    (focus manage_band_panel)
-   (profile_slot -1)
+   (profile_slot 0)
    (helpbar
       (default
          ((fret1 help_continue)
@@ -256,8 +247,8 @@
                set
                profile_slot
                [profile_slot]}
-            {nameprof_screen set back_screen main_screen}
-            {nameprof_screen set next_screen main_screen}
+            {nameprof_screen set back_screen manage_band_screen}
+            {nameprof_screen set next_screen options_screen}
             {nameprof_screen
                set
                initial_text
@@ -273,5 +264,5 @@
       {if
          {== $button kPad_Tri}
          {$this backwards_anim}
-         {ui goto_screen main_screen}}
+         {ui goto_screen options_chooseprof_screen}}
       kDataUnhandled)}
