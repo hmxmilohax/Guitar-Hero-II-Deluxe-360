@@ -1,5 +1,7 @@
 # Guitar-Hero-II-Deluxe-360
 
+[Header Image](dependencies/header_image.png)
+
 ## Introduction
 
 This Repo contains everything you need to build an ark for gh2dx 360, and also runs the included xex on a PC with an included build of Xenia.
