@@ -1,6 +1,6 @@
 # Guitar-Hero-II-Deluxe-360
 
-![Header Image](dependencies/header_image.png)
+![Header Image](dependencies/header.png)
 
 ## Introduction
 
