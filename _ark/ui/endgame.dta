@@ -360,6 +360,12 @@
       (default
          ((fret1 help_continue)
             (strum help_updown))))}
+{func
+   is_updown_button
+   ($button)
+   {'||'
+      {== $button kPad_DDown}
+      {== $button kPad_DUp}}}
 {new GHPanel
    endgame_stats_panel
    (file
