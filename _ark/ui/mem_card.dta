@@ -93,7 +93,7 @@
       {$this setup '' '' none $msg $title})}
 {func
    goto_startup_load
-   {set $mc_return_screen main_screen}
+   {set $mc_return_screen guitar_help_screen}
    {set $autosave TRUE}
    {if_else
       {profilemgr is_active_pad_signed_in}
@@ -106,7 +106,7 @@
          {campaign num_profiles}
          0}
       {ui goto_screen main_screen}
-      {ui goto_screen main_screen}}}
+      {ui goto_screen guitar_help_screen}}}
 {new
    GHScreen
    startup_signin_screen

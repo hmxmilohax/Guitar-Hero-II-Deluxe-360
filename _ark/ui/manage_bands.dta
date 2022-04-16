@@ -35,6 +35,82 @@
    (focus cp_band0.btn))
 {new
    GHPanel
+   chooseprof_panel
+   (file chooseprof.milo)
+   PROFILE_PANEL_COMMON
+   (set_up_new_profile
+      ($btn)
+      {$btn set_text new_band})
+   (enter
+      {$this set_up_bands})}
+{new
+   GHScreen
+   chooseprof_screen
+   (panels meta chooseprof_panel helpbar)
+   (focus chooseprof_panel)
+   (allow_back FALSE)
+   (helpbar
+      (default
+         ((fret1 help_select)
+            (fret2 help_back)
+            (strum help_updown))))
+   (SELECT_START_MSG
+      {do
+         ($index
+            {{ui focus_panel}
+               get
+               button_idx})
+         {campaign set_profile_slot $index}
+         {if_else
+            {!
+               {campaign is_empty_profile $index}}
+            {ui goto_screen sel_difficulty_screen}
+            {do
+               {nameprof_screen set profile_slot $index}
+               {nameprof_screen set back_screen chooseprof_screen}
+               {nameprof_screen set next_screen sel_difficulty_screen}
+               {nameprof_screen set is_editing FALSE}
+               {ui goto_screen nameprof_screen}}}}
+      kDataUnhandled)
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen main_screen}}
+      kDataUnhandled)}
+{new
+   GHScreen
+   options_chooseprof_screen
+   (panels meta chooseprof_panel helpbar)
+   (focus chooseprof_panel)
+   (helpbar
+      (default
+         ((fret1 help_select)
+            (fret2 help_back)
+            (strum help_updown))))
+   (SELECT_START_MSG
+      {do
+         ($index
+            {{ui focus_panel}
+               get
+               button_idx})
+         {campaign set_profile_slot $index}
+         {if_else
+            {!
+               {campaign is_empty_profile $index}}
+            {do
+               {manage_band_screen set profile_slot $index}
+               {ui goto_screen manage_band_screen}}
+            {do
+               {nameprof_screen set profile_slot $index}
+               {nameprof_screen set back_screen options_chooseprof_screen}
+               {nameprof_screen set next_screen options_screen}
+               {nameprof_screen set is_editing FALSE}
+               {ui goto_screen nameprof_screen}}}}
+      kDataUnhandled)}
+{new
+   GHPanel
    nameprof_panel
    (file nameprof.milo)
    (focus profile.ten)}
@@ -46,7 +122,7 @@
    (allow_back FALSE)
    (is_editing FALSE)
    (initial_text 0)
-   (profile_slot 0)
+   (profile_slot -1)
    (back_screen 0)
    (next_screen 0)
    (prof_ten NULL)
@@ -98,9 +174,10 @@
                {campaign
                   set_profile_name
                   $profile
-                  0}
+                  [profile_slot]}
                {synth play_sequence button_select}
-               {autosave_goto main_screen})}}
+               {autosave_goto
+                  {$this get next_screen}})}}
       kDataUnhandled)
    (CHAR_ADDED_MSG
       {$this text_changed})
@@ -129,7 +206,16 @@
    (BUTTON_DOWN_MSG
       {switch
          $button
-         (kPad_Tri {ui goto_screen main_screen})}
+         (kPad_Tri
+            {if
+               {[prof_ten]
+                  no_text_entered}
+               {$this set profile_slot -1}
+               {$this backwards_anim}
+               {synth play_sequence button_back.cue}
+               {ui
+                  goto_screen
+                  {$this get back_screen}}})}
       kDataUnhandled)
    (TRANSITION_COMPLETE_MSG
       {do
@@ -141,3 +227,52 @@
             {get_text_entry_help_text $ten TRUE}}})
    (SELECT_MSG
       {synth play_sequence button_select})}
+{new
+   UIPanel
+   manage_band_panel
+   (file manage_band.milo)
+   (focus rename_band.btn)}
+{new
+   GHScreen
+   manage_band_screen
+   (panels meta manage_band_panel helpbar)
+   (focus manage_band_panel)
+   (profile_slot -1)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (enter
+      {{manage_band_panel find manage_band.lbl}
+         set_localized_text
+         {campaign
+            profile_name
+            [profile_slot]}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (rename_band.btn
+            {nameprof_screen
+               set
+               profile_slot
+               [profile_slot]}
+            {nameprof_screen set back_screen manage_band_screen}
+            {nameprof_screen set next_screen options_screen}
+            {nameprof_screen
+               set
+               initial_text
+               {campaign
+                  profile_name
+                  [profile_slot]}}
+            {nameprof_screen set is_editing TRUE}
+            {ui goto_screen nameprof_screen})
+         (delete_band.btn
+            {ui goto_screen delete_band_confirmation_screen})}
+      kDataUnhandled)
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {ui goto_screen options_chooseprof_screen}}
+      kDataUnhandled)}
