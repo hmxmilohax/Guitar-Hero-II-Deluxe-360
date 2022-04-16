@@ -257,8 +257,8 @@
                set
                profile_slot
                [profile_slot]}
-            {nameprof_screen set back_screen manage_band_screen}
-            {nameprof_screen set next_screen options_screen}
+            {nameprof_screen set back_screen main_screen}
+            {nameprof_screen set next_screen main_screen}
             {nameprof_screen
                set
                initial_text
