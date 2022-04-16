@@ -19,6 +19,8 @@ Pad play is not currently available in this build.
 Instead, we have opted to treat all connected controllers as a guitar.
 This can allow more controller compatibility, but also allow online coop via parsec. We tried it, it's really fun.
 
+A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar mappings is also included if you need it.
+
 ## Install
 
 Setting up GHIIDX 360 for the first time is meant to be as easy as possible.
@@ -35,4 +37,27 @@ Once the dependencies are installed, git will pull the repo and make sure you ar
 From then on simply run "_gh2.bat" This script will pull the repo again for updates, build the ARK for you, and finally, launch the game in Xenia.
 All in one script. It is recommended to always run the game with gh2.bat to ensure everything is up to date, as currently this project is highly WIP
 
-A specific build of x360ce_x64 that supports guitar mappings is also included if you need it.
+## Custom Highways
+This repo also supports the usage of custom highways via the use of an all in one bat and a couple external dependencies also included.
+
+Simply drag in a .jpg/.png/.bmp into the "highways" folder at the root of the repo, then run "_highways.bat"
+This will size your images accordingly (supports arbitrary resolutions), and convert them to the proper format for gh2 to read.
+A file will also be included in the ark files that will generate a list of your custom highways in game you can choose from at will using the overshell (select select on most all menues)
+
+After running "_highways.bat" you will need to run "_gh2.bat" again to build your new ARK.
+
+## Included Dependencies
+
+[Git for Windows](https://gitforwindows.org/) - CLI application to allow auto updating gh2 repo files
+
+[Dot Net 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime) - Needed to run ArkHelper
+
+[x360ce 3.2](https://www.x360ce.com/) - Specific build to emulate a Xinput device
+
+[Mackiloha](https://github.com/PikminGuts92/Mackiloha) - ArkHelper for building GH2 ARK - Superfreq for building .bmp_xbox highway images
+
+[dtab](https://github.com/mtolly/dtab) - For serializing GH2 dtb files
+
+[Xenia 930fe2c_canary_experimental](https://github.com/xenia-canary/xenia-canary/releases/tag/930fe2c) - Xbox 360 emulator specific build with a config option that fixes GH2 audio sync
+
+[ImageMagick](https://imagemagick.org/script/download.php) - For converting highways to standard sizes
