@@ -223,3 +223,45 @@
    (helpbar
       (default
          ((fret1 help_continue))))}
+{new GHPanel lose_panel
+   (file lose.milo)
+   (enter
+      {crowd_audio turn_off}
+      {lose_song_data.lbl set_localized_text {game get_song_text}}
+      {lose_diff_data.lbl set_text
+         {if_else {== {gamecfg get mode} multi_coop}
+            {sprintf "%s/%s" {game get_difficulty_sym 0} {game get_difficulty_sym 1}}
+            {game get_difficulty_sym 0}}}
+      {lose_progress_data.lbl set_localized_text {sprintf {localize percent_complete_format} {player0 percent_complete}}}
+      {do
+         ($career {== {gamecfg get mode} career})
+         {career_buttons.view set_showing $career}
+         {normal_buttons.view set_showing {! $career}}
+         {$this set_focus
+            {if_else $career
+               lose_restart_career.btn
+               lose_restart_normal.btn}}})
+   (SELECT_START_MSG
+      {switch $component
+         (lose_restart_career.btn {game_restart_fast})
+         (lose_restart_normal.btn {game_restart_fast})
+         (lose_practice_career.btn {$this goto_practice_mode})
+         (lose_selsong_career.btn {meta_loading_goto {gamecfg get continue_screen}})
+         (lose_selsong_normal.btn {meta_loading_goto {gamecfg get continue_screen}})
+         (lose_quit_career.btn {meta_loading_goto main_screen})
+         (lose_quit_normal.btn {meta_loading_goto main_screen})})
+   (goto_practice_mode
+      {gamecfg set mode practice}
+      {gamecfg set_track 0 0}
+      {practice_sel_section_screen set career_mode TRUE}
+      {meta_loading_goto practice_sel_section_screen})}
+{new GHScreen lose_screen
+   (panels GAME_PANELS lose_panel helpbar)
+   (focus lose_panel)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (strum help_updown))))}
