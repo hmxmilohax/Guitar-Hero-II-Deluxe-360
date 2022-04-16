@@ -46,7 +46,7 @@ This repo also supports the usage of custom highways via the use of an all in on
 
 Simply drag in a .jpg/.png/.bmp into the "highways" folder at the root of the repo, then run "_highways.bat"
 This will size your images accordingly (supports arbitrary resolutions), and convert them to the proper format for gh2 to read.
-A file will also be included in the ark files that will generate a list of your custom highways in game you can choose from at will using the overshell (select select on most all menues)
+ARK files will be generated for a list of your custom highways in game to choose from at will using the overshell (select select on most all menues)
 
 After running "_highways.bat" you will need to run "_gh2.bat" again to build your new ARK.
 
