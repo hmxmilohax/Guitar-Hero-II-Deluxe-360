@@ -1,0 +1,108 @@
+{new
+   GHPanel
+   nameprof_panel
+   (file nameprof.milo)
+   (focus profile.ten)}
+{new
+   GHScreen
+   nameprof_screen
+   (panels meta nameprof_panel helpbar)
+   (focus nameprof_panel)
+   (allow_back FALSE)
+   (is_editing FALSE)
+   (initial_text 0)
+   (profile_slot 0)
+   (back_screen 0)
+   (next_screen 0)
+   (prof_ten NULL)
+   (zoom_tnm NULL)
+   (enter
+      {set
+         [zoom_tnm]
+         {nameprof_panel find nameprof.tnm}}
+      {{nameprof_panel find nameprof.view}
+         set_frame
+         0}
+      {$this turn_off_ambient}
+      {{nameprof_panel find nameprof.view}
+         animate
+         (period 1)
+         (range 0 100)}
+      {set
+         [prof_ten]
+         {nameprof_panel find profile.ten}}
+      {if
+         {$this get initial_text}
+         {[prof_ten]
+            set_text
+            {$this get initial_text}}
+         {$this set initial_text 0}}
+      {[zoom_tnm]
+         set_frame
+         {[prof_ten]
+            length}}
+      {set_key_cheats_enabled FALSE})
+   (exit
+      {set_key_cheats_enabled TRUE})
+   (TEXT_ENTRY_MSG
+      {do
+         ($profile
+            {[prof_ten]
+               get_text})
+         {cond
+            ({==
+                  $profile
+                  ""}
+               {ui push_screen error_no_profile_screen})
+            ({campaign
+                  has_profile_name
+                  $profile
+                  [is_editing]}
+               {ui push_screen error_duplicate_profile_screen})
+            (TRUE
+               {campaign
+                  set_profile_name
+                  $profile
+                  0}
+               {synth play_sequence button_select}
+               {autosave_goto main_screen})}}
+      kDataUnhandled)
+   (CHAR_ADDED_MSG
+      {$this text_changed})
+   (CHAR_REMOVED_MSG
+      {$this text_changed})
+   (text_changed
+      {do
+         ($last_frame
+            {[zoom_tnm]
+               frame})
+         ($next_frame
+            {[prof_ten]
+               length})
+         {if
+            {!= $last_frame $next_frame}
+            {[zoom_tnm]
+               animate
+               (range $last_frame $next_frame)
+               (units kTaskUISeconds)
+               (period 0.1)}}
+         {helpbar
+            set_display
+            {get_text_entry_help_text
+               [prof_ten]
+               TRUE}}})
+   (BUTTON_DOWN_MSG
+      {switch
+         $button
+         (kPad_Tri {ui goto_screen main_screen})}
+      kDataUnhandled)
+   (TRANSITION_COMPLETE_MSG
+      {do
+         ($ten
+            {nameprof_panel find profile.ten})
+         {$ten resume_input}
+         {helpbar
+            set_display
+            {get_text_entry_help_text $ten TRUE}}})
+   (SELECT_MSG
+      {synth play_sequence button_select})}

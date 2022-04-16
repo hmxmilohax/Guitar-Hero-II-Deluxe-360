@@ -84,11 +84,9 @@
          (restart_career.btn {$this restart})
          (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
-         ;(change_speed.btn
-         ;   {ui push_screen overshell_slider_screen})
-         (change_speed_career.btn
-            {ui push_screen overshell_slider_screen})
-         (newsong.btn {meta_loading_nosave_goto practice_selsong_screen})
+         (change_speed.btn {ui push_screen overshell_slider_screen})
+         (change_speed_career.btn {ui push_screen overshell_slider_screen})
+         (newsong.btn {meta_loading_nosave_goto sel_song_screen})
          (quit_career.btn
             {meta_loading_goto main_screen})
          (quit.btn {meta_loading_goto main_screen})})}
@@ -219,6 +217,185 @@
    (helpbar
       (default
          ((fret1 help_continue))))}
+#define VIDEO_SETTINGS_PANEL_HANDLERS
+((focus gs_left_p1.btn)
+   (focus_component
+      "")
+   (orig_sync 0)
+   (enter
+      {lefty1.chk
+         set_check
+         {options get_lefty 0}}
+      {lefty2.chk
+         set_check
+         {options get_lefty 1}}
+#ifndef HX_XBOX
+      {widescreen.chk
+         set_check
+         {options get_widescreen}}
+      {p_scan.chk
+         set_check
+         {options get_pscan}}
+#endif
+      {$this update_help_display}
+      {if
+         {==
+            {$this name}
+            pause_video_settings_panel}
+         {hud set_showing TRUE}
+         {track_panel set_showing TRUE}
+         {world_panel set_showing TRUE}})
+   (update_help_display
+      {if_else
+         {==
+            [focus_component]
+            "calibrate_lag.btn"}
+         {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}
+         {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}})
+   (FOCUS_MSG
+      {$this
+         set
+         focus_component
+         {$new_focus name}}
+      {$this update_help_display})
+   (slider_start_msg
+      ($component)
+      {synth play_sequence button_toggle})
+   (slider_select_cancel
+      ($component)
+      {$this update_help_display}
+      kDataUnhandled)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (p_scan.btn
+            {if_else
+               {p_scan.chk get_check}
+               {do
+                  {p_scan.chk toggle}
+                  {options
+                     set_pscan
+                     {p_scan.chk get_check}}}
+               {do
+                  {if
+                     {== $this pause_video_settings_panel}
+                     {pause_video_settings_screen set stash_lefty_settings FALSE}}
+                  {ui
+                     goto_screen
+                     [pscan_warning]}}})
+         (widescreen.btn
+            {widescreen.chk toggle}
+            {options
+               set_widescreen
+               {widescreen.chk get_check}})
+         (gs_left_p1.btn
+            {lefty1.chk toggle}
+            {options
+               set_lefty
+               0
+               {lefty1.chk get_check}})
+         (gs_left_p2.btn
+            {lefty2.chk toggle}
+            {options
+               set_lefty
+               1
+               {lefty2.chk get_check}})
+         (calibrate_lag.btn
+            {lag_panel set from_panel $this}
+            {if_else
+               {== $this video_settings_panel}
+               {ui goto_screen lag_screen}
+               {ui goto_screen pause_lag_screen}})
+         kDataUnhandled}
+      {$this update_help_display}))
+{new
+   SliderPanel
+   pause_video_settings_panel
+   (file 
+   {if_else $gamegh1
+   pause_video_settings_gh1.milo
+   pause_video_settings.milo})
+   VIDEO_SETTINGS_PANEL_HANDLERS
+   #ifndef HX_XBOX (pscan_warning pause_pscan_warning_screen) #endif}
+{new
+   GHScreen
+   pause_video_settings_screen
+   (panels GAME_PANELS pause_video_settings_panel helpbar)
+   (focus pause_video_settings_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (old_lefty_0 0)
+   (old_lefty_1 0)
+   (stash_lefty_settings TRUE)
+   (enter
+      {if
+         {! $encorefocus}
+         {world_panel
+            set_showing
+            {! $focusmode}}}
+      {if_else
+         [stash_lefty_settings]
+         {do
+            {set
+               [old_lefty_0]
+               {options get_lefty 0}}
+            {set
+               [old_lefty_1]
+               {options get_lefty 1}}}
+         {set
+            [stash_lefty_settings]
+            TRUE}}
+      {if_else
+         {>
+            {game num_players}
+            1}
+         {$this
+            enable
+            {pause_video_settings_panel find gs_left_p2.btn}}
+         {$this
+            disable
+            {pause_video_settings_panel find gs_left_p2.btn}}})
+   (lefty_changed
+      {'||'
+         {!=
+            [old_lefty_0]
+            {options get_lefty 0}}
+         {!=
+            [old_lefty_1]
+            {options get_lefty 1}}})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {if_else
+            {$this lefty_changed}
+            {do
+               {if_else
+                  {&&
+                     {!=
+                        [old_lefty_0]
+                        {options get_lefty 0}}
+                     {!=
+                        [old_lefty_1]
+                        {options get_lefty 1}}}
+                  {lefty_restart_screen set lefty_switch 2}
+                  {if_else
+                     {!=
+                        [old_lefty_0]
+                        {options get_lefty 0}}
+                     {lefty_restart_screen set lefty_switch 0}
+                     {lefty_restart_screen set lefty_switch 1}}}
+               {ui goto_screen lefty_restart_screen}}
+            {ui goto_screen pause_screen}}}
+      kDataUnhandled)}
 {new GHPanel lose_panel
    (file lose.milo)
    (enter

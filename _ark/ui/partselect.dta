@@ -72,7 +72,11 @@
          {== $component part2.btn}
          {gamecfg set_track 0 2}
 		 {set $roygb TRUE}}
-      {ui goto_screen loading_screen})}
+      {switch
+         {gamecfg get mode}
+          (career {ui goto_screen loading_screen})
+	      (practice {ui goto_screen practice_sel_section_screen})
+		  })}
 {new
    GHScreen
    qp_selpart_screen

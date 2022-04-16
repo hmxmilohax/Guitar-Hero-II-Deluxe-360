@@ -45,7 +45,9 @@
          (main_multiplayer.btn
             {ui goto_screen multi_controller_select_screen})
          (main_tutorial.btn
-            {ui goto_screen practice_selsong_screen})
+		    {gamecfg set mode practice}
+            {gamecfg set practice_speed 0}
+            {ui goto_screen sel_song_screen})
          (main_leaderboards.btn
             {ui goto_screen lag_screen})
 	     (main_options.btn
@@ -98,20 +100,3 @@
       {main_panel reset_player_settings})
    (enter
       {$this turn_off_ambient})}
-{new
-   GHPanel
-   main_not_logged_in_panel
-   (file not_signed_in.milo)
-   (focus continue.btn)}
-{new
-   GHScreen
-   main_not_logged_in_screen
-   (panels main_not_logged_in_panel)
-   (focus main_not_logged_in_panel)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (SELECT_START_MSG
-      {switch
-         $component
-         (continue.btn
-            {ui pop_screen})})}

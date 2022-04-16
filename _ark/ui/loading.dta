@@ -50,6 +50,4 @@
    (enter
       {$this reset_ambient})
    (TRANSITION_COMPLETE_MSG
-      {if_else $focusmode
-         {ui goto_screen practice_game_focus_screen}
-         {ui goto_screen practice_game_screen}})}
+         {ui goto_screen practice_game_screen})}

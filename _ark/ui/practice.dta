@@ -1,96 +1,4 @@
-{new
-   GHScreen
-   practice_selsong_screen
-   (panels meta sel_song_panel helpbar)
-   (focus sel_song_panel)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))
-   (sel_song_career FALSE)
-   (enter
-      {gamecfg set mode practice}
-      {gamecfg set practice_speed 0})
-   (SELECT_START_MSG
-      {ui goto_screen practice_selpart_screen}
-      kDataUnhandled)}
-{new
-   UIPanel
-   selpart_bg_panel
-   (file
-	{if_else
-      $game80s
-      selpart_bg_80s.milo
-      selpart_bg.milo})}
-{new
-   GHPanel
-   practice_selpart_panel
-   (file
-	{if_else
-      $game80s
-      practice_selpart_80s.milo
-      practice_selpart.milo})
-   (focus part0.btn)
-   (sel_buttons part0.btn part1.btn part2.btn)
-   (set_button_text
-      {do
-         ($song
-            {gamecfg get_song})
-         {part0.btn
-            set_text
-            {sprint
-               "sg_"
-               {song_provider get_instrument $song 0}}}
-         {part1.btn
-            set_text
-            {sprint
-               "sg_"
-               {song_provider get_instrument $song 1}}}
-            {part2.btn
-               set_text
-               "sg_drum"}
-         {if
-            {==
-               {song_provider get_instrument $song 1}
-               "rhythm"}
-            {part0.btn
-               set_text
-               "sg_lead"}}
-            {part2.btn
-               set_state
-               kDisabled}
-            {part2.btn
-               set_showing
-               FALSE}
-})
-   (enter
-      {gamecfg set_track_type rhythm}
-      {$this set_button_text})
-   (SELECT_START_MSG
-      {if
-         {== $component part0.btn}
-         {gamecfg set_track 0 0}}
-      {if
-         {== $component part1.btn}
-         {gamecfg set_track 0 1}}
-      {if
-         {== $component part2.btn}
-         {gamecfg set_track 0 2}
-		 {set $roygb TRUE}}
-      {ui goto_screen practice_sel_section_screen})}
-{new
-   GHScreen
-   practice_selpart_screen
-   (panels meta practice_selpart_panel helpbar)
-   (focus practice_selpart_panel)
-   (back_screen practice_selsong_screen)
-   (career_mode FALSE)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))}
+{func practice_restart {meta_loading_nosave_goto practice_game_screen}}
 {new
    MultiSelectListPanel
    practice_sel_section_panel
@@ -235,94 +143,8 @@
       practice_panel_80s.milo
       practice_panel.milo})
    (enter
-      {events_parser add_sink $this section}
-      {game add_sink $this intro_skip}
-      {foreach
-         $sfx
-         (practice_snare practice_kick practice_hat)
-         {$sfx add_fader music_fader}})
-   (intro_skip
-      {set $do_streak TRUE}
-      {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
-      {streak_overlay_panel show_overlay TRUE}
-      {mtv_overlay_panel show_overlay TRUE}
-      {script_task
-         (delay 3)
-         (units kTaskSeconds)
-         (script
-            {mtv_overlay_panel show_overlay FALSE})}
-      {set
-         [ignore_section]
-         {section_provider section_after_last}}
-      {if
-         {==
-            {gamecfg get practice_speed}
-            0}
-         {beatmatch set_music_speed $speedmod}})
-#ifndef HX_XBOX
-   (update
-      {click_parser remove_sink $this}
-      {if
-         {!=
-            {gamecfg get practice_speed}
-            0}
-         {click_parser add_sink $this}}
-      {if
-         {!
-            [keep_section_text]}
-         {section.lbl set_text ''}}
-      {set
-         [keep_section_text]
-         FALSE})
-#else
-(update
-      {click_parser remove_sink $this}
-      {if
-         {&&
-            {!=
-               {gamecfg get practice_speed}
-               0}
-            {! $stretch_bg}}
-         {click_parser add_sink $this}}
-      {beatmatch update_practice_speed}
-      {if
-         {!
-            [keep_section_text]}
-         {section.lbl set_text ''}}
-      {set
-         [keep_section_text]
-         FALSE})
-#endif
-   (exit
-      {click_parser remove_sink $this}
-      {events_parser remove_sink $this}
-      {game remove_sink $this})
-   (midi_parser
-      ($msg)
-      {$this $msg})
-   (click_snare
-      {practice_snare play})
-   (click_kick
-      {practice_kick play})
-   (click_hat
-      {practice_hat play})
-   (section
-      ($sec)
-      {section.lbl
-         set_text
-         {if_else
-            {==
-               $sec
-               [ignore_section]}
-            ''
-            $sec}})
-   (keep_section_text FALSE)
-   (ignore_section '')}
-{new
-   GHPanel
-   practice_focus_panel
-   (file practice_panel_focus.milo)
-   (enter
+      {practice_space1.mesh set_showing {! $focusmode}}
+	  {practice_space2.mesh set_showing {! $focusmode}}
       {events_parser add_sink $this section}
       {game add_sink $this intro_skip}
       {foreach
@@ -408,8 +230,6 @@
    (ignore_section '')}
 #define PRACTICE_PANELS
 (practice_panel game hud streak_overlay_panel track_panel mtv_overlay_panel)
-#define PRACTICE_FOCUS_PANELS
-(practice_focus_panel game hud streak_overlay_panel track_panel mtv_overlay_panel)
 {new
    GHScreen
    practice_game_screen
@@ -439,40 +259,7 @@
       {if
          $game_unpause_on_enter
          {game set_paused FALSE}
-         {set $game_unpause_on_enter FALSE}})
-   (poll
-      {if
-         {game is_missing_controller}
-         {game set_paused TRUE}
-         {ui goto_screen practice_pause_controller_screen}})}
-{new
-   GHScreen
-   practice_game_focus_screen
-   (panels PRACTICE_FOCUS_PANELS)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (in_game TRUE)
-   (BUTTON_DOWN_MSG
-      {switch
-         $button
-         (kPad_Select
-            {game_restart_fast})
-         (kPad_Start
-            {if {! {game get game_over}}
-               {game set_paused TRUE}
-               {ui goto_screen pract_pause_focus_screen}})})
-   (enter
-      {practice_focus_panel update})
-   (TRANSITION_COMPLETE_MSG
-      {if
-         $game_unpause_on_enter
-         {game set_paused FALSE}
-         {set $game_unpause_on_enter FALSE}})
-   (poll
-      {if
-         {game is_missing_controller}
-         {game set_paused TRUE}
-         {ui goto_screen practice_pause_controller_screen}})}
+         {set $game_unpause_on_enter FALSE}})}
 {new
    GHPanel
    practice_end_panel
@@ -527,17 +314,15 @@
          (restart_career.btn
             {game_restart})
          (change_speed.btn
-            {modifiers_screen_pract set back_screen pract_pause_screen}
             {ui push_screen overshell_slider_screen})
          (change_speed_career.btn
-            {modifiers_screen_pract set back_screen pract_pause_screen}
             {ui push_screen overshell_slider_screen})
          (new_sec.btn
             {meta_loading_nosave_goto practice_sel_section_screen})
          (new_sec_career.btn
             {meta_loading_nosave_goto practice_sel_section_screen})
          (new_song.btn
-            {meta_loading_nosave_goto practice_selsong_screen})
+            {meta_loading_nosave_goto sel_song_screen})
          (quit.btn
             {meta_loading_nosave_goto main_screen})
          (quit_career.btn
@@ -556,48 +341,3 @@
       (default
          ((fret1 help_continue)
             (strum help_updown))))}
-{new
-   GHScreen
-   practice_end_focus_screen
-   (panels PRACTICE_FOCUS_PANELS practice_end_panel helpbar)
-   (focus practice_end_panel)
-   (clear_vram TRUE)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (in_game TRUE)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (strum help_updown))))}
-{new
-   GHScreen
-   practice_change_speed_screen
-   (panels PRACTICE_PANELS sel_speed_panel helpbar)
-   (focus sel_speed_panel)
-   (animate_transition FALSE)
-   (in_game TRUE)
-   (back_screen
-      "")
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))
-(enter
-      {mtv_overlay_panel set_showing FALSE})
-   (SELECT_START_MSG
-      {game_restart}
-      kDataUnhandled)
-   (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Tri}
-         {ui
-            goto_screen
-            [back_screen]}}
-      kDataUnhandled)}
-{func
-   practice_restart
-   {if_else
-      $focusmode
-      {meta_loading_nosave_goto practice_game_focus_screen}
-      {meta_loading_nosave_goto practice_game_screen}}}

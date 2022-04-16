@@ -42,6 +42,7 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
+   {set $gameentered FALSE}
    ;{ss_song.lst set circular 1}
       {checkmark.mesh set_showing FALSE}
       {set $author FALSE}

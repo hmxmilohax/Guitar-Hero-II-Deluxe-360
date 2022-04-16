@@ -1,5 +1,5 @@
-#include track_panel.dta
-#include hud_panel.dta
+#include game_track_panel.dta
+#include game_hud_panel.dta
 #define DRUMMER_EXPLODE_DELAY (3.0)
 
 {new GHPanel mtv_overlay_panel
@@ -76,14 +76,7 @@
          {&&
             {!= {gamecfg get mode} tutorial}
             {campaign is_encore_song {gamecfg get_song}}}}
-      {print "encore song is " [encore_song] "\n"}
-      {if_else
-         {== {gamecfg get mode} practice}
-		 0
-	  {if {==
-      {gamecfg get_song} tonightimgonna}
-      {{{world_panel loaded_dir} find drummer}
-            show_drummer}}})
+      {print "encore song is " [encore_song] "\n"})
    (intro_start_msg
       ($fast $encore)
       {track_panel intro_start_msg}
@@ -142,11 +135,11 @@
          {track_panel do_extend_sequence}}
       {beatmatch set_music_speed $speedmod}
       {script_task
-         (delay 1.8)
+         (delay {if_else $focusmode 1.3 1.8})
          (units kTaskSeconds)
          (script {handle ($this slide_meter_in)})}
       {script_task
-         (delay 2)
+         (delay {if_else $focusmode 1.5 2})
          (units kTaskSeconds)
          (script {handle
                ($this intro_end)
@@ -468,20 +461,7 @@
          {game set_paused FALSE}
          {world_panel set_paused FALSE}
          {set $game_unpause_on_enter FALSE}})
-   (enter
-      {if [attract_mode]
-         {set $enter_time {taskmgr ui_seconds}}
-         {set $leaving FALSE}
-         {set $started_fade FALSE}
-         {set $song_dur {'+' 10 {'*' 0.75 {game song_duration_sec}}}}
-         {set $attract_length_sec {min ATTRACT_LENGTH_SEC $song_dur}}
-         {track_panel set_showing FALSE}}
-         #ifdef HX_XBOX
-         {track_mask
-         set_showing
-         {!
-            [attract_mode]}}
-         #endif)}
+   (enter #ifdef HX_XBOX {track_mask set_showing TRUE} #endif)}
 {new GHScreen finish_fade
    (panels fade_panel)
    (enter
