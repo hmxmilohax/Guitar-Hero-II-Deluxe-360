@@ -32,8 +32,8 @@
       {set
          [msg_last_frame]
          0}
-#ifdef HX_XBOX {gamecfg set_player 0 {profilemgr active_padnum}}
-               {content_mgr start_enumeration} #endif)
+	  {gamecfg set_player 0 {profilemgr active_padnum}}
+      {content_mgr start_enumeration})
    (SELECT_START_MSG
       {switch
          $component

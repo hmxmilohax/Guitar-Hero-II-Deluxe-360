@@ -55,7 +55,7 @@ Simply drag in a .jpg/.png/.bmp into the "highways" folder at the root of the re
 This will size your images accordingly (supports arbitrary resolutions), and convert them to the proper format for gh2 to read.
 ARK files will be generated for a list of your custom highways in game to choose from at will using the overshell (select select on most all menues)
 
-The highway "rosewood" is marked as the default in game. If you delete this highway from the custom highways folder, you must select your new highway in game or you will experience a crash.
+The highway "_black_highway" is marked as the default in game. If you delete this highway from the custom highways folder, you must select your new highway in game or you will experience a crash.
 
 After running "_highways.bat" you will need to run "_gh2.bat" again to build your new ARK.
 
