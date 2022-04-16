@@ -3,7 +3,9 @@
 This Repo contains everything you need to build an ark for gh2dx 360, and also runs the included xex on a PC with an included build of Xenia.
 Xenia is pre setup for portable installation with its own config file that disables vsync, and sets an option in this specific build (max_queued_frames = 3)
 
-Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Speed Test](https://www.youtube.com/watch?v=DoHeIiDHbdk) You can install song packs directly in your local copy of this repo in
+Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Speed Test](https://www.youtube.com/watch?v=DoHeIiDHbdk).
+
+You can install song packs directly in your local copy of this repo in
 
 >\content\415607E7\00000002\XXXXXX
 
