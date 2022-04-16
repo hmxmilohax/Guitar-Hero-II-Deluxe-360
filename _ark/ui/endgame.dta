@@ -405,7 +405,7 @@
          ($pos
             {stats_sections.lst selected_pos})
          ($frame
-		    {'*' $pos 20 {'+' $pos
+		    {'*' $pos 10 {'+' $pos
 			{{stats_provider num_data} $pos}}})
 		 {stats_sections.lst set_local_pos 0 20 $frame}})
     (SCROLL_MSG
