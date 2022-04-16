@@ -74,16 +74,19 @@
       {campaign clear}
       {reset_all_cheats}
       {ui set_virtual_dpad FALSE}
-      {splash.view
-         animate
-         (period 3.333)
-         (range 0 100)}
       {set
          $enter_time
          {taskmgr ui_seconds}}
       {game_screen set attract_mode FALSE}
       {set $entering_attract_mode FALSE}
       {set $disable_attract_mode FALSE}
+	  {profilemgr set_active_pad_from_player $player_num}
+         {gamecfg
+            set_player
+            0
+            {profilemgr active_padnum}}
+         {ui set_virtual_dpad TRUE}
+         {goto_startup_load}
       {synth play_sequence meta_lick})
    (poll
       {if_else
