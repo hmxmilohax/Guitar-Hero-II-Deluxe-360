@@ -26,7 +26,7 @@
    (file overshell_main.milo)
    (focus resume.btn)
    (reset_focus TRUE)
-   (enter {pause_title.lbl set_text "GHIIDX SETTINGS"}
+   (enter {pause_title.lbl set_text "DELUXE SETTINGS"}
           )
 }
 {new GHScreen overshell_screen
