@@ -528,10 +528,10 @@
             {game_restart})
          (change_speed.btn
             {modifiers_screen_pract set back_screen pract_pause_screen}
-            {meta_loading_nosave_goto modifiers_screen_pract})
+            {ui push_screen overshell_slider_screen})
          (change_speed_career.btn
             {modifiers_screen_pract set back_screen pract_pause_screen}
-            {meta_loading_nosave_goto modifiers_screen_pract})
+            {ui push_screen overshell_slider_screen})
          (new_sec.btn
             {meta_loading_nosave_goto practice_sel_section_screen})
          (new_sec_career.btn
@@ -539,10 +539,10 @@
          (new_song.btn
             {meta_loading_nosave_goto practice_selsong_screen})
          (quit.btn
-               {meta_loading_nosave_goto main_screen})
+            {meta_loading_nosave_goto main_screen})
          (quit_career.btn
-            {career_screen resume_from_practice}
-            {meta_loading_goto career_screen})})}
+            
+            {meta_loading_nosave_goto main_screen})})}
 {new
    GHScreen
    practice_end_screen
