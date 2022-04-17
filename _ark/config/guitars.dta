@@ -195,64 +195,48 @@
          (mat chet_orange.mat))))
 (fish_reward
    (type guitar)
-   (require tour_passed)
-   (difficulty kDifficultyEasy)
    (skins
       (fish
          (outfit fish)
          (mat fish.mat))))
 (usa_reward
    (type guitar)
-   (require tour_5_star)
-   (difficulty kDifficultyEasy)
    (skins
       (usa
          (outfit usa)
          (mat usa.mat))))
 (coffin_reward
    (type guitar)
-   (require tour_passed)
-   (difficulty kDifficultyMedium)
    (skins
       (coffin
          (outfit coffin)
          (mat coffin.mat))))
 (viking_reward
    (type guitar)
-   (require tour_5_star)
-   (difficulty kDifficultyMedium)
    (skins
       (viking
          (outfit viking)
          (mat viking.mat))))
 (snaketapus_reward
    (type guitar)
-   (require tour_passed)
-   (difficulty kDifficultyHard)
    (skins
       (snaketapus
          (outfit snaketapus)
          (mat snaketapus.mat))))
 (eyeball_reward
    (type guitar)
-   (require tour_5_star)
-   (difficulty kDifficultyHard)
    (skins
       (eyeball
          (outfit eyeball)
          (mat eyeball.mat))))
 (battleaxe_reward
    (type guitar)
-   (require tour_passed)
-   (difficulty kDifficultyExpert)
    (skins
       (battleaxe
          (outfit battleaxe)
          (mat guitar_battleaxe.mat))))
 (log_reward
    (type guitar)
-   (require tour_5_star)
-   (difficulty kDifficultyExpert)
    (skins
       (log
          (outfit log)
@@ -283,63 +267,42 @@
          (mat bass_music_lava.mat))))
 (bass_sg_mahogany
    (type bass)
-   (require
-      (songs 1)
-      (stars 3))
    (skins
       (bass_sg_mahog
          (outfit bass_sg_mahog)
          (mat bass_sg_mahog.mat))))
 (bass_sg_cream
    (type bass)
-   (require
-      (songs 5)
-      (stars 3))
    (skins
       (bass_sg_cream
          (outfit bass_sg_cream)
          (mat bass_sg_cream.mat))))
 (bass_grabber_cherry
    (type bass)
-   (require
-      (songs 10)
-      (stars 3))
    (skins
       (bass_grab_cherry
          (outfit bass_grab_cherry)
          (mat bass_grab_cherry.mat))))
 (bass_grabber_maple
    (type bass)
-   (require
-      (songs 20)
-      (stars 3))
    (skins
       (bass_grab_maple
          (outfit bass_grab_maple)
          (mat bass_grab_maple.mat))))
 (bass_thunderbird_ebony
    (type bass)
-   (require
-      (songs 30)
-      (stars 3))
    (skins
       (bass_tb_ebony
          (outfit bass_tb_ebony)
          (mat bass_tb_ebony.mat))))
 (bass_thunderbird_burst
    (type bass)
-   (require
-      (songs 40)
-      (stars 3))
    (skins
       (bass_tb_burst
          (outfit bass_tb_burst)
          (mat bass_tb_burst.mat))))
 (bass_hofner
    (type bass)
-   (require
-      (songs 48)
-      (stars 3))
    (skins
       (bass_hofner
          (outfit bass_hofner)
