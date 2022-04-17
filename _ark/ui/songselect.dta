@@ -100,11 +100,12 @@
 		    {'*' $pos 40 {'+' $pos
 			{song_provider num_headers $pos}}})
          {game set_song_index $pos}
-		 {ss_song.lst set_local_pos 30 100 $frame}
+		 ;{ss_song.lst set_local_pos 30 100 $frame}
 #ifdef HX_XBOX {$this cache_song} #endif
          {song_preview
             {game get_song}}
-		 {sel_song.view set_frame 3}})
+		 ;{sel_song.view set_frame 3}
+		 })
    (beat_song
       ($score)
       {if
