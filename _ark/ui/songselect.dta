@@ -42,6 +42,8 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
+   {ss_song.lst set_local_pos 150 230 150}
+   {cp_title.lbl set_text "CHOOSE SONG"}
    {set $gameentered FALSE}
    ;{ss_song.lst set circular 1}
       {checkmark.mesh set_showing FALSE}
