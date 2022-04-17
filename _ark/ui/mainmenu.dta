@@ -38,7 +38,8 @@
       {switch
          $component
          (main_career.btn
-            {ui goto_screen nameprof_screen})
+            ;{ui goto_screen nameprof_screen}
+			)
 		 (main_quickspin.btn
             {gamecfg set mode career}
             {ui goto_screen sel_song_screen})
