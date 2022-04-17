@@ -32,16 +32,6 @@
    {{ui current_screen} turn_off_ambient}
       {$this refresh})
    (update_song_info
-      {if
-         {==
-#ifdef HX_XBOX
-            kSongsCareer
-            {song_provider get_mode}
-#else
-            0
-            {song_provider get_quickplay}
-#endif}
-         {game set_career_song}}
       {ss_song.lst
          set_selected
          {game get_song_index}}
