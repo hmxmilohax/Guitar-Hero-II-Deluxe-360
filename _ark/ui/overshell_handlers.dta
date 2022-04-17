@@ -1,5 +1,12 @@
+#define OVERSHELL_SCREEN_COMMON_HANDLER
+((allow_back FALSE)
+(animate_transition FALSE))
+#define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+((BUTTON_DOWN_MSG
+      {if {&& {! {$this slider_selected}} {== $button kPad_Tri}}
+      {ui pop_screen}} kDataUnhandled))
 #define OVERSHELL_HELP_POP_HANDLER
-({if_else $helpentered
+({if_else {&& {! {$this slider_selected}} $helpentered}
 {ui pop_screen}
 {ui push_screen overshell_help_screen}})
 #define MODIFIER_SLIDER_HANDLERS
@@ -96,12 +103,9 @@
                   {$this set_speeds}})}})
    (SELECT_START_MSG
       {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}}
-		 OVERSHELL_HELP_POP_HANDLER)
-         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}}
-		 OVERSHELL_HELP_POP_HANDLER)
-         (gs_band.sld {$this set orig_vol {gs_band.sld current}}
-		 OVERSHELL_HELP_POP_HANDLER)
+         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
+         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
+         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
          (gs_stereo.btn
             {stereo.chk toggle}
             {set $focusmode {stereo.chk get_check}}
@@ -120,16 +124,8 @@
    overshell_slider_screen
    (panels overshell_slider)
    (focus overshell_slider)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-      {if
-         {&&
-            {!
-               {overshell_slider slider_selected}}
-            {== $button kPad_Tri}}
-            {ui pop_screen}}
-      kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_list
@@ -257,40 +253,21 @@
 			{play_sfx cheat}
             {set $barf_cheat TRUE}}}
          kDataUnhandled)})
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
-         {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_list_screen
    (panels overshell_list)
    (focus overshell_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_character_list_screen
    (panels overshell_character_list)
    (focus overshell_character_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_diff_list
@@ -319,25 +296,14 @@
 	   OVERSHELL_HELP_POP_HANDLER
 	   kDataUnhandled)
 	   })
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
-         {meta_loading_nosave_goto main_screen}
-		 {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_diff_list_screen
    (panels overshell_diff_list)
    (focus overshell_diff_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {meta_loading_nosave_goto main_screen}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_character_list
@@ -410,26 +376,14 @@
 	   OVERSHELL_HELP_POP_HANDLER
 	   kDataUnhandled)
 	   })
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
-         {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_character_list_screen
    (panels overshell_character_list)
    (focus overshell_character_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_venue_list
@@ -469,40 +423,21 @@
 	   OVERSHELL_HELP_POP_HANDLER
 	   kDataUnhandled)
 	   })
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
-         {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_venue_list_screen
    (panels overshell_venue_list)
    (focus overshell_venue_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_character_list_screen
    (panels overshell_character_list)
    (focus overshell_character_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_guitar_list
@@ -769,26 +704,14 @@
 	   OVERSHELL_HELP_POP_HANDLER
 	   kDataUnhandled)
 	   })
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
-         {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_guitar_list_screen
    (panels overshell_guitar_list)
    (focus overshell_guitar_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_theme_list
@@ -857,26 +780,14 @@
 			{ui pop_screen}
 			{meta_loading_nosave_goto main_screen}}
          kDataUnhandled)})
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {play_sfx button_error (volume 1) (stop TRUE)}
-         {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_theme_list_screen
    (panels overshell_theme_list)
    (focus overshell_theme_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 #define SLIDER_LEVELS
 (12)
 #define AUDIO_SETTINGS_PANEL_HANDLERS
@@ -1044,19 +955,8 @@
    pause_audio_settings_screen
    (panels pause_audio_settings_panel)
    (focus pause_audio_settings_panel)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-      {if
-         {&&
-            {!
-               {overshell_slider slider_selected}}
-            {== $button kPad_Tri}}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-            {ui pop_screen}}
-      kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_highway_list
@@ -1074,28 +974,16 @@
       {switch
          {$component selected_sym}
          ("none"
-            {set $highway ""})}
+            {set $highway "_black_highway"})}
 	   kDataUnhandled)
-	(BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-         {synth play_sequence button_back.cue}
-         {ui pop_screen}}
-		 kDataUnhandled)
-				  }
+	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
    overshell_highway_list_screen
    (panels overshell_highway_list)
    (focus overshell_highway_list)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (BUTTON_DOWN_MSG
-   {if {== $button kPad_Tri}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-         {ui pop_screen}}
-		 kDataUnhandled)}
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHPanel
    overshell_help_panel
@@ -1115,7 +1003,7 @@
    overshell_help_screen
    (panels overshell_help_panel)
    (focus overshell_help_panel)
-   (allow_back FALSE)
-   (animate_transition FALSE)
+   OVERSHELL_SCREEN_COMMON_HANDLER
    (SELECT_START_MSG
-      {ui pop_screen})}
+      {ui pop_screen})
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
