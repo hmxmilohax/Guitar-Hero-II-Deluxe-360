@@ -216,7 +216,7 @@
 (stat_header "Detailed Breakdown")
 (stat_notes_hit "Notes Hit")
 (stat_sp_phrases "SP Phrases")
-(stat_avg_multi "Avg Multiplier")
+(stat_avg_multi "Avg Mult")
 (stat_avg_multi_format "%d.%dx")
 (stat_section_no_notes "N/A")
 (highscore_dummy_0 "jnack")

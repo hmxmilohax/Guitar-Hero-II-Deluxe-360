@@ -306,6 +306,27 @@
    (reset_focus TRUE)
    HEADLINE_HANDLERS
    (enter
+     {endgame_review_data.lbl set_local_pos 170 60 -20}
+	 {endgame_percent.lbl set_showing FALSE}
+     {morestats.grp set_local_pos -190 -200 135}
+     {label_notes_hit.lbl set_local_pos 260 100 -115}
+     {label_sp_phrases.lbl set_local_pos 260 100 -105}
+     {label_avg_multi.lbl set_local_pos 260 100 -95}
+     {player0_notes_hit.lbl set_local_pos 320 100 -115}
+     {player0_sp_phrases.lbl set_local_pos 320 100 -105}
+     {player0_avg_multi.lbl set_local_pos 320 100 -95}
+     {gamecfg foreach_player $player
+         {do
+            ($gems_hit {$player gems_hit})
+            ($gems_total {'+' $gems_hit {$player gems_passed}})
+            {{sprint $player "_notes_hit.lbl"} set_localized_text
+               {sprint $gems_hit "/" $gems_total}}}
+         {{sprint $player "_sp_phrases.lbl"}
+            set_localized_text
+            {$player sp_phrases}}}
+      {if_else {gamecfg multiplayer}
+         {$this update_multiplayer_stats}
+         {$this update_singleplayer_stats}}
      {sel_section.lst
          set_data
          (
@@ -343,6 +364,38 @@
           {endgame_review_data_fc.lbl set_showing FALSE} ; hide FC stars
           {endgame_review_data.lbl set_showing TRUE} ; show non-FC stars
         }})
+   (update_singleplayer_stats
+      {do
+         ($avg_multi {max 1 {player0 avg_multiplier}})
+         {player0_avg_multi.lbl
+            set_localized_text
+            {sprintf {localize stat_avg_multi_format}
+               {int $avg_multi}
+               {mod {int {'*' 10 $avg_multi}} 10}}}})
+   (update_multiplayer_stats
+      {do
+         ($p0hit {player0 gems_hit})
+         ($p0all {'+' $p0hit {player0 gems_passed}})
+         ($p1hit {player1 gems_hit})
+         ($p1all {'+' $p1hit {player1 gems_passed}})
+         {if_else {> {'*' $p0hit $p1all} {'*' $p1hit $p0all}}
+            {do {player0_best.lbl set_showing TRUE} {player1_best.lbl set_showing FALSE}}
+            {do {player1_best.lbl set_showing TRUE} {player0_best.lbl set_showing FALSE}}}}
+      {if_else {== {gamecfg get mode} multi_coop}
+         {$this update_coop_stats}
+         {$this update_faceoff_stats}})
+   (update_coop_stats
+      {stats_coop.grp set_showing TRUE}
+      {stats_faceoff.grp set_showing FALSE}
+      {gamecfg foreach_player $player
+         {{sprint $player "_streaks_broken.lbl"}
+            set_localized_text
+            {sprint {$player streaks_broken}}}})
+   (update_faceoff_stats
+      {stats_coop.grp set_showing FALSE}
+      {stats_faceoff.grp set_showing TRUE}
+      {gamecfg foreach_player $player
+         {{sprint $player "_lead_time.lbl"} set_localized_text {sprintf {localize eg_percent_format} {int {/ {'*' 100 {$player lead_time_sec}} {game song_duration_sec}}}}}})
    (SELECT_START_MSG
       {switch $component
          (me_continue.btn {goto_endgame_complete})
