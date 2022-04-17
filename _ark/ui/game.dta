@@ -418,42 +418,6 @@
    (pause_game
       {game set_paused TRUE}
       {ui goto_screen pause_screen})
-   (poll
-      {if_else [attract_mode]
-         {do
-            ($now {- {taskmgr ui_seconds} $enter_time})
-            {if {! $leaving}
-               {if {> $now $attract_length_sec}
-                  {set $leaving $now}}}
-            {if $leaving
-               {if {! $started_fade}
-                  {fade_panel start_fade FADE_LENGTH_SEC}
-                  {set $started_fade TRUE}}
-               {if {> $now {'+' $leaving FADE_LENGTH_SEC}}
-                  {synth stop_all_sfx}
-                  {game set_paused TRUE}
-                  {ui goto_screen finish_fade}}}}
-         {if {&&
-         {! {ui in_transition}}
-         {game is_missing_controller}}
-            {game set_paused TRUE}
-            {if_else {game multiplayer}
-               {ui goto_screen multi_pause_controller_screen}
-               {ui goto_screen pause_controller_screen}}}}
-#ifdef HX_XBOX
-      {if
-         {&&
-            {profilemgr guide_showing}
-            {!
-               {game paused}}
-            {!
-               {game get game_over}}
-            {!
-               {ui in_transition}}
-            {!
-               [attract_mode]}}
-         {$this pause_game}}
-#endif)
    (TRANSITION_COMPLETE_MSG
       {if $game_unpause_on_enter
          {game set_paused FALSE}

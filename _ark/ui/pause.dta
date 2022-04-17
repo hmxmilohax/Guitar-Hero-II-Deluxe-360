@@ -39,11 +39,15 @@
 ((SELECT_START_MSG
       {switch $component
 	     (lose_resume_career.btn {$this resume})
-         (lose_restart_career.btn {$this restart})
+         (lose_restart_career.btn
+		 {pause_confirm_restart_screen set pause_screen $this}
+         {ui goto_screen pause_confirm_restart_screen})
 		 (lose_diff_career.btn {ui push_screen overshell_diff_list_screen})
          (lose_practice_career.btn {$this goto_practice_mode})
          (lose_selsong_career.btn {meta_loading_goto sel_song_screen})
-         (lose_quit_career.btn {meta_loading_goto main_screen})}))
+         (lose_quit_career.btn
+         {pause_confirm_quit_screen set pause_screen $this}
+         {ui goto_screen pause_confirm_quit_screen})}))
 {new GHScreen pause_screen
    (panels GAME_PANELS pause_panel)
    (focus pause_panel)
@@ -438,3 +442,64 @@
       (default
          ((fret1 help_continue)
             (strum help_updown))))}
+{new
+   GHPanel
+   pause_confirm_restart_panel
+   (file pause_restart.milo)
+   (focus restart.btn)
+   (enter
+      {$this set_focus restart.btn})}
+{new
+   GHScreen
+   pause_confirm_restart_screen
+   (panels GAME_PANELS pause_confirm_restart_panel)
+   (focus pause_confirm_restart_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (pause_screen pause_screen)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (restart.btn
+            {[pause_screen]
+               restart})
+         (cancel.btn
+            {ui
+               goto_screen
+               [pause_screen]})
+         kDataUnhandled})}
+{new
+   GHPanel
+   pause_confirm_quit_panel
+   (file pause_quit.milo)
+   (focus quit.btn)
+   (enter
+      {$this set_focus quit.btn})}
+{new
+   GHScreen
+   pause_confirm_quit_screen
+   (panels GAME_PANELS pause_confirm_quit_panel)
+   (focus pause_confirm_quit_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (pause_screen pause_screen)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (quit.btn
+            {if
+               {==
+                  career
+                  {gamecfg get mode}}
+               {gamecfg set continue_screen sel_song_screen}
+               {print
+                  "quit career\n"}}
+            {meta_loading_goto
+               {gamecfg get continue_screen}})
+         (cancel.btn
+            {ui
+               goto_screen
+               [pause_screen]})
+         kDataUnhandled})}
