@@ -130,12 +130,12 @@
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
-         (os_nofail os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)}
+         (os_nofail os_songtitle os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)}
 		  {gs_title.lbl set_text "MODIFIERS"})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
-       ("No Fail"
+       (os_nofail
          {if_else $nofail
             {do
             {play_sfx cheat_off}
@@ -145,7 +145,7 @@
 			{play_sfx cheat}
             {set $nofail TRUE}}}
          kDataUnhandled)
-       ("Song Title Always"
+       (os_songtitle
          {if_else $songtitle
             {do
             {play_sfx cheat_off}
@@ -155,7 +155,7 @@
 			{play_sfx cheat}
             {set $songtitle TRUE}}}
          kDataUnhandled)
-	   ("Enable Drums"
+	   (os_drums
          {if_else $drumenabled
             {do
             {play_sfx cheat_off}
@@ -175,7 +175,7 @@
 			{play_sfx cheat}
             {set $cheat_enabled_horse_head_mode TRUE}}}
          kDataUnhandled)
-       ("Monkey Head Crowd"
+       (os_monkeyhead
          {if_else 
 		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
             {do
@@ -186,7 +186,7 @@
 			{play_sfx cheat}
             {set $cheat_crowd_heads monkey_crowd_heads}}}
          kDataUnhandled)
-       ("Eyeball Head Crowd"
+       (os_eyeballhead
          {if_else 
 		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
             {do
@@ -197,7 +197,7 @@
 			{play_sfx cheat}
             {set $cheat_crowd_heads eyeball_crowd_heads}}}
          kDataUnhandled)
-       ("Flaming Head Mode"
+       (os_flaminghead
          {if_else $cheat_enabled_flaming_head
             {do
             {play_sfx cheat_off}
@@ -207,7 +207,7 @@
 			{play_sfx cheat}
             {set $cheat_enabled_flaming_head TRUE}}}
          kDataUnhandled)
-      ("Neckless Mode"
+      (os_neckless
          {if_else $neckless
             {do
             {play_sfx cheat_off}
@@ -217,7 +217,7 @@
 			{play_sfx cheat}
             {set $neckless TRUE}}}
          kDataUnhandled)
-	  ("Performance Mode"
+	  (os_performance
          {if_else $cheat_enabled_performance_mode
             {do
             {play_sfx cheat_off}
@@ -227,7 +227,7 @@
 			{play_sfx cheat}
             {set $cheat_enabled_performance_mode TRUE}}}
          kDataUnhandled)
-      ("Roxbury Mode"
+      (os_roxbury
          {if_else $barf_cheat
             {do
             {play_sfx cheat_off}
@@ -712,51 +712,46 @@
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
-       ("Guitar Hero 1"
+       (os_gh1
 			{do
 			{set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 TRUE}
             {set $gamegh1 TRUE}
-			{ui pop_screen}
-			{meta_loading_nosave_goto main_screen}}
+			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
-       ("Guitar Hero 2 Deluxe"
+       (os_gh2
 			{do
             {set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 FALSE}
             {set $gamegh1 FALSE}
-			{ui pop_screen}
-			{meta_loading_nosave_goto main_screen}}
+			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
-	   ("Guitar Hero 80s Deluxe"
+	   (os_gh80s
 			{do
             {set $game80s TRUE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 FALSE}
             {set $gamegh1 FALSE}
-			{ui pop_screen}
-			{meta_loading_nosave_goto main_screen}}
+			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
-	   ("Guitar Hero III"
+	   (os_gh3
 			{do
             {set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 TRUE}
 			{set $egg2 FALSE}
             {set $gamegh1 FALSE}
-			{ui pop_screen}
-			{meta_loading_nosave_goto main_screen}}
+			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
-       ("All Eggs Found"
+       (os_egg5
 			{do
             {set $egg5 TRUE}
-			{ui pop_screen}
-			{meta_loading_nosave_goto main_screen}}
+			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)})
 	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
