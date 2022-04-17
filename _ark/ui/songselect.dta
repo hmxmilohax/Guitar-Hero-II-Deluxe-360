@@ -27,11 +27,9 @@
    {ss_song.lst set_local_rot 0 4 0}
    {cp_title.lbl set_text "CHOOSE SONG"}
    {set $gameentered FALSE}
-   ;{ss_song.lst set circular 1}
-      {checkmark.mesh set_showing FALSE}
-      {set $author FALSE}
-      {{ui current_screen}
-         turn_off_ambient}
+   {ss_song.lst set circular 1}
+   {set $author FALSE}
+   {{ui current_screen} turn_off_ambient}
       {$this refresh})
    (update_song_info
       {if
