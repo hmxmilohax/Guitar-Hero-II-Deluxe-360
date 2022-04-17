@@ -5,7 +5,7 @@
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
-      (hold_ms 150)
+      (hold_ms 180)
       (repeat_ms 30))
    (page_down
       {$this update_pos}
