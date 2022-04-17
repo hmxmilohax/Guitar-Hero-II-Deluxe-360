@@ -1,30 +1,7 @@
 {new
    GHPanel
    sel_song_panel
-#ifndef HX_XBOX
-   (file
-      {switch
-         {gamecfg get mode}
-         ((career multi_coop)
-		 {if_else $gamegh1
-            sel_song_gh1.milo
-            sel_song.milo})
-			{if_else $gamegh1
-         sel_song_quickplay_gh1.milo
-         sel_song_quickplay.milo}})
-#else
-(file
-      {do
-         ($cfg
-            {gamecfg get mode})
-         {cond
-            ($leaderboards_mode sel_song_leaderboards.milo)
-            ({'||'
-                  {== career $cfg}
-                  {== multi_coop $cfg}}
-               {if_else $gamegh1 sel_song_gh1.milo sel_song.milo})
-            (TRUE {if_else $gamegh1 sel_song_quickplay_gh1.milo sel_song_quickplay.milo})}})
-#endif
+   (file sel_song.milo)
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
