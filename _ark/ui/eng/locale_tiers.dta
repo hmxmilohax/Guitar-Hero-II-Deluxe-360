@@ -17,7 +17,7 @@
 (song_header_store
    " ")
 (song_header_download
-   "Songs")
+   " ")
 (song_old_venue
    " ")
 (song_current_venue

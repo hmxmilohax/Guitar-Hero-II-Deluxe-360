@@ -42,7 +42,8 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
-   {ss_song.lst set_local_pos 150 230 150}
+   {ss_song.lst set_local_pos 160 230 140}
+   {ss_song.lst set_local_rot 0 4 0}
    {cp_title.lbl set_text "CHOOSE SONG"}
    {set $gameentered FALSE}
    ;{ss_song.lst set circular 1}
