@@ -128,14 +128,24 @@
    {sel_section.lst set_local_pos -140 0 35}
    {sel_section.lst set circular 1}
    {sel_section.lst set alignment kTopCenter}
+   {gs_title.lbl set_text "MODIFIERS"}
       {sel_section.lst
          set_data
-         (os_nofail os_songtitle os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)}
-		  {gs_title.lbl set_text "MODIFIERS"})
+         (os_focusmode os_nofail os_songtitle os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
-       (os_nofail
+       (os_focusmode
+         {if_else $nofail
+            {do
+            {play_sfx cheat_off}
+            {set $focusmode FALSE}}
+			{do
+			OVERSHELL_HELP_POP_HANDLER
+			{play_sfx cheat}
+            {set $focusmode TRUE}}}
+         kDataUnhandled)
+	   (os_nofail
          {if_else $nofail
             {do
             {play_sfx cheat_off}
@@ -155,6 +165,16 @@
 			{play_sfx cheat}
             {set $songtitle TRUE}}}
          kDataUnhandled)
+       (os_highwayshake
+         {if_else $highwayshake
+            {do
+            {play_sfx cheat}
+            {set $highwayshake FALSE}}
+			{do
+			OVERSHELL_HELP_POP_HANDLER
+			{play_sfx cheat_off}
+            {set $highwayshake TRUE}}}
+         kDataUnhandled)
 	   (os_drums
          {if_else $drumenabled
             {do
@@ -165,7 +185,7 @@
 			{play_sfx cheat}
             {set $drumenabled TRUE}}}
          kDataUnhandled)
-	   ("Horse Head (PS2)"
+	   (os_horsehead
          {if_else $cheat_enabled_horse_head_mode
             {do
             {play_sfx cheat_off}

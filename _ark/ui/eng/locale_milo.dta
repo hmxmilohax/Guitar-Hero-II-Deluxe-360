@@ -147,8 +147,11 @@
 ;(toogle_vs_label "BOTH PLAYERS CHEATED!")
 
 ;overshell List stuff
+(os_focusmode "Focus Mode")
 (os_nofail "No Fail")
 (os_songtitle "Song Title Always")
+(os_highwayshake "Disable Highway Shake")
+(os_horsehead "Horse Head (PS2)")
 (os_drums "Enable Drums")
 (os_monkeyhead "Monkey Head Crowd")
 (os_eyeballhead "Eyeball Head Crowd")

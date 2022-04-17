@@ -338,8 +338,8 @@
                {== multi_coop {gamecfg get mode}}
                {set $mult {band base_multiplier}}
                {set $mult {$playerobj base_multiplier}}}
-            ;{if {> $mult 1}
-               ;{handle (game blow_streak $player $mult)}}
+            {if $highwayshake {if {> $mult 1}
+            {handle (game blow_streak $player $mult)}}}
 			   }})
    (blow_streak
       ($player $mult)
