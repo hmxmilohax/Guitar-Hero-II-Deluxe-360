@@ -301,7 +301,7 @@
         }
 ))
 {new EndGamePanel endgame_panel
-   (file {if_else $gamegh1 endgame_gh1.milo endgame.milo}) 
+   (file endgame.milo) 
    (focus me_continue.btn)
    (reset_focus TRUE)
    HEADLINE_HANDLERS
@@ -310,8 +310,6 @@
          set_data
          (
           " ")}
-   ;this is exclusive to gh1 redux. Redux does not have any buttons to continue, so I have to force you to the next screen
-	{if $gamegh1 {script_task (delay 6) (units kTaskUISeconds) (script {goto_endgame_complete})}}
       {set $song_text1 {game get_song_text}}
       {if_else {!= $speedmod 1}
          {set $song_text2 {sprint $song_text1 " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
