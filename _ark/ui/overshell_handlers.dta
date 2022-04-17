@@ -92,12 +92,16 @@
                   {$this set_speeds}})}})
    (SELECT_START_MSG
       {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
-         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
-         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
+         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}}
+		 {if {! $helpentered} {ui push_screen overshell_help_screen}})
+         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}}
+		 {if {! $helpentered} {ui push_screen overshell_help_screen}})
+         (gs_band.sld {$this set orig_vol {gs_band.sld current}}
+		 {if {! $helpentered} {ui push_screen overshell_help_screen}})
          (gs_stereo.btn
             {stereo.chk toggle}
-            {set $focusmode {stereo.chk get_check}})
+            {set $focusmode {stereo.chk get_check}}
+			{if {! $helpentered} {ui push_screen overshell_help_screen}})
          kDataUnhandled}
       {$this update_help_display}
       {$this set_speeds}
@@ -289,12 +293,16 @@
       {switch
        {$component selected_sym}
 	   (Easy {{game get_player_config 0} set_difficulty kDifficultyEasy}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (Medium {{game get_player_config 0} set_difficulty kDifficultyMedium}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (Hard {{game get_player_config 0} set_difficulty kDifficultyHard}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (Expert {{game get_player_config 0} set_difficulty kDifficultyExpert}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   })
 	(BUTTON_DOWN_MSG
@@ -331,42 +339,61 @@
       {switch
        {$component selected_sym}
 	   (punk1 {game set_character punk1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (punk2 {game set_character punk2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (alterna1 {game set_character alterna1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (alterna2 {game set_character alterna2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (glam1 {game set_character glam1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (glam2 {game set_character glam2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (goth2 {game set_character goth2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (goth1 {game set_character goth1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (metal1 {game set_character metal1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (metal2 {game set_character metal2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (rockabill1 {game set_character rockabill1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (rockabill2 {game set_character rockabill2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (rock2 {game set_character rock2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (rock1 {game set_character rock1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (deathmetal1 {game set_character deathmetal1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (deathmetal2 {game set_character deathmetal2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (classic {game set_character classic TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (funk1 {game set_character funk1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (grim {game set_character grim TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   })
 	(BUTTON_DOWN_MSG
@@ -404,20 +431,28 @@
       {switch
        {$component selected_sym}
 	   (battle {game set_venue battle TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (small1 {game set_venue small1 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (small2 {game set_venue small2 TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (big {game set_venue big TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (theatre {game set_venue theatre TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fest {game set_venue fest TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (arena {game set_venue arena TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (stone {game set_venue stone TRUE}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   })
 	(BUTTON_DOWN_MSG
@@ -489,158 +524,235 @@
       {switch
        {$component selected_sym}
 	   (lespaul {game set_guitar lespaul lp_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul {game set_guitar lespaul lp_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul {game set_guitar lespaul lp_cayenne}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul {game set_guitar lespaul lp_goddessburst}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul {game set_guitar lespaul lp_zakk}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (sg {game set_guitar sg sg_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (sg_cherry {game set_guitar sg sg_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (sg_white {game set_guitar sg sg_white}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (sg_gt {game set_guitar sg sg_gt}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (sg_flames {game set_guitar sg sg_flames}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (flying_v {game set_guitar flying_v fv_white}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fv_white {game set_guitar flying_v fv_white}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fv_v2 {game set_guitar flying_v fv_v2}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fv_century {game set_guitar flying_v fv_century}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fv_red {game set_guitar flying_v fv_red}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (explorer {game set_guitar explorer exp_ebony}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (exp_ebony {game set_guitar explorer exp_ebony}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (exp_nat {game set_guitar explorer exp_nat}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (exp_sun {game set_guitar explorer exp_sun}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (exp_white {game set_guitar explorer exp_white}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (exp_swirl {game set_guitar explorer exp_swirl}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
-	   (lespaul_doublecut {game set_guitar lespaul_doublecut lp_dbl_white}
+	   (lespaul_doublecut {game set_guitar lespaul_doublecut lp_dbl
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}_white}
 	   kDataUnhandled)
-	   (lp_dbl_yellow {game set_guitar lespaul_doublecut lp_dbl_yellow}
+	   (lp_dbl_yellow {game set_guitar lespaul_doublecut lp_dbl_yel
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}low}
 	   kDataUnhandled)
-	   (lp_dbl_resin {game set_guitar lespaul_doublecut lp_dbl_resin}
+	   (lp_dbl_resin {game set_guitar lespaul_doublecut lp_dbl_resi
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}n}
 	   kDataUnhandled)
 	   (firebird {game set_guitar firebird fb_burst}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fb_burst {game set_guitar firebird fb_burst}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fb_blue {game set_guitar firebird fb_blue}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fb_ebony {game set_guitar firebird fb_ebony}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fb_leopard {game set_guitar firebird fb_leopard}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
  	   (epiphone_coronet {game set_guitar epiphone_coronet coronet_brown}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (coronet_brown {game set_guitar epiphone_coronet coronet_brown}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (coronet_cherry {game set_guitar epiphone_coronet coronet_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (coronet_burst {game set_guitar epiphone_coronet coronet_burst}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (coronet_green {game set_guitar epiphone_coronet coronet_green}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (kramer_vanguard {game set_guitar kramer_vanguard van_black}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (van_black {game set_guitar kramer_vanguard van_black}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (van_yellow {game set_guitar kramer_vanguard van_yellow}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (moderne {game set_guitar moderne mod_nat}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (mod_nat {game set_guitar moderne mod_nat}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (mod_cherry {game set_guitar moderne mod_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (corvus {game set_guitar corvus cor_yellow}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (cor_yellow {game set_guitar corvus cor_yellow}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (cor_nat {game set_guitar corvus cor_nat}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (es335 {game set_guitar es335 es_maple}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (es_maple {game set_guitar es335 es_maple}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (es_cherry {game set_guitar es335 es_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (kramer_650 {game set_guitar kramer_650 650_stripe}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (650_stripe {game set_guitar kramer_650 650_stripe}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (650_white {game set_guitar kramer_650 650_white}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (eds {game set_guitar eds eds_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (eds_cherry {game set_guitar eds eds_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (eds_white {game set_guitar eds eds_white}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul_doublecut_sticker {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul_sonex {game set_guitar lespaul_sonex lp_sonex}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (lespaul_marauder {game set_guitar lespaul_marauder lp_marauder}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (epiphone_casino {game set_guitar epiphone_casino casino}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (epiphone_sheraton {game set_guitar epiphone_sheraton sheraton}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (chet_atkins {game set_guitar chet_atkins chet_orange}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (fish_reward {game set_guitar fish_reward fish}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (usa_reward {game set_guitar usa_reward usa}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (coffin_reward {game set_guitar coffin_reward coffin}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (viking_reward {game set_guitar viking_reward snaketapus}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (snaketapus_reward {game set_guitar snaketapus_reward snaketapus}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (eyeball_reward {game set_guitar eyeball_reward eyeball}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (battleaxe_reward {game set_guitar battleaxe_reward battleaxe}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (log_reward {game set_guitar log_reward log}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (scythe {game set_guitar scythe scythe}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (guitar_red_octane {game set_guitar guitar_red_octane guitar_red_octane}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_musicman {game set_guitar bass_musicman bass_music_black}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_musicman_lava {game set_guitar bass_musicman_lava bass_music_lava}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_sg_mahogany {game set_guitar bass_sg_mahogany bass_sg_mahog}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_sg_cream {game set_guitar bass_sg_cream bass_sg_cream}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_grabber_cherry {game set_guitar bass_grabber_cherry bass_grab_cherry}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_grabber_maple {game set_guitar bass_grabber_maple bass_grab_maple}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_thunderbird_ebony {game set_guitar bass_thunderbird_ebony bass_tb_ebony}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_thunderbird_burst {game set_guitar bass_thunderbird_burst bass_tb_burst}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   (bass_hofner {game set_guitar bass_hofner bass_hofner}
+	   {if {! $helpentered} {ui push_screen overshell_help_screen}}
 	   kDataUnhandled)
 	   })
 	(BUTTON_DOWN_MSG
@@ -944,6 +1056,7 @@
 		 {gs_title.lbl set_text "SET HIGHWAY"})
    (SELECT_START_MSG
       {set $highway {$component selected_sym}}
+	  {if {! $helpentered} {ui push_screen overshell_help_screen}}
       {switch
          {$component selected_sym}
          ("none"
@@ -969,3 +1082,21 @@
             {ui goto_screen main_screen}}
          {ui pop_screen}}
 		 kDataUnhandled)}
+{new
+   GHPanel
+   overshell_help_panel
+   (file overshell_help.milo)
+   (focus quit.btn)
+   (enter
+      {pause_controller_msg.lbl set_text "This is me warning you that you must back out to the song select menu for most modifications to take proper effect."}
+      {$this set_focus quit.btn}
+	  {set $helpentered TRUE})}
+{new
+   GHScreen
+   overshell_help_screen
+   (panels overshell_help_panel)
+   (focus overshell_help_panel)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (SELECT_START_MSG
+      {ui pop_screen})}
