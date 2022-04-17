@@ -43,10 +43,9 @@
 #endif
    (enter
    {cp_title.lbl set_local_pos 70 50 -15}
-   {pencil.mesh set_showing FALSE}
-   {pencil_shadow.mesh set_showing FALSE}
-   {notebook.mesh set_local_scale 1.5 1 1}
-   {notebook_cover.mesh set_local_scale 1.5 1 1}
+   {pencil.mesh set_local_pos 250 30 -30}
+   {pencil_shadow.mesh set_local_pos 180 30 -30}
+   {notebook.mesh set_local_scale 1.4 1 1}
    {ss_song.lst set_local_pos 160 230 140}
    {ss_song.lst set_local_rot 0 4 0}
    {cp_title.lbl set_text "CHOOSE SONG"}

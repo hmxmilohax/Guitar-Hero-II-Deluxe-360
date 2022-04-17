@@ -1081,8 +1081,6 @@
                   "stars_gold.mesh")
                (text
                   "score.txt")
-               (mesh
-                  "checkmark.mesh")
                (text
                   "blurb.txt")))
          (back_arrow
@@ -1203,7 +1201,6 @@
                "stars"
                "stars_gold_5.mat"
                "scores"
-               "checkmark.mat"
                "blurb")))
       (song2
          (resource_file
@@ -1224,8 +1221,6 @@
                   "stars_gold.mesh")
                (text
                   "score.txt")
-               (mesh
-                  "checkmark.mesh")
                (text
                   "blurb.txt")))
          (back_arrow
@@ -1346,7 +1341,6 @@
                "stars"
                "stars_gold_5.mat"
                "scores"
-               "checkmark.mat"
                "blurb")))
       (venue
          (resource_file
