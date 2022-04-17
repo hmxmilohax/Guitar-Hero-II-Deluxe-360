@@ -42,7 +42,7 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
-   {cp_title.lbl set_local_pos 90 50 -15}
+   {cp_title.lbl set_local_pos 70 50 -15}
    {pencil.mesh set_showing FALSE}
    {pencil_shadow.mesh set_showing FALSE}
    {notebook.mesh set_local_scale 1.5 1 1}
