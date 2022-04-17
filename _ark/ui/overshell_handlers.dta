@@ -17,12 +17,7 @@
    (finish_load
       {gs_band.sld set_num_steps 60}
       {gs_guitar.sld set_num_steps 21}
-      {if_else {'||'
-      {== $modifier_exit multi_vs_selsong_screen}
-      {== $modifier_exit multi_coop_selsong_screen}
-      {== $modifier_exit multi_fo_selsong_screen}}
-         {gs_sfx.sld set_num_steps 31}
-         {gs_sfx.sld set_num_steps 31}}) ; was 41 steps, dropped to 31 when disallowing <100%
+      {gs_sfx.sld set_num_steps 31}) ; was 41 steps, dropped to 31 when disallowing <100%
    (slider_changed {'||'
       {!=
          {options get band_volume_idx}
@@ -42,12 +37,10 @@
       {stereo.chk set_check $focusmode}
       {$this display_speed_msg $trackspd $speedmod $emulatefps})
    (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
-	  )
+      {gs_title.lbl set_localized_text GAME_MODIFIER})
    (display_speed_msg
       ($tspd $mspd $fps)
-      {gs_title.lbl set_localized_text {sprintf {localize speed_msg} {int {+ 0.5 {* $tspd 100}}} {int {+ 0.5 {* $mspd 100}}} {int $fps}}}
-	  )
+      {gs_title.lbl set_localized_text {sprintf {localize speed_msg} {int {+ 0.5 {* $tspd 100}}} {int {+ 0.5 {* $mspd 100}}} {int $fps}}})
    (set_speeds
       {if {$this slider_changed}
          {do
@@ -137,16 +130,7 @@
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
-         (
-          "No Fail"
-          "Song Title Always"
-		  "Enable Drums"
-		  "Monkey Head Crowd"
-		  "Eyeball Head Crowd"
-		  "Flaming Head Mode"
-		  "Neckless Mode"
-		  "Performance Mode"
-		  "Roxbury Mode")}
+         (os_nofail os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)}
 		  {gs_title.lbl set_text "MODIFIERS"})
    (SELECT_START_MSG
       {switch
@@ -723,13 +707,7 @@
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
-         (
-          "Guitar Hero 1"
-          "Guitar Hero 2 Deluxe"
-		  "Guitar Hero 80s Deluxe"
-		  "Guitar Hero III"
-		  "All Eggs Found"
-		  )}
+         (os_gh1 os_gh2 os_gh80s os_gh3 os_egg5)}
 		  {gs_title.lbl set_text "THEME SELECT"})
    (SELECT_START_MSG
       {switch
