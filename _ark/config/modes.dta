@@ -7,7 +7,7 @@
    (separate_parts TRUE)
    (num_players 1)
    (competitive FALSE)
-   (force_autoplay TRUE)
+   (force_autoplay FALSE)
    (blown_streak_feedback TRUE)
    (score_config default_config)
    (song_block song)
