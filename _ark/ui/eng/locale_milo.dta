@@ -148,6 +148,7 @@
 
 ;overshell List stuff
 (os_focusmode "Focus Mode")
+(os_brutalmode "Brutal Mode")
 (os_nofail "No Fail")
 (os_songtitle "Song Title Always")
 (os_highwayshake "Board Shake")

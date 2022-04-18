@@ -336,6 +336,7 @@
          (
 		   "      MODIFIERS"
 		  {sprint "Track Speed: " {int {'+' 0.5 {'*' $trackspd 100}}} "%"}
+          {sprint {localize os_brutalmode} ": " {if_else $brutalmode "ON" "OFF"}}
           {sprint {localize os_focusmode} ": " {if_else $focusmode "ON" "OFF"}}
 		  {sprint {localize os_nofail} ": " {if_else $nofail "ON" "OFF"}}
 		  {sprint {localize os_highwayshake} ": " {if_else $highwayshake "ON" "OFF"}}

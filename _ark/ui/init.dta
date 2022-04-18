@@ -38,10 +38,12 @@
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
 {set $emulatefps 60}
+{set $focusmode FALSE}
 {set $songtitle FALSE}
 {set $game80s FALSE}
 {set $highway _black_highway}
 {set $highwayshake TRUE}
+{set $brutalmode FALSE}
 ; We take advantage of the fact that Harmonix sets $first_screen as a
 ; variable by sending the player to different first screens depending on the
 ; version. Customs Edition and Expansion go to the main menu, while Mega goes
