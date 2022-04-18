@@ -306,6 +306,8 @@
    (reset_focus TRUE)
    HEADLINE_HANDLERS
    (enter
+     {winner_photo0.mesh set_local_pos 33 0 -24}
+     {winner_photo0.mesh set_local_scale 1.1 1.1 1.1}
      {endgame_review_data.lbl set_local_pos 170 60 -20}
 	 {endgame_percent.lbl set_showing FALSE}
      {morestats.grp set_local_pos -190 -200 135}
@@ -327,10 +329,20 @@
       {if_else {gamecfg multiplayer}
          {$this update_multiplayer_stats}
          {$this update_singleplayer_stats}}
+     {sel_section.lst set_local_pos -340 230 40}
+     {sel_section.lst set_local_rot 0 -2 0}
      {sel_section.lst
          set_data
          (
-          " ")}
+		   "      MODIFIERS"
+		  {sprint "Track Speed: " {int {'+' 0.5 {'*' $trackspd 100}}} "%"}
+          {sprint {localize os_focusmode} ": " {if_else $focusmode "ON" "OFF"}}
+		  {sprint {localize os_nofail} ": " {if_else $nofail "ON" "OFF"}}
+		  {sprint {localize os_highwayshake} ": " {if_else $highwayshake "ON" "OFF"}}
+		  {sprint {localize os_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
+		  {sprint {localize os_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
+		  {sprint {localize os_flaminghead} ": " {if_else $cheat_enabled_flaming_head "ON" "OFF"}}
+		  )}
       {set $song_text1 {game get_song_text}}
       {if_else {!= $speedmod 1}
          {set $song_text2 {sprint $song_text1 " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}}

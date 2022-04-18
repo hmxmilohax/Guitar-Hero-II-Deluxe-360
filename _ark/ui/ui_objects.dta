@@ -1508,6 +1508,37 @@
                      (selecting 0.7 0.7 0.7)))))
          (provider
             ("text")))
+    (list_endgame
+         (resource_file
+            "list_modifiers.milo")
+         (vertical TRUE)
+         (element
+            ((text
+                  "list.txt")))
+         (back_arrow
+            "")
+         (next_arrow
+            "")
+         (highlight
+            "")
+         (colors
+            (((normal
+                     (normal 0 0 0)
+                     (focused 0 0 0)
+                     (disabled 0 0 0)
+                     (selecting 0 0 0))
+                  (highlight
+                     (normal 0 0 0)
+                     (focused 0 0 0)
+                     (disabled 0 0 0)
+                     (selecting 0 0 0))
+                  (disabled
+                     (normal 0 0 0)
+                     (focused 0 0 0)
+                     (disabled 0 0 0)
+                     (selecting 0 0 0)))))
+         (provider
+            ("text")))
 #ifdef HX_XBOX
      (leaderboard
          (resource_file
