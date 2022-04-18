@@ -435,95 +435,101 @@
       {== $button kPad_DUp}}}
 {new GHPanel
    endgame_stats_panel
-   (file
-      {if_else {gamecfg multiplayer}
-         endgame_stats_multi.milo
-         endgame_stats.milo})
+   (file sel_song.milo)
    (is_scrolling FALSE)
    (reset_focus TRUE)
-   (focus 'stats_sections.lst')
+   (focus 'ss_song.lst')
    (enter
-      {stats_sections.lst set_local_pos 0 20 0}
-      ;{stats_sections.lst set_circular 1)
-      {set $song_text1 {game get_song_text}}
-      {if_else {!= $speedmod 1}
-         {set $song_text2 {sprint $song_text1 " (" {int  {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
-         {set $song_text2 $song_text1}}
-      {song_name.lbl set_text $song_text2}
-      {gamecfg foreach_player $player
-         {do
-            ($gems_hit {$player gems_hit})
-            ($gems_total {'+' $gems_hit {$player gems_passed}})
-            {{sprint $player "_notes_hit.lbl"} set_localized_text
-               {sprint $gems_hit "/" $gems_total}}}
-         {{sprint $player "_sp_phrases.lbl"}
-            set_localized_text
-            {$player sp_phrases}}}
-      {if_else {gamecfg multiplayer}
-         {$this update_multiplayer_stats}
-         {$this update_singleplayer_stats}}
-      {stats_sections.lst set_provider {new StatsProvider stats_provider}})
-   (update_pos
+      {gamecfg set mode practice}
+      {gamecfg
+         set
+         (practice_sections 0)
+         -1}
+      {gamecfg
+         set
+         (practice_sections 1)
+         -1}
+      {sel_section.lst
+         set_provider
+         {game practice_section_provider}}
+      {title.lbl set_text select_start_section}
+      {set
+         [section]
+         0}
+      {cp_title.lbl set_local_pos 70 50 -15}
+      {pencil.mesh set_local_pos 250 30 -30}
+      {pencil_shadow.mesh set_local_pos 180 30 -30}
+      {notebook.mesh set_local_scale 1.4 1 1}
+      {ss_song.lst set_local_pos 160 230 140}
+      {ss_song.lst set_local_rot 0 4 0}
+      {ss_song.lst set_provider {new StatsProvider stats_provider}})
+   (SELECT_START_MSG
       {do
-         ($pos
-            {stats_sections.lst selected_pos})
-         ($frame
-		    {'*' $pos 25 {'+' $pos
-			{{stats_provider num_data} $pos}}})
-		 {stats_sections.lst set_local_pos 0 20 $frame}})
-    (SCROLL_MSG
-      {$this update_pos})
-   (update_singleplayer_stats
-      {do
-         ($avg_multi {max 1 {player0 avg_multiplier}})
-         {player0_avg_multi.lbl
-            set_localized_text
-            {sprintf {localize stat_avg_multi_format}
-               {int $avg_multi}
-               {mod {int {'*' 10 $avg_multi}} 10}}}})
-   (update_multiplayer_stats
-      {do
-         ($p0hit {player0 gems_hit})
-         ($p0all {'+' $p0hit {player0 gems_passed}})
-         ($p1hit {player1 gems_hit})
-         ($p1all {'+' $p1hit {player1 gems_passed}})
-         {if_else {> {'*' $p0hit $p1all} {'*' $p1hit $p0all}}
-            {do {player0_best.lbl set_showing TRUE} {player1_best.lbl set_showing FALSE}}
-            {do {player1_best.lbl set_showing TRUE} {player0_best.lbl set_showing FALSE}}}}
-      {if_else {== {gamecfg get mode} multi_coop}
-         {$this update_coop_stats}
-         {$this update_faceoff_stats}})
-   (update_coop_stats
-      {stats_coop.grp set_showing TRUE}
-      {stats_faceoff.grp set_showing FALSE}
-      {gamecfg foreach_player $player
-         {{sprint $player "_streaks_broken.lbl"}
-            set_localized_text
-            {sprint {$player streaks_broken}}}})
-   (update_faceoff_stats
-      {stats_coop.grp set_showing FALSE}
-      {stats_faceoff.grp set_showing TRUE}
-      {gamecfg foreach_player $player
-         {{sprint $player "_lead_time.lbl"} set_localized_text {sprintf {localize eg_percent_format} {int {/ {'*' 100 {$player lead_time_sec}} {game song_duration_sec}}}}}})
-   (stop_scrolling
-      {if [is_scrolling]
-         {receipt_scroll.tnm stop_animation}
-         {set [is_scrolling] FALSE}})
+         ($idx
+            {-
+               {ss_song.lst selected_pos}
+               1})
+         {if_else
+            [section]
+            {if_else
+               {<
+                  $idx
+                  {gamecfg
+                     get
+                     (practice_sections 0)}}
+               {handle
+                  (ui BAD_SELECT_START_MSG)}
+               {do
+                  {gamecfg
+                     set
+                     (practice_sections 1)
+                     $idx}
+				  {gamecfg set mode practice}
+                  {gamecfg set practice_speed 0}
+                  {ui goto_screen practice_loading_screen}
+                  kDataUnhandled}}
+            {if_else
+               {== $idx -1}
+               {do
+			      {gamecfg set mode practice}
+                  {gamecfg set practice_speed 0}
+                  {gamecfg
+                     set
+                     (practice_sections 0)
+                     -1}
+                  {gamecfg
+                     set
+                     (practice_sections 1)
+                     -1}
+                  {ui goto_screen practice_loading_screen}
+                  kDataUnhandled}
+               {do
+                  {gamecfg
+                     set
+                     (practice_sections 0)
+                     $idx}
+                  {set
+                     [section]
+                     1}
+                  {section_provider set_start_section $idx}
+                  kDataUnhandled}}}})
    (BUTTON_DOWN_MSG
-      ;{if {is_updown_button $button}
-      ;   {$this stop_scrolling}
-      ;   {receipt_scroll.tnm animate
-      ;      (dest
-      ;         {if_else {== $button kPad_DDown}
-      ;            {'*' 2 {stats_provider num_data}}
-      ;            0})
-      ;      (units kTaskUISeconds)}
-      ;   {set [is_scrolling] TRUE}}
-      kDataUnhandled)
-   (BUTTON_UP_MSG
-      {if {is_updown_button $button}
-         {$this stop_scrolling}}
-      kDataUnhandled)}
+      {cond
+         ({== $button kPad_Tri}
+            {synth play_sequence button_select}
+            {ui goto_screen [prev_screen]})
+         ({&&
+               {== $button kPad_Tri}
+               {==
+                  [section]
+                  1}}
+            {set
+               [section]
+               0}
+            {section_provider set_start_section -1}
+            TRUE)
+         (TRUE kDataUnhandled)})
+      }
 {new GHScreen endgame_stats_screen
    (panels GAME_PANELS endgame_stats_panel helpbar)
    (focus endgame_stats_panel)
@@ -536,21 +542,7 @@
       (default
          ((fret1 help_continue)
             (fret2 help_back)
-            (strum help_updown))))
-   (BUTTON_DOWN_MSG
-      {cond
-         ({== $button kPad_X}
-            {synth play_sequence button_select}
-            {if_else [next_screen]
-               {do
-                  ($next_screen [next_screen])
-                  {set [next_screen] 0}
-                  {ui goto_screen $next_screen}}
-               {goto_endgame_complete}})
-         ({== $button kPad_Tri}
-            {synth play_sequence button_select}
-            {ui goto_screen [prev_screen]})}
-      kDataUnhandled)}
+            (strum help_updown))))}
 #define START_ENCORE
 ({world play_meta_sfx encore_yes}
    {game set_song {campaign get_cur_encore}}

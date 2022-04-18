@@ -174,7 +174,7 @@
       "TIED!"
 	  "DRAW!"})
 (CONTINUE "CONTINUE")
-(MORE_STATS "MORE STATS")
+(MORE_STATS "SECTION STATS")
 (lefty_flip_changed "To change the lefty flip setting, this song must be restarted. OK to restart?")
 (RESET "RESET")
 (CONTROLLER_LOSS
