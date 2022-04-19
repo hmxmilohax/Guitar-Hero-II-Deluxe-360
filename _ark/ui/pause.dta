@@ -20,14 +20,9 @@
          {world_panel set_paused TRUE}})
    (resume
       {if {== {gamecfg get mode} practice}
-         {if_else $focusmode
-            {practice_focus_panel set keep_section_text TRUE}
-            {practice_panel set keep_section_text TRUE}}}
+            {practice_panel set keep_section_text TRUE}}
       {set $game_unpause_on_enter TRUE}
-      {if_else {&&
-      {== {gamecfg get game_screen} practice_game_screen}
-      $focusmode}
-         {ui goto_screen practice_game_focus_screen}
+      {if {== {gamecfg get game_screen} practice_game_screen}
          {ui goto_screen {gamecfg get game_screen}}})
    (restart
       {synth stop_all_sfx}
