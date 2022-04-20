@@ -63,8 +63,8 @@
    #include synth.dta)
 (joypad
    (ignore)
-   (hold_ms 1000)
-   (repeat_ms 80))
+   (hold_ms 180)
+      (repeat_ms 30))
 (spew)
 #define NON_GAME_TIMERS
 (world hud track file_read tasks)

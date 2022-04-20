@@ -2,8 +2,8 @@
 (deadzone 36)
 (threshold 0.75)
 (ignore 1 2 3 4 5 6 7)
-(hold_ms 500)
-(repeat_ms 50)
+(hold_ms 180)
+(repeat_ms 30)
 (midi_joypad
    (disable TRUE)
    (mapping
