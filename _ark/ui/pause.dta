@@ -18,6 +18,11 @@
    (enter
       {if {world_panel is_up}
          {world_panel set_paused TRUE}})
+   (goto_practice_mode
+      {gamecfg set mode practice}
+      {gamecfg set_track 0 0}
+      {practice_sel_section_screen set career_mode TRUE}
+      {meta_loading_goto practice_sel_section_screen})
    (resume
       {if {== {gamecfg get mode} practice}
             {practice_panel set keep_section_text TRUE}}
