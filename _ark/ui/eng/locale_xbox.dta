@@ -726,7 +726,7 @@
 (stat_sp_phrases
    "SP Phrases")
 (stat_avg_multi
-   "Avg Multiplier")
+   "Avg Mult")
 (stat_avg_multi_format
    "%d.%dx")
 (stat_section_no_notes
