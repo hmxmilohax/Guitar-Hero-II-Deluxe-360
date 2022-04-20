@@ -116,6 +116,7 @@
       kDataUnhandled)
    (intro_skip
       {track_panel intro_skip}
+	  {beatmatch set_music_speed $speedmod}
       {if $do_streak {streak_overlay_panel setup_streak}}
       kDataUnhandled)
    (extend_track
