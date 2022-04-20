@@ -330,7 +330,9 @@
          {$this update_multiplayer_stats}
          {$this update_singleplayer_stats}}
      {sel_section.lst set_local_pos -340 230 40}
+	 {sel_section2.lst set_local_pos -335 230 -120}
      {sel_section.lst set_local_rot 0 -2 0}
+	 {sel_section2.lst set_local_rot 0 -2 0}
      {sel_section.lst
          set_data
          (
@@ -342,6 +344,10 @@
 		  {sprint {localize endgame_brighthopos} ": " {if_else $brighthopos "ON" "OFF"}}
 		  {sprint {localize endgame_darkstrums} ": " {if_else $darkstrums "ON" "OFF"}}
 		  {sprint {localize endgame_nofail} ": " {if_else $nofail "ON" "OFF"}}
+		  )}
+	  {sel_section2.lst
+         set_data
+         (
 		  {sprint {localize endgame_gh1track} ": " {if_else $gh1track "ON" "OFF"}}
 		  {sprint {localize endgame_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
 		  {sprint {localize endgame_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
@@ -365,13 +371,8 @@
          {percentbar_p1.mesh set_local_scale {/ {$player percent_hit} 100.0}
             1
             1}}
-         {if_else $player0_fc
-            {do
-               {endgame_review_data.lbl set_showing FALSE}
-               {endgame_review_data_fc.lbl set_showing TRUE}} ; If P0 FC, use new label
-            {do
-               {endgame_review_data_fc.lbl set_showing FALSE}
-               {endgame_review_data.lbl set_showing TRUE}}} ; If P0 didn't FC, use old label
+          {endgame_review_data_fc.lbl set_showing FALSE}
+          {endgame_review_data.lbl set_showing TRUE} ; If P0 didn't FC, use old label
       {$this set_headline endgame_headline.lbl}
       {if {player_matcher0 auto_play} ; Check for autoplay on player 1
         {do
