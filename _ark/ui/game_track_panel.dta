@@ -137,5 +137,6 @@
 ;{{{{track_panel loaded_dir} find track_new} find beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 ;{{{{track_panel loaded_dir} find track_new} find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 #endif
-	  {track_panel reset})})}
+	  ;{track_panel reset}
+	  )})}
 {new TrackMaskPanel track_mask}
