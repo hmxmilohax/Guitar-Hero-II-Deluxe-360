@@ -11,7 +11,7 @@
    {if_else $egg5
       {sprint $player2_streak " NOTES IN A ROW!"}
       {sprint $player2_streak " NOTE STREAK!"}})
-(eg_streak_format
+(endgame_streak_format
    {if_else {== {gamecfg get mode} quickplay}
       {switch {game get_track_type 0}
          (kTrackBass "%i Bass Streak!")
@@ -146,20 +146,44 @@
 ;(toogle_vsp2_label {sprint {localize {{gamecfg get_player_config 1} get_character}} " CHEATED!"})
 ;(toogle_vs_label "BOTH PLAYERS CHEATED!")
 
-;overshell List stuff
-(os_focusmode "Focus Mode")
-(os_brutalmode "Brutal Mode")
-(os_nofail "No Fail")
-(os_songtitle "Song Title Always")
-(os_highwayshake "Board Shake")
-(os_horsehead "Horse Head (PS2)")
-(os_drums "Enable Drums")
-(os_monkeyhead "Monkey Head")
-(os_eyeballhead "Eyeball Head")
-(os_flaminghead "Flaming Head")
-(os_neckless "Neckless")
-(os_performance "Performance Mode")
-(os_roxbury "Roxbury Mode")
+;overshell list stuff, also used in endgame
+(os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
+(os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
+(os_nofail {sprint "No Fail" {if_else $nofail ": ON" ": OFF"}})
+(os_songtitle {sprint "Song Title Always" {if_else $songtitle ": ON" ": OFF"}})
+(os_highwayshake {sprint "Board Shake" {if_else $highwayshake ": ON" ": OFF"}})
+(os_horsehead {sprint "Horse Head (PS2)" {if_else $notenabled ": ON" ": OFF"}})
+(os_drums {sprint "Enable Drums" {if_else $drumenabled ": ON" ": OFF"}})
+(os_monkeyhead {sprint "Monkey Head" {if_else $notenabled ": ON" ": OFF"}})
+(os_eyeballhead {sprint "Eyeball Head" {if_else $notenabled ": ON" ": OFF"}})
+(os_flaminghead {sprint "Flaming Head" {if_else $cheat_enabled_flaming_head ": ON" ": OFF"}})
+(os_neckless {sprint "Neckless" {if_else $neckless ": ON" ": OFF"}})
+(os_performance {sprint "Performance Mode" {if_else $cheat_enabled_performance_mode ": ON" ": OFF"}})
+(os_roxbury {sprint "Roxbury Mode" {if_else $barf_cheat ": ON" ": OFF"}})
+(os_gh1track {sprint "GH1 Notes" {if_else $gh1track ": ON" ": OFF"}})
+(os_darkstrums {sprint "Darker Strums" {if_else $darkstrums ": ON" ": OFF"}})
+(os_brighthopos {sprint "Brighter HOPOS" {if_else $brighthopos ": ON" ": OFF"}})
+(os_skipintro {sprint "Skip Intro" {if_else $miloskipintro ": ON" ": OFF"}})
+
+;endgame List stuff
+(endgame_focusmode "Focus Mode")
+(endgame_brutalmode "Brutal Mode")
+(endgame_nofail "No Fail")
+(endgame_songtitle "Song Title Always")
+(endgame_highwayshake "Board Shake")
+(endgame_horsehead "Horse Head (PS2)")
+(endgame_drums "Drums enabled")
+(endgame_monkeyhead "Monkey Head")
+(endgame_eyeballhead "Eyeball Head")
+(endgame_flaminghead "Flaming Head")
+(endgame_neckless "Neckless")
+(endgame_performance "Performance Mode")
+(endgame_roxbury "Roxbury Mode")
+(endgame_gh1track "GH1 Notes")
+(endgame_darkstrums "Dark Strums")
+(endgame_brighthopos "Bright Hopos")
+
+;overshell theme select
 (os_gh1 "Guitar Hero DX")
 (os_gh2 "Guitar Hero II DX")
 (os_gh80s "Guitar Hero 80s DX")

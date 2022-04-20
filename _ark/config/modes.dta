@@ -1,6 +1,7 @@
 (defaults
    (hud_file hud_blank.milo)
    (allow_achievements TRUE)
+   (skip_intro {if_else {'||' $focusmode $miloskipintro} TRUE FALSE})
    (update_song_leaderboard FALSE)
    (update_career_leaderboard FALSE)
    (crowd_rating_active TRUE)
@@ -13,7 +14,6 @@
    (song_block song)
    (midi_suffix '')
    (game_over_sequence TRUE)
-   (skip_intro FALSE)
    (show_hud TRUE)
    (show_track TRUE)
    (encore_fx FALSE)

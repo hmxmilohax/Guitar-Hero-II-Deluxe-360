@@ -131,141 +131,204 @@
    {gs_title.lbl set_text "MODIFIERS"}
       {sel_section.lst
          set_data
-         (os_focusmode os_nofail os_songtitle os_brutalmode os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
+         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_brighthopos os_darkstrums os_gh1track os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
+	   (os_skipintro
+         {if_else $miloskipintro
+            {do
+            {play_sfx cheat_off}
+            {set $miloskipintro FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
+			{do
+			
+			{play_sfx cheat}
+            {set $miloskipintro TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
+         kDataUnhandled)
+	   (os_brighthopos
+         {if_else $brighthopos
+            {do
+            {play_sfx cheat_off}
+            {set $brighthopos FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
+			{do
+			
+			{play_sfx cheat}
+			{set $gh1track FALSE}
+            {set $brighthopos TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
+         kDataUnhandled)
+	   (os_darkstrums
+         {if_else $darkstrums
+            {do
+            {play_sfx cheat_off}
+            {set $darkstrums FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
+			{do
+			{play_sfx cheat}
+			{set $gh1track FALSE}
+            {set $darkstrums TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
+         kDataUnhandled)
+	   (os_gh1track
+         {if_else $gh1track
+            {do
+            {play_sfx cheat_off}
+            {set $gh1track FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
+			{do
+			{play_sfx cheat}
+			{set $darkstrums FALSE}
+			{set $brighthopos FALSE}
+            {set $gh1track TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
+         kDataUnhandled)
        (os_focusmode
          {if_else $focusmode
             {do
             {play_sfx cheat_off}
-            {set $focusmode FALSE}}
+            {set $focusmode FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $focusmode TRUE}}}
+            {set $focusmode TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	   (os_nofail
 	      {if_else $nofail
             {do
             {play_sfx cheat_off}
-            {set $nofail FALSE}}
+            {set $nofail FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $nofail TRUE}}}
+            {set $nofail TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	   (os_brutalmode
          {if_else $brutalmode
             {do
             {play_sfx cheat_off}
-            {set $brutalmode FALSE}}
+            {set $brutalmode FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $brutalmode TRUE}}}
+            {set $brutalmode TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
        (os_songtitle
          {if_else $songtitle
             {do
             {play_sfx cheat_off}
-            {set $songtitle FALSE}}
+            {set $songtitle FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $songtitle TRUE}}}
+            {set $songtitle TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
        (os_highwayshake
          {if_else $highwayshake
             {do
             {play_sfx cheat}
-            {set $highwayshake FALSE}}
+            {set $highwayshake FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat_off}
-            {set $highwayshake TRUE}}}
+            {set $highwayshake TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	   (os_drums
          {if_else $drumenabled
             {do
             {play_sfx cheat_off}
-            {set $drumenabled FALSE}}
+            {set $drumenabled FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $drumenabled TRUE}}}
+            {set $drumenabled TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	   (os_horsehead
          {if_else $cheat_enabled_horse_head_mode
             {do
             {play_sfx cheat_off}
-            {set $cheat_enabled_horse_head_mode FALSE}}
+            {set $cheat_enabled_horse_head_mode FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $cheat_enabled_horse_head_mode TRUE}}}
+            {set $cheat_enabled_horse_head_mode TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
        (os_monkeyhead
          {if_else 
 		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
             {do
             {play_sfx cheat_off}
-            {set $cheat_crowd_heads 0}}
+            {set $cheat_crowd_heads 0}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $cheat_crowd_heads monkey_crowd_heads}}}
+            {set $cheat_crowd_heads monkey_crowd_heads}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
        (os_eyeballhead
          {if_else 
 		  {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
             {do
             {play_sfx cheat_off}
-            {set $cheat_crowd_heads 0}}
+            {set $cheat_crowd_heads 0}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $cheat_crowd_heads eyeball_crowd_heads}}}
+            {set $cheat_crowd_heads eyeball_crowd_heads}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
        (os_flaminghead
          {if_else $cheat_enabled_flaming_head
             {do
             {play_sfx cheat_off}
-            {set $cheat_enabled_flaming_head FALSE}}
+            {set $cheat_enabled_flaming_head FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $cheat_enabled_flaming_head TRUE}}}
+            {set $cheat_enabled_flaming_head TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
       (os_neckless
          {if_else $neckless
             {do
             {play_sfx cheat_off}
-            {set $neckless FALSE}}
+            {set $neckless FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $neckless TRUE}}}
+            {set $neckless TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	  (os_performance
          {if_else $cheat_enabled_performance_mode
             {do
             {play_sfx cheat_off}
-            {set $cheat_enabled_performance_mode FALSE}}
+            {set $cheat_enabled_performance_mode FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $cheat_enabled_performance_mode TRUE}}}
+            {set $cheat_enabled_performance_mode TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
       (os_roxbury
          {if_else $barf_cheat
             {do
             {play_sfx cheat_off}
-            {set $barf_cheat FALSE}}
+            {set $barf_cheat FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
 			{do
-			OVERSHELL_HELP_POP_HANDLER
 			{play_sfx cheat}
-            {set $barf_cheat TRUE}}}
+            {set $barf_cheat TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)})
 	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new

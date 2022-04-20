@@ -336,13 +336,15 @@
          (
 		   "      MODIFIERS"
 		  {sprint "Track Speed: " {int {'+' 0.5 {'*' $trackspd 100}}} "%"}
-          {sprint {localize os_brutalmode} ": " {if_else $brutalmode "ON" "OFF"}}
-          {sprint {localize os_focusmode} ": " {if_else $focusmode "ON" "OFF"}}
-		  {sprint {localize os_nofail} ": " {if_else $nofail "ON" "OFF"}}
-		  {sprint {localize os_highwayshake} ": " {if_else $highwayshake "ON" "OFF"}}
-		  {sprint {localize os_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
-		  {sprint {localize os_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
-		  {sprint {localize os_flaminghead} ": " {if_else $cheat_enabled_flaming_head "ON" "OFF"}}
+          {sprint {localize endgame_brutalmode} ": " {if_else $brutalmode "ON" "OFF"}}
+          {sprint {localize endgame_focusmode} ": " {if_else $focusmode "ON" "OFF"}}
+		  {sprint {localize endgame_nofail} ": " {if_else $nofail "ON" "OFF"}}
+		  {sprint {localize endgame_highwayshake} ": " {if_else $highwayshake "ON" "OFF"}}
+		  {sprint {localize endgame_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
+		  {sprint {localize endgame_brighthopos} ": " {if_else $brighthopos "ON" "OFF"}}
+		  {sprint {localize endgame_darkstrums} ": " {if_else $darkstrums "ON" "OFF"}}
+		  {sprint {localize endgame_gh1track} ": " {if_else $gh1track "ON" "OFF"}}
+		  {sprint {localize endgame_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
 		  )}
       {set $song_text1 {game get_song_text}}
       {if_else {!= $speedmod 1}

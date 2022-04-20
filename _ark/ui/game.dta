@@ -377,9 +377,24 @@
       #ifdef HX_XBOX
    (unload {rnd suspend})
    #endif}
-#define GAME_PANELS (midi_loader_panel game world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
+#define ATTRACT_LENGTH_SEC (120)
+#define FADE_LENGTH_SEC (2)
+{new FadePanel fade_panel
+   (file fade.milo)
+   (enter
+      {do
+         ($attract
+            {==
+               {gamecfg get mode}
+               attract})
+         {press_any_button.lbl set_showing $attract}
+         #ifdef HX_XBOX {logo.mesh set_showing $attract} #endif})}
+#ifndef HX_XBOX
+#define TRACK_MASK ()
+#endif
+#define GAME_PANELS (midi_loader_panel game #ifndef HX_XBOX TRACK_MASK #else track_mask #endif world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
 {new GHScreen game_screen
-   (panels GAME_PANELS)
+   (panels GAME_PANELS fade_panel)
    (allow_back FALSE)
    (animate_transition FALSE)
    (in_game TRUE)
@@ -408,7 +423,11 @@
          {game set_paused FALSE}
          {world_panel set_paused FALSE}
          {set $game_unpause_on_enter FALSE}})
-   (enter #ifdef HX_XBOX {track_mask set_showing FALSE} #endif)}
+   (enter #ifdef HX_XBOX {track_mask set_showing TRUE} #endif)}
+{new GHScreen finish_fade
+   (panels fade_panel)
+   (enter
+      {meta_loading_goto splash_screen})}
 {new GHScreen reload_track_screen
    (panels game world_panel hud mtv_overlay_panel fade_panel)
    (allow_back FALSE)
