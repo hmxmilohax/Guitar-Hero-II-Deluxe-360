@@ -40,6 +40,9 @@
       {gs_title.lbl set_localized_text GAME_MODIFIER})
    (display_speed_msg
       ($tspd $mspd $fps)
+	  {if_else $focusmode
+	  {set $miloskipintro TRUE}
+	  {set $miloskipintro FALSE}}
       {gs_title.lbl set_localized_text {sprintf {localize speed_msg} {int {+ 0.5 {* $tspd 100}}} {int {+ 0.5 {* $mspd 100}}} {int $fps}}})
    (set_speeds
       {if {$this slider_changed}
@@ -190,6 +193,7 @@
             {do
             {play_sfx cheat_off}
             {set $focusmode FALSE}
+			{set $miloskipintro FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
 			{do
 			{play_sfx cheat}
