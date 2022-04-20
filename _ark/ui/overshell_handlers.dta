@@ -194,6 +194,7 @@
 			{do
 			{play_sfx cheat}
             {set $focusmode TRUE}
+			{set $miloskipintro TRUE}
 			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	   (os_nofail
