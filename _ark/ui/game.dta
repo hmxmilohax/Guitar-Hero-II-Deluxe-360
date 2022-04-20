@@ -116,7 +116,9 @@
       kDataUnhandled)
    (intro_skip
       {track_panel intro_skip}
-	  {beatmatch set_music_speed $speedmod}
+	  {if_else $towel
+	  {beatmatch set_music_speed 1.0}
+	  {beatmatch set_music_speed $speedmod}}
       {if $do_streak {streak_overlay_panel setup_streak}}
       kDataUnhandled)
    (extend_track
@@ -134,7 +136,9 @@
       {! $neckless}
       {! $cheat_enabled_performance_mode}}
          {track_panel do_extend_sequence}}
-      {beatmatch set_music_speed $speedmod}
+      {if_else $towel
+	  {beatmatch set_music_speed 1.0}
+	  {beatmatch set_music_speed $speedmod}}
       {script_task
          (delay 1.8)
          (units kTaskSeconds)

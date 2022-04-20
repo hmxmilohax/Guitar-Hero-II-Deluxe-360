@@ -164,6 +164,7 @@
 (os_darkstrums {sprint "Darker Strums" {if_else $darkstrums ": ON" ": OFF"}})
 (os_brighthopos {sprint "Brighter HOPOS" {if_else $brighthopos ": ON" ": OFF"}})
 (os_skipintro {sprint "Skip Intro" {if_else $miloskipintro ": ON" ": OFF"}})
+(os_towel {sprint "Towel Hyperspeed" {if_else $towel ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")
@@ -182,6 +183,7 @@
 (endgame_gh1track "GH1 Notes")
 (endgame_darkstrums "Dark Strums")
 (endgame_brighthopos "Bright Hopos")
+(endgame_towel "Towel Mode")
 
 ;overshell theme select
 (os_gh1 "Guitar Hero DX")

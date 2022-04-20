@@ -29,6 +29,7 @@
          {options get guitar_volume_idx}
          {gs_band.sld current}}})
    (enter
+      {if $towel {$this disable gs_guitar.sld}}
       {gs_guitar.sld set_current {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}}
       {gs_sfx.sld set_current
          {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}}
@@ -134,10 +135,23 @@
    {gs_title.lbl set_text "MODIFIERS"}
       {sel_section.lst
          set_data
-         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_brighthopos os_darkstrums os_gh1track os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
+         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_towel os_brighthopos os_darkstrums os_gh1track os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
+	   (os_towel
+         {if_else $towel
+            {do
+            {play_sfx cheat_off}
+            {set $towel FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
+			{do
+			
+			{play_sfx cheat}
+            {set $towel TRUE}
+			{set $trackspd TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
+         kDataUnhandled)
 	   (os_skipintro
          {if_else $miloskipintro
             {do
