@@ -1,91 +1,26 @@
-#define CHEATS_ALLOWED
-({&&
-      {exists ui}
-      {!
-         {ui in_transition}}
-      {'||'
-         {==
-            {ui current_screen}
-            main_screen}
-         {==
-            {ui current_screen}
-            main_screen_egg}}})
-#ifdef HX_XBOX
-#define G_GREEN
-(kPad_X)
-#define G_RED
-(kPad_Tri)
-#define G_YELLOW
-(kPad_Circle)
-#define G_BLUE
-(kPad_Square)
-#define G_ORANGE
-(kPad_L1)
-#else
-#define G_GREEN
-(kPad_R2)
-#define G_RED
-(kPad_Circle)
-#define G_YELLOW
-(kPad_Tri)
-#define G_BLUE
-(kPad_X)
-#define G_ORANGE
-(kPad_Square)
-#endif
 #define OVERSHELL_SHORTCUT
 ({if
       {&&
          {exists ui}
          {! {ui in_transition}}
-               {'||'
-			   {==
-               {ui current_screen}
-               main_screen}
-			   {==
-               {ui current_screen}
-               endgame_screen}
-			   {==
-               {ui current_screen}
-               endgame_stats_screen}
-               {==
-               {ui current_screen}
-               complete_screen}
-			   {==
-               {ui current_screen}
-               highscore_screen}
-			   {==
-               {ui current_screen}
-               qp_selpart_screen}
-			   {==
-               {ui current_screen}
-               sel_song_screen}
-			   {==
-               {ui current_screen}
-               practice_end_screen}
-			   {==
-               {ui current_screen}
-               practice_sel_section_screen}
-			   {==
-               {ui current_screen}
-               pause_screen}
-			   {==
-               {ui current_screen}
-               pract_pause_screen}
-			   {==
-               {ui current_screen}
-               lose_screen}
-			   {==
-               {ui current_screen}
-               pause_confirm_restart_screen}
-			   {==
-               {ui current_screen}
-               pause_confirm_quit_screen}
+            {'||'
+			   {== {ui current_screen} main_screen}
+			   {== {ui current_screen} endgame_screen}
+			   {== {ui current_screen} endgame_stats_screen}
+               {== {ui current_screen} complete_screen}
+			   {== {ui current_screen} highscore_screen}
+			   {== {ui current_screen} qp_selpart_screen}
+			   {== {ui current_screen} sel_song_screen}
+			   {== {ui current_screen} practice_end_screen}
+			   {== {ui current_screen} practice_sel_section_screen}
+			   {== {ui current_screen} pause_screen}
+			   {== {ui current_screen} pract_pause_screen}
+			   {== {ui current_screen} lose_screen}
+			   {== {ui current_screen} pause_confirm_restart_screen}
+			   {== {ui current_screen} pause_confirm_quit_screen}
 			   }}
-      {set
-         $modifier_exit
-         {ui current_screen}}
+      {set $modifier_exit {ui current_screen}}
       {synth play_sequence button_select}
-      {ui push_screen overshell_screen}})
-((kPad_Select kPad_Select)
-   OVERSHELL_SHORTCUT)
+      {ui push_screen overshell_screen}
+	  })
+((kPad_Select kPad_Select) OVERSHELL_SHORTCUT)
