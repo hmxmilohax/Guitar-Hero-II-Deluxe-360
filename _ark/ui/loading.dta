@@ -1,12 +1,8 @@
 {new UIPanel loading_panel
-#ifdef GH1RX
-   (file loading_gh1.milo)
-#else
    (file
       {if_else $game80s
          loading_80s.milo
          loading.milo})
-#endif
    (enter
       {tip.lbl set_localized_text {tips random_tip}}
       {{game get_bank_loader} reset}
@@ -14,27 +10,8 @@
       {script_task
          (units kTaskUISeconds)
          (script
-#ifdef GH1RX
             {animate_forever_30fps $this flyingtape2.grp}
-            {loading_word.mnm set_frame 1}
-            {loading_word2.mnm set_frame 1}
-            {loading_word3.mnm set_frame 1}
-            {loading_word.mnm animate
-                (period 2.75)
-                (units kTaskUISeconds)}
-            {loading_word2.mnm animate
-                (delay 2.75)
-                (period 2.75)
-                (units kTaskUISeconds)}
-            {loading_word3.mnm animate
-                (delay 5.5)
-                (period 2.75)
-                (units kTaskUISeconds)}
-#else
-            {animate_forever_30fps $this flyingtape2.grp}
-            {animate_forever_30fps $this loading_word.grp}
-#endif
-            )})} ;dont forget to close parenth
+            {animate_forever_30fps $this loading_word.grp})})}
 {new GHScreen loading_screen
    (panels loading_panel)
    (allow_back FALSE)

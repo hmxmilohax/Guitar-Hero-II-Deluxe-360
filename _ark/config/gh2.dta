@@ -3,60 +3,20 @@
    (force_hd TRUE))
 (mem
    (heaps
-   #ifndef HX_XBOX
    (main
-      (size 19118000))
-   (rnd
-      (size 5900000)
-      (handle TRUE))
-   #else
-   #ifdef HX_PC
-   (main
-      (size 256000000))
-   (synth
-      (size 20000000))
-   #else
-   (main
-      (size 345000000))
-   #endif
-   #endif)
-   (pool
+      (size 50000000)))
+(pool
    (big_hunk 3100000)
    (small_hunk 50000)))
 (system
    (ng TRUE)
    (init
       #include system_script.dta)
-   (iop_modules
-      (iop/scrtchpd.irx)
-      (iop/sio2man.irx)
-      (iop/mcman.irx)
-      (iop/mcserv.irx)
-      #ifdef _SHIP
-      (iop/usbd.irx FALSE)
-      (iop/usbkb.irx FALSE)
-      #else
-      (iop/usbd.irx)
-      (iop/usbkb.irx
-         "keybd=1"
-         "debug=0")
-      #endif
-      (iop/padman.irx)
-      (iop/msifrpc.irx)
-      #ifdef _SHIP
-      (iop/mtapman.irx FALSE)
-      #else
-      (iop/mtapman.irx)
-      #endif
-      (iop/libsd.irx)
-      (iop/sdrdrv.irx)
-      (iop/cdvdstm.irx))
-   #ifdef _SHIP
+   (iop_modules)
    (keyboard
       (disable TRUE))
    (multitap
       (disable TRUE))
-   #endif
    (xbox_map_file
       "gh2_%s.map"))
 (synth
@@ -257,9 +217,8 @@
 (tutorial
    (streaming_vo
       (volume 0.0)
-      (dir tutorial/streams/eng)
-      (events
-         #include ../tutorial/tutorial_vo.dta)))
+      (dir)
+      (events)))
 (star_power_fx_volume 0)
 (master_volume -2.0)
 (options_screen
@@ -319,7 +278,12 @@
 (mc
    #include mc.dta)
 (store
-   #include store.dta)
+(guitar)
+(skin)
+(song)
+(character)
+(outfit)
+(video))
 (campaign
    #include campaign.dta)
 (downloads)

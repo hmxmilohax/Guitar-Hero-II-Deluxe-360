@@ -405,10 +405,7 @@
                attract})
          {press_any_button.lbl set_showing $attract}
          #ifdef HX_XBOX {logo.mesh set_showing $attract} #endif})}
-#ifndef HX_XBOX
-#define TRACK_MASK ()
-#endif
-#define GAME_PANELS (midi_loader_panel game #ifndef HX_XBOX TRACK_MASK #else track_mask #endif world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
+#define GAME_PANELS (midi_loader_panel game track_mask world_panel track_panel hud mtv_overlay_panel streak_overlay_panel)
 {new GHScreen game_screen
    (panels GAME_PANELS fade_panel)
    (allow_back FALSE)
