@@ -123,12 +123,17 @@
    (focus overshell_slider)
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+#define OVERSHELL_LIST_RESET_HANDLER
+({if_else {&& {! {$this slider_selected}} $helpentered}
+{{sel_section.lst set_selected $modifierlistpos} {$this reset}}
+{ui push_screen overshell_help_screen}})
 {new
    MultiSelectListPanel
    overshell_list
    (file overshell_list.milo)
    (focus sel_section.lst)
    (enter
+   {sel_section.lst set_selected $modifierlistpos}
    {sel_section.lst set_local_pos -140 0 35}
    {sel_section.lst set circular 1}
    {sel_section.lst set alignment kTopCenter}
@@ -144,75 +149,87 @@
             {do
             {play_sfx cheat_off}
             {set $notestreakmod FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			
 			{play_sfx cheat}
             {set $notestreakmod TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_towel
          {if_else $towel
             {do
             {play_sfx cheat_off}
             {set $towel FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			
 			{play_sfx cheat}
             {set $towel TRUE}
 			{set $trackspd 1.0}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_skipintro
          {if_else $miloskipintro
             {do
             {play_sfx cheat_off}
             {set $miloskipintro FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			
 			{play_sfx cheat}
             {set $miloskipintro TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_brighthopos
          {if_else $brighthopos
             {do
             {play_sfx cheat_off}
             {set $brighthopos FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			
 			{play_sfx cheat}
 			{set $gh1track FALSE}
             {set $brighthopos TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_darkstrums
          {if_else $darkstrums
             {do
             {play_sfx cheat_off}
             {set $darkstrums FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
 			{set $gh1track FALSE}
             {set $darkstrums TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_gh1track
          {if_else $gh1track
             {do
             {play_sfx cheat_off}
             {set $gh1track FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
 			{set $darkstrums FALSE}
 			{set $brighthopos FALSE}
             {set $gh1track TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_focusmode
          {if_else $focusmode
@@ -220,78 +237,92 @@
             {play_sfx cheat_off}
             {set $focusmode FALSE}
 			{set $miloskipintro FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $focusmode TRUE}
 			{set $miloskipintro TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_nofail
 	      {if_else $nofail
             {do
             {play_sfx cheat_off}
             {set $nofail FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $nofail TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_brutalmode
          {if_else $brutalmode
             {do
             {play_sfx cheat_off}
             {set $brutalmode FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $brutalmode TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_songtitle
          {if_else $songtitle
             {do
             {play_sfx cheat_off}
             {set $songtitle FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $songtitle TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_highwayshake
          {if_else $highwayshake
             {do
             {play_sfx cheat}
             {set $highwayshake FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat_off}
             {set $highwayshake TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_drums
          {if_else $drumenabled
             {do
             {play_sfx cheat_off}
             {set $drumenabled FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $drumenabled TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	   (os_horsehead
          {if_else $cheat_enabled_horse_head_mode
             {do
             {play_sfx cheat_off}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
             {set $cheat_enabled_horse_head_mode FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
             {set $cheat_enabled_horse_head_mode TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_monkeyhead
          {if_else 
@@ -299,11 +330,13 @@
             {do
             {play_sfx cheat_off}
             {set $cheat_crowd_heads 0}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $cheat_crowd_heads monkey_crowd_heads}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_eyeballhead
          {if_else 
@@ -311,55 +344,65 @@
             {do
             {play_sfx cheat_off}
             {set $cheat_crowd_heads 0}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $cheat_crowd_heads eyeball_crowd_heads}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_flaminghead
          {if_else $cheat_enabled_flaming_head
             {do
             {play_sfx cheat_off}
             {set $cheat_enabled_flaming_head FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $cheat_enabled_flaming_head TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
       (os_neckless
          {if_else $neckless
             {do
             {play_sfx cheat_off}
             {set $neckless FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $neckless TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
 	  (os_performance
          {if_else $cheat_enabled_performance_mode
             {do
             {play_sfx cheat_off}
             {set $cheat_enabled_performance_mode FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $cheat_enabled_performance_mode TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
       (os_roxbury
          {if_else $barf_cheat
             {do
             {play_sfx cheat_off}
             {set $barf_cheat FALSE}
-			OVERSHELL_HELP_POP_HANDLER}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}
 			{do
 			{play_sfx cheat}
             {set $barf_cheat TRUE}
-			OVERSHELL_HELP_POP_HANDLER}}
+			{set $modifierlistpos {sel_section.lst selected_pos}}
+			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)})
 	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
