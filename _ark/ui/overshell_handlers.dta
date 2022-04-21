@@ -419,6 +419,10 @@
    (focus overshell_character_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+#define OVERSHELL_DIFF_RESET_HANDLER
+({if_else {&& {! {$this slider_selected}} $helpentered}
+{{sel_section.lst set_selected $difflistpos} {$this reset}}
+{ui push_screen overshell_help_screen}})
 {new
    MultiSelectListPanel
    overshell_diff_list
@@ -426,14 +430,44 @@
    (focus sel_section.lst)
    (enter
    {do
+         {sel_section.lst set_selected $difflistpos}
          {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (Easy Medium Hard Expert)}
+         {sel_section.lst set_data (Easy Medium Hard Expert os_leftyp1 os_leftyp2)}
 		 {sel_section.lst set circular 0}
-         {sel_section.lst set_selected 3}}
-		 {gs_title.lbl set_text "DIFFICULTY"})
+		 {gs_title.lbl set_text "DIFFICULTY"}})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
+	   (os_leftyp2
+	   {if_else $leftyp2
+          {do
+            {play_sfx cheat_off}
+			{set $leftyp2 FALSE}
+            {options set_lefty 1 $leftyp2}
+			{set $difflistpos {sel_section.lst selected_pos}}
+			OVERSHELL_DIFF_RESET_HANDLER}
+		  {do
+			{play_sfx cheat}
+			{set $leftyp2 TRUE}
+            {options set_lefty 1 $leftyp2}
+			{set $difflistpos {sel_section.lst selected_pos}}
+			OVERSHELL_DIFF_RESET_HANDLER}}
+	   kDataUnhandled)
+	   (os_leftyp1
+	   {if_else $leftyp1
+          {do
+            {play_sfx cheat_off}
+			{set $leftyp1 FALSE}
+            {options set_lefty 0 $leftyp1}
+			{set $difflistpos {sel_section.lst selected_pos}}
+			OVERSHELL_DIFF_RESET_HANDLER}
+		  {do
+			{play_sfx cheat}
+			{set $leftyp1 TRUE}
+            {options set_lefty 0 $leftyp1}
+			{set $difflistpos {sel_section.lst selected_pos}}
+			OVERSHELL_DIFF_RESET_HANDLER}}
+	   kDataUnhandled)
 	   (Easy {{game get_player_config 0} set_difficulty kDifficultyEasy}
 	   OVERSHELL_HELP_POP_HANDLER
 	   kDataUnhandled)
