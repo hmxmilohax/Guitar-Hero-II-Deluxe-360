@@ -43,7 +43,7 @@ con/live files are not supported.
 
 There is a max package limit of 16 song packs. Currently there is a max song limit of around 200 songs due to setlist issues.
 
-You can find Vanilla song packs for [GHIIDX](https://drive.google.com/file/d/1xwX_Dv17WDFldZ0mDWZu71FLUI-CTywx/view?usp=sharing) and [GH80SDX](https://drive.google.com/file/d/1KJxH51N2yQdQXlNA9MmyrI1bGfdB6Hxz/view?usp=sharing) here.
+You can find Vanilla song packs for [GHIIDX](https://drive.google.com/file/d/1xwX_Dv17WDFldZ0mDWZu71FLUI-CTywx/view?usp=sharing), [GH80SDX](https://drive.google.com/file/d/1KJxH51N2yQdQXlNA9MmyrI1bGfdB6Hxz/view?usp=sharing), and [GHIIDLCDX](https://drive.google.com/file/d/12LgukgL51gesAAB7gZWGvd_ub1LP6eUe/view?usp=sharing) here.
 
 
 You can also use [Onyx Music Game Toolkit](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for GH2 360.
