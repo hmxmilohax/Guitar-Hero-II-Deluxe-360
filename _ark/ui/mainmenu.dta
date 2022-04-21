@@ -21,6 +21,7 @@
       {set $cheat_enabled_unlock_all 1}
       {campaign set_all_access 1}
       {$this reset_player_settings}
+	  {set $dontreset TRUE}
       {if
          {!
             [already_entered]}
@@ -64,6 +65,7 @@
             {taskmgr ui_seconds}
             {$this get msg_last_frame}}})
    (reset_player_settings
+   {if {! $dontreset}
       {{game get_player_config 0}
          set_difficulty
          kDifficultyExpert}
@@ -73,7 +75,7 @@
             {game get_player_config 1})
          {$player2_config set_character rockabill1 TRUE}
          {$player2_config set_guitar_index 0}
-         {$player2_config set_difficulty kDifficultyMedium}})
+         {$player2_config set_difficulty kDifficultyExpert}}})
    (display_cheat_msg
       ($cheat $enable)
       {mm_msg.lbl
