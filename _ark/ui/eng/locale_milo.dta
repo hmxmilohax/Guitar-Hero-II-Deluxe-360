@@ -165,6 +165,7 @@
 (os_brighthopos {sprint "Brighter HOPOS" {if_else $brighthopos ": ON" ": OFF"}})
 (os_skipintro {sprint "Skip Intro" {if_else $miloskipintro ": ON" ": OFF"}})
 (os_towel {sprint "Towel Hyperspeed" {if_else $towel ": ON" ": OFF"}})
+(os_notestreakmod {sprint "Note Streak Popups" {if_else $notestreakmod ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")

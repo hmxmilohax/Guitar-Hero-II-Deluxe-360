@@ -135,10 +135,22 @@
    {gs_title.lbl set_text "MODIFIERS"}
       {sel_section.lst
          set_data
-         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_towel os_brighthopos os_darkstrums os_gh1track os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
+         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_towel os_brighthopos os_darkstrums os_gh1track os_notestreakmod os_highwayshake os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_roxbury)})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
+	   (os_notestreakmod
+         {if_else $notestreakmod
+            {do
+            {play_sfx cheat_off}
+            {set $notestreakmod FALSE}
+			OVERSHELL_HELP_POP_HANDLER}
+			{do
+			
+			{play_sfx cheat}
+            {set $notestreakmod TRUE}
+			OVERSHELL_HELP_POP_HANDLER}}
+         kDataUnhandled)
 	   (os_towel
          {if_else $towel
             {do
@@ -149,7 +161,7 @@
 			
 			{play_sfx cheat}
             {set $towel TRUE}
-			{set $trackspd TRUE}
+			{set $trackspd 1.0}
 			OVERSHELL_HELP_POP_HANDLER}}
          kDataUnhandled)
 	   (os_skipintro

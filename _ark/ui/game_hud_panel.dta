@@ -8,7 +8,7 @@
    {if {> $player0_streak 50}
       {set $interval_p0 100}} ;if streak is more than 50, set interval to 100
    {if {== {mod $player0_streak $interval_p0} 0}
-      {hud show_message 0 note_streak_popup_p0}
+      {if $notestreakmod {hud show_message 0 note_streak_popup_p0}}
       {if {! $focusmode} {play_game_sfx_player meter_slide meter_slide 0}}
 	  }} ;if streak is mod interval, fire popup
 
@@ -17,16 +17,16 @@
    {if {> $player1_streak 50}
       {set $interval_p1 100}} ;if streak is more than 50, set interval to 100
    {if {== {mod $player1_streak $interval_p1} 0}
-      {hud show_message 1 note_streak_popup_p1}
-      {play_game_sfx_player meter_slide meter_slide 1}}} ;if streak is mod interval, fire popup
+      {if $notestreakmod {hud show_message 1 note_streak_popup_p1}}
+      {if {! $focusmode} {play_game_sfx_player meter_slide meter_slide 1}}}} ;if streak is mod interval, fire popup
 
 {func note_streak_p2
    {set $player2_streak {'+' $player2_streak 1}}
    {if {> $player2_streak 50}
       {set $interval_p2 100}}
    {if {== {mod $player2_streak $interval_p2} 0}
-      {hud show_message kPlayerShared note_streak_popup_p2}
-      {play_game_sfx_player meter_slide meter_slide $player_num}}}
+      {if $notestreakmod {hud show_message kPlayerShared note_streak_popup_p2}}
+      {if {! $focusmode} {play_game_sfx_player meter_slide meter_slide $player_num}}}}
 {new
    Object
    note_streak_callback_p0
