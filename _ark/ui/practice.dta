@@ -156,11 +156,11 @@
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {streak_overlay_panel show_overlay TRUE}
       {mtv_overlay_panel show_overlay TRUE}
-      {script_task
+      {if {! $songtitle} {script_task
          (delay 3)
          (units kTaskSeconds)
          (script
-            {mtv_overlay_panel show_overlay FALSE})}
+            {mtv_overlay_panel show_overlay FALSE})}}
       {set
          [ignore_section]
          {section_provider section_after_last}}
