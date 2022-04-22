@@ -127,7 +127,7 @@
             {mtv_overlay_panel show_overlay FALSE})}}
 	  {if_else $towel
 	  {beatmatch set_music_speed 1.0}
-	  {beatmatch set_music_speed $speedmod}}
+	  {if_else {> $speedmod 1} {beatmatch set_music_speed $speedmod} {beatmatch set_music_speed 1.0}}}
 	  {$this slide_meter_in}
       {if $do_streak {streak_overlay_panel setup_streak}}
 	  {streak_overlay_panel show_overlay $do_streak}
@@ -149,7 +149,7 @@
          {track_panel do_extend_sequence}}
       {if_else $towel
 	  {beatmatch set_music_speed 1.0}
-	  {beatmatch set_music_speed $speedmod}}
+	  {if_else {> $speedmod 1} {beatmatch set_music_speed $speedmod} {beatmatch set_music_speed 1.0}}}
       {script_task
          (delay 1.8)
          (units kTaskSeconds)

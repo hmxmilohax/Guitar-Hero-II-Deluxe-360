@@ -17,7 +17,7 @@
    (finish_load
       {gs_band.sld set_num_steps 60}
       {gs_guitar.sld set_num_steps 21}
-      {gs_sfx.sld set_num_steps 31}) ; was 41 steps, dropped to 31 when disallowing <100%
+      {gs_sfx.sld set_num_steps 41}) ; was 41 steps, dropped to 31 when disallowing <100%
    (slider_changed {'||'
       {!=
          {options get band_volume_idx}
@@ -32,7 +32,7 @@
       {if $towel {$this disable gs_guitar.sld}}
       {gs_guitar.sld set_current {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}}
       {gs_sfx.sld set_current
-         {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}}
+         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}}
       {gs_band.sld set_current
          {int {- $emulatefps 1}}}
       {stereo.chk set_check $focusmode}
@@ -50,7 +50,7 @@
          {do
             {set $trackspd {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}}
             {set $speedmod
-               {+ 1 {* {gs_sfx.sld current} 0.05}}}
+               {- {+ 1 {* {gs_sfx.sld current} 0.05}} 0.5}}
             {set $emulatefps {+ 1 {gs_band.sld current}}}
             {$this display_speed_msg $trackspd $speedmod $emulatefps}}})
    (slider_select_cancel
