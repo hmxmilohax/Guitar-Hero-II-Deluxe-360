@@ -4,7 +4,7 @@
    (skip_intro {if_else {'||' $focusmode $miloskipintro} TRUE FALSE})
    (update_song_leaderboard FALSE)
    (update_career_leaderboard FALSE)
-   (crowd_rating_active TRUE)
+   (crowd_rating_active {if_else $nofail FALSE TRUE})
    (separate_parts TRUE)
    (num_players 1)
    (competitive FALSE)
