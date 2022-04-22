@@ -73,6 +73,10 @@
 ;enables drum mapping. drums are note fully implemented on 30
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
+;disable select to restart in practice mode
+{set $quickplaysectionnames FALSE}
+;disable select to restart in practice mode
+{set $selecttorestart TRUE}
 ;neckless mode removes only the highway and leaves the hud.
 ;similar to performance mode
 {set $neckless FALSE}
