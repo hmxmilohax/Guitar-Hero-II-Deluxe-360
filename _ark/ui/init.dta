@@ -42,6 +42,7 @@
 {set $brutalmode FALSE}
 {set $brighthopos FALSE}
 {set $darkstrums FALSE}
+{set $towel FALSE}
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
 {set $emulatefps 60}
