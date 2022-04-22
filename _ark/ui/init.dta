@@ -18,11 +18,6 @@
 
 
 #ifdef HX_XBOX {set $first_screen splash_screen} #endif
-
-; Set various defaults on startup, including ELF specific bootups. $speedmod
-; is the song speed, $trackspd is the note speed, $interval refers to the
-; streak popups, and $rbdrum is pademu drum input mapping, which we want off
-; by default.
 {ui my_init}
 {do
    ($cfg)
@@ -30,30 +25,67 @@
       {option_str budget_config $cfg}
       {track_budget setup $cfg}
       {set $first_screen track_budget}}}
+; Set various defaults on startup, including ELF specific bootups. $speedmod
+; is the song speed, $trackspd is the note speed, $interval refers to the
+; streak popups, and $rbdrum is pademu drum input mapping, which we want off
+; by default.
+
+;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
+;Track/Highway/Note Speed. Each .1 is 10%
 {set $trackspd 1.0}
+;Focus mode gives you a black background in
+;game and turns off some additional noises
 {set $focusmode FALSE}
+;Sets the song title to persist the duration
+;of the song, or turn off after the intro
 {set $songtitle FALSE}
-{set $nofail FALSE}
-{set $highway _black_highway}
-{set $highwayshake TRUE}
-{set $miloskipintro FALSE}
-{set $notestreakmod TRUE}
-{set $brutalmode FALSE}
-{set $brighthopos FALSE}
-{set $darkstrums FALSE}
-{set $gh1track FALSE}
-{set $towel FALSE}
-{set $rbdrum FALSE}
-{set $drumenabled FALSE}
+;emulate the venue fps. this is useful to lower
+;when streaming
 {set $emulatefps 60}
+;No fail mode
+{set $nofail FALSE}
+;default highway image
+{set $highway _black_highway}
+;Turns highway shake on or off
+{set $highwayshake TRUE}
+;player 1 and player 2 lefty flip
 {set $leftyp1 FALSE}
 {set $leftyp2 FALSE}
+;skips the song intro in quickplay for faster
+;gameplay. Focus mode turns this on autopmatically
+{set $miloskipintro FALSE}
+;disables the popup for notestreaks at 50, 100, 200
+;etc in game
+{set $notestreakmod TRUE}
+;mock style brutal mode. it does not move based on
+;progression, and sustains are a bit wonky
+{set $brutalmode FALSE}
+;brighter hopos if you have trouble telling them apart
+{set $brighthopos FALSE}
+;darker strums if you have trouble telling them apart
+{set $darkstrums FALSE}
+;gh1 style notes and "smashers" ported from ps2
+{set $gh1track FALSE}
+;mock towell hyperspeed mode which cuts about 50% of the
+;visible notes. Think reverse brutal mode
+{set $towel FALSE}
+;enables drum mapping. drums are note fully implemented on 30
+{set $rbdrum FALSE}
+{set $drumenabled FALSE}
+;neckless mode removes only the highway and leaves the hud.
+;similar to performance mode
 {set $neckless FALSE}
+;otherwise known as roxbury mode, this will shake the highway
+;to the beat of the song while playing
 {set $barf_cheat FALSE}
+;standard performance mode cheat
 {set $cheat_enabled_performance_mode FALSE}
+;standard flaming head mode cheat
 {set $cheat_enabled_flaming_head FALSE}
+;guitar hero rocks the 80s themed menus
 {set $game80s FALSE}
+;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}
 {set $modifierlistpos 0}
