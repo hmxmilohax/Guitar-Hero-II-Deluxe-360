@@ -202,8 +202,8 @@
 #define kMeshStarTop
 (6)
 #define WORLDEVENTS
-((SYSTEMWORLDEVENTS chorus verse solo venue_effect excitement_bad excitement_okay excitement_great intro_skip intro_start intro_end kick_drum crash_symbal bass_hit post_switch_cam music_start game_over game_won game_lost campaign_won encore_lost crowd_update crowd_hide crowd_half_tempo crowd_double_tempo crowd_normal_tempo crowd_lighters_slow crowd_lighters_fast crowd_lighters_off build_streak single_player multi_player hit_p0_fret1 hit_p0_fret2 hit_p0_fret3 hit_p0_fret4 hit_p0_fret5 hit_p1_fret1 hit_p1_fret2 hit_p1_fret3 hit_p1_fret4 hit_p1_fret5 play_encore_fx skip_encore_fx encore_outro hit_snare hit_hihat peak_on peak_off star_power_ready star_power_start star_power_stop drummer_explode))
+((SYSTEMWORLDEVENTS chorus verse solo venue_effect excitement_bad excitement_okay excitement_great intro_skip intro_start intro_end kick_drum crash_symbal bass_hit post_switch_cam music_start game_over game_won game_lost campaign_won encore_lost build_streak single_player multi_player hit_p0_fret1 hit_p0_fret2 hit_p0_fret3 hit_p0_fret4 hit_p0_fret5 hit_p1_fret1 hit_p1_fret2 hit_p1_fret3 hit_p1_fret4 hit_p1_fret5 play_encore_fx skip_encore_fx encore_outro hit_snare hit_hihat peak_on peak_off star_power_ready star_power_start star_power_stop drummer_explode))
 #define LANGUAGES
-((eng fre ita deu esl))
+((eng))
 #include xlast_macros.dta
 #endif

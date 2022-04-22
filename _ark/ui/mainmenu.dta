@@ -27,6 +27,9 @@
             [already_entered]}
          {synth play_sequence meta_lick}
          {$this set already_entered TRUE}}
+      {$this disable main_career.btn}
+      {$this disable main_quickspin.btn}
+      {$this disable main_multiplayer.btn}
       {game set_tutorial_running FALSE}
       {main_msg.view set_showing FALSE}
       {set
@@ -38,14 +41,14 @@
    (SELECT_START_MSG
       {switch
          $component
-         (main_career.btn
-            ;{ui goto_screen nameprof_screen}
-			)
-		 (main_quickspin.btn
-            {gamecfg set mode career}
-            {ui goto_screen sel_song_screen})
-         (main_multiplayer.btn
-            {ui goto_screen multi_controller_select_screen})
+         ;(main_career.btn
+         ;   ;{ui goto_screen nameprof_screen}
+		;	)
+		 ;(main_quickspin.btn
+          ;  {gamecfg set mode career}
+          ;  {ui goto_screen sel_song_screen})
+         ;(main_multiplayer.btn
+         ;   {ui goto_screen multi_controller_select_screen})
          (main_tutorial.btn
 		    {gamecfg set mode practice}
             {gamecfg set practice_speed 0}
@@ -58,7 +61,7 @@
       {if_else
          {game is_missing_multi_controller}
          {$this disable main_multiplayer.btn}
-         {$this enable main_multiplayer.btn}}
+         {$this disable main_multiplayer.btn}}
       {main_msg.view
          set_showing
          {<

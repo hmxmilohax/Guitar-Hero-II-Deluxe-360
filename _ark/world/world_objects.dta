@@ -658,11 +658,4 @@
                (help
                   "Post process object to use for this shot")))
          #include camshot.dta)))
-#merge arena/arena.dta
 #merge battle/battle.dta
-#merge big/big.dta
-#merge fest/fest.dta
-#merge small1/small1.dta
-#merge small2/small2.dta
-#merge stone/stone.dta
-#merge theatre/theatre.dta

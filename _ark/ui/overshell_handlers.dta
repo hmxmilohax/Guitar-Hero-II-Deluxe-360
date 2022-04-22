@@ -140,7 +140,7 @@
    {gs_title.lbl set_text "MODIFIERS"}
       {sel_section.lst
          set_data
-         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_towel os_brighthopos os_darkstrums os_gh1track os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)})
+         (os_focusmode os_skipintro os_nofail os_songtitle os_brutalmode os_towel os_notestreakmod os_highwayshake os_selecttorestart os_neckless os_performance os_autoplay os_roxbury)})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
