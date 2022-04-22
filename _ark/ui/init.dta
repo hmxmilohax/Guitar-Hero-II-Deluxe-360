@@ -32,30 +32,32 @@
       {set $first_screen track_budget}}}
 {set $speedmod 1.0}
 {set $trackspd 1.0}
-{set $interval_p0 50}
-{set $interval_p1 50}
-{set $interval_p2 50}
+{set $focusmode FALSE}
+{set $songtitle FALSE}
+{set $nofail FALSE}
+{set $highway _black_highway}
+{set $highwayshake TRUE}
+{set $miloskipintro FALSE}
+{set $notestreakmod TRUE}
+{set $brutalmode FALSE}
+{set $brighthopos FALSE}
+{set $darkstrums FALSE}
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
 {set $emulatefps 60}
-{set $focusmode FALSE}
-{set $nofail FALSE}
+{set $leftyp1 FALSE}
+{set $leftyp2 FALSE}
 {set $neckless FALSE}
 {set $barf_cheat FALSE}
 {set $cheat_enabled_performance_mode FALSE}
 {set $cheat_enabled_flaming_head FALSE}
-{set $songtitle FALSE}
 {set $game80s FALSE}
-{set $highway _black_highway}
-{set $highwayshake TRUE}
-{set $brutalmode FALSE}
-{set $miloskipintro FALSE}
-{set $notestreakmod TRUE}
-{set $modifierlistpos 0}
-{set $difflistpos 3}
-{set $leftyp1 FALSE}
-{set $leftyp2 FALSE}
 {set $dontreset FALSE}
+{set $difflistpos 3}
+{set $modifierlistpos 0}
+{set $interval_p0 50}
+{set $interval_p1 50}
+{set $interval_p2 50}
 ; We take advantage of the fact that Harmonix sets $first_screen as a
 ; variable by sending the player to different first screens depending on the
 ; version. Customs Edition and Expansion go to the main menu, while Mega goes
