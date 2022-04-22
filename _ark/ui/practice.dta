@@ -241,7 +241,7 @@
       {switch
          $button
          (kPad_Select
-            {game_restart_fast})
+            {if $selecttorestart {game_restart_fast}})
          (kPad_Start
             {if {! {game get game_over}}
                {game set_paused TRUE}

@@ -168,6 +168,7 @@
 (os_notestreakmod {sprint "Note Streak Popups" {if_else $notestreakmod ": ON" ": OFF"}})
 (os_leftyp1 {sprint "Lefty Flip P1" {if_else $leftyp1 ": ON" ": OFF"}})
 (os_leftyp2 {sprint "Lefty Flip P2" {if_else $leftyp2 ": ON" ": OFF"}})
+(os_selecttorestart {sprint "Select in Practice" {if_else $selecttorestart ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")
