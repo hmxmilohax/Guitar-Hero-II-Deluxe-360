@@ -41,8 +41,8 @@
 {set $notestreakmod TRUE}
 {set $brutalmode FALSE}
 {set $brighthopos FALSE}
-{set $gh1track FALSE}
 {set $darkstrums FALSE}
+{set $gh1track FALSE}
 {set $towel FALSE}
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
