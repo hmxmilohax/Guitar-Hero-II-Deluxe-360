@@ -89,6 +89,9 @@
 {set $cheat_enabled_flaming_head FALSE}
 ;guitar hero rocks the 80s themed menus
 {set $game80s FALSE}
+;mock towell hyperspeed mode which cuts about 50% of the
+;visible notes. Think reverse brutal mode
+{set $autoplay FALSE}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}
