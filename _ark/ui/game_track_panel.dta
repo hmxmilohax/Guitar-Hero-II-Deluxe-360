@@ -1,28 +1,6 @@
 #define TRACK_END_FRAME (1920)
 {new TrackPanel track_panel
-#ifndef HX_XBOX
-   (file
-      {switch {game get_track_sym 0}
-         (bass '../track/track.milo')
-         (drum '../track/track_drum.milo')
-         (rhythm '../track/track.milo')
-         (guitar '../track/track.milo')})
-#else
-(file
-         {if_else {== {gamecfg get_num_players} 1}
-         {if_else {&& $darkstrums $brighthopos}
-		 ../track/both_panel_1p.milo
-		 {if_else $brighthopos
-		 ../track/bright_panel_1p.milo
-		 {if_else $darkstrums
-		 ../track/dark_panel_1p.milo
-		 {if_else $gh1track
-		 ../track/old_panel_1p.milo
-		 {if_else $egg2
-         ../track/old_panel_1p.milo
-         ../track/track_panel_1p.milo}}}}}
-         ../track/track_panel_2p.milo})
-#endif
+(file ../track/old_panel_1p.milo)
    (set_track_out
       {$this set_frame TRACK_END_FRAME})
    (set_track_in
