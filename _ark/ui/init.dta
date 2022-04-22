@@ -73,7 +73,7 @@
 ;enables drum mapping. drums are note fully implemented on 30
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
-;disable select to restart in practice mode
+;show practice section names in quickplay (not implemented)
 {set $quickplaysectionnames FALSE}
 ;disable select to restart in practice mode
 {set $selecttorestart TRUE}
