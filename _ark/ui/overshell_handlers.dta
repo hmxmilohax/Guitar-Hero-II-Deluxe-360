@@ -16,7 +16,7 @@
    (orig_vol 0)
    (finish_load
       {gs_band.sld set_num_steps 60}
-      {gs_guitar.sld set_num_steps 21}
+      {gs_guitar.sld set_num_steps 31}
       {gs_sfx.sld set_num_steps 41}) ; was 41 steps, dropped to 31 when disallowing <100%
    (slider_changed {'||'
       {!=
