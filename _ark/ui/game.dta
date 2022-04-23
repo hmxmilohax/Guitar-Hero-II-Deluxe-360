@@ -330,7 +330,7 @@
          (units kTaskSeconds)
          (script
             {$this set_paused TRUE}
-               {ui goto_screen practice_end_screen})})
+               {ui goto_screen {if_else $fakequickplay practice_end_screen practice_end_screen}})})
    (slow_music
       {set [lose_time] {taskmgr seconds}}
       {script_task

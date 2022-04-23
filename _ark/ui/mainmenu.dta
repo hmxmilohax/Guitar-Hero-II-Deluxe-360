@@ -28,7 +28,6 @@
          {synth play_sequence meta_lick}
          {$this set already_entered TRUE}}
       {$this disable main_career.btn}
-      {$this disable main_quickspin.btn}
       {$this disable main_multiplayer.btn}
       {game set_tutorial_running FALSE}
       {main_msg.view set_showing FALSE}
@@ -49,7 +48,12 @@
           ;  {ui goto_screen sel_song_screen})
          ;(main_multiplayer.btn
          ;   {ui goto_screen multi_controller_select_screen})
-         (main_tutorial.btn
+         (main_quickspin.btn
+            {set $fakequickplay TRUE}
+		    {gamecfg set mode practice}
+            {gamecfg set practice_speed 0}
+            {ui goto_screen sel_song_screen})
+		 (main_tutorial.btn
 		    {gamecfg set mode practice}
             {gamecfg set practice_speed 0}
             {ui goto_screen sel_song_screen})

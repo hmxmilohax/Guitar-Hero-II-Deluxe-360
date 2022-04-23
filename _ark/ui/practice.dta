@@ -39,7 +39,7 @@
                1})
          {if_else
             [section]
-            {if_else
+            {if {! $fakequickplay} {if_else
                {<
                   $idx
                   {gamecfg
@@ -53,7 +53,7 @@
                      (practice_sections 1)
                      $idx}
                   {ui goto_screen practice_loading_screen}
-                  kDataUnhandled}}
+                  kDataUnhandled}}}
             {if_else
                {== $idx -1}
                {do
@@ -67,7 +67,7 @@
                      -1}
                   {ui goto_screen practice_loading_screen}
                   kDataUnhandled}
-               {do
+               {if {! $fakequickplay} {do
                   {gamecfg
                      set
                      (practice_sections 0)
@@ -77,7 +77,7 @@
                      [section]
                      1}
                   {section_provider set_start_section $idx}
-                  kDataUnhandled}}}})
+                  kDataUnhandled}}}}})
    (SCROLL_MSG
       {$this play_preview})
    (BUTTON_DOWN_MSG
