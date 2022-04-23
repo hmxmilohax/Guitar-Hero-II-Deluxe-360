@@ -103,8 +103,7 @@
 ../ui/eng/locale_guitars.dta ../ui/eng/locale_loading_general.dta
 ../ui/eng/locale_loading_gh2.dta ../ui/eng/locale_loading_gh1.dta
 ../ui/eng/locale_loading_gh80s.dta ../ui/eng/locale_mc.dta ../ui/eng/locale_newspaper.dta
-../ui/eng/locale_sections.dta ../ui/eng/locale_sections_rb1.dta ../ui/eng/locale_sections_rb2.dta
-../ui/eng/locale_sections_rb3.dta ../ui/eng/locale_shop.dta ../ui/eng/locale_tiers.dta
+../ui/eng/locale_sections.dta ../ui/eng/locale_shop.dta ../ui/eng/locale_tiers.dta
 ../ui/eng/locale_tutorials.dta ../ui/eng/locale_venues.dta)
 (venues battle)
 (default_band metal_singer metal_bass metal_drummer)
