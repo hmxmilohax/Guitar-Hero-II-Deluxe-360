@@ -137,11 +137,7 @@
 {new
    GHPanel
    practice_panel
-   (file
-	{if_else
-      $game80s
-      practice_panel_80s.milo
-      practice_panel.milo})
+   (file practice_panel.milo)
    (enter
       {section.lbl set_local_scale .8 1 .8}
 	  {section_shadow.lbl set_local_scale .8 1 .8}
