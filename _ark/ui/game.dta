@@ -5,6 +5,8 @@
 {new GHPanel mtv_overlay_panel
    (file mtv_overlay.milo)
    (enter
+   {set $starratingtemp ' '}
+   {set $starrating ' '}
    {set $notesmissed 0}
    {set $overstrums 0}
       {mtv_overlay.view set_local_scale .8 1 .8}
@@ -13,6 +15,19 @@
          {$this show_overlay FALSE}
          {$this setup_text}})
    (setup_text
+   {set $starratingtemp {if_else {< {player0 avg_multiplier} 1.2}
+   {* {player0 avg_multiplier} 2.5}
+   {+ {* {player0 avg_multiplier} 1.25} 1.5}}}
+   {if {> $starratingtemp 0.0} {set $starrating ' '}}
+   {if {> $starratingtemp 1.0} {set $starrating '©'}}
+   {if {> $starratingtemp 2.0} {set $starrating '©©'}}
+   {if {> $starratingtemp 3.0} {set $starrating '©©©'}}
+   {if {> $starratingtemp 4.0} {set $starrating '©©©©'}}
+   {if {> $starratingtemp 5.0} {set $starrating '©©©©©'}}
+   {if {> $starratingtemp 6.0} {set $starrating '©©©©©©'}}
+   {if {> $starratingtemp 7.0} {set $starrating '©©©©©©©'}}
+   {if {> $starratingtemp 8.0} {set $starrating '©©©©©©©©'}}
+   {if {> $starratingtemp 9.0} {set $starrating '©©©©©©©©©'}}
       {do
          ($song {gamecfg get_song})
          ($song_text {game get_song_text})
@@ -31,13 +46,13 @@
             {$this set_line $prefix 2 $song_caption}
 			{if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string
                {if_else $autoplay
-			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY"}}
-			   {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}} "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS"}}} ; If present, add newline to line 3 followed by author
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY" "\n" $starrating}}
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}} "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS" "\n" $starrating}}} ; If present, add newline to line 3 followed by author
 			   {if_else $autoplay
-			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY"}}
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY" "\n" $starrating}}
 			   {if_else $author ; check for a set $author in DLC contexts.dta
-               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " $author "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS"}} ;                             ^
-               {$this set_line $prefix 3 {sprint $artist_text "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS"}}}}} ; If not, put nothing
+               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " $author "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS" "\n" $starrating}} ;                             ^
+               {$this set_line $prefix 3 {sprint $artist_text "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS" "\n" $starrating}}}}} ; If not, put nothing
    }})
    (set_line
       ($prefix $i $text)
@@ -116,6 +131,7 @@
       {set [intro_complete] FALSE}
       kDataUnhandled)
    (intro_skip
+      {set $starrating ' '}
       {track_panel intro_skip}
 	  {set $do_streak TRUE}
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
@@ -332,7 +348,7 @@
          (units kTaskSeconds)
          (script
             {$this set_paused TRUE}
-               {ui goto_screen practice_end_screen})})
+              {ui goto_screen practice_end_screen})})
    (slow_music
       {set [lose_time] {taskmgr seconds}}
       {script_task

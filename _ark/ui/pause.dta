@@ -29,6 +29,8 @@
       {set $game_unpause_on_enter TRUE}
       {ui goto_screen {gamecfg get game_screen}})
    (restart
+      {set $starratingtemp ' '}
+      {set $starrating ' '}
       {mtv_overlay_panel setup_text}
       {synth stop_all_sfx}
       {synth play_sequence button_play}
