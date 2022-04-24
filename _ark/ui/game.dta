@@ -5,6 +5,8 @@
 {new GHPanel mtv_overlay_panel
    (file mtv_overlay.milo)
    (enter
+   {set $notesmissed 0}
+   {set $overstrums 0}
       {mtv_overlay.view set_local_scale .8 1 .8}
 	  {mtv_overlay.view set_local_pos -160 1 40}
       {if_else {game is_tutorial_running}
@@ -30,12 +32,12 @@
 			{if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string
                {if_else $autoplay
 			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY"}}
-			   {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}}}}} ; If present, add newline to line 3 followed by author
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}} "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS"}}} ; If present, add newline to line 3 followed by author
 			   {if_else $autoplay
 			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY"}}
 			   {if_else $author ; check for a set $author in DLC contexts.dta
-               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " $author}} ;                             ^
-               {$this set_line $prefix 3 {sprint $artist_text "\n "}}}}} ; If not, put nothing
+               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " $author "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS"}} ;                             ^
+               {$this set_line $prefix 3 {sprint $artist_text "\n" $notesmissed " NOTES MISSED" "\n" $overstrums " OVERSTRUMS"}}}}} ; If not, put nothing
    }})
    (set_line
       ($prefix $i $text)

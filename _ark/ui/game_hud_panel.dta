@@ -45,7 +45,8 @@
             {if_else {== {gamecfg get mode} multi_coop}
                {streak_overlay_panel update_streak 2}
                {streak_overlay_panel update_streak 0}}
-            {set $beforefirstnote_p0 FALSE}}})
+            {set $beforefirstnote_p0 FALSE}
+			{mtv_overlay_panel setup_text}}})
 
    (gem_miss_callback
       ($slot_hit $real_slot $timing_error)
@@ -66,8 +67,10 @@
                   {streak_overlay_panel not_an_fc 0}}
                   {set $player0_streak 0}
                   {set $interval_p0 50}
+				  {if {! $beforefirstnote_p0} {set $overstrums {+ $overstrums 1}}}
                   {streak_overlay_panel zero_streak 0}
-                  {streak_overlay_panel update_streak 0}}}
+                  {streak_overlay_panel update_streak 0}
+				  {mtv_overlay_panel setup_text}}}
          {if_else {== {gamecfg get mode} multi_coop}
             {do
                {set $player2_streak 0}
@@ -96,9 +99,11 @@
                      {do
                         {streak_overlay_panel not_an_fc 0}}}
                   {set $player0_streak 0}
+				  {set $notesmissed {+ $notesmissed 1}}
                   {set $interval_p0 50}
                   {streak_overlay_panel zero_streak 0}
-                  {streak_overlay_panel update_streak 0}}
+                  {streak_overlay_panel update_streak 0}
+				  {mtv_overlay_panel setup_text}}
             }}})}
 
 {new
@@ -228,7 +233,8 @@
       {stk_campaign_line_vers2.lbl set_showing FALSE}
       {stk_campaign_line_vs2p1.lbl set_showing FALSE}
       {stk_campaign_line_vs2p2.lbl set_showing FALSE}
-      
+      {set $notesmissed 0}
+	  {set $overstrums 0}
       {set $player0_fc FALSE} ; Pre-clear all FC flags so only the ones in use actually get set
       {set $player1_fc FALSE}
       {set $player2_fc FALSE}
