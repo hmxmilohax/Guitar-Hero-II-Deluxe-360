@@ -100,52 +100,6 @@
 (gh2_title "Guitar Hero 2")
 (gh80s_title "Guitar Hero 80s")
 
-; Autoplay fun stuff
-(toogle_headline_qp_1 "NICE BOT RUN,\nYA FUCKIN' CHUMP!") ;free play
-(toogle_headline_qp_2 "COMMUNITY HORRIFIED AT BLATANT DISPLAY OF GAME HACKING")
-(toogle_headline_qp_3 "MUSIC FANS RIOT IN THE STREETS AFTER BOGUS CONCERT")
-(toogle_headline_qp_4 "HACK GUITARIST FAKES IT THROUGH DIFFICULT SONG")
-
-(toogle_headline_ca_1 "{GH_BAND} MOCKED ONLINE AFTER SINGER CAUGHT LIP-SYNCING") ;career
-(toogle_headline_ca_2 "{GH_BAND} FANS RETURNING THEIR ALBUMS IN SHAME")
-(toogle_headline_ca_3 "\qEVEN THE GUITAR WAS AUTOTUNED\q SAYS {GH_VENUE}")
-(toogle_headline_ca_4 "EVEN ON TOY GUITARS, {GH_BAND} CAN'T CUT IT")
-
-(toogle_headline_vsp1_1 {sprint {localize {{gamecfg get_player_config 0} get_character}} " DISQUALIFIED DUE TO PERFORMANCE ENHANCERS"}) ;vs/fo, p1 autoplay
-(toogle_headline_vsp1_2 {sprint {localize {{gamecfg get_player_config 0} get_character}} " WORSE THAN MILLI VANILLI"})
-(toogle_headline_vsp1_3 {sprint "CROWD AT {GH_VENUE} WANTS A DO-OVER, THANKS " {localize {{gamecfg get_player_config 0} get_character}}})
-(toogle_headline_vsp1_4 {sprint {localize {{gamecfg get_player_config 1} get_character}} " LAUDED AS \qREAL MUSICIAN\q"})
-
-(toogle_headline_vsp2_1 {sprint {localize {{gamecfg get_player_config 1} get_character}} " CAUGHT MIMICKING ON STAGE"}) ;vs/fo, p2 autoplay
-(toogle_headline_vsp2_2 {sprint {localize {{gamecfg get_player_config 1} get_character}} " RECONSIDERS THEIR LIFE CHOICES AFTER ON-STAGE CHICANERY"})
-(toogle_headline_vsp2_3 {sprint {localize {{gamecfg get_player_config 1} get_character}} " DOESN'T COUNT, " {localize {{gamecfg get_player_config 0} get_character}} " REJOICES"})
-(toogle_headline_vsp2_4 {sprint {localize {{gamecfg get_player_config 1} get_character}} " WORSE THAN MILLI VANILLI"})
-
-(toogle_headline_vs_1 "{GH_VENUE} SHOCKED AS COMPETITORS BOTH FOUND CHEATING") ;vs/fo, both autoplay
-(toogle_headline_vs_2 "\qEVERYONE INVOLVED IS A DAMN LIAR\q SAYS CROWD MEMBER")
-(toogle_headline_vs_3 "COMPETITION RENDERED MOOT AS BOTH PARTIES CHEAT LIKE COWARDS")
-(toogle_headline_vs_4 "WHY EVEN BOTHER COMPETING THEN?")
-
-(toogle_headline_cop1_1 {sprint {localize {{gamecfg get_player_config 1} get_character}} " EMBARRASSED TO SHARE STAGE WITH A BOT"}) ;coop, p1 autoplay
-(toogle_headline_cop1_2 {sprint {localize {{gamecfg get_player_config 1} get_character}} " LOOKS AT "{localize {{gamecfg get_player_config 0} get_character}} " WITH SHAME AND CONTEMPT"})
-(toogle_headline_cop1_3 {sprint {localize {{gamecfg get_player_config 0} get_character}} " CAUGHT WITH MP3 PLAYER INSIDE THEIR GUITAR"})
-(toogle_headline_cop1_4 {sprint {localize {{gamecfg get_player_config 0} get_character}} " FOUND TO BE TRIPPING ON MUSHROOMS DURING SET"})
-
-(toogle_headline_cop2_1 {sprint "FANS THROW ROTTEN EGGS AT " {localize {{gamecfg get_player_config 1} get_character}} " AFTER OBVIOUS FAKERY"}) ;coop, p2 autoplay
-(toogle_headline_cop2_2 {sprint "\qFORCE_AUTOPLAY TRUE\q, " {localize {{gamecfg get_player_config 1} get_character}} " MUMBLES"})
-(toogle_headline_cop2_3 {sprint "{GH_VENUE} STEALS " {localize {{gamecfg get_player_config 1} get_character}} "'S WALLET AFTER FAKE SHOWING"})
-(toogle_headline_cop2_4 {sprint "CD PLAYER FOUND HOOKED INTO {GH_VENUE} SOUND SYSTEM, " {localize {{gamecfg get_player_config 1} get_character}} " BLAMED"})
-
-(toogle_headline_co_1 "LOCAL BAND PLAYS TO BACKING TRACK - DRUMMER CONFIRMED ROBOT?") ;coop, both autoplay
-(toogle_headline_co_2 "CROWD GOES MILD AT MIMED BAND PERFORMANCE")
-(toogle_headline_co_3 "THIS IS WHY ROCK MUSIC IS DEAD, FOLKS")
-(toogle_headline_co_4 "\qTHIS JUST ISN'T MY BAND ANYMORE\q SAYS FORMER SINGER")
-
-(toogle_label "AUTOPLAY")
-;(toogle_vsp1_label {sprint {localize {{gamecfg get_player_config 0} get_character}} " CHEATED!"})
-;(toogle_vsp2_label {sprint {localize {{gamecfg get_player_config 1} get_character}} " CHEATED!"})
-;(toogle_vs_label "BOTH PLAYERS CHEATED!")
-
 ;overshell list stuff, also used in endgame
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
