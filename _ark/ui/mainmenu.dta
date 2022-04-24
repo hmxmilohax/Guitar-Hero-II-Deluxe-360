@@ -66,9 +66,11 @@
             {$this get msg_last_frame}}})
    (reset_player_settings
    {if {! $dontreset}
+      {set $songtitle TRUE}
       {{game get_player_config 0}
          set_difficulty
          kDifficultyExpert}
+		 {set $songtitle TRUE}
       {game set_guitar_index 1}
       {do
          ($player2_config

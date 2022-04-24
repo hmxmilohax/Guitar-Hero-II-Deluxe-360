@@ -29,6 +29,7 @@
       {set $game_unpause_on_enter TRUE}
       {ui goto_screen {gamecfg get game_screen}})
    (restart
+      {mtv_overlay_panel setup_text}
       {synth stop_all_sfx}
       {synth play_sequence button_play}
       {if_else {game get intro_complete}
