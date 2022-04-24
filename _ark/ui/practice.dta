@@ -143,6 +143,10 @@
       practice_panel_80s.milo
       practice_panel.milo})
    (enter
+      {section.lbl set_local_scale .8 1 .8}
+	  {section_shadow.lbl set_local_scale .8 1 .8}
+	  {section.lbl set_local_pos -375 0 140}
+	  {section_shadow.lbl set_local_pos -372 1 137}
       {practice_space1.mesh set_showing {! $focusmode}}
 	  {practice_space2.mesh set_showing {! $focusmode}}
       {events_parser add_sink $this section}
@@ -181,6 +185,10 @@
          {!
             [keep_section_text]}
          {section.lbl set_text ''}}
+	  {if
+         {!
+            [keep_section_text]}
+         {section_shadow.lbl set_text ''}}
       {set
          [keep_section_text]
          FALSE})
@@ -199,6 +207,10 @@
          {!
             [keep_section_text]}
          {section.lbl set_text ''}}
+	  {if
+         {!
+            [keep_section_text]}
+         {section_shadow.lbl set_text ''}}
       {set
          [keep_section_text]
          FALSE})
@@ -218,14 +230,20 @@
       {practice_hat play})
    (section
       ($sec)
-      {section.lbl
-         set_text
+      {section.lbl set_text
          {if_else
-            {==
-               $sec
-               [ignore_section]}
-            ''
-            $sec}})
+            {== $sec [ignore_section]}
+			''
+			{if_else $autoplay
+			{sprint "\n" $sec}
+            $sec}}}
+		{section_shadow.lbl set_text
+         {if_else
+            {== $sec [ignore_section]}
+			''
+			{if_else $autoplay
+			{sprint "\n" $sec}
+            $sec}}})
    (keep_section_text FALSE)
    (ignore_section '')}
 #define PRACTICE_PANELS
