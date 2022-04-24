@@ -145,11 +145,11 @@
 (mtv_made_famous
    {if_else $egg5
       "as not actually performed by"
-	  "as made famous by"})
+	  "famous by"})
 (performed_by
    {if_else $egg5
       "as actually performed by"
-	  "as performed by"})
+	  "performed by"})
 (press_any_button
    {if_else $egg5
       "PRESS ANY BUTTON TO JAM"
