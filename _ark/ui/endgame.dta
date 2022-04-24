@@ -164,15 +164,6 @@
 (win_vs_noun_b_1 win_vs_noun_b_2)
 (win_vs_noun_a_1 win_vs_noun_a_2)))
 
-#define TOOGLE_HEAD_QP ((toogle_headline_qp_1 toogle_headline_qp_2 toogle_headline_qp_3 toogle_headline_qp_4)) ;macros for autoplay headline generation
-#define TOOGLE_HEAD_CA ((toogle_headline_ca_1 toogle_headline_ca_2 toogle_headline_ca_3 toogle_headline_ca_4))
-#define TOOGLE_HEAD_VSP1 ((toogle_headline_vsp1_1 toogle_headline_vsp1_2 toogle_headline_vsp1_3 toogle_headline_vsp1_4))
-#define TOOGLE_HEAD_VSP2 ((toogle_headline_vsp2_1 toogle_headline_vsp2_2 toogle_headline_vsp2_3 toogle_headline_vsp2_4))
-#define TOOGLE_HEAD_VS ((toogle_headline_vs_1 toogle_headline_vs_2 toogle_headline_vs_3 toogle_headline_vs_4))
-#define TOOGLE_HEAD_COP1 ((toogle_headline_cop1_1 toogle_headline_cop1_2 toogle_headline_cop1_3 toogle_headline_cop1_4))
-#define TOOGLE_HEAD_COP2 ((toogle_headline_cop2_1 toogle_headline_cop2_2 toogle_headline_cop2_3 toogle_headline_cop2_4))
-#define TOOGLE_HEAD_CO ((toogle_headline_co_1 toogle_headline_co_2 toogle_headline_co_3 toogle_headline_co_4))
-
 #define HEADLINE_HANDLERS ; Added handlers for all game modes and p1/p2/both possibilities
 (
     (gen_toogle_head_qp {$this generate_headline {random_elem TOOGLE_HEAD_QP}})
@@ -271,34 +262,6 @@
                         {gamecfg get mode}}
                      {== multi_fo {gamecfg get mode}}}
                   gen_versus_headline)}}}
-
-        ;Handle setting headline for the various autoplay combos
-        {switch
-            {gamecfg get mode}
-                (career {if {player_matcher0 auto_play} {$label set_localized_text {$this gen_toogle_head_ca}}})
-                (quickplay {if {player_matcher0 auto_play} {$label set_localized_text {$this gen_toogle_head_qp}}})
-                (multi_vs
-                    {if {&& {player_matcher0 auto_play} {player_matcher1 auto_play}} ; If both auto
-                        {$label set_localized_text {$this gen_toogle_head_vs}}}
-                    {if {&& {player_matcher0 auto_play} {! {player_matcher1 auto_play}}} ; If p1 auto
-                        {$label set_localized_text {$this gen_toogle_head_vsp1}}}
-                    {if {&& {! {player_matcher0 auto_play}} {player_matcher1 auto_play}} ; If p2 auto
-                        {$label set_localized_text {$this gen_toogle_head_vsp2}}})
-                (multi_fo
-                    {if {&& {player_matcher0 auto_play} {player_matcher1 auto_play}} ; If both auto
-                        {$label set_localized_text {$this gen_toogle_head_vs}}}
-                    {if {&& {player_matcher0 auto_play} {! {player_matcher1 auto_play}}} ; If p1 auto
-                        {$label set_localized_text {$this gen_toogle_head_vsp1}}}
-                    {if {&& {! {player_matcher0 auto_play}} {player_matcher1 auto_play}} ; If p2 auto
-                        {$label set_localized_text {$this gen_toogle_head_vsp2}}})
-                (multi_coop
-                    {if {&& {player_matcher0 auto_play} {player_matcher1 auto_play}} ; If both auto
-                        {$label set_localized_text {$this gen_toogle_head_co}}}
-                    {if {&& {player_matcher0 auto_play} {! {player_matcher1 auto_play}}} ; If p1 auto
-                        {$label set_localized_text {$this gen_toogle_head_cop1}}}
-                    {if {&& {! {player_matcher0 auto_play}} {player_matcher1 auto_play}} ; If p2 auto
-                        {$label set_localized_text {$this gen_toogle_head_cop2}}})
-        }
 ))
 {new EndGamePanel endgame_panel
    (file endgame.milo) 

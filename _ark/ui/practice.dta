@@ -137,12 +137,12 @@
 {new
    GHPanel
    practice_panel
-   (file
-	{if_else
-      $game80s
-      practice_panel_80s.milo
-      practice_panel.milo})
+   (file practice_panel.milo)
    (enter
+      {section.lbl set_local_scale .8 1 .8}
+	  {section_shadow.lbl set_local_scale .8 1 .8}
+	  {section.lbl set_local_pos -375 0 140}
+	  {section_shadow.lbl set_local_pos -372 1 137}
       {practice_space1.mesh set_showing {! $focusmode}}
 	  {practice_space2.mesh set_showing {! $focusmode}}
       {events_parser add_sink $this section}
@@ -156,11 +156,11 @@
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {streak_overlay_panel show_overlay TRUE}
       {mtv_overlay_panel show_overlay TRUE}
-      {if {! $songtitle} {script_task
+      {script_task
          (delay 3)
          (units kTaskSeconds)
          (script
-            {mtv_overlay_panel show_overlay FALSE})}}
+            {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}})}
       {set
          [ignore_section]
          {section_provider section_after_last}}
@@ -181,6 +181,10 @@
          {!
             [keep_section_text]}
          {section.lbl set_text ''}}
+	  {if
+         {!
+            [keep_section_text]}
+         {section_shadow.lbl set_text ''}}
       {set
          [keep_section_text]
          FALSE})
@@ -199,6 +203,10 @@
          {!
             [keep_section_text]}
          {section.lbl set_text ''}}
+	  {if
+         {!
+            [keep_section_text]}
+         {section_shadow.lbl set_text ''}}
       {set
          [keep_section_text]
          FALSE})
@@ -218,14 +226,20 @@
       {practice_hat play})
    (section
       ($sec)
-      {section.lbl
-         set_text
+      {section.lbl set_text
          {if_else
-            {==
-               $sec
-               [ignore_section]}
-            ''
-            $sec}})
+            {== $sec [ignore_section]}
+			''
+			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+			{sprint '\n' {localize $sec}}
+            $sec}}}
+		{section_shadow.lbl set_text
+         {if_else
+            {== $sec [ignore_section]}
+			''
+			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+			{sprint '\n' {localize $sec}}
+            $sec}}})
    (keep_section_text FALSE)
    (ignore_section '')}
 #define PRACTICE_PANELS
@@ -283,7 +297,9 @@
                   {/ $hits $tot}}})
          {stats.lbl
             set_localized_text
-            {sprintf $pat $perc $hits $tot}}}
+            {if_else $autoplay
+			"AUTOPLAY"
+			{sprintf $pat $perc $hits $tot}}}}
       {do
          ($career
             {practice_selpart_screen get career_mode})

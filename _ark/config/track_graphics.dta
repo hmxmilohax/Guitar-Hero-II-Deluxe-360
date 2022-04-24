@@ -132,8 +132,8 @@
    ; by 1.4 for Hard and Expert, thus creating the "normal" track speed.
    ; In DX, we do this, but divide that value (or the value on its own) by
    ; the $speedmod value, which is set by a slider in ui/modifiers.dta.
-   (kDifficultyEasy {/ $trackspd $speedmod})
-   (kDifficultyMedium {/ $trackspd $speedmod})
+   (kDifficultyEasy {/ {'*' $trackspd 1.4} $speedmod})
+   (kDifficultyMedium {/ {'*' $trackspd 1.4} $speedmod})
    (kDifficultyHard {/ {'*' $trackspd 1.4} $speedmod})
    (kDifficultyExpert {/ {'*' $trackspd 1.4} $speedmod}))
 (alpha_dist 40)

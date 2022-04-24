@@ -5,6 +5,8 @@
 {new GHPanel mtv_overlay_panel
    (file mtv_overlay.milo)
    (enter
+      {mtv_overlay.view set_local_scale .8 1 .8}
+	  {mtv_overlay.view set_local_pos -160 1 40}
       {if_else {game is_tutorial_running}
          {$this show_overlay FALSE}
          {$this setup_text}})
@@ -25,18 +27,15 @@
                   {$this set_line $prefix 1 {sprint $song_text " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}}}
                {$this set_line $prefix 1 $song_text}}
             {$this set_line $prefix 2 $song_caption}
-#ifndef 2DBUG
-#ifndef 8DBUG
-            {if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string
-               {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}}}} ; If present, add newline to line 3 followed by author
-               {if_else $author ; check for a set $author in DLC contexts.dta
+			{if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string
+               {if_else $autoplay
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY"}}
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " {localize {sprint $song "_author"}}}}} ; If present, add newline to line 3 followed by author
+			   {if_else $autoplay
+			   {$this set_line $prefix 3 {sprint $artist_text "\nAUTOPLAY"}}
+			   {if_else $author ; check for a set $author in DLC contexts.dta
                {$this set_line $prefix 3 {sprint $artist_text "\nAuthor: " $author}} ;                             ^
-               {$this set_line $prefix 3 {sprint $artist_text "\n "}}}} ; If not, put nothing
-#endif
-#endif
-; If debug, just put artist text
-#ifdef 2DBUG {$this set_line $prefix 3 $artist_text} #endif
-#ifdef 8DBUG {$this set_line $prefix 3 $artist_text} #endif
+               {$this set_line $prefix 3 {sprint $artist_text "\n "}}}}} ; If not, put nothing
    }})
    (set_line
       ($prefix $i $text)
@@ -101,7 +100,7 @@
             {script_task
                (delay 6)
                (units kTaskSeconds)
-               (script {mtv_overlay_panel show_overlay $songtitle})}}
+               (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}})}}
          {do
             {if $do_streak {streak_overlay_panel setup_streak}}
             {script_task
@@ -111,7 +110,7 @@
             {script_task
                (delay 3)
                (units kTaskSeconds)
-               (script {mtv_overlay_panel show_overlay $songtitle})}}}
+               (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}})}}}
       {set [intro_complete] FALSE}
       kDataUnhandled)
    (intro_skip
@@ -120,11 +119,12 @@
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {streak_overlay_panel show_overlay TRUE}
       {mtv_overlay_panel show_overlay TRUE}
-      {if {! $songtitle} {script_task
+      {if {! $autoplay}
+	  {if {! $songtitle} {script_task
          (delay 3)
          (units kTaskSeconds)
          (script
-            {mtv_overlay_panel show_overlay FALSE})}}
+            {mtv_overlay_panel show_overlay FALSE})}}}
 	  {if_else $towel
 	  {beatmatch set_music_speed 1.0}
 	  {if_else {> $speedmod 1} {beatmatch set_music_speed $speedmod} {beatmatch set_music_speed 1.0}}}
