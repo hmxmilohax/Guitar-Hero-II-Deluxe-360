@@ -283,7 +283,9 @@
                   {/ $hits $tot}}})
          {stats.lbl
             set_localized_text
-            {sprintf $pat $perc $hits $tot}}}
+            {if_else $autoplay
+			"AUTOPLAY"
+			{sprintf $pat $perc $hits $tot}}}}
       {do
          ($career
             {practice_selpart_screen get career_mode})
