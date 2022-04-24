@@ -101,7 +101,10 @@
 {new UIPanel meta_loading_panel
    (file meta_loading.milo)
    (enter
-      {animate_forever_30fps $this meta_loading.view})}
+      {meta_loading.view set_local_pos -15 20 -150}
+	  {meta_loading.view set_local_scale .9 .9 .9}
+      ;{animate_forever_30fps $this meta_loading.view}
+	  )}
 {new GHScreen meta_loading_screen
    (panels meta_loading_panel)
    (clear_vram TRUE)
