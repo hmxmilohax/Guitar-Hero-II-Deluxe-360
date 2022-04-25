@@ -324,13 +324,14 @@
       {endgame_diff_data.lbl set_text {game get_difficulty_sym 0}}
       {do
          ($player player0)
+		 ($starrating)
          {endgame_score_data.lbl set_localized_text {sprint {$player score}}}
          {endgame_streak_data.lbl set_localized_text {sprint {$player longest_streak}}}
          {if_else $player0_fc
             {endgame_percent_data.lbl set_localized_text {sprint {localize fullcombo}}}
             {endgame_percent_data.lbl set_localized_text {sprintf {localize eg_percent_format} {$player percent_hit}}}}
          {endgame_streak_data.lbl set_localized_text {sprintf {localize eg_streak_format} {$player longest_streak}}}
-         {endgame_review_data.lbl set_text {$player star_rating}} ; Original stars font
+         {endgame_review_data.lbl set_text {sprintf $starrating}} ; Original stars font
          {endgame_review_data_fc.lbl set_text {$player star_rating}} ; New stars FC font
          {percentbar_p1.mesh set_local_scale {/ {$player percent_hit} 100.0}
             1
