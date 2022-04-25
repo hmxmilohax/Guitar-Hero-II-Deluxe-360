@@ -141,8 +141,8 @@
    (enter
       {section.lbl set_local_scale .8 1 .8}
 	  {section_shadow.lbl set_local_scale .8 1 .8}
-	  {section.lbl set_local_pos -375 0 143}
-	  {section_shadow.lbl set_local_pos -372 1 140}
+	  {section.lbl set_local_pos -375 0 141}
+	  {section_shadow.lbl set_local_pos -372 1 138}
       {practice_space1.mesh set_showing {! $focusmode}}
 	  {practice_space2.mesh set_showing {! $focusmode}}
       {events_parser add_sink $this section}
@@ -231,14 +231,14 @@
             {== $sec [ignore_section]}
 			''
 			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			{sprint '\n' $sec}
+			{sprint '\n\n' $sec}
             {sprint '\n' $sec}}}}
 		{section_shadow.lbl set_text
          {if_else
             {== $sec [ignore_section]}
 			''
 			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			{sprint '\n' $sec}
+			{sprint '\n\n' $sec}
             {sprint '\n' $sec}}}})
    (keep_section_text FALSE)
    (ignore_section '')}
