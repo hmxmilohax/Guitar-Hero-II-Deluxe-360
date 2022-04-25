@@ -33,7 +33,7 @@
 #endif
 (smasher
    (mats
-      (normal gem_smasher)
+      (normal {if_else $gh3track 'gem_unlit_%s' 'gem_smasher'})
       (pressed 'gem_smasher_%s')
       (ring 'now_ring_%s')))
 (particles

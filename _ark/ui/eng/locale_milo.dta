@@ -124,6 +124,7 @@
 (os_leftyp2 {sprint "Lefty Flip P2" {if_else $leftyp2 ": ON" ": OFF"}})
 (os_selecttorestart {sprint "Select in Practice" {if_else $selecttorestart ": ON" ": OFF"}})
 (os_autoplay {sprint "Autoplay" {if_else $autoplay ": ON" ": OFF"}})
+(os_gh3track {sprint "GH3 Frets" {if_else $gh3track ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")
