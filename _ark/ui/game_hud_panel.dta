@@ -45,7 +45,22 @@
             {if_else {== {gamecfg get mode} multi_coop}
                {streak_overlay_panel update_streak 2}
                {streak_overlay_panel update_streak 0}}
+			{set $starratingtemp {if_else {< {player0 avg_multiplier} 1.2}
+   {* {player0 avg_multiplier} 2.5}
+   {+ {* {player0 avg_multiplier} 1.25} 1.5}}}
+   {if {> $starratingtemp 0.0} {do {set $starrating '0©'} {set $starratingtempbar $starratingtemp}}}
+   {if {> $starratingtemp 1.0} {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}}}
+   {if {> $starratingtemp 2.0} {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}}}
+   {if {> $starratingtemp 3.0} {do {set $starrating '3©'} {set $starratingtempbar {- $starratingtemp 3.0}}}}
+   {if {> $starratingtemp 4.0} {do {set $starrating '4©'} {set $starratingtempbar {- $starratingtemp 4.0}}}}
+   {if {> $starratingtemp 5.0} {do {set $starrating '5©'} {set $starratingtempbar {- $starratingtemp 5.0}}}}
+   {if {> $starratingtemp 6.0} {do {set $starrating '6©'} {set $starratingtempbar {- $starratingtemp 6.0}}}}
+   {if {> $starratingtemp 7.0} {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}}}
+   {if {> $starratingtemp 8.0} {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}}}
+   {if {> $starratingtemp 9.0} {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}}}
 			{{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+			{{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1}
+			{{streak_overlay_panel find star_counter.lbl} set_text $starrating}
             {set $beforefirstnote_p0 FALSE}
 			{mtv_overlay_panel setup_text}}})
 
@@ -190,6 +205,7 @@
    (file "../hud/streak_overlay.milo")
    (enter
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 27}
+	  {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 62}
       {if_else {||
       {game is_tutorial_running} ;check for tutorial mode
       {== {gamecfg get mode} attract} ;check for attract mode
@@ -197,6 +213,12 @@
          {do
             {$this show_overlay FALSE}
             {set $do_streak FALSE}}
+	  {set $starratingtempbar 0}
+	  {set $starratingtemp 0}
+      {set $starrating '0 ©'}
+      {set $notesmissed 0}
+      {set $overstrums 0}
+	  {{streak_overlay_panel find star_counter.lbl} set_text $starrating}
       {$this setup_streak}})
    (animate_streak
       {script_task
@@ -226,6 +248,7 @@
    (streak_lastframe {stk_campaign_song_id.view set_frame METER_END_FRAME})
    (setup_streak
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+	  {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {/ $starratingtempbar 75.0} .1 .1}
       {set $do_streak TRUE}
       {stk_campaign_song_id.view set_showing FALSE}
       {stk_campaign_song_id_coop.view set_showing FALSE}

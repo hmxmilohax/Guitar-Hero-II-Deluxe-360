@@ -231,15 +231,15 @@
             {== $sec [ignore_section]}
 			''
 			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			{sprint '\n\n' $sec}
-            {sprint '\n' $sec}}}}
+			{sprint '\n' $sec}
+            {sprint '' $sec}}}}
 		{section_shadow.lbl set_text
          {if_else
             {== $sec [ignore_section]}
 			''
 			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			{sprint '\n\n' $sec}
-            {sprint '\n' $sec}}}})
+			{sprint '\n' $sec}
+            {sprint '' $sec}}}})
    (keep_section_text FALSE)
    (ignore_section '')}
 #define PRACTICE_PANELS
