@@ -41,7 +41,7 @@ You can install song packs directly in your local copy of this repo in
 Where XXXXXX is the name of your song pack, containing both a "songs" and a "config" folder.
 con/live files are not supported.
 
-There is a max package limit of 16 song packs. Currently there is a max song limit of around 200 songs due to setlist issues.
+There is a max package limit of 16 song packs. The setlist has been completely reworked to allow more songs. Current song limit is unknown.
 
 You can find Vanilla song packs for [GHIIDX](https://drive.google.com/file/d/1xwX_Dv17WDFldZ0mDWZu71FLUI-CTywx/view?usp=sharing), [GH80SDX](https://drive.google.com/file/d/1KJxH51N2yQdQXlNA9MmyrI1bGfdB6Hxz/view?usp=sharing), and [GHIIDLCDX](https://drive.google.com/file/d/12LgukgL51gesAAB7gZWGvd_ub1LP6eUe/view?usp=sharing) here.
 
