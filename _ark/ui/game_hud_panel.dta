@@ -45,11 +45,10 @@
             {if_else {== {gamecfg get mode} multi_coop}
                {streak_overlay_panel update_streak 2}
                {streak_overlay_panel update_streak 0}}
-			;{if {! $autoplay} 
+			{if {! $autoplay} 
 			{set $starratingtemp {if_else {< {player0 avg_multiplier} 1.2}
    {* {player0 avg_multiplier} 2.5}
-   {+ {* {player0 avg_multiplier} 1.25} 1.5}}}
-   ;}
+   {+ {* {player0 avg_multiplier} 1.25} 1.5}}}}
    {if {> $starratingtemp 0.0} {do {set $starrating '0©'} {set $starratingtempbar $starratingtemp}}}
    {if {> $starratingtemp 1.0} {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}}}
    {if {> $starratingtemp 2.0} {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}}}
