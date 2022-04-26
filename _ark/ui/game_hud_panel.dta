@@ -204,8 +204,8 @@
 {new GHPanel streak_overlay_panel
    (file "../hud/streak_overlay.milo")
    (enter
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 27}
-	  {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 62}
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 27}
+	  {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
       {if_else {||
       {game is_tutorial_running} ;check for tutorial mode
       {== {gamecfg get mode} attract} ;check for attract mode
