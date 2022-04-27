@@ -219,6 +219,7 @@
       {set $starrating '0 ©'}
       {set $notesmissed 0}
       {set $overstrums 0}
+	  {mtv_overlay_panel setup_text}
 	  {{streak_overlay_panel find star_counter.lbl} set_text $starrating}
       {$this setup_streak}})
    (animate_streak
@@ -355,7 +356,9 @@
             {{sprint $stk_prefix_p1 $streakline_p1 ".lbl"} set_showing TRUE}
          }}
       {{sprint $stk_view_p0} set_showing TRUE} ; Don't worry, panel is still invisible at this point
-      {{sprint $stk_prefix_p0 $streakline_p0 ".lbl"} set_showing TRUE})
+      {{sprint $stk_prefix_p0 $streakline_p0 ".lbl"} set_showing TRUE}
+	  
+	  {mtv_overlay_panel setup_text})
 
    (not_an_fc
       ($player)
