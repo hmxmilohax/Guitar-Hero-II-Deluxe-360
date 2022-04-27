@@ -142,14 +142,8 @@
 (SELECTYOURSKIN "Select Your Finish")
 (METALOADING "LOADING")
 (LOADING "LOADING....")
-(mtv_made_famous
-   {if_else $egg5
-      "as not actually performed by"
-	  "famous by"})
-(performed_by
-   {if_else $egg5
-      "as actually performed by"
-	  "performed by"})
+(mtv_made_famous "by")
+(performed_by "by")
 (press_any_button
    {if_else $egg5
       "PRESS ANY BUTTON TO JAM"

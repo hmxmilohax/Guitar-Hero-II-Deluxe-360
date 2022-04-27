@@ -4,8 +4,8 @@
 {new GHPanel mtv_overlay_panel
    (file mtv_overlay.milo)
    (enter
-      {mtv_overlay.view set_local_scale .8 1 .8}
-	  {mtv_overlay.view set_local_pos -160 1 40}
+      {mtv_overlay.view set_local_scale .5 1 .5}
+	  {mtv_overlay.view set_local_pos -240 1 85}
       {if_else {game is_tutorial_running}
          {$this show_overlay FALSE}
          {$this setup_text}})

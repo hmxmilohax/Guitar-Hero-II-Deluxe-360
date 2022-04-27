@@ -139,10 +139,10 @@
    practice_panel
    (file practice_panel.milo)
    (enter
-      {section.lbl set_local_scale .8 1 .8}
-	  {section_shadow.lbl set_local_scale .8 1 .8}
-	  {section.lbl set_local_pos -375 0 139}
-	  {section_shadow.lbl set_local_pos -372 1 136}
+      {section.lbl set_local_scale .5 1 .5}
+	  {section_shadow.lbl set_local_scale .5 1 .5}
+	  {section.lbl set_local_pos -375 0 147}
+	  {section_shadow.lbl set_local_pos -372 1 144}
       {practice_space1.mesh set_showing {! $focusmode}}
 	  {practice_space2.mesh set_showing {! $focusmode}}
       {events_parser add_sink $this section}
