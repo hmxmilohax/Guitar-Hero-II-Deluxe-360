@@ -42,14 +42,14 @@
       }
    )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
-      {if
-         {== $component part0.btn} {gamecfg set_track 0 0} ;if part 0 button is selected, set player 0 to the first instrument in the song definition
+      {if {== $component part0.btn}
+		 {gamecfg set_track 0 0} ;if part 0 button is selected, set player 0 to the first instrument in the song definition
       }
-      {if
-         {== $component part1.btn} {gamecfg set_track 0 1} ;if part 1 button is selected, set player 0 to the second instrument in the song definition
+      {if {== $component part1.btn}
+		 {gamecfg set_track 0 1} ;if part 1 button is selected, set player 0 to the second instrument in the song definition
       }
-      {if
-         {== $component part2.btn} {gamecfg set_track 0 2} {set $roygb TRUE} ;if part 0 button is selected, set player 0 to the third instrument in the song definition. also set roygb colors to true since this is drums
+      {if {== $component part2.btn}
+	  {gamecfg set_track 0 2} {set $roygb TRUE} ;if part 2 button is selected, set player 0 to the third instrument in the song definition. also set roygb colors to true since this is drums
       }
       {switch {gamecfg get mode} ;switch action based on result of which game mode is currently being used
           (career {ui goto_screen loading_screen}) ;dx uses career for quickplay, if career, go to the loading screen

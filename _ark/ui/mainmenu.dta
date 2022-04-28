@@ -52,8 +52,7 @@
             {ui goto_screen credits_screen} ;go directly to the credits screen
 			)})
    (poll ;poll runs code in the background to perform actions based on parameters
-      {if_else
-         {game is_missing_multi_controller} ;checks if a player 2 controller is plugged in
+      {if_else {game is_missing_multi_controller} ;checks if a player 2 controller is plugged in
          {$this disable main_multiplayer.btn} ;enables multiplayer to be selected if player 2 is plugged in
          {$this enable main_multiplayer.btn} ;disables multiplayer to be selected if player 2 is plugged in
 		 }
