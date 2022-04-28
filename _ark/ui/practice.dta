@@ -1,252 +1,174 @@
-{func practice_restart {meta_loading_nosave_goto practice_game_screen}}
-{new
-   MultiSelectListPanel
-   practice_sel_section_panel
+{func practice_restart {meta_loading_nosave_goto practice_game_screen}} ;function to restart the practice sections
+{new MultiSelectListPanel practice_sel_section_panel
    (file
-	{if_else
-      $game80s
-      practice_sel_section_80s.milo
-      practice_sel_section.milo})
-   (focus sel_section.lst)
-   (enter
-      {gamecfg
-         set
-         (practice_sections 0)
-         -1}
-      {gamecfg
-         set
-         (practice_sections 1)
-         -1}
-      {sel_section.lst
-         set_provider
-         {game practice_section_provider}}
-      {title.lbl set_text select_start_section}
-      {set
-         [section]
-         0}
-      {meta_music stop}
-      {gamecfg set practice_speed 0}
-      {$this play_preview})
-   (exit
-      {song_preview ''}
-      {meta_music start}
-#ifdef HX_XBOX {profilemgr enable_xmp} #endif)
-   (SELECT_START_MSG
+      {if_else $game80s ;check if the 80s theme is turned on
+         practice_sel_section_80s.milo ;if 80s theme, use 80s screen
+         practice_sel_section.milo ;if not 80s, use standard
+	  }
+   )
+   (focus sel_section.lst) ;focus the section list
+   (enter ;when the screen is entered
+      {gamecfg set (practice_sections 0) -1} ;reset the starting section
+      {gamecfg set (practice_sections 1) -1} ;reset the ending section
+      {sel_section.lst set_provider {game practice_section_provider}} ;provide the section data to the list
+      {title.lbl set_text select_start_section} ;set the title default
+      {set [section] 0} ;set the song section to the first section
+      {meta_music stop} ;stop background music
+      {gamecfg set practice_speed 0} ;reset practice speed to full speed
+      {$this play_preview} ;start previewing the selected section
+    )
+   (exit ;when the screen is exited
+      {song_preview ''} ;reset the song preview back to none
+      {meta_music start} ;start background music
+      #ifdef HX_XBOX {profilemgr enable_xmp} #endif ;enable the xbox guide button
+   )
+   (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {do
-         ($idx
-            {-
-               {sel_section.lst selected_pos}
-               1})
-         {if_else
-            [section]
+         ($idx {- {sel_section.lst selected_pos} 1}) ;set this variable to the selected position of the list
+         {if_else [section] ;failover for bad section selection
             {if_else
-               {<
-                  $idx
-                  {gamecfg
-                     get
-                     (practice_sections 0)}}
-               {handle
-                  (ui BAD_SELECT_START_MSG)}
+               {< $idx {gamecfg get (practice_sections 0)}} ;if the current selection is less than available selection
+               {handle (ui BAD_SELECT_START_MSG)} ;error
                {do
-                  {gamecfg
-                     set
-                     (practice_sections 1)
-                     $idx}
-                  {ui goto_screen practice_loading_screen}
-                  kDataUnhandled}}
-            {if_else
-               {== $idx -1}
+			      {gamecfg set (practice_sections 1) $idx} ;set the ending section to the currently selected list position
+                  {ui goto_screen practice_loading_screen} ;load the sections and start the game
+                  kDataUnhandled
+               }
+            }
+            {if_else {== $idx -1} ;if selected section is full song
                {do
-                  {gamecfg
-                     set
-                     (practice_sections 0)
-                     -1}
-                  {gamecfg
-                     set
-                     (practice_sections 1)
-                     -1}
-                  {ui goto_screen practice_loading_screen}
-                  kDataUnhandled}
+                  {gamecfg set (practice_sections 0) -1} ;set starting position to full song
+                  {gamecfg set (practice_sections 1) -1} ;set ending position to full song
+                  {ui goto_screen practice_loading_screen} ;load the sections and start the game
+                  kDataUnhandled
+			   }
                {do
-                  {gamecfg
-                     set
-                     (practice_sections 0)
-                     $idx}
-                  {title.lbl set_text select_end_section}
-                  {set
-                     [section]
-                     1}
-                  {section_provider set_start_section $idx}
-                  kDataUnhandled}}}})
-   (SCROLL_MSG
-      {$this play_preview})
-   (BUTTON_DOWN_MSG
+                  {gamecfg set (practice_sections 0) $idx} ;set starting section to the selected section
+                  {title.lbl set_text select_end_section} ;change the text to select end section
+                  {set [section] 1} ;set the end section?
+                  {section_provider set_start_section $idx} ;set the start section to the selected section
+                  kDataUnhandled
+			   }
+			}
+         }
+      }
+   )
+   (SCROLL_MSG {$this play_preview}) ;run the play_preview code when a new section is highlighted
+   (BUTTON_DOWN_MSG ;code ran when a button is pressed
       {cond
-         ({&&
-               {== $button kPad_Tri}
-               {==
-                  [section]
-                  0}
-               {practice_selpart_screen get career_mode}}
-            {career_screen resume_from_practice}
-            {ui goto_screen main_screen}
-            TRUE)
-         ({&&
-               {== $button kPad_Tri}
-               {==
-                  [section]
-                  1}}
-            {set
-               [section]
-               0}
+         ({&& {== $button kPad_Tri} {== [section] 0} {practice_selpart_screen get career_mode}}
+             {career_screen resume_from_practice}
+             {ui goto_screen main_screen}
+             TRUE
+	      )
+         ({&& {== $button kPad_Tri} {== [section] 1}}
+            {set [section] 0}
             {section_provider set_start_section -1}
             {title.lbl set_text select_start_section}
-            TRUE)
-         (TRUE kDataUnhandled)})
+            TRUE
+          )
+         (TRUE kDataUnhandled)
+      }
+   )
    (play_preview
       {do
-         ($sec
-            {-
-               {sel_section.lst selected_pos}
-               1})
+         ($sec {- {sel_section.lst selected_pos} 1})
          ($start $end)
          {gamecfg get_section_bounds $sec $start $end}
-         {set
-            $start
-            {- $start 500}}
-         {if
-            {< $start 0}
-            {set $start 0}}
-         {song_preview
-            {game get_song}
-            $start
-            $end}})
-   (section 0)}
-{new
-   GHScreen
-   practice_sel_section_screen
+         {set $start {- $start 500}}
+         {if {< $start 0}
+            {set $start 0}
+          }
+         {song_preview {game get_song} $start $end}
+       }
+    )
+   (section 0)
+}
+{new GHScreen practice_sel_section_screen
    (panels meta midi_loader_panel practice_sel_section_panel helpbar)
    (focus practice_sel_section_panel)
    (back_screen practice_part_screen)
    (career_mode FALSE)
    (helpbar
-      (default
-         ((fret1 help_continue)
-            (fret2 help_back)
-            (strum help_updown))))}
-{new
-   GHPanel
-   practice_panel
+      (default ((fret1 help_continue) (fret2 help_back) (strum help_updown)))
+   )
+}
+{new GHPanel practice_panel
    (file practice_panel.milo)
    (enter
-      {section.lbl set_local_scale .5 1 .5}
-	  {section_shadow.lbl set_local_scale .5 1 .5}
-	  {section.lbl set_local_pos -375 0 147}
-	  {section_shadow.lbl set_local_pos -372 1 144}
-      {practice_space1.mesh set_showing {! $focusmode}}
-	  {practice_space2.mesh set_showing {! $focusmode}}
-      {events_parser add_sink $this section}
-      {game add_sink $this intro_skip}
-      {foreach
-         $sfx
-         (practice_snare practice_kick practice_hat)
-         {$sfx add_fader music_fader}})
+      {section.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
+	  {section_shadow.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
+	  {section.lbl set_local_pos -375 0 147} ;setup section text label to specific position and scale
+	  {section_shadow.lbl set_local_pos -372 1 144} ;setup section text label to specific position and scale
+      {practice_space1.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
+	  {practice_space2.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
+      {events_parser add_sink $this section} ;add section event parser
+      {game add_sink $this intro_skip} ;add intro skip code block
+      {foreach $sfx (practice_snare practice_kick practice_hat) ;add click tracks
+         {$sfx add_fader music_fader} ;add faders
+      }
+   )
    (intro_skip
-      {set $do_streak TRUE}
+      {set $do_streak TRUE} ;allow streak meter to be displayed
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
-      {streak_overlay_panel show_overlay TRUE}
-      {mtv_overlay_panel show_overlay TRUE}
-      {script_task
-         (delay 3)
-         (units kTaskSeconds)
-         (script
-            {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}})}
-      {set
-         [ignore_section]
-         {section_provider section_after_last}}
-      {if
-         {==
-            {gamecfg get practice_speed}
-            0}
-         {beatmatch set_music_speed $speedmod}})
-#ifndef HX_XBOX
+      {streak_overlay_panel show_overlay TRUE} ;show the streak panel
+      {mtv_overlay_panel show_overlay TRUE} ;show the mtv overlay
+      {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
+         (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}}) ;hide the mtv overlay if song title or autoplay is enabled
+      }
+      {set [ignore_section] {section_provider section_after_last}}
+      {if {== {gamecfg get practice_speed} 0} ;if practice speed is set to full speed
+         {beatmatch set_music_speed $speedmod} ;set the beatmatcher speed to the song speed modifier
+      }
+   )
    (update
-      {click_parser remove_sink $this}
-      {if
-         {!=
-            {gamecfg get practice_speed}
-            0}
-         {click_parser add_sink $this}}
-      {if
-         {!
-            [keep_section_text]}
-         {section.lbl set_text ''}}
-	  {if
-         {!
-            [keep_section_text]}
-         {section_shadow.lbl set_text ''}}
-      {set
-         [keep_section_text]
-         FALSE})
-#else
-(update
-      {click_parser remove_sink $this}
-      {if
-         {&&
-            {!=
-               {gamecfg get practice_speed}
-               0}
-            {! $stretch_bg}}
-         {click_parser add_sink $this}}
-      {beatmatch update_practice_speed}
-      {if
-         {!
-            [keep_section_text]}
-         {section.lbl set_text ''}}
-	  {if
-         {!
-            [keep_section_text]}
-         {section_shadow.lbl set_text ''}}
-      {set
-         [keep_section_text]
-         FALSE})
-#endif
+      {click_parser remove_sink $this} ;remove the click tracks
+      {if {&& {!= {gamecfg get practice_speed} 0} {! $stretch_bg}} ;unless the practice speed is not full speed
+         {click_parser add_sink $this} ;add click tracks
+      }
+      {beatmatch update_practice_speed} ;update the beatmatcher speed with vanilla options
+      {if {! [keep_section_text]} {section.lbl set_text ''}} ;reset on screen section text
+	  {if {! [keep_section_text]} {section_shadow.lbl set_text ''}} ;reset on screen section text
+      {set [keep_section_text] FALSE} ;turn off the section text on reset
+   )
    (exit
       {click_parser remove_sink $this}
       {events_parser remove_sink $this}
-      {game remove_sink $this})
+      {game remove_sink $this}
+   )
    (midi_parser
       ($msg)
-      {$this $msg})
-   (click_snare
-      {practice_snare play})
-   (click_kick
-      {practice_kick play})
-   (click_hat
-      {practice_hat play})
+      {$this $msg}
+   )
+   (click_snare {practice_snare play})
+   (click_kick {practice_kick play})
+   (click_hat {practice_hat play})
    (section
       ($sec)
       {section.lbl set_text
-         {if_else
-            {== $sec [ignore_section]}
+         {if_else {== $sec [ignore_section]}
 			''
 			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			{sprint '\n\n' $sec}
-            {sprint '\n' $sec}}}}
+			   {sprint '\n\n' $sec}
+               {sprint '\n' $sec}
+			}
+         }
+      }
 		{section_shadow.lbl set_text
-         {if_else
-            {== $sec [ignore_section]}
-			''
-			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			{sprint '\n\n' $sec}
-            {sprint '\n' $sec}}}})
+           {if_else {== $sec [ignore_section]}
+			  ''
+			  {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+			     {sprint '\n\n' $sec}
+                 {sprint '\n' $sec}
+			  }
+           }
+		}
+   )
    (keep_section_text FALSE)
-   (ignore_section '')}
-#define PRACTICE_PANELS
-(practice_panel game hud streak_overlay_panel track_panel mtv_overlay_panel)
-{new
-   GHScreen
-   practice_game_screen
+   (ignore_section '')
+}
+#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel track_panel mtv_overlay_panel)
+{new GHScreen practice_game_screen
    (panels PRACTICE_PANELS)
    (allow_back FALSE)
    (animate_transition FALSE)
@@ -255,102 +177,81 @@
       {switch
          $button
          (kPad_Select
-            {if $selecttorestart {do {mtv_overlay_panel setup_text} {game_restart_fast}}})
+            {if $selecttorestart
+			   {do
+			      {mtv_overlay_panel setup_text} {game_restart_fast}
+                }
+			 }
+          )
          (kPad_Start
-            {if {! {game get game_over}}
-               {game set_paused TRUE}
-               {ui goto_screen pract_pause_screen}})})
-;  (    {if
-;         {&&
-;            {== $button kPad_Start}
-;            {!
-;               {game get game_over}}}
-;         {game set_paused TRUE}
-;         {ui goto_screen pract_pause_screen}})
+            {game set_paused TRUE}
+            {ui goto_screen pract_pause_screen}
+          )
+       }
+   )
    (enter
-      {practice_panel update})
+      {practice_panel update}
+   )
    (TRANSITION_COMPLETE_MSG
       {if
          $game_unpause_on_enter
          {game set_paused FALSE}
-         {set $game_unpause_on_enter FALSE}})}
-{new
-   GHPanel
-   practice_end_panel
+         {set $game_unpause_on_enter FALSE}
+       }
+   )
+}
+{new GHPanel practice_end_panel
    (file practice_end_gh1.milo)
    (enter
       {hud show_message 0 blank_message}
 	  {$this set_focus restart.btn}
       {do
-         ($pat
-            {localize gems_hit_pattern})
-         ($hits
-            {player0 gems_hit})
-         ($tot
-            {'+'
-               $hits
-               {player0 gems_passed}})
-         ($perc
-            {int
-               {'*'
-                  100
-                  {/ $hits $tot}}})
-         {stats.lbl
-            set_localized_text
+         ($pat {localize gems_hit_pattern})
+         ($hits {player0 gems_hit})
+         ($tot {'+' $hits {player0 gems_passed}})
+         ($perc {int {'*' 100 {/ $hits $tot}}})
+         {stats.lbl set_localized_text
             {if_else $autoplay
-			"AUTOPLAY"
-			{sprintf $pat $perc $hits $tot}}}}
+			   "AUTOPLAY"
+			   {sprintf $pat $perc $hits $tot}
+			}
+         }
+      }
       {do
-         ($career
-            {practice_selpart_screen get career_mode})
+         ($career {practice_selpart_screen get career_mode})
          {pause_buttons_career.view set_showing $career}
-         {pause_buttons.view
-            set_showing
-            {! $career}}
-         {$this
-            set_focus
-            {if_else $career restart_career.btn restart.btn}}}
+         {pause_buttons.view set_showing {! $career}}
+         {$this set_focus {if_else $career restart_career.btn restart.btn}}
+      }
 #ifdef HX_XBOX
-{if
-         {campaign
-            check_practice_achievement
-            {gamecfg get_song}}
-         {gamecfg set allow_achievements TRUE}
-         {achievements submit practice}
-         {gamecfg set allow_achievements FALSE}}
-#endif)
+      {if
+         {campaign check_practice_achievement {gamecfg get_song}}
+            {gamecfg set allow_achievements TRUE}
+            {achievements submit practice}
+            {gamecfg set allow_achievements FALSE}
+      } #endif
+   )
    (SELECT_START_MSG
-      {switch
-         $component
-         (restart.btn
-            {game_restart})
-         (restart_career.btn
-            {game_restart})
-         (change_speed.btn
-            {ui push_screen overshell_slider_screen})
-         (change_speed_career.btn
-            {ui push_screen overshell_slider_screen})
-         (new_sec.btn
-            {meta_loading_nosave_goto practice_sel_section_screen})
-         (new_sec_career.btn
-            {meta_loading_nosave_goto practice_sel_section_screen})
-         (new_song.btn
-            {meta_loading_nosave_goto sel_song_screen})
-         (quit.btn
-            {meta_loading_nosave_goto main_screen})
-         (quit_career.btn
-            
-            {meta_loading_nosave_goto main_screen})})}
-{new
-   GHScreen
-   practice_end_screen
+      {switch $component
+         (restart.btn {game_restart})
+         (restart_career.btn {game_restart})
+         (change_speed.btn {ui push_screen overshell_slider_screen})
+         (change_speed_career.btn {ui push_screen overshell_slider_screen})
+         (new_sec.btn {meta_loading_nosave_goto practice_sel_section_screen})
+         (new_sec_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
+         (new_song.btn {meta_loading_nosave_goto sel_song_screen})
+         (quit.btn {meta_loading_nosave_goto main_screen})
+         (quit_career.btn {meta_loading_nosave_goto main_screen})
+      }
+   )
+}
+{new GHScreen practice_end_screen
    (panels PRACTICE_PANELS practice_end_panel helpbar)
    (focus practice_end_panel)
    (clear_vram TRUE)
-   (allow_back FALSE)
-   (animate_transition FALSE)
    (in_game TRUE)
+   OVERSHELL_SCREEN_HANDLERS
    (helpbar
-      (default
-         ((fret1 help_continue)
-            (strum help_updown))))}
+      (default ((fret1 help_continue) (strum help_updown)))
+   )
+}
