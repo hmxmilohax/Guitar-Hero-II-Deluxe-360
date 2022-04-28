@@ -81,7 +81,7 @@
 	)
 }
 {new GHScreen main_screen
-   (panels meta main_panel helpbar) ;what panels are included in this screen, in reverse draw order (help bar is always on top)
+   (panels meta main_panel helpbar) ;what panels are included in this screen, in draw order (help bar is always on top)
    (focus main_panel) ;which panel to set focus to
    (helpbar ;setup helpbar
       (default ((fret1 help_continue) (strum help_updown))) ;we only need continue and up down for help

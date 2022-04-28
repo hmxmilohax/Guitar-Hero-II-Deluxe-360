@@ -1,9 +1,7 @@
-#define OVERSHELL_SCREEN_HANDLERS
-((allow_back FALSE)
-(animate_transition FALSE))
-#define OVERSHELL_SELECT_START_HANDLER
-((SELECT_START_MSG
-      {switch $component
+#define OVERSHELL_SCREEN_HANDLERS ((allow_back FALSE) (animate_transition FALSE)) ;define common screen setup for all overshell screens
+#define OVERSHELL_SELECT_START_HANDLER ;define common select start handle for main overshell screen
+((SELECT_START_MSG ;code ran when a button is selected
+      {switch $component ;run different code based on the button selected
 	     (diff.btn {ui push_screen overshell_diff_list_screen})
          (resume.btn {ui push_screen overshell_highway_list_screen})
          (restart.btn {ui push_screen overshell_slider_screen})
@@ -12,27 +10,33 @@
          (newsong.btn {ui push_screen overshell_character_list_screen})
          (quit.btn {ui push_screen overshell_guitar_list_screen})
 		 (extra1.btn {ui push_screen overshell_theme_list_screen})
-		 (extra2.btn {ui push_screen pause_audio_settings_screen})}))
-#define OVERSHELL_BUTTON_DOWN_HANDLER
-((BUTTON_DOWN_MSG
-      {if {== $button kPad_Tri}
-	     {$this backwards_anim}
-		 {if_else {exists $modifier_exit}
-            {ui goto_screen $modifier_exit}
-            {ui goto_screen main_screen}}
-            {ui pop_screen}}
-      kDataUnhandled))
+		 (extra2.btn {ui push_screen pause_audio_settings_screen})
+      }
+))
+#define OVERSHELL_BUTTON_DOWN_HANDLER ;common code to run inside of overshell when a button is pressed
+((BUTTON_DOWN_MSG ;code ran when a button is pressed
+      {if {== $button kPad_Tri} ;run when pressing back
+		 {if_else {exists $modifier_exit} ;if a specific screen is set
+            {ui goto_screen $modifier_exit} ;go to that specific screen
+            {ui goto_screen main_screen} ;or go to main screen
+         }
+		 {ui pop_screen} ;make the current overshell screen dissappear
+       }
+      kDataUnhandled
+))
 {new GHPanel overshell_panel
-   (file overshell_main.milo)
-   (focus diff.btn)
+   (file overshell_main.milo) ;main overshell milo to load
+   (focus diff.btn) ;focus on difficulty select, the first button in the list
    (reset_focus TRUE)
-   (enter {pause_title.lbl set_text "DELUXE SETTINGS"}
-          )
+   (enter ;when the screen is entered
+      {pause_title.lbl set_text "DELUXE SETTINGS"} ;set the header label text
+   )
 }
 {new GHScreen overshell_screen
-   (panels overshell_panel)
-   (focus overshell_panel)
+   (panels overshell_panel) ;what panels are included in this screen
+   (focus overshell_panel) ;what panel to focus on
    (clear_vram TRUE)
-   OVERSHELL_SCREEN_HANDLERS
-   OVERSHELL_SELECT_START_HANDLER
-   OVERSHELL_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_HANDLERS ;setup overshell with common screen handles defined above
+   OVERSHELL_SELECT_START_HANDLER ;run common select start handle define above
+   OVERSHELL_BUTTON_DOWN_HANDLER ;run common button down handle define above
+}
