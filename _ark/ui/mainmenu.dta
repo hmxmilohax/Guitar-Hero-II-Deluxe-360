@@ -1,8 +1,6 @@
 ; Chose what main menu to display based off egg screen. Custom Edition and standard gh2dx screen are swapped based on elf usage.
-;main.milo - GH2DX | main_egg0.milo - GH2DXCE | main_egg1.milo - GH1 | main_egg2.milo - GH80SDX | main_egg3.milo - GH3 | main_egg_final.milo - ???????
-{new
-   GHPanel
-   main_panel
+;main.milo - GH2DX | main_egg0.milo - GH2DXCE | main_egg1.milo - GH1 | main_egg2.milo - GH80SDX | main_egg3.milo - GH3 | main_egg_final.milo - gold
+{new GHPanel main_panel ;panels come before screens in milo
 	(file
 		{if_else $egg5 main_egg_final.milo
 			{if_else $egg4 main_egg3.milo
@@ -10,98 +8,86 @@
 					{if_else $egg2 main_egg1.milo
 						{if_else $egg1 #ifndef _ONYX main_egg0.milo #else main.milo #endif
 							{if_else $game80s main_egg2.milo #ifndef _ONYX main.milo #else main_egg0.milo #endif}}}}}})
-   (focus main_quickspin.btn)
-   (msg_last_frame 0)
+   (focus main_quickspin.btn) ;focus on quickplay button on enter
+   (msg_last_frame 0) ;cheat messages no longer occur in DX
    (already_entered FALSE)
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter
-      {campaign set_profile_slot 0}
-      {set $main_entered TRUE}
-      {set $cheat_enabled_unlock_all 1}
-      {campaign set_all_access 1}
-      {$this reset_player_settings}
-	  {set $dontreset TRUE}
-      {if
-         {!
-            [already_entered]}
-         {synth play_sequence meta_lick}
-         {$this set already_entered TRUE}}
-      {game set_tutorial_running FALSE}
-      {main_msg.view set_showing FALSE}
-      {set
-         [msg_last_frame]
-         0}
-	  {gamecfg set_player 0 {profilemgr active_padnum}}
-      {content_mgr start_enumeration}
+      {campaign set_profile_slot 0} ;attempt to set up career for quickplay
+      {set $main_entered TRUE} ;this lets the game know first boot has occured and no longer needs to perform additional setup when main screen is entered again
+      {set $cheat_enabled_unlock_all 1} ;unlock all for dx
+      {campaign set_all_access 1} ;unlock all for dx
+      {$this reset_player_settings} ;sets player defaults, only run onces on first entry
+	  {set $dontreset TRUE} ;monkey script to make the player reset not occur after first entry
+      {if {! [already_entered]} {synth play_sequence meta_lick} {$this set already_entered TRUE}} ;play a noise on first entry, and tell the game entry has occured
+      {game set_tutorial_running FALSE} ;ayo fuck tutorials
+      {main_msg.view set_showing FALSE} ;this is the group of objects and text for vanilla cheat notifications
+      {set [msg_last_frame] 0} ;resets the timeline for the cheat notification for later playback (unused)
+	  {gamecfg set_player 0 {profilemgr active_padnum}} ;set player 1 to the current active gamepad on xbox 260
+      {content_mgr start_enumeration} ;start checking for dlc on xbox
 	  )
-   (SELECT_START_MSG
+   (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch
          $component
          (main_career.btn
-            ;{ui goto_screen nameprof_screen}
+		    {{load_objects "game:/test.milo"} save_objects "game:/converted.milo"} ;test code for milo conversion. input milo must be named as test.milo_xbox
+            ;{ui goto_screen nameprof_screen} ;name profile screen for highscores (career)
 			)
 		 (main_quickspin.btn
-            {gamecfg set mode career}
-            {ui goto_screen sel_song_screen})
+            {gamecfg set mode career} ;set to career so select song screen shows saved scores
+            {ui goto_screen sel_song_screen} ;go to the select song screen
+			)
          (main_multiplayer.btn
-            {ui goto_screen multi_controller_select_screen})
+            {ui goto_screen multi_controller_select_screen} ;go to the controller configuration screen for multiplayer (xbox only)
+			)
          (main_tutorial.btn
-		    {gamecfg set mode practice}
-            {gamecfg set practice_speed 0}
-            {ui goto_screen sel_song_screen})
+		    {gamecfg set mode practice} ;set the current game mode to practice
+            {gamecfg set practice_speed 0} ;we use our own speed scripting, so ensure practice speed is set to full speed
+            {ui goto_screen sel_song_screen} ;go to the select song screen
+			)
          (main_leaderboards.btn
-            {ui goto_screen lag_screen})
+            {ui goto_screen lag_screen} ;go directly to the calibration screen
+			)
 	     (main_options.btn
-            {ui goto_screen credits_screen})})
-   (poll
+            {ui goto_screen credits_screen} ;go directly to the credits screen
+			)})
+   (poll ;poll runs code in the background to perform actions based on parameters
       {if_else
-         {game is_missing_multi_controller}
-         {$this disable main_multiplayer.btn}
-         {$this enable main_multiplayer.btn}}
-      {main_msg.view
-         set_showing
-         {<
-            {taskmgr ui_seconds}
-            {$this get msg_last_frame}}})
-   (reset_player_settings
-   {if {! $dontreset}
-      {set $songtitle TRUE}
-      {{game get_player_config 0}
-         set_difficulty
-         kDifficultyExpert}
-		 {set $songtitle TRUE}
-      {game set_guitar_index 1}
-      {do
-         ($player2_config
-            {game get_player_config 1})
-         {$player2_config set_character rockabill1 TRUE}
-         {$player2_config set_guitar_index 0}
-         {$player2_config set_difficulty kDifficultyExpert}}})
-   (display_cheat_msg
-      ($cheat $enable)
-      {mm_msg.lbl
-         set_localized_text
-         {sprintf
-            {localize
-               {if_else $enable cheat_enabled_fmt cheat_disabled_fmt}}
-            {localize $cheat}}}
-      {$this
-         set
-         msg_last_frame
-         {'+'
-            {taskmgr ui_seconds}
-            5}})}
-{new
-   GHScreen
-   main_screen
-   (panels meta main_panel helpbar)
-   (focus main_panel)
-   (helpbar
-      (default
-         ((fret1 help_continue)
-            (strum help_updown))))
-   (access_all
-      {main_panel reset_player_settings})
-   (enter
-      {$this turn_off_ambient})}
+         {game is_missing_multi_controller} ;checks if a player 2 controller is plugged in
+         {$this disable main_multiplayer.btn} ;enables multiplayer to be selected if player 2 is plugged in
+         {$this enable main_multiplayer.btn} ;disables multiplayer to be selected if player 2 is plugged in
+		 }
+      {main_msg.view set_showing {< {taskmgr ui_seconds} ;if the cheat display message has been showing for the desired amount of time, hide it
+            {$this get msg_last_frame} ;and reset the current point in the animation timeline
+			}}
+			)
+   (reset_player_settings ;runs on entry to main screen
+   {if {! $dontreset} ;monkey script to make sure the contents only run the first time main screen is entered
+      {set $songtitle TRUE} ;default song title always on as there is a ton of information in mtv overlay
+      {{game get_player_config 0} set_difficulty kDifficultyExpert} ;default player 1 to expert
+      {game set_guitar_index 1} ;set the default guitar to the red sg
+      {do ($player2_config {game get_player_config 1}) ;set up player 2 variable for use in the next lines
+         {$player2_config set_character rockabill1 TRUE} ;set player 2 to eddie knox by default
+         {$player2_config set_guitar_index 0} ;set default guitar for player 2 to the les paul
+         {$player2_config set_difficulty kDifficultyExpert} ;set default difficulty for player 2 to expert
+		 }})
+   (display_cheat_msg ;vanilla cheat display popup, now completely unused in DX
+      ($cheat $enable) ;set up local variables
+      {mm_msg.lbl set_localized_text ;set the cheat label text to the following
+         {sprintf ;combine functions
+            {localize {if_else $enable cheat_enabled_fmt cheat_disabled_fmt}} ;if a chect is being enabled, set the text to enabled, if its being disabled, set the text to disabled
+            {localize $cheat} ;grab the locale for the currently called cheat and add it to the label
+			}}
+      {$this set msg_last_frame {'+' {taskmgr ui_seconds} 5}} ;play the animation of the cheat popup for 5 seconds, then reset via (poll)
+	)
+}
+{new GHScreen main_screen
+   (panels meta main_panel helpbar) ;what panels are included in this screen, in reverse draw order (help bar is always on top)
+   (focus main_panel) ;which panel to set focus to
+   (helpbar ;setup helpbar
+      (default ((fret1 help_continue) (strum help_updown))) ;we only need continue and up down for help
+   )
+   (access_all {main_panel reset_player_settings}) ;reset the player settings when debug function is called
+   (enter {$this turn_off_ambient}) ;while we play metaloops, don't play ambient sfx
+}
