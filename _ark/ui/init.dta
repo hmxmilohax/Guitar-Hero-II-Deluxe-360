@@ -55,6 +55,9 @@
 ;skips the song intro in quickplay for faster
 ;gameplay. Focus mode turns this on autopmatically
 {set $miloskipintro FALSE}
+;skips the song outro in quickplay to get to the endscreen
+;much faster. Focus mode also automatically turns this on
+{set $skipoutro FALSE}
 ;disables the popup for notestreaks at 50, 100, 200
 ;etc in game
 {set $notestreakmod TRUE}

@@ -129,7 +129,7 @@
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {streak_overlay_panel show_overlay TRUE} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
-      {if {'||" {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
+      {if {'||' {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
 	     {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
             (script {mtv_overlay_panel show_overlay FALSE})} ;and hide the mtv overlay
 	  }
@@ -211,6 +211,9 @@
       ;($encore) ;encores are not available in dx 3.0
       {set $author FALSE} ;we are done with the author flag for this song, reset to false
       {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay now that the song is done
+      {if_else $skipoutro
+      0 ;do nothing if outro skipping is enabled
+      {do
       {if {&& $focusmode {'||' {== {gamecfg get mode} career} {== {gamecfg get mode} quickplay} {== {gamecfg get mode} multi_coop}}} ;if focus mode and game mode is career or quickplay or coop
          {if {exists world} {world toggle_pick_shot}} ;check if the world exists, and allow camera cuts again
       }
@@ -247,7 +250,7 @@
                kDataUnhandled
 	        }
         0} ;do nothing if there is no game_over_sequence defined
-	  }
+	  }}}
    )
    (game_lost ;run when the song is failed
       {set $author FALSE} ;set the author to false to be set again if restarted
