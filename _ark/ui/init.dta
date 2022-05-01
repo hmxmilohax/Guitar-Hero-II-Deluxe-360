@@ -97,6 +97,8 @@
 ;mock towell hyperspeed mode which cuts about 50% of the
 ;visible notes. Think reverse brutal mode
 {set $autoplay FALSE}
+;LysiX's EPIC streak and star power text popup modifications
+{set $epictext FALSE}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}

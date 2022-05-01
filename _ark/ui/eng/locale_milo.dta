@@ -2,15 +2,21 @@
 (note_streak_popup_p0
    {if_else $egg5
       {sprint $player0_streak " NOTES IN A ROW!"}
-      {sprint $player0_streak " NOTE STREAK!"}})
+   {if_else $epictext
+      {sprint "EPIC " $player0_streak " STREAK!"}
+      {sprint $player0_streak " NOTE STREAK!"}}})
 (note_streak_popup_p1
    {if_else $egg5
       {sprint $player1_streak " NOTES IN A ROW!"}
-      {sprint $player1_streak " NOTE STREAK!"}})
+   {if_else $epictext
+      {sprint "EPIC " $player1_streak " STREAK!"}
+      {sprint $player1_streak " NOTE STREAK!"}}})
 (note_streak_popup_p2
    {if_else $egg5
       {sprint $player2_streak " NOTES IN A ROW!"}
-      {sprint $player2_streak " NOTE STREAK!"}})
+   {if_else $epictext
+      {sprint "EPIC " $player2_streak " STREAK!"}
+      {sprint $player2_streak " NOTE STREAK!"}}})
 (endgame_streak_format
    {if_else {== {gamecfg get mode} quickplay}
       {switch {game get_track_type 0}
@@ -126,6 +132,7 @@
 (os_autoplay {sprint "Autoplay" {if_else $autoplay ": ON" ": OFF"}})
 (os_gh3track {sprint "GH3 Frets" {if_else $gh3track ": ON" ": OFF"}})
 (os_skipoutro {sprint "Skip Outro" {if_else $skipoutro ": ON" ": OFF"}})
+(os_epictext {sprint "Epic Text Popups" {if_else $skipoutro ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")

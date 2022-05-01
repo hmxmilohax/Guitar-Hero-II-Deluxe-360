@@ -250,6 +250,9 @@
 (sg_bass "BASS")
 (sg_drum "DRUMS")
 (multiplier_format "%dX")
-(star_ready "STAR POWER READY!")
+(star_ready 
+   {if_else $epictext
+   "THIS IS FUCKING EPIC"
+   "STAR POWER READY!"})
 (song_failed "SONG FAILED!")
 (deploy_star "DEPLOY YOUR STAR POWER!")
