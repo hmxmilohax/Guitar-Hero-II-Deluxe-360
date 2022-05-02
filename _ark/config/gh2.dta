@@ -1,6 +1,6 @@
 #include macros.dta
 (rnd
-   (force_hd TRUE))
+   (force_hd FALSE))
 (mem
    (heaps
    (main
