@@ -99,6 +99,8 @@
 {set $autoplay FALSE}
 ;LysiX's EPIC streak and star power text popup modifications
 {set $epictext FALSE}
+;sound effects
+{set $sfx TRUE}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}

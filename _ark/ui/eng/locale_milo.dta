@@ -133,6 +133,7 @@
 (os_gh3track {sprint "GH3 Frets" {if_else $gh3track ": ON" ": OFF"}})
 (os_skipoutro {sprint "Skip Outro" {if_else $skipoutro ": ON" ": OFF"}})
 (os_epictext {sprint "Epic Text Popups" {if_else $epictext ": ON" ": OFF"}})
+(os_sfx {sprint "Sound Effects" {if_else $sfx ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")
