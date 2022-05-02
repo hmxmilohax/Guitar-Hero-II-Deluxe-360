@@ -129,7 +129,7 @@
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {streak_overlay_panel show_overlay TRUE} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
-      {if {'||' {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
+      {if {"||" {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
 	     {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
             (script {mtv_overlay_panel show_overlay FALSE})} ;and hide the mtv overlay
 	  }
