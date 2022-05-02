@@ -329,7 +329,7 @@
       ($player $mult) ;setup the variables
       {do
          ($sfx {sprintf "streak_broken_%ix.cue" $mult}) ;setup which sound to use via variables
-         {if {! $sfx} {play_game_sfx_player $sfx $sfx $player}} ;only play miss streak sound effects if focus mode is not enabled
+         {if $sfx {play_game_sfx_player $sfx $sfx $player}} ;only play miss streak sound effects if focus mode is not enabled
 		 }
       kDataUnhandled
    )

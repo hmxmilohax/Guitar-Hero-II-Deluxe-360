@@ -311,7 +311,7 @@
             {set $focusmode FALSE}
 			{set $miloskipintro FALSE}
             {set $skipoutro FALSE}
-            {set $sfx FALSE}
+            {set $sfx TRUE}
 			{set $modifierlistpos {sel_section.lst selected_pos}}
 			OVERSHELL_LIST_RESET_HANDLER}
 			{do
@@ -319,7 +319,7 @@
             {set $focusmode TRUE}
 			{set $miloskipintro TRUE}
             {set $skipoutro TRUE}
-            {set $sfx TRUE}
+            {set $sfx FALSE}
 			{set $modifierlistpos {sel_section.lst selected_pos}}
 			OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
