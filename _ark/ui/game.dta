@@ -4,8 +4,8 @@
    (file mtv_overlay.milo)
    (enter ;when the screen is entered
       {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
-	  {mtv_overlay.view set_local_pos -240 1 85} ;move the mtv overlay to the top left corner of the screen
-      {$this setup_text} ;run the setup_text code block below
+	  {mtv_overlay.view set_local_pos -160 1 85} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+;      {$this setup_text} ;run the setup_text code block below
    )
    (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below
       {do
@@ -21,38 +21,48 @@
                {if_else {&& {== {gamecfg get mode} practice} {!= {gamecfg get practice_speed} 0}} ;now check if the game mode is practice and the practice speed is set to full speed
                   {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
                   {$this set_line $prefix 1 {sprint $song_text " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}} ;if song speed is not 100%, do math to report the song speed as a percentage on line 1
-			   }
+               }
                {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
-			}
+            }
             {$this set_line $prefix 2 {sprint "BY - " $artist_text}} ;the artist text line is always just "BY - ARTIST"
-			{if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
-               {if_else $autoplay ;check for autoplay enabled
-			      {$this set_line $prefix 3 {sprint "\nAUTOPLAY"}} ;if autoplay is enabled, report nothing below, only "AUTOPLAY" on line 3
-			      {$this set_line $prefix 3 ;if it is not autoplay, and author is found in locale. all on line 3
-				     {sprint "\nAuthor: " {localize {sprint $song "_author"}} "\n" ;apply the author locale and new line
-					 $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n" ;apply the notes missed and overstum variables we set in streak panel sinks, and new line
-				     {sprint {* {/ {if_else $beforefirstnote_p0 {+ $gems_hit 1} $gems_hit} {if_else $beforefirstnote_p0 {+ $gems_total 1} $gems_total}} 100} "%"}} ;do some math to report the current notes hit out of notes passed as a percentage
-				  }
-			   }
-			         {if_else $autoplay ;if an author locale string is not found, check for autoplay enabled
-			            {$this set_line $prefix 3 {sprint "\nAUTOPLAY"}} ;if autoplay is enabled, report nothing below, only "AUTOPLAY" on line 3
-			               {if_else $author ; check for a set author variable in DLC contexts.dta
-                              {$this set_line $prefix 3 ;if it is not autoplay, and author variable is set. all on line 3
-							     {sprint "\nAuthor: " $author "\n" ;apply the author variable and new line
-								 $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n" ;apply the notes missed and overstum variables we set in streak panel sinks, and new line
-								 {sprint {* {/ {if_else $beforefirstnote_p0 {+ $gems_hit 1} $gems_hit} {if_else $beforefirstnote_p0 {+ $gems_total 1} $gems_total}} 100} "%"}}  ;do some math to report the current notes hit out of notes passed as a percentage
-							  }
-                                    {$this set_line $prefix 3 ;if it is not autoplay and no author variable is set. all on line 3
-								       {sprint "\n" $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n" ;apply the notes missed and overstum variables we set in streak panel sinks, and new line
-									   {sprint {* {/ {if_else $beforefirstnote_p0 1 $gems_hit} {if_else $beforefirstnote_p0 1 $gems_total}} 100} "%"}}  ;do some math to report the current notes hit out of notes passed as a percentage
-			                        }
-			               }
-			         }
-			}
+
+            {if_else $autoplay ;check for autoplay enabled without author variable, the author checks will override this if needed
+               {set $mtvline3 {sprint "\nAUTOPLAY"}}
+               {set $mtvline3 {sprint "\n"}}
+            }
+
+            {if {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
+               {if_else $autoplay ;check for autoplay enabled and author present in locale
+                  {set $mtvline3 {sprint "\nAuthor: " {localize {sprint $song "_author"}} "\nAUTOPLAY"}} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                  {set $mtvline3 {sprint "\nAuthor: " {localize {sprint $song "_author"}} "\n"}} ;apparently we weren't showing author in autoplay, fixed
+               }
+            }
+            {if_else $author ;check for author variable in DLC contexts.dta
+               {if_else $autoplay ;check for autoplay enabled with author variable
+                  {set $mtvline3 {sprint "\nAuthor: " $author "\nAUTOPLAY"}} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                  {set $mtvline3 {sprint "\nAuthor: " $author "\n"}} ;apparently we weren't showing author in autoplay, fixed
+               }
+            }
+            {if_else $autoplay ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
+               {$this set_line $prefix 3 {sprint $mtvline3}} ;if autoplay, just put the static shit
+               {$this set_line $prefix 3 {sprint $mtvline3 ;if not autoplay, first put the stuff we pregenerated before
+                  $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n100.00%"} ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line, hardcode 100% since this is setup
+               }
+            }
          }
-	  }
+      }
    )
-   (set_line ;called in mtv overlay to apply the text to two labels at once
+   (update_text ;called from hud_panel to reduce scripting to run on each note hit
+      {do
+         ($gems_hit {player0 gems_hit}) ;setup gems hit variable
+         ($gems_total {'+' $gems_hit {player0 gems_passed}}) ;setup total gems that have passed the strikeline variable
+         {$this set_line "mtv_campaign_line" 3 {sprint $mtvline3 ;if not autoplay, first put the stuff we pregenerated before
+            $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n" ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line
+            {sprint {* {/ {if_else $beforefirstnote_p0 1 $gems_hit} {if_else $beforefirstnote_p0 1 $gems_total}} 100} "%"}} ;do some math to report the current notes hit out of notes passed as a percentage
+         }
+      }
+   )
+    (set_line ;called in mtv overlay to apply the text to two labels at once
       ($prefix $i $text) ;setup variables
       {{sprint $prefix $i ".lbl"} set_localized_text $text} ;set the main text objects
       {{sprint $prefix $i "_shadow.lbl"} set_localized_text $text} ;set the shadow text objects
@@ -71,12 +81,16 @@
    (load {set_loader_period 13})
    (enter ;when the screen is entered
       #ifdef HX_XBOX {rnd suspend} #endif ;no idea but ps2 does not have this code
-	  {set $starrating 0} ;set current star back to default
-	  {set $starratingtemp 0} ;set temp star rating back to default
-      {set $starrating '0 ©'} ;set set displayed stars back to default
+      {set $starrating 0} ;set current star back to default
+      {set $starratingtemp 0} ;set temp star rating back to default
+      {if_else $autoplay
+         {set $starrating ' '} ;if autoplay, blank star rating display entirely
+         {set $starrating ' ©'} ;otherwise, set displayed stars back to default
+      }
+      {streak_overlay_panel init_progress_bars} ;initialize the progress meters
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
-	  {set $do_streak TRUE} ;set the streak meter code to enabled
+      {set $do_streak TRUE} ;set the streak meter code to enabled
       {set $interval_p0 50} ;set streak interval back to default
       {set $interval_p1 50} ;set streak interval back to default
       {set $interval_p2 50} ;set streak interval back to default
@@ -84,6 +98,18 @@
       {set $player1_streak 0} ;set current streak back to default
       {set $player2_streak 0} ;set current streak back to default
       {set_loader_period 5}
+
+;      {if {exists song_progress_task} {delete song_progress_task}} ;second attempt at responsive song progress meter
+;      {thread_task
+;         (units kTaskBeats)
+;         (name song_progress_task)
+;         (script
+;            {streak_overlay_panel update_song_progress}
+;            {$task sleep 0.5}
+;            {$task loop}
+;         )
+;      }
+
       ;{set [encore_unlock_check] {&& {== {gamecfg get mode} career} {campaign encore_unlock_potential}}} ;encores are not available in dx 3.0
       ;{print "encore unlock check is " [encore_unlock_check] "\n"} ;debug printing for current encore
       ;{set [encore_song] {&& {!= {gamecfg get mode} tutorial} {campaign is_encore_song {gamecfg get_song}}}} ;encores are not available in dx 3.0
@@ -92,6 +118,8 @@
    (intro_start_msg ;ran in quickplay/career by default on all songs
       ($fast $encore) ;setup local variables
       {track_panel intro_start_msg} ;call the intro_start_msg code block in track_panel
+      {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
+      {streak_overlay_panel init_progress_bars} ;initialize the progress meters
       {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay for a few seconds
       {streak_overlay_panel show_overlay FALSE} ;hide the streak meter for a few seconds
       {switch {gamecfg get mode} (multi_vs {set $songtitle FALSE}) (multi_fo {set $songtitle FALSE})} ;dont keep the mtv overlay on screen for faceoff and pro faceoff
@@ -120,13 +148,17 @@
       kDataUnhandled)
    (intro_skip ;ran in practice mode or when intro skip/focus mode modifier is enabled. skips the intro camera shot and track extension
       {set $starrating 0} ;set current star back to default
-	  {set $starratingtemp 0} ;set temp star rating back to default
-      {set $starrating '0 ©'} ;set set displayed stars back to default
+      {set $starratingtemp 0} ;set temp star rating back to default
+      {if_else $autoplay
+         {set $starrating ' '} ;if autoplay, blank star rating display entirely
+         {set $starrating ' ©'} ;otherwise, set displayed stars back to default
+      }
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
       {track_panel intro_skip}
 	  {set $do_streak TRUE} ;set the streak meter code to enabled
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
+      {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
       {streak_overlay_panel show_overlay TRUE} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
       {if {"||" {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
@@ -169,8 +201,18 @@
       }
       {set [intro_complete] TRUE} ;this will allow the pause>restart button to restart back to the track extend, instead of the full intro shot every restart
    )
-   (music_start {ui music_start} kDataUnhandled) ;start the music
+   (music_start
+;      {script_task (units kTaskBeats) ;third attempt at making the song progress meter update twice per beat
+;         (script
+;            {streak_overlay_panel update_song_progress}
+;            {$task sleep 0.5}
+;            {$task loop}
+;         )
+;      }
+      {ui music_start}
+      kDataUnhandled) ;start the music
    (beat ;runs code every beat of the currently playing song
+      {streak_overlay_panel update_song_progress}
       {if $barf_cheat ;check for roxbury modifier
          {track_panel animate (range 2000 2025) (period 0.4)} ;if roxbury enabled, shake the track on beat of the song
       }
@@ -193,6 +235,7 @@
 			}
 		  }
 	   }
+;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress meter every beat to make it more responsive
       kDataUnhandled
    )
    (downbeat ;runs code every down beat of the currently playing song

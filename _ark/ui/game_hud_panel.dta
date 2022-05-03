@@ -43,31 +43,42 @@
       {if $do_streak 
          {do
             {if_else {== {gamecfg get mode} multi_coop}
-               {streak_overlay_panel update_streak 2}
-               {streak_overlay_panel update_streak 0}}
-			{if {! $autoplay} 
-			{set $starratingtemp {if_else {< {player0 avg_multiplier} 1.2}
-   {* {player0 avg_multiplier} 2.5}
-   {+ {* {player0 avg_multiplier} 1.25} 1.5}}}}
-   {if {> $starratingtemp 0.0} {do {set $starrating '0©'} {set $starratingtempbar $starratingtemp}}}
-   {if {> $starratingtemp 1.0} {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}}}
-   {if {> $starratingtemp 2.0} {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}}}
-   {if {> $starratingtemp 3.0} {do {set $starrating '3©'} {set $starratingtempbar {- $starratingtemp 3.0}}}}
-   {if {> $starratingtemp 4.0} {do {set $starrating '4©'} {set $starratingtempbar {- $starratingtemp 4.0}}}}
-   {if {> $starratingtemp 5.0} {do {set $starrating '5©'} {set $starratingtempbar {- $starratingtemp 5.0}}}}
-   {if {> $starratingtemp 6.0} {do {set $starrating '6©'} {set $starratingtempbar {- $starratingtemp 6.0}}}}
-   {if {> $starratingtemp 7.0} {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}}}
-   {if {> $starratingtemp 8.0} {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}}}
-   {if {> $starratingtemp 9.0} {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}}}
-			{{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
-			{{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1}
-			{{streak_overlay_panel find star_counter.lbl} set_text $starrating}
-            {set $beforefirstnote_p0 FALSE}
-			{mtv_overlay_panel setup_text}}})
+               {streak_overlay_panel update_streak 2} ;update co-op streak
+               {streak_overlay_panel update_streak 0}}}} ;update single player or vs/fo p0 streak
+      {if {! $autoplay} ;if not autoplay, run star counter and miss/overstrum printing
+         {streak_overlay_panel update_star_progress}
+;         {set $starratingtemp ;calculate fractional Scorehero-style star rating
+;            {if_else {< {player0 avg_multiplier} 1.2}
+;               {* {player0 avg_multiplier} 2.5}
+;               {+ {* {player0 avg_multiplier} 1.25} 1.5}
+;            }
+;         }
+;         {switch ;set string for whole part and retrieve fractional part for application to the bar
+;            {int $starratingtemp}
+;            (0 {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}})
+;            (1 {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}})
+;            (2 {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}})
+;            (3 {do {set $starrating '3©'} {set $starratingtempbar {- $starratingtemp 3.0}}})
+;            (4 {do {set $starrating '4©'} {set $starratingtempbar {- $starratingtemp 4.0}}})
+;            (5 {do {set $starrating '5©'} {set $starratingtempbar {- $starratingtemp 5.0}}})
+;            (6 {do {set $starrating '6©'} {set $starratingtempbar {- $starratingtemp 6.0}}})
+;            (7 {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}})
+;            (8 {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}})
+;            (9 {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}})
+;            {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}}
+;         }
+
+         ;{{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;moved to beat handler
+
+;         {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
+;         {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
+         {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
+         {mtv_overlay_panel update_text} ;update MTV line 3
+      }
+   )
 
    (gem_miss_callback
       ($slot_hit $real_slot $timing_error)
-	  
       {if_else $do_streak
          {if_else {== {gamecfg get mode} multi_coop}
             {do
@@ -82,23 +93,22 @@
             {do
                {if {&& {! $beforefirstnote_p0} $player0_fc}
                   {streak_overlay_panel not_an_fc 0}}
-				  {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
-                  {set $player0_streak 0}
-                  {set $interval_p0 50}
-				  {if {! $beforefirstnote_p0} {set $overstrums {+ $overstrums 1}}}
-                  {streak_overlay_panel zero_streak 0}
-                  {streak_overlay_panel update_streak 0}
-				  {mtv_overlay_panel setup_text}}}
-         {if_else {== {gamecfg get mode} multi_coop}
-            {do
-               {set $player2_streak 0}
-               {set $interval_p2 50}}
-            {do
+;               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar, we might not be on a beatline
                {set $player0_streak 0}
-               {set $interval_p1 50}}}})
+               {set $interval_p0 50}
+               {streak_overlay_panel zero_streak 0}
+               {streak_overlay_panel update_streak 0}
+               {if {! $autoplay} ;if not autoplay, handle overstrums and MTV line 3
+                  {if {! $beforefirstnote_p0}{set $overstrums {+ $overstrums 1}}} ;update overstrum var
+                  {mtv_overlay_panel update_text} ;update MTV line 3
+               }
+            }
+         }
+      }
+   )
 
    (gem_pass_callback
-   
+;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar always, we might not be on a beatline
       {if $do_streak
          {do
             {set $beforefirstnote_p0 FALSE}
@@ -116,14 +126,30 @@
                   {if $player0_fc
                      {do
                         {streak_overlay_panel not_an_fc 0}}}
-				  {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
                   {set $player0_streak 0}
-				  {set $notesmissed {+ $notesmissed 1}}
                   {set $interval_p0 50}
                   {streak_overlay_panel zero_streak 0}
                   {streak_overlay_panel update_streak 0}
-				  {mtv_overlay_panel setup_text}}
-            }}})}
+                  {if {! $autoplay} ;if not autoplay, handle misses and MTV line 3
+                     {set $notesmissed {+ $notesmissed 1}} ;update missed var
+                     {mtv_overlay_panel update_text} ;update MTV line 3
+                  }
+               }
+            }
+         }
+      }
+   )
+}
+
+{new
+   Object
+   star_progress_callback_p0
+   (held_note_released_callback
+      {if {! $autoplay} ;if not autoplay, run star counter
+         {streak_overlay_panel update_star_progress}
+      }
+   )
+}
 
 {new
    Object
@@ -206,7 +232,7 @@
    (file "../hud/streak_overlay.milo")
    (enter
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 29}
-	  {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
       {if_else {||
       {game is_tutorial_running} ;check for tutorial mode
       {== {gamecfg get mode} attract} ;check for attract mode
@@ -216,12 +242,51 @@
             {set $do_streak FALSE}}
 	  {set $starratingtempbar 0}
 	  {set $starratingtemp 0}
-      {set $starrating '0 ©'}
+      {if_else $autoplay
+         {set $starrating ' '} ;if autoplay, blank star rating
+         {set $starrating ' ©'} ;otherwise, set to default
+      }
       {set $notesmissed 0}
       {set $overstrums 0}
-	  {mtv_overlay_panel setup_text}
-	  {{streak_overlay_panel find star_counter.lbl} set_text $starrating}
+;      {mtv_overlay_panel setup_text} ;we call this in mtv_overlay_panel enter, do we really need it again?
+;      {{streak_overlay_panel find star_counter.lbl} set_text $starrating}
       {$this setup_streak}})
+
+   (init_progress_bars
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
+      {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
+   )
+   (update_song_progress
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+   )
+   (update_star_progress
+      {set $starratingtemp ;calculate fractional Scorehero-style star rating
+         {if_else {< {player0 avg_multiplier} 1.2}
+            {* {player0 avg_multiplier} 2.5}
+            {+ {* {player0 avg_multiplier} 1.25} 1.5}
+         }
+      }
+      {if {! $autoplay}
+         {switch ;set string for whole part and retrieve fractional part for application to the bar
+            {int $starratingtemp}
+            (0 {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}})
+            (1 {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}})
+            (2 {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}})
+            (3 {do {set $starrating '3©'} {set $starratingtempbar {- $starratingtemp 3.0}}})
+            (4 {do {set $starrating '4©'} {set $starratingtempbar {- $starratingtemp 4.0}}})
+            (5 {do {set $starrating '5©'} {set $starratingtempbar {- $starratingtemp 5.0}}})
+            (6 {do {set $starrating '6©'} {set $starratingtempbar {- $starratingtemp 6.0}}})
+            (7 {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}})
+            (8 {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}})
+            (9 {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}})
+            {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}}
+         }
+      }
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
+      {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
+   )
+
    (animate_streak
       {script_task
          (units kTaskSeconds)
@@ -249,9 +314,11 @@
                (units kTaskSeconds)})})
    (streak_lastframe {stk_campaign_song_id.view set_frame METER_END_FRAME})
    (setup_streak
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
-	  {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {/ $starratingtempbar 75.0} .1 .1}
-      {set $do_streak TRUE}
+;      {streak_overlay_panel update_song_progress}
+;      {streak_overlay_panel update_star_progress}
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
+;      {set $do_streak TRUE}
       {stk_campaign_song_id.view set_showing FALSE}
       {stk_campaign_song_id_coop.view set_showing FALSE}
       {stk_campaign_song_id_vers.view set_showing FALSE}
@@ -264,8 +331,8 @@
       {stk_campaign_line_vers2.lbl set_showing FALSE}
       {stk_campaign_line_vs2p1.lbl set_showing FALSE}
       {stk_campaign_line_vs2p2.lbl set_showing FALSE}
-      {set $notesmissed 0}
-	  {set $overstrums 0}
+;      {set $notesmissed 0}
+;      {set $overstrums 0}
       {set $player0_fc FALSE} ; Pre-clear all FC flags so only the ones in use actually get set
       {set $player1_fc FALSE}
       {set $player2_fc FALSE}
@@ -358,7 +425,8 @@
       {{sprint $stk_view_p0} set_showing TRUE} ; Don't worry, panel is still invisible at this point
       {{sprint $stk_prefix_p0 $streakline_p0 ".lbl"} set_showing TRUE}
 	  
-	  {mtv_overlay_panel setup_text})
+	  ;{mtv_overlay_panel update_text} ;shouldn't be needed, we're still in setup_streak and we just ran setup_text (which includes the same script from update_text) before calling setup_streak
+)
 
    (not_an_fc
       ($player)
@@ -416,6 +484,7 @@
       {player_matcher0 add_sink note_streak_callback_p0}
       {if {exists player_matcher1}
          {player_matcher1 add_sink note_streak_callback_p1}}
+;      {player0 add_sink star_progress_callback_p0}
       {if {!= tutorial
          {gamecfg get mode}}
       {game add_sinks $this peak_on peak_off}})

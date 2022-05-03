@@ -31,7 +31,10 @@
    (restart
 	  {set $starratingtempbar 0}
 	  {set $starratingtemp 0}
-      {set $starrating '0 ©'}
+      {if_else $autoplay
+         {set $starrating ' '} ;if autoplay, blank star rating
+         {set $starrating ' ©'} ;otherwise set to initial value
+      }
       {set $notesmissed 0}
       {set $overstrums 0}
       {mtv_overlay_panel setup_text}
