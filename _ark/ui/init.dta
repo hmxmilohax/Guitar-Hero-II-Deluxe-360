@@ -72,6 +72,8 @@
 {set $gh1track FALSE}
 ;gh3 style "smashers" ported from pc
 {set $gh3track FALSE}
+;empty "smashers," only rings until held down
+{set $voidfrets FALSE}
 ;mock towell hyperspeed mode which cuts about 50% of the
 ;visible notes. Think reverse brutal mode
 {set $towel FALSE}

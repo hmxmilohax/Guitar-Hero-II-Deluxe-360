@@ -134,6 +134,7 @@
 (os_skipoutro {sprint "Skip Outro" {if_else $skipoutro ": ON" ": OFF"}})
 (os_epictext {sprint "Epic Text Popups" {if_else $epictext ": ON" ": OFF"}})
 (os_sfx {sprint "Sound Effects" {if_else $sfx ": ON" ": OFF"}})
+(os_voidfrets {sprint "Void Frets" {if_else $voidfrets ": ON" ": OFF"}})
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")
