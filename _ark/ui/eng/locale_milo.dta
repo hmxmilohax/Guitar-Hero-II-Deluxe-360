@@ -135,6 +135,8 @@
 (os_skipoutro {sprint "Skip Outro" {if_else $skipoutro ": ON" ": OFF"}})
 (os_epictext {sprint "Epic Text Popups" {if_else $epictext ": ON" ": OFF"}})
 (os_sfx {sprint "Sound Effects" {if_else $sfx ": ON" ": OFF"}})
+(os_whammyfx {sprint "Whammy Effects" {if_else $whammyfx ": ON" ": OFF"}})
+(os_muting {sprint "Track Muting" {if_else $muting ": ON" ": OFF"}})
 (os_voidfrets {sprint "Void Frets" {if_else $voidfrets ": ON" ": OFF"}})
 
 ;endgame List stuff

@@ -103,6 +103,11 @@
 {set $epictext FALSE}
 ;sound effects
 {set $sfx TRUE}
+;whammy effects, 1 for on and 0 for off
+{set $whammyfx 1}
+;track muting dB level, $muting TRUE needs to be $mute_level -96.0, $muting FALSE needs $mute_level -0.001
+{set $muting TRUE}
+{set $mute_level -96.0}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}

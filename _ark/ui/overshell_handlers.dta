@@ -1,3 +1,5 @@
+#define OVERSHELL_LIST_CONTENTS
+((os_focusmode os_skipintro os_skipoutro os_sfx os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
 #define OVERSHELL_SCREEN_COMMON_HANDLER
 ((allow_back FALSE)
 (animate_transition FALSE))
@@ -135,10 +137,7 @@
       }
       {
          {do
-            {sel_section.lst
-               set_data
-               (os_focusmode os_skipintro os_skipoutro os_sfx os_nofail os_songtitle os_brutalmode os_towel os_epictext os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
-            }
+            {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
             {ui push_screen overshell_help_screen}
          }
       }
@@ -155,9 +154,8 @@
    {sel_section.lst set circular 1}
    {sel_section.lst set alignment kTopCenter}
    {gs_title.lbl set_text "MODIFIERS"}
-      {sel_section.lst
-         set_data
-         (os_focusmode os_skipintro os_skipoutro os_sfx os_nofail os_songtitle os_brutalmode os_towel os_epictext os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)})
+   {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
+   )
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
@@ -186,6 +184,34 @@
             {do
             {play_sfx cheat}
             {set $sfx TRUE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_whammyfx
+         {if_else $whammyfx
+            {do
+            {play_sfx cheat_off}
+            {set $whammyfx 0}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $whammyfx 1}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_muting
+         {if_else $muting
+            {do
+            {play_sfx cheat_off}
+            {set $muting FALSE}
+            {set $mute_level -0.001}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $muting TRUE}
+            {set $mute_level -96.0}
             {set $modifierlistpos {sel_section.lst selected_pos}}
             OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)

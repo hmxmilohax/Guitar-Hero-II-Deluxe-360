@@ -109,7 +109,7 @@
 (watcher
    (slop 100) ; In ms, how much you can be off by and still hit the note
    (cheat_error 0)
-   (pitch_bend_range 1)
+   (pitch_bend_range $whammyfx) ;was 1
    (ms_to_full_pitch_bend 1000))
 
 ; originally from ../../../system/run/config/beatmatch.dta
@@ -135,6 +135,7 @@
    (multiplayer_common_attenuation 1.5)
    (background_attenuation 5.0)
    (practice_attenuation 7.5)
+   (mute_volume $muting) ;HMX never used this in GH2 but it's in there
    #ifndef HX_XBOX
    (submixes)
    #else
