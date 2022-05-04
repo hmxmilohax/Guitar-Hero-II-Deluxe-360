@@ -5,6 +5,7 @@
    (animate_transition FALSE)
    (pfo_newly_unlocked 0)
    (enter
+      {track_panel set_showing FALSE} ;because the highway legs are visible at the bottom of the screen now
       {crowd_audio turn_off}
       {set $new_venue ""}
       {if {== career {gamecfg get mode}}
