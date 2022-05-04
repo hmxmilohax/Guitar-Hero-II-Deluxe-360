@@ -98,8 +98,10 @@
    (enter
       {section.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
 	  {section_shadow.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
-	  {section.lbl set_local_pos -375 0 147} ;setup section text label to specific position and scale
-	  {section_shadow.lbl set_local_pos -372 1 144} ;setup section text label to specific position and scale
+      {set $sectionlabelx -295} ;set the base x position for the section label
+      {set $sectionlabely 147} ;set the base y position for the section label
+      {section.lbl set_local_pos $sectionlabelx 0 $sectionlabely} ;setup section text label to specific position and scale as set above
+      {section_shadow.lbl set_local_pos {+ $sectionlabelx 3} 1 {- $sectionlabely 3}} ;setup section text label to specific position and scale as set above
       {practice_space1.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
 	  {practice_space2.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
       {events_parser add_sink $this section} ;add section event parser
