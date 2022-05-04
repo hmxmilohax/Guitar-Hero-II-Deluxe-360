@@ -7,6 +7,7 @@
       {ui pop_screen}} kDataUnhandled))
 #define OVERSHELL_HELP_POP_HANDLER
 ({if_else {&& {! {$this slider_selected}} $helpentered}
+{$this reset}
 {ui pop_screen}
 {ui push_screen overshell_help_screen}})
 #define MODIFIER_SLIDER_HANDLERS
@@ -124,9 +125,25 @@
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 #define OVERSHELL_LIST_RESET_HANDLER
-({if_else {&& {! {$this slider_selected}} $helpentered}
-{{sel_section.lst set_selected $modifierlistpos} {$this reset}}
-{ui push_screen overshell_help_screen}})
+(
+   {if_else {&& {! {$this slider_selected}} $helpentered}
+      {
+         {do
+            {sel_section.lst set_selected $modifierlistpos}
+            {$this reset}
+         }
+      }
+      {
+         {do
+            {sel_section.lst
+               set_data
+               (os_focusmode os_skipintro os_skipoutro os_sfx os_nofail os_songtitle os_brutalmode os_towel os_epictext os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+            }
+            {ui push_screen overshell_help_screen}
+         }
+      }
+   }
+)
 {new
    MultiSelectListPanel
    overshell_list

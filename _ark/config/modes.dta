@@ -79,7 +79,8 @@
    (hud_file {if_else $autoplay hud_practice.milo hud_sp.milo}) ;this disables the rock meter and sp meter when autoplay is enabled
    (encore_fx TRUE)
    (update_song_leaderboard TRUE)
-   (update_career_leaderboard TRUE))
+   (update_career_leaderboard TRUE)
+   (game_over_sequence {if_else $skipoutro FALSE TRUE})) ;set this to false if skip outro is true
 (multi_vs
    (num_players 2)
    (competitive TRUE)

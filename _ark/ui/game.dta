@@ -254,46 +254,62 @@
       ;($encore) ;encores are not available in dx 3.0
       {set $author FALSE} ;we are done with the author flag for this song, reset to false
       {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay now that the song is done
+      {beatmatch set_music_speed 1.0} ;reset music speed to 1 so that the "outro" takes the right amount of time
       {if_else $skipoutro
-      0 ;do nothing if outro skipping is enabled
-      {do
-      {if {&& $focusmode {'||' {== {gamecfg get mode} career} {== {gamecfg get mode} quickplay} {== {gamecfg get mode} multi_coop}}} ;if focus mode and game mode is career or quickplay or coop
-         {if {exists world} {world toggle_pick_shot}} ;check if the world exists, and allow camera cuts again
-      }
-      {world_panel set_showing TRUE} ;always show the world when a song is complete
-	  {if_else {== {gamecfg get mode} practice} ;check if the current game mode is practice
-		 0 ;if practice mode, do nothing
-         {if_else {gamecfg get game_over_sequence} ;get the current game mode game_over_sequence
-            {do
-               #ifdef HX_XBOX ;xbox acheivement handling
-               {if {! {gamecfg multiplayer}} ;if singleplayer
-                  {achievements submit_points {player0 score}} ;submit singleplayer score to leaderboards
-                  {if {== {player0 percent_hit} 100}
-                     {achievements submit perfect}
+         {do
+            {hud set_showing FALSE}
+            {track_panel set_showing FALSE}
+            {script_task
+               (delay 0.5)
+               (units kTaskSeconds)
+               (script
+                  {handle (game set_outro_complete TRUE)}
+               )
+            }
+         0
+         }
+;      0 ;do nothing if outro skipping is enabled
+         {do
+            {if {&& $focusmode {'||' {== {gamecfg get mode} career} {== {gamecfg get mode} quickplay} {== {gamecfg get mode} multi_coop}}} ;if focus mode and game mode is career or quickplay or coop
+            {if {exists world} {world toggle_pick_shot}} ;check if the world exists, and allow camera cuts again
+            }
+            {world_panel set_showing TRUE} ;always show the world when a song is complete
+            {if_else {== {gamecfg get mode} practice} ;check if the current game mode is practice
+               kDataUnhandled ;if practice mode, do nothing
+               {if_else {gamecfg get game_over_sequence} ;get the current game mode game_over_sequence
+                  {do
+                     #ifdef HX_XBOX ;xbox acheivement handling
+                     {if {! {gamecfg multiplayer}} ;if singleplayer
+                        {achievements submit_points {player0 score}} ;submit singleplayer score to leaderboards
+                     }
+                     {if {== {player0 percent_hit} 100}
+                        {achievements submit perfect}
+                     }
+                     {if {options get_lefty 0} ;if lefty flip enabled for player 1
+                        {achievements submit lefty} ;pop up achievement
+                        }
+                     {if {&& {== {gamecfg get_difficulty 0} kDifficultyExpert} {== {gamecfg get_song} jordan}} ;if difficulty expert and the song shortname is "jordan"
+                        {achievements submit jordan} ;pop up achievement
+                     }
+                     {if {== multi_coop {gamecfg get mode}} ;check if the current gamemode is coop
+                        {if {== {band percent_hit} 100} ;if all players hit 100% of the notes
+                           {achievements submit_coop perfect} ;pop up achievement
+                        }
+                        {achievements submit_coop_points {band score}} ;submit coop score to leaderboards
+                     }
+                     #endif ;done with xbox specific code
+                     {track_panel explode} ;animate the track exploding
+                     {play_game_sfx TRACK_EXPLODE_SFX} ;track explode sound effect
+                     {game set_realtime TRUE} ;return to default game speed
+                     {beatmatch set_paused TRUE} ;pause the beatmatcher since it's exploded
+                     ;{if $encore {encore_stream play}} ;encores are not available in dx 3.0
+                     kDataUnhandled
                   }
-                  {if {options get_lefty 0} ;if lefty flip enabled for player 1
-                     {achievements submit lefty} ;pop up achievement
-                  }
-                  {if {&& {== {gamecfg get_difficulty 0} kDifficultyExpert} {== {gamecfg get_song} jordan}} ;if difficulty expert and the song shortname is "jordan"
-                     {achievements submit jordan} ;pop up achievement
-                  }
-	           }
-               {if {== multi_coop {gamecfg get mode}} ;check if the current gamemode is coop
-                  {if {== {band percent_hit} 100} ;if all players hit 100% of the notes
-                     {achievements submit_coop perfect} ;pop up achievement
-                  }
-                  {achievements submit_coop_points {band score}} ;submit coop score to leaderboards
+                  kDataUnhandled  ;do nothing if there is no game_over_sequence defined
                }
-               #endif ;done with xbox specific code
-               {track_panel explode} ;animate the track exploding
-               {play_game_sfx TRACK_EXPLODE_SFX} ;track explode sound effect
-               {game set_realtime TRUE} ;return to default game speed
-               {beatmatch set_paused TRUE} ;pause the beatmatcher since it's exploded
-               ;{if $encore {encore_stream play}} ;encores are not available in dx 3.0
-               kDataUnhandled
-	        }
-        0} ;do nothing if there is no game_over_sequence defined
-	  }}}
+            }
+         }
+      }
    )
    (game_lost ;run when the song is failed
       {set $author FALSE} ;set the author to false to be set again if restarted
