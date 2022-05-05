@@ -9,8 +9,9 @@
          (guitar '../track/track.milo')})
 #else
 (file
-         {if_else {== {gamecfg get_num_players} 1}
-         {if_else {&& $darkstrums $brighthopos}
+   {if_else {== {gamecfg get_num_players} 1}
+   {do
+   {if_else {&& $darkstrums $brighthopos}
       {do
       {if_else {&& $gh1track $voidfrets}
        ../track/old_void_both_panel_1p.milo
@@ -24,7 +25,7 @@
        ../track/void_both_panel_1p.milo
 		 ../track/both_panel_1p.milo}}}}}}
        ;end dark&bright
-		 {if_else $brighthopos
+	{if_else $brighthopos
       {do
       {if_else {&& $gh1track $voidfrets}
        ../track/old_void_bright_panel_1p.milo
@@ -38,7 +39,7 @@
        ../track/void_bright_panel_1p.milo
 		 ../track/bright_panel_1p.milo}}}}}}
        ;end bright
-		 {if_else $darkstrums
+	{if_else $darkstrums
       {do
       {if_else {&& $gh1track $voidfrets}
        ../track/old_void_dark_panel_1p.milo
@@ -52,20 +53,20 @@
        ../track/void_dark_panel_1p.milo
 		 ../track/dark_panel_1p.milo}}}}}}
        ;end dark
-       {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_panel_1p.milo
-		 {if_else $gh1track
-		 ../track/old_panel_1p.milo
-		 {if_else $egg2
-         ../track/old_panel_1p.milo
-       {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_panel_1p.milo
-       {if_else $gh3track
-         ../track/gh3_panel_1p.milo
-       {if_else $voidfrets
-         ../track/void_panel_1p.milo
-         ../track/track_panel_1p.milo}}}}}}}}}
-         ../track/track_panel_2p.milo})
+   {if_else {&& $gh1track $voidfrets}
+      ../track/old_void_panel_1p.milo
+	{if_else $gh1track
+		../track/old_panel_1p.milo
+	{if_else $egg2
+      ../track/old_panel_1p.milo
+   {if_else {&& $gh3track $voidfrets}
+      ../track/gh3_void_panel_1p.milo
+   {if_else $gh3track
+      ../track/gh3_panel_1p.milo
+   {if_else $voidfrets
+      ../track/void_panel_1p.milo
+      ../track/track_panel_1p.milo}}}}}}}}}}
+      ../track/track_panel_2p.milo})
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME})
