@@ -10,7 +10,7 @@
 #else
 (file
 {if_else {== {gamecfg get_num_players} 1}
-   {do
+{do
    {if_else {&& $darkstrums $brighthopos}
       {do
       {if_else {&& $gh1track $voidfrets}
@@ -66,7 +66,7 @@
    {if_else $voidfrets
       ../track/void_panel_1p.milo
       ../track/track_panel_1p.milo}}}}}}}}}}
-   ;end 1p panel selection
+   ;end 1p panels
 {do
    {if_else {&& $darkstrums $brighthopos}
       {do
@@ -122,7 +122,7 @@
       ../track/gh3_panel_2p.milo
    {if_else $voidfrets
       ../track/void_panel_2p.milo
-      ../track/track_panel_2p.milo}}}}}}}}})
+      ../track/track_panel_2p.milo}}}}}}}}}}})
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME})
