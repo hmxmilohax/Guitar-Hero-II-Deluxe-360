@@ -34,6 +34,10 @@
 (stk_format_0 {sprint $player0_streak})
 (stk_format_1 {sprint $player1_streak})
 (stk_format_2 {sprint $player2_streak})
+(star_ready
+   {if_else $epictext
+   "THIS IS FUCKING EPIC"
+   "STAR POWER READY!"})
 (stk_zero "0")
 (toogle_label "AUTOPLAY")
 

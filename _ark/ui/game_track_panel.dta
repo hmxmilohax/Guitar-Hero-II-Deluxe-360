@@ -9,7 +9,7 @@
          (guitar '../track/track.milo')})
 #else
 (file
-   {if_else {== {gamecfg get_num_players} 1}
+{if_else {== {gamecfg get_num_players} 1}
    {do
    {if_else {&& $darkstrums $brighthopos}
       {do
@@ -66,7 +66,63 @@
    {if_else $voidfrets
       ../track/void_panel_1p.milo
       ../track/track_panel_1p.milo}}}}}}}}}}
-      ../track/track_panel_2p.milo})
+   ;end 1p panel selection
+{do
+   {if_else {&& $darkstrums $brighthopos}
+      {do
+      {if_else {&& $gh1track $voidfrets}
+       ../track/old_void_both_panel_2p.milo
+      {if_else {&& $gh3track $voidfrets}
+       ../track/gh3_void_both_panel_2p.milo
+      {if_else $gh1track
+       ../track/old_both_panel_2p.milo
+      {if_else $gh3track
+       ../track/gh3_both_panel_2p.milo
+      {if_else $voidfrets
+       ../track/void_both_panel_2p.milo
+       ../track/both_panel_2p.milo}}}}}}
+       ;end dark&bright
+   {if_else $brighthopos
+      {do
+      {if_else {&& $gh1track $voidfrets}
+       ../track/old_void_bright_panel_2p.milo
+      {if_else {&& $gh3track $voidfrets}
+       ../track/gh3_void_bright_panel_2p.milo
+      {if_else $gh1track
+       ../track/old_bright_panel_2p.milo
+      {if_else $gh3track
+       ../track/gh3_bright_panel_2p.milo
+      {if_else $voidfrets
+       ../track/void_bright_panel_2p.milo
+       ../track/bright_panel_2p.milo}}}}}}
+       ;end bright
+   {if_else $darkstrums
+      {do
+      {if_else {&& $gh1track $voidfrets}
+       ../track/old_void_dark_panel_2p.milo
+      {if_else {&& $gh3track $voidfrets}
+       ../track/gh3_void_dark_panel_2p.milo
+      {if_else $gh1track
+       ../track/old_dark_panel_2p.milo
+      {if_else $gh3track
+       ../track/gh3_dark_panel_2p.milo
+      {if_else $voidfrets
+       ../track/void_dark_panel_2p.milo
+       ../track/dark_panel_2p.milo}}}}}}
+       ;end dark
+   {if_else {&& $gh1track $voidfrets}
+      ../track/old_void_panel_2p.milo
+   {if_else $gh1track
+      ../track/old_panel_2p.milo
+   {if_else $egg2
+      ../track/old_panel_2p.milo
+   {if_else {&& $gh3track $voidfrets}
+      ../track/gh3_void_panel_2p.milo
+   {if_else $gh3track
+      ../track/gh3_panel_2p.milo
+   {if_else $voidfrets
+      ../track/void_panel_2p.milo
+      ../track/track_panel_2p.milo}}}}}}}}})
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME})
