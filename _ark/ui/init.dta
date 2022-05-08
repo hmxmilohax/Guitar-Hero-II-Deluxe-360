@@ -112,6 +112,7 @@
 {set $dontreset FALSE}
 {set $difflistpos 3}
 {set $modifierlistpos 0}
+{set $trackmodifierlistpos 0}
 {set $interval_p0 50}
 {set $interval_p1 50}
 {set $interval_p2 50}

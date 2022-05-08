@@ -1,5 +1,7 @@
 #define OVERSHELL_LIST_CONTENTS
-((os_focusmode os_skipintro os_skipoutro os_sfx os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
+((os_focusmode os_skipintro os_skipoutro os_sfx os_trackmods os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
+#define OVERSHELL_TRACK_CONTENTS
+((os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets))
 #define OVERSHELL_SCREEN_COMMON_HANDLER
 ((allow_back FALSE)
 (animate_transition FALSE))
@@ -143,6 +145,114 @@
       }
    }
 )
+#define OVERSHELL_TRACK_RESET_HANDLER
+(
+   {if_else {&& {! {$this slider_selected}} $helpentered}
+      {
+         {do
+            {sel_section.lst set_selected $trackmodifierlistpos}
+            {$this reset}
+         }
+      }
+      {
+         {do
+            {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
+            {ui push_screen overshell_help_screen}
+         }
+      }
+   }
+)
+{new
+   MultiSelectListPanel
+   overshell_track_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {sel_section.lst set_selected $trackmodifierlistpos}
+   {sel_section.lst set_local_pos -140 0 35}
+   {sel_section.lst set alignment kTopCenter}
+   {gs_title.lbl set_text "TRACK MODIFIERS"}
+   {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
+   )
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+      (os_voidfrets
+         {if_else $voidfrets
+            {do
+            {play_sfx cheat_off}
+            {set $voidfrets FALSE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}
+         {do
+         {play_sfx cheat}
+            {set $voidfrets TRUE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_brighthopos
+         {if_else $brighthopos
+            {do
+            {play_sfx cheat_off}
+            {set $brighthopos FALSE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}
+         {do
+         
+         {play_sfx cheat}
+            {set $brighthopos TRUE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_darkstrums
+         {if_else $darkstrums
+            {do
+            {play_sfx cheat_off}
+            {set $darkstrums FALSE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}
+         {do
+         {play_sfx cheat}
+            {set $darkstrums TRUE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_gh1track
+         {if_else $gh1track
+            {do
+            {play_sfx cheat_off}
+            {set $gh1track FALSE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}
+         {do
+         {play_sfx cheat}
+         {set $gh3track FALSE}
+            {set $gh1track TRUE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_gh3track
+         {if_else $gh3track
+            {do
+            {play_sfx cheat_off}
+            {set $gh3track FALSE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}
+         {do
+         {play_sfx cheat}
+         {set $gh1track FALSE}
+            {set $gh3track TRUE}
+         {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+         OVERSHELL_TRACK_RESET_HANDLER}}
+         kDataUnhandled)})
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_track_list_screen
+   (panels overshell_track_list)
+   (focus overshell_track_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    MultiSelectListPanel
    overshell_list
@@ -159,18 +269,9 @@
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
-      (os_voidfrets
-         {if_else $voidfrets
-            {do
-            {play_sfx cheat_off}
-            {set $voidfrets FALSE}
+      (os_trackmods
          {set $modifierlistpos {sel_section.lst selected_pos}}
-         OVERSHELL_LIST_RESET_HANDLER}
-         {do
-         {play_sfx cheat}
-            {set $voidfrets TRUE}
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         OVERSHELL_LIST_RESET_HANDLER}}
+         {ui push_screen overshell_track_list_screen}
          kDataUnhandled)
       (os_sfx
          {if_else $sfx
@@ -296,61 +397,6 @@
             {set $miloskipintro TRUE}
 			{set $modifierlistpos {sel_section.lst selected_pos}}
 			OVERSHELL_LIST_RESET_HANDLER}}
-         kDataUnhandled)
-	   (os_brighthopos
-         {if_else $brighthopos
-            {do
-            {play_sfx cheat_off}
-            {set $brighthopos FALSE}
-			{set $modifierlistpos {sel_section.lst selected_pos}}
-			OVERSHELL_LIST_RESET_HANDLER}
-			{do
-			
-			{play_sfx cheat}
-            {set $brighthopos TRUE}
-			{set $modifierlistpos {sel_section.lst selected_pos}}
-			OVERSHELL_LIST_RESET_HANDLER}}
-         kDataUnhandled)
-	   (os_darkstrums
-         {if_else $darkstrums
-            {do
-            {play_sfx cheat_off}
-            {set $darkstrums FALSE}
-			{set $modifierlistpos {sel_section.lst selected_pos}}
-			OVERSHELL_LIST_RESET_HANDLER}
-			{do
-			{play_sfx cheat}
-            {set $darkstrums TRUE}
-			{set $modifierlistpos {sel_section.lst selected_pos}}
-			OVERSHELL_LIST_RESET_HANDLER}}
-         kDataUnhandled)
-	   (os_gh1track
-         {if_else $gh1track
-            {do
-            {play_sfx cheat_off}
-            {set $gh1track FALSE}
-			{set $modifierlistpos {sel_section.lst selected_pos}}
-			OVERSHELL_LIST_RESET_HANDLER}
-			{do
-			{play_sfx cheat}
-         {set $gh3track FALSE}
-            {set $gh1track TRUE}
-			{set $modifierlistpos {sel_section.lst selected_pos}}
-			OVERSHELL_LIST_RESET_HANDLER}}
-         kDataUnhandled)
-      (os_gh3track
-         {if_else $gh3track
-            {do
-            {play_sfx cheat_off}
-            {set $gh3track FALSE}
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         OVERSHELL_LIST_RESET_HANDLER}
-         {do
-         {play_sfx cheat}
-         {set $gh1track FALSE}
-            {set $gh3track TRUE}
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
        (os_focusmode
          {if_else $focusmode
