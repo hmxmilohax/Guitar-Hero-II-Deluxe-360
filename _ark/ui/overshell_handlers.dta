@@ -1,5 +1,5 @@
 #define OVERSHELL_LIST_CONTENTS
-((os_focusmode os_skipintro os_skipoutro os_sfx os_trackmods os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
+((os_focusmode os_skipintro os_skipoutro os_sfx os_trackmods Select_Highway os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
 #define OVERSHELL_TRACK_CONTENTS
 ((os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets))
 #define OVERSHELL_SCREEN_COMMON_HANDLER
@@ -269,6 +269,10 @@
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
+      (Select_Highway
+         {set $modifierlistpos {sel_section.lst selected_pos}}
+         {ui push_screen overshell_highway_list_screen}
+         kDataUnhandled)
       (os_trackmods
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen}
@@ -1361,6 +1365,27 @@
    overshell_help_screen
    (panels overshell_help_panel)
    (focus overshell_help_panel)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   (SELECT_START_MSG
+      {ui pop_screen})
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHPanel
+   overshell_random_warn_panel
+   (file overshell_help.milo)
+   (focus quit.btn)
+   (enter
+      {pause_controller_msg.lbl set_text
+     "This only works on the song
+     selection screen. Please enter
+     the song selection screen before
+     selecting this option."}
+      {$this set_focus quit.btn})}
+{new
+   GHScreen
+   overshell_random_warn_screen
+   (panels overshell_random_warn_panel)
+   (focus overshell_random_warn_panel)
    OVERSHELL_SCREEN_COMMON_HANDLER
    (SELECT_START_MSG
       {ui pop_screen})

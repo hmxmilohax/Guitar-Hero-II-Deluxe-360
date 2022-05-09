@@ -128,7 +128,7 @@
 (cheat_enabled_fmt "CHEAT ENABLED:\n%s")
 (cheat_disabled_fmt "CHEAT DISABLED:\n%s")
 (cheat_unlock_all "Unlock All (saving disabled)")
-(CAREER "RANDOM SONG")
+(CAREER " ")
 (MULTIPLAYER "MULTIPLAYER")
 (OPTIONS "CREDITS")
 (EXTRAS "EXTRAS")
