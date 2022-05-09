@@ -30,6 +30,7 @@
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch $component ;switch action based on result of which button is selected
          (main_career.btn
+            {game set_song {campaign pick_attract_song}} {game set_career} {ui goto_screen loading_screen}
 		    ;{{load_objects "game:/test.milo"} save_objects "game:/converted.milo"} ;test code for milo conversion. input milo must be named as test.milo_xbox
             ;{ui goto_screen nameprof_screen} ;name profile screen for highscores (career)
 			)
