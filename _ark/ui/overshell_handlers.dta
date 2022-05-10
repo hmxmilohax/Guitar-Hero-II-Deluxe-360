@@ -1377,9 +1377,10 @@
    (enter
       {pause_controller_msg.lbl set_text
      "This only works on the song
-     selection screen. Please enter
-     the song selection screen before
-     selecting this option."}
+selection screen. Please
+enter the song selection
+screen before selecting
+this option."}
       {$this set_focus quit.btn})}
 {new
    GHScreen
