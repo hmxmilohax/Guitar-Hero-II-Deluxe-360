@@ -1,7 +1,7 @@
 {new
    GHPanel
    sel_song_panel
-   (file sel_song.milo)
+   (file {if_else $egg2 sel_song2.milo sel_song.milo})
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
@@ -19,13 +19,20 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
-   {cp_title.lbl set_local_pos 70 50 -15}
-   {pencil.mesh set_local_pos 250 30 -30}
-   {pencil_shadow.mesh set_local_pos 180 30 -30}
-   {notebook.mesh set_local_scale 1.4 1 1}
-   {ss_song.lst set_local_pos 160 230 140}
-   {ss_song.lst set_local_rot 0 4 0}
-   {cp_title.lbl set_text "CHOOSE SONG"}
+   {if_else $egg2
+   {do
+      {sd_select.lbl set_local_pos 0 150 200}
+      {sd_select.lbl set_local_scale 5 400 5}
+      {sd_select.lbl set_text "CHOOSE SONG"}
+      {ss_song.lst set_local_pos 25 230 140}}
+   {do
+      {cp_title.lbl set_local_pos 70 50 -15}
+      {cp_title.lbl set_text "CHOOSE SONG"}
+      {pencil.mesh set_local_pos 250 30 -30}
+      {pencil_shadow.mesh set_local_pos 180 30 -30}
+      {notebook.mesh set_local_scale 1.4 1 1}
+      {ss_song.lst set_local_pos 160 230 140}
+      {ss_song.lst set_local_rot 0 4 0}}}
    {set $gameentered FALSE}
    {ss_song.lst set circular 1}
    {set $author FALSE}

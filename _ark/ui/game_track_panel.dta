@@ -57,15 +57,13 @@
       ../track/old_void_panel_1p.milo
 	{if_else $gh1track
 		../track/old_panel_1p.milo
-	{if_else $egg2
-      ../track/old_panel_1p.milo
    {if_else {&& $gh3track $voidfrets}
       ../track/gh3_void_panel_1p.milo
    {if_else $gh3track
       ../track/gh3_panel_1p.milo
    {if_else $voidfrets
       ../track/void_panel_1p.milo
-      ../track/track_panel_1p.milo}}}}}}}}}}
+      ../track/track_panel_1p.milo}}}}}}}}}
    ;end 1p panels
 {do
    {if_else {&& $darkstrums $brighthopos}
@@ -114,15 +112,13 @@
       ../track/old_void_panel_2p.milo
    {if_else $gh1track
       ../track/old_panel_2p.milo
-   {if_else $egg2
-      ../track/old_panel_2p.milo
    {if_else {&& $gh3track $voidfrets}
       ../track/gh3_void_panel_2p.milo
    {if_else $gh3track
       ../track/gh3_panel_2p.milo
    {if_else $voidfrets
       ../track/void_panel_2p.milo
-      ../track/track_panel_2p.milo}}}}}}}}}}})
+      ../track/track_panel_2p.milo}}}}}}}}}})
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME})
