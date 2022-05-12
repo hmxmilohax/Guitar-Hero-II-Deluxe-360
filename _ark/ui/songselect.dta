@@ -1,7 +1,7 @@
 {new
    GHPanel
    sel_song_panel
-   (file {if_else $egg2 sel_song2.milo sel_song.milo})
+   (file {if_else $altsong sel_song2.milo {if_else $gh3song sel_song3.milo sel_song.milo}})
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
@@ -19,11 +19,15 @@
       {ui goto_screen storage_changed_screen})
 #endif
    (enter
-   {if_else $egg2
+   {if_else $altsong
    {do
       {sd_select.lbl set_local_pos 0 150 200}
       {sd_select.lbl set_local_scale 5 400 5}
       {sd_select.lbl set_text "CHOOSE SONG"}
+      {ss_song.lst set_local_pos 25 230 140}}
+   {if_else $gh3song
+   {do
+      {sd_select.lbl set_text " "}
       {ss_song.lst set_local_pos 25 230 140}}
    {do
       {cp_title.lbl set_local_pos 70 50 -15}
@@ -32,9 +36,9 @@
       {pencil_shadow.mesh set_local_pos 180 30 -30}
       {notebook.mesh set_local_scale 1.4 1 1}
       {ss_song.lst set_local_pos 160 230 140}
-      {ss_song.lst set_local_rot 0 4 0}}}
+      {ss_song.lst set_local_rot 0 4 0}}}}
    {set $gameentered FALSE}
-   {ss_song.lst set circular 1}
+   {ss_song.lst set circular $loopsong}
    {set $author FALSE}
    {{ui current_screen} turn_off_ambient}
       {$this refresh})
@@ -75,16 +79,10 @@
       {do
          ($pos
             {ss_song.lst selected_pos})
-         ($frame
-		    {'*' $pos 40 {'+' $pos
-			{song_provider num_headers $pos}}})
          {game set_song_index $pos}
-		 ;{ss_song.lst set_local_pos 30 100 $frame}
 #ifdef HX_XBOX {$this cache_song} #endif
          {song_preview
-            {game get_song}}
-		 ;{sel_song.view set_frame 3}
-		 })
+            {game get_song}}})
    (beat_song
       ($score)
       {if

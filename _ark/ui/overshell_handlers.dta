@@ -1,5 +1,5 @@
 #define OVERSHELL_LIST_CONTENTS
-((os_focusmode os_skipintro os_skipoutro os_sfx os_trackmods Select_Highway os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
+((os_focusmode os_skipintro os_skipoutro os_sfx Track_Modifiers Select_Highway os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_altsong os_loopsong os_gh3song os_autoplay os_roxbury))
 #define OVERSHELL_TRACK_CONTENTS
 ((os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets))
 #define OVERSHELL_SCREEN_COMMON_HANDLER
@@ -273,9 +273,50 @@
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_highway_list_screen}
          kDataUnhandled)
-      (os_trackmods
+      (Track_Modifiers
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen}
+         kDataUnhandled)
+      (os_gh3song
+         {if_else $gh3song
+            {do
+            {play_sfx cheat_off}
+            {set $gh3song FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $gh3song TRUE}
+            {set $altsong FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_altsong
+         {if_else $altsong
+            {do
+            {play_sfx cheat_off}
+            {set $altsong FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $altsong TRUE}
+            {set $gh3song FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_loopsong
+         {if_else $loopsong
+            {do
+            {play_sfx cheat_off}
+            {set $loopsong FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $loopsong TRUE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
       (os_sfx
          {if_else $sfx
@@ -1107,39 +1148,47 @@
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 TRUE}
-            {set $gamegh1 TRUE}
+         {set $gamegh1 TRUE}
+         {set $altsong TRUE}
+         {set $gh3song FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
        (os_gh2
 			{do
-            {set $game80s FALSE}
+         {set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 FALSE}
-            {set $gamegh1 FALSE}
+         {set $gamegh1 FALSE}
+         {set $altsong FALSE}
+         {set $gh3song FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
 	   (os_gh80s
 			{do
-            {set $game80s TRUE}
+         {set $game80s TRUE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 FALSE}
-            {set $gamegh1 FALSE}
+         {set $gamegh1 FALSE}
+         {set $altsong FALSE}
+         {set $gh3song FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
 	   (os_gh3
 			{do
-            {set $game80s FALSE}
+         {set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 TRUE}
 			{set $egg2 FALSE}
-            {set $gamegh1 FALSE}
+         {set $gamegh1 FALSE}
+         {set $gh3song TRUE}
+         {set $altsong FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
        (os_egg5
 			{do
-            {set $egg5 TRUE}
+         {set $egg5 TRUE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)})
 	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}

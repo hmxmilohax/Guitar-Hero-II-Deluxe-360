@@ -108,6 +108,12 @@
 ;track muting dB level, $muting TRUE needs to be $mute_level -96.0, $muting FALSE needs $mute_level -0.001
 {set $muting TRUE}
 {set $mute_level -96.0}
+;alternate song select similar to og if you're not a fan of the book
+{set $altsong FALSE}
+;looping song list
+{set $loopsong TRUE}
+;gh3 song select
+{set $gh3song FALSE}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}
