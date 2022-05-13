@@ -1,7 +1,9 @@
 #define OVERSHELL_LIST_CONTENTS
-((os_focusmode os_skipintro os_skipoutro os_sfx Track_Modifiers Select_Highway os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_altsong os_loopsong os_gh3song os_autoplay os_roxbury))
+((os_focusmode os_skipintro os_skipoutro os_sfx Track_Modifiers Select_Highway os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury))
 #define OVERSHELL_TRACK_CONTENTS
 ((os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets))
+#define OVERSHELL_SNGTHM_CONTENTS
+((os_altsong os_gh3song os_loopsong))
 #define OVERSHELL_SCREEN_COMMON_HANDLER
 ((allow_back FALSE)
 (animate_transition FALSE))
@@ -162,6 +164,15 @@
       }
    }
 )
+#define OVERSHELL_SNGTHM_RESET_HANDLER
+(
+      {
+         {do
+            {sel_section.lst set_selected $sngthmlistpos}
+            {$this reset}
+         }
+      }
+)
 {new
    MultiSelectListPanel
    overshell_track_list
@@ -276,47 +287,6 @@
       (Track_Modifiers
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen}
-         kDataUnhandled)
-      (os_gh3song
-         {if_else $gh3song
-            {do
-            {play_sfx cheat_off}
-            {set $gh3song FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $gh3song TRUE}
-            {set $altsong FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}}
-         kDataUnhandled)
-      (os_altsong
-         {if_else $altsong
-            {do
-            {play_sfx cheat_off}
-            {set $altsong FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $altsong TRUE}
-            {set $gh3song FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}}
-         kDataUnhandled)
-      (os_loopsong
-         {if_else $loopsong
-            {do
-            {play_sfx cheat_off}
-            {set $loopsong FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $loopsong TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}}
          kDataUnhandled)
       (os_sfx
          {if_else $sfx
@@ -1137,7 +1107,7 @@
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
-         (os_gh1 os_gh2 os_gh80s os_gh3 os_egg5)}
+         (os_gh1 os_gh2 os_gh80s os_gh3 os_egg5 os_sngthm)}
 		  {gs_title.lbl set_text "THEME SELECT"})
    (SELECT_START_MSG
       {switch
@@ -1148,9 +1118,11 @@
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
 			{set $egg2 TRUE}
+         {set $gh1track TRUE}
          {set $gamegh1 TRUE}
          {set $altsong TRUE}
          {set $gh3song FALSE}
+         {set $gh3track FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
        (os_gh2
@@ -1162,6 +1134,8 @@
          {set $gamegh1 FALSE}
          {set $altsong FALSE}
          {set $gh3song FALSE}
+         {set $gh1track FALSE}
+         {set $gh3track FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
 	   (os_gh80s
@@ -1173,6 +1147,8 @@
          {set $gamegh1 FALSE}
          {set $altsong FALSE}
          {set $gh3song FALSE}
+         {set $gh1track FALSE}
+         {set $gh3track FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
 	   (os_gh3
@@ -1184,12 +1160,16 @@
          {set $gamegh1 FALSE}
          {set $gh3song TRUE}
          {set $altsong FALSE}
+         {set $gh3track TRUE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
        (os_egg5
 			{do
          {set $egg5 TRUE}
 			OVERSHELL_HELP_POP_HANDLER}
+         kDataUnhandled)
+       (os_sngthm
+         {ui push_screen overshell_song_theme_screen}
          kDataUnhandled)})
 	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
@@ -1439,4 +1419,66 @@ this option."}
    OVERSHELL_SCREEN_COMMON_HANDLER
    (SELECT_START_MSG
       {ui pop_screen})
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   MultiSelectListPanel
+   overshell_song_theme_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_local_pos -140 0 35}
+         {sel_section.lst set_data OVERSHELL_SNGTHM_CONTENTS}
+       {gs_title.lbl set_text "SONG LIST THEMES"}})
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+      (os_gh3song
+         {if_else $gh3song
+            {do
+            {play_sfx cheat_off}
+            {set $gh3song FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $gh3song TRUE}
+            {set $altsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_altsong
+         {if_else $altsong
+            {do
+            {play_sfx cheat_off}
+            {set $altsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $altsong TRUE}
+            {set $gh3song FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}}
+         kDataUnhandled)
+      (os_loopsong
+         {if_else $loopsong
+            {do
+            {play_sfx cheat_off}
+            {set $loopsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $loopsong TRUE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}}
+         kDataUnhandled)})
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_song_theme_screen
+   (panels overshell_song_theme_list)
+   (focus overshell_song_theme_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
