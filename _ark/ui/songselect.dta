@@ -1,7 +1,7 @@
 {new
    GHPanel
    sel_song_panel
-   (file {if_else $altsong sel_song2.milo {if_else $gh3song sel_song3.milo sel_song.milo}})
+   (file {if_else $altsong sel_song_alt.milo {if_else $gh3song sel_song_gh3.milo sel_song.milo}})
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad

@@ -1120,7 +1120,6 @@
 			{set $egg2 TRUE}
          {set $gh1track TRUE}
          {set $gamegh1 TRUE}
-         {set $altsong TRUE}
          {set $gh3song FALSE}
          {set $gh3track FALSE}
 			OVERSHELL_HELP_POP_HANDLER}
@@ -1132,7 +1131,6 @@
 			{set $egg4 FALSE}
 			{set $egg2 FALSE}
          {set $gamegh1 FALSE}
-         {set $altsong FALSE}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
@@ -1145,7 +1143,6 @@
 			{set $egg4 FALSE}
 			{set $egg2 FALSE}
          {set $gamegh1 FALSE}
-         {set $altsong FALSE}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
@@ -1159,7 +1156,6 @@
 			{set $egg2 FALSE}
          {set $gamegh1 FALSE}
          {set $gh3song TRUE}
-         {set $altsong FALSE}
          {set $gh3track TRUE}
 			OVERSHELL_HELP_POP_HANDLER}
          kDataUnhandled)
