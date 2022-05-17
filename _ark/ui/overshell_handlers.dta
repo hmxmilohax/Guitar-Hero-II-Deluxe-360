@@ -1107,13 +1107,27 @@
    {sel_section.lst set alignment kTopCenter}
       {sel_section.lst
          set_data
-         (os_gh1 os_gh2 os_gh80s os_gh3 os_egg5 os_sngthm)}
+         (os_gh1 os_gh2 os_gh80s os_gh3 os_ce os_egg5 os_sngthm)}
 		  {gs_title.lbl set_text "THEME SELECT"})
    (SELECT_START_MSG
       {switch
        {$component selected_sym}
+       (os_ce
+         {do
+         {set $egg1 TRUE}
+         {set $game80s FALSE}
+         {set $egg5 FALSE}
+         {set $egg4 FALSE}
+         {set $egg2 FALSE}
+         {set $gamegh1 FALSE}
+         {set $gh3song FALSE}
+         {set $gh1track FALSE}
+         {set $gh3track FALSE}
+         OVERSHELL_HELP_POP_HANDLER}
+         kDataUnhandled)
        (os_gh1
 			{do
+         {set $egg1 FALSE}
 			{set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
@@ -1126,6 +1140,7 @@
          kDataUnhandled)
        (os_gh2
 			{do
+         {set $egg1 FALSE}
          {set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
@@ -1138,6 +1153,7 @@
          kDataUnhandled)
 	   (os_gh80s
 			{do
+         {set $egg1 FALSE}
          {set $game80s TRUE}
 			{set $egg5 FALSE}
 			{set $egg4 FALSE}
@@ -1150,6 +1166,7 @@
          kDataUnhandled)
 	   (os_gh3
 			{do
+         {set $egg1 FALSE}
          {set $game80s FALSE}
 			{set $egg5 FALSE}
 			{set $egg4 TRUE}
