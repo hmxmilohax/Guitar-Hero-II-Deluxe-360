@@ -1,7 +1,7 @@
 {new
    GHPanel
    sel_song_panel
-   (file {if_else $altsong sel_song_alt.milo {if_else $gh3song sel_song_gh3.milo sel_song.milo}})
+   (file {if_else $altsong sel_song_alt.milo {if_else $gh3song {do {if_else $loopsong sel_song_gh3_loop.milo sel_song_gh3.milo}} sel_song.milo}})
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
@@ -26,7 +26,12 @@
       {sd_select.lbl set_text "CHOOSE SONG"}
       {ss_song.lst set_local_pos 25 230 140}}
    {if_else $gh3song
-      {ss_song.lst set_local_pos 25 230 140}
+   {do
+      {if_else $loopsong
+      {do
+         {ss_song.lst set_local_pos 25 230 150}
+         {ss_song.lst set_local_scale 1 1 0.975}}
+      {ss_song.lst set_local_pos 25 230 140}}}
    {do
       {cp_title.lbl set_local_pos 70 50 -15}
       {cp_title.lbl set_text "CHOOSE SONG"}
