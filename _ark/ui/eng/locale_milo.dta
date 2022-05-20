@@ -112,6 +112,8 @@
 (gh80s_title "Guitar Hero 80s")
 
 ;overshell list stuff, also used in endgame
+(os_selhw "Select Highway")
+(os_trkmod "Track Modifiers")
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "No Fail" {if_else $nofail ": ON" ": OFF"}})
