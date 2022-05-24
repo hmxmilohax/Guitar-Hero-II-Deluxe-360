@@ -2,9 +2,9 @@
 (splash_legal
    {if_else $gamegh1
       "Guitar Hero Redux. 2021. Port by jnack. Modifications @ MiloHax.\nBig thanks to mariteaux for charts and diy stems. Also shout out to Local H the OG.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc."
-	  {if_else $game80s
-	     "Guitar Hero Encore Deluxe © 2006 RedOctane, Inc.\nModifications © 2021 MiloHax. See credits for all contributors.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems."
-		 "Guitar Hero II Deluxe © 2006 RedOctane, Inc.\nModifications © 2021 MiloHax. See credits for all contributors.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems."}})
+      {if_else $game80s
+         "Guitar Hero Encore Deluxe © 2006 RedOctane, Inc.\nModifications © 2021 MiloHax. See credits for all contributors.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems."
+         "Guitar Hero II Deluxe © 2006 RedOctane, Inc.\nModifications © 2021 MiloHax. See credits for all contributors.\nOriginal game code © 2005-2006 Harmonix Music Systems, Inc. Developed by Harmonix Music Systems."}})
 (signin_changed_title "SIGN-IN CHANGED")
 (signin_changed_msg "A user sign-in change has caused the game to lose ownership of saves and achievements.  As a result, the game has restarted.")
 (sigin_to_live_title "NOT SIGNED IN")
@@ -147,7 +147,7 @@
 (press_any_button
    {if_else $egg5
       "PRESS ANY BUTTON TO JAM"
-	  "PRESS ANY BUTTON TO ROCK"})
+      "PRESS ANY BUTTON TO ROCK"})
 (pausetitle "PAUSED")
 (pause_resume "RESUME")
 (pause_restart "RESTART")
@@ -166,7 +166,7 @@
 (DRAW
    {if_else $egg5
       "TIED!"
-	  "DRAW!"})
+      "DRAW!"})
 (CONTINUE "CONTINUE")
 (MORE_STATS "SECTION STATS")
 (lefty_flip_changed "To change the lefty flip setting, this song must be restarted. OK to restart?")
@@ -174,7 +174,7 @@
 (CONTROLLER_LOSS
    {if_else $egg5
       "YOU PULLED IT OUT"
-	  "YOU ARE ROCKING OUT A BIT TOO HARD"})
+      "YOU ARE ROCKING OUT A BIT TOO HARD"})
 (controller_loss_msg "Please ensure a Guitar Controller is connected to controller port 1")
 (controller_loss_msg_multi "Please ensure Guitar Controllers are connected to controller ports 1 and 2")
 (tut_guitar_loss_msg "Please ensure a Guitar Controller is connected to controller port 1")

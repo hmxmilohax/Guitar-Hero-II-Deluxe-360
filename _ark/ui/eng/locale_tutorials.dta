@@ -11,8 +11,8 @@
    {if_else $gamegh1
       "GH1DX PRACTICE"
       {if_else $game80s
-	     "GH80SDX PRACTICE"
-		 "GH2DX PRACTICE"}})
+         "GH80SDX PRACTICE"
+         "GH2DX PRACTICE"}})
 (CHANGE_SECTION "CHANGE SECTION")
 (CHANGE_SPEED "CHANGE SPEED")
 (NEW_SONG "NEW SONG")

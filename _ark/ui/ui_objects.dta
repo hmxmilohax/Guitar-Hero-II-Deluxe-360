@@ -1477,7 +1477,7 @@
                      (selecting 0.7 0.7 0.7)))))
          (provider
             ("text")))
-	(list_modifiers
+    (list_modifiers
          (resource_file
             "list_modifiers.milo")
          (vertical TRUE)

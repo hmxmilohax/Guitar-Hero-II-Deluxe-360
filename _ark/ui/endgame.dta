@@ -273,7 +273,7 @@
      {winner_photo0.mesh set_local_pos 33 0 -24}
      {winner_photo0.mesh set_local_scale 1.1 1.1 1.1}
      {endgame_review_data.lbl set_local_pos 170 60 -20}
-	 {endgame_percent.lbl set_showing FALSE}
+     {endgame_percent.lbl set_showing FALSE}
      {morestats.grp set_local_pos -190 -200 135}
      {label_notes_hit.lbl set_local_pos 260 100 -115}
      {label_sp_phrases.lbl set_local_pos 260 100 -105}
@@ -294,29 +294,29 @@
          {$this update_multiplayer_stats}
          {$this update_singleplayer_stats}}
      {sel_section.lst set_local_pos -340 230 40}
-	 {sel_section2.lst set_local_pos -335 230 -120}
+     {sel_section2.lst set_local_pos -335 230 -120}
      {sel_section.lst set_local_rot 0 -2 0}
-	 {sel_section2.lst set_local_rot 0 -2 0}
+     {sel_section2.lst set_local_rot 0 -2 0}
      {sel_section.lst
          set_data
          (
-		   "      MODIFIERS"
-		  {sprint "Track Speed: " {int {'+' 0.5 {'*' $trackspd 100}}} "%"}
+           "      MODIFIERS"
+          {sprint "Track Speed: " {int {'+' 0.5 {'*' $trackspd 100}}} "%"}
           {sprint {localize endgame_brutalmode} ": " {if_else $brutalmode "ON" "OFF"}}
           {sprint {localize endgame_focusmode} ": " {if_else $focusmode "ON" "OFF"}}
-		  {sprint {localize endgame_highwayshake} ": " {if_else $highwayshake "ON" "OFF"}}
-		  {sprint {localize endgame_brighthopos} ": " {if_else $brighthopos "ON" "OFF"}}
-		  {sprint {localize endgame_darkstrums} ": " {if_else $darkstrums "ON" "OFF"}}
-		  {sprint {localize endgame_nofail} ": " {if_else $nofail "ON" "OFF"}}
-		  )}
-	  {sel_section2.lst
+          {sprint {localize endgame_highwayshake} ": " {if_else $highwayshake "ON" "OFF"}}
+          {sprint {localize endgame_brighthopos} ": " {if_else $brighthopos "ON" "OFF"}}
+          {sprint {localize endgame_darkstrums} ": " {if_else $darkstrums "ON" "OFF"}}
+          {sprint {localize endgame_nofail} ": " {if_else $nofail "ON" "OFF"}}
+          )}
+      {sel_section2.lst
          set_data
          (
-		  {sprint {localize endgame_towel} ": " {if_else $towel "ON" "OFF"}}
-		  {sprint {localize endgame_gh1track} ": " {if_else $gh1track "ON" "OFF"}}
-		  {sprint {localize endgame_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
-		  {sprint {localize endgame_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
-		  )}
+          {sprint {localize endgame_towel} ": " {if_else $towel "ON" "OFF"}}
+          {sprint {localize endgame_gh1track} ": " {if_else $gh1track "ON" "OFF"}}
+          {sprint {localize endgame_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
+          {sprint {localize endgame_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
+          )}
       {set $song_text1 {game get_song_text}}
       {if_else {!= $speedmod 1}
          {set $song_text2 {sprint $song_text1 " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
@@ -325,7 +325,7 @@
       {endgame_diff_data.lbl set_text {game get_difficulty_sym 0}}
       {do
          ($player player0)
-		 ($starrating)
+         ($starrating)
          {endgame_score_data.lbl set_localized_text {sprint {$player score}}}
          {endgame_streak_data.lbl set_localized_text {sprint {$player longest_streak}}}
          {if_else $player0_fc
@@ -454,14 +454,14 @@
                      set
                      (practice_sections 1)
                      $idx}
-				  {gamecfg set mode practice}
+                  {gamecfg set mode practice}
                   {gamecfg set practice_speed 0}
                   {ui goto_screen practice_loading_screen}
                   kDataUnhandled}}
             {if_else
                {== $idx -1}
                {do
-			      {gamecfg set mode practice}
+                  {gamecfg set mode practice}
                   {gamecfg set practice_speed 0}
                   {gamecfg
                      set
@@ -950,7 +950,7 @@
    (file
       {sprint "unlockvenue"
          {if_else {campaign is_max_status}
-		    {- {campaign status} 1}
+            {- {campaign status} 1}
             {campaign status}}
          ".milo"})
    (retain_last_focus FALSE)
@@ -1234,4 +1234,4 @@
    (BUTTON_DOWN_MSG
       {if {== $button kPad_X}
          {synth play_sequence button_select}
-         {goto_endgame_complete}})}	
+         {goto_endgame_complete}})}    

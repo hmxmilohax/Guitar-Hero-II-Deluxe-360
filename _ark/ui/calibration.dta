@@ -344,7 +344,7 @@
    (clear_vram TRUE)
    (enter
       {game80s.btn set_state kDisabled}
-	  {game80s.btn set_showing FALSE}
+      {game80s.btn set_showing FALSE}
       {hud set_showing FALSE}
       {track_panel set_showing FALSE}
       {world_panel set_showing FALSE})}

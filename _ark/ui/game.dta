@@ -4,7 +4,7 @@
    (file mtv_overlay.milo)
    (enter ;when the screen is entered
       {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
-	  {mtv_overlay.view set_local_pos -160 1 85} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+      {mtv_overlay.view set_local_pos -160 1 85} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
 ;      {$this setup_text} ;run the setup_text code block below
    )
    (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below
@@ -71,7 +71,7 @@
       ($show) ;setup variable
       {$this set_showing $show} ;show or hide based off variable
       {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
-	  )}
+      )}
 {new MidiLoaderPanel midi_loader_panel} ;oh yeah look at all these options we have here...
 {new GamePanel game
    (file "") ;ya got me, but yeah game panel doesnt load a milo
@@ -129,21 +129,21 @@
             {if $do_streak {streak_overlay_panel setup_streak}} ;if streak is supposed to run, setup the streak meter
             {script_task (delay 1) (units kTaskSeconds) ;wait one second if fast is enabled
                (script {mtv_overlay_panel show_overlay TRUE}) ;always show the mtv overlay during the intro
-			}
+            }
             {script_task (delay 6) (units kTaskSeconds) ;wait six seconds if fast is disabled
                (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}}) ;hide the overlay if song title modifier is enabled, always show the overlay if autoplay is enabled
-			}
+            }
          }
          {do
             {if $do_streak {streak_overlay_panel setup_streak}} ;if streak is supposed to run, setup the streak meter
             {script_task (delay 1) (units kTaskSeconds) ;wait one second if fast is enabled
                (script {mtv_overlay_panel show_overlay TRUE}) ;always show the mtv overlay during the intro
-			}
+            }
             {script_task (delay 3) (units kTaskSeconds) ;wait three seconds if fast is disabled
                (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}}) ;hide the overlay if song title modifier is enabled, always show the overlay if autoplay is enabled
-			}
-	     }
-	  }
+            }
+         }
+      }
       {set [intro_complete] FALSE}
       kDataUnhandled)
    (intro_skip ;ran in practice mode or when intro skip/focus mode modifier is enabled. skips the intro camera shot and track extension
@@ -156,25 +156,25 @@
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
       {track_panel intro_skip}
-	  {set $do_streak TRUE} ;set the streak meter code to enabled
+      {set $do_streak TRUE} ;set the streak meter code to enabled
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
       {streak_overlay_panel show_overlay TRUE} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
       {if {"||" {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
-	     {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
+         {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
             (script {mtv_overlay_panel show_overlay FALSE})} ;and hide the mtv overlay
-	  }
-	  {if_else $towel ;check if towel hyperspeed modifier is enabled
-	     {beatmatch set_music_speed 1.0} ;if enabled force the music speed to be 100%
-	     {if_else {> $speedmod 1} ;if towel is disabled, check if song speed is greater than 100%
-		    {beatmatch set_music_speed $speedmod} ;if music speed is set to greater than 100%, set the beatmatcher speed to that value
-		    {beatmatch set_music_speed 1.0} ;if music speed is set to 100%, set beatmatcher speed to 100%
-		 }
       }
-	  {$this slide_meter_in} ;animate all of the hud meters in to position
+      {if_else $towel ;check if towel hyperspeed modifier is enabled
+         {beatmatch set_music_speed 1.0} ;if enabled force the music speed to be 100%
+         {if_else {> $speedmod 1} ;if towel is disabled, check if song speed is greater than 100%
+            {beatmatch set_music_speed $speedmod} ;if music speed is set to greater than 100%, set the beatmatcher speed to that value
+            {beatmatch set_music_speed 1.0} ;if music speed is set to 100%, set beatmatcher speed to 100%
+         }
+      }
+      {$this slide_meter_in} ;animate all of the hud meters in to position
       {if $do_streak {streak_overlay_panel setup_streak}} ;if streak is supposed to run, setup the streak meter
-	  {streak_overlay_panel show_overlay $do_streak} ;show the streak meter if it is allowed to run
+      {streak_overlay_panel show_overlay $do_streak} ;show the streak meter if it is allowed to run
       kDataUnhandled)
    (extend_track ;ran after the intro camera shot, handles similar items to intro_skip, but this is ran when intro_skip is disabled
       ;{set $encorefocus FALSE} ;encores are not available in dx 3.0
@@ -185,13 +185,13 @@
       }
       {if {&& {! $neckless} {! $cheat_enabled_performance_mode}} ;if not neckless mode or performance mode
          {track_panel do_extend_sequence} ;extend the track out
-	  }
+      }
       {if_else $towel ;check if towel hyperspeed modifier is enabled
-	     {beatmatch set_music_speed 1.0} ;if enabled force the music speed to be 100%
-	     {if_else {> $speedmod 1} ;if towel is disabled, check if song speed is greater than 100%
-		    {beatmatch set_music_speed $speedmod} ;if music speed is set to greater than 100%, set the beatmatcher speed to that value
-		    {beatmatch set_music_speed 1.0} ;if music speed is set to 100%, set beatmatcher speed to 100%
-		 }
+         {beatmatch set_music_speed 1.0} ;if enabled force the music speed to be 100%
+         {if_else {> $speedmod 1} ;if towel is disabled, check if song speed is greater than 100%
+            {beatmatch set_music_speed $speedmod} ;if music speed is set to greater than 100%, set the beatmatcher speed to that value
+            {beatmatch set_music_speed 1.0} ;if music speed is set to 100%, set beatmatcher speed to 100%
+         }
       }
       {script_task (delay 1.8) (units kTaskSeconds) ;wait 1.8 seconds
          (script {handle ($this slide_meter_in)}) ;animate the hud meters in
@@ -232,9 +232,9 @@
                {script_task (units kTaskBeats) (delay CLAP_DELAY_BEATS) ;run clap on beat
                   (script {handle (world play_sfx CLAP_SEQUENCE)}) ;play the audio for the clap
                }
-			}
-		  }
-	   }
+            }
+          }
+       }
 ;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress meter every beat to make it more responsive
       kDataUnhandled
    )
@@ -333,10 +333,10 @@
          {do ;if beaten
             {ui goto_screen {if_else $auto_restart loading_screen post_show_screen}} ;either auto restart or go to post show screen that leads to endgame
          }
-		 {do ;if failed
+         {do ;if failed
             {world_panel set_paused TRUE} ;freeze the world
-		    {ui goto_screen {gamecfg get lose_screen}} ;go to the current mode designated lose screen noted in modes.dta
-		 }
+            {ui goto_screen {gamecfg get lose_screen}} ;go to the current mode designated lose screen noted in modes.dta
+         }
       }
       kDataUnhandled
    )
@@ -357,18 +357,18 @@
       {set [lose_time] {taskmgr seconds}} ;start a timer for the slowdown
       {script_task (once FALSE) ;run this script repeatedly until the timer runs out
          (script
-		    {do
+            {do
                ($t {- {taskmgr seconds} [lose_time]}) ;setup time variable
                {if_else {< $t LOSE_MUSIC_SLOW_SEC} ;check if the timer has reached the defined period
                   {do
                      {beatmatch set_music_speed {/ {- LOSE_MUSIC_SLOW_SEC $t} LOSE_MUSIC_SLOW_SEC}} TRUE} ;slow down the music based off the current timer
                   {do
                      {beatmatch set_paused TRUE} FALSE} ;if the timer has ended, pause the music completely
-			   }
-			}
-		  )
+               }
+            }
+          )
       }
-	)
+    )
    (end_streak ;ran when a note streak has been broken
       ($player $playerobj) ;setup variables
       {if {gamecfg get blown_streak_feedback} ;if the current mode allows blown streak feedback
@@ -377,10 +377,10 @@
             {if_else {== multi_coop {gamecfg get mode}} ;check if the current game mode is coop
                {set $mult {band base_multiplier}} ;if coop, check the whole band multiplier
                {set $mult {$playerobj base_multiplier}} ;if singleplayer, check only the first player
-			}
+            }
             {if {'&&' $highwayshake {> $mult 1}} ;if highwayshake is enabled and the multiplier is above 1x
                {handle (game blow_streak $player $mult)} ;shake the highway for the player in severity based off the current multiplier
-			}
+            }
          }
        }
    )
@@ -389,7 +389,7 @@
       {do
          ($sfx {sprintf "streak_broken_%ix.cue" $mult}) ;setup which sound to use via variables
          {if $sfx {play_game_sfx_player $sfx $sfx $player}} ;only play miss streak sound effects if focus mode is not enabled
-		 }
+         }
       kDataUnhandled
    )
    (force_encore FALSE) ;encores are not available in dx 3.0
@@ -447,7 +447,7 @@
    (BUTTON_DOWN_MSG ;code to run when a specific button is pressed
       {if {== $button kPad_Start} ;if start is pressed
          {game set_paused TRUE} ;freeze the game
-		 {ui goto_screen pause_screen} ;open the pause screen
+         {ui goto_screen pause_screen} ;open the pause screen
       }
    )
    (TRANSITION_COMPLETE_MSG ;run when the pause screen is closed

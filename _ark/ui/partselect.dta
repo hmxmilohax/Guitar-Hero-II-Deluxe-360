@@ -1,6 +1,6 @@
 {new UIPanel qp_selpart_bg_panel
    (file {if_else $game80s ;which milo file to use based on the 80s theme flag
-	selpart_bg_80s.milo selpart_bg.milo}) ;use 80s if 80s use gh2 if not 80s
+    selpart_bg_80s.milo selpart_bg.milo}) ;use 80s if 80s use gh2 if not 80s
 }
 {new GHPanel qp_selpart_panel
    (file {if_else $game80s ;which milo file to use based on the 80s theme flag
@@ -22,11 +22,11 @@
                {== {song_provider get_instrument $song 2} "drum"} ;check if the 3rd instrument in the song definition is drum
                {part2.btn set_text "sg_drum"} ;if it is, set the text to drum again
                {part2.btn set_state kDisabled} ;if not, disable the button
-			}
+            }
             {if_else {== {song_provider get_instrument $song 2} "drum"} ;check if the 3rd instrument in the song definition is drum
                {part2.btn set_text "sg_drum"} ;if it is, set the text to drum again
                {part2.btn set_showing FALSE} ;if not, hide the button
-			}
+            }
          }
          {if {! $drumenabled} {part2.btn set_state kDisabled} {part2.btn set_showing FALSE}} ;if drum is not enabled, ensure part 2 button is disabled and hidden
       }
@@ -43,17 +43,17 @@
    )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {if {== $component part0.btn}
-		 {gamecfg set_track 0 0} ;if part 0 button is selected, set player 0 to the first instrument in the song definition
+         {gamecfg set_track 0 0} ;if part 0 button is selected, set player 0 to the first instrument in the song definition
       }
       {if {== $component part1.btn}
-		 {gamecfg set_track 0 1} ;if part 1 button is selected, set player 0 to the second instrument in the song definition
+         {gamecfg set_track 0 1} ;if part 1 button is selected, set player 0 to the second instrument in the song definition
       }
       {if {== $component part2.btn}
-	  {gamecfg set_track 0 2} {set $roygb TRUE} ;if part 2 button is selected, set player 0 to the third instrument in the song definition. also set roygb colors to true since this is drums
+      {gamecfg set_track 0 2} {set $roygb TRUE} ;if part 2 button is selected, set player 0 to the third instrument in the song definition. also set roygb colors to true since this is drums
       }
       {switch {gamecfg get mode} ;switch action based on result of which game mode is currently being used
           (career {ui goto_screen loading_screen}) ;dx uses career for quickplay, if career, go to the loading screen
-	      (practice {ui goto_screen practice_sel_section_screen}) ;if practice, go to the select section screen
+          (practice {ui goto_screen practice_sel_section_screen}) ;if practice, go to the select section screen
       }
    )
 }

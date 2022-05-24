@@ -10,7 +10,7 @@
    {if {== {mod $player0_streak $interval_p0} 0}
       {if $notestreakmod {hud show_message 0 note_streak_popup_p0}}
       {if $sfx {play_game_sfx_player meter_slide meter_slide 0}}
-	  }} ;if streak is mod interval, fire popup
+      }} ;if streak is mod interval, fire popup
 
 {func note_streak_p1
    {set $player1_streak {player1 current_streak}} ;save P2 streak for later
@@ -156,7 +156,7 @@
    note_streak_callback_p1
    (gem_hit_callback
       ($slot $hopoable $hopoed)
-	  
+      
       {switch
          {gamecfg get mode}
             (multi_vs {note_streak_p1})
@@ -171,7 +171,7 @@
 
    (gem_miss_callback
       ($slot_hit $real_slot $timing_error)
-	  
+      
       {if_else $do_streak
          {if_else {== {gamecfg get mode} multi_coop}
             {do
@@ -201,7 +201,7 @@
 
    (gem_pass_callback
       {set $beforefirstnote_p1 FALSE}
-	  
+      
       {if $do_streak
          {if_else {== {gamecfg get mode} multi_coop}
             {do
@@ -240,8 +240,8 @@
          {do
             {$this show_overlay FALSE}
             {set $do_streak FALSE}}
-	  {set $starratingtempbar 0}
-	  {set $starratingtemp 0}
+      {set $starratingtempbar 0}
+      {set $starratingtemp 0}
       {if_else $autoplay
          {set $starrating ' '} ;if autoplay, blank star rating
          {set $starrating ' ©'} ;otherwise, set to default
@@ -424,8 +424,8 @@
          }}
       {{sprint $stk_view_p0} set_showing TRUE} ; Don't worry, panel is still invisible at this point
       {{sprint $stk_prefix_p0 $streakline_p0 ".lbl"} set_showing TRUE}
-	  
-	  ;{mtv_overlay_panel update_text} ;shouldn't be needed, we're still in setup_streak and we just ran setup_text (which includes the same script from update_text) before calling setup_streak
+      
+      ;{mtv_overlay_panel update_text} ;shouldn't be needed, we're still in setup_streak and we just ran setup_text (which includes the same script from update_text) before calling setup_streak
 )
 
    (not_an_fc

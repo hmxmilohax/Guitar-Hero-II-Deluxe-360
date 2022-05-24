@@ -29,8 +29,8 @@
       {set $game_unpause_on_enter TRUE}
       {ui goto_screen {gamecfg get game_screen}})
    (restart
-	  {set $starratingtempbar 0}
-	  {set $starratingtemp 0}
+      {set $starratingtempbar 0}
+      {set $starratingtemp 0}
       {if_else $autoplay
          {set $starrating ' '} ;if autoplay, blank star rating
          {set $starrating ' ©'} ;otherwise set to initial value
@@ -46,11 +46,11 @@
 #define PAUSE_SELECT_START_HANDLER
 ((SELECT_START_MSG
       {switch $component
-	     (lose_resume_career.btn {$this resume})
+         (lose_resume_career.btn {$this resume})
          (lose_restart_career.btn
-		 {pause_confirm_restart_screen set pause_screen $this}
+         {pause_confirm_restart_screen set pause_screen $this}
          {ui goto_screen pause_confirm_restart_screen})
-		 (lose_diff_career.btn {ui push_screen overshell_diff_list_screen})
+         (lose_diff_career.btn {ui push_screen overshell_diff_list_screen})
          (lose_practice_career.btn {$this goto_practice_mode})
          (lose_selsong_career.btn {meta_loading_goto sel_song_screen})
          (lose_quit_career.btn
@@ -111,9 +111,9 @@
    (file meta_loading.milo)
    (enter
       {meta_loading.view set_local_pos -15 20 -150}
-	  {meta_loading.view set_local_scale .9 .9 .9}
+      {meta_loading.view set_local_scale .9 .9 .9}
       ;{animate_forever_30fps $this meta_loading.view}
-	  )}
+      )}
 {new GHScreen meta_loading_screen
    (panels meta_loading_panel)
    (clear_vram TRUE)
@@ -166,8 +166,8 @@
    PAUSE_SELECT_START_HANDLER
    (BUTTON_DOWN_MSG
       {if_else {game is_missing_controller}
-	     TRUE
-		 kDataUnhandled})}
+         TRUE
+         kDataUnhandled})}
 {new GHPanel multi_pause_controller_panel
    (file multi_pause_controller.milo)
    (focus quit.btn)

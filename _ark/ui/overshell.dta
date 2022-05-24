@@ -2,25 +2,25 @@
 #define OVERSHELL_SELECT_START_HANDLER ;define common select start handle for main overshell screen
 ((SELECT_START_MSG ;code ran when a button is selected
       {switch $component ;run different code based on the button selected
-	     (diff.btn {ui push_screen overshell_diff_list_screen})
+         (diff.btn {ui push_screen overshell_diff_list_screen})
          (resume.btn {if_else {== $modifier_exit sel_song_screen} {do {ui goto_screen $modifier_exit} {ui pop_screen} {script_task (delay 0.1) (units kTaskUISeconds) (script {do {game set_song {campaign pick_attract_song}} {game set_career} {ui goto_screen qp_selpart_screen}})}} {ui push_screen overshell_random_warn_screen}})
          (restart.btn {ui push_screen overshell_slider_screen})
          (change_speed.btn {ui push_screen overshell_list_screen})
          (section.btn {ui push_screen overshell_venue_list_screen})
          (newsong.btn {ui push_screen overshell_character_list_screen})
          (quit.btn {ui push_screen overshell_guitar_list_screen})
-		 (extra1.btn {ui push_screen overshell_theme_list_screen})
-		 (extra2.btn {ui push_screen pause_audio_settings_screen})}
+         (extra1.btn {ui push_screen overshell_theme_list_screen})
+         (extra2.btn {ui push_screen pause_audio_settings_screen})}
        kDataUnhandled
 ))
 #define OVERSHELL_BUTTON_DOWN_HANDLER ;common code to run inside of overshell when a button is pressed
 ((BUTTON_DOWN_MSG ;code ran when a button is pressed
       {if {== $button kPad_Tri} ;run when pressing back
-		 {if_else {exists $modifier_exit} ;if a specific screen is set
+         {if_else {exists $modifier_exit} ;if a specific screen is set
             {ui goto_screen $modifier_exit} ;go to that specific screen
             {ui goto_screen main_screen} ;or go to main screen
          }
-		 {ui pop_screen} ;make the current overshell screen dissappear
+         {ui pop_screen} ;make the current overshell screen dissappear
        }
       kDataUnhandled
 ))

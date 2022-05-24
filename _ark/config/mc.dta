@@ -73,8 +73,8 @@
       (1 -1 0)) ; XYZ, light three (default 1 -1 0)
    (lit_colors
       ; Light colors as RGB floats. Same goes for ambient.
-	  ; Just set it all to white (the same value) unless you like your icon
-	  ; being tinged horribly. White always just multiplies the albedo.
+      ; Just set it all to white (the same value) unless you like your icon
+      ; being tinged horribly. White always just multiplies the albedo.
       (0.7 0.7 0.7)
       (0.7 0.7 0.7)
       (0.7 0.7 0.7))

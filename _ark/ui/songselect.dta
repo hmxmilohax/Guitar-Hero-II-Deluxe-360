@@ -9,7 +9,7 @@
       (repeat_ms 30))
    (page_down
       {$this update_pos}
-	  {$this update_pos})
+      {$this update_pos})
 #ifdef HX_XBOX
    (load
       {profilemgr add_sink $this storage_changed}
@@ -134,7 +134,7 @@
                -1}}
          {game set_song_index 0}}
       {$this update_song_info}
-	  {checkmark.mesh set_showing FALSE})
+      {checkmark.mesh set_showing FALSE})
 #else
    (refresh
       {if

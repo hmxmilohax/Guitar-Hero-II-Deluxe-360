@@ -55,7 +55,7 @@
 ((gems
    ({if_else $egg5
         gold
-	 {if_else $roygb
+     {if_else $roygb
         green
         red}}
      {if_else $egg5

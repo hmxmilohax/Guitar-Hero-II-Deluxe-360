@@ -71,23 +71,23 @@
    #define MULT_LOAD_CHARACTERS ((
    {if_else $game80s
       punkencore
-	  punk1}
+      punk1}
    punk2
    {if_else $game80s
       alternaencore
-	  alterna1}
+      alterna1}
    alterna2
    {if_else $game80s
       glamencore
-	  glam1}
+      glam1}
    glam2
    {if_else $game80s
       gothencore
-	  goth2}
+      goth2}
    goth1
    {if_else $game80s
       metalencore
-	  metal1}
+      metal1}
    metal2
    rockabill1
    rockabill2

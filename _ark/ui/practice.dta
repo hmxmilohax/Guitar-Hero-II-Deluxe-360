@@ -4,7 +4,7 @@
       {if_else $game80s ;check if the 80s theme is turned on
          practice_sel_section_80s.milo ;if 80s theme, use 80s screen
          practice_sel_section.milo ;if not 80s, use standard
-	  }
+      }
    )
    (focus sel_section.lst) ;focus the section list
    (enter ;when the screen is entered
@@ -30,7 +30,7 @@
                {< $idx {gamecfg get (practice_sections 0)}} ;if the current selection is less than available selection
                {handle (ui BAD_SELECT_START_MSG)} ;error
                {do
-			      {gamecfg set (practice_sections 1) $idx} ;set the ending section to the currently selected list position
+                  {gamecfg set (practice_sections 1) $idx} ;set the ending section to the currently selected list position
                   {ui goto_screen practice_loading_screen} ;load the sections and start the game
                   kDataUnhandled
                }
@@ -41,15 +41,15 @@
                   {gamecfg set (practice_sections 1) -1} ;set ending position to full song
                   {ui goto_screen practice_loading_screen} ;load the sections and start the game
                   kDataUnhandled
-			   }
+               }
                {do
                   {gamecfg set (practice_sections 0) $idx} ;set starting section to the selected section
                   {title.lbl set_text select_end_section} ;change the text to select end section
                   {set [section] 1} ;set the end section?
                   {section_provider set_start_section $idx} ;set the start section to the selected section
                   kDataUnhandled
-			   }
-			}
+               }
+            }
          }
       }
    )
@@ -60,7 +60,7 @@
              {career_screen resume_from_practice}
              {ui goto_screen main_screen}
              TRUE
-	      )
+          )
          ({&& {== $button kPad_Tri} {== [section] 1}}
             {set [section] 0}
             {section_provider set_start_section -1}
@@ -97,13 +97,13 @@
    (file practice_panel.milo)
    (enter
       {section.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
-	  {section_shadow.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
+      {section_shadow.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
       {set $sectionlabelx -295} ;set the base x position for the section label
       {set $sectionlabely 147} ;set the base y position for the section label
       {section.lbl set_local_pos $sectionlabelx 0 $sectionlabely} ;setup section text label to specific position and scale as set above
       {section_shadow.lbl set_local_pos {+ $sectionlabelx 3} 1 {- $sectionlabely 3}} ;setup section text label to specific position and scale as set above
       {practice_space1.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
-	  {practice_space2.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
+      {practice_space2.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
       {events_parser add_sink $this section} ;add section event parser
       {game add_sink $this intro_skip} ;add intro skip code block
       {foreach $sfx (practice_snare practice_kick practice_hat) ;add click tracks
@@ -130,7 +130,7 @@
       }
       {beatmatch update_practice_speed} ;update the beatmatcher speed with vanilla options
       {if {! [keep_section_text]} {section.lbl set_text ''}} ;reset on screen section text
-	  {if {! [keep_section_text]} {section_shadow.lbl set_text ''}} ;reset on screen section text
+      {if {! [keep_section_text]} {section_shadow.lbl set_text ''}} ;reset on screen section text
       {set [keep_section_text] FALSE} ;turn off the section text on reset
    )
    (exit
@@ -149,22 +149,22 @@
       ($sec)
       {section.lbl set_text
          {if_else {== $sec [ignore_section]}
-			''
-			{if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			   {sprint '\n\n' $sec}
+            ''
+            {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+               {sprint '\n\n' $sec}
                {sprint '\n' $sec}
-			}
+            }
          }
       }
-		{section_shadow.lbl set_text
+        {section_shadow.lbl set_text
            {if_else {== $sec [ignore_section]}
-			  ''
-			  {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-			     {sprint '\n\n' $sec}
+              ''
+              {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+                 {sprint '\n\n' $sec}
                  {sprint '\n' $sec}
-			  }
+              }
            }
-		}
+        }
    )
    (keep_section_text FALSE)
    (ignore_section '')
@@ -180,10 +180,10 @@
          $button
          (kPad_Select
             {if $selecttorestart
-			   {do
-			      {mtv_overlay_panel setup_text} {game_restart_fast}
+               {do
+                  {mtv_overlay_panel setup_text} {game_restart_fast}
                 }
-			 }
+             }
           )
          (kPad_Start
             {game set_paused TRUE}
@@ -206,7 +206,7 @@
    (file practice_end_gh1.milo)
    (enter
       {hud show_message 0 blank_message}
-	  {$this set_focus restart.btn}
+      {$this set_focus restart.btn}
       {do
          ($pat {localize gems_hit_pattern})
          ($hits {player0 gems_hit})
@@ -214,9 +214,9 @@
          ($perc {int {'*' 100 {/ $hits $tot}}})
          {stats.lbl set_localized_text
             {if_else $autoplay
-			   "AUTOPLAY"
-			   {sprintf $pat $perc $hits $tot}
-			}
+               "AUTOPLAY"
+               {sprintf $pat $perc $hits $tot}
+            }
          }
       }
       {do

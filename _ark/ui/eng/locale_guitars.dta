@@ -100,7 +100,7 @@
 (sg_cherry_desc
    {if_else $egg5
       "The classic cherry finish showcases the rich mahogany used on the SG Standard. Hazzard and his hero, Angus Young, both favor this guitar."
-	  "The classic cherry finish showcases the rich mahogany used on the SG Standard. Axel Steel and his hero, Angus Young, both favor this guitar."})
+      "The classic cherry finish showcases the rich mahogany used on the SG Standard. Axel Steel and his hero, Angus Young, both favor this guitar."})
 (sg_ebony_desc "The earliest SG style guitars were still referred to as Les Paul models up to late 1963 when Les Paul creator, Les Paul, and Gibson temporarily parted ways.")
 (sg_white_desc "The SG can take a beatin' and keep on tickin'. This was the first guitar that Judy Nails ever owned.")
 (sg_gt_desc "The GT series is geared towards the gigging guitarist, with a number of road-ready features. An over/under dual truss rod provides extra neck reinforcement, while a Neutrik input jack and dual function strap locks ensure that you'll stay connected.")
@@ -119,7 +119,7 @@
 (exp_sun_desc
    {if_else $egg5
       "Oh mercy me, I do believe this guitar's got the Vapors. Get it? Because The Vapors did \qTurning Japanese\q and this Explorer's sporting a rising sun motif? Whatever...good song, hot guitar."
-	  "Matthias Jabs of the Scorpions uses the Gibson Explorer to create metal madness. This particular finish was made specially for Izzy Sparks."})
+      "Matthias Jabs of the Scorpions uses the Gibson Explorer to create metal madness. This particular finish was made specially for Izzy Sparks."})
 (exp_swirl_desc "This eye-catching black and red finish augments one of Gibson's most recognized and daring guitar designs.")
 (lespaul_doublecut_desc "First appearing as a double-cutaway in 1958, this version of the Les Paul allows for greater access to all 22 frets, while retaining certain key qualities such as the LP's legendary sustain.")
 (lp_dbl_white_desc "With an innovative design and attractive silhouette, the uncomplicated appeal of the Les Paul Double Cutaway is evident in this model with a clean White finish.")
@@ -135,7 +135,7 @@
 (fb_leopard_desc
    {if_else $egg5
       "Did someone call Spike Lee? Because this Leopard-finish Firebird's got jungle fever. Reowrr! This kitten's got claws, my friend. Saucer of milk - table three! Um...point made? Good."
-	  "Reowrr! This little kitten's got claws, my friend. Saucer of milk - table three! Um...point made? Good."})
+      "Reowrr! This little kitten's got claws, my friend. Saucer of milk - table three! Um...point made? Good."})
 (fb_hippie_desc "The Harmonix custom shop did the paint job on this Custom Gibson Firebird. The inspiration was drawn from years of Friday night Led Zeppelin laser shows.")
 (epiphone_coronet_desc "Originally, this one-pickup entry-level double-cutaway was slated to be released as a Gibson, with the name \qModerne,\q though when it appeared in 1958 it was mysteriously renamed and rebranded.")
 (coronet_brown_desc "Starting in 1963, the Coronet adopted a more asymmetrical body shape as well as the distinctive 6-on-a-side \qbatwing\q headstock.")

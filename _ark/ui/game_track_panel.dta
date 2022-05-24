@@ -23,9 +23,9 @@
        ../track/gh3_both_panel_1p.milo
       {if_else $voidfrets
        ../track/void_both_panel_1p.milo
-		 ../track/both_panel_1p.milo}}}}}}
+         ../track/both_panel_1p.milo}}}}}}
        ;end dark&bright
-	{if_else $brighthopos
+    {if_else $brighthopos
       {do
       {if_else {&& $gh1track $voidfrets}
        ../track/old_void_bright_panel_1p.milo
@@ -37,9 +37,9 @@
        ../track/gh3_bright_panel_1p.milo
       {if_else $voidfrets
        ../track/void_bright_panel_1p.milo
-		 ../track/bright_panel_1p.milo}}}}}}
+         ../track/bright_panel_1p.milo}}}}}}
        ;end bright
-	{if_else $darkstrums
+    {if_else $darkstrums
       {do
       {if_else {&& $gh1track $voidfrets}
        ../track/old_void_dark_panel_1p.milo
@@ -51,12 +51,12 @@
        ../track/gh3_dark_panel_1p.milo
       {if_else $voidfrets
        ../track/void_dark_panel_1p.milo
-		 ../track/dark_panel_1p.milo}}}}}}
+         ../track/dark_panel_1p.milo}}}}}}
        ;end dark
    {if_else {&& $gh1track $voidfrets}
       ../track/old_void_panel_1p.milo
-	{if_else $gh1track
-		../track/old_panel_1p.milo
+    {if_else $gh1track
+        ../track/old_panel_1p.milo
    {if_else {&& $gh3track $voidfrets}
       ../track/gh3_void_panel_1p.milo
    {if_else $gh3track
@@ -210,8 +210,8 @@
          (script
             {game foreach_player_matcher $m
                {$m refresh_track_buttons}}
-			   {set $trackcamx 1.6}
-			   {set $trackbeatx 1.6}
+               {set $trackcamx 1.6}
+               {set $trackbeatx 1.6}
 #ifndef HX_XBOX
 {if_else $noflames
 {{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing FALSE}}
@@ -234,6 +234,6 @@
 ;{{{{track_panel loaded_dir} find track_new} find beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 ;{{{{track_panel loaded_dir} find track_new} find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 #endif
-	  ;{track_panel reset}
-	  )})}
+      ;{track_panel reset}
+      )})}
 {new TrackMaskPanel track_mask}

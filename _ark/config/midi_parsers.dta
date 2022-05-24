@@ -788,8 +788,8 @@
    (track_name 'BAND BASS')
    (mappings
       (default
-	     (events
-		    (36 ({handle (world bass_hit)}))))))
+         (events
+            (36 ({handle (world bass_hit)}))))))
 (keyboard_parser
    (type echo)
    (track_name 'BAND KEYS')
@@ -826,8 +826,8 @@
    (zero_length TRUE)
    (mappings
       (default
-	     (events
-		    (52 ({handle (world venue_effect)}))))))
+         (events
+            (52 ({handle (world venue_effect)}))))))
 
 #define BIG_NOTE_MAPPING ((mappings (default (events (110 110)))))
 

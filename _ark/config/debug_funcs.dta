@@ -12,7 +12,7 @@
          (delay CHEAT_DISPLAY_S)
          (units kTaskUISeconds)
          (script
-		    {set [refs] {- [refs] 1}}
+            {set [refs] {- [refs] 1}}
             {if {== [refs] 0}
                {rnd show_overlay cheats FALSE}})})
    (show_bool
@@ -38,8 +38,8 @@
 {func a_cheat
    {if {find_obj world}
       {do
-	     ($quickfocus {! {world_panel showing}})
-		 {world_panel set_showing $quickfocus}
+         ($quickfocus {! {world_panel showing}})
+         {world_panel set_showing $quickfocus}
          {cheat_display show_bool "World rendering" $quickfocus}}}}
 {func A_cheat
    {if_else {meta is_up}
@@ -279,18 +279,18 @@
             {fake_player1}
             (2
                {do
-			      {player2 fill_star_power}
+                  {player2 fill_star_power}
                   {cheat_display show "Filling Star Power for Player 2..."}})
             (1
                {do
-			      {player1 fill_star_power}
+                  {player1 fill_star_power}
                   {cheat_display show "Filling Star Power for Player 1..."}})
             (0
                {do
-			      {player0 fill_star_power}
+                  {player0 fill_star_power}
                   {cheat_display show "Filling Star Power for Player 0..."}})}
          {do
-		    {player0 fill_star_power}
+            {player0 fill_star_power}
             {cheat_display
                show
                "Filling Star Power..."}}}}}
@@ -300,18 +300,18 @@
          {switch {fake_player1}
             (2
                {do
-			      {player2 empty_star_power}
+                  {player2 empty_star_power}
                   {cheat_display show "Emptying Star Power for Player 2..."}})
             (1
                {do
-			      {player1 empty_star_power}
+                  {player1 empty_star_power}
                   {cheat_display show "Emptying Star Power for Player 1..."}})
             (0
                {do
-			      {player0 empty_star_power}
+                  {player0 empty_star_power}
                   {cheat_display show "Emptying Star Power for Player 0..."}})}
          {do
-		    {player0 empty_star_power}
+            {player0 empty_star_power}
             {cheat_display show "Emptying Star Power..."}}}}}
 {func print_transition_test_status
    {if {&& $transition_screen_0 $transition_screen_1}
@@ -324,7 +324,7 @@
             {set $transition_screen_0 {ui current_screen}}
             {rnd show_overlay transition_test TRUE}
             {rnd reflect transition_test
-			   {print {$transition_screen_0 name} " -\n"}}}
+               {print {$transition_screen_0 name} " -\n"}}}
          {if_else {! $transition_screen_1}
             {do
                {set $transition_screen_1
