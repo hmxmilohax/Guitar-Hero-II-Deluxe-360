@@ -49,8 +49,8 @@
    (display_speed_msg
       ($tspd $mspd $fps)
 	  {if_else $focusmode
-	  {set $miloskipintro TRUE}
-	  {set $miloskipintro FALSE}}
+	  {do {set $miloskipintro TRUE} {set $skipoutro TRUE} {set $notestreakmod FALSE} {set $sfx FALSE}}
+	  {do {set $miloskipintro FALSE} {set $skipoutro FALSE} {set $notestreakmod TRUE} {set $sfx TRUE}}}
       {gs_title.lbl set_localized_text {sprintf {localize speed_msg} {int {+ 0.5 {* $tspd 100}}} {int {+ 0.5 {* $mspd 100}}} {int $fps}}})
    (set_speeds
       {if {$this slider_changed}
@@ -402,6 +402,7 @@
             {set $focusmode FALSE}
 			{set $miloskipintro FALSE}
             {set $skipoutro FALSE}
+			{set $notestreakmod TRUE}
             {set $sfx TRUE}
 			{set $modifierlistpos {sel_section.lst selected_pos}}
 			OVERSHELL_LIST_RESET_HANDLER}
@@ -410,6 +411,7 @@
             {set $focusmode TRUE}
 			{set $miloskipintro TRUE}
             {set $skipoutro TRUE}
+			{set $notestreakmod FALSE}
             {set $sfx FALSE}
 			{set $modifierlistpos {sel_section.lst selected_pos}}
 			OVERSHELL_LIST_RESET_HANDLER}})
