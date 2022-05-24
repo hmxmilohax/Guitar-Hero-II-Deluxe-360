@@ -15,204 +15,6 @@
    (allow_back FALSE)
    (animate_transition FALSE)
 )
-#define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
-(
-   (BUTTON_DOWN_MSG
-      {if
-         {&&
-            {! {$this slider_selected}} {== $button kPad_Tri}}
-               {ui pop_screen}
-      }
-     kDataUnhandled
-   )
-)
-#define OVERSHELL_HELP_POP_HANDLER
-(
-   {if_else
-      {&&
-         {! {$this slider_selected}} $helpentered}
-      {$this reset}
-      {ui pop_screen}
-      {ui push_screen overshell_help_screen}
-   }
-)
-#define MODIFIER_SLIDER_HANDLERS
-(
-   (focus gs_guitar.sld)
-   (focus_component "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_band.sld set_num_steps 60}
-      {gs_guitar.sld set_num_steps 31}
-      {gs_sfx.sld set_num_steps 41} ; was 41 steps, dropped to 31 when disallowing <100%
-   )
-   (slider_changed
-      {'||'
-         {!=
-            {options get band_volume_idx}
-            {gs_guitar.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_sfx.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_band.sld current}
-         }
-      }
-   )
-   (enter
-      {if $towel
-         {$this disable gs_guitar.sld}
-      }
-      {gs_guitar.sld set_current
-         {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}
-      }
-      {gs_sfx.sld set_current
-         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}
-      }
-      {gs_band.sld set_current
-         {int {- $emulatefps 1}}
-      }
-      {stereo.chk set_check $focusmode}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
-   )
-   (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
-   )
-   (display_speed_msg
-      ($tspd $mspd $fps)
-      {if_else $focusmode
-         {do
-            {set $miloskipintro TRUE} {set $skipoutro TRUE} {set $notestreakmod FALSE} {set $sfx FALSE}
-         }
-         {do
-            {set $miloskipintro FALSE} {set $skipoutro FALSE} {set $notestreakmod TRUE} {set $sfx TRUE}
-         }
-      }
-      {gs_title.lbl set_localized_text
-         {sprintf {localize speed_msg}
-            {int
-               {+ 0.5 {* $tspd 100}}
-            }
-            {int
-               {+ 0.5 {* $mspd 100}}
-            }
-            {int
-               $fps
-            }
-         }
-      }
-   )
-   (set_speeds
-      {if {$this slider_changed}
-         {do
-            {set $trackspd
-               {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}
-            }
-            {set $speedmod
-               {- {+ 1 {* {gs_sfx.sld current} 0.05}} 0.5}
-            }
-            {set $emulatefps
-               {+ 1 {gs_band.sld current}}
-            }
-            {$this display_speed_msg $trackspd $speedmod $emulatefps}
-         }
-      }
-   )
-   (slider_select_cancel
-      ($component)
-      {switch $component
-         (gs_guitar.sld {$component set_current [orig_vol]})
-         (gs_sfx.sld {$component set_current [orig_vol]})
-         (gs_band.sld {$component set_current [orig_vol]})
-      }
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
-      kDataUnhandled
-   )
-   (FOCUS_MSG
-      {$this set focus_component {$new_focus name}}
-      {$this update_help_display}
-   )
-   (update_help_display
-      {if_else {$this slider_selected}
-         {helpbar set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjspd))
-         }
-         {do
-            {if_else {== [focus_component] "gs_stereo.btn"}
-               {helpbar set_display
-                  ((fret1 help_onoff)
-                     (fret2 help_back)
-                     (strum help_updown))
-               }
-               {helpbar set_display
-                  ((fret1 help_select)
-                   (fret2 help_back)
-                   (strum help_updown))
-               }
-            }
-         }
-      }
-   )
-   (slider_start_msg
-      ($component)
-      {do
-         {switch $component
-            (gs_guitar.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
-               }
-            )
-            (gs_sfx.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
-               }
-            )
-            (gs_band.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
-               }
-            )
-         }
-      }
-   )
-   (SELECT_START_MSG
-      {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
-         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
-         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
-         (gs_stereo.btn {stereo.chk toggle} {set $focusmode {stereo.chk get_check}} OVERSHELL_HELP_POP_HANDLER)
-      kDataUnhandled
-      }
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
-   )
-)
-{new
-   SliderPanel
-   overshell_slider
-   (file overshell_slider.milo)
-   MODIFIER_SLIDER_HANDLERS
-}
-{new
-   GHScreen
-   overshell_slider_screen
-   (panels overshell_slider)
-   (focus overshell_slider)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
-}
 #define OVERSHELL_LIST_RESET_HANDLER
 (
    {if_else {&& {! {$this slider_selected}} $helpentered}
@@ -257,118 +59,29 @@
       }
    }
 )
-{new
-   MultiSelectListPanel
-   overshell_track_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-      {sel_section.lst set_selected $trackmodifierlistpos}
-      {sel_section.lst set_local_pos -140 0 35}
-      {sel_section.lst set alignment kTopCenter}
-      {gs_title.lbl set_text "TRACK MODIFIERS"}
-      {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
-   )
-   (SELECT_START_MSG
-      {switch {$component selected_sym}
-         (os_voidfrets
-            {if_else $voidfrets
-               {do
-                  {play_sfx cheat_off}
-                  {set $voidfrets FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $voidfrets TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_brighthopos
-            {if_else $brighthopos
-               {do
-                  {play_sfx cheat_off}
-                  {set $brighthopos FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $brighthopos TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_darkstrums
-            {if_else $darkstrums
-               {do
-                  {play_sfx cheat_off}
-                  {set $darkstrums FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $darkstrums TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_gh1track
-            {if_else $gh1track
-               {do
-                  {play_sfx cheat_off}
-                  {set $gh1track FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $gh3track FALSE}
-                  {set $gh1track TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_gh3track
-            {if_else $gh3track
-               {do
-                  {play_sfx cheat_off}
-                  {set $gh3track FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $gh1track FALSE}
-                  {set $gh3track TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
+#define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+(
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {! {$this slider_selected}} {== $button kPad_Tri}}
+               {ui pop_screen}
       }
-   kDataUnhandled
+     kDataUnhandled
    )
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
-}
-{new
-   GHScreen
-   overshell_track_list_screen
-   (panels overshell_track_list)
-   (focus overshell_track_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   MultiSelectListPanel
-   overshell_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-   {sel_section.lst set_selected $modifierlistpos}
-   {sel_section.lst set_local_pos -140 0 35}
-   {sel_section.lst set circular 1}
-   {sel_section.lst set alignment kTopCenter}
-   {gs_title.lbl set_text "MODIFIERS"}
-   {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
-   )
-   (SELECT_START_MSG
+)
+#define OVERSHELL_HELP_POP_HANDLER
+(
+   {if_else
+      {&&
+         {! {$this slider_selected}} $helpentered}
+      {$this reset}
+      {ui pop_screen}
+      {ui push_screen overshell_help_screen}
+   }
+)
+#define OVERSHELL_LIST_SELECT_START_MSG
+((SELECT_START_MSG
       {switch
        {$component selected_sym}
       (os_selhw
@@ -669,39 +382,87 @@
             {set $barf_cheat TRUE}
             {set $modifierlistpos {sel_section.lst selected_pos}}
             OVERSHELL_LIST_RESET_HANDLER}})}
-      kDataUnhandled)
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_list_screen
-   (panels overshell_list)
-   (focus overshell_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_character_list_screen
-   (panels overshell_character_list)
-   (focus overshell_character_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-#define OVERSHELL_DIFF_RESET_HANDLER
-({if_else {&& {! {$this slider_selected}} $helpentered}
-{{sel_section.lst set_selected $difflistpos} {$this reset}}
-{ui push_screen overshell_help_screen}})
-{new
-   MultiSelectListPanel
-   overshell_diff_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-   {do
-         {sel_section.lst set_selected $difflistpos}
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (Easy Medium Hard Expert os_leftyp1 os_leftyp2)}
-         {sel_section.lst set circular 0}
-         {gs_title.lbl set_text "DIFFICULTY"}})
-   (SELECT_START_MSG
+      kDataUnhandled))
+#define OVERSHELL_TRACK_LIST_SELECT_START_MSG
+((SELECT_START_MSG
+      {switch {$component selected_sym}
+         (os_voidfrets
+            {if_else $voidfrets
+               {do
+                  {play_sfx cheat_off}
+                  {set $voidfrets FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $voidfrets TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_brighthopos
+            {if_else $brighthopos
+               {do
+                  {play_sfx cheat_off}
+                  {set $brighthopos FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $brighthopos TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_darkstrums
+            {if_else $darkstrums
+               {do
+                  {play_sfx cheat_off}
+                  {set $darkstrums FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $darkstrums TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_gh1track
+            {if_else $gh1track
+               {do
+                  {play_sfx cheat_off}
+                  {set $gh1track FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $gh3track FALSE}
+                  {set $gh1track TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_gh3track
+            {if_else $gh3track
+               {do
+                  {play_sfx cheat_off}
+                  {set $gh3track FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $gh1track FALSE}
+                  {set $gh3track TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+      }
+   kDataUnhandled
+   ))
+#define OVERSHELL_DIFF_LIST_SELECT_START_MSG
+((SELECT_START_MSG
       {switch
        {$component selected_sym}
        (os_leftyp2
@@ -740,27 +501,9 @@
        OVERSHELL_HELP_POP_HANDLER)
        (Expert {{game get_player_config 0} set_difficulty kDifficultyExpert}
        OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled)
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_diff_list_screen
-   (panels overshell_diff_list)
-   (focus overshell_diff_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   MultiSelectListPanel
-   overshell_character_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-   {do
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
-         {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "CHARACTERS"})
-   (SELECT_START_MSG
+      kDataUnhandled))
+#define OVERSHELL_CHARACTER_LIST_SELECT_START_MSG
+((SELECT_START_MSG
       {switch
        {$component selected_sym}
        (punk1 {game set_character punk1 TRUE}
@@ -801,27 +544,9 @@
        OVERSHELL_HELP_POP_HANDLER)
        (grim {game set_character grim TRUE}
        OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled)
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_character_list_screen
-   (panels overshell_character_list)
-   (focus overshell_character_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   MultiSelectListPanel
-   overshell_venue_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-   {do
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (battle small1 small2 big theatre fest arena stone)}
-         {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "VENUES"})
-   (SELECT_START_MSG
+      kDataUnhandled))
+#define OVERSHELL_VENUE_LIST_SELECT_START_MSG
+((SELECT_START_MSG
       {switch
        {$component selected_sym}
        (battle {game set_venue battle TRUE}
@@ -840,54 +565,8 @@
        OVERSHELL_HELP_POP_HANDLER)
        (stone {game set_venue stone TRUE}
        OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled)
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_venue_list_screen
-   (panels overshell_venue_list)
-   (focus overshell_venue_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_character_list_screen
-   (panels overshell_character_list)
-   (focus overshell_character_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   MultiSelectListPanel
-   overshell_guitar_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-   {sel_section.lst set_local_pos -140 0 35}
-   ;{practice_sel_section.grp set_local_pos 0 0 20}
-   {do
-         {sel_section.lst set_data (
-         lespaul lp_cayenne lp_goddessburst lp_zakk
-         sg sg_white sg_gt sg_flames
-         flying_v fv_v2 fv_century fv_red
-         explorer exp_nat exp_sun exp_white exp_swirl
-         lespaul_doublecut lp_dbl_resin
-         firebird fb_blue fb_ebony fb_leopard
-         epiphone_coronet coronet_cherry coronet_burst coronet_green
-         kramer_vanguard van_yellow
-         moderne mod_cherry
-         corvus cor_nat
-         es335 es_cherry
-         kramer_650 650_white
-         eds eds_white
-         lespaul_doublecut_sticker lespaul_sonex lespaul_marauder
-         epiphone_casino epiphone_sheraton chet_atkins fish_reward usa_reward
-         coffin_reward viking_reward snaketapus_reward eyeball_reward
-         battleaxe_reward log_reward scythe #ifndef HX_XBOX guitar_red_octane #endif
-         bass_musicman bass_musicman_lava bass_sg_mahogany bass_sg_cream bass_grabber_cherry
-         bass_grabber_maple bass_thunderbird_ebony bass_thunderbird_burst bass_hofner)}
-         {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "GUITARS"})
-   (SELECT_START_MSG
+      kDataUnhandled))
+((SELECT_START_MSG
       {switch
        {$component selected_sym}
        (lespaul {game set_guitar lespaul lp_cherry}
@@ -1044,32 +723,9 @@
        OVERSHELL_HELP_POP_HANDLER)
        (bass_hofner {game set_guitar bass_hofner bass_hofner}
        OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled)
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_guitar_list_screen
-   (panels overshell_guitar_list)
-   (focus overshell_guitar_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new GHPanel overshell_theme_panel
-   (file overshell_theme.milo)
-   (focus resume.btn)
-   (reset_focus TRUE)
-   (enter 
-      {pause_title.lbl set_text "THEME SELECT"}
-      {diff.btn set_showing FALSE}
-      {extra2.btn set_showing FALSE}
-      {$this disable diff.btn}
-      {$this disable extra2.btn})}
-{new
-   GHScreen
-   overshell_theme_list_screen
-   (panels overshell_theme_panel)
-   (focus overshell_theme_panel) 
-   OVERSHELL_SCREEN_COMMON_HANDLER 
-   (SELECT_START_MSG
+      kDataUnhandled))
+#define OVERSHELL_THEME_LIST_SELECT_START_MSG
+((SELECT_START_MSG
       {switch $component
        (newsong.btn
          {do
@@ -1136,8 +792,213 @@
          OVERSHELL_HELP_POP_HANDLER})
        (extra1.btn
          {ui push_screen overshell_song_theme_screen})}
-       kDataUnhandled)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+       kDataUnhandled))
+#define OVERSHELL_SONG_THEME_LIST_SELECT_START_MSG
+((SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+      (os_gh3song
+         {if_else $gh3song
+            {do
+            {play_sfx cheat_off}
+            {set $gh3song FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $gh3song TRUE}
+            {set $altsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}})
+      (os_altsong
+         {if_else $altsong
+            {do
+            {play_sfx cheat_off}
+            {set $altsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $altsong TRUE}
+            {set $gh3song FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}})
+      (os_loopsong
+         {if_else $loopsong
+            {do
+            {play_sfx cheat_off}
+            {set $loopsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $loopsong TRUE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}})}
+      kDataUnhandled))
+#define MODIFIER_SLIDER_HANDLERS
+(
+   (focus gs_guitar.sld)
+   (focus_component "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {gs_band.sld set_num_steps 60}
+      {gs_guitar.sld set_num_steps 31}
+      {gs_sfx.sld set_num_steps 41} ; was 41 steps, dropped to 31 when disallowing <100%
+   )
+   (slider_changed
+      {'||'
+         {!=
+            {options get band_volume_idx}
+            {gs_guitar.sld current}
+         }
+         {!=
+            {options get guitar_volume_idx}
+            {gs_sfx.sld current}
+         }
+         {!=
+            {options get guitar_volume_idx}
+            {gs_band.sld current}
+         }
+      }
+   )
+   (enter
+      {if $towel
+         {$this disable gs_guitar.sld}
+      }
+      {gs_guitar.sld set_current
+         {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}
+      }
+      {gs_sfx.sld set_current
+         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}
+      }
+      {gs_band.sld set_current
+         {int {- $emulatefps 1}}
+      }
+      {stereo.chk set_check $focusmode}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+   )
+   (reset_gm_title
+      {gs_title.lbl set_localized_text GAME_MODIFIER}
+   )
+   (display_speed_msg
+      ($tspd $mspd $fps)
+      {if_else $focusmode
+         {do
+            {set $miloskipintro TRUE} {set $skipoutro TRUE} {set $notestreakmod FALSE} {set $sfx FALSE}
+         }
+         {do
+            {set $miloskipintro FALSE} {set $skipoutro FALSE} {set $notestreakmod TRUE} {set $sfx TRUE}
+         }
+      }
+      {gs_title.lbl set_localized_text
+         {sprintf {localize speed_msg}
+            {int
+               {+ 0.5 {* $tspd 100}}
+            }
+            {int
+               {+ 0.5 {* $mspd 100}}
+            }
+            {int
+               $fps
+            }
+         }
+      }
+   )
+   (set_speeds
+      {if {$this slider_changed}
+         {do
+            {set $trackspd
+               {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}
+            }
+            {set $speedmod
+               {- {+ 1 {* {gs_sfx.sld current} 0.05}} 0.5}
+            }
+            {set $emulatefps
+               {+ 1 {gs_band.sld current}}
+            }
+            {$this display_speed_msg $trackspd $speedmod $emulatefps}
+         }
+      }
+   )
+   (slider_select_cancel
+      ($component)
+      {switch $component
+         (gs_guitar.sld {$component set_current [orig_vol]})
+         (gs_sfx.sld {$component set_current [orig_vol]})
+         (gs_band.sld {$component set_current [orig_vol]})
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+      kDataUnhandled
+   )
+   (FOCUS_MSG
+      {$this set focus_component {$new_focus name}}
+      {$this update_help_display}
+   )
+   (update_help_display
+      {if_else {$this slider_selected}
+         {helpbar set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjspd))
+         }
+         {do
+            {if_else {== [focus_component] "gs_stereo.btn"}
+               {helpbar set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))
+               }
+               {helpbar set_display
+                  ((fret1 help_select)
+                   (fret2 help_back)
+                   (strum help_updown))
+               }
+            }
+         }
+      }
+   )
+   (slider_start_msg
+      ($component)
+      {do
+         {switch $component
+            (gs_guitar.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (gs_sfx.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (gs_band.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+         }
+      }
+   )
+   (SELECT_START_MSG
+      {switch $component
+         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
+         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
+         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
+         (gs_stereo.btn {stereo.chk toggle} {set $focusmode {stereo.chk get_check}} OVERSHELL_HELP_POP_HANDLER)
+      kDataUnhandled
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+   )
+)
 #define SLIDER_LEVELS
 (12)
 #define AUDIO_SETTINGS_PANEL_HANDLERS
@@ -1297,6 +1158,201 @@
       {$this update_help_display}))
 {new
    SliderPanel
+   overshell_slider
+   (file overshell_slider.milo)
+   MODIFIER_SLIDER_HANDLERS
+}
+{new
+   GHScreen
+   overshell_slider_screen
+   (panels overshell_slider)
+   (focus overshell_slider)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
+{new
+   MultiSelectListPanel
+   overshell_track_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+      {sel_section.lst set_selected $trackmodifierlistpos}
+      {sel_section.lst set_local_pos -140 0 35}
+      {sel_section.lst set alignment kTopCenter}
+      {gs_title.lbl set_text "TRACK MODIFIERS"}
+      {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
+   )
+   OVERSHELL_TRACK_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
+{new
+   GHScreen
+   overshell_track_list_screen
+   (panels overshell_track_list)
+   (focus overshell_track_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   MultiSelectListPanel
+   overshell_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {sel_section.lst set_selected $modifierlistpos}
+   {sel_section.lst set_local_pos -140 0 35}
+   {sel_section.lst set circular 1}
+   {sel_section.lst set alignment kTopCenter}
+   {gs_title.lbl set_text "MODIFIERS"}
+   {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
+   )
+   OVERSHELL_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_list_screen
+   (panels overshell_list)
+   (focus overshell_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_character_list_screen
+   (panels overshell_character_list)
+   (focus overshell_character_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+#define OVERSHELL_DIFF_RESET_HANDLER
+({if_else {&& {! {$this slider_selected}} $helpentered}
+{{sel_section.lst set_selected $difflistpos} {$this reset}}
+{ui push_screen overshell_help_screen}})
+{new
+   MultiSelectListPanel
+   overshell_diff_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_selected $difflistpos}
+         {sel_section.lst set_local_pos -140 0 35}
+         {sel_section.lst set_data (Easy Medium Hard Expert os_leftyp1 os_leftyp2)}
+         {sel_section.lst set circular 0}
+         {gs_title.lbl set_text "DIFFICULTY"}})
+   OVERSHELL_DIFF_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_diff_list_screen
+   (panels overshell_diff_list)
+   (focus overshell_diff_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   MultiSelectListPanel
+   overshell_character_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_local_pos -140 0 35}
+         {sel_section.lst set_data (punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
+         {sel_section.lst set circular 1}}
+         {gs_title.lbl set_text "CHARACTERS"})
+   OVERSHELL_CHARACTER_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_character_list_screen
+   (panels overshell_character_list)
+   (focus overshell_character_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   MultiSelectListPanel
+   overshell_venue_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {do
+         {sel_section.lst set_local_pos -140 0 35}
+         {sel_section.lst set_data (battle small1 small2 big theatre fest arena stone)}
+         {sel_section.lst set circular 1}}
+         {gs_title.lbl set_text "VENUES"})
+   OVERSHELL_VENUE_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_venue_list_screen
+   (panels overshell_venue_list)
+   (focus overshell_venue_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_character_list_screen
+   (panels overshell_character_list)
+   (focus overshell_character_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   MultiSelectListPanel
+   overshell_guitar_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {sel_section.lst set_local_pos -140 0 35}
+   ;{practice_sel_section.grp set_local_pos 0 0 20}
+   {do
+         {sel_section.lst set_data (
+         lespaul lp_cayenne lp_goddessburst lp_zakk
+         sg sg_white sg_gt sg_flames
+         flying_v fv_v2 fv_century fv_red
+         explorer exp_nat exp_sun exp_white exp_swirl
+         lespaul_doublecut lp_dbl_resin
+         firebird fb_blue fb_ebony fb_leopard
+         epiphone_coronet coronet_cherry coronet_burst coronet_green
+         kramer_vanguard van_yellow
+         moderne mod_cherry
+         corvus cor_nat
+         es335 es_cherry
+         kramer_650 650_white
+         eds eds_white
+         lespaul_doublecut_sticker lespaul_sonex lespaul_marauder
+         epiphone_casino epiphone_sheraton chet_atkins fish_reward usa_reward
+         coffin_reward viking_reward snaketapus_reward eyeball_reward
+         battleaxe_reward log_reward scythe #ifndef HX_XBOX guitar_red_octane #endif
+         bass_musicman bass_musicman_lava bass_sg_mahogany bass_sg_cream bass_grabber_cherry
+         bass_grabber_maple bass_thunderbird_ebony bass_thunderbird_burst bass_hofner)}
+         {sel_section.lst set circular 1}}
+         {gs_title.lbl set_text "GUITARS"})
+   OVERSHELL_GUITAR_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_guitar_list_screen
+   (panels overshell_guitar_list)
+   (focus overshell_guitar_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new GHPanel overshell_theme_panel
+   (file overshell_theme.milo)
+   (focus resume.btn)
+   (reset_focus TRUE)
+   (enter 
+      {pause_title.lbl set_text "THEME SELECT"}
+      {diff.btn set_showing FALSE}
+      {extra2.btn set_showing FALSE}
+      {$this disable diff.btn}
+      {$this disable extra2.btn})}
+{new
+   GHScreen
+   overshell_theme_list_screen
+   (panels overshell_theme_panel)
+   (focus overshell_theme_panel) 
+   OVERSHELL_SCREEN_COMMON_HANDLER 
+   OVERSHELL_THEME_LIST_SELECT_START_MSG
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   SliderPanel
    pause_audio_settings_panel
    (file pause_audio_settings_gh1.milo)
    AUDIO_SETTINGS_PANEL_HANDLERS}
@@ -1385,48 +1441,7 @@ this option."}
          {sel_section.lst set_local_pos -140 0 35}
          {sel_section.lst set_data OVERSHELL_SNGTHM_CONTENTS}
        {gs_title.lbl set_text "SONG LIST THEMES"}})
-   (SELECT_START_MSG
-      {switch
-       {$component selected_sym}
-      (os_gh3song
-         {if_else $gh3song
-            {do
-            {play_sfx cheat_off}
-            {set $gh3song FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $gh3song TRUE}
-            {set $altsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})
-      (os_altsong
-         {if_else $altsong
-            {do
-            {play_sfx cheat_off}
-            {set $altsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $altsong TRUE}
-            {set $gh3song FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})
-      (os_loopsong
-         {if_else $loopsong
-            {do
-            {play_sfx cheat_off}
-            {set $loopsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $loopsong TRUE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})}
-      kDataUnhandled)
+   OVERSHELL_SONG_THEME_LIST_SELECT_START_MSG
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
