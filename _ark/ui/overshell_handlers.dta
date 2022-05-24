@@ -672,7 +672,7 @@
 	   (punk2 {game set_character punk2 TRUE}
 	   OVERSHELL_HELP_POP_HANDLER)
 	   (alterna1 {game set_character alterna1 TRUE}
-	   OVERSHELL_HELP_POP_HANDLER	   kDataUnhandled)
+	   OVERSHELL_HELP_POP_HANDLER)
 	   (alterna2 {game set_character alterna2 TRUE}
 	   OVERSHELL_HELP_POP_HANDLER)
 	   (glam1 {game set_character glam1 TRUE}
