@@ -1287,13 +1287,6 @@
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
-   GHScreen
-   overshell_character_list_screen
-   (panels overshell_character_list)
-   (focus overshell_character_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
    MultiSelectListPanel
    overshell_guitar_list
    (file overshell_list.milo)
