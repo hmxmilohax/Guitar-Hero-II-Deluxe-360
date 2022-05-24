@@ -26,6 +26,8 @@
       {set [msg_last_frame] 0} ;resets the timeline for the cheat notification for later playback (unused)
 	  {gamecfg set_player 0 {profilemgr active_padnum}} ;set player 1 to the current active gamepad on xbox 260
       {content_mgr start_enumeration} ;start checking for dlc on xbox
+      {main_career.btn set_showing FALSE}
+      {$this disable main_career.btn}
 	  )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch $component ;switch action based on result of which button is selected

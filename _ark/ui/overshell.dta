@@ -10,8 +10,8 @@
          (newsong.btn {ui push_screen overshell_character_list_screen})
          (quit.btn {ui push_screen overshell_guitar_list_screen})
 		 (extra1.btn {ui push_screen overshell_theme_list_screen})
-		 (extra2.btn {ui push_screen pause_audio_settings_screen})
-      }
+		 (extra2.btn {ui push_screen pause_audio_settings_screen})}
+       kDataUnhandled
 ))
 #define OVERSHELL_BUTTON_DOWN_HANDLER ;common code to run inside of overshell when a button is pressed
 ((BUTTON_DOWN_MSG ;code ran when a button is pressed

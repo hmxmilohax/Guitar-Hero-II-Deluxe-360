@@ -955,23 +955,25 @@
    (focus overshell_guitar_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new GHPanel overshell_theme_panel
+   (file overshell_theme.milo)
+   (focus resume.btn)
+   (reset_focus TRUE)
+   (enter 
+      {pause_title.lbl set_text "THEME SELECT"}
+      {diff.btn set_showing FALSE}
+      {extra2.btn set_showing FALSE}
+      {$this disable diff.btn}
+      {$this disable extra2.btn})}
 {new
-   MultiSelectListPanel
-   overshell_theme_list
-   (file overshell_list.milo)
-   (focus sel_section.lst)
-   (enter
-   {sel_section.lst set_local_pos -140 0 35}
-   ;{sel_section.lst set circular 1}
-   {sel_section.lst set alignment kTopCenter}
-      {sel_section.lst
-         set_data
-         (os_gh1 os_gh2 os_gh80s os_gh3 os_ce os_egg5 os_sngthm)}
-		  {gs_title.lbl set_text "THEME SELECT"})
+   GHScreen
+   overshell_theme_list_screen
+   (panels overshell_theme_panel)
+   (focus overshell_theme_panel) 
+   OVERSHELL_SCREEN_COMMON_HANDLER 
    (SELECT_START_MSG
-      {switch
-       {$component selected_sym}
-       (os_ce
+      {switch $component
+       (newsong.btn
          {do
          {set $egg1 TRUE}
          {set $game80s FALSE}
@@ -983,67 +985,60 @@
          {set $gh1track FALSE}
          {set $gh3track FALSE}
          OVERSHELL_HELP_POP_HANDLER})
-       (os_gh1
-			{do
+       (resume.btn
+         {do
          {set $egg1 FALSE}
-			{set $game80s FALSE}
-			{set $egg5 FALSE}
-			{set $egg4 FALSE}
-			{set $egg2 TRUE}
+         {set $game80s FALSE}
+         {set $egg5 FALSE}
+         {set $egg4 FALSE}
+         {set $egg2 TRUE}
          {set $gh1track TRUE}
          {set $gamegh1 TRUE}
          {set $gh3song FALSE}
          {set $gh3track FALSE}
-			OVERSHELL_HELP_POP_HANDLER})
-       (os_gh2
-			{do
+         OVERSHELL_HELP_POP_HANDLER})
+       (restart.btn
+         {do
          {set $egg1 FALSE}
          {set $game80s FALSE}
-			{set $egg5 FALSE}
-			{set $egg4 FALSE}
-			{set $egg2 FALSE}
+         {set $egg5 FALSE}
+         {set $egg4 FALSE}
+         {set $egg2 FALSE}
          {set $gamegh1 FALSE}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
-			OVERSHELL_HELP_POP_HANDLER})
-	   (os_gh80s
-			{do
+         OVERSHELL_HELP_POP_HANDLER})
+      (change_speed.btn
+         {do
          {set $egg1 FALSE}
          {set $game80s TRUE}
-			{set $egg5 FALSE}
-			{set $egg4 FALSE}
-			{set $egg2 FALSE}
+         {set $egg5 FALSE}
+         {set $egg4 FALSE}
+         {set $egg2 FALSE}
          {set $gamegh1 FALSE}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
-			OVERSHELL_HELP_POP_HANDLER})
-	   (os_gh3
-			{do
+         OVERSHELL_HELP_POP_HANDLER})
+      (section.btn
+         {do
          {set $egg1 FALSE}
          {set $game80s FALSE}
-			{set $egg5 FALSE}
-			{set $egg4 TRUE}
-			{set $egg2 FALSE}
+         {set $egg5 FALSE}
+         {set $egg4 TRUE}
+         {set $egg2 FALSE}
          {set $gamegh1 FALSE}
          {set $gh3song TRUE}
          {set $gh3track TRUE}
-			OVERSHELL_HELP_POP_HANDLER})
-       (os_egg5
-			{do
+         OVERSHELL_HELP_POP_HANDLER})
+       (quit.btn
+         {do
          {set $egg5 TRUE}
-			OVERSHELL_HELP_POP_HANDLER})
-       (os_sngthm
+         OVERSHELL_HELP_POP_HANDLER})
+       (extra1.btn
          {ui push_screen overshell_song_theme_screen})}
        kDataUnhandled)
-	OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHScreen
-   overshell_theme_list_screen
-   (panels overshell_theme_list)
-   (focus overshell_theme_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 #define SLIDER_LEVELS
 (12)
