@@ -14,7 +14,11 @@
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter ;when the screen is entered
+      {set $hardware_check FALSE}
       {main_screen save_objects "game:/hardware_check.milo"} ;streak meter only does not cause stutter when gameplay is at high fps, like in emulator. this ;creates a file we check for later to run the streak meter or not
+      {if_else {load_objects "game:/hardware_check.milo"}
+      {set $hardware_check TRUE}
+      {set $hardware_check FALSE}}
       ;{{load_objects "game:/hardware_check.milo"} save_objects "game:/converted.milo"}
       {campaign set_profile_slot 0} ;attempt to set up career for quickplay
       {set $main_entered TRUE} ;this lets the game know first boot has occured and no longer needs to perform additional setup when main screen is entered again
@@ -35,7 +39,7 @@
       {switch $component ;switch action based on result of which button is selected
          (main_career.btn
             ;{game set_song {campaign pick_attract_song}} {game set_career} {ui goto_screen loading_screen}
-            ;{{load_objects "game:/hardware_check.milo"} save_objects "game:/converted.milo"} ;test code for milo conversion. input milo must be named as hardware_check.milo_xbox
+            ;{{load_objects "game:/test.milo"} save_objects "game:/converted.milo"} ;test code for milo conversion. input milo must be named as test.milo_xbox
             ;{ui goto_screen nameprof_screen} ;name profile screen for highscores (career)
             )
          (main_quickspin.btn

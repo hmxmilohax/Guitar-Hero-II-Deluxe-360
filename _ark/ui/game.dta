@@ -43,7 +43,7 @@
                   {set $mtvline3 {sprint "\nAuthor: " $author "\n"}} ;apparently we weren't showing author in autoplay, fixed
                }
             }
-            {if_else {|| {load_objects "game:/hardware_check.milo"} $autoplay} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
+            {if_else {|| $hardware_check $autoplay} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
                {$this set_line $prefix 3 {sprint $mtvline3}} ;if autoplay, just put the static shit
                {$this set_line $prefix 3 {sprint $mtvline3 ;if not autoplay, first put the stuff we pregenerated before
                   $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n100.00%"} ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line, hardcode 100% since this is setup
@@ -90,7 +90,7 @@
       {streak_overlay_panel init_progress_bars} ;initialize the progress meters
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
-      {if_else {load_objects "game:/hardware_check.milo"}
+      {if_else $hardware_check
       {set $do_streak FALSE} ;set the streak meter code to enabled
       {set $do_streak TRUE}}
       {set $interval_p0 50} ;set streak interval back to default
@@ -158,7 +158,7 @@
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
       {track_panel intro_skip}
-      {if_else {load_objects "game:/hardware_check.milo"}
+      {if_else $hardware_check
       {set $do_streak FALSE} ;set the streak meter code to enabled
       {set $do_streak TRUE}}
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run

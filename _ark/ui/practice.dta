@@ -111,7 +111,7 @@
       }
    )
    (intro_skip
-      {if_else {load_objects "game:/hardware_check.milo"}
+      {if_else $hardware_check
       {set $do_streak FALSE} ;set the streak meter code to enabled
       {set $do_streak TRUE}}
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
