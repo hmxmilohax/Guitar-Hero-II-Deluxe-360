@@ -2,7 +2,8 @@
 #define WIN_MESSAGE_SECS (3)
 
 ;modification for note streaks, based on Trick's work
-
+{if_else {load_objects "game:/hardware_check.milo"}
+kDataUnhandled
 {func note_streak_p0
    {set $player0_streak {player0 current_streak}} ;save P1 streak for later
    {if {> $player0_streak 50}
@@ -10,23 +11,27 @@
    {if {== {mod $player0_streak $interval_p0} 0}
       {if $notestreakmod {hud show_message 0 note_streak_popup_p0}}
       {if $sfx {play_game_sfx_player meter_slide meter_slide 0}}
-      }} ;if streak is mod interval, fire popup
-
+      }}} ;if streak is mod interval, fire popup
+{if_else {load_objects "game:/hardware_check.milo"}
+kDataUnhandled
 {func note_streak_p1
    {set $player1_streak {player1 current_streak}} ;save P2 streak for later
    {if {> $player1_streak 50}
       {set $interval_p1 100}} ;if streak is more than 50, set interval to 100
    {if {== {mod $player1_streak $interval_p1} 0}
       {if $notestreakmod {hud show_message 1 note_streak_popup_p1}}
-      {if $sfx {play_game_sfx_player meter_slide meter_slide 1}}}} ;if streak is mod interval, fire popup
-
+      {if $sfx {play_game_sfx_player meter_slide meter_slide 1}}}}} ;if streak is mod interval, fire popup
+{if_else {load_objects "game:/hardware_check.milo"}
+kDataUnhandled
 {func note_streak_p2
    {set $player2_streak {'+' $player2_streak 1}}
    {if {> $player2_streak 50}
       {set $interval_p2 100}}
    {if {== {mod $player2_streak $interval_p2} 0}
       {if $notestreakmod {hud show_message kPlayerShared note_streak_popup_p2}}
-      {if $sfx {play_game_sfx_player meter_slide meter_slide $player_num}}}}
+      {if $sfx {play_game_sfx_player meter_slide meter_slide $player_num}}}}}
+{if_else {load_objects "game:/hardware_check.milo"}
+kDataUnhandled
 {new
    Object
    note_streak_callback_p0
@@ -73,7 +78,7 @@
 ;         {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
 ;         {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
          {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
-         {mtv_overlay_panel update_text} ;update MTV line 3
+         {if_else {load_objects "game:/hardware_check.milo"} kDataUnhandled {mtv_overlay_panel update_text}} ;update MTV line 3
       }
    )
 
@@ -98,10 +103,12 @@
                {set $interval_p0 50}
                {streak_overlay_panel zero_streak 0}
                {streak_overlay_panel update_streak 0}
+               {if_else {load_objects "game:/hardware_check.milo"}
+               kDataUnhandled
                {if {! $autoplay} ;if not autoplay, handle overstrums and MTV line 3
                   {if {! $beforefirstnote_p0}{set $overstrums {+ $overstrums 1}}} ;update overstrum var
                   {mtv_overlay_panel update_text} ;update MTV line 3
-               }
+               }}
             }
          }
       }
@@ -130,17 +137,20 @@
                   {set $interval_p0 50}
                   {streak_overlay_panel zero_streak 0}
                   {streak_overlay_panel update_streak 0}
+                  {if_else {load_objects "game:/hardware_check.milo"}
+                  kDataUnhandled
                   {if {! $autoplay} ;if not autoplay, handle misses and MTV line 3
                      {set $notesmissed {+ $notesmissed 1}} ;update missed var
                      {mtv_overlay_panel update_text} ;update MTV line 3
-                  }
+                  }}
                }
             }
          }
       }
    )
-}
-
+}}
+{if_else {load_objects "game:/hardware_check.milo"}
+kDataUnhandled
 {new
    Object
    star_progress_callback_p0
@@ -149,8 +159,9 @@
          {streak_overlay_panel update_star_progress}
       }
    )
-}
-
+}}
+{if_else {load_objects "game:/hardware_check.milo"}
+kDataUnhandled
 {new
    Object
    note_streak_callback_p1
@@ -227,7 +238,7 @@
                   {set $interval_p2 50}}
                {do
                   {set $player1_streak 0}
-                  {set $interval_p1 50}}}}})}
+                  {set $interval_p1 50}}}}})}}
 {new GHPanel streak_overlay_panel
    (file "../hud/streak_overlay.milo")
    (enter
@@ -481,9 +492,13 @@
    (file {sprint "../hud/" {gamecfg get hud_file}})
    (enter
       {game add_sinks $this intro_start_msg intro_skip slide_meter_in star_power_ready game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
-      {player_matcher0 add_sink note_streak_callback_p0}
+      {if_else {load_objects "game:/hardware_check.milo"}
+      kDataUnhandled
+      {player_matcher0 add_sink note_streak_callback_p0}}
+      {if_else {load_objects "game:/hardware_check.milo"}
+      kDataUnhandled
       {if {exists player_matcher1}
-         {player_matcher1 add_sink note_streak_callback_p1}}
+         {player_matcher1 add_sink note_streak_callback_p1}}}
 ;      {player0 add_sink star_progress_callback_p0}
       {if {!= tutorial
          {gamecfg get mode}}
