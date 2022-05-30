@@ -382,7 +382,7 @@
       {switch $component
          (me_continue.btn {goto_endgame_complete})
          (me_morestats.btn
-            {endgame_stats_screen set prev_screen {ui current_screen}}
+            {{endgame_panel loaded_dir} iterate Mesh $m {$m set_showing FALSE}}
             {ui goto_screen endgame_stats_screen})})}
 {new GHScreen endgame_screen
    (panels GAME_PANELS endgame_panel helpbar)
@@ -407,9 +407,11 @@
    endgame_stats_panel
    (file sel_song.milo)
    (is_scrolling FALSE)
+   (clear_vram TRUE)
    (reset_focus TRUE)
    (focus 'ss_song.lst')
    (enter
+      {endgame_panel set_showing FALSE}
       {gamecfg set mode practice}
       {gamecfg
          set
@@ -419,10 +421,6 @@
          set
          (practice_sections 1)
          -1}
-      {sel_section.lst
-         set_provider
-         {game practice_section_provider}}
-      {title.lbl set_text select_start_section}
       {set
          [section]
          0}
@@ -432,62 +430,45 @@
       {notebook.mesh set_local_scale 1.4 1 1}
       {ss_song.lst set_local_pos 160 230 140}
       {ss_song.lst set_local_rot 0 4 0}
-      {ss_song.lst set_provider {new StatsProvider stats_provider}})
-   (SELECT_START_MSG
+      {ss_song.lst set_provider {new StatsProvider stats_provider}}
+      )
+   (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {do
-         ($idx
-            {-
-               {ss_song.lst selected_pos}
-               1})
-         {if_else
-            [section]
+         ($idx {ss_song.lst selected_pos}) ;set this variable to the selected position of the list
+         {if_else [section] ;failover for bad section selection
             {if_else
-               {<
-                  $idx
-                  {gamecfg
-                     get
-                     (practice_sections 0)}}
-               {handle
-                  (ui BAD_SELECT_START_MSG)}
+               {< $idx {gamecfg get (practice_sections 0)}} ;if the current selection is less than available selection
+               {handle (ui BAD_SELECT_START_MSG)} ;error
                {do
-                  {gamecfg
-                     set
-                     (practice_sections 1)
-                     $idx}
-                  {gamecfg set mode practice}
-                  {gamecfg set practice_speed 0}
-                  {ui goto_screen practice_loading_screen}
-                  kDataUnhandled}}
-            {if_else
-               {== $idx -1}
+                  {gamecfg set (practice_sections 1) $idx} ;set the ending section to the currently selected list position
+                  {ui goto_screen practice_loading_screen} ;load the sections and start the game
+                  kDataUnhandled
+               }
+            }
+            {if_else {== $idx -1} ;if selected section is full song
                {do
-                  {gamecfg set mode practice}
-                  {gamecfg set practice_speed 0}
-                  {gamecfg
-                     set
-                     (practice_sections 0)
-                     -1}
-                  {gamecfg
-                     set
-                     (practice_sections 1)
-                     -1}
-                  {ui goto_screen practice_loading_screen}
-                  kDataUnhandled}
+                  {gamecfg set (practice_sections 0) -1} ;set starting position to full song
+                  {gamecfg set (practice_sections 1) -1} ;set ending position to full song
+                  {ui goto_screen practice_loading_screen} ;load the sections and start the game
+                  kDataUnhandled
+               }
                {do
-                  {gamecfg
-                     set
-                     (practice_sections 0)
-                     $idx}
-                  {set
-                     [section]
-                     1}
-                  {section_provider set_start_section $idx}
-                  kDataUnhandled}}}})
+                  {gamecfg set (practice_sections 0) $idx} ;set starting section to the selected section
+                  {title.lbl set_text select_end_section} ;change the text to select end section
+                  {set [section] 1} ;set the end section?
+                  {section_provider set_start_section $idx} ;set the start section to the selected section
+                  kDataUnhandled
+               }
+            }
+         }
+      }
+   )
    (BUTTON_DOWN_MSG
       {cond
          ({== $button kPad_Tri}
             {synth play_sequence button_select}
-            {ui goto_screen [prev_screen]})
+            {gamecfg set mode career}
+            {ui goto_screen complete_screen})
          ({&&
                {== $button kPad_Tri}
                {==
@@ -496,7 +477,7 @@
             {set
                [section]
                0}
-            {section_provider set_start_section -1}
+            {section_provider set_start_section 0}
             TRUE)
          (TRUE kDataUnhandled)})
       }
