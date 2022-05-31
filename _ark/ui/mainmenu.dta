@@ -47,22 +47,24 @@
             )
          (main_quickspin.btn
             {gamecfg set mode career} ;set to career so select song screen shows saved scores
+            {set $gh3list {random_int 1 5}} ;set the random number for one of the 4 combinations of gh3 song list screen
             {ui goto_screen sel_song_screen} ;go to the select song screen
-            )
+            kDataUnhandled)
          (main_multiplayer.btn
+            {set $gh3list {random_int 1 5}}
             {ui goto_screen multi_controller_select_screen} ;go to the controller configuration screen for multiplayer (xbox only)
-            )
+            kDataUnhandled)
          (main_tutorial.btn
             {gamecfg set mode practice} ;set the current game mode to practice
             {gamecfg set practice_speed 0} ;we use our own speed scripting, so ensure practice speed is set to full speed
             {ui goto_screen sel_song_screen} ;go to the select song screen
-            )
+            kDataUnhandled)
          (main_leaderboards.btn
             {ui goto_screen lag_screen} ;go directly to the calibration screen
-            )
+            kDataUnhandled)
          (main_options.btn
             {ui goto_screen credits_screen} ;go directly to the credits screen
-            )})
+            kDataUnhandled)})
    (poll ;poll runs code in the background to perform actions based on parameters
       {if_else {game is_missing_multi_controller} ;checks if a player 2 controller is plugged in
          {$this disable main_multiplayer.btn} ;enables multiplayer to be selected if player 2 is plugged in

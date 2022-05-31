@@ -1,7 +1,33 @@
 {new
    GHPanel
    sel_song_panel
-   (file {if_else $altsong sel_song_alt.milo {if_else $gh3song {do {if_else $loopsong sel_song_gh3_loop.milo sel_song_gh3.milo}} sel_song.milo}})
+   (file
+      {if_else $altsong sel_song_alt.milo 
+      {if_else $gh3song 
+      {do 
+         {if_else
+            {== $gh3list 1}
+         {do
+            {if_else $loopsong   
+            sel_song_gh3_loop_both.milo
+            sel_song_gh3_both.milo}}
+         {if_else
+            {== $gh3list 2}
+         {do
+            {if_else $loopsong   
+            sel_song_gh3_loop_gum.milo
+            sel_song_gh3_gum.milo}}
+         {if_else
+            {== $gh3list 3}
+         {do
+            {if_else $loopsong   
+            sel_song_gh3_loop_string.milo
+            sel_song_gh3_string.milo}}
+         {do
+            {if_else $loopsong   
+            sel_song_gh3_loop.milo
+            sel_song_gh3.milo}}}}}}
+      sel_song.milo}})
    (metamusic_on_exit TRUE)
    (focus ss_song.lst)
    (joypad
