@@ -382,14 +382,12 @@
       {switch $component
          (me_continue.btn {goto_endgame_complete})
          (me_morestats.btn
-            {{endgame_panel loaded_dir} iterate Mesh $m {$m set_showing FALSE}}
             {ui goto_screen endgame_stats_screen})})}
 {new GHScreen endgame_screen
    (panels GAME_PANELS endgame_panel helpbar)
    (focus endgame_panel)
    (clear_vram TRUE)
-   (enter
-      {world_panel set_showing FALSE})
+   (enter)
    (in_game TRUE)
    (allow_back FALSE)
    (animate_transition FALSE)
