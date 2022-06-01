@@ -115,7 +115,7 @@
       {set $do_streak FALSE} ;set the streak meter code to enabled
       {set $do_streak TRUE}}
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
-      {streak_overlay_panel show_overlay TRUE} ;show the streak panel
+      {if {! $hardware_check} {streak_overlay_panel show_overlay TRUE}} ;show the streak panel
       {mtv_overlay_panel show_overlay TRUE} ;show the mtv overlay
       {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
          (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}}) ;hide the mtv overlay if song title or autoplay is enabled
