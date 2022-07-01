@@ -491,7 +491,7 @@ kDataUnhandled
 {new HudPanel hud
    (file {sprint "../hud/" {gamecfg get hud_file}})
    (enter
-      {game add_sinks $this intro_start_msg intro_skip slide_meter_in star_power_ready game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
+      {game add_sinks $this intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
       {if_else $hardware_check
       kDataUnhandled
       {player_matcher0 add_sink note_streak_callback_p0}}
@@ -503,31 +503,81 @@ kDataUnhandled
       {if {!= tutorial
          {gamecfg get mode}}
       {game add_sinks $this peak_on peak_off}})
+   (no_fail_hud
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud1_rock_needle.view} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find peak_flames.grp} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find peak_flames_SP.grp} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find top_level_peak.grp} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_light.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_light_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find meter_fire.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find meter_fire_SP.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_face_2d.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_frame.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find vu_needle_led.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_base_bar.mesh} set_showing FALSE}
+      {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
+      {{{hud loaded_dir} find mask1.mesh} set_showing FALSE}
+      {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
+      )
+   (clone_hero_sp
+      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_pos -110 -100 30}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_rot -20 242 20}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_scale .6 .4 .3}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_top.mesh} set_local_scale .2 .7 .5}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_base.mesh} set_local_scale .5 .9 1}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_base.mesh} set_local_pos -101 -50 70}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_disk.mesh} set_local_scale .9 1 .5}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_glass_black.mesh} set_local_scale .8 .8 1.2}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar_path.mesh} set_local_scale 1.3 3 1.3}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_glass.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_glass_black.mesh} set_showing TRUE}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_base_bar.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow_meter.mesh} set_showing FALSE}
+      {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
+      )
    (exit
       {game remove_sink $this})
    (on_reset
       {$this set_showing {&& {gamecfg get show_hud} {! $cheat_enabled_performance_mode}}}
+      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing TRUE}
       {$this set_win_showing FALSE})
    (intro_start_msg
       {$this reset}
       {meters_slide_in.view set_frame 0}
+      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing FALSE})
    (intro_skip
       {$this reset}
       {meters_slide_in.view set_frame METER_END_FRAME}
       {streak_overlay_panel streak_lastframe}
+      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing TRUE})
    (slide_meter_in
       {$this set_meters_showing TRUE}
       {streak_overlay_panel animate_streak}
       {meters_slide_in.view animate (period 0.5) (units kTaskSeconds)}
+      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $nofail {$this no_fail_hud}}
       {if {!= {gamecfg get mode} attract}
          {script_task
             (delay 0.25)
             (script
                {play_game_sfx meter_slide})}})
-
    (star_power_ready
       ($player_num)
       {if_else {gamecfg get shared_star_meter}

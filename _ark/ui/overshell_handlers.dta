@@ -1,6 +1,6 @@
 #define OVERSHELL_LIST_CONTENTS
 (
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_cloneherosp os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
@@ -90,6 +90,18 @@
       (os_trkmod
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen})
+      (os_cloneherosp
+         {if_else $clonehero_sp
+            {do
+            {play_sfx cheat_off}
+            {set $clonehero_sp FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $clonehero_sp TRUE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}})
       (os_sfx
          {if_else $sfx
             {do
