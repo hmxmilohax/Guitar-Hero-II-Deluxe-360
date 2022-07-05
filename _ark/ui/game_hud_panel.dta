@@ -539,6 +539,20 @@ kDataUnhandled
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
       )
    (clone_hero_sp
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find vu_needle_led.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_light.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_frame.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_light_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green_front.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_face_2d.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_scale 1 .01875 1}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_pos 0 0 110}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_pos -680 -250 30}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_scale 0 0 30}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_rot 0 312 0}
       {{streak_overlay_panel find stk_overlay.view} set_local_rot .7 0 -42}
       {{streak_overlay_panel find stk_overlay.view} set_local_pos 420 -150 10}
       {{streak_overlay_panel find stk_overlay.view} set_local_scale 1.1 1 1.1}
