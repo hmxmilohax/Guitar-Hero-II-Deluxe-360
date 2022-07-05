@@ -99,6 +99,7 @@ kDataUnhandled
                {if {&& {! $beforefirstnote_p0} $player0_fc}
                   {streak_overlay_panel not_an_fc 0}}
 ;               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar, we might not be on a beatline
+               {if {! $beforefirstnote_p0} {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}}
                {set $player0_streak 0}
                {set $interval_p0 50}
                {streak_overlay_panel zero_streak 0}
@@ -133,6 +134,7 @@ kDataUnhandled
                   {if $player0_fc
                      {do
                         {streak_overlay_panel not_an_fc 0}}}
+                  {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                   {set $player0_streak 0}
                   {set $interval_p0 50}
                   {streak_overlay_panel zero_streak 0}
@@ -198,6 +200,7 @@ kDataUnhandled
                {if {&& {! $beforefirstnote_p1} $player1_fc}
                   {streak_overlay_panel not_an_fc 1}}
                {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+               {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                {set $player1_streak 0}
                {set $interval_p1 50}
                {streak_overlay_panel zero_streak 1}
@@ -227,6 +230,7 @@ kDataUnhandled
             {do
                {if $player1_fc
                   {streak_overlay_panel not_an_fc 1}}
+               {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                {set $player1_streak 0}
                {set $interval_p1 50}
                {streak_overlay_panel zero_streak 1}
@@ -267,6 +271,7 @@ kDataUnhandled
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}
    )
    (update_song_progress
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
@@ -489,7 +494,7 @@ kDataUnhandled
       {$this set_showing $show}
       {$this set_paused {! $show}})}
 {new HudPanel hud
-   (file {if_else $clonehero_sp
+   (file {if_else $clonehero_hud
    "../hud/hud_ch.milo"
    {sprint "../hud/" {gamecfg get hud_file}}})
    (enter
@@ -518,7 +523,32 @@ kDataUnhandled
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
       )
    (clone_hero_sp
-      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_pos -110 -100 30}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_pos 690 -150 110}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_rot 0 0 -35}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_scale .9 .9 .9}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_scale 1.8 1.8 1.8}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_pos 0 -25 -37}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_pos -32 -25 -45}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_1.mesh} set_local_pos -65.5 0 -50}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_2.mesh} set_local_pos -71 0 -40}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_3.mesh} set_local_pos -76.5 0 -30}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_4.mesh} set_local_pos -82 0 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_5.mesh} set_local_pos -87.5 0 -10}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_6.mesh} set_local_pos -93 0 0}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_7.mesh} set_local_pos -98.5 0 10}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_8.mesh} set_local_pos -104 0 20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_9.mesh} set_local_pos -109.5 0 30}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_10.mesh} set_local_pos -115 0 40}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_pos 25 25 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_scale 1.2 1.2 1.2}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_glow.mesh} set_local_scale 1.1 1.5 .8}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos 25 25 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_scale 1.2 1.2 1.2}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_scale .6 .6 .6}
+      ;{{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_outline.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_frame.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_pos -105 -100 30}
       {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_rot -20 242 20}
       {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_scale .6 .4 .3}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_top.mesh} set_local_scale .2 .7 .5}
@@ -539,28 +569,28 @@ kDataUnhandled
       {game remove_sink $this})
    (on_reset
       {$this set_showing {&& {gamecfg get show_hud} {! $cheat_enabled_performance_mode}}}
-      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $clonehero_hud {$this clone_hero_sp}}
       {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing TRUE}
       {$this set_win_showing FALSE})
    (intro_start_msg
       {$this reset}
       {meters_slide_in.view set_frame 0}
-      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $clonehero_hud {$this clone_hero_sp}}
       {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing FALSE})
    (intro_skip
       {$this reset}
       {meters_slide_in.view set_frame METER_END_FRAME}
       {streak_overlay_panel streak_lastframe}
-      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $clonehero_hud {$this clone_hero_sp}}
       {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing TRUE})
    (slide_meter_in
       {$this set_meters_showing TRUE}
       {streak_overlay_panel animate_streak}
       {meters_slide_in.view animate (period 0.5) (units kTaskSeconds)}
-      {if $clonehero_sp {$this clone_hero_sp}}
+      {if $clonehero_hud {$this clone_hero_sp}}
       {if $nofail {$this no_fail_hud}}
       {if {!= {gamecfg get mode} attract}
          {script_task

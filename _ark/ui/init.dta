@@ -80,8 +80,8 @@
 ;enables drum mapping. drums are note fully implemented on 30
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
-;clone hero style sp meter
-{set $clonehero_sp FALSE}
+;clone hero style in game HUD
+{set $clonehero_hud FALSE}
 ;show practice section names in quickplay (not implemented)
 {set $quickplaysectionnames FALSE}
 ;disable select to restart in practice mode

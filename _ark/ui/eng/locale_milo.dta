@@ -114,7 +114,7 @@
 ;overshell list stuff, also used in endgame
 (os_selhw "Select Highway")
 (os_trkmod "Track Modifiers")
-(os_cloneherosp {sprint "Clone Hero SP" {if_else $clonehero_sp ": ON" ": OFF"}})
+(os_cloneherohud {sprint "Clone Hero HUD" {if_else $clonehero_hud ": ON" ": OFF"}})
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "No Fail" {if_else $nofail ": ON" ": OFF"}})
