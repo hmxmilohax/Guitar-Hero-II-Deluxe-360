@@ -199,7 +199,7 @@ kDataUnhandled
             {do
                {if {&& {! $beforefirstnote_p1} $player1_fc}
                   {streak_overlay_panel not_an_fc 1}}
-               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0  percent_complete} 80.0} {/ {player0  percent_complete} 75.0}} .1 .1}
                {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                {set $player1_streak 0}
                {set $interval_p1 50}
@@ -268,13 +268,13 @@ kDataUnhandled
       {$this setup_streak}})
 
    (init_progress_bars
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}
    )
    (update_song_progress
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1}
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
    )
    (update_star_progress
       {set $starratingtemp ;calculate fractional Scorehero-style star rating
@@ -283,7 +283,7 @@ kDataUnhandled
             {+ {* {player0 avg_multiplier} 1.25} 1.5}
          }
       }
-      {if {! $autoplay}
+      {if {&& {! $autoplay} {! $clonehero_hud}}
          {switch ;set string for whole part and retrieve fractional part for application to the bar
             {int $starratingtemp}
             (0 {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}})
@@ -299,7 +299,23 @@ kDataUnhandled
             {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}}
          }
       }
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
+      {if {&& {! $autoplay} $clonehero_hud}
+         {switch ;set string for whole part and retrieve fractional part for application to the bar
+            {int $starratingtemp}
+            (0 {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}})
+            (1 {do {set $starrating '1'} {set $starratingtempbar {- $starratingtemp 1.0}}})
+            (2 {do {set $starrating '2'} {set $starratingtempbar {- $starratingtemp 2.0}}})
+            (3 {do {set $starrating '3'} {set $starratingtempbar {- $starratingtemp 3.0}}})
+            (4 {do {set $starrating '4'} {set $starratingtempbar {- $starratingtemp 4.0}}})
+            (5 {do {set $starrating '5'} {set $starratingtempbar {- $starratingtemp 5.0}}})
+            (6 {do {set $starrating '6'} {set $starratingtempbar {- $starratingtemp 6.0}}})
+            (7 {do {set $starrating '7'} {set $starratingtempbar {- $starratingtemp 7.0}}})
+            (8 {do {set $starrating '8'} {set $starratingtempbar {- $starratingtemp 8.0}}})
+            (9 {do {set $starrating '9'} {set $starratingtempbar {- $starratingtemp 9.0}}})
+            {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}}
+         }
+      }
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
    )
 
@@ -523,6 +539,39 @@ kDataUnhandled
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
       )
    (clone_hero_sp
+      {{streak_overlay_panel find stk_overlay.view} set_local_rot .7 0 -42}
+      {{streak_overlay_panel find stk_overlay.view} set_local_pos 420 -150 10}
+      {{streak_overlay_panel find stk_overlay.view} set_local_scale 1.1 1 1.1}
+      {{streak_overlay_panel find amp_base_bar.mesh} set_showing FALSE}
+      {{streak_overlay_panel find amp_base_b2r.mesh} set_showing FALSE}
+      {{streak_overlay_panel find spraypaint.mesh} set_showing FALSE}
+      {{streak_overlay_panel find score_frame.mesh} set_showing FALSE}
+      {{streak_overlay_panel find star_counter.lbl} set_local_pos 102 0 20}
+      {{streak_overlay_panel find star_counter.lbl} set_local_scale .9 1 .9}
+      {{streak_overlay_panel find stk_campaign_line1.lbl} set_local_pos 60 0 -3}
+      {{streak_overlay_panel find stk_campaign_line2.lbl} set_local_pos 60 0 -3}
+      {{streak_overlay_panel find stk_campaign_line1.lbl} set_local_scale .6 1 .6}
+      {{streak_overlay_panel find stk_campaign_line2.lbl} set_local_scale .6 1 .6}
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -70 -30 29.5}
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -70 -30 54}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find hud1_score_meter0.view} set_local_scale 1 2 5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find hud1_score_meter0.view} set_local_rot 0 0 -35}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find hud1_score_meter0.view} set_local_pos 740 -350 60}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_frame.mesh} set_local_scale 14 1 2.5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_1.mesh} set_local_pos -105 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_2.mesh} set_local_pos -90 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_3.mesh} set_local_pos -75 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_4.mesh} set_local_pos -60 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_5.mesh} set_local_pos -45 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_6.mesh} set_local_pos -30 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_7.mesh} set_local_pos -15 -110 67}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_1.mesh} set_local_scale .5 1 .5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_2.mesh} set_local_scale .5 1 .5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_3.mesh} set_local_scale .5 1 .5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_4.mesh} set_local_scale .5 1 .5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_5.mesh} set_local_scale .5 1 .5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_6.mesh} set_local_scale .5 1 .5}
+      {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_7.mesh} set_local_scale .5 1 .5}
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_pos 690 -150 110}
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_rot 0 0 -35}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_scale .9 .9 .9}

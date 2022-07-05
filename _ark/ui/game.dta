@@ -83,7 +83,7 @@
       #ifdef HX_XBOX {rnd suspend} #endif ;no idea but ps2 does not have this code
       {set $starrating 0} ;set current star back to default
       {set $starratingtemp 0} ;set temp star rating back to default
-      {if_else $autoplay
+      {if_else {|| $autoplay $clonehero_hud}
          {set $starrating ' '} ;if autoplay, blank star rating display entirely
          {set $starrating ' ©'} ;otherwise, set displayed stars back to default
       }
