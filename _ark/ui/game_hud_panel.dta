@@ -99,7 +99,7 @@ kDataUnhandled
                {if {&& {! $beforefirstnote_p0} $player0_fc}
                   {streak_overlay_panel not_an_fc 0}}
 ;               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar, we might not be on a beatline
-               {if {! $beforefirstnote_p0} {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}}
+               {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                {set $player0_streak 0}
                {set $interval_p0 50}
                {streak_overlay_panel zero_streak 0}
@@ -134,7 +134,7 @@ kDataUnhandled
                   {if $player0_fc
                      {do
                         {streak_overlay_panel not_an_fc 0}}}
-                  {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
+                  {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                   {set $player0_streak 0}
                   {set $interval_p0 50}
                   {streak_overlay_panel zero_streak 0}
@@ -200,7 +200,7 @@ kDataUnhandled
                {if {&& {! $beforefirstnote_p1} $player1_fc}
                   {streak_overlay_panel not_an_fc 1}}
                {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0  percent_complete} 80.0} {/ {player0  percent_complete} 75.0}} .1 .1}
-               {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
+               {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                {set $player1_streak 0}
                {set $interval_p1 50}
                {streak_overlay_panel zero_streak 1}
@@ -230,7 +230,7 @@ kDataUnhandled
             {do
                {if $player1_fc
                   {streak_overlay_panel not_an_fc 1}}
-               {if {! $beforefirstnote_p0} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
+               {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
                {set $player1_streak 0}
                {set $interval_p1 50}
                {streak_overlay_panel zero_streak 1}
@@ -271,7 +271,7 @@ kDataUnhandled
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}
+      {if $clonehero_hud {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}}
    )
    (update_song_progress
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
