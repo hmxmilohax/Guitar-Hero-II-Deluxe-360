@@ -244,7 +244,7 @@ kDataUnhandled
                   {set $player1_streak 0}
                   {set $interval_p1 50}}}}})}}
 {new GHPanel streak_overlay_panel
-   (file "../hud/streak_overlay.milo")
+   (file {if_else $clonehero_hud "../hud/streak_overlay_ch.milo"  "../hud/streak_overlay.milo"})
    (enter
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 29}
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
