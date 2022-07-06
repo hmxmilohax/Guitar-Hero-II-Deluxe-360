@@ -549,7 +549,7 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green_front.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_face_2d.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_scale 1 .01875 1}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_pos 0 0 110}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_pos 60 0 110}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green.mesh} set_local_pos 120 0 0}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow.mesh} set_local_pos 60 0 0}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red.mesh} set_local_pos 0 0 0}
