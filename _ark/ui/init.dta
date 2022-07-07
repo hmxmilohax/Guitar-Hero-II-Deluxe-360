@@ -61,6 +61,8 @@
 ;disables the popup for notestreaks at 50, 100, 200
 ;etc in game
 {set $notestreakmod TRUE}
+;disables the star power ready popup and animation
+{set $sppop TRUE}
 ;mock style brutal mode. it does not move based on
 ;progression, and sustains are a bit wonky
 {set $brutalmode FALSE}

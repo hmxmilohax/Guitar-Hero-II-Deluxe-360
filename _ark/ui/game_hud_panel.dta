@@ -515,7 +515,7 @@ kDataUnhandled
    {sprint "../hud/" {gamecfg get hud_file}}})
    (enter
       {game add_sinks $this intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
-      {if {! $clonehero_hud} {game add_sinks $this star_power_ready}}
+      {if $sppop {game add_sink $this star_power_ready}}
       {if_else $hardware_check
       kDataUnhandled
       {player_matcher0 add_sink note_streak_callback_p0}}
@@ -574,8 +574,8 @@ kDataUnhandled
       {{streak_overlay_panel find stk_campaign_line2.lbl} set_local_pos 60 0 -3}
       {{streak_overlay_panel find stk_campaign_line1.lbl} set_local_scale .6 1 .6}
       {{streak_overlay_panel find stk_campaign_line2.lbl} set_local_scale .6 1 .6}
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -70 -30 29.5}
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -70 -30 54}
+      {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -70 -30 28}
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -70 -30 54.25}
       {{{{hud loaded_dir} find BandScoreDisplay1} find hud1_score_meter0.view} set_local_scale 1 2 5}
       {{{{hud loaded_dir} find BandScoreDisplay1} find hud1_score_meter0.view} set_local_rot 0 0 -35}
       {{{{hud loaded_dir} find BandScoreDisplay1} find hud1_score_meter0.view} set_local_pos 740 -350 60}

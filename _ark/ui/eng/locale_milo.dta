@@ -134,6 +134,7 @@
 (os_skipintro {sprint "Skip Intro" {if_else $miloskipintro ": ON" ": OFF"}})
 (os_towel {sprint "Towel Hyperspeed" {if_else $towel ": ON" ": OFF"}})
 (os_notestreakmod {sprint "Note Streak Popups" {if_else $notestreakmod ": ON" ": OFF"}})
+(os_sppop {sprint "Star Power Popup" {if_else $sppop ": ON" ": OFF"}})
 (os_leftyp1 {sprint "Lefty Flip P1" {if_else $leftyp1 ": ON" ": OFF"}})
 (os_leftyp2 {sprint "Lefty Flip P2" {if_else $leftyp2 ": ON" ": OFF"}})
 (os_selecttorestart {sprint "Select in Practice" {if_else $selecttorestart ": ON" ": OFF"}})
