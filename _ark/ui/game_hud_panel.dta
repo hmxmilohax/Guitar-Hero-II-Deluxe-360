@@ -515,6 +515,7 @@ kDataUnhandled
    {sprint "../hud/" {gamecfg get hud_file}}})
    (enter
       {game add_sinks $this intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
+      {if {! $clonehero_hud} {game add_sinks $this star_power_ready}}
       {if_else $hardware_check
       kDataUnhandled
       {player_matcher0 add_sink note_streak_callback_p0}}
