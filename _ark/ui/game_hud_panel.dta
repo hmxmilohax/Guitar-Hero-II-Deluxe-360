@@ -635,7 +635,7 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_base_bar.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow_meter.mesh} set_showing FALSE}
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
-      {if $hardware_check {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
+      {if {&& $clonehero_hud $hardware_check} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
       )
    (exit
       {game remove_sink $this})
