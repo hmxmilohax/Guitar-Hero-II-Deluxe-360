@@ -16,6 +16,8 @@ A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar m
 
 ## Install
 
+NOTE: You WILL need a modded/hacked console to play this mod on console. I hope this is clear
+
 Setting up GHIIDX 360 for the first time is meant to be as easy as possible.
 As well, it is designed to allow you to automatically receive updates as the repo is updated.
 
