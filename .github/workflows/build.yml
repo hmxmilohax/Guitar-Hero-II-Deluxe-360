@@ -1,0 +1,21 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build_xbox:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build ARK
+        run: dependencies/arkhelper dir2ark _ark gen -e -s 4073741823
+      
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          name: GH2DX-Xbox
+          path: |
+            gen
+            default.xex
