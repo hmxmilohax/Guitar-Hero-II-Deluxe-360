@@ -16,4 +16,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: GH2DX-Xbox
-          path: gen
+          path: |
+            gen
+            default.xex
