@@ -4,18 +4,38 @@ on: [push, pull_request]
 
 jobs:
   build_xbox:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Build ARK
-        run: dependencies/arkhelper dir2ark _ark gen -e -s 4073741823
+        run: |
+          dependencies/arkhelper dir2ark ./_ark ./gen -e -s 4073741823
       
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
           name: GH2DX-Xbox
+          path: |
+            gen
+            default.xex
+            
+  build_xbox_force_guitar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build ARK
+        run: |
+          sed -i -e "s/;#define FORCE_PAD (1)/#define FORCE_PAD (1)/" _ark/config/macros.dta
+          dependencies/arkhelper dir2ark ./_ark ./gen -e -s 4073741823
+      
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          name: GH2DX-Xbox-force-all-as-guitar-controller
           path: |
             gen
             default.xex

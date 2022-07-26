@@ -15,7 +15,7 @@
    (thresholds
       (36 50))
    (come_first FALSE))
-#ifdef HX_XBOX
+#ifdef FORCE_PAD
 (controllers
    (ro_guitar_xbox
       (detect)
@@ -23,6 +23,26 @@
    (analog
       (detect)
       (ignore_buttons kPad_L2 kPad_R2)))
+#else
+(controllers
+   (ro_guitar_xbox
+      (detect
+         (type kJoypadXboxGuitar))
+      (ignore_buttons kPad_L2 kPad_R2))
+   #ifndef _SHIP
+   (ro_guitar_xbox_old
+      (detect
+         (type kJoypadAnalog)
+         (button kPad_R2)))
+   (ro_guitar_xbox_old_2
+      (detect
+         (type kJoypadAnalog)
+         (button kPad_L2)))
+   #endif
+   (analog
+      (detect
+         (type kJoypadAnalog))
+      (bidirectional TRUE)))
 #endif
 (adapters
    (map
