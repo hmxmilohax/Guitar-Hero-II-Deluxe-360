@@ -1,3 +1,4 @@
+;#define FORCE_PAD (1)
 #ifdef APP_MACROS_DTA
 #else
 #define APP_MACROS_DTA
