@@ -1,0 +1,36 @@
+(song_header_battle
+   " ")
+(song_header_small1
+   " ")
+(song_header_small2
+   " ")
+(song_header_big
+   " ")
+(song_header_theatre
+   " ")
+(song_header_fest
+   " ")
+(song_header_arena
+   " ")
+(song_header_stone
+   " ")
+(song_header_store
+   " ")
+(song_header_download
+   " ")
+(song_old_venue
+   " ")
+(song_current_venue
+   " ")
+(song_current_venue_encore
+   " ")
+(song_win_easy
+   " ")
+(song_win_other
+   " ")
+(song_quickplay
+   " ")
+(encore_song_listing
+   " ")
+(encore_song_career_listing
+   " ")

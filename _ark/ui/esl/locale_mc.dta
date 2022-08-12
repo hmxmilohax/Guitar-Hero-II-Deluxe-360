@@ -1,0 +1,161 @@
+(mc_title_loading "cargando...")
+(mc_title_saving "guardando...")
+(mc_title_deleting "borrando...")
+(mc_title_caution "precaución")
+(mc_title_error "memory card error")
+(mc_title_nosave "save not found")
+(mc_title_fileerror "save file error")
+(load "load")
+(replace "replace")
+(yes "yes")
+(no "no")
+(cancel "cancel")
+(continue "continue")
+(already_formatted_error_ps2 "FORMAT ERROR: The memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT} has already been formatted! Please reinsert unformatted memory card and select retry.")
+(autosave_disable_check_ps2 "Do you want to disable the Autosave feature?")
+(bootup_caution_ps2
+   {if_else $gamegh1
+      "Caution! Guitar Hero Redux uses an Autosave feature. Insertion of a memory card (8MB)(for PlayStation®2) beyond this point may cause data to be overwritten. Continue without saving?"
+      {if_else $game80s
+         "Caution! Guitar Hero Encore Deluxe uses an Autosave feature. Insertion of a memory card (8MB)(for PlayStation®2) beyond this point may cause data to be overwritten. Continue without saving?"
+         "Caution! Guitar Hero II Deluxe uses an Autosave feature. Insertion of a memory card (8MB)(for PlayStation®2) beyond this point may cause data to be overwritten. Continue without saving?"}})
+(bootup_caution_format_cancelled_ps2 "Format cancelled. Continue without saving?")
+(bootup_caution_nodata_ps2
+   {if_else $gamegh1
+      "Caution! No Guitar Hero Redux save data found on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 207KB of free space is required to save game data. Continue without saving?"
+      {if_else $game80s
+         "Caution! No Guitar Hero Encore Deluxe save data found on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 212KB of free space is required to save game data. Continue without saving?"
+         "Caution! No Guitar Hero II Deluxe save data found on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 175KB of free space is required to save game data. Continue without saving?"}})
+(bootup_corrupt_data_ps2
+   {if_else $gamegh1
+      "Corrupt data detected on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 207KB of free space is required to save game data. Replace the corrupt file and create a new save file?"
+      {if_else $game80s
+         "Corrupt data detected on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 212KB of free space is required to save game data. Replace the corrupt file and create a new save file?"
+         "Corrupt data detected on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 175KB of free space is required to save game data. Replace the corrupt file and create a new save file?"}})
+(bootup_create_save_ps2
+   {if_else $gamegh1
+      "Creating Guitar Hero Redux save file. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off console."
+      {if_else $game80s
+         "Creating Guitar Hero Encore Deluxe save file. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off console."
+         "Creating Guitar Hero II Deluxe save file. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off console."}})
+(bootup_create_save_check_ps2
+   {if_else $gamegh1
+      "No Guitar Hero Redux save data present on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Guitar Hero Redux uses an Autosave feature. 207KB of free space is required to save game data. Do you want to create a save file now?"
+      {if_else $game80s
+         "No Guitar Hero Encore Deluxe save data present on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Guitar Hero Encore Deluxe uses an Autosave feature. 212KB of free space is required to save game data. Do you want to create a save file now?"
+         "No Guitar Hero II Deluxe save data present on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Guitar Hero II Deluxe uses an Autosave feature. 175KB of free space is required to save game data. Do you want to create a save file now?"}})
+(bootup_create_save_no_space_ps2
+   {if_else $gamegh1
+      "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Insert a memory card with at least 207KB of free space, or create some space using the console browser. Continue without saving?"
+      {if_else $game80s
+         "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Insert a memory card with at least 212KB of free space, or create some space using the console browser. Continue without saving?"
+         "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Insert a memory card with at least 175KB of free space, or create some space using the console browser. Continue without saving?"}})
+(bootup_create_success_ps2
+   {if_else $gamegh1
+      "Guitar Hero Redux data created successfully."
+      {if_else $game80s
+         "Guitar Hero Encore Deluxe data created successfully."
+         "Guitar Hero II Deluxe data created successfully."}})
+(bootup_nocard_ps2
+   {if_else $gamegh1
+      "No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Guitar Hero Redux uses an Autosave feature. 207KB of space is required to save game data. Do you want to start the game without saving?"
+      {if_else $game80s
+         "No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Guitar Hero Encore Deluxe uses an Autosave feature. 212KB of space is required to save game data. Do you want to start the game without saving?"
+         "No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Guitar Hero II Deluxe uses an Autosave feature. 175KB of space is required to save game data. Do you want to start the game without saving?"}})
+(bootup_nospace_ps2
+   {if_else $gamegh1
+      "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Insert a memory card with at least 207KB of free space, or create some space using the console browser. Continue without saving?"
+      {if_else $game80s
+         "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Insert a memory card with at least 212KB of free space, or create some space using the console browser. Continue without saving?"
+         "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Insert a memory card with at least 175KB of free space, or create some space using the console browser. Continue without saving?"}})
+(bootup_replace_save_check_ps2
+   {if_else $gamegh1
+      "SAVE ERROR: A Guitar Hero Redux save file already exists on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Select REPLACE to create a brand new save file, or LOAD to use that save data."
+      {if_else $game80s
+         "SAVE ERROR: A Guitar Hero Encore Deluxe save file already exists on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Select REPLACE to create a brand new save file, or LOAD to use that save data."
+         "SAVE ERROR: A Guitar Hero II Deluxe save file already exists on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Select REPLACE to create a brand new save file, or LOAD to use that save data."}})
+(bootup_save_card_removed_ps2
+   {if_else $gamegh1
+      "No memory card (8MB)(for PlayStation®2) inserted in MEMORY CARD slot {SLOT}. Guitar Hero Redux uses an Autosave feature. 207KB of space is required to save game data. Do you want to start the game without saving?"
+      {if_else $game80s
+         "No memory card (8MB)(for PlayStation®2) inserted in MEMORY CARD slot {SLOT}. Guitar Hero Encore Deluxe uses an Autosave feature. 212KB of space is required to save game data. Do you want to start the game without saving?"
+         "No memory card (8MB)(for PlayStation®2) inserted in MEMORY CARD slot {SLOT}. Guitar Hero II Deluxe uses an Autosave feature. 175KB of space is required to save game data. Do you want to start the game without saving?"}})
+(bootup_space_check_failed_ps2
+   {if_else $gamegh1
+      "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. At least 207KB is needed to save this game data. Do you want to start the game without saving?"
+      {if_else $game80s
+         "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. At least 212KB is needed to save this game data. Do you want to start the game without saving?"
+         "Insufficient space on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. At least 175KB is needed to save this game data. Do you want to start the game without saving?"}})
+(delete_confirm_ps2 "Are you sure you want to permanently delete this band?")
+(different_card_ps2 "The status of the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT} has changed. Data may be overwritten. Proceed with save?")
+(file_exists_error_ps2
+   {if_else $gamegh1
+      "SAVE ERROR: Guitar Hero Redux data already exists on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Overwrite previous data?"
+      {if_else $game80s
+         "SAVE ERROR: Guitar Hero Encore Deluxe data already exists on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Overwrite previous data?"
+         "SAVE ERROR: Guitar Hero II Deluxe data already exists on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Overwrite previous data?"}})
+(format_card_ps2 "Formatting memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Do not remove your memory card, reset, or switch off the console.")
+(format_card_error_ps2 "FORMAT ERROR: An error occurred while attempting to format the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Retry format?")
+(format_no_card_error_ps2 "FORMAT ERROR: There is no memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Please reinsert the memory card (8MB)(for PlayStation®2) and select retry to continue formatting.")
+(load_loading_ps2
+   {if_else $gamegh1
+      "Loading Guitar Hero Redux data. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off the console."
+      {if_else $game80s
+         "Loading Guitar Hero Encore Deluxe data. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off the console."
+         "Loading Guitar Hero II Deluxe data. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off the console."}})
+(load_success_ps2
+    {if_else $gamegh1
+       "Guitar Hero Redux data loaded successfully."
+       {if_else $game80s "Guitar Hero Encore Deluxe data loaded successfully."
+          "Guitar Hero II Deluxe data loaded successfully."}})
+(mc_card_removed_error_ps2
+    {if_else $gamegh1
+       "LOAD FAILED:  No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card containing Guitar Hero Redux data and reattempt load?"
+       {if_else $game80s
+          "LOAD FAILED:  No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card containing Guitar Hero Encore Deluxe data and reattempt load?"
+          "LOAD FAILED: No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card containing Guitar Hero II Deluxe data and reattempt load?"}})
+(mc_checking_ps2 "Checking status of memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Do not remove the memory card, reset, or switch off console.")
+(mc_corrupt_error_ps2 "LOAD FAILED: Corrupt data detected on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Try loading again?")
+(mc_nocard_error_ps2
+   {if_else $gamegh1
+      "No memory card (8MB)(for PlayStation®2) inserted in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card (8MB)(for PlayStation®2) containing Guitar Hero Redux data and try loading again?"
+      {if_else $game80s
+         "No memory card (8MB)(for PlayStation®2) inserted in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card (8MB)(for PlayStation®2) containing Guitar Hero Encore Deluxe data and try loading again?"
+         "No memory card (8MB)(for PlayStation®2) inserted in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card (8MB)(for PlayStation®2) containing Guitar Hero II Deluxe data and try loading again?"}})
+(mc_nodata_error_ps2
+   {if_else $gamegh1
+      "No Guitar Hero Redux data on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card (8MB)(for PlayStation®2) containing Guitar Hero Redux data and try loading again?"
+      {if_else $game80s
+         "No Guitar Hero Encore Deluxe data on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card (8MB)(for PlayStation®2) containing Guitar Hero Encore Deluxe data and try loading again?"
+         "No Guitar Hero II Deluxe data on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Do you wish to insert a memory card (8MB)(for PlayStation®2) containing Guitar Hero II Deluxe data and try loading again?"}})
+(mc_load_confirm_ps2 "WARNING: \nIf you load data from a memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, you will lose your current game progress. Continue with load?")
+(mc_save_confirm_ps2
+   {if_else $gamegh1
+      "WARNING: Saving will overwrite any existing Guitar Hero Redux data on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Are you sure you want to save?"
+      {if_else $game80s
+         "WARNING: Saving will overwrite any existing Guitar Hero Encore Deluxe data on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Are you sure you want to save?"
+         "WARNING: Saving will overwrite any existing Guitar Hero II Deluxe data on the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Are you sure you want to save?"}})
+(no_card_error_ps2 "SAVE ERROR: No memory card (8MB)(for PlayStation®2) detected in MEMORY CARD slot {SLOT}. Do you wish to continue the game without saving?")
+(no_format_warn_ps2 "SAVE ERROR: Data could not be saved to the unformatted memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}.  Retry or continue without saving?")
+(no_space_error_ps2
+   {if_else $gamegh1
+      "SAVE ERROR: Insufficient space on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 207KB of free space is required to save data. Do you want to continue without saving?"
+      {if_else $game80s
+         "SAVE ERROR: Insufficient space on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 212KB of free space is required to save data. Do you want to continue without saving?"
+         "SAVE ERROR: Insufficient space on memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. 175KB of free space is required to save data. Do you want to continue without saving?"}})
+(pre_delete_confirm_ps2
+   {if_else $gamegh1
+      "Before deleting a band, your current progress must be saved to a memory card (8MB)(for PlayStation®2). Any existing Guitar Hero Redux data may be overwritten."
+      {if_else $game80s
+         "Before deleting a band, your current progress must be saved to a memory card (8MB)(for PlayStation®2). Any existing Guitar Hero Encore Deluxe data may be overwritten."
+         "Before deleting a band, your current progress must be saved to a memory card (8MB)(for PlayStation®2). Any existing Guitar Hero II Deluxe data may be overwritten."}})
+(save_error_ps2 "SAVE ERROR: Data was not saved successfully to the memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}. Retry or Continue without saving?")
+(save_saving_ps2
+   {if_else $gamegh1
+      "Saving Guitar Hero Redux data. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off console."
+      {if_else $game80s
+         "Saving Guitar Hero Encore Deluxe data. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off console."
+         "Saving Guitar Hero II Deluxe data. Do not remove memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT}, reset, or switch off console."}})
+(save_success_ps2 "Save successful")
+(unformatted_card_ps2 "The memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT} is unformatted. You must format this memory card to save game data. Do you wish to format the memory card in MEMORY CARD slot {SLOT}?")
+(mc_new_profile_warning_ps2 "WARNING: You have unsaved data. If you continue you will lose your progress.")

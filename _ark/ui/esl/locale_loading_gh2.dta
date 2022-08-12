@@ -1,0 +1,96 @@
+(loading_tip_gh2_1 "Prueba los nuevos y mejorados Hammer-ons y Pull-offs. Esta vez son más fáciles.")
+(loading_tip_gh2_2 "Toca 10 notas seguidas para conseguir un multiplicador de puntos x2. Cuantas más notas seguidas toques, más alto será¡ el multiplicador.")
+(loading_tip_gh2_3 "Al igual que en una guitarra de verdad, no necesitas soltar los Botones de Traste bajos para tocar los más altos.")
+(loading_tip_gh2_4 "Espera a tener un Multiplicador x4, y usa la Energía Estrella para maximizar tu puntuación.")
+(loading_tip_gh2_5 "¡La Energía Estrella te puede salvar la vida! Si el medidor se pone en rojo, úsala para poner al público de tu parte.")
+(loading_tip_gh2_6 "Usa la Energía Estrella para volver al público loco. Aprende a usar este alucinante poder en el Tutorial de Energía Estrella.")
+(loading_tip_gh2_7 "Consigue un multiplicador de racha al tocar varias notas seguidas sin fallar.")
+(loading_tip_gh2_8 "¿Se acercan varias notas seguidas del mismo color? Mantén el botón de traste pulsado.")
+(loading_tip_gh2_9
+   {if_else $egg5
+      "¡Encontraste todos los secretos! Mucho amor para todos <3"
+      "Puedes reducir la velocidad de los temas y secciones individuales en el Modo Práctica. ¡Domina esos solos que tanto te cuestan!"})
+(loading_tip_gh2_10 "Algunos televisores HD tienen un retraso de audio y/o visual que puede afectar a tu habilidad para jugar. Si estás teniendo problemas, prueba a \qCalibrar Retraso\q en las Opciones de Video dentro del menú de Opciones.")
+(loading_tip_gh2_11 "Visita el Modo Práctica desde el menú Practicar para dominar esas secciones difíciles.")
+
+; Comedy tips
+(comedy_tip_gh2_1
+   {if_else $egg5
+      "[Abrir caja antes de comer pizza.]"
+      "La vida es dura para los músicos, pero para los bateristas es casi imposible."})
+(comedy_tip_gh2_2
+   {if_else $egg5
+      "Si ves a alguien vendiendo Deluxe, no somos nosotros. Pero deberías unirte a MiloHax y contárnoslo para echarnos unas risas."
+      "Si tu cantante no está contento, nadie está contento."})
+(comedy_tip_gh2_3
+   {if_else $egg5
+      "No te confundas, jnack no sabe dibujar. Es un artista profesional del plagio."
+      "Necesitas un minibar en tu espacio de ensayos. Es más importante que un bajista."})
+(comedy_tip_gh2_4 "Solo necesitas a una persona con cresta en tu banda.")
+(comedy_tip_gh2_5 "Recuerda, ¡NADA DE STAIRWAY TO HEAVEN!")
+(comedy_tip_gh2_6 "¡SUBE EL VOLUMEN!")
+(comedy_tip_gh2_7
+   {if_else $egg5
+      "Si alguna vez te encuentras carpetas sospechosa pertenecientes a Harmonix, llama a LocalH inmediatamente."
+      "Se tarda MUCHO en conducir la caravana a través de Nebraska."})
+(comedy_tip_gh2_8 "Si tienes un equipo de carretera, se llama \qtransportar\q equipamiento. Si no, se llama \qsllevar a rastras.\q")
+(comedy_tip_gh2_9
+   {if_else $egg5
+      "Maldita sea Harmonix, ¿por qué hardcodeaste algunas de estas cosas?"
+      "La verdad sale sola en la carretera."})
+(comedy_tip_gh2_10 "Una banda es la familia disfuncional que eliges.")
+(comedy_tip_gh2_11
+   {if_else $egg5
+      "Cuando pases de 50.000 puntos significa que ya lo has logrado, así que intenta no fallar muchas notas."
+      "Si dices que tu nueva canción es un \qhimno del rock,\q más vale que sea así."})
+(comedy_tip_gh2_12 "Es costumbre intentar ser el que más ruido hace durante los ensayos.")
+(comedy_tip_gh2_13 "Bajarte los pantalones en mitad del escenario no activa tu Energía Estrella.")
+(comedy_tip_gh2_14 "Si tu vecinos se quejan mucho por el ruido, sube el volumen hasta que se muden a otra casa.")
+(comedy_tip_gh2_15
+   {if_else $egg5
+      "Recuerda, los FCs de Trogdor en este disco no cuentan."
+      "Tu madre no cuenta como fan."})
+
+; Encore tips
+(encore_tip_gh2_1 "No escribas tu bis en la setlist - tus fans sabrán que lo tenías planeado.")
+(encore_tip_gh2_2 "Si los del bar ya le están dando la vuelta a los taburetes, perdiste tu oportunidad para un bis.")
+(encore_tip_gh2_3 "Deberías asegurarte de que QUIEREN que vuelvas antes de reservar tu mejor canción para el bis.")
+(encore_tip_gh2_4 "Si tu baterista está demasiado cansado para un bis, entonces también está demasiado cansado para la fiesta de después.")
+(encore_tip_gh2_5 "Si quieren un bis pero no os quedan canciones, NUNCA, bajo ninguna circunstancia, intentéis IMPROVISAR.")
+(encore_tip_gh2_6 "Si el público pide más pero el tío del sonido os dice que no, le ignoráis y seguís tocando.")
+
+; Freebird Tips
+(freebird_tip1 "Seguramente busques \qGtr solo i\q en el Modo Práctica.")
+(freebird_tip2 "Ahorrate un mundo de dolor. Domina Free Bird en el Modo Práctica antes de probar con la canción completa en el escenario.")
+(freebird_tip3 "VALE. Ahora NO te están tomando el pelo. Vaya...")
+(freebird_tip4 "Tío, te tiene que gustar muuuuuucho Free Bird.")
+(freebird_tip5 "¡Aguanta! ¡Puedes hacerlo! ¡FREE BIRD!")
+(freebird_tip6 "AND THIS BIRD YOU CANNOT CHANGE!!!")
+
+; Song tips
+(loading_tip_arterialblack "El guitarrista Marcus Henderson contribuyó con otra canción para Guitar Hero II antes de disolver Drist para ser el guitarra solista de Grim Ripper.")
+(loading_tip_collide "Cuando Anarchy Club no está rompiendo cosas o luchando contra bandas de Kung Fu rivales, el líder Keith Smith destroza guitarras para el equipo de QA de HMX. Adam Buhler prefiere la oscuridad de la Anar-Cueva, excepto cuando la luna está llena...")
+(loading_tip_drinkup "OUNCE of SELF es una de las bandas más originales salidas de la escena del heavy de Los Angeles. \qDrink Up\q se ha convertido en un himno para las masas hechas polvo.")
+(loading_tip_elephantbones "Mareado por los vapores, nudillos blancos, sujetando el volante como si fuera un rehén. Un viejo y sucio Cadillac se precipita hacia el infierno, con un ladrillo encajado en el acelerador. That Handsome Devil.")
+(loading_tip_fallofpangea "Valient Thorr es del planeta Venus. Su mensaje es tu herramienta para avanzar los conocimientos de la consciencia humana.")
+(loading_tip_ftk "Ubicados en Boston, VAGIANT toca fuerte, rápido, y descuidadamente. Si no estuviesen tan ocupadas empezando peleas y destrozando cosas, estas chicas seguramente dominarían el mundo.")
+(loading_tip_gemini "Brian Kahanek dice, \qTócala desde el fondo de tu corazón hasta la punta de tu pies - siempre.\q")
+(loading_tip_jordan "Llevar un cubo en la cabeza no aumentará tus habilidades en esta canción. O tal vez sí.")
+(loading_tip_kicked "Ahora mismo, mientras esperas que su canción cargue, Noble Rot le está tirando la caña a tu hermana. Y si ella no muerde el anzuelo, tu madre es la siguiente.")
+(loading_tip_ladylightning "Medio hombre, medio máquina, Bang Camaro se alimenta de poder de machotes.")
+(loading_tip_laughtrack "Los Acro-brats son sin duda la mejor banda en su espacio de ensayos.")
+(loading_tip_lesstalkmorerokk "Tírales tu ropa interior al escenario. No espera, eres menor de edad.")
+(loading_tip_mrfixit "¡Vivir para la gira, la gira para vivir! The Crowns siguen siendo, ahora y siempre, reales a la lealtad.")
+(loading_tip_newblack "\qCuando actúas, no está bien empezar a corear el nombre de tu banda. Eso es como ponerte a ti mismo un mote.\q - Keith Buckley - Every Time I Die")
+(loading_tip_onefortheroad "A Breaking Wheel le encantaría tocar en tu sótano, funeral o bar mitzvah. Por casualidad, se aceptan donaciones para comprar una caravana.")
+(loading_tip_parasite "The Neighborhoods se presentaron con el premio Hall of Fame en los Boston Music Awards de 2005.")
+(loading_tip_radiumeyes "Increíble. Como otros 50 millones, puedes tocar metal. Impresionante. ¿Pero puedes tocar una canción de amor proto-retro-roboto-organico de un soldado situada durante la guerra filipino-americana? Lo dudo.")
+(loading_tip_rawdog "La siguiente canción es de The Last Vegas. Para mejorar la experiencia, pon el volumen al máximo, especialmente en la presencia de figuras autoritarias o de ancianos.")
+(loading_tip_redlottery "Cabalgando adelante como rayos conjurados por el martillo de Thor, las ocho pezuñas de MEGASUS calcinan un camino de fuego a través del cielo invernal.")
+(loading_tip_soybomb "Honest Bob and the Factory-to-Dealer Incentives vuelve con su éxito \qSoy Bomb\q.")
+(loading_tip_six "El guitarrista Mike Martin recomendó a su profesor, Oli Herbert, a All That Remains antes de unirse a la banda unos años después.")
+(loading_tip_thelightthatblinds "Esto es SHADOWS FALL en su elemento demostrando, una vez más, que son los indiscutibles líderes de la actual escena del hard rock/metal.")
+(loading_tip_thunderhorse "La banda de METAL extremo DETHKLOK - \qel mayor espectáculo del universo\q - nos trae el metal definitivo Armageddon. Prepárate para ser aplastado.")
+(loading_tip_trogdor "\qPara lo vibratinos, agita el tremolón. Para las melodísticas, afina tus sobre-acordes. Oh, y molo mucho.\q\n - Strongbad")
+(loading_tip_xstream "El espíritu del legendario guitarrista Piggy (Denis D'Amour) vive en Guitar Hero II mientras que Voivod te lleva al X-Stream una vez más.")
+(loading_tip_yeswecan "Made In Mexico fue hecho en Rhode Island, el Estado del Océano.")
