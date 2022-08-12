@@ -498,233 +498,233 @@
 (me_pfo_diff
    "DIFICULTAD: %s")
 (headline1
-   "{GH_ADJ} {GH_NOUN} de {GH_BAND} en {GH_VENUE}")
+   "{GH_NOUN} {GH_ADJ} de {GH_BAND} en {GH_VENUE}")
 (headline2
-   "{GH_BAND} {GH_VERB} {GH_VENUE} con {GH_ADJ} {GH_NOUN}")
+   "{GH_BAND} {GH_VERB} {GH_VENUE} con un {GH_NOUN} {GH_ADJ}")
 (headline_battle
    "{GH_BAND} {GH_WIN_PHRASE}")
 (headline_perfect
-   "Perfect performance from {GH_BAND} en {GH_VENUE}")
+   "Actuación perfecta de {GH_BAND} en {GH_VENUE}")
 (headline_perfect_coop
    "Actuación perfecta en {GH_VENUE}")
 (headline_quick_coop1
-   "{GH_ADJ} {GH_NOUN} {GH_VERB} {GH_VENUE}")
+   "{GH_NOUN} {GH_ADJ} {GH_VERB} {GH_VENUE}")
 (headline_quick_coop2
-   "{GH_VENUE} {GH_VERB_PAST} por {GH_ADJ} {GH_NOUN}")
+   "{GH_VENUE} {GH_VERB_PAST} por {GH_NOUN} {GH_ADJ}")
 (headline_vs
    "Jugador {GH_NUM} {GH_VS_VERB} {GH_VS_NOUN}")
 (headline_vs_tie
    "¡JUGADORES EMPATADOS EN UNA PARTIDA REÑIDA!")
 (from
-   "de")
+   "")
 (at
-   "en")
+   "")
 (with
-   "con")
+   "")
 (new_band_headline
-   "New Band")
+   "Nueva Banda")
 (adj_a_1
-   "Killer")
+   "De muerte")
 (adj_a_2
-   "Mind-blowing")
+   "Destroza-mentes")
 (adj_a_3
-   "Brilliant")
+   "Brillante")
 (adj_a_4
-   "Dazzling")
+   "Deslumbrante")
 (adj_a_5
-   "Righteous")
+   "Maravilloso")
 (adj_a_6
-   "Stunning")
+   "Impresionante")
 (adj_a_7
-   "Sizzling")
+   "Candente")
 (adj_a_8
-   "Awesome")
+   "Alucinante")
 (adj_a_9
-   "Thrilling")
+   "Emocionante")
 (adj_a_10
-   "Sensational")
+   "Sensacional")
 (adj_b_1
-   "Excellent")
+   "Excelente")
 (adj_b_2
-   "Crowd-pleasing")
+   "Agrada-masas")
 (adj_b_3
-   "Inspiring")
+   "Inspirador")
 (adj_b_4
-   "Rollicking")
+   "Alegre")
 (adj_b_5
-   "Delightful")
+   "Encantador")
 (adj_b_6
-   "Gripping")
+   "Agarrante")
 (adj_b_7
-   "Tantalizing")
+   "Tentador")
 (adj_b_8
-   "Winning")
+   "De premio")
 (adj_b_9
-   "Rousing")
+   "Animado")
 (adj_b_10
-   "Stirring")
+   "Agitante")
 (adj_c_1
-   "Solid")
+   "Sólido")
 (adj_c_2
-   "Confident")
+   "Confiado")
 (adj_c_3
-   "Interesting")
+   "Interesante")
 (adj_c_4
-   "Heartfelt")
+   "Conmovedor")
 (adj_c_5
-   "Well-rehearsed")
+   "Bien ensayado")
 (adj_c_6
-   "Enthusiastic")
+   "Estusiasta")
 (adj_c_7
-   "Enjoyable")
+   "Disfrutable")
 (adj_c_8
-   "Good")
+   "Bueno")
 (adj_c_9
-   "Decent")
+   "Decente")
 (verb_a_1
-   "Slays")
+   "Sacude")
 (verb_a_2
-   "Conquers")
+   "Conquista")
 (verb_a_3
-   "Blows Away")
+   "Alucina")
 (verb_a_4
-   "Electrifies")
+   "Electrifica")
 (verb_a_5
-   "Overwhelms")
+   "Abruma")
 (verb_a_6
-   "Amazes")
+   "Asombra")
 (verb_a_7
-   "Exhilarates")
+   "Regocija")
 (verb_a_8
-   "Inspires")
+   "Inspira")
 (verb_a_9
-   "Astounds")
+   "Asombra")
 (verb_b_1
-   "Rocks")
+   "Sacude")
 (verb_b_2
-   "Excites")
+   "Excita")
 (verb_b_3
-   "Impresses")
+   "Impresiona")
 (verb_b_4
-   "Heats Up")
+   "Acalora")
 (verb_b_5
-   "Delights")
+   "Agrada")
 (verb_b_6
-   "Captivates")
+   "Cautiva")
 (verb_b_7
-   "Charms")
+   "Conmueve")
 (verb_b_8
-   "Thrills")
+   "Emociona")
 (verb_b_9
-   "Lights Up")
+   "Anima")
 (verb_c_1
-   "Wins Over")
+   "Conquista")
 (verb_c_2
-   "Amuses")
+   "Divierte")
 (verb_c_3
-   "Pleases")
+   "Agrada")
 (verb_c_4
-   "Entertains")
+   "Entretiene")
 (verb_past_a_1
-   "Slayed")
+   "Sacudidos por")
 (verb_past_a_2
-   "Conquered")
+   "Conquistados por")
 (verb_past_a_3
-   "Blown Away")
+   "Alucinados por")
 (verb_past_a_4
-   "Electrified")
+   "Electrificados por")
 (verb_past_a_5
-   "Overwhelmed")
+   "Abrumados por")
 (verb_past_a_6
-   "Amazed")
+   "Alucinados por")
 (verb_past_a_7
-   "Exhilarated")
+   "Se regocijan por")
 (verb_past_a_8
-   "Inspired")
+   "Inspirados por")
 (verb_past_a_9
-   "Astounded")
+   "Confusos por")
 (verb_past_b_1
-   "Rocked")
+   "Placados por")
 (verb_past_b_2
-   "Excited")
+   "Emocionados por")
 (verb_past_b_3
-   "Impressed")
+   "Impresionados con")
 (verb_past_b_4
-   "Heated Up")
+   "Acalorados por")
 (verb_past_b_5
-   "Delighted")
+   "Encantados con")
 (verb_past_b_6
-   "Captivated")
+   "Cautivados por")
 (verb_past_b_7
-   "Charmed")
+   "Conmovidos por")
 (verb_past_b_8
-   "Thrilled")
+   "Encantados con")
 (verb_past_b_9
-   "Lit Up")
+   "Animados por")
 (verb_past_c_1
-   "Won Over")
+   "Conquistados con")
 (verb_past_c_2
-   "Amused")
+   "Alucinados con")
 (verb_past_c_3
-   "Pleased")
+   "Encantados con")
 (verb_past_c_4
-   "Entertained")
+   "Entretenidos por")
 (noun_a_1
-   "concert")
+   "concierto")
 (noun_a_2
-   "performance")
+   "acto")
 (noun_a_3
    "show")
 (noun_b_1
-   "gig")
+   "bolo")
 (noun_b_2
    "set")
 (noun_c_1
-   "effort")
+   "un esfuerzo")
 (noun_c_2
-   "attempt")
+   "un intento")
 (win_phrase_c_1
-   "finishes third at Battle of the Bands")
+   "acaba tercero en Battle of the Bands")
 (win_phrase_c_2
-   "squeaks out third place at Battle of the Bands")
+   "saca el tercer puesto en Battle of the Bands")
 (win_phrase_b_1
-   "gets second place win at Battle of the Bands")
+   "consigue el segundo puesto en Battle of the Bands")
 (win_phrase_b_2
-   "nets a silver medal at Battle of the Bands")
+   "se agencia una medalla de plata Battle of the Bands")
 (win_phrase_a_1
-   "comes in first at Battle of the Bands")
+   "queda primero en Battle of the Bands")
 (win_phrase_a_2
-   "takes home gold at Battle of the Bands")
+   "se lleva a casa el oro en Battle of the Bands")
 (win_vs_verb_c_1
-   "dominates")
+   "domina")
 (win_vs_verb_c_2
-   "conquers")
+   "conquista")
 (win_vs_verb_b_1
-   "triumphs")
+   "triunfa")
 (win_vs_verb_b_2
-   "is victorious")
+   "es victorioso")
 (win_vs_verb_a_1
-   "wins")
+   "gana")
 (win_vs_verb_a_2
-   "prevails")
+   "prevalece")
 (win_vs_noun_c_1
-   "by a longshot")
+   "con mucho margen")
 (win_vs_noun_c_2
-   "with authority")
+   "con autoridad")
 (win_vs_noun_b_1
-   "in great show")
+   "en buena forma")
 (win_vs_noun_b_2
-   "with solid performance")
+   "con una actuación sólida")
 (win_vs_noun_a_1
-   "in tight match")
+   "en un duelo reñido")
 (win_vs_noun_a_2
-   "in close battle")
+   "por los pelos")
 (stat_header
-   "Detailed Breakdown")
+   "Desglose Detallado")
 (stat_notes_hit
-   "Notes Hit")
+   "Notas Tocadas")
 (stat_sp_phrases
-   "SP Phrases")
+   "Frases de EE")
 (stat_avg_multi
    "Mult Medio")
 (stat_avg_multi_format
@@ -732,13 +732,13 @@
 (stat_section_no_notes
    "N/A")
 (stat_section_title
-   "section stats")
+   "estadísticas de sección")
 (stat_streaks_broken
-   "STREAKS BROKEN")
+   "RACHAS PERDIDAS")
 (stat_best_performer
-   "BEST PERFORMER")
+   "MEJOR INTÉRPRETE")
 (stat_lead
-   "TIME IN LEAD")
+   "TIEMPOR EN CABEZA")
 (ca_reason
    "Congratulations on the killer show, amazing write-up, and perfect review score! Here's your cut.")
 (ca_blurb1
