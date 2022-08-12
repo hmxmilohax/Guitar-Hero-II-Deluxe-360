@@ -1,34 +1,34 @@
 ; Streak popups/newspaper streak counts
 (note_streak_popup_p0
    {if_else $egg5
-      {sprint "¡RACHA DE " $player0_streak " NOTAS!"}
+      {sprint "RACHA DE " $player0_streak " NOTAS"}
    {if_else $epictext
-      {sprint "¡RACHA ÉPICA DE " $player0_streak " NOTAS!"}
-      {sprint "¡RACHA DE " $player0_streak " NOTAS!"}}})
+      {sprint "RACHA EPICA DE " $player0_streak " NOTAS"}
+      {sprint "RACHA DE " $player0_streak " NOTAS"}}})
 (note_streak_popup_p1
    {if_else $egg5
-      {sprint "¡RACHA DE " $player1_streak " NOTAS!"}
+      {sprint "RACHA DE " $player1_streak " NOTAS"}
    {if_else $epictext
-      {sprint "¡RACHA ÉPICA DE " $player1_streak " NOTAS!"}
-      {sprint "¡RACHA DE " $player1_streak " NOTAS!"}}})
+      {sprint "RACHA EPICA DE " $player1_streak " NOTAS"}
+      {sprint "RACHA DE " $player1_streak " NOTAS"}}})
 (note_streak_popup_p2
    {if_else $egg5
-      {sprint "¡RACHA DE "$player2_streak " NOTAS!"}
+      {sprint "RACHA DE "$player2_streak " NOTAS"}
    {if_else $epictext
-      {sprint "¡RACHA DE " $player2_streak " NOTAS!"}
-      {sprint "¡RACHA DE "$player2_streak " NOTAS!"}}})
+      {sprint "RACHA DE " $player2_streak " NOTAS"}
+      {sprint "RACHA DE "$player2_streak " NOTAS"}}})
 (endgame_streak_format
    {if_else {== {gamecfg get mode} quickplay}
       {switch {game get_track_type 0}
          (kTrackBass "%i Racha de Bajo")
-         (kTrackRhythm "%i Racha Rítmica")
-         (kTrackDrum "%i Racha de Batería")
+         (kTrackRhythm "%i Racha de Ritmo")
+         (kTrackDrum "%i Racha de Bateria")
          "%i Racha de Notas"}
       {if_else {== {gamecfg get mode} career}
          {switch {game get_track_type 0}
             (kTrackBass "%i Racha de Bajo")
-            (kTrackRhythm "%i Racha Rítmica")
-            (kTrackDrum "%i Racha de Batería")
+            (kTrackRhythm "%i Racha de Ritmo")
+            (kTrackDrum "%i Racha de Bateria")
             "%i Racha de Notas"}
          "%i Racha de Notas"}})
 (stk_format_0 {sprint $player0_streak})
@@ -36,8 +36,8 @@
 (stk_format_2 {sprint $player2_streak})
 (star_ready
    {if_else $epictext
-   "ESTO ES JODIDAMENTE ÉPICO"
-   "¡ENERGÍA ESTRELLA LISTA!"})
+   "ESTO ES JODIDAMENTE EPICO"
+   "ENERGIA ESTRELLA LISTA"})
 (stk_zero "0")
 (toogle_label "AUTOPLAY")
 
