@@ -1,0 +1,65 @@
+; MiloHax tips (we wrote these :steve:)
+(milo_tip1 "Usa el nuevo menú de Modificadores cómo de rápido avanzan las notas - ¡o incluso la velocidad de la canción!")
+(milo_tip2 "¿Te va más el bajo? ¿Quieres sentir el ritmo como guitarrista rítmico? Prueba el Juego Libre - ahora puedes tocar cualquier instrumento en un jugador.")
+(milo_tip3 "La notificación de Racha de Notas aparece a las 50, 100, 200, y cada 100 notas tras esto.")
+(milo_tip4 "En el nuevo Juego Libre, puedes elegir cualquier guitarra, guitarrista y escenario de tu elección.")
+(milo_tip5
+   {if_else $game80s
+      "No te preocupes - \qBecause, It's Midnite\q ya no es parte de la Campaña. Es mejor usar canciones eliminadas."
+      "Hemos reordenado la setlist para que sea como la versión de Xbox 360 de Guitar Hero II. Ahora debería ser un poco más fácil progresar."})
+(milo_tip6 "El menú de Extras en Juego Libre se puede usar para activar trucos u otras cosas sin memorizar largas combinaciones de botones.")
+(milo_tip7
+   {if_else $game80s
+      "Según nuestras pruebas, el Rock for Safety Tour es el escenario que mejor corre en consolas y emulador."
+      "Según nuestras pruebas, el Vans Warped Tour es el escenario que mejor corre en consolas y emulador."})
+(milo_tip8 "El nuevo contador de notas brillará en naranja cuando todavía no has fallado ni una nota, y se volverá blanco cuando arruines tu Full Combo.")
+(milo_tip9 "Este es un consejo de prueba.")
+(milo_tip10 "¿Se te ha vuelto a olvidar activar el Escaneo Progresivo?")
+(milo_tip11
+   {if_else $game80s
+      "Hemos arreglado el límite de rasgueos para que no lo tengas que hacer tú. Prueba Trogdor en la setlist de OTROS y comprueba cómo se siente."
+      "Hemos arreglado el límite de rasgueos para que no lo tengas que hacer tú. Prueba Trogdor y comprueba cómo se siente."})
+(milo_tip12 "También hemos arreglado el bug de los HOPOs. ¡Ahora puedes volver a reiniciar rápido!")
+(milo_tip13 "Pulsa el botón Select dos veces en cualquier setlist para acceder al nuevo menú de Modificadores.")
+(milo_tip14 "Algunas canciones son mejores en el bajo que en la guitarra. Prueba el Juego Libre - ahora puedes ser un bajista en cualquier tema.")
+(milo_tip15 "A petición de alguien, ahora puedes acceder al Modo Práctica en mitad de una canción, directamente desde el menú de Pausa. No lo intentes en un show de verdad.")
+(milo_tip16 "Algunas canciones también se pueden tocar como Batería, si tienes alguna manera de mapear un drumkit a un mando DualShock. ¡Compruébalo al Elegir Parte en Juego Libre !")
+(milo_tip17 "Cuando juegas con un DualShock en lugar de una guitarra, no necesitas rasguear. Tan solo usa los L1/2, R1/2 y X para tocar.")
+(milo_tip18 "Para ese tío al fondo que se queja de los colores de traste \qal azar\q: comprueba el menú de Extras en Juego Libre. Ahora puedes cambiarlo.")
+
+; Easy tips
+(easy_tip1 "No consigues pasta en FÁCIL, pero sí en MEDIO, DIFÍCIL y EXPERTO.")
+(easy_tip2 "Si estás consiguiendo 5 estrellas en todas las canciones como si nada, es hora de cambiarte a MEDIO.")
+(easy_tip3 "Prueba a jugar en MEDIO o más si quieres comprar guitarras, canciones, vídeos, y más.")
+
+; Advanced tips
+(advanced_tip1 "¿Pillado en una canción? Intenta conseguir 5 estrellas en una más fácil.")
+(advanced_tip2 "Guarda tu Energía Estrella para las secciones con muchas notas. Conseguirás más puntos y el Medidor de Rock subirá más rápido.")
+(advanced_tip3 "¡Lo acordes valen más puntos que las notas normales!")
+(advanced_tip4 "Si se te cansa el brazo cuando hay muchas notas seguidas, prueba a rasguear hacia arriba y hacia abajo alternativamente.")
+(advanced_tip5
+   {if_else $game80s
+      "Consigue personajes, guitarras, canciones bonus, y más en La Tienda."
+      "Consigue personajes, trajes, guitarras, canciones bonus, y más en La Tienda."})
+
+; More advanced tips (but these we wrote too :marf:)
+(advanced_tip6 "Prueba el ejecutable debug si te apetece - añade un montón de herramientas de diagnóstico muy útiles, y trucos para probar tus mods y navegar por el juego más rápidamente.")
+(advanced_tip7 "Si tocas una nota en el último momento tras activar la Energía Estrella, harás algo llamado \qsqueeze\q que te permite sumarla a tu combo de Energía Estrella y conseguirás puntos extra por ella.")
+(advanced_tip8 "Modo Focus, disponible en el menú de Modificadores, remplaza el escenario con un vacío negro, que mejora la velocidad y el rendimiento del juego si hace falta.")
+(advanced_tip9 "Cada canción tiene una \qruta\q de activaciones de Energía Estrella - cuándo es mejor utilizarla y cuándo es mejor acumular. Aprender y usar \qrutas\q es la clave para sacar las mejores puntuaciones.")
+(advanced_tip10 "Si vas de sobrado, en los solos rápidos, rasguea con tu codo y usa ambas manos para tocar los trastes.")
+
+; Multiplayer tips
+(multi_coop_tip1 "En el Modo Cooperativo, ambos jugadores deben inclinar su guitarra A LA VEZ para usar la Energía Estrella.")
+(multi_coop_tip2 "Tenéis que usar la Energía Estrella juntos.")
+(multi_coop_tip3 "En el Modo Cooperativo, trabajáis juntos para conseguir la puntuación máxima.")
+(multi_coop_tip4 "En el Modo Cooperativo, todo el mundo es un campeón. A menos que ambos seáis unos perdedores.")
+(multi_coop_tip5 "Vuestras rachas se combinan en el Modo Cooperativo - ambos perderéis el multiplicador si uno de vosotros la pifia.")
+(multi_coop_tip6 "Tened cuidado en el Modo Cooperativo - si el Medidor de Rock se vuelve demasiado rojo, perderéis.")
+(multi_coop_tip7 "No nos hacemos responsables si os acabáis odiando.")
+(multi_coop_tip8 "Gritar \q¡ENERGÍA ESTRELLA!\q es tan buen método como cualquier otro.")
+(multi_coop_tip9 "Cuando alguien convoca una \qReunión de Banda\q no suele ser por algo bueno.")
+
+; New song tips
+(loading_tip_greengrass "Si crees tener lo que hace falta, consigue FC de esta canción (¡sin el Modo Focus!) y manda un vídeo en MiloHax. Conquista el límite de rasgueos. No dejes que este port sea en vano :marfpeek:")
+(loading_tip_speedtest "\qwhy speed test\q\n - ExileLord, 2021")

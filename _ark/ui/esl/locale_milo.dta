@@ -1,0 +1,179 @@
+; Streak popups/newspaper streak counts
+(note_streak_popup_p0
+   {if_else $egg5
+      {sprint "RACHA DE " $player0_streak " NOTAS"}
+   {if_else $epictext
+      {sprint "RACHA EPICA DE " $player0_streak " NOTAS"}
+      {sprint "RACHA DE " $player0_streak " NOTAS"}}})
+(note_streak_popup_p1
+   {if_else $egg5
+      {sprint "RACHA DE " $player1_streak " NOTAS"}
+   {if_else $epictext
+      {sprint "RACHA EPICA DE " $player1_streak " NOTAS"}
+      {sprint "RACHA DE " $player1_streak " NOTAS"}}})
+(note_streak_popup_p2
+   {if_else $egg5
+      {sprint "RACHA DE "$player2_streak " NOTAS"}
+   {if_else $epictext
+      {sprint "RACHA DE " $player2_streak " NOTAS"}
+      {sprint "RACHA DE "$player2_streak " NOTAS"}}})
+(endgame_streak_format
+   {if_else {== {gamecfg get mode} quickplay}
+      {switch {game get_track_type 0}
+         (kTrackBass "%i Racha de Bajo")
+         (kTrackRhythm "%i Racha de Ritmo")
+         (kTrackDrum "%i Racha de Bateria")
+         "%i Racha de Notas"}
+      {if_else {== {gamecfg get mode} career}
+         {switch {game get_track_type 0}
+            (kTrackBass "%i Racha de Bajo")
+            (kTrackRhythm "%i Racha de Ritmo")
+            (kTrackDrum "%i Racha de Bateria")
+            "%i Racha de Notas"}
+         "%i Racha de Notas"}})
+(stk_format_0 {sprint $player0_streak})
+(stk_format_1 {sprint $player1_streak})
+(stk_format_2 {sprint $player2_streak})
+(star_ready
+   {if_else $epictext
+   "ESTO ES JODIDAMENTE EPICO"
+   "ENERGIA ESTRELLA LISTA"})
+(stk_zero "0")
+(toogle_label "AUTOPLAY")
+
+(blank_message "")
+(cheat_focusmode "Modo Focus")
+(cheat_neckless "Modo Sin Mástil")
+(speed_msg "NOTAS: %d%%  TEMA: %d%%\n FPS: %dFPS")
+(gm_tspd "FPS")
+(gm_sngspd "VEL. NOTAS")
+(gm_unusedsl "VEL. TEMA")
+(GM_BLACK_BACKGD "MODO FOCUS")
+(GAME_MODIFIER "MODIFICADORES")
+(help_adjspd "AJUSTAR VELOCIDAD")
+(conceived_by "concebido diabólicamente por")
+(cheat_mtv_overlay "Mostrar siempre título de la canción")
+(cheat_awesomeness "Trucos movidos al menú de Extras")
+(cheat_barf "Modo Roxbury")
+(cheat_nofail "Sin Fallos")
+(cheat_funni "entrada de pista rápida")
+
+; Easter eggs (don't tell anyone)
+(EASTER_EGG1 "Comunidad de MiloHax")
+(EASTER_EGG3 "DISCORD, INTERNET")
+(EASTER_EGGa "\qFriends Don't Let Friends Clon\q")
+(EASTER_EGGb "\qLLAMAR A ASISTENTE\q")
+(EASTER_EGGc "\qseñor ayuda a mi pobre alma\q")
+(EASTER_EGGd "\qconsejo semanal del anciano\q")
+(unlockeasteregg1_1 "Estimado jugador de GH2 Deluxe,")
+(unlockeasteregg1_2 "¿ADIVINA QUÉ?")
+(unlockeasteregg1_3 "¡Has desbloqueado un SECRETO!")
+(unlockeasteregg1_4 "\nLa Hipervelocidad como la conocías ya no existe en GH2 Deluxe. ¡En su lugar, la HIPERVELOCIDAD AJUSTABLE se puede ajustar a tu gusto pulsando SELECT, SELECT en la pantalla de cualquier setlist!\n\nYa que estás aquí, ¿hemos mencionado que hay más secretos? Prueba a usar el código de la Hipervelocidad en otros menús si te atreves. Ahí va una pista: Escaneo progresivo...\n\nDiviértete,\nel Equipo de GH2 Deluxe")
+(unlockeasteregg2_1 "Estimado jugador de GH2 Deluxe,")
+(unlockeasteregg2_2 "¡SECRETO!")
+(unlockeasteregg2_3 "¡Has encontrado otro! ¡Ole ahí!")
+(unlockeasteregg2_4 "\nEse era fácil, pero seguro que ya has visto y oído que algunas cositas han cambiado, ¿no? Hay mucho más, créeme.\n\nAquí va tu siguiente pista: tiene cuatro opciones y sólo esa cuatro. Hay una par de menús así.\n\nFeliz caza,\nel Equipo de GH2 Deluxe")
+(unlockeasteregg3_1 "Estimado jugador de GH2 Deluxe,")
+(unlockeasteregg3_2 "¡SECRETO!")
+(unlockeasteregg3_3 "¡Era el Modo Libre! ¡Bien hecho!")
+(unlockeasteregg3_4 "\n¡Comprueba el MENÚ PRINCIPAL! Pero aún no hemos acabado. (Recuerda, estás probando a usar el código de Hipervelocidad en otros sitios que no sean el menú principal. Concéntrate.)\n\nSiguiente pista: donde los problemas de banda se resuelven. Y en ocasiones donde las bandas se disuelven.\n\nDale duro,\nel Equipo de GH2 Deluxe")
+(unlockeasteregg4_1 "Estimado jugador de GH2 Deluxe,")
+(unlockeasteregg4_2 "¡SECRETO!")
+(unlockeasteregg4_3 "(¿Pero cuántos hay?)")
+(unlockeasteregg4_4 "\nYa casi estás. Estás viendo lo que muchos nunca han visto. Pero aún. No. Has. Terminado.\n\nAhí va la pista final: nunca has ido a esta pantalla antes. Y si lo has hecho, nunca más de una vez. (D.E.P. nuestros egos.)\n\n¿Entendido? (Y una vez la encuentres, mándanos una foto a MiloHax y alardea de ello.)\n\nBuena suerte,\nel Equipo de GH2 Deluxe")
+(finaleggtxt1 "ENHORABUENA")
+(finaleggtxt2 "ENCONTRASTE TODOS LOS SECRETOS")
+(finaleggtxt3 "Muchas gracias por jugar a nuestra versión especial de\nGuitar Hero II.")
+
+; Manage Gig/Extras menu
+(gig_play "TOCAR SHOW")
+(gig_character "PERSONAJE")
+(gig_guitar "GUITARRA")
+(gig_venue "ESCENARIO")
+(gig_extras "EXTRAS")
+(milo_extras "EXTRAS")
+(extras_songtitle "TEMA SIEMPRE VSISIBLE")
+#ifndef HX_XBOX
+(extras_horse "CABEZA CABALLO")
+#else
+(extras_horse "ACTIVAR BATERÍA")
+(extras_roxbury "MODO ROXBURY")
+(extras_performance "MODO ACTUACIÓN")
+(extras_nofail "MODO SIN FALLOS")
+(extras_eyeball "PÚBLICO OCULAR")
+(extras_monkey "PÚBLICO PRIMATE")
+(extras_grybo "GEMAS CLÁSICAS")
+(extras_highway "DIAPASÓN NEGRO")
+(extras_flaming "CABEZA FLAMÍGERA")
+(extras_neckless "MODO SIN MÁSTIL")
+
+; Select theme menu
+(gh2_title "Guitar Hero 2")
+(gh80s_title "Guitar Hero 80s")
+
+;overshell list stuff, also used in endgame
+(os_selhw "Elegir Diapasón")
+(os_trkmod "Modificadores de Diapasón")
+(os_cloneherohud {sprint "HUD de Clone Hero" {if_else $clonehero_hud ": ON" ": OFF"}})
+(os_focusmode {sprint "Modo Focus" {if_else $focusmode ": ON" ": OFF"}})
+(os_brutalmode {sprint "Modo Brutal" {if_else $brutalmode ": ON" ": OFF"}})
+(os_nofail {sprint "Sin Fallos" {if_else $nofail ": ON" ": OFF"}})
+(os_songtitle {sprint "Tema Siempre Visible" {if_else $songtitle ": ON" ": OFF"}})
+(os_highwayshake {sprint "Meneo de Pista" {if_else $highwayshake ": ON" ": OFF"}})
+(os_horsehead {sprint "Cabeza Caballo (PS2)" {if_else $notenabled ": ON" ": OFF"}})
+(os_drums {sprint "Activar Batería" {if_else $drumenabled ": ON" ": OFF"}})
+(os_monkeyhead {sprint "Cabeza Mono" {if_else $notenabled ": ON" ": OFF"}})
+(os_eyeballhead {sprint "Cabeza Ojo" {if_else $notenabled ": ON" ": OFF"}})
+(os_flaminghead {sprint "Cabeza Flamígera" {if_else $cheat_enabled_flaming_head ": ON" ": OFF"}})
+(os_neckless {sprint "Sin Mástil" {if_else $neckless ": ON" ": OFF"}})
+(os_performance {sprint "Modo Actuación" {if_else $cheat_enabled_performance_mode ": ON" ": OFF"}})
+(os_roxbury {sprint "Modo Roxbury" {if_else $barf_cheat ": ON" ": OFF"}})
+(os_gh1track {sprint "Notas de GH1" {if_else $gh1track ": ON" ": OFF"}})
+(os_darkstrums {sprint "Rasgueos Oscuros" {if_else $darkstrums ": ON" ": OFF"}})
+(os_brighthopos {sprint "HOPOS Brillantes" {if_else $brighthopos ": ON" ": OFF"}})
+(os_skipintro {sprint "Saltar Intro" {if_else $miloskipintro ": ON" ": OFF"}})
+(os_towel {sprint "Modo Toalla" {if_else $towel ": ON" ": OFF"}})
+(os_notestreakmod {sprint "Aviso de Racha" {if_else $notestreakmod ": ON" ": OFF"}})
+(os_sppop {sprint "Aviso de En. Estrella" {if_else $sppop ": ON" ": OFF"}})
+(os_leftyp1 {sprint "Modo Zurdo J1" {if_else $leftyp1 ": ON" ": OFF"}})
+(os_leftyp2 {sprint "Modo Zurdo J2" {if_else $leftyp2 ": ON" ": OFF"}})
+(os_selecttorestart {sprint "Elegir en Práctica" {if_else $selecttorestart ": ON" ": OFF"}})
+(os_autoplay {sprint "Autoplay" {if_else $autoplay ": ON" ": OFF"}})
+(os_gh3track {sprint "Trastes de GH3" {if_else $gh3track ": ON" ": OFF"}})
+(os_skipoutro {sprint "Saltar Outro" {if_else $skipoutro ": ON" ": OFF"}})
+(os_epictext {sprint "Avisos Épicos" {if_else $epictext ": ON" ": OFF"}})
+(os_sfx {sprint "Efectos de Sonido" {if_else $sfx ": ON" ": OFF"}})
+(os_whammyfx {sprint "Efectos de Vibrato" {if_else $whammyfx ": ON" ": OFF"}})
+(os_muting {sprint "Enmudecer Pista" {if_else $muting ": ON" ": OFF"}})
+(os_voidfrets {sprint "Trastes Vacíos" {if_else $voidfrets ": ON" ": OFF"}})
+(os_altsong {sprint "Lista de Canciones Alt" {if_else $altsong ": ON" ": OFF"}})
+(os_loopsong {sprint "Lista de Canciones en Bucle" {if_else $loopsong ": ON" ": OFF"}})
+(os_gh3song {sprint "Lista de Canciones de GH3" {if_else $gh3song ": ON" ": OFF"}})
+
+;endgame List stuff
+(endgame_focusmode "Modo Focus")
+(endgame_brutalmode "Modo Brutal")
+(endgame_nofail "Sin Fallos")
+(endgame_songtitle "Mostrar Título Siempre")
+(endgame_highwayshake "Agitación de diapasón")
+(endgame_horsehead "Cabeza Caballo (PS2)")
+(endgame_drums "Batería activada")
+(endgame_monkeyhead "Cabeza Mono")
+(endgame_eyeballhead "Cabeza Ojo")
+(endgame_flaminghead "Cabeza Flamígera")
+(endgame_neckless "Sin Mástil")
+(endgame_performance "Modo Actuación")
+(endgame_roxbury "Modo Roxbury")
+(endgame_gh1track "Notas de GH1")
+(endgame_darkstrums "Rasgueos Oscuros")
+(endgame_brighthopos "HOPOs Brillantes")
+(endgame_towel "Modo Toalla")
+
+;overshell theme select
+(os_gh1 "Guitar Hero DX")
+(os_gh2 "Guitar Hero II DX")
+(os_gh80s "Guitar Hero 80s DX")
+(os_gh3 "Guitar Hero 3")
+(os_ce "GH2DX Custom Edition")
+(os_egg5 "Todo los Secretos Desbloqueados")
+(os_sngthm "Temas de Lista de Canciones")

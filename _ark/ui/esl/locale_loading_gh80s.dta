@@ -1,0 +1,61 @@
+; Encore comedy tips
+(comedy_tip_80s_1
+   {if_else $egg5
+      "[Abrir caja antes de comer pizza.]"
+      "Lo importante no es cómo de BIEN cantas, es cómo de AGUDO cantas."})
+(comedy_tip_80s_2
+   {if_else $egg5
+      "Dejad de pedir comprar el puto Deluxe. Eso sería ilegal."
+      "Cuando seas famoso, tendrás asistentes para que te quiten los pantalones de cuero. Hasta entonces, usa polvos de talco."})
+(comedy_tip_80s_3
+   {if_else $egg5
+      "No te confundas, jnack no sabe dibujar. Es un artista profesional del plagio."
+      "Tu cantante tiene razón. \qNoche\q es la palabra que más rima con \qnoche.\q"})
+(comedy_tip_80s_4
+   {if_else $egg5 
+      "Pon tú los colores de los trastes si tanto te molestan."
+      "No te acerques mucho a las llamas pirotécnicas."})
+(comedy_tip_80s_5 "Sigue practicando ese \qBaile de Axl.\q Algún día lo sacarás.")
+(comedy_tip_80s_6 "¡SUBE EL VOLUMEN!")
+(comedy_tip_80s_7
+   {if_else $egg5
+      "Si alguna vez te encuentras carpetas sospechosa pertenecientes a Harmonix, llama a LocalH inmediatamente."
+      "Vive la vida. Desgasta tus calzoncillos."})
+(comedy_tip_80s_8 "Si tu pelo se sigue moviendo cuando agitas la cabeza, no estás usando suficiente gomina.")
+(comedy_tip_80s_9
+   {if_else $egg5
+      "Maldita sea Harmonix, ¿por qué hardcodeaste algunas de estas cosas?"
+      "Huele la cinta nueva de cassette. Este es el aroma del rock."})
+(comedy_tip_80s_10 "Cuidado: la bandas country también llevan chaquetas con flecos.")
+(comedy_tip_80s_11
+   {if_else $egg5
+      "Cuando pases de 50.000 puntos significa que ya lo has logrado, así que intenta no fallar muchas notas."
+      "Antes de que existiese el internet, la gente expresaba su amor por el heavy metal en las puertas de los lavabos."})
+(comedy_tip_80s_12 "It's okay for the drummer to buy, like, the hugest kit ever. No one wants to see his bad make-up anyway.")
+(comedy_tip_80s_13 "Un solo de rock moderno en condiciones necesita 3 vibratos por nota. Como mínimo.")
+(comedy_tip_80s_14 "Si tu vecinos se quejan mucho por el ruido, sube el volumen hasta que se muden a otra casa.")
+(comedy_tip_80s_15
+   {if_else $egg5
+      "Recuerda, los FCs de Trogdor en este disco no cuentan."
+      "El público nunca se cansará de la letra \qOh yeah!\q"})
+
+; Encore, er, encore tips
+(encore_tip_80s_1 "Siempre vuelve a peinarte antes del bis. SIEMPRE.")
+(encore_tip_80s_2 "¿Un bis? ¿Lo tenían que pedir? ¡Pues claro!")
+(encore_tip_80s_3 "Para tu bis, recuerda: los efectos láser improvisados pueden quedar fatal.")
+(encore_tip_80s_4 "Tocar un set largo puede dejarte en un estado deplorable. Ducha a tu baterista en soda antes del bis.")
+(encore_tip_80s_5 "Da todo lo que tengas en el bis. Hazlo por esa buenorra de la tercera fila con los tejanos cortados.")
+(encore_tip_80s_6 "Regla general de los bises: la primera en el cassette, la última en el set.")
+
+
+; Play With Me tips
+(playwithme_tip1 "Sí es difícil. De hecho, es EXTREMA! Ja ja ja.")
+(playwithme_tip2 "Ahorrate un mundo de dolor. Domina Play With Me en el Modo Práctica antes de probar con la canción completa en el escenario.")
+(playwithme_tip3 "Mira, es más fácil que quitarte toda esa gomina del pelo.")
+(playwithme_tip4 "Nadie dijo que el shredding fuera fácil.")
+(playwithme_tip5 "¿Esa intro? Sip. Es Mozart. El tío era un virtuoso.")
+(playwithme_tip6 "Has llegado lejos. Dale duro.")
+
+
+; Song tips
+(loading_tip_becauseitsmidnite "Durante la gira, Limozeen solía pedir sábanas de cuero en los hoteles que se hospedaban hasta que los sarpullidos y los activistas de derechos animales se convirtieron en un problema.")
