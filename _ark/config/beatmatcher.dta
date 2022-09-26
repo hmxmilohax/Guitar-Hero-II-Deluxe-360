@@ -85,7 +85,7 @@
    (multiplayer_common_attenuation 1.5)
    (background_attenuation 5.0)
    (practice_attenuation 7.5)
-   (mute_volume $muting) ;HMX never used this in GH2 but it's in there
+   (mute_volume {if_else $muting -96 -0.001}) ;HMX never used this in GH2 but it's in there
    #ifndef HX_XBOX
    (submixes)
    #else
