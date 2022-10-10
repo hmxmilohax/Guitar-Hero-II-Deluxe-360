@@ -12,20 +12,28 @@
    (milo_tip2)
    (milo_tip3)
    (milo_tip4)
+#ifndef HX_XBOX
    (milo_tip5)
    (milo_tip6)
+#endif
    (milo_tip7)
    (milo_tip8)
    (milo_tip9)
+#ifndef HX_XBOX
    (milo_tip10)
+#endif
    (milo_tip11)
    (milo_tip12)
    (milo_tip13)
    (milo_tip14)
    (milo_tip15)
+#ifndef HX_XBOX
    (milo_tip16)
+#endif
    (milo_tip17)
+#ifndef HX_XBOX
    (milo_tip18)
+#endif
 #ifdef GH1RX
    (loading_tip_gh1_8)
    (loading_tip_gh1_9)
@@ -72,8 +80,10 @@
    (advanced_tip2 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
    (advanced_tip3 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
    (advanced_tip4 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
+#ifndef HX_XBOX
    (advanced_tip5 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
    (advanced_tip6 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
+#endif
    (advanced_tip7 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
    (advanced_tip8 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
    (advanced_tip9 (diff kDifficultyMedium kDifficultyHard kDifficultyExpert))
@@ -103,7 +113,9 @@
    (comedy_tip_gh2_1)
    (comedy_tip_gh2_3)
    (comedy_tip_gh2_4)
+#ifndef HX_XBOX
    (comedy_tip_gh2_6)
+#endif
    (comedy_tip_gh2_11)
    (comedy_tip_gh2_12)
    (comedy_tip_gh2_13)

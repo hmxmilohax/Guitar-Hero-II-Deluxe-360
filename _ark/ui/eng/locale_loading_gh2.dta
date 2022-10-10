@@ -3,14 +3,16 @@
 (loading_tip_gh2_3 "Just like with a real guitar, you don't need to release Fret Buttons on lower notes when you play higher notes.")
 (loading_tip_gh2_4 "Wait until you have a x4 multiplier going, and then use Star Power to max out your score.")
 (loading_tip_gh2_5 "Star Power can be a life saver! If you're deep in the red, use Star Power to win the crowd back.")
+#ifndef HX_XBOX
 (loading_tip_gh2_6 "Use Star Power to drive the crowd wild. Learn how to control this awesome energy in the Star Power Tutorial.")
+#endif
 (loading_tip_gh2_7 "Get a streak multiplier by playing perfectly for a few notes.")
 (loading_tip_gh2_8 "Series of notes on the same fret coming up? Keep the fret button held down.")
 (loading_tip_gh2_9
    {if_else $egg5
       "You found all the eggs! Much love to everyone <3"
       "You can slow down songs and individual song sections in Practice Mode. Nail solos that have been kicking your butt!"})
-(loading_tip_gh2_10 "Some HDTVs have an audio/visual lag that may affect your ability to play the game. If you're having problems, try running \qCalibrate Lag\q under Video Settings on the Options menu.")
+(loading_tip_gh2_10 "Some HDTVs have an audio/visual lag that may affect your ability to play the game. If you're having problems, try running \qCalibrate Lag\q from the main menu.")
 (loading_tip_gh2_11 "Visit Practice Mode from the Training menu to really nail those tough sections.")
 
 ; Comedy tips
@@ -31,7 +33,7 @@
 (comedy_tip_gh2_6 "TURN IT UP!")
 (comedy_tip_gh2_7
    {if_else $egg5
-      "If you ever come across suspicious looking Harmonix binders, call LocalH immediately."
+      "If you ever come across suspicious looking Harmonix binders, call Milohax immediately."
       "It takes a REALLY long time to drive the van through Nebraska."})
 (comedy_tip_gh2_8 "If you have a road crew, it's called \qhauling\q equipment. Otherwise it's called \qschlepping.\q")
 (comedy_tip_gh2_9
