@@ -24,29 +24,29 @@
                }
                {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
             }
-            {$this set_line $prefix 2 {sprint "BY - " $artist_text}} ;the artist text line is always just "BY - ARTIST"
+            {$this set_line $prefix 2 {sprint {localize performertext} $artist_text}} ;the artist text line is always just "BY - ARTIST"
 
             {if_else $autoplay ;check for autoplay enabled without author variable, the author checks will override this if needed
-               {set $mtvline3 {sprint "\nAUTOPLAY"}}
+               {set $mtvline3 {sprint "\n" {localize autoplaytext}}}
                {set $mtvline3 {sprint "\n"}}
             }
 
             {if {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
                {if_else $autoplay ;check for autoplay enabled and author present in locale
-                  {set $mtvline3 {sprint "\nAuthor: " {localize {sprint $song "_author"}} "\nAUTOPLAY"}} ; $mtvline3 will hold everything that only needs to be set one time, before the song
-                  {set $mtvline3 {sprint "\nAuthor: " {localize {sprint $song "_author"}} "\n"}} ;apparently we weren't showing author in autoplay, fixed
+                  {set $mtvline3 {sprint "\n" {localize authortext} {localize {sprint $song "_author"}} "\n" {localize autoplaytext}}} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                  {set $mtvline3 {sprint "\n" {localize authortext} {localize {sprint $song "_author"}} "\n"}} ;apparently we weren't showing author in autoplay, fixed
                }
             }
             {if_else $author ;check for author variable in DLC contexts.dta
                {if_else $autoplay ;check for autoplay enabled with author variable
-                  {set $mtvline3 {sprint "\nAuthor: " $author "\nAUTOPLAY"}} ; $mtvline3 will hold everything that only needs to be set one time, before the song
-                  {set $mtvline3 {sprint "\nAuthor: " $author "\n"}} ;apparently we weren't showing author in autoplay, fixed
+                  {set $mtvline3 {sprint "\n" {localize authortext} $author "\n" {localize autoplaytext}}} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                  {set $mtvline3 {sprint "\n" {localize authortext} $author "\n"}} ;apparently we weren't showing author in autoplay, fixed
                }
             }
             {if_else {|| $hardware_check $autoplay} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
                {$this set_line $prefix 3 {sprint $mtvline3}} ;if autoplay, just put the static shit
                {$this set_line $prefix 3 {sprint $mtvline3 ;if not autoplay, first put the stuff we pregenerated before
-                  $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n100.00%"} ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line, hardcode 100% since this is setup
+                  $notesmissed {localize missedtext} $overstrums {localize overstrumstext} "\n100.00%"} ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line, hardcode 100% since this is setup
                }
             }
          }
@@ -57,7 +57,7 @@
          ($gems_hit {player0 gems_hit}) ;setup gems hit variable
          ($gems_total {'+' $gems_hit {player0 gems_passed}}) ;setup total gems that have passed the strikeline variable
          {$this set_line "mtv_campaign_line" 3 {sprint $mtvline3 ;if not autoplay, first put the stuff we pregenerated before
-            $notesmissed " MISSED - " $overstrums " OVERSTRUMS\n" ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line
+            $notesmissed {localize missedtext} $overstrums {localize overstrumstext} "\n" ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line
             {sprint {* {/ {if_else $beforefirstnote_p0 1 $gems_hit} {if_else $beforefirstnote_p0 1 $gems_total}} 100} "%"}} ;do some math to report the current notes hit out of notes passed as a percentage
          }
       }

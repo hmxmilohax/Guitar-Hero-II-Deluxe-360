@@ -1,3 +1,10 @@
+;author text
+(autoplaytext "AUTOPLAY")
+(overstrumstext " OVERSTRUMS")
+(performertext "BY - ")
+(missedtext " MISSED - ")
+(authortext "Author: ")
+(unknowntext "UNKNOWN")
 ; DX authors
 (arterialblack_author "Harmonix")
 (badreputation_author "Harmonix")
