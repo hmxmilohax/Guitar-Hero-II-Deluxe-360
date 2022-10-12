@@ -535,6 +535,7 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find top_level_peak.grp} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud1_rock_needle.view} set_showing FALSE}
       {{{hud loaded_dir} find BandCrowdMeterDir1} iterate Mesh $m {$m set_showing FALSE}}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_base_bar.mesh} set_showing FALSE}
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
       {{{hud loaded_dir} find mask1.mesh} set_showing FALSE}
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
