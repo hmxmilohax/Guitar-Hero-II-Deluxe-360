@@ -30,6 +30,8 @@
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
 
+;wip track width controller
+{set $trackcamx 1.0}
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
 ;Track/Highway/Note Speed. Each .1 is 10%
