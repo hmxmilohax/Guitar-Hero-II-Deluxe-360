@@ -42,6 +42,8 @@
 ;Sets the song title to persist the duration
 ;of the song, or turn off after the intro
 {set $songtitle FALSE}
+;removes notes missed - overstrums - current accuracy from mtv overlay
+{set $cleanmtv FALSE}
 ;turn off hit flames
 {set $noflames FALSE}
 ;emulate the venue fps. this is useful to lower

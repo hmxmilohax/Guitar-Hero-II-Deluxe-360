@@ -43,7 +43,7 @@
                   {set $mtvline3 {sprint "\n" {localize authortext} $author "\n"}} ;apparently we weren't showing author in autoplay, fixed
                }
             }
-            {if_else {|| $hardware_check $autoplay} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
+            {if_else {|| $cleanmtv $hardware_check $autoplay} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
                {$this set_line $prefix 3 {sprint $mtvline3}} ;if autoplay, just put the static shit
                {$this set_line $prefix 3 {sprint $mtvline3 ;if not autoplay, first put the stuff we pregenerated before
                   $notesmissed {localize missedtext} $overstrums {localize overstrumstext} "\n100.00%"} ;then apply the notes missed and overstum variables we set in streak panel sinks, and new line, hardcode 100% since this is setup

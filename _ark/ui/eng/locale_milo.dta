@@ -121,6 +121,7 @@
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "No Fail" {if_else $nofail ": ON" ": OFF"}})
+(os_cleanmtv {sprint "Clean Song Info" {if_else $cleanmtv ": ON" ": OFF"}})
 (os_noflames {sprint "No Flames" {if_else $noflames ": ON" ": OFF"}})
 (os_songtitle {sprint "Song Title Always" {if_else $songtitle ": ON" ": OFF"}})
 (os_highwayshake {sprint "Board Shake" {if_else $highwayshake ": ON" ": OFF"}})
