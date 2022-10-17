@@ -44,7 +44,159 @@
       {$this clear_cache}
       {ui goto_screen storage_changed_screen})
 #endif
-   (enter
+(random_char
+     {if {! $forcecharacter}
+        {set $randomnumber {+ $randomnumber 1}}
+         {if {> $randomnumber 18} {set $randomnumber 0}}
+       {switch $randomnumber
+       (0 {game set_character punk1 TRUE})
+       (1 {game set_character punk2 TRUE})
+       (2 {game set_character alterna1 TRUE})
+       (3 {game set_character alterna2 TRUE})
+       (4 {game set_character glam1 TRUE})
+       (5 {game set_character glam2 TRUE})
+       (6 {game set_character goth2 TRUE})
+       (7 {game set_character goth1 TRUE})
+       (8 {game set_character metal1 TRUE})
+       (9 {game set_character metal2 TRUE})
+       (10 {game set_character rockabill1 TRUE})
+       (11 {game set_character rockabill2 TRUE})
+       (12 {game set_character rock2 TRUE})
+       (13 {game set_character rock1 TRUE})
+       (14 {game set_character deathmetal1 TRUE})
+       (15 {game set_character deathmetal2 TRUE})
+       (16 {game set_character classic TRUE})
+       (17 {game set_character funk1 TRUE})
+       (18 {game set_character grim TRUE})}})
+   (random_venue
+     {if {! $forcevenue}
+        {set $randomvenuenumber {+ $randomvenuenumber 1}}
+         {if {> $randomvenuenumber 7} {set $randomvenuenumber 0}}
+       {switch $randomvenuenumber
+       (0 {game set_venue battle TRUE})
+       (1 {game set_venue small1 TRUE})
+       (2 {game set_venue small2 TRUE})
+       (3 {game set_venue big TRUE})
+       (4 {game set_venue theatre TRUE})
+       (5 {game set_venue fest TRUE})
+       (6 {game set_venue arena TRUE})
+       (7 {game set_venue stone TRUE})
+       }})
+   (random_guitar
+     {if {! $forceguitar}
+        {set $randomguitarnumber {+ $randomguitarnumber 1}}
+         {if {> $randomguitarnumber 18} {set $uipicturenumber 0}}
+       {switch $randomguitarnumber
+       (0 {game set_guitar lespaul lp_cherry})
+       (1 {game set_guitar lespaul lp_cherry})
+       (2 {game set_guitar lespaul lp_cayenne})
+       (3 {game set_guitar lespaul lp_goddessburst})
+       (4 {game set_guitar lespaul lp_zakk})
+       (5 {game set_guitar sg sg_cherry})
+       (6 {game set_guitar sg sg_cherry})
+       (7 {game set_guitar sg sg_white})
+       (8 {game set_guitar sg sg_gt})
+       (9 {game set_guitar sg sg_flames})
+       (10 {game set_guitar flying_v fv_white})
+       (11 {game set_guitar flying_v fv_white})
+       (12 {game set_guitar flying_v fv_v2})
+       (13 {game set_guitar flying_v fv_century})
+       (14 {game set_guitar flying_v fv_red})
+       (15 {game set_guitar explorer exp_ebony})
+       (16 {game set_guitar explorer exp_ebony})
+       (17 {game set_guitar explorer exp_nat})
+       (18 {game set_guitar explorer exp_sun})
+       (19 {game set_guitar explorer exp_white})
+       (20 {game set_guitar explorer exp_swirl})
+       (21 {game set_guitar lespaul_doublecut lp_dbl_white})
+       (22 {game set_guitar lespaul_doublecut lp_dbl_yellow})
+       (23 {game set_guitar lespaul_doublecut lp_dbl_resin})
+       (24 {game set_guitar firebird fb_burst})
+       (25 {game set_guitar firebird fb_burst})
+       (26 {game set_guitar firebird fb_blue})
+       (27 {game set_guitar firebird fb_ebony})
+       (28 {game set_guitar firebird fb_leopard})
+       (29 {game set_guitar epiphone_coronet coronet_brown})
+       (30 {game set_guitar epiphone_coronet coronet_brown})
+       (31 {game set_guitar epiphone_coronet coronet_cherry})
+       (32 {game set_guitar epiphone_coronet coronet_burst})
+       (33 {game set_guitar epiphone_coronet coronet_green})
+       (34 {game set_guitar kramer_vanguard van_black})
+       (35 {game set_guitar kramer_vanguard van_black})
+       (36 {game set_guitar kramer_vanguard van_yellow})
+       (37 {game set_guitar moderne mod_nat})
+       (38 {game set_guitar moderne mod_nat})
+       (39 {game set_guitar moderne mod_cherry})
+       (40 {game set_guitar corvus cor_yellow})
+       (41 {game set_guitar corvus cor_yellow})
+       (42 {game set_guitar corvus cor_nat})
+       (43 {game set_guitar es335 es_maple})
+       (44 {game set_guitar es335 es_maple})
+       (45 {game set_guitar es335 es_cherry})
+       (46 {game set_guitar kramer_650 650_stripe})
+       (47 {game set_guitar kramer_650 650_stripe})
+       (48 {game set_guitar kramer_650 650_white})
+       (49 {game set_guitar eds eds_cherry})
+       (50 {game set_guitar eds eds_cherry})
+       (51 {game set_guitar eds eds_white})
+       (52 {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker})
+       (53 {game set_guitar lespaul_sonex lp_sonex})
+       (54 {game set_guitar lespaul_marauder lp_marauder})
+       (55 {game set_guitar epiphone_casino casino})
+       (56 {game set_guitar epiphone_sheraton sheraton})
+       (57 {game set_guitar chet_atkins chet_orange})
+       (58 {game set_guitar fish_reward fish})
+       (59 {game set_guitar usa_reward usa})
+       (60 {game set_guitar coffin_reward coffin})
+       (61 {game set_guitar viking_reward snaketapus})
+       (62 {game set_guitar snaketapus_reward snaketapus})
+       (63 {game set_guitar eyeball_reward eyeball})
+       (64 {game set_guitar battleaxe_reward battleaxe})
+       (65 {game set_guitar log_reward log})
+       (66 {game set_guitar scythe scythe})
+       (67 {game set_guitar guitar_red_octane guitar_red_octane})
+       (68 {game set_guitar bass_musicman bass_music_black})
+       (69 {game set_guitar bass_musicman_lava bass_music_lava})
+       (70 {game set_guitar bass_sg_mahogany bass_sg_mahog})
+       (71 {game set_guitar bass_sg_cream bass_sg_cream})
+       (72 {game set_guitar bass_grabber_cherry bass_grab_cherry})
+       (73 {game set_guitar bass_grabber_maple bass_grab_maple})
+       (74 {game set_guitar bass_thunderbird_ebony bass_tb_ebony})
+       (75 {game set_guitar bass_thunderbird_burst bass_tb_burst})
+       (76 {game set_guitar bass_hofner bass_hofner})
+       }})
+   
+   (enter ;when the screen is entered
+      {set $randomnumber 0}
+      {set $randomvenuenumber 0}
+      {set $randomguitarnumber 0}
+      {if {exists random_char_task} {delete random_char_task}}
+      {if {exists random_venue_task} {delete random_venue_task}}
+      {if {exists random_guitar_task} {delete random_guitar_task}}
+      {thread_task
+         (units kTaskUISeconds)
+         (name random_char_task)
+         (script
+            {$this random_char}
+            {$task sleep 0.3}
+            {$task loop}
+            )}
+      {thread_task
+         (units kTaskUISeconds)
+         (name random_venue_task)
+         (script
+            {$this random_venue}
+            {$task sleep 0.4}
+            {$task loop}
+            )}
+      {thread_task
+         (units kTaskUISeconds)
+         (name random_guitar_task)
+         (script
+            {$this random_guitar}
+            {$task sleep 0.1}
+            {$task loop}
+            )}
    {if_else $altsong
    {do
       {sd_select.lbl set_local_pos 0 150 200}
@@ -85,6 +237,9 @@
 #endif
       {$this update_pos})
    (exit
+      {if {exists random_guitar_task} {delete random_guitar_task}}
+      {if {exists random_char_task} {delete random_char_task}}
+      {if {exists random_venue_task} {delete random_venue_task}}
       {song_preview ''}
       {if
          [metamusic_on_exit]

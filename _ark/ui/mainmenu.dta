@@ -13,7 +13,7 @@
    (already_entered FALSE)
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
-   (enter ;when the screen is entered
+   (enter
       {if {! $egg4} {main_buttons.view set_local_pos 0 0 -115}}
       {if $egg2 {main_buttons.view set_local_pos 0 0 -80}}
       {if $game80s {main_buttons.view set_local_pos 0 0 -90}}

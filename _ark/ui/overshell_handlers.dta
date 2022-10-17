@@ -551,8 +551,11 @@
       kDataUnhandled))
 #define OVERSHELL_CHARACTER_LIST_SELECT_START_MSG
 ((SELECT_START_MSG
+      {set $forcecharacter TRUE}
       {switch
        {$component selected_sym}
+       (random {set $forcecharacter FALSE}
+       OVERSHELL_HELP_POP_HANDLER)
        (punk1 {game set_character punk1 TRUE}
        OVERSHELL_HELP_POP_HANDLER)
        (punk2 {game set_character punk2 TRUE}
@@ -594,8 +597,11 @@
       kDataUnhandled))
 #define OVERSHELL_VENUE_LIST_SELECT_START_MSG
 ((SELECT_START_MSG
+      {set $forcevenue TRUE}
       {switch
        {$component selected_sym}
+       (random {set $forcevenue FALSE}
+       OVERSHELL_HELP_POP_HANDLER)
        (battle {game set_venue battle TRUE}
        OVERSHELL_HELP_POP_HANDLER)
        (small1 {game set_venue small1 TRUE}
@@ -614,8 +620,11 @@
        OVERSHELL_HELP_POP_HANDLER)}
       kDataUnhandled))
 ((SELECT_START_MSG
+      {set $forceguitar TRUE}
       {switch
        {$component selected_sym}
+       (random {set $forceguitar FALSE}
+       OVERSHELL_HELP_POP_HANDLER)
        (lespaul {game set_guitar lespaul lp_cherry}
        OVERSHELL_HELP_POP_HANDLER)
        (lp_cherry {game set_guitar lespaul lp_cherry}
@@ -1451,9 +1460,9 @@
     {gs_tile5.mesh set_local_scale_index 2 .5}
     {gs_tile5.mat set diffuse_tex gs_pic.tex}
     {set $uipicturenumber 0}
-    {set $charactermenu punk1}
+    {set $charactermenu random}
     {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}}
-    {if {exists char_pic_task} {delete char_pic_task}} ;second attempt at responsive song progress meter)
+    {if {exists char_pic_task} {delete char_pic_task}} ;second attempt at responsive song progress meters
     {thread_task
          (units kTaskUISeconds)
          (name char_pic_task)
@@ -1464,7 +1473,7 @@
             )}
    {do
          {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
+         {sel_section.lst set_data (random punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
          {sel_section.lst set circular 1}}
          {gs_title.lbl set_text "CHARACTERS"})
    (SCROLL_MSG
@@ -1491,7 +1500,7 @@
    {do
          {gs_tile5.mesh set_showing FALSE}
          {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (battle small1 small2 big theatre fest arena stone)}
+         {sel_section.lst set_data (random battle small1 small2 big theatre fest arena stone)}
          {sel_section.lst set circular 1}}
          {gs_title.lbl set_text "VENUES"})
    OVERSHELL_VENUE_LIST_SELECT_START_MSG
@@ -1514,7 +1523,7 @@
    {do
          {gs_tile5.mesh set_showing FALSE}
          {sel_section.lst set_data (
-         lespaul lp_cayenne lp_goddessburst lp_zakk
+         random lespaul lp_cayenne lp_goddessburst lp_zakk
          sg sg_white sg_gt sg_flames
          flying_v fv_v2 fv_century fv_red
          explorer exp_nat exp_sun exp_white exp_swirl
