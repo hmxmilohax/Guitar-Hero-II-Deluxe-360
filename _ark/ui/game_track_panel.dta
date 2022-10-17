@@ -192,7 +192,8 @@
             {&&
                {! $cheat_enabled_performance_mode}
                {! $neckless}}}}
-      {$this set_track_out})
+      {$this set_track_out}
+      TRACK_MODIFIER_HANDLERS)
    (enter
       {game add_sink $this blow_streak})
    (exit {game remove_sink $this})
