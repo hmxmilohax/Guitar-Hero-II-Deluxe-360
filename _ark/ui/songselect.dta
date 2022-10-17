@@ -164,9 +164,9 @@
       {set $randomnumber {random_int 0 18}}
       {set $randomvenuenumber {random_int 0 7}}
       {set $randomguitarnumber {random_int 0 76}}
-            {$this random_char}
-            {$this random_venue}
-            {$this random_guitar}
+      {$this random_char}
+      {$this random_venue}
+      {$this random_guitar}
    {if_else $altsong
    {do
       {sd_select.lbl set_local_pos 0 150 200}
