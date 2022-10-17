@@ -45,7 +45,7 @@
       {ui goto_screen storage_changed_screen})
 #endif
 (random_char
-     {if {! $forcecharacter
+     {if {! $forcecharacter}
        {switch $randomnumber
        (0 {game set_character punk1 TRUE})
        (1 {game set_character punk2 TRUE})
