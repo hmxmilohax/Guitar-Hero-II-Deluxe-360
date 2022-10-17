@@ -123,7 +123,7 @@
       {$this setup '' '' none $msg $title})}
 {func
    goto_startup_load
-   {set $mc_return_screen main_screen}
+   {set $mc_return_screen nameprof_screen}
    {set $autosave TRUE}
    {if_else
       {profilemgr is_active_pad_signed_in}
@@ -131,12 +131,18 @@
       {ui goto_screen startup_signin_screen}}}
 {func
    goto_post_startup_load
-   {if_else
-      {>
-         {campaign num_profiles}
-         0}
-      {ui goto_screen main_screen}
-      {ui goto_screen main_screen}}}
+   {gamecfg set mode career}
+            {if_else
+               {>
+                  {campaign num_profiles}
+                  0}
+               {ui goto_screen main_screen}
+               {do
+                  {nameprof_screen set back_screen chooseprof_screen}
+                  {nameprof_screen set is_editing FALSE}
+                  {nameprof_screen set profile_slot 0}
+                  {nameprof_screen set next_screen main_screen}
+                  {ui goto_screen nameprof_screen}}}}
 {new
    GHScreen
    startup_signin_screen
@@ -220,6 +226,7 @@
    startup_create_save_screen
    DIALOG_SCREEN
    (enter
+      {set $mc_return_screen nameprof_screen}
       {dialog setup mc_choose_device mc_no_save button1 mc_create_file mc_title_warning})
    (SELECT_START_MSG
       {switch
@@ -706,6 +713,6 @@
             {campaign
                delete_slot
                {manage_band_screen get profile_slot}}
-            {autosave_goto options_screen})
+            {autosave_goto nameprof_screen})
          (dl_button2.btn
             {ui goto_screen manage_band_screen})})}

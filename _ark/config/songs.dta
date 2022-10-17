@@ -1,5 +1,5 @@
+#define SPEEDTEST_DATA
 (
-   'speedtest'
    (
       'name'
       "Speed Test"
@@ -50,4 +50,36 @@
       ('venue' 'theatre')
    )
    ('band' 'metal_bass' 'metal_drummer')
+)
+(
+   'speedtest'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest2'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest3'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest4'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest5'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest6'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest7'
+   SPEEDTEST_DATA
+)
+(
+   'speedtest8'
+   SPEEDTEST_DATA
 )

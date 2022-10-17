@@ -113,7 +113,7 @@
 (HOW_TO_END
    "Press START button to accept name and continue")
 (HOW_TO_EDIT
-   "You can edit this name later from Manage Band in the Options menu")
+   "You can edit this name later from the main menu")
 (choose_band
    "CHOOSE BAND")
 (no_profile
@@ -290,7 +290,7 @@
    "Eyeball Head Crowd")
 (cheat_monkey_head_crowd
    "Monkey Head Crowd")
-(CAREER " ")
+(CAREER "USERNAME")
 (MULTIPLAYER
    "MULTIPLAYER")
 (OPTIONS

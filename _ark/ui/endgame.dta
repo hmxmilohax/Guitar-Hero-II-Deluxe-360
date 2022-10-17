@@ -25,16 +25,10 @@
                {status_panel set new_status $new_status}}
             {status_panel set new_status_award $new_status_award}
             {if {!= $new_venue ""}
-               {gamecfg set continue_screen career_screen}}
-            {if {get_highscore_index $score}
-               {highscores add {campaign profile_name {campaign profile_slot}} $score}}}}
-#ifndef HX_XBOX
-; GH2 ELF
-#ifndef _ENCO
-#ifndef _MEGA
-#ifndef _ONYX
-#ifndef 8DBUG
-#ifndef GH1RX
+               {gamecfg set continue_screen highscore_screen}}
+            ;{if {get_highscore_index $score}
+             ;  {highscores add {campaign profile_name {campaign profile_slot}} $score}}
+               }}
       {do
          ($win_screen $freebird)
          {set $win_screen
@@ -53,57 +47,6 @@
          {if {== $win_screen endgame_encore_screen}
             {endgame_encore_panel set freebird $freebird}}
          {ui goto_screen $win_screen}}
-#endif
-#endif
-#endif
-#endif
-#endif
-
-; All other ELFs
-#ifndef _SHIP
-#ifndef 2DBUG
-      {do
-         ($win_screen $is_final_song)
-         {set $win_screen
-            {if_else {meta get won_campaign} win_game_screen
-               {if_else {'||'
-               {game get force_encore}
-               {&&
-               {game get encore_unlock_check}
-               {campaign encore_newly_unlocked $is_final_song}}}
-                  endgame_encore_screen
-                  {gamecfg get win_screen}}}}
-         {script_task
-            (units kTaskUISeconds)
-            (delay 0.3)
-            (script {play_sfx postshow_loop})}
-         {if {== $win_screen endgame_encore_screen}
-            {endgame_encore_panel set is_final_song $is_final_song}}
-         {ui goto_screen $win_screen}}
-#endif
-#endif
-#endif
-
-#ifdef HX_XBOX
-      {do
-         ($win_screen $freebird)
-         {set $win_screen
-            {if_else {meta get won_campaign} win_game_screen
-               {if_else {'||'
-               {game get force_encore}
-               {&&
-               {game get encore_unlock_check}
-               {campaign encore_newly_unlocked $freebird}}}
-                  endgame_encore_screen
-                  {gamecfg get win_screen}}}}
-         {script_task
-            (units kTaskUISeconds)
-            (delay 0.3)
-            (script {play_sfx postshow_loop})}
-         {if {== $win_screen endgame_encore_screen}
-            {endgame_encore_panel set freebird $freebird}}
-         {ui goto_screen $win_screen}}
-#endif
 )}
 
 {func goto_endgame_complete
@@ -117,7 +60,7 @@
             ({campaign has_unlocked_song} unlock_song_screen)
 #endif
             ({campaign num_guitar_awards} unlock_guitar_screen)
-            (TRUE complete_screen)}
+            (TRUE highscore_screen)}
              {if_else $disable_save complete_screen highscore_screen}}}}
 
 #define ADJS
@@ -1118,7 +1061,7 @@
    (animate_transition FALSE)
    (okay_to_add_score TRUE)
    (enter
-      {set [okay_to_add_score] TRUE})
+      {set [okay_to_add_score] FALSE})
    (update_help_bar
       {do
          ($ten {highscore_panel get_active_ten})

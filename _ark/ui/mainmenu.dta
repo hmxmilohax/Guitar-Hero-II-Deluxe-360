@@ -14,7 +14,7 @@
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter ;when the screen is entered
-      {if {! $egg4} {main_buttons.view set_local_pos 0 0 -105}}
+      {if {! $egg4} {main_buttons.view set_local_pos 0 0 -115}}
       {if $egg2 {main_buttons.view set_local_pos 0 0 -80}}
       {if $game80s {main_buttons.view set_local_pos 0 0 -90}}
       {set $hardware_check FALSE}
@@ -25,8 +25,8 @@
       ;{{load_objects "game:/hardware_check.milo"} save_objects "game:/converted.milo"}
       {campaign set_profile_slot 0} ;attempt to set up career for quickplay
       {set $main_entered TRUE} ;this lets the game know first boot has occured and no longer needs to perform additional setup when main screen is entered again
-      {set $cheat_enabled_unlock_all 1} ;unlock all for dx
-      {campaign set_all_access 1} ;unlock all for dx
+      ;{set $cheat_enabled_unlock_all 1} ;unlock all for dx
+      ;{campaign set_all_access 1} ;unlock all for dx
       {$this reset_player_settings} ;sets player defaults, only run onces on first entry
       {set $dontreset TRUE} ;monkey script to make the player reset not occur after first entry
       {if {! [already_entered]} {synth play_sequence meta_lick} {$this set already_entered TRUE}} ;play a noise on first entry, and tell the game entry has occured
@@ -35,12 +35,24 @@
       {set [msg_last_frame] 0} ;resets the timeline for the cheat notification for later playback (unused)
       {gamecfg set_player 0 {profilemgr active_padnum}} ;set player 1 to the current active gamepad on xbox 260
       {content_mgr start_enumeration} ;start checking for dlc on xbox
-      {main_career.btn set_showing FALSE}
-      {$this disable main_career.btn}
+      ;{main_career.btn set_showing FALSE}
+      ;{$this disable main_career.btn}
       )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch $component ;switch action based on result of which button is selected
          (main_career.btn
+            {gamecfg set mode career}
+            {if_else
+               {>
+                  {campaign num_profiles}
+                  0}
+               {ui goto_screen manage_band_screen}
+               {do
+                  {nameprof_screen set back_screen main_screen}
+                  {nameprof_screen set is_editing FALSE}
+                  {nameprof_screen set profile_slot 0}
+                  {nameprof_screen set next_screen main_screen}
+                  {ui goto_screen nameprof_screen}}}
             ;{game set_song {campaign pick_attract_song}} {game set_career} {ui goto_screen loading_screen}
             ;{{load_objects "game:/test.milo"} save_objects "game:/converted.milo"} ;test code for milo conversion. input milo must be named as test.milo_xbox
             ;{ui goto_screen nameprof_screen} ;name profile screen for highscores (career)

@@ -1,17 +1,17 @@
 (order
    (battle speedtest)
-   (small1 )
-   (small2 )
-   (big )
-   (theatre )
-   (fest )
-   (arena )
-   (stone ))
+   (small1 speedtest2)
+   (small2 speedtest3)
+   (big speedtest4)
+   (theatre speedtest5)
+   (fest speedtest6)
+   (arena speedtest7)
+   (stone speedtest8))
 (required_songs
-   (kDifficultyEasy 4 5)
-   (kDifficultyMedium 5 6)
-   (kDifficultyHard 6 6)
-   (kDifficultyExpert 6 6))
+   (kDifficultyEasy 1 1)
+   (kDifficultyMedium 1 1)
+   (kDifficultyHard 1 1)
+   (kDifficultyExpert 1 1))
 (cash
    (starting 50)
    (star_awards
