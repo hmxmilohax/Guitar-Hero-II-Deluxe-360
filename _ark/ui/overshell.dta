@@ -36,6 +36,7 @@
    (panels overshell_panel) ;what panels are included in this screen
    (focus overshell_panel) ;what panel to focus on
    (clear_vram TRUE)
+   (enter {if {exists char_pic_task} {delete char_pic_task}})
    OVERSHELL_SCREEN_HANDLERS ;setup overshell with common screen handles defined above
    OVERSHELL_SELECT_START_HANDLER ;run common select start handle define above
    OVERSHELL_BUTTON_DOWN_HANDLER ;run common button down handle define above
