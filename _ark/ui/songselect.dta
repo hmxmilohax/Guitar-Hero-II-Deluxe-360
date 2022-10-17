@@ -85,7 +85,7 @@
    (random_guitar
      {if {! $forceguitar}
         {set $randomguitarnumber {+ $randomguitarnumber 1}}
-         {if {> $randomguitarnumber 18} {set $uipicturenumber 0}}
+         {if {> $randomguitarnumber 76} {set $uipicturenumber 0}}
        {switch $randomguitarnumber
        (0 {game set_guitar lespaul lp_cherry})
        (1 {game set_guitar lespaul lp_cherry})
