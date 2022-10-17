@@ -45,9 +45,7 @@
       {ui goto_screen storage_changed_screen})
 #endif
 (random_char
-     {if {! $forcecharacter}
-        {set $randomnumber {+ $randomnumber 1}}
-         {if {> $randomnumber 18} {set $randomnumber 0}}
+     {if {! $forcecharacter
        {switch $randomnumber
        (0 {game set_character punk1 TRUE})
        (1 {game set_character punk2 TRUE})
@@ -70,8 +68,6 @@
        (18 {game set_character grim TRUE})}})
    (random_venue
      {if {! $forcevenue}
-        {set $randomvenuenumber {+ $randomvenuenumber 1}}
-         {if {> $randomvenuenumber 7} {set $randomvenuenumber 0}}
        {switch $randomvenuenumber
        (0 {game set_venue battle TRUE})
        (1 {game set_venue small1 TRUE})
@@ -84,8 +80,6 @@
        }})
    (random_guitar
      {if {! $forceguitar}
-        {set $randomguitarnumber {+ $randomguitarnumber 1}}
-         {if {> $randomguitarnumber 76} {set $uipicturenumber 0}}
        {switch $randomguitarnumber
        (0 {game set_guitar lespaul lp_cherry})
        (1 {game set_guitar lespaul lp_cherry})
@@ -167,36 +161,12 @@
        }})
    
    (enter ;when the screen is entered
-      {set $randomnumber 0}
-      {set $randomvenuenumber 0}
-      {set $randomguitarnumber 0}
-      {if {exists random_char_task} {delete random_char_task}}
-      {if {exists random_venue_task} {delete random_venue_task}}
-      {if {exists random_guitar_task} {delete random_guitar_task}}
-      {thread_task
-         (units kTaskUISeconds)
-         (name random_char_task)
-         (script
+      {set $randomnumber {random_int 0 18}}
+      {set $randomvenuenumber {random_int 0 7}}
+      {set $randomguitarnumber {random_int 0 76}}
             {$this random_char}
-            {$task sleep 0.3}
-            {$task loop}
-            )}
-      {thread_task
-         (units kTaskUISeconds)
-         (name random_venue_task)
-         (script
             {$this random_venue}
-            {$task sleep 0.4}
-            {$task loop}
-            )}
-      {thread_task
-         (units kTaskUISeconds)
-         (name random_guitar_task)
-         (script
             {$this random_guitar}
-            {$task sleep 0.1}
-            {$task loop}
-            )}
    {if_else $altsong
    {do
       {sd_select.lbl set_local_pos 0 150 200}
