@@ -58,6 +58,7 @@
 (cheat_awesomeness "Cheats moved to Extras menu")
 (cheat_barf "Roxbury Mode")
 (cheat_nofail "No Fail")
+(cheat_noflames "No Flames")
 (cheat_funni "fast track entry")
 
 ; Easter eggs (don't tell anyone)
@@ -120,6 +121,7 @@
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "No Fail" {if_else $nofail ": ON" ": OFF"}})
+(os_noflames {sprint "No Flames" {if_else $noflames ": ON" ": OFF"}})
 (os_songtitle {sprint "Song Title Always" {if_else $songtitle ": ON" ": OFF"}})
 (os_highwayshake {sprint "Board Shake" {if_else $highwayshake ": ON" ": OFF"}})
 (os_horsehead {sprint "Horse Head (PS2)" {if_else $notenabled ": ON" ": OFF"}})
@@ -156,6 +158,7 @@
 (endgame_focusmode "Focus Mode")
 (endgame_brutalmode "Brutal Mode")
 (endgame_nofail "No Fail")
+(endgame_noflames "No Flames")
 (endgame_songtitle "Song Title Always")
 (endgame_highwayshake "Board Shake")
 (endgame_horsehead "Horse Head (PS2)")

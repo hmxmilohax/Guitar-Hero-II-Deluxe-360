@@ -256,7 +256,7 @@
          set_data
          (
           {sprint {localize endgame_towel} ": " {if_else $towel "ON" "OFF"}}
-          {sprint {localize endgame_gh1track} ": " {if_else $gh1track "ON" "OFF"}}
+          {sprint {localize endgame_noflames} ": " {if_else $noflames "ON" "OFF"}}
           {sprint {localize endgame_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
           {sprint {localize endgame_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
           )}
@@ -1156,4 +1156,4 @@
    (BUTTON_DOWN_MSG
       {if {== $button kPad_X}
          {synth play_sequence button_select}
-         {goto_endgame_complete}})}    
+         {goto_endgame_complete}})}

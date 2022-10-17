@@ -56,6 +56,7 @@
 (cheat_awesomeness "Trucos movidos al menú de Extras")
 (cheat_barf "Modo Roxbury")
 (cheat_nofail "Sin Fallos")
+(cheat_nofail "No Fail")
 (cheat_funni "entrada de pista rápida")
 
 ; Easter eggs (don't tell anyone)
@@ -118,6 +119,7 @@
 (os_focusmode {sprint "Modo Focus" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Modo Brutal" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "Sin Fallos" {if_else $nofail ": ON" ": OFF"}})
+(os_nofail {sprint "No Flames" {if_else $noflames ": ON" ": OFF"}})
 (os_songtitle {sprint "Tema Siempre Visible" {if_else $songtitle ": ON" ": OFF"}})
 (os_highwayshake {sprint "Meneo de Pista" {if_else $highwayshake ": ON" ": OFF"}})
 (os_horsehead {sprint "Cabeza Caballo (PS2)" {if_else $notenabled ": ON" ": OFF"}})
@@ -154,6 +156,7 @@
 (endgame_focusmode "Modo Focus")
 (endgame_brutalmode "Modo Brutal")
 (endgame_nofail "Sin Fallos")
+(endgame_noflames "No Flames")
 (endgame_songtitle "Mostrar Título Siempre")
 (endgame_highwayshake "Agitación de diapasón")
 (endgame_horsehead "Cabeza Caballo (PS2)")

@@ -224,16 +224,20 @@
 {{track_panel find half_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
 {{track_panel find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 #else
-{if_else $noflames
-{{{track_panel loaded_dir} find track_new} iterate ParticleSys $m {$m set_showing FALSE}}
-{{{track_panel loaded_dir} find track_new} iterate ParticleSys $m {$m set_showing TRUE}}}
-{{{{track_panel loaded_dir} find track_new} find cameras.grp} set_local_scale_index 0 $trackcamx}
-{{{{track_panel loaded_dir} find track_new} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
-{{{{track_panel loaded_dir} find track_new} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find track_new} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find track_new} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find track_new} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find track_new} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
+{if {exists track_both} {set $tracktype track_both}}
+{if {exists track_bright} {set $tracktype track_bright}}
+{if {exists track_dark} {set $tracktype track_dark}}
+{if {exists track_drum} {set $tracktype track_drum}}
+{if {exists track_new} {set $tracktype track_new}}
+{if {exists track_old} {set $tracktype track_old}}
+{{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}}
+{{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
+{{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
+{{{{track_panel loaded_dir} find $tracktype} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
+{{{{track_panel loaded_dir} find $tracktype} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
+{{{{track_panel loaded_dir} find $tracktype} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
+{{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
+{{{{track_panel loaded_dir} find $tracktype} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
 
 #endif
 {track_panel reset})})}

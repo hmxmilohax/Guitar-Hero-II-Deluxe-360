@@ -1,6 +1,6 @@
 #define OVERSHELL_LIST_CONTENTS
 (
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_whammyfx os_muting os_nofail os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_whammyfx os_muting os_nofail os_noflames os_songtitle os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
@@ -248,6 +248,18 @@
          {set $skipoutro TRUE}
          {set $modifierlistpos {sel_section.lst selected_pos}}
          OVERSHELL_LIST_RESET_HANDLER}})
+       (os_noflames
+          {if_else $noflames
+            {do
+            {play_sfx cheat_off}
+            {set $noflames FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $noflames TRUE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}})
        (os_nofail
           {if_else $nofail
             {do
