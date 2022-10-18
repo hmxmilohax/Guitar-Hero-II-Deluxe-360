@@ -97,9 +97,9 @@
       (tail_glow 'tail_glow_%s')
       (star 'gem_starpower_%s')
       (dot 'dot_top_hopo2_%s'))
-   (tail_glow_width 1.5)
-   (tail_glow_tight_width 0.7)
-   (sparkle_len 1.0)
+   (tail_glow_width {if_else {'==' $trackcamx 1.0} 1.5 0})
+   (tail_glow_tight_width {if_else {'==' $trackcamx 1.0} 0.7 0})
+   (sparkle_len {if_else {'==' $trackcamx 1.0} 1.0 0})
    (parts
       ((gem
           (type kMeshGem))
