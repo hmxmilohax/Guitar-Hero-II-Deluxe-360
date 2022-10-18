@@ -683,7 +683,7 @@
        OVERSHELL_HELP_POP_HANDLER)
        (fb_leopard {game set_guitar firebird fb_leopard}
        OVERSHELL_HELP_POP_HANDLER)
-        (epiphone_coronet {game set_guitar epiphone_coronet coronet_brown}
+       (epiphone_coronet {game set_guitar epiphone_coronet coronet_brown}
        OVERSHELL_HELP_POP_HANDLER)
        (coronet_brown {game set_guitar epiphone_coronet coronet_brown}
        OVERSHELL_HELP_POP_HANDLER)
@@ -747,7 +747,7 @@
        OVERSHELL_HELP_POP_HANDLER)
        (coffin_reward {game set_guitar coffin_reward coffin}
        OVERSHELL_HELP_POP_HANDLER)
-       (viking_reward {game set_guitar viking_reward snaketapus}
+       (viking_reward {game set_guitar viking_reward viking}
        OVERSHELL_HELP_POP_HANDLER)
        (snaketapus_reward {game set_guitar snaketapus_reward snaketapus}
        OVERSHELL_HELP_POP_HANDLER)
