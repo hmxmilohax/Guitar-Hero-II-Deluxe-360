@@ -52,7 +52,7 @@
 ;No fail mode
 {set $nofail FALSE}
 ;default highway image
-{set $highway _black_highway}
+{set $highway none}
 ;Turns highway shake on or off
 {set $highwayshake TRUE}
 ;player 1 and player 2 lefty flip
