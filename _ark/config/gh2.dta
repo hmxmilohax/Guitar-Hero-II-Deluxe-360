@@ -175,7 +175,7 @@
          ($this star_phrase_miss_callback)})
    (start_using
       ($player_num)
-      {if $highwayshake {{{$this track} extend_anim} animate (range 2000 2025) (period 0.8)}}
+      {if {'&&' $highwayshake {'==' $trackcamx 1.0}} {{{$this track} extend_anim} animate (range 2000 2025) (period 0.8)}}
       {{$this player_matcher}
          on_start_starpower}
       {if $sfx {play_game_sfx_player sp_deployed sp_deployed_multi $player_num}}
