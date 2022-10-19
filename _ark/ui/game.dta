@@ -382,7 +382,7 @@
                {set $mult {band base_multiplier}} ;if coop, check the whole band multiplier
                {set $mult {$playerobj base_multiplier}} ;if singleplayer, check only the first player
             }
-            {if {'&&' $highwayshake {> $mult 1}} ;if highwayshake is enabled and the multiplier is above 1x
+            {if {'&&' $highwayshake {'==' $trackcamx 1.0} {> $mult 1}} ;if highwayshake is enabled and the multiplier is above 1x
                {handle (game blow_streak $player $mult)} ;shake the highway for the player in severity based off the current multiplier
             }
          }
