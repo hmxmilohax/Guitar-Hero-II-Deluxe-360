@@ -49,7 +49,7 @@
    (continue_screen main_screen)
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
-   (track_surface_override {if_else {&& {== $highway none} {! $focusmode}} '' {if_else {&& {== $highway none} $focusmode} _black_highway $highway}}) ;this is where the magic of custom highways happen
+   (track_surface_override {if_else {&& {== $highway none} {! $focusmode}} rosewood {if_else {&& {== $highway none} $focusmode} _black_highway $highway}}) ;this is where the magic of custom highways happen
    (song_block
       {if_else
          {==
