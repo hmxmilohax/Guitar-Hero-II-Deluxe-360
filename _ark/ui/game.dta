@@ -364,6 +364,7 @@
       {world_panel set_showing TRUE} ;set the world showing to true no matter what
       {track_panel set_showing FALSE} ;hide the track panel because you failed and you suck
       {name_overlay_panel set_showing FALSE}
+      {mtv_overlay_panel set_showing FALSE}
       {game set_realtime TRUE} ;return to default game speed
       {$this slow_music} ;slow down the music based on LOSE_MUSIC_SLOW_SEC define
       #ifdef HX_XBOX ;xbox acheivement handling
