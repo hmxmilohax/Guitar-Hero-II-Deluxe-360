@@ -26,16 +26,18 @@
       {track_budget setup $cfg}
       {set $first_screen track_budget}}}
 ; Set various defaults on startup, including ELF specific bootups. $speedmod
-; is the song speed, $trackspd is the note speed, $interval refers to the
+; is the song speed, $trackspeed is the note speed, $interval refers to the
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
 
 ;wip track width controller
 {set $trackcamx 1.0}
+;default name on screen in game
+{set $nametitle TRUE}
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
 ;Track/Highway/Note Speed. Each .1 is 10%
-{set $trackspd 1.0}
+{set $trackspeed 1.0}
 ;Focus mode gives you a black background in
 ;game and turns off some additional noises
 {set $focusmode FALSE}

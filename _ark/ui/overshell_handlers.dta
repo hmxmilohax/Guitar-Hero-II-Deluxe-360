@@ -1,6 +1,6 @@
 #define OVERSHELL_LIST_CONTENTS
 (
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_whammyfx os_muting os_nofail os_noflames os_songtitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
@@ -202,7 +202,7 @@
             
             {play_sfx cheat}
             {set $towel TRUE}
-            {set $trackspd 1.0}
+            {set $trackspeed 1.0}
             {set $modifierlistpos {sel_section.lst selected_pos}}
             OVERSHELL_LIST_RESET_HANDLER}})
        (os_skipintro
@@ -308,6 +308,18 @@
             {do
             {play_sfx cheat}
             {set $songtitle TRUE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}})
+       (os_nametitle
+         {if_else $nametitle
+            {do
+            {play_sfx cheat_off}
+            {set $nametitle FALSE}
+            {set $modifierlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_LIST_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $nametitle TRUE}
             {set $modifierlistpos {sel_section.lst selected_pos}}
             OVERSHELL_LIST_RESET_HANDLER}})
        (os_highwayshake
@@ -1051,7 +1063,7 @@
          {$this disable gs_guitar.sld}
       }
       {gs_guitar.sld set_current
-         {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}
+         {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.1}}}
       }
       {gs_sfx.sld set_current
          {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}
@@ -1060,7 +1072,7 @@
          {int {- $emulatefps 1}}
       }
       {stereo.chk set_check $focusmode}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+      {$this display_speed_msg $trackspeed $speedmod $emulatefps}
    )
    (reset_gm_title
       {gs_title.lbl set_localized_text GAME_MODIFIER}
@@ -1092,7 +1104,7 @@
    (set_speeds
       {if {$this slider_changed}
          {do
-            {set $trackspd
+            {set $trackspeed
                {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}
             }
             {set $speedmod
@@ -1101,7 +1113,7 @@
             {set $emulatefps
                {+ 1 {gs_band.sld current}}
             }
-            {$this display_speed_msg $trackspd $speedmod $emulatefps}
+            {$this display_speed_msg $trackspeed $speedmod $emulatefps}
          }
       }
    )
@@ -1114,7 +1126,7 @@
       }
       {$this update_help_display}
       {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+      {$this display_speed_msg $trackspeed $speedmod $emulatefps}
       kDataUnhandled
    )
    (FOCUS_MSG
@@ -1179,7 +1191,7 @@
       }
       {$this update_help_display}
       {$this set_speeds}
-      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+      {$this display_speed_msg $trackspeed $speedmod $emulatefps}
    )
 )
 #define SLIDER_LEVELS

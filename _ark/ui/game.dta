@@ -72,6 +72,44 @@
       {$this set_showing $show} ;show or hide based off variable
       {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
       )}
+{new GHPanel name_overlay_panel
+   (file mtv_overlay.milo)
+   (enter ;when the screen is entered
+      {mtv_overlay.view set_local_scale .7 1 .7} ;make the mtv overlay small
+      {mtv_overlay.view set_local_pos 186 1 -345} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+;      {$this setup_text} ;run the setup_text code block below
+   )
+   (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below
+         {do
+            ($prefix "mtv_campaign_line") ;setup prefix variable to switch between line numbers
+            {mtv_campaign_song_id.view set_showing TRUE} ;show the mtv overlay
+            {if_else $autoplay ;check for autoplay enabled without author variable, the author checks will override this if needed
+               {set $mtvline1 {localize autoplaytext}}
+               {set $mtvline1 {campaign profile_name 0}}
+            }
+            {$this set_line $prefix 1 $mtvline1} ;if all speeds are 100% simply show the song name on line 1
+            {$this set_line $prefix 2 {sprint "\n\n\n\n\n"}} ;the artist text line is always just "BY - ARTIST"
+            {$this set_line $prefix 3 {sprint "\n\n\n\n\n"}} ;if autoplay, just put the static shit
+         }
+   )
+    (set_line ;called in mtv overlay to apply the text to two labels at once
+      ($prefix $i $text) ;setup variables
+      {{sprint $prefix $i ".lbl"} set_localized_text $text} ;set the main text objects
+      {{sprint $prefix $i ".lbl"} set alignment kMiddleCenter}
+      {{sprint $prefix $i ".lbl"} set width 640.0}
+      {{sprint $prefix $i "_shadow.lbl"} set_localized_text $text} ;set the shadow text objects
+      {{sprint $prefix $i "_shadow.lbl"} set alignment kMiddleCenter}
+      {{sprint $prefix $i "_shadow.lbl"} set width 640.0}
+      {mtv_campaign_line2.lbl set_showing FALSE}
+      {mtv_campaign_line2_shadow.lbl set_showing FALSE}
+      {mtv_campaign_line3.lbl set_showing FALSE}
+      {mtv_campaign_line3_shadow.lbl set_showing FALSE}
+   )
+   (show_overlay ;code to run to show the overlay or not based on a variable
+      ($show) ;setup variable
+      {$this set_showing $show} ;show or hide based off variable
+      {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
+      )}
 {new MidiLoaderPanel midi_loader_panel} ;oh yeah look at all these options we have here...
 {new GamePanel game
    (file "") ;ya got me, but yeah game panel doesnt load a milo
@@ -263,6 +301,7 @@
          {do
             {hud set_showing FALSE}
             {track_panel set_showing FALSE}
+            {name_overlay_panel set_showing FALSE}
             {script_task
                (delay 0.5)
                (units kTaskSeconds)
@@ -321,6 +360,7 @@
          {if {exists world} {world toggle_pick_shot}}} ;check if the world exists, and allow camera cuts again
       {world_panel set_showing TRUE} ;set the world showing to true no matter what
       {track_panel set_showing FALSE} ;hide the track panel because you failed and you suck
+      {name_overlay_panel set_showing FALSE}
       {game set_realtime TRUE} ;return to default game speed
       {$this slow_music} ;slow down the music based on LOSE_MUSIC_SLOW_SEC define
       #ifdef HX_XBOX ;xbox acheivement handling
@@ -441,7 +481,7 @@
       {meta_loading_goto main_screen} ;go to main screen, previously splash screen
    )
 }
-#define GAME_PANELS (midi_loader_panel game track_mask world_panel track_panel hud mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
+#define GAME_PANELS (midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
 {new GHScreen game_screen
    (panels GAME_PANELS fade_panel) ;panels used in this screen, in draw order
    (allow_back FALSE) ;set no default back screen when this screen is loaded
