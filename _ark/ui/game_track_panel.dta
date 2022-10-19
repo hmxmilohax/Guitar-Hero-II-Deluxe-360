@@ -156,7 +156,7 @@
    (set_track_out
       {$this set_frame TRACK_END_FRAME}
       {name_overlay_panel setup_text}
-      {name_overlay_panel show_overlay {if_else $autoplay TRUE $nametitle}})
+      {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}})
    (set_track_in
       {$this set_frame 0})
    (animate_track
@@ -196,7 +196,7 @@
                {! $neckless}}}}
       {$this set_track_out}
       {name_overlay_panel setup_text}
-      {name_overlay_panel show_overlay {if_else $autoplay TRUE $nametitle}}
+      {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
       TRACK_MODIFIER_HANDLERS)
    (enter
       {name_overlay_panel show_overlay FALSE}
@@ -213,7 +213,7 @@
             {$this pop_smasher 0}
             {$this set_smasher_glowing 0 TRUE}
             {name_overlay_panel setup_text}
-            {name_overlay_panel show_overlay {if_else $autoplay TRUE $nametitle}}
+            {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
             )}
       {script_task
          (delay 1.4)

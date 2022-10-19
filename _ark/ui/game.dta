@@ -180,7 +180,7 @@
                (script {mtv_overlay_panel show_overlay TRUE}) ;always show the mtv overlay during the intro
             }
             {script_task (delay 3) (units kTaskSeconds) ;wait three seconds if fast is disabled
-               (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}}) ;hide the overlay if song title modifier is enabled, always show the overlay if autoplay is enabled
+               (script {mtv_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $songtitle}}}) ;hide the overlay if song title modifier is enabled, always show the overlay if autoplay is enabled
             }
          }
       }
@@ -203,7 +203,7 @@
       {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
       {streak_overlay_panel show_overlay TRUE} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
-      {if {"||" {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
+      {if {"||" $cheat_enabled_performance_mode {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
          {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
             (script {mtv_overlay_panel show_overlay FALSE})} ;and hide the mtv overlay
       }
@@ -252,6 +252,9 @@
 ;         )
 ;      }
       {ui music_start}
+      {if {|| $cheat_enabled_performance_mode {! $songtitle}}
+         {mtv_overlay_panel set_showing FALSE}
+         {name_overlay_panel set_showing FALSE}}
       kDataUnhandled) ;start the music
    (beat ;runs code every beat of the currently playing song
       {streak_overlay_panel update_song_progress}
@@ -504,7 +507,7 @@
    #ifdef HX_XBOX (enter {track_mask set_showing TRUE}) #endif ;show the track mask, only runs on xbox
 }
 {new GHScreen reload_track_screen
-   (panels game world_panel hud mtv_overlay_panel fade_panel) ;panels used in this screen, in draw order
+   (panels game world_panel hud mtv_overlay_panel name_overlay_panel fade_panel) ;panels used in this screen, in draw order
    (allow_back FALSE) ;set no default back screen when this screen is loaded
    (animate_transition FALSE) ;do not animate to this screen, cut to it
    (enter ;when the screen is entered
