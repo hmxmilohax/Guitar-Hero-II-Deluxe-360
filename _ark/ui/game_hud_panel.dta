@@ -1,5 +1,5 @@
 #define METER_END_FRAME (480)
-#define WIN_MESSAGE_SECS (3)
+#define WIN_MESSAGE_SECS (5) ;originally 3
 
 ;modification for note streaks, based on Trick's work
 {if_else $hardware_check
@@ -84,6 +84,28 @@ kDataUnhandled
 
    (gem_miss_callback
       ($slot_hit $real_slot $timing_error)
+      {if
+         {&&
+            $do_streak
+            $player0_fc
+            {== {gamecfg get_difficulty 0} kDifficultyExpert}
+            {== {gamecfg get mode} career}
+            {== {gamecfg get_song} trogdor}
+               {||
+                  {&&
+                     {== {game get_track_type 0} kTrackGuitar}
+                     {> $player0_streak 315} ;315 - start of trogdor lead strumming
+                     {< $player0_streak 344}} ;344 - end of trogdor lead strumming
+                  {&&
+                     {== {game get_track_type 0} kTrackRhythm}
+                     {> $player0_streak 12} ;315 - start of trogdor lead strumming
+                     {< $player0_streak 344}} ;344 - end of trogdor lead strumming
+               }
+         }
+         {hud trogdor_show}
+         {achievements submit faileasy} ;pop up achievement
+         {hud trogdor_hide}
+      }
       {if_else $do_streak
          {if_else {== {gamecfg get mode} multi_coop}
             {do
@@ -117,6 +139,28 @@ kDataUnhandled
 
    (gem_pass_callback
 ;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar always, we might not be on a beatline
+      {if
+         {&&
+            $do_streak
+            $player0_fc
+            {== {gamecfg get_difficulty 0} kDifficultyExpert}
+            {== {gamecfg get mode} career}
+            {== {gamecfg get_song} trogdor}
+               {||
+                  {&&
+                     {== {game get_track_type 0} kTrackGuitar}
+                     {> $player0_streak 315} ;315 - start of trogdor lead strumming
+                     {< $player0_streak 344}} ;344 - end of trogdor lead strumming
+                  {&&
+                     {== {game get_track_type 0} kTrackRhythm}
+                     {> $player0_streak 299} ;299 - start of trogdor rhythm strumming
+                     {< $player0_streak 342}} ;342 - end of trogdor lead strumming
+               }
+         }
+         {hud trogdor_show}
+         {achievements submit faileasy} ;pop up achievement
+         {hud trogdor_hide}
+      }
       {if $do_streak
          {do
             {set $beforefirstnote_p0 FALSE}
@@ -513,6 +557,21 @@ kDataUnhandled
    (file {if_else $clonehero_hud
    "../hud/hud_ch.milo"
    {sprint "../hud/" {gamecfg get hud_file}}})
+   (trogdor_show
+      {youwin.mesh set_local_pos_index 2 100}
+      {youwin.mesh set_local_scale_index 0 1.4}
+      {youwin.mesh set_local_scale_index 2 .5}
+      {youwin_eng.tex set_bitmap "track/custom_track_textures/youlose_keep.png"}
+      {$this set_win_showing TRUE}
+            )
+    (trogdor_hide
+    {script_task
+         (delay WIN_MESSAGE_SECS)
+         (script
+            {$this set_win_showing FALSE}
+            {youwin_eng.tex set_bitmap "track/custom_track_textures/youwin_eng_keep.png"}
+            {youwin.mesh set_local_pos_index 2 15})}
+   )
    (enter
       {game add_sinks $this intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
       {if $sppop {game add_sink $this star_power_ready}}
