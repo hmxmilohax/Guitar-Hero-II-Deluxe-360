@@ -133,6 +133,7 @@
 {set $interval_p0 50}
 {set $interval_p1 50}
 {set $interval_p2 50}
+{if $clonehero_hud {set $trackcamx 1.3}}
 {if_else $muting
 {set $mute_level -96.0}
 {set $mute_level -0.001}}

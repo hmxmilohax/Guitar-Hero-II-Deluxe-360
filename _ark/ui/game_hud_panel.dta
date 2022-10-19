@@ -600,6 +600,60 @@ kDataUnhandled
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
       )
    (clone_hero_sp
+   {set $clonestarx 
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 -52)
+      }
+   }
+   {set $clonestarrot 
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 3)
+      }
+   }
+   {set $clonestreakx 
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 -33)
+      }
+   }
+   {set $clonestreak2x 
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 -76)
+      }
+   }
+   {set $clonestreakdotx 
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 -77)
+      }
+   }
+   {set $clonestreakdotoffset
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 -2)
+      }
+   }
+   {set $clonecrowdx
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 80)
+      }
+   }
+   {set $clonecrowdy
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 90)
+      }
+   }
+   {set $clonecrowdrot 
+      {switch $trackcamx
+         (1.0 0)
+         (1.3 -6)
+      }
+   }
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find vu_needle_led.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_light.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_frame.mesh} set_showing FALSE}
@@ -611,12 +665,13 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_face_2d.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_scale 1 .01875 1}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_pos 60 0 110}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green.mesh} set_local_pos 120 0 0}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow.mesh} set_local_pos 60 0 0}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red.mesh} set_local_pos 0 0 0}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green.mesh} set_local_pos {- $clonecrowdx 0} {+ $clonecrowdx 0} 0}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow.mesh} set_local_pos {- $clonecrowdx 60} {+ $clonecrowdx 0} 0}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red.mesh} set_local_pos {- $clonecrowdx 120} {+ $clonecrowdx 0} 0}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_pos -680 -250 30}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_scale 0 0 30}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_rot 0 312 0}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_rot 0 312 {+ $clonecrowdrot 0}}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_local_rot 0 0 90}
       ;{{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_local_pos 155 -50 -47}
       ;{{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_local_pos 140 -150 0}
@@ -658,34 +713,37 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_rot 0 0 -35}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_scale .9 .9 .9}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_scale 1.8 1.8 1.8}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_pos 0 -25 -37}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_pos -32 -25 -45}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_1.mesh} set_local_pos -65.5 0 -50}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_2.mesh} set_local_pos -71 0 -40}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_3.mesh} set_local_pos -76.5 0 -30}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_4.mesh} set_local_pos -82 0 -20}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_5.mesh} set_local_pos -87.5 0 -10}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_6.mesh} set_local_pos -93 0 0}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_7.mesh} set_local_pos -98.5 0 10}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_8.mesh} set_local_pos -104 0 20}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_9.mesh} set_local_pos -109.5 0 30}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_10.mesh} set_local_pos -115 0 40}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_pos 25 25 -20}
+      
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_pos {+ $clonestreak2x 0} -25 -37}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_pos {+ $clonestreak2x -32} -25 -45}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_glow.mesh} set_local_pos_index 0 {- $clonestreakx 40}}
+
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_1.mesh} set_local_pos {+ $clonestreakdotx -70} 0 -50}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_2.mesh} set_local_pos {+ $clonestreakdotx -75} 0 -40}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_3.mesh} set_local_pos {+ $clonestreakdotx -80} 0 -30}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_4.mesh} set_local_pos {+ $clonestreakdotx -85} 0 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_5.mesh} set_local_pos {+ $clonestreakdotx -90} 0 -10}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_6.mesh} set_local_pos {+ $clonestreakdotx -95} 0 0}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_7.mesh} set_local_pos {+ $clonestreakdotx -100} 0 10}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_8.mesh} set_local_pos {+ $clonestreakdotx -105} 0 20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_9.mesh} set_local_pos {+ $clonestreakdotx -110} 0 30}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_10.mesh} set_local_pos {+ $clonestreakdotx -115} 0 40}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_pos {- $clonestreakx 25} 25 -20}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_scale 1.2 1.2 1.2}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_glow.mesh} set_local_scale 1.1 1.5 .8}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos 25 25 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos {- $clonestreakx 25} 25 -20}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_scale 1.2 1.2 1.2}
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_scale .6 .6 .6}
       ;{{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_outline.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_frame.mesh} set_showing FALSE}
-      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_pos -105 -100 30}
-      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_rot -20 242 20}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_pos {- $clonestarx 105} -100 30}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_rot -20 {- $clonestarrot -242} 20}
       {{{{hud loaded_dir} find BandStarMeterDir1} find star_meter.view} set_local_scale .6 .4 .3}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_top.mesh} set_local_scale .2 .7 .5}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_base.mesh} set_local_scale .5 .9 1}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_glass.mesh} set_local_scale .3 1 1.3}
-      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_base.mesh} set_local_pos -101 -50 70}
+      {{{{hud loaded_dir} find BandStarMeterDir1} find amp_chrome_base.mesh} set_local_pos {- $clonestarx 51} -50 70} ;111 at 1.0 width
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_disk.mesh} set_local_scale .9 1 .5}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_glass_black.mesh} set_local_scale .8 .8 1.2}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar_path.mesh} set_local_scale 1.3 3 1.3}

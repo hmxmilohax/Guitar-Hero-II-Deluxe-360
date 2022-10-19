@@ -455,10 +455,12 @@
             {do
             {play_sfx cheat_off}
             {set $clonehero_hud FALSE}
+            {set $trackcamx 1.0}
             OVERSHELL_TRACK_RESET_HANDLER}
             {do
             {play_sfx cheat}
             {set $clonehero_hud TRUE}
+            {set $trackcamx 1.3}
             {set $sppop FALSE}
             OVERSHELL_TRACK_RESET_HANDLER}})
          (os_brighthopos
