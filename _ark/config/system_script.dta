@@ -34,7 +34,7 @@
 {set $camera.stare_at_singer FALSE}
 {func autosave_goto
    ($next_screen)
-   {if_else {&& {campaign needs_save} $autosave {! $disable_save}}
+   {if_else {&& {campaign needs_save} {! $autoplay} {! $gotcha} $autosave {! $disable_save}}
       {do
          {set $mc_save_success_screen $next_screen}
          {set $mc_save_failed_screen $next_screen}

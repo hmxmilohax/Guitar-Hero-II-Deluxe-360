@@ -318,6 +318,8 @@
          {!
             {campaign all_access}}
          $autosave
+         {! $autoplay}
+         {! $gotcha}
          {! $disable_save}}
       {do
          {set $mc_return_screen $next_screen}

@@ -157,11 +157,13 @@
             {do
             {play_sfx cheat_off}
             {set $autoplay FALSE}
+            {set $gotcha TRUE} ;failsafe check if the player used autoplay at all this boot
             {set $modifierlistpos {sel_section.lst selected_pos}}
             OVERSHELL_LIST_RESET_HANDLER}
             {do
             {play_sfx cheat}
             {set $autoplay TRUE}
+            {set $gotcha TRUE} ;failsafe check if the player used autoplay at all this boot
             {set $modifierlistpos {sel_section.lst selected_pos}}
             OVERSHELL_LIST_RESET_HANDLER}})
        (os_notestreakmod
