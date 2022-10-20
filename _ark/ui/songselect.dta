@@ -307,8 +307,32 @@
          {ui goto_screen main_screen}}
       kDataUnhandled)
    (SELECT_START_MSG
+      {switch
+         {gamecfg get mode}
+            (career {ui goto_screen qp_selpart_screen})
+            (quickplay {ui goto_screen qp_selpart_screen})
+            (multi_vs kDataUnhandled)
+            (multi_fo kDataUnhandled)
+            (practice {ui goto_screen qp_selpart_screen})
+            (multi_coop
+               {gamecfg set_track 0 0}
+               {gamecfg set_track 1 1}
+               {if_else
+                  {'||'
+                     {song_provider
+                        has_instrument
+                        {gamecfg get_song}
+                        bass}
+                     {song_provider
+                        has_instrument
+                        {gamecfg get_song}
+                        rhythm}}
+                  {ui goto_screen selpart_screen}
+                  {ui goto_screen multi_coop_seldiff_screen}
+                }
+            )
+       }
       {sel_song_panel set metamusic_on_exit TRUE}
-      {ui goto_screen qp_selpart_screen}
       kDataUnhandled)}
 {new
    GHScreen

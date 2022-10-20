@@ -157,8 +157,23 @@
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME}
-      {name_overlay_panel setup_text}
-      {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}})
+      {switch {gamecfg get mode}
+            (career
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            )
+            (quickplay
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            )
+            (multi_vs kDataUnhandled)
+            (multi_fo kDataUnhandled)
+            (multi_coop kDataUnhandled)
+            (practice
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            )}
+      )
    (set_track_in
       {$this set_frame 0})
    (animate_track
@@ -197,16 +212,45 @@
                {! $cheat_enabled_performance_mode}
                {! $neckless}}}}
       {$this set_track_out}
-      {name_overlay_panel setup_text}
-      {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-      TRACK_MODIFIER_HANDLERS)
+      {switch {gamecfg get mode}
+            (career
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+               TRACK_MODIFIER_HANDLERS
+            )
+            (quickplay
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+               TRACK_MODIFIER_HANDLERS
+            )
+            (multi_vs kDataUnhandled)
+            (multi_fo kDataUnhandled)
+            (multi_coop kDataUnhandled)
+            (practice
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+               TRACK_MODIFIER_HANDLERS
+            )}
+     )
    (enter
       {name_overlay_panel show_overlay FALSE}
       {game add_sink $this blow_streak})
    (exit {game remove_sink $this})
    (do_extend_sequence
       {$this {if_else {== $trackcamx 1.0} animate_track_out set_track_out}}
-      {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
+      {switch {gamecfg get mode}
+            (career
+               {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
+            )
+            (quickplay
+               {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
+            )
+            (multi_vs kDataUnhandled)
+            (multi_fo kDataUnhandled)
+            (multi_coop kDataUnhandled)
+            (practice
+               {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
+            )}
       {script_task
          (delay 1.3)
          (units kTaskSeconds)
@@ -214,8 +258,22 @@
             {$this play_track_sfx nowbar_1}
             {$this pop_smasher 0}
             {$this set_smasher_glowing 0 TRUE}
-            {name_overlay_panel setup_text}
-            {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            {switch {gamecfg get mode}
+            (career
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            )
+            (quickplay
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            )
+            (multi_vs kDataUnhandled)
+            (multi_fo kDataUnhandled)
+            (multi_coop kDataUnhandled)
+            (practice
+               {name_overlay_panel setup_text}
+               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
+            )}
             )}
       {script_task
          (delay 1.4)
@@ -260,7 +318,14 @@
          (script
             {game foreach_player_matcher $m
                {$m refresh_track_buttons}}
-               TRACK_MODIFIER_HANDLERS
+         {switch
+         {gamecfg get mode}
+            (career TRACK_MODIFIER_HANDLERS)
+            (quickplay TRACK_MODIFIER_HANDLERS)
+            (multi_vs kDataUnhandled)
+            (multi_fo kDataUnhandled)
+            (multi_coop kDataUnhandled)
+            (practice TRACK_MODIFIER_HANDLERS)}
                )}
       )}
 {new TrackMaskPanel track_mask}

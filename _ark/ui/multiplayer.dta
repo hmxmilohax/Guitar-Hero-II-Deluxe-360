@@ -18,7 +18,7 @@
          $component
          (coop.btn
             {gamecfg set mode multi_coop}
-            {ui goto_screen multi_coop_venue_screen})
+            {ui goto_screen sel_song_screen})
          (versus.btn
             {gamecfg set mode multi_vs}
             {ui goto_screen multi_sel_character_screen})

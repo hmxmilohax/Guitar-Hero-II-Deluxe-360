@@ -50,7 +50,7 @@ kDataUnhandled
             {if_else {== {gamecfg get mode} multi_coop}
                {streak_overlay_panel update_streak 2} ;update co-op streak
                {streak_overlay_panel update_streak 0}}}} ;update single player or vs/fo p0 streak
-      {if {! $autoplay} ;if not autoplay, run star counter and miss/overstrum printing
+      {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay or multi, run star counter and miss/overstrum printing
          {streak_overlay_panel update_star_progress}
 ;         {set $starratingtemp ;calculate fractional Scorehero-style star rating
 ;            {if_else {< {player0 avg_multiplier} 1.2}
@@ -128,8 +128,8 @@ kDataUnhandled
                {streak_overlay_panel update_streak 0}
                {if_else $hardware_check
                kDataUnhandled
-               {if {! $autoplay} ;if not autoplay, handle overstrums and MTV line 3
-                  {if {! $beforefirstnote_p0}{set $overstrums {+ $overstrums 1}}} ;update overstrum var
+               {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle overstrums and MTV line 3
+                  {if {! $beforefirstnote_p0} {set $overstrums {+ $overstrums 1}}} ;update overstrum var
                   {if_else {|| $cleanmtv $hardware_check} kDataUnhandled {mtv_overlay_panel update_text}} ;update MTV line 3
                }}
             }
@@ -185,7 +185,7 @@ kDataUnhandled
                   {streak_overlay_panel update_streak 0}
                   {if_else {|| $cleanmtv $hardware_check}
                   kDataUnhandled
-                  {if {! $autoplay} ;if not autoplay, handle misses and MTV line 3
+                  {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle misses and MTV line 3
                      {set $notesmissed {+ $notesmissed 1}} ;update missed var
                      {if_else {|| $cleanmtv $hardware_check} kDataUnhandled {mtv_overlay_panel update_text}} ;update MTV line 3
                   }}
@@ -201,7 +201,7 @@ kDataUnhandled
    Object
    star_progress_callback_p0
    (held_note_released_callback
-      {if {! $autoplay} ;if not autoplay, run star counter
+      {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, run star counter
          {streak_overlay_panel update_star_progress}
       }
    )
