@@ -20,6 +20,8 @@
 {if {exists track_drum} {set $tracktype track_drum}}
 {if {exists track_new} {set $tracktype track_new}}
 {if {exists track_old} {set $tracktype track_old}}
+{if $noflames
+{{{{track_panel loaded_dir} find $tracktype} find smash_firelight.tex} set_bitmap ../track/custom_track_textures/_no_highway.png}}
 {{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}}
 {{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
 {{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
