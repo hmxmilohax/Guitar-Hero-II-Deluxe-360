@@ -2,7 +2,7 @@
 #define WIN_MESSAGE_SECS (5) ;originally 3
 
 ;modification for note streaks, based on Trick's work
-{if_else $hardware_check
+{if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice}} $hardware_check}
    kDataUnhandled
    {func note_streak_p0
       {set $player0_streak {player0 current_streak}} ;save P1 streak for later
@@ -19,7 +19,7 @@
       }
    }
 }
-{if_else $hardware_check
+{if_else {&& {|| {== {gamecfg get mode} multi_coop} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}} $hardware_check}
    kDataUnhandled
    {func note_streak_p1
       {set $player1_streak {player1 current_streak}} ;save P2 streak for later
@@ -36,7 +36,7 @@
       }
    }
 }
-{if_else $hardware_check
+{if_else {&& {== {gamecfg get mode} multi_coop} $hardware_check}
    kDataUnhandled
    {func note_streak_p2
       {set $player2_streak {'+' $player2_streak 1}}
@@ -76,7 +76,7 @@
                }
             }
          }
-         {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay or multi, run star counter and miss/overstrum printing
+         {if {&& {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay or multi, run star counter and miss/overstrum printing
             {streak_overlay_panel update_star_progress}
             {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
             {if_else {|| $cleanmtv $hardware_check}
@@ -134,16 +134,13 @@
                   {set $interval_p0 50}
                   {streak_overlay_panel zero_streak 0}
                   {streak_overlay_panel update_streak 0}
-                  {if_else $hardware_check
-                     kDataUnhandled
-                     {if {|| {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
-                        {if {! $beforefirstnote_p0}
-                           {set $overstrums {+ $overstrums 1}} ;update overstrum var
-                        }
-                        {if_else {|| $cleanmtv $hardware_check}
-                           kDataUnhandled
-                           {mtv_overlay_panel update_text} ;update MTV line 3
-                        }
+                  {if {&& {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
+                     {if {! $beforefirstnote_p0}
+                        {set $overstrums {+ $overstrums 1}} ;update overstrum var
+                     }
+                     {if_else $cleanmtv
+                        kDataUnhandled
+                        {mtv_overlay_panel update_text} ;update MTV line 3
                      }
                   }
                }
@@ -225,7 +222,7 @@
       Object
       star_progress_callback_p0
       (held_note_released_callback
-         {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, run star counter
+         {if {|| {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, run star counter
             {streak_overlay_panel update_star_progress}
          }
       )
