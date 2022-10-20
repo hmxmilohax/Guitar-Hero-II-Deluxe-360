@@ -484,9 +484,9 @@
 {new GHPanel unlock_pfo_panel
    (file unlock_profaceoff.milo)
    (enter
-      {we_bandname.lbl set_localized_text {campaign profile_name {campaign profile_slot}}})}
+      {we_bandname.lbl set_localized_text {campaign profile_name 0}})}
 {new GHScreen unlock_pfo_screen
-   (panels GAME_PANELS unlock_pfo_panel helpbar)
+   (panels meta unlock_pfo_panel helpbar)
    (animate_transition FALSE)
    (focus unlock_pfo_panel)
    (helpbar
@@ -494,7 +494,7 @@
          ((fret1 help_continue))))
    (BUTTON_DOWN_MSG
       {if {== $button kPad_X}
-         {ui goto_screen endgame_screen}})}
+         {ui goto_screen main_screen}})}
 {func get_highscore_index
    ($score)
    {'+'

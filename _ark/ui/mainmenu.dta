@@ -1,3 +1,17 @@
+{new GHPanel unlock_pfo_panel
+   (file unlock_profaceoff.milo)
+   (enter
+      {we_bandname.lbl set_localized_text {campaign profile_name 0}})}
+{new GHScreen unlock_pfo_screen
+   (panels meta unlock_pfo_panel helpbar)
+   (animate_transition FALSE)
+   (focus unlock_pfo_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue))))
+   (BUTTON_DOWN_MSG
+      {if {== $button kPad_X}
+         {ui goto_screen main_screen}})}
 ; Chose what main menu to display based off egg screen. Custom Edition and standard gh2dx screen are swapped based on elf usage.
 ;main.milo - GH2DX | main_egg0.milo - GH2DXCE | main_egg1.milo - GH1 | main_egg2.milo - GH80SDX | main_egg3.milo - GH3 | main_egg_final.milo - gold
 {new GHPanel main_panel ;panels come before screens in milo
@@ -14,6 +28,10 @@
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter
+      {if $newsave
+         {set $newsave FALSE}
+         {ui goto_screen unlock_pfo_screen}
+      }
       {if {! $egg4} {main_buttons.view set_local_pos 0 0 -115}}
       {if $egg2 {main_buttons.view set_local_pos 0 0 -80}}
       {if $game80s {main_buttons.view set_local_pos 0 0 -90}}

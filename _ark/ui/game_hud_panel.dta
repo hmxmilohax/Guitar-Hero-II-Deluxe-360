@@ -2,7 +2,7 @@
 #define WIN_MESSAGE_SECS (5) ;originally 3
 
 ;modification for note streaks, based on Trick's work
-{if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice}} $hardware_check}
+{if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}} $hardware_check}
    kDataUnhandled
    {func note_streak_p0
       {set $player0_streak {player0 current_streak}} ;save P1 streak for later

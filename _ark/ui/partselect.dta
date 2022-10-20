@@ -43,10 +43,34 @@
    )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {if {== $component part0.btn}
-         {gamecfg set_track 0 0} ;if part 0 button is selected, set player 0 to the first instrument in the song definition
+         {switch {gamecfg get mode}
+            (career {gamecfg set_track 0 0})
+            (quickplay {gamecfg set_track 0 0})
+            (multi_vs
+               {gamecfg set_track 0 0}
+               {gamecfg set_track 1 0}
+            )
+            (multi_fo
+               {gamecfg set_track 0 0}
+               {gamecfg set_track 1 0}
+            )
+            (practice {gamecfg set_track 0 0})
+         }
       }
       {if {== $component part1.btn}
-         {gamecfg set_track 0 1} ;if part 1 button is selected, set player 0 to the second instrument in the song definition
+         {switch {gamecfg get mode}
+            (career {gamecfg set_track 0 1})
+            (quickplay {gamecfg set_track 0 1})
+            (multi_vs
+               {gamecfg set_track 0 1}
+               {gamecfg set_track 1 1}
+            )
+            (multi_fo
+               {gamecfg set_track 0 1}
+               {gamecfg set_track 1 1}
+            )
+            (practice {gamecfg set_track 0 1})
+         }
       }
       {if {== $component part2.btn}
       {gamecfg set_track 0 2} {set $roygb TRUE} ;if part 2 button is selected, set player 0 to the third instrument in the song definition. also set roygb colors to true since this is drums
@@ -54,6 +78,12 @@
       {switch {gamecfg get mode} ;switch action based on result of which game mode is currently being used
           (career {ui goto_screen loading_screen}) ;dx uses career for quickplay, if career, go to the loading screen
           (practice {ui goto_screen practice_sel_section_screen}) ;if practice, go to the select section screen
+          (multi_fo
+             {ui goto_screen multi_fo_seldiff_screen}
+          )
+          (multi_vs
+             {ui goto_screen multi_vs_seldiff_screen}
+          )
       }
    )
 }

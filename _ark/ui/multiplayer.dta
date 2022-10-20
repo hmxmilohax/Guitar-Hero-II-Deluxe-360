@@ -4,15 +4,6 @@
    (file
       {if_else $game80s multi_80s.milo multi.milo})
    (focus coop.btn)
-   (enter
-      {if_else
-         {campaign is_unlocked multi_fo}
-         {do
-            {$this enable faceoff.btn}
-            {faceoff.btn set_showing TRUE}}
-         {do
-            {$this disable faceoff.btn}
-            {faceoff.btn set_showing FALSE}}})
    (SELECT_START_MSG
       {switch
          $component
@@ -719,7 +710,7 @@
                (multi_vs
                   {ui goto_screen multi_vs_venue_screen})
                (multi_fo
-                  {ui goto_screen multi_fo_venue_screen})}
+                  {ui goto_screen sel_song_screen})}
             TRUE}
          FALSE})
    (guitar_selected
@@ -738,6 +729,45 @@
          goto_screen
          [next_screen]}
       kDataUnhandled))
+#define SEL_DIFFICULTY_COMMON
+((update_focus
+      {$this
+         set_focus
+         {switch
+            {$this last_difficulty}
+            (kDifficultyEasy sd_diff1.btn)
+            (kDifficultyMedium sd_diff2.btn)
+            (kDifficultyHard sd_diff3.btn)
+            (kDifficultyExpert sd_diff4.btn)}})
+   (set_difficulty
+      ($component $player_num)
+      {{game get_player_config $player_num}
+         set_difficulty
+         {switch
+            $component
+            (sd_diff1.btn kDifficultyEasy)
+            (sd_diff2.btn kDifficultyMedium)
+            (sd_diff3.btn kDifficultyHard)
+            (sd_diff4.btn kDifficultyExpert)}}
+      {$this update_difficulty})
+   (SELECT_START_MSG
+      {$this set_difficulty $component 0}
+      {if
+         {>
+            {game get_num_players}
+            1}
+         {$this set_difficulty $component 1}}
+      kDataUnhandled))
+{new
+   UIPanel
+   sel_difficulty_panel
+   (file sel_difficulty.milo)
+   SEL_DIFFICULTY_COMMON
+   (enter
+      {$this update_focus})
+   (last_difficulty
+      {game get_difficulty 0})
+   (update_difficulty)}
 {new
    GHScreen
    multi_fo_seldiff_screen

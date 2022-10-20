@@ -312,7 +312,7 @@
             (career {ui goto_screen qp_selpart_screen})
             (quickplay {ui goto_screen qp_selpart_screen})
             (multi_vs kDataUnhandled)
-            (multi_fo kDataUnhandled)
+            (multi_fo {ui goto_screen multi_fo_seldiff_screen})
             (practice {ui goto_screen qp_selpart_screen})
             (multi_coop
                {gamecfg set_track 0 0}
