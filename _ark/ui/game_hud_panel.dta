@@ -98,7 +98,7 @@ kDataUnhandled
                      {< $player0_streak 344}} ;344 - end of trogdor lead strumming
                   {&&
                      {== {game get_track_type 0} kTrackRhythm}
-                     {> $player0_streak 12} ;315 - start of trogdor lead strumming
+                     {> $player0_streak 315} ;315 - start of trogdor lead strumming
                      {< $player0_streak 344}} ;344 - end of trogdor lead strumming
                }
          }
@@ -392,8 +392,6 @@ kDataUnhandled
    (setup_streak
 ;      {streak_overlay_panel update_song_progress}
 ;      {streak_overlay_panel update_star_progress}
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
 ;      {set $do_streak TRUE}
       {stk_campaign_song_id.view set_showing FALSE}
       {stk_campaign_song_id_coop.view set_showing FALSE}
@@ -417,6 +415,8 @@ kDataUnhandled
          {gamecfg get mode}
             (career
                {do
+                  {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
+                  {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
                   {set $stk_view_p0 "stk_campaign_song_id.view"}
                   {set $stk_prefix_p0 "stk_campaign_line"}
                   {set $stk_view_p1 ""}
@@ -425,6 +425,8 @@ kDataUnhandled
                })
             (quickplay
                {do
+                  {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
+                  {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
                   {set $stk_view_p0 "stk_campaign_song_id.view"}
                   {set $stk_prefix_p0 "stk_campaign_line"}
                   {set $stk_view_p1 ""}
@@ -554,38 +556,52 @@ kDataUnhandled
       {$this set_showing $show}
       {$this set_paused {! $show}})}
 {new HudPanel hud
-   (file {if_else $clonehero_hud
-   "../hud/hud_ch.milo"
-   {sprint "../hud/" {gamecfg get hud_file}}})
+   (file
+      {if_else
+            {&&
+               {== {gamecfg get mode} career} $clonehero_hud
+            }
+                  "../hud/hud_ch.milo"
+                  {sprint "../hud/" {gamecfg get hud_file}}
+      }
+   )
    (trogdor_show
       {youwin.mesh set_local_pos_index 2 100}
       {youwin.mesh set_local_scale_index 0 1.4}
       {youwin.mesh set_local_scale_index 2 .5}
       {youwin_eng.tex set_bitmap "track/custom_track_textures/youlose_keep.png"}
       {$this set_win_showing TRUE}
-            )
+   )
     (trogdor_hide
-    {script_task
+       {script_task
          (delay WIN_MESSAGE_SECS)
          (script
             {$this set_win_showing FALSE}
             {youwin_eng.tex set_bitmap "track/custom_track_textures/youwin_eng_keep.png"}
-            {youwin.mesh set_local_pos_index 2 15})}
+            {youwin.mesh set_local_pos_index 2 15}
+         )
+       }
    )
    (enter
       {game add_sinks $this intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
-      {if $sppop {game add_sink $this star_power_ready}}
+      {if $sppop
+         {game add_sink $this star_power_ready}
+      }
       {if_else $hardware_check
-      kDataUnhandled
-      {player_matcher0 add_sink note_streak_callback_p0}}
+         kDataUnhandled
+         {player_matcher0 add_sink note_streak_callback_p0}
+      }
       {if_else $hardware_check
-      kDataUnhandled
-      {if {exists player_matcher1}
-         {player_matcher1 add_sink note_streak_callback_p1}}}
-;      {player0 add_sink star_progress_callback_p0}
-      {if {!= tutorial
-         {gamecfg get mode}}
-      {game add_sinks $this peak_on peak_off}})
+         kDataUnhandled
+         {if {exists player_matcher1}
+            {player_matcher1 add_sink note_streak_callback_p1}
+         }
+      }
+      ;{player0 add_sink star_progress_callback_p0}
+      {if {!= tutorial {gamecfg get mode}}
+         {game add_sinks $this peak_on peak_off}
+      }
+   )
    (no_fail_hud
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud1_rock_needle.view} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find peak_flames.grp} set_showing FALSE}
@@ -598,7 +614,7 @@ kDataUnhandled
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
       {{{hud loaded_dir} find mask1.mesh} set_showing FALSE}
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
-      )
+   )
    (clone_hero_sp
    {set $clonestarx 
       {switch $trackcamx
@@ -762,7 +778,8 @@ kDataUnhandled
       {if $clonehero_hud {$this clone_hero_sp}}
       {if $nofail {$this no_fail_hud}}
       {$this set_meters_showing TRUE}
-      {$this set_win_showing FALSE})
+      {$this set_win_showing FALSE}
+   )
    (intro_start_msg
       {$this reset}
       {meters_slide_in.view set_frame 0}
