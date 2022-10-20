@@ -127,11 +127,16 @@ kDataUnhandled
                {streak_overlay_panel zero_streak 0}
                {streak_overlay_panel update_streak 0}
                {if_else $hardware_check
-               kDataUnhandled
-               {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle overstrums and MTV line 3
-                  {if {! $beforefirstnote_p0} {set $overstrums {+ $overstrums 1}}} ;update overstrum var
-                  {if_else {|| $cleanmtv $hardware_check} kDataUnhandled {mtv_overlay_panel update_text}} ;update MTV line 3
-               }}
+                  kDataUnhandled
+                  {if {|| {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
+                     {if {! $beforefirstnote_p0} {set $overstrums {+ $overstrums 1}}
+                     } ;update overstrum var
+                     {if_else {|| $cleanmtv $hardware_check}
+                        kDataUnhandled
+                        {mtv_overlay_panel update_text}
+                     } ;update MTV line 3
+                  }
+               }
             }
          }
       }
