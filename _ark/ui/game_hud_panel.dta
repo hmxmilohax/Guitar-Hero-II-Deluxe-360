@@ -3,154 +3,161 @@
 
 ;modification for note streaks, based on Trick's work
 {if_else $hardware_check
-kDataUnhandled
-{func note_streak_p0
-   {set $player0_streak {player0 current_streak}} ;save P1 streak for later
-   {if {> $player0_streak 50}
-      {set $interval_p0 100}} ;if streak is more than 50, set interval to 100
-   {if {== {mod $player0_streak $interval_p0} 0}
-      {if $notestreakmod {hud show_message 0 note_streak_popup_p0}}
-      {if $sfx {play_game_sfx_player meter_slide meter_slide 0}}
-      }}} ;if streak is mod interval, fire popup
+   kDataUnhandled
+   {func note_streak_p0
+      {set $player0_streak {player0 current_streak}} ;save P1 streak for later
+      {if {> $player0_streak 50}
+         {set $interval_p0 100} ;if streak is more than 50, set interval to 100
+      }
+      {if {== {mod $player0_streak $interval_p0} 0}
+         {if $notestreakmod
+            {hud show_message 0 note_streak_popup_p0} ;if streak is mod interval, fire popup
+         }
+         {if $sfx
+            {play_game_sfx_player meter_slide meter_slide 0}
+         }
+      }
+   }
+}
 {if_else $hardware_check
-kDataUnhandled
-{func note_streak_p1
-   {set $player1_streak {player1 current_streak}} ;save P2 streak for later
-   {if {> $player1_streak 50}
-      {set $interval_p1 100}} ;if streak is more than 50, set interval to 100
-   {if {== {mod $player1_streak $interval_p1} 0}
-      {if $notestreakmod {hud show_message 1 note_streak_popup_p1}}
-      {if $sfx {play_game_sfx_player meter_slide meter_slide 1}}}}} ;if streak is mod interval, fire popup
+   kDataUnhandled
+   {func note_streak_p1
+      {set $player1_streak {player1 current_streak}} ;save P2 streak for later
+      {if {> $player1_streak 50}
+         {set $interval_p1 100} ;if streak is more than 50, set interval to 100
+      }
+      {if {== {mod $player1_streak $interval_p1} 0}
+         {if $notestreakmod
+            {hud show_message 1 note_streak_popup_p1} ;if streak is mod interval, fire popup
+         }
+         {if $sfx
+            {play_game_sfx_player meter_slide meter_slide 1}
+         }
+      }
+   }
+}
 {if_else $hardware_check
-kDataUnhandled
-{func note_streak_p2
-   {set $player2_streak {'+' $player2_streak 1}}
-   {if {> $player2_streak 50}
-      {set $interval_p2 100}}
-   {if {== {mod $player2_streak $interval_p2} 0}
-      {if $notestreakmod {hud show_message kPlayerShared note_streak_popup_p2}}
-      {if $sfx {play_game_sfx_player meter_slide meter_slide $player_num}}}}}
+   kDataUnhandled
+   {func note_streak_p2
+      {set $player2_streak {'+' $player2_streak 1}}
+      {if {> $player2_streak 50}
+         {set $interval_p2 100}
+      }
+      {if {== {mod $player2_streak $interval_p2} 0}
+         {if $notestreakmod
+            {hud show_message kPlayerShared note_streak_popup_p2} ;if streak is mod interval, fire popup
+         }
+         {if $sfx
+            {play_game_sfx_player meter_slide meter_slide $player_num}
+         }
+      }
+   }
+}
 {if_else $hardware_check
-kDataUnhandled
-{new
-   Object
-   note_streak_callback_p0
-   (gem_hit_callback
-      ($slot $hopoable $hopoed)
-      {switch
-         {gamecfg get mode}
+   kDataUnhandled
+   {new
+      Object
+      note_streak_callback_p0
+      (gem_hit_callback
+         ($slot $hopoable $hopoed)
+         {switch {gamecfg get mode}
             (career {note_streak_p0})
             (quickplay {note_streak_p0})
             (multi_vs {note_streak_p0})
             (multi_fo {note_streak_p0})
             (multi_coop {note_streak_p2})
-            (practice {note_streak_p0})}
-      {if $do_streak 
-         {do
-            {if_else {== {gamecfg get mode} multi_coop}
-               {streak_overlay_panel update_streak 2} ;update co-op streak
-               {streak_overlay_panel update_streak 0}}}} ;update single player or vs/fo p0 streak
-      {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay or multi, run star counter and miss/overstrum printing
-         {streak_overlay_panel update_star_progress}
-;         {set $starratingtemp ;calculate fractional Scorehero-style star rating
-;            {if_else {< {player0 avg_multiplier} 1.2}
-;               {* {player0 avg_multiplier} 2.5}
-;               {+ {* {player0 avg_multiplier} 1.25} 1.5}
-;            }
-;         }
-;         {switch ;set string for whole part and retrieve fractional part for application to the bar
-;            {int $starratingtemp}
-;            (0 {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}})
-;            (1 {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}})
-;            (2 {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}})
-;            (3 {do {set $starrating '3©'} {set $starratingtempbar {- $starratingtemp 3.0}}})
-;            (4 {do {set $starrating '4©'} {set $starratingtempbar {- $starratingtemp 4.0}}})
-;            (5 {do {set $starrating '5©'} {set $starratingtempbar {- $starratingtemp 5.0}}})
-;            (6 {do {set $starrating '6©'} {set $starratingtempbar {- $starratingtemp 6.0}}})
-;            (7 {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}})
-;            (8 {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}})
-;            (9 {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}})
-;            {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}}
-;         }
-
-         ;{{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;moved to beat handler
-
-;         {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {* $starratingtempbar 1.2} .1 .1} ;set bar position
-;         {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
-         {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
-         {if_else {|| $cleanmtv $hardware_check} kDataUnhandled {mtv_overlay_panel update_text}} ;update MTV line 3
-      }
-   )
-
-   (gem_miss_callback
-      ($slot_hit $real_slot $timing_error)
-      {if
-         {&&
-            $do_streak
-            $player0_fc
-            {== {gamecfg get_difficulty 0} kDifficultyExpert}
-            {== {gamecfg get mode} career}
-            {== {gamecfg get_song} trogdor}
-               {||
-                  {&&
-                     {== {game get_track_type 0} kTrackGuitar}
-                     {> $player0_streak 315} ;315 - start of trogdor lead strumming
-                     {< $player0_streak 344}} ;344 - end of trogdor lead strumming
-                  {&&
-                     {== {game get_track_type 0} kTrackRhythm}
-                     {> $player0_streak 315} ;315 - start of trogdor lead strumming
-                     {< $player0_streak 344}} ;344 - end of trogdor lead strumming
-               }
+            (practice {note_streak_p0})
          }
-         {hud trogdor_show}
-         {achievements submit faileasy} ;pop up achievement
-         {hud trogdor_hide}
-      }
-      {if_else $do_streak
-         {if_else {== {gamecfg get mode} multi_coop}
+         {if $do_streak
             {do
-               {if {&& {! $beforefirstnote_p0} $player2_fc}
-                  {do
-                     {streak_overlay_panel not_an_fc 2}
-                     {set $player0_fc FALSE}}}
+               {if_else {== {gamecfg get mode} multi_coop}
+                  {streak_overlay_panel update_streak 2} ;update co-op streak
+                  {streak_overlay_panel update_streak 0} ;update single player or vs/fo p0 streak
+               }
+            }
+         }
+         {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay or multi, run star counter and miss/overstrum printing
+            {streak_overlay_panel update_star_progress}
+            {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
+            {if_else {|| $cleanmtv $hardware_check}
+               kDataUnhandled
+               {mtv_overlay_panel update_text} ;update MTV line 3
+            }
+         }
+      )
+      (gem_miss_callback
+         ($slot_hit $real_slot $timing_error)
+         {if
+            {&&
+               $do_streak
+               $player0_fc
+               {== {gamecfg get_difficulty 0} kDifficultyExpert}
+               {== {gamecfg get mode} career}
+               {== {gamecfg get_song} trogdor}
+                  {||
+                     {&&
+                        {== {game get_track_type 0} kTrackGuitar}
+                        {> $player0_streak 315} ;315 - start of trogdor lead strumming
+                        {< $player0_streak 344}} ;344 - end of trogdor lead strumming
+                     {&&
+                        {== {game get_track_type 0} kTrackRhythm}
+                        {> $player0_streak 315} ;315 - start of trogdor lead strumming
+                        {< $player0_streak 344}} ;344 - end of trogdor lead strumming
+                  }
+            }
+            {hud trogdor_show}
+            {achievements submit faileasy} ;pop up achievement
+            {hud trogdor_hide}
+         }
+         {if_else $do_streak
+            {if_else {== {gamecfg get mode} multi_coop}
+               {do
+                  {if {&& {! $beforefirstnote_p0} $player2_fc}
+                     {do
+                        {streak_overlay_panel not_an_fc 2}
+                        {set $player0_fc FALSE}
+                     }
+                  }
                   {set $player2_streak 0}
                   {set $interval_p2 50}
                   {streak_overlay_panel zero_streak 2}
-                  {streak_overlay_panel update_streak 2}}
-            {do
-               {if {&& {! $beforefirstnote_p0} $player0_fc}
-                  {streak_overlay_panel not_an_fc 0}}
-;               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar, we might not be on a beatline
-               {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
-               {set $player0_streak 0}
-               {set $interval_p0 50}
-               {streak_overlay_panel zero_streak 0}
-               {streak_overlay_panel update_streak 0}
-               {if_else $hardware_check
-                  kDataUnhandled
-                  {if {|| {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
-                     {if {! $beforefirstnote_p0} {set $overstrums {+ $overstrums 1}}
-                     } ;update overstrum var
-                     {if_else {|| $cleanmtv $hardware_check}
-                        kDataUnhandled
-                        {mtv_overlay_panel update_text}
-                     } ;update MTV line 3
+                  {streak_overlay_panel update_streak 2}
+               }
+               {do
+                  {if {&& {! $beforefirstnote_p0} $player0_fc}
+                     {streak_overlay_panel not_an_fc 0}
+                  }
+                  {if {&& $clonehero_hud {== {gamecfg get mode} career} {! $beforefirstnote_p0}}
+                     {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE} ;remove FC ring if miss in clone hero hud mode
+                  }
+                  {set $player0_streak 0}
+                  {set $interval_p0 50}
+                  {streak_overlay_panel zero_streak 0}
+                  {streak_overlay_panel update_streak 0}
+                  {if_else $hardware_check
+                     kDataUnhandled
+                     {if {|| {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
+                        {if {! $beforefirstnote_p0}
+                           {set $overstrums {+ $overstrums 1}} ;update overstrum var
+                        }
+                        {if_else {|| $cleanmtv $hardware_check}
+                           kDataUnhandled
+                           {mtv_overlay_panel update_text} ;update MTV line 3
+                        }
+                     }
                   }
                }
             }
          }
-      }
-   )
-
-   (gem_pass_callback
-;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {/ {player0  percent_complete} 75.0} .1 .1} ;update song progress bar always, we might not be on a beatline
-      {if
-         {&&
-            $do_streak
-            $player0_fc
-            {== {gamecfg get_difficulty 0} kDifficultyExpert}
-            {== {gamecfg get mode} career}
-            {== {gamecfg get_song} trogdor}
+      )
+      (gem_pass_callback
+         {if
+            {&&
+               $do_streak
+               $player0_fc
+               {== {gamecfg get_difficulty 0} kDifficultyExpert}
+               {== {gamecfg get mode} career}
+               {== {gamecfg get_song} trogdor}
                {||
                   {&&
                      {== {game get_track_type 0} kTrackGuitar}
@@ -161,166 +168,208 @@ kDataUnhandled
                      {> $player0_streak 299} ;299 - start of trogdor rhythm strumming
                      {< $player0_streak 342}} ;342 - end of trogdor lead strumming
                }
+            }
+            {hud trogdor_show}
+            {achievements submit faileasy} ;pop up achievement
+            {hud trogdor_hide}
          }
-         {hud trogdor_show}
-         {achievements submit faileasy} ;pop up achievement
-         {hud trogdor_hide}
-      }
-      {if $do_streak
-         {do
-            {set $beforefirstnote_p0 FALSE}
+         {if $do_streak
+            {do
+               {set $beforefirstnote_p0 FALSE}
+               {if_else {== {gamecfg get mode} multi_coop}
+                  {do
+                     {if $player2_fc
+                        {do
+                           {streak_overlay_panel not_an_fc 2}
+                           {set $player0_fc FALSE}
+                        }
+                     }
+                     {set $player2_streak 0}
+                     {set $interval_p2 50}
+                     {streak_overlay_panel zero_streak 2}
+                     {streak_overlay_panel update_streak 2}
+                  }
+                  {do
+                     {if $player0_fc
+                        {do
+                           {streak_overlay_panel not_an_fc 0}
+                        }
+                     }
+                     {if {&& $clonehero_hud {! $beforefirstnote_p0}}
+                        {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE} ;remove FC ring if miss in clone hero hud mode
+                     }
+                     {set $player0_streak 0}
+                     {set $interval_p0 50}
+                     {streak_overlay_panel zero_streak 0}
+                     {streak_overlay_panel update_streak 0}
+                     {if_else {|| $cleanmtv $hardware_check}
+                        kDataUnhandled
+                        {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle misses and MTV line 3
+                           {set $notesmissed {+ $notesmissed 1}} ;update missed var
+                           {if_else {|| $cleanmtv $hardware_check}
+                              kDataUnhandled
+                              {mtv_overlay_panel update_text} ;update MTV line 3
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      )
+   }
+}
+{if_else $hardware_check
+   kDataUnhandled
+   {new
+      Object
+      star_progress_callback_p0
+      (held_note_released_callback
+         {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, run star counter
+            {streak_overlay_panel update_star_progress}
+         }
+      )
+   }
+}
+{if_else {&& {|| {== {gamecfg get mode} multi_coop} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}} $hardware_check}
+   kDataUnhandled
+   {new
+      Object
+      note_streak_callback_p1
+      (gem_hit_callback
+         ($slot $hopoable $hopoed)
+         {switch {gamecfg get mode}
+            (multi_vs {note_streak_p1})
+            (multi_fo {note_streak_p1})
+            (multi_coop {note_streak_p2})
+         }
+         {if $do_streak
+            {do
+               {if_else {== {gamecfg get mode} multi_coop} 
+                  {streak_overlay_panel update_streak 2}
+                  {streak_overlay_panel update_streak 1}
+               }
+               {set $beforefirstnote_p1 FALSE}
+            }
+         }
+      )
+      (gem_miss_callback
+         ($slot_hit $real_slot $timing_error)
+         {if_else $do_streak
+            {if_else {== {gamecfg get mode} multi_coop}
+               {do
+                  {if {&& {! $beforefirstnote_p1} $player2_fc}
+                     {do
+                        {streak_overlay_panel not_an_fc 2}
+                        {set $player1_fc FALSE}
+                     }
+                  }
+                  {set $player2_streak 0}
+                  {set $interval_p2 50}
+                  {streak_overlay_panel zero_streak 2}
+                  {streak_overlay_panel update_streak 2}
+               }
+               {do
+                  {if {&& {! $beforefirstnote_p1} $player1_fc}
+                     {streak_overlay_panel not_an_fc 1}
+                  }
+                  {set $player1_streak 0}
+                  {set $interval_p1 50}
+                  {streak_overlay_panel zero_streak 1}
+                  {streak_overlay_panel update_streak 1}
+               }
+            }
+            {if_else {== {gamecfg get mode} multi_coop}
+               {do
+                  {set $player2_streak 0}
+                  {set $interval_p2 50}
+               }
+               {do
+                  {set $player1_streak 0}
+                  {set $interval_p1 50}
+               }
+            }
+         }
+      )
+      (gem_pass_callback
+         {set $beforefirstnote_p1 FALSE}
+         {if $do_streak
             {if_else {== {gamecfg get mode} multi_coop}
                {do
                   {if $player2_fc
                      {do
                         {streak_overlay_panel not_an_fc 2}
-                        {set $player0_fc FALSE}}}
+                        {set $player1_fc FALSE}
+                     }
+                  }
                   {set $player2_streak 0}
                   {set $interval_p2 50}
                   {streak_overlay_panel zero_streak 2}
-                  {streak_overlay_panel update_streak 2}}
+                  {streak_overlay_panel update_streak 2}
+               }
                {do
-                  {if $player0_fc
-                     {do
-                        {streak_overlay_panel not_an_fc 0}}}
-                  {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
-                  {set $player0_streak 0}
-                  {set $interval_p0 50}
-                  {streak_overlay_panel zero_streak 0}
-                  {streak_overlay_panel update_streak 0}
-                  {if_else {|| $cleanmtv $hardware_check}
-                  kDataUnhandled
-                  {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle misses and MTV line 3
-                     {set $notesmissed {+ $notesmissed 1}} ;update missed var
-                     {if_else {|| $cleanmtv $hardware_check} kDataUnhandled {mtv_overlay_panel update_text}} ;update MTV line 3
-                  }}
+                  {if $player1_fc
+                     {streak_overlay_panel not_an_fc 1}
+                  }
+                  {set $player1_streak 0}
+                  {set $interval_p1 50}
+                  {streak_overlay_panel zero_streak 1}
+                  {streak_overlay_panel update_streak 1}
+               }
+            }
+            {do
+               {if_else {== {gamecfg get mode} multi_coop}
+                  {do
+                     {set $player2_streak 0}
+                     {set $interval_p2 50}
+                  }
+                  {do
+                     {set $player1_streak 0}
+                     {set $interval_p1 50}
+                  }
                }
             }
          }
+      )
+   }
+}
+{new
+   GHPanel
+   streak_overlay_panel
+   (file
+      {if_else $clonehero_hud
+         "../hud/streak_overlay_ch.milo" 
+         "../hud/streak_overlay.milo"
       }
    )
-}}
-{if_else $hardware_check
-kDataUnhandled
-{new
-   Object
-   star_progress_callback_p0
-   (held_note_released_callback
-      {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, run star counter
-         {streak_overlay_panel update_star_progress}
-      }
-   )
-}}
-{if_else $hardware_check
-kDataUnhandled
-{new
-   Object
-   note_streak_callback_p1
-   (gem_hit_callback
-      ($slot $hopoable $hopoed)
-      
-      {switch
-         {gamecfg get mode}
-            (multi_vs {note_streak_p1})
-            (multi_fo {note_streak_p1})
-            (multi_coop {note_streak_p2})}
-      {if $do_streak
-         {do
-            {if_else {== {gamecfg get mode} multi_coop} 
-               {streak_overlay_panel update_streak 2}
-               {streak_overlay_panel update_streak 1}}
-            {set $beforefirstnote_p1 FALSE}}})
-
-   (gem_miss_callback
-      ($slot_hit $real_slot $timing_error)
-      
-      {if_else $do_streak
-         {if_else {== {gamecfg get mode} multi_coop}
-            {do
-               {if {&& {! $beforefirstnote_p1} $player2_fc}
-                  {do
-                     {streak_overlay_panel not_an_fc 2}
-                     {set $player1_fc FALSE}}}
-               {set $player2_streak 0}
-               {set $interval_p2 50}
-               {streak_overlay_panel zero_streak 2}
-               {streak_overlay_panel update_streak 2}}
-            {do
-               {if {&& {! $beforefirstnote_p1} $player1_fc}
-                  {streak_overlay_panel not_an_fc 1}}
-               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0  percent_complete} 80.0} {/ {player0  percent_complete} 75.0}} .1 .1}
-               {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
-               {set $player1_streak 0}
-               {set $interval_p1 50}
-               {streak_overlay_panel zero_streak 1}
-               {streak_overlay_panel update_streak 1}}}
-         {if_else {== {gamecfg get mode} multi_coop}
-            {do
-               {set $player2_streak 0}
-               {set $interval_p2 50}}
-            {do
-               {set $player1_streak 0}
-               {set $interval_p1 50}}}})
-
-   (gem_pass_callback
-      {set $beforefirstnote_p1 FALSE}
-      
-      {if $do_streak
-         {if_else {== {gamecfg get mode} multi_coop}
-            {do
-               {if $player2_fc
-                  {do
-                     {streak_overlay_panel not_an_fc 2}
-                     {set $player1_fc FALSE}}}
-               {set $player2_streak 0}
-               {set $interval_p2 50}
-               {streak_overlay_panel zero_streak 2}
-               {streak_overlay_panel update_streak 2}}
-            {do
-               {if $player1_fc
-                  {streak_overlay_panel not_an_fc 1}}
-               {if {&& $clonehero_hud {! $beforefirstnote_p0}} {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
-               {set $player1_streak 0}
-               {set $interval_p1 50}
-               {streak_overlay_panel zero_streak 1}
-               {streak_overlay_panel update_streak 1}}}
-         {do
-            {if_else {== {gamecfg get mode} multi_coop}
-               {do
-                  {set $player2_streak 0}
-                  {set $interval_p2 50}}
-               {do
-                  {set $player1_streak 0}
-                  {set $interval_p1 50}}}}})}}
-{new GHPanel streak_overlay_panel
-   (file {if_else $clonehero_hud "../hud/streak_overlay_ch.milo"  "../hud/streak_overlay.milo"})
    (enter
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 29}
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
-      {if_else {||
-      {game is_tutorial_running} ;check for tutorial mode
-      {== {gamecfg get mode} attract} ;check for attract mode
-      $cheat_enabled_performance_mode} ;check for performance mode
+      {if_else {|| {game is_tutorial_running} {== {gamecfg get mode} attract} $cheat_enabled_performance_mode}
          {do
             {$this show_overlay FALSE}
-            {set $do_streak FALSE}}
-      {set $starratingtempbar 0}
-      {set $starratingtemp 0}
-      {if_else $autoplay
-         {set $starrating ' '} ;if autoplay, blank star rating
-         {set $starrating ' ©'} ;otherwise, set to default
+            {set $do_streak FALSE}
+         }
+         {do
+            {set $starratingtempbar 0}
+            {set $starratingtemp 0}
+            {set $notesmissed 0}
+            {set $overstrums 0}
+            {if_else $autoplay
+               {set $starrating ' '} ;if autoplay, blank star rating
+               {set $starrating ' ©'} ;otherwise, set to default
+            }
+            {$this setup_streak}
+         }
       }
-      {set $notesmissed 0}
-      {set $overstrums 0}
-;      {mtv_overlay_panel setup_text} ;we call this in mtv_overlay_panel enter, do we really need it again?
-;      {{streak_overlay_panel find star_counter.lbl} set_text $starrating}
-      {$this setup_streak}})
-
+   )
    (init_progress_bars
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
-      {if $clonehero_hud {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}}
+      {if $clonehero_hud
+         {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}
+      }
    )
    (update_song_progress
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
@@ -333,8 +382,7 @@ kDataUnhandled
          }
       }
       {if {&& {! $autoplay} {! $clonehero_hud}}
-         {switch ;set string for whole part and retrieve fractional part for application to the bar
-            {int $starratingtemp}
+         {switch {int $starratingtemp} ;set string for whole part and retrieve fractional part for application to the bar 
             (0 {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}})
             (1 {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}})
             (2 {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}})
@@ -345,7 +393,9 @@ kDataUnhandled
             (7 {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}})
             (8 {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}})
             (9 {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}})
-            {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}}
+            {do
+               {set $starrating ' '} {set $starratingtempbar $starratingtemp}
+            }
          }
       }
       {if {&& {! $autoplay} $clonehero_hud}
@@ -367,37 +417,48 @@ kDataUnhandled
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
    )
-
    (animate_streak
       {script_task
          (units kTaskSeconds)
          (script
             {score_slide_in.tnm animate
                (period 0.5)
-               (units kTaskSeconds)})}
+               (units kTaskSeconds)
+            }
+         )
+      }
       {script_task
          (units kTaskSeconds)
          (script
             {score_slide_in1.tnm animate
                (period 0.5)
-               (units kTaskSeconds)})}
+               (units kTaskSeconds)
+            }
+         )
+      }
       {script_task
          (units kTaskSeconds)
          (script
             {score_slide_in2.tnm animate
                (period 0.5)
-               (units kTaskSeconds)})}
+               (units kTaskSeconds)
+            }
+         )
+      }
       {script_task
          (units kTaskSeconds)
          (script
             {score_slide_in3.tnm animate
                (period 0.5)
-               (units kTaskSeconds)})})
-   (streak_lastframe {stk_campaign_song_id.view set_frame METER_END_FRAME})
+               (units kTaskSeconds)
+            }
+         )
+      }
+   )
+   (streak_lastframe
+      {stk_campaign_song_id.view set_frame METER_END_FRAME}
+   )
    (setup_streak
-;      {streak_overlay_panel update_song_progress}
-;      {streak_overlay_panel update_star_progress}
-;      {set $do_streak TRUE}
       {stk_campaign_song_id.view set_showing FALSE}
       {stk_campaign_song_id_coop.view set_showing FALSE}
       {stk_campaign_song_id_vers.view set_showing FALSE}
@@ -410,164 +471,171 @@ kDataUnhandled
       {stk_campaign_line_vers2.lbl set_showing FALSE}
       {stk_campaign_line_vs2p1.lbl set_showing FALSE}
       {stk_campaign_line_vs2p2.lbl set_showing FALSE}
-;      {set $notesmissed 0}
-;      {set $overstrums 0}
       {set $player0_fc FALSE} ; Pre-clear all FC flags so only the ones in use actually get set
       {set $player1_fc FALSE}
       {set $player2_fc FALSE}
-      
-      {switch
-         {gamecfg get mode}
-            (career
-               {do
-                  {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
-                  {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
-                  {set $stk_view_p0 "stk_campaign_song_id.view"}
-                  {set $stk_prefix_p0 "stk_campaign_line"}
-                  {set $stk_view_p1 ""}
-                  {set $stk_prefix_p1 ""}
-                  {set $player0_fc TRUE}
-               })
-            (quickplay
-               {do
-                  {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
-                  {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
-                  {set $stk_view_p0 "stk_campaign_song_id.view"}
-                  {set $stk_prefix_p0 "stk_campaign_line"}
-                  {set $stk_view_p1 ""}
-                  {set $stk_prefix_p1 ""}
-                  {set $player0_fc TRUE}
-               })
-            (multi_coop
-               {do
-                  {set $stk_view_p0 "stk_campaign_song_id_coop.view"}
-                  {set $stk_prefix_p0 "stk_campaign_line_coop"}
-                  {set $stk_view_p1 ""}
-                  {set $stk_prefix_p1 ""}
-                  {set $player0_fc TRUE}
-                  {set $player1_fc TRUE}
-                  {set $player2_fc TRUE}
-               })
-            (multi_vs
-               {do
-                  {set $stk_view_p0 "stk_campaign_song_id_vers.view"}
-                  {set $stk_prefix_p0 "stk_campaign_line_vers"}
-                  {set $stk_view_p1 "stk_campaign_song_id_vs2p.view"}
-                  {set $stk_prefix_p1 "stk_campaign_line_vs2p"}
-                  {set $player0_fc TRUE}
-                  {set $player1_fc TRUE}
-               })
-            (multi_fo
-               {do
-                  {set $stk_view_p0 "stk_campaign_song_id_vers.view"}
-                  {set $stk_prefix_p0 "stk_campaign_line_vers"}
-                  {set $stk_view_p1 "stk_campaign_song_id_vs2p.view"}
-                  {set $stk_prefix_p1 "stk_campaign_line_vs2p"}
-                  {set $player0_fc TRUE} ;same as for multi_vs
-                  {set $player1_fc TRUE}
-               })
-            (practice
-               {do
-                  {set $stk_view_p0 "stk_campaign_song_id.view"}
-                  {set $stk_prefix_p0 "stk_campaign_line"}
-                  {set $stk_view_p1 ""}
-                  {set $stk_prefix_p1 ""}}
-                  {set $player0_fc TRUE}
-            )
+      {switch {gamecfg get mode}
+         (career
+            {do
+               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
+               {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
+               {set $stk_view_p0 "stk_campaign_song_id.view"}
+               {set $stk_prefix_p0 "stk_campaign_line"}
+               {set $stk_view_p1 ""}
+               {set $stk_prefix_p1 ""}
+               {set $player0_fc TRUE}
+            }
+         )
+         (quickplay
+            {do
+               {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale 0 .1 .1}
+               {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale 0 .1 .1}
+               {set $stk_view_p0 "stk_campaign_song_id.view"}
+               {set $stk_prefix_p0 "stk_campaign_line"}
+               {set $stk_view_p1 ""}
+               {set $stk_prefix_p1 ""}
+               {set $player0_fc TRUE}
+            }
+         )
+         (multi_coop
+            {do
+               {set $stk_view_p0 "stk_campaign_song_id_coop.view"}
+               {set $stk_prefix_p0 "stk_campaign_line_coop"}
+               {set $stk_view_p1 ""}
+               {set $stk_prefix_p1 ""}
+               {set $player0_fc TRUE}
+               {set $player1_fc TRUE}
+               {set $player2_fc TRUE}
+            }
+         )
+         (multi_vs
+            {do
+               {set $stk_view_p0 "stk_campaign_song_id_vers.view"}
+               {set $stk_prefix_p0 "stk_campaign_line_vers"}
+               {set $stk_view_p1 "stk_campaign_song_id_vs2p.view"}
+               {set $stk_prefix_p1 "stk_campaign_line_vs2p"}
+               {set $player0_fc TRUE}
+               {set $player1_fc TRUE}
+            }
+         )
+         (multi_fo
+            {do
+               {set $stk_view_p0 "stk_campaign_song_id_vers.view"}
+               {set $stk_prefix_p0 "stk_campaign_line_vers"}
+               {set $stk_view_p1 "stk_campaign_song_id_vs2p.view"}
+               {set $stk_prefix_p1 "stk_campaign_line_vs2p"}
+               {set $player0_fc TRUE} ;same as for multi_vs
+               {set $player1_fc TRUE}
+            }
+         )
+         (practice
+            {do
+               {set $stk_view_p0 "stk_campaign_song_id.view"}
+               {set $stk_prefix_p0 "stk_campaign_line"}
+               {set $stk_view_p1 ""}
+               {set $stk_prefix_p1 ""}
+               {set $player0_fc TRUE}
+            }
+         )
       }
       ; We're initially on an FC run, so use FC line
       {set $streakline_p0 1}
       {set $streakline_p1 1}
       {set $streakline_p2 1} 
-
       {$this set_line $stk_prefix_p0 1 {localize stk_zero}}
       {$this set_line $stk_prefix_p0 2 {localize stk_zero}}
-
       {switch {gamecfg get mode}
-            (multi_vs
-               {do
-                  {$this set_line $stk_prefix_p1 1 {localize stk_zero}}
-                  {$this set_line $stk_prefix_p1 2 {localize stk_zero}}
-               })
-            (multi_fo
-               {do
-                  {$this set_line $stk_prefix_p1 1 {localize stk_zero}}
-                  {$this set_line $stk_prefix_p1 2 {localize stk_zero}}
-               })}
-
+         (multi_vs
+            {do
+               {$this set_line $stk_prefix_p1 1 {localize stk_zero}}
+               {$this set_line $stk_prefix_p1 2 {localize stk_zero}}
+            }
+         )
+         (multi_fo
+            {do
+               {$this set_line $stk_prefix_p1 1 {localize stk_zero}}
+               {$this set_line $stk_prefix_p1 2 {localize stk_zero}}
+            }
+         )
+      }
       {set $beforefirstnote_p0 TRUE} ; If set, ignore misses for the purpose of switching lines
       {set $beforefirstnote_p1 TRUE} ; Same for P1
-
       {if {!= $stk_prefix_p1 ""}
          {do
             {{sprint $stk_prefix_p1 "1.lbl"} set_wrap_width 200}
             {{sprint $stk_prefix_p1 "2.lbl"} set_wrap_width 200}
             {{sprint $stk_view_p1} set_showing TRUE}
             {{sprint $stk_prefix_p1 $streakline_p1 ".lbl"} set_showing TRUE}
-         }}
+         }
+      }
       {{sprint $stk_view_p0} set_showing TRUE} ; Don't worry, panel is still invisible at this point
       {{sprint $stk_prefix_p0 $streakline_p0 ".lbl"} set_showing TRUE}
-      
-      ;{mtv_overlay_panel update_text} ;shouldn't be needed, we're still in setup_streak and we just ran setup_text (which includes the same script from update_text) before calling setup_streak
-)
-
+   )
    (not_an_fc
       ($player)
       {switch $player
-            (0
-               {do
-                  {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
-                  {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
-                  {set $beforefirstnote_p0 FALSE}
-                  {set $player0_fc FALSE}
-                  {set $streakline_p0 2} 
-               })
-            (1
-               {do
-                  {{sprint $stk_prefix_p1 1 ".lbl"} set_showing FALSE}
-                  {{sprint $stk_prefix_p1 2 ".lbl"} set_showing TRUE}
-                  {set $beforefirstnote_p1 FALSE}
-                  {set $player1_fc FALSE}
-                  {set $streakline_p1 2}
-               })
-            (2
-               {do
-                  {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
-                  {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
-                  {set $beforefirstnote_p0 FALSE}
-                  {set $beforefirstnote_p1 FALSE}
-                  {set $player2_fc FALSE}
-                  {set $streakline_p2 2}
-               })})
+         (0
+            {do
+               {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
+               {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
+               {set $beforefirstnote_p0 FALSE}
+               {set $player0_fc FALSE}
+               {set $streakline_p0 2} 
+            }
+         )
+         (1
+            {do
+               {{sprint $stk_prefix_p1 1 ".lbl"} set_showing FALSE}
+               {{sprint $stk_prefix_p1 2 ".lbl"} set_showing TRUE}
+               {set $beforefirstnote_p1 FALSE}
+               {set $player1_fc FALSE}
+               {set $streakline_p1 2}
+            }
+         )
+         (2
+            {do
+               {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
+               {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
+               {set $beforefirstnote_p0 FALSE}
+               {set $beforefirstnote_p1 FALSE}
+               {set $player2_fc FALSE}
+               {set $streakline_p2 2}
+            }
+         )
+      }
+   )
    (zero_streak
       ($player)
       {switch $player
-            (0 {$this set_line $stk_prefix_p0 $streakline_p0 {localize stk_zero}})
-            (1 {$this set_line $stk_prefix_p1 $streakline_p1 {localize stk_zero}})
-            (2 {$this set_line $stk_prefix_p0 $streakline_p2 {localize stk_zero}})
-      })
+         (0 {$this set_line $stk_prefix_p0 $streakline_p0 {localize stk_zero}})
+         (1 {$this set_line $stk_prefix_p1 $streakline_p1 {localize stk_zero}})
+         (2 {$this set_line $stk_prefix_p0 $streakline_p2 {localize stk_zero}})
+      }
+   )
    (update_streak
       ($player)
       {switch $player
-            (0 {$this set_line $stk_prefix_p0 $streakline_p0 {localize stk_format_0}})
-            (1 {$this set_line $stk_prefix_p1 $streakline_p1 {localize stk_format_1}})
-            (2 {$this set_line $stk_prefix_p0 $streakline_p2 {localize stk_format_2}})
-      })
+         (0 {$this set_line $stk_prefix_p0 $streakline_p0 {localize stk_format_0}})
+         (1 {$this set_line $stk_prefix_p1 $streakline_p1 {localize stk_format_1}})
+         (2 {$this set_line $stk_prefix_p0 $streakline_p2 {localize stk_format_2}})
+      }
+   )
    (set_line
       ($prefix $i $text)
-      {{sprint $prefix $i ".lbl"} set_localized_text $text})
+      {{sprint $prefix $i ".lbl"} set_localized_text $text}
+   )
    (show_overlay
       ($show)
       {$this set_showing $show}
-      {$this set_paused {! $show}})}
+      {$this set_paused {! $show}}
+   )
+}
 {new HudPanel hud
    (file
       {if_else
-            {&&
-               {== {gamecfg get mode} career} $clonehero_hud
-            }
-                  "../hud/hud_ch.milo"
-                  {sprint "../hud/" {gamecfg get hud_file}}
+         {&& {== {gamecfg get mode} career} $clonehero_hud}
+            "../hud/hud_ch.milo"
+            {sprint "../hud/" {gamecfg get hud_file}}
       }
    )
    (trogdor_show
@@ -577,18 +645,21 @@ kDataUnhandled
       {youwin_eng.tex set_bitmap "track/custom_track_textures/youlose_keep.png"}
       {$this set_win_showing TRUE}
    )
-    (trogdor_hide
-       {script_task
+   (trogdor_hide
+      {script_task
          (delay WIN_MESSAGE_SECS)
          (script
             {$this set_win_showing FALSE}
             {youwin_eng.tex set_bitmap "track/custom_track_textures/youwin_eng_keep.png"}
             {youwin.mesh set_local_pos_index 2 15}
          )
-       }
+      }
    )
    (enter
-      {game add_sinks $this intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start}
+      {game add_sinks
+         $this
+            intro_start_msg intro_skip slide_meter_in game_won_msg game_lost game_outro_complete star_power_start star_power_stop sp_engage start
+      }
       {if $sppop
          {game add_sink $this star_power_ready}
       }
@@ -621,60 +692,60 @@ kDataUnhandled
       {{{hud loaded_dir} find mask2.mesh} set_showing FALSE}
    )
    (clone_hero_sp
-   {set $clonestarx 
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 -52)
+      {set $clonestarx 
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 -52)
+         }
       }
-   }
-   {set $clonestarrot 
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 3)
+      {set $clonestarrot 
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 3)
+         }
       }
-   }
-   {set $clonestreakx 
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 -33)
+      {set $clonestreakx 
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 -33)
+         }
       }
-   }
-   {set $clonestreak2x 
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 -76)
+      {set $clonestreak2x 
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 -76)
+         }
       }
-   }
-   {set $clonestreakdotx 
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 -77)
+      {set $clonestreakdotx 
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 -77)
+         }
       }
-   }
-   {set $clonestreakdotoffset
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 -2)
+      {set $clonestreakdotoffset
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 -2)
+         }
       }
-   }
-   {set $clonecrowdx
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 80)
+      {set $clonecrowdx
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 80)
+         }
       }
-   }
-   {set $clonecrowdy
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 90)
+      {set $clonecrowdy
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 90)
+         }
       }
-   }
-   {set $clonecrowdrot 
-      {switch $trackcamx
-         (1.0 0)
-         (1.3 -6)
+      {set $clonecrowdrot 
+         {switch $trackcamx
+            (1.0 0)
+            (1.3 -6)
+         }
       }
-   }
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find vu_needle_led.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_light.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_frame.mesh} set_showing FALSE}
@@ -734,11 +805,9 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_rot 0 0 -35}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_scale .9 .9 .9}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_scale 1.8 1.8 1.8}
-      
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_2.mesh} set_local_pos {+ $clonestreak2x 0} -25 -37}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_3.mesh} set_local_pos {+ $clonestreak2x -32} -25 -45}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_glow.mesh} set_local_pos_index 0 {- $clonestreakx 40}}
-
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_1.mesh} set_local_pos {+ $clonestreakdotx -70} 0 -50}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_2.mesh} set_local_pos {+ $clonestreakdotx -75} 0 -40}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_streak_3.mesh} set_local_pos {+ $clonestreakdotx -80} 0 -30}
@@ -775,60 +844,98 @@ kDataUnhandled
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow_meter.mesh} set_showing FALSE}
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
       {if $hardware_check {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
-      )
+   )
    (exit
-      {game remove_sink $this})
+      {game remove_sink $this}
+   )
    (on_reset
       {$this set_showing {&& {gamecfg get show_hud} {! $cheat_enabled_performance_mode}}}
-      {if $clonehero_hud {$this clone_hero_sp}}
-      {if $nofail {$this no_fail_hud}}
+      {if $clonehero_hud
+         {$this clone_hero_sp}
+      }
+      {if $nofail
+         {$this no_fail_hud}
+      }
       {$this set_meters_showing TRUE}
       {$this set_win_showing FALSE}
    )
    (intro_start_msg
       {$this reset}
       {meters_slide_in.view set_frame 0}
-      {if $clonehero_hud {$this clone_hero_sp}}
-      {if $nofail {$this no_fail_hud}}
-      {$this set_meters_showing FALSE})
+      {if $clonehero_hud
+         {$this clone_hero_sp}
+      }
+      {if $nofail
+         {$this no_fail_hud}
+      }
+      {$this set_meters_showing FALSE}
+   )
    (intro_skip
       {$this reset}
       {meters_slide_in.view set_frame METER_END_FRAME}
       {streak_overlay_panel streak_lastframe}
-      {if $clonehero_hud {$this clone_hero_sp}}
-      {if $nofail {$this no_fail_hud}}
-      {$this set_meters_showing TRUE})
+      {if $clonehero_hud
+         {$this clone_hero_sp}
+      }
+      {if $nofail
+         {$this no_fail_hud}
+      }
+      {$this set_meters_showing TRUE}
+   )
    (slide_meter_in
       {$this set_meters_showing TRUE}
       {streak_overlay_panel animate_streak}
-      {meters_slide_in.view animate (period 0.5) (units kTaskSeconds)}
-      {if $clonehero_hud {$this clone_hero_sp}}
-      {if $nofail {$this no_fail_hud}}
+      {meters_slide_in.view animate
+         (period 0.5)
+         (units kTaskSeconds)
+      }
+      {if $clonehero_hud
+         {$this clone_hero_sp}
+      }
+      {if $nofail
+         {$this no_fail_hud}
+      }
       {if {!= {gamecfg get mode} attract}
          {script_task
             (delay 0.25)
             (script
-               {play_game_sfx meter_slide})}})
+               {play_game_sfx meter_slide}
+            )
+         }
+      }
+   )
    (star_power_ready
       ($player_num)
       {if_else {gamecfg get shared_star_meter}
          {if {== $player_num 0}
-            {$this show_message kPlayerShared star_ready}}
-         {$this show_message $player_num star_ready}}
-      {if $sfx {play_game_sfx_player sp_available sp_available_multi $player_num}}
-      kDataUnhandled)
+            {$this show_message kPlayerShared star_ready}
+         }
+         {$this show_message $player_num star_ready}
+      }
+      {if $sfx
+         {play_game_sfx_player sp_available sp_available_multi $player_num}
+      }
+      kDataUnhandled
+   )
    (game_won_msg
       {$this on_game_over}
       {$this set_win_showing TRUE}
       {script_task
          (delay WIN_MESSAGE_SECS)
          (script
-            {$this set_win_showing FALSE})})
+            {$this set_win_showing FALSE}
+         )
+      }
+   )
    (game_lost
       {$this on_game_over}
-      {$this show_message kPlayerShared song_failed})
+      {$this show_message kPlayerShared song_failed}
+   )
    (game_outro_complete
-      {$this set_showing FALSE})
+      {$this set_showing FALSE}
+   )
    (on_set_paused
       ($paused)
-      {$this set_paused $paused})}
+      {$this set_paused $paused}
+   )
+}
