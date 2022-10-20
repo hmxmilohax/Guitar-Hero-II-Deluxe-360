@@ -1,198 +1,296 @@
+#define TRACK_END_FRAME (1920)
 #define TRACK_MODIFIER_HANDLERS
 (
 #ifndef HX_XBOX
-{if_else $noflames
-{{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing FALSE}}
-{{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing TRUE}}}
-{{track_panel find beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find quarter_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find quarter_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find quarter_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find half_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find half_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
-{{track_panel find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {if_else $noflames
+      {{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing FALSE}}
+      {{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing TRUE}}
+   }
+   {{track_panel find beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find quarter_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find quarter_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find quarter_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find half_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find half_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
+   {{track_panel find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 #else
-{if {exists track_both} {set $tracktype track_both}}
-{if {exists track_bright} {set $tracktype track_bright}}
-{if {exists track_dark} {set $tracktype track_dark}}
-{if {exists track_drum} {set $tracktype track_drum}}
-{if {exists track_new} {set $tracktype track_new}}
-{if {exists track_old} {set $tracktype track_old}}
-{if $noflames
-{{{{track_panel loaded_dir} find $tracktype} find smash_firelight.tex} set_bitmap ../track/custom_track_textures/_no_highway.png}}
-{{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}}
-{{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
-{{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
-{{{{track_panel loaded_dir} find $tracktype} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find $tracktype} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find $tracktype} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
-{{{{track_panel loaded_dir} find $tracktype} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
+   {if {exists track_both}
+      {set $tracktype track_both}
+   }
+   {if {exists track_bright}
+      {set $tracktype track_bright}
+   }
+   {if {exists track_dark}
+      {set $tracktype track_dark}
+   }
+   {if {exists track_drum}
+      {set $tracktype track_drum}
+   }
+   {if {exists track_new}
+      {set $tracktype track_new}
+   }
+   {if {exists track_old}
+      {set $tracktype track_old}
+   }
+   {if $noflames
+      {{{{track_panel loaded_dir} find $tracktype} find smash_firelight.tex} set_bitmap ../track/custom_track_textures/_no_highway.png}
+   }
+   {{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}}
+   {{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
+   {{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
+   {{{{track_panel loaded_dir} find $tracktype} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
+   {{{{track_panel loaded_dir} find $tracktype} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
+   {{{{track_panel loaded_dir} find $tracktype} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
+   {{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
+   {{{{track_panel loaded_dir} find $tracktype} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
 #endif
-{track_panel reset}
+   {track_panel reset}
 )
-#define TRACK_END_FRAME (1920)
-{new TrackPanel track_panel
+{new
+   TrackPanel
+   track_panel
 #ifndef HX_XBOX
    (file
       {switch {game get_track_sym 0}
          (bass '../track/track.milo')
          (drum '../track/track_drum.milo')
          (rhythm '../track/track.milo')
-         (guitar '../track/track.milo')})
+         (guitar '../track/track.milo')
+      }
+   )
 #else
-(file
-{if_else {== {gamecfg get_num_players} 1}
-{do
-   {if_else {&& $darkstrums $brighthopos}
-      {do
-      {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_both_panel_1p.milo
-      {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_both_panel_1p.milo
-      {if_else $gh1track
-       ../track/old_both_panel_1p.milo
-      {if_else $gh3track
-       ../track/gh3_both_panel_1p.milo
-      {if_else $voidfrets
-       ../track/void_both_panel_1p.milo
-         ../track/both_panel_1p.milo}}}}}}
-       ;end dark&bright
-    {if_else $brighthopos
-      {do
-      {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_bright_panel_1p.milo
-      {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_bright_panel_1p.milo
-      {if_else $gh1track
-       ../track/old_bright_panel_1p.milo
-      {if_else $gh3track
-       ../track/gh3_bright_panel_1p.milo
-      {if_else $voidfrets
-       ../track/void_bright_panel_1p.milo
-         ../track/bright_panel_1p.milo}}}}}}
-       ;end bright
-    {if_else $darkstrums
-      {do
-      {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_dark_panel_1p.milo
-      {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_dark_panel_1p.milo
-      {if_else $gh1track
-       ../track/old_dark_panel_1p.milo
-      {if_else $gh3track
-       ../track/gh3_dark_panel_1p.milo
-      {if_else $voidfrets
-       ../track/void_dark_panel_1p.milo
-         ../track/dark_panel_1p.milo}}}}}}
-       ;end dark
-   {if_else {&& $gh1track $voidfrets}
-      ../track/old_void_panel_1p.milo
-    {if_else $gh1track
-        ../track/old_panel_1p.milo
-   {if_else {&& $gh3track $voidfrets}
-      ../track/gh3_void_panel_1p.milo
-   {if_else $gh3track
-      ../track/gh3_panel_1p.milo
-   {if_else $voidfrets
-      ../track/void_panel_1p.milo
-      ../track/track_panel_1p.milo}}}}}}}}}
-   ;end 1p panels
-{do
-   {if_else {&& $darkstrums $brighthopos}
-      {do
-      {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_both_panel_2p.milo
-      {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_both_panel_2p.milo
-      {if_else $gh1track
-       ../track/old_both_panel_2p.milo
-      {if_else $gh3track
-       ../track/gh3_both_panel_2p.milo
-      {if_else $voidfrets
-       ../track/void_both_panel_2p.milo
-       ../track/both_panel_2p.milo}}}}}}
-       ;end dark&bright
-   {if_else $brighthopos
-      {do
-      {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_bright_panel_2p.milo
-      {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_bright_panel_2p.milo
-      {if_else $gh1track
-       ../track/old_bright_panel_2p.milo
-      {if_else $gh3track
-       ../track/gh3_bright_panel_2p.milo
-      {if_else $voidfrets
-       ../track/void_bright_panel_2p.milo
-       ../track/bright_panel_2p.milo}}}}}}
-       ;end bright
-   {if_else $darkstrums
-      {do
-      {if_else {&& $gh1track $voidfrets}
-       ../track/old_void_dark_panel_2p.milo
-      {if_else {&& $gh3track $voidfrets}
-       ../track/gh3_void_dark_panel_2p.milo
-      {if_else $gh1track
-       ../track/old_dark_panel_2p.milo
-      {if_else $gh3track
-       ../track/gh3_dark_panel_2p.milo
-      {if_else $voidfrets
-       ../track/void_dark_panel_2p.milo
-       ../track/dark_panel_2p.milo}}}}}}
-       ;end dark
-   {if_else {&& $gh1track $voidfrets}
-      ../track/old_void_panel_2p.milo
-   {if_else $gh1track
-      ../track/old_panel_2p.milo
-   {if_else {&& $gh3track $voidfrets}
-      ../track/gh3_void_panel_2p.milo
-   {if_else $gh3track
-      ../track/gh3_panel_2p.milo
-   {if_else $voidfrets
-      ../track/void_panel_2p.milo
-      ../track/track_panel_2p.milo}}}}}}}}}})
+   (file
+      {if_else {== {gamecfg get_num_players} 1}
+         {do
+            {if_else {&& $darkstrums $brighthopos}
+               {do
+                  {if_else {&& $gh1track $voidfrets}
+                     ../track/old_void_both_panel_1p.milo
+                     {if_else {&& $gh3track $voidfrets}
+                        ../track/gh3_void_both_panel_1p.milo
+                        {if_else $gh1track
+                           ../track/old_both_panel_1p.milo
+                           {if_else $gh3track
+                              ../track/gh3_both_panel_1p.milo
+                              {if_else $voidfrets
+                                 ../track/void_both_panel_1p.milo
+                                 ../track/both_panel_1p.milo ;end dark&bright
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+               {if_else $brighthopos
+                  {do
+                     {if_else {&& $gh1track $voidfrets}
+                        ../track/old_void_bright_panel_1p.milo
+                        {if_else {&& $gh3track $voidfrets}
+                           ../track/gh3_void_bright_panel_1p.milo
+                           {if_else $gh1track
+                              ../track/old_bright_panel_1p.milo
+                              {if_else $gh3track
+                                 ../track/gh3_bright_panel_1p.milo
+                                 {if_else $voidfrets
+                                    ../track/void_bright_panel_1p.milo
+                                    ../track/bright_panel_1p.milo ;end bright
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+                  {if_else $darkstrums
+                     {do
+                        {if_else {&& $gh1track $voidfrets}
+                           ../track/old_void_dark_panel_1p.milo
+                           {if_else {&& $gh3track $voidfrets}
+                              ../track/gh3_void_dark_panel_1p.milo
+                              {if_else $gh1track
+                                 ../track/old_dark_panel_1p.milo
+                                 {if_else $gh3track
+                                    ../track/gh3_dark_panel_1p.milo
+                                    {if_else $voidfrets
+                                       ../track/void_dark_panel_1p.milo
+                                       ../track/dark_panel_1p.milo ;end dark
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                     {if_else {&& $gh1track $voidfrets}
+                        ../track/old_void_panel_1p.milo
+                        {if_else $gh1track
+                           ../track/old_panel_1p.milo
+                           {if_else {&& $gh3track $voidfrets}
+                              ../track/gh3_void_panel_1p.milo
+                              {if_else $gh3track
+                                 ../track/gh3_panel_1p.milo
+                                 {if_else $voidfrets
+                                    ../track/void_panel_1p.milo
+                                    ../track/track_panel_1p.milo ;end 1p panels
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+         {do
+            {if_else {&& $darkstrums $brighthopos}
+               {do
+                  {if_else {&& $gh1track $voidfrets}
+                      ../track/old_void_both_panel_2p.milo
+                     {if_else {&& $gh3track $voidfrets}
+                         ../track/gh3_void_both_panel_2p.milo
+                        {if_else $gh1track
+                            ../track/old_both_panel_2p.milo
+                           {if_else $gh3track
+                              ../track/gh3_both_panel_2p.milo
+                              {if_else $voidfrets
+                                 ../track/void_both_panel_2p.milo
+                                 ../track/both_panel_2p.milo ;end dark&bright
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+               {if_else $brighthopos
+                  {do
+                     {if_else {&& $gh1track $voidfrets}
+                        ../track/old_void_bright_panel_2p.milo
+                        {if_else {&& $gh3track $voidfrets}
+                           ../track/gh3_void_bright_panel_2p.milo
+                           {if_else $gh1track
+                              ../track/old_bright_panel_2p.milo
+                              {if_else $gh3track
+                                 ../track/gh3_bright_panel_2p.milo
+                                 {if_else $voidfrets
+                                    ../track/void_bright_panel_2p.milo
+                                    ../track/bright_panel_2p.milo ;end bright
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+                  {if_else $darkstrums
+                     {do
+                        {if_else {&& $gh1track $voidfrets}
+                           ../track/old_void_dark_panel_2p.milo
+                           {if_else {&& $gh3track $voidfrets}
+                              ../track/gh3_void_dark_panel_2p.milo
+                              {if_else $gh1track
+                                 ../track/old_dark_panel_2p.milo
+                                 {if_else $gh3track
+                                    ../track/gh3_dark_panel_2p.milo
+                                    {if_else $voidfrets
+                                       ../track/void_dark_panel_2p.milo
+                                       ../track/dark_panel_2p.milo ;end dark
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                     {if_else {&& $gh1track $voidfrets}
+                        ../track/old_void_panel_2p.milo
+                        {if_else $gh1track
+                           ../track/old_panel_2p.milo
+                           {if_else {&& $gh3track $voidfrets}
+                              ../track/gh3_void_panel_2p.milo
+                              {if_else $gh3track
+                                 ../track/gh3_panel_2p.milo
+                                 {if_else $voidfrets
+                                    ../track/void_panel_2p.milo
+                                    ../track/track_panel_2p.milo
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   )
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME}
       {switch {gamecfg get mode}
-            (career
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-            )
-            (quickplay
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-            )
-            (multi_vs kDataUnhandled)
-            (multi_fo kDataUnhandled)
-            (multi_coop kDataUnhandled)
-            (practice
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-            )}
-      )
+         (career
+            {name_overlay_panel setup_text}
+            {name_overlay_panel show_overlay
+               {if_else $cheat_enabled_performance_mode
+                  FALSE
+                  {if_else $autoplay
+                     TRUE
+                     $nametitle
+                  }
+               }
+            }
+         )
+         (quickplay
+            {name_overlay_panel setup_text}
+            {name_overlay_panel show_overlay
+               {if_else $cheat_enabled_performance_mode
+                  FALSE
+                  {if_else $autoplay
+                     TRUE
+                     $nametitle
+                  }
+               }
+            }
+         )
+         (multi_vs kDataUnhandled)
+         (multi_fo kDataUnhandled)
+         (multi_coop kDataUnhandled)
+         (practice
+            {name_overlay_panel setup_text}
+            {name_overlay_panel show_overlay
+               {if_else $cheat_enabled_performance_mode
+                  FALSE
+                  {if_else $autoplay
+                     TRUE
+                     $nametitle
+                  }
+               }
+            }
+         )
+      }
+   )
    (set_track_in
-      {$this set_frame 0})
+      {$this set_frame 0}
+   )
    (animate_track
       ($start $end $period $units)
       {$this animate
          (units $units)
          (range $start $end)
-         (period $period)})
+         (period $period)
+      }
+   )
    (play_track_sfx
       ($sfx)
-      {if {!= {gamecfg get mode} attract}
-         {play_game_sfx $sfx}})
+      {play_game_sfx $sfx}
+   )
    (animate_track_out
       {$this play_track_sfx TRACK_EXTEND_SFX}
-      {$this animate_track 0 TRACK_END_FRAME 1 kTaskSeconds})
+      {$this animate_track 0 TRACK_END_FRAME 1 kTaskSeconds}
+   )
    (animate_track_out_fast
-      {$this animate_track 0 TRACK_END_FRAME 0.6 kTaskTutorialSeconds})
+      {$this animate_track 0 TRACK_END_FRAME 0.6 kTaskTutorialSeconds}
+   )
    (animate_track_in_fast
-      {$this animate_track TRACK_END_FRAME 0 0.6 kTaskTutorialSeconds})
+      {$this animate_track TRACK_END_FRAME 0 0.6 kTaskTutorialSeconds}
+   )
    (intro_start_msg
       {$this reset}
       {$this set_showing
@@ -200,8 +298,12 @@
             {gamecfg get show_track}
             {&&
                {! $cheat_enabled_performance_mode}
-               {! $neckless}}}}
-      {$this set_track_in})
+               {! $neckless}
+            }
+         }
+      }
+      {$this set_track_in}
+   )
    (intro_skip
       {$this reset}
       {$this sync_to_time}
@@ -210,47 +312,90 @@
             {gamecfg get show_track}
             {&&
                {! $cheat_enabled_performance_mode}
-               {! $neckless}}}}
+               {! $neckless}
+            }
+         }
+      }
       {$this set_track_out}
       {switch {gamecfg get mode}
-            (career
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-               TRACK_MODIFIER_HANDLERS
-            )
-            (quickplay
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-               TRACK_MODIFIER_HANDLERS
-            )
-            (multi_vs kDataUnhandled)
-            (multi_fo kDataUnhandled)
-            (multi_coop kDataUnhandled)
-            (practice
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-               TRACK_MODIFIER_HANDLERS
-            )}
-     )
+         (career
+            {name_overlay_panel setup_text}
+            {name_overlay_panel show_overlay
+               {if_else $cheat_enabled_performance_mode
+                  FALSE
+                  {if_else $autoplay
+                     TRUE
+                     $nametitle
+                  }
+               }
+            }
+            TRACK_MODIFIER_HANDLERS
+         )
+         (quickplay
+            {name_overlay_panel setup_text}
+            {name_overlay_panel show_overlay
+               {if_else $cheat_enabled_performance_mode
+                  FALSE
+                  {if_else $autoplay
+                     TRUE
+                     $nametitle
+                  }
+               }
+            }
+            TRACK_MODIFIER_HANDLERS
+         )
+         (multi_vs kDataUnhandled)
+         (multi_fo kDataUnhandled)
+         (multi_coop kDataUnhandled)
+         (practice
+            {name_overlay_panel setup_text}
+            {name_overlay_panel show_overlay
+               {if_else $cheat_enabled_performance_mode
+                  FALSE
+                  {if_else $autoplay
+                     TRUE
+                     $nametitle
+                  }
+               }
+            }
+            TRACK_MODIFIER_HANDLERS
+         )
+      }
+   )
    (enter
       {name_overlay_panel show_overlay FALSE}
-      {game add_sink $this blow_streak})
-   (exit {game remove_sink $this})
+      {game add_sink $this blow_streak}
+   )
+   (exit
+      {game remove_sink $this}
+   )
    (do_extend_sequence
-      {$this {if_else {== $trackcamx 1.0} animate_track_out set_track_out}}
+      {$this
+         {if_else {== $trackcamx 1.0}
+            animate_track_out
+            set_track_out
+         }
+      }
       {switch {gamecfg get mode}
-            (career
-               {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
-            )
-            (quickplay
-               {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
-            )
-            (multi_vs kDataUnhandled)
-            (multi_fo kDataUnhandled)
-            (multi_coop kDataUnhandled)
-            (practice
-               {if {!= $trackcamx 1.0} TRACK_MODIFIER_HANDLERS}
-            )}
+         (career
+            {if {!= $trackcamx 1.0}
+               TRACK_MODIFIER_HANDLERS
+            }
+         )
+         (quickplay
+            {if {!= $trackcamx 1.0}
+               TRACK_MODIFIER_HANDLERS
+            }
+         )
+         (multi_vs kDataUnhandled)
+         (multi_fo kDataUnhandled)
+         (multi_coop kDataUnhandled)
+         (practice
+            {if {!= $trackcamx 1.0}
+               TRACK_MODIFIER_HANDLERS
+            }
+         )
+      }
       {script_task
          (delay 1.3)
          (units kTaskSeconds)
@@ -259,22 +404,48 @@
             {$this pop_smasher 0}
             {$this set_smasher_glowing 0 TRUE}
             {switch {gamecfg get mode}
-            (career
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-            )
-            (quickplay
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-            )
-            (multi_vs kDataUnhandled)
-            (multi_fo kDataUnhandled)
-            (multi_coop kDataUnhandled)
-            (practice
-               {name_overlay_panel setup_text}
-               {name_overlay_panel show_overlay {if_else $cheat_enabled_performance_mode FALSE {if_else $autoplay TRUE $nametitle}}}
-            )}
-            )}
+               (career
+                  {name_overlay_panel setup_text}
+                  {name_overlay_panel show_overlay
+                     {if_else $cheat_enabled_performance_mode
+                        FALSE
+                        {if_else $autoplay
+                           TRUE
+                           $nametitle
+                        }
+                     }
+                  }
+               )
+               (quickplay
+                  {name_overlay_panel setup_text}
+                  {name_overlay_panel show_overlay
+                     {if_else $cheat_enabled_performance_mode
+                        FALSE
+                        {if_else $autoplay
+                           TRUE
+                           $nametitle
+                        }
+                     }
+                  }
+               )
+               (multi_vs kDataUnhandled)
+               (multi_fo kDataUnhandled)
+               (multi_coop kDataUnhandled)
+               (practice
+                  {name_overlay_panel setup_text}
+                  {name_overlay_panel show_overlay
+                     {if_else $cheat_enabled_performance_mode
+                        FALSE
+                        {if_else $autoplay
+                           TRUE
+                           $nametitle
+                        }
+                     }
+                  }
+               )
+            }
+         )
+      }
       {script_task
          (delay 1.4)
          (units kTaskSeconds)
@@ -282,7 +453,8 @@
             {$this play_track_sfx nowbar_2}
             {$this pop_smasher 1}
             {$this set_smasher_glowing 1 TRUE}
-            )}
+         )
+      }
       {script_task
          (delay 1.5)
          (units kTaskSeconds)
@@ -290,7 +462,8 @@
             {$this play_track_sfx nowbar_3}
             {$this pop_smasher 2}
             {$this set_smasher_glowing 2 TRUE}
-            )}
+         )
+      }
       {script_task
          (delay 1.6)
          (units kTaskSeconds)
@@ -298,7 +471,8 @@
             {$this play_track_sfx nowbar_4}
             {$this pop_smasher 3}
             {$this set_smasher_glowing 3 TRUE}
-            )}
+         )
+      }
       {script_task
          (delay 1.7)
          (units kTaskSeconds)
@@ -306,26 +480,32 @@
             {$this play_track_sfx nowbar_5}
             {$this pop_smasher 4}
             {$this set_smasher_glowing 4 TRUE}
-            )}
+         )
+      }
       {script_task
          (delay 2)
          (units kTaskSeconds)
-         (script {$this pop_smasher -1}
-         )}
+         (script
+            {$this pop_smasher -1}
+         )
+      }
       {script_task
          (delay 2.5)
          (units kTaskSeconds)
          (script
             {game foreach_player_matcher $m
-               {$m refresh_track_buttons}}
-         {switch
-         {gamecfg get mode}
-            (career TRACK_MODIFIER_HANDLERS)
-            (quickplay TRACK_MODIFIER_HANDLERS)
-            (multi_vs kDataUnhandled)
-            (multi_fo kDataUnhandled)
-            (multi_coop kDataUnhandled)
-            (practice TRACK_MODIFIER_HANDLERS)}
-               )}
-      )}
+               {$m refresh_track_buttons}
+            }
+            {switch {gamecfg get mode}
+               (career TRACK_MODIFIER_HANDLERS)
+               (quickplay TRACK_MODIFIER_HANDLERS)
+               (multi_vs kDataUnhandled)
+               (multi_fo kDataUnhandled)
+               (multi_coop kDataUnhandled)
+               (practice TRACK_MODIFIER_HANDLERS)
+            }
+         )
+      }
+   )
+}
 {new TrackMaskPanel track_mask}
