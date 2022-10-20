@@ -40,9 +40,12 @@
    {if $voidfrets
       {if_else $gh3track
          {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png}
-         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/_no_highway.png}}}
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/_no_highway.png}
+      }
+   }
    {if $darkstrums
-      {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/gem_dark_keep.png}}
+      {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/gem_dark_keep.png}
+   }
    {{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}}
    {{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
    {{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
@@ -76,20 +79,20 @@
                      ../track/old_bright_panel_1p.milo
                      {if_else $gh3track
                         ../track/gh3_bright_panel_1p.milo
-                           ../track/bright_panel_1p.milo ;end bright
+                        ../track/bright_panel_1p.milo ;end bright
                      
                      }
                   }
                }
                {if_else $gh1track
                   ../track/old_panel_1p.milo
-                     {if_else $gh3track
-                        ../track/gh3_panel_1p.milo
-                           ../track/track_panel_1p.milo ;end 1p panels
-                     }
+                  {if_else $gh3track
+                     ../track/gh3_panel_1p.milo
+                     ../track/track_panel_1p.milo ;end 1p panels
                   }
                }
             }
+         }
          {do
             {if_else $brighthopos
                {do
@@ -97,7 +100,7 @@
                      ../track/old_bright_panel_2p.milo
                      {if_else $gh3track
                         ../track/gh3_bright_panel_2p.milo
-                           ../track/bright_panel_2p.milo ;end bright
+                        ../track/bright_panel_2p.milo ;end bright
                      }
                   }
                }
