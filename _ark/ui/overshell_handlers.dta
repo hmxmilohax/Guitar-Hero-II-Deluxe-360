@@ -1,6 +1,6 @@
 #define OVERSHELL_LIST_CONTENTS
 (
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_font os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
@@ -87,6 +87,9 @@
       (os_selhw
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_highway_list_screen})
+      (os_font
+         {set $modifierlistpos {sel_section.lst selected_pos}}
+         {ui push_screen overshell_font_list_screen})
       (os_trkmod
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen})
@@ -1628,9 +1631,41 @@
     OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
-   overshell_highway_list_screen
-   (panels overshell_highway_list)
-   (focus overshell_highway_list)
+   overshell_font_list_screen
+   (panels overshell_font_list)
+   (focus overshell_font_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   MultiSelectListPanel
+   overshell_font_list
+   (file overshell_list.milo)
+   (focus sel_section.lst)
+   (enter
+   {gs_tile5.mesh set_showing FALSE}
+   {set $fontmenu blockletters}
+   {gs_title.lbl set_type $fontmenu}
+   {do
+         {sel_section.lst set_local_pos -140 0 35}
+         {sel_section.lst set_data (blockletters blockletters_fill clarendon cutout dyingmarker
+         gh3veticablackcondensed gunsho hand helveticablack helveticablackcondensed
+         helveticathin impact impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen)}
+         {sel_section.lst set circular 1}}
+         {gs_title.lbl set_text "SET FONT"})
+   (SELECT_START_MSG
+      {set $namefont {$component selected_sym}}
+      OVERSHELL_HELP_POP_HANDLER
+       kDataUnhandled)
+    (SCROLL_MSG
+      {set $fontmenu {$component selected_sym}}
+      {gs_title.lbl set_type $fontmenu}
+      {$this update})
+    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
+   overshell_font_list_screen
+   (panels overshell_font_list)
+   (focus overshell_font_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
