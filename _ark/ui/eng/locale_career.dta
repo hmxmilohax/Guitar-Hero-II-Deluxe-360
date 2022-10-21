@@ -76,13 +76,13 @@
 (LETTERHEAD1
    {if_else $egg5
       "MiloHax Records"
-      "Death Threat Records"})
+      "MiloHax Records"})
 (LETTERHEAD2
    {if_else
       $egg5
       "\qFriends don't let friends GHEx\q"
-      "\qWe do rock right.\q"})
-(LETTERHEAD3 "LOS ANGELES, CALIFORNIA")
+      "\qI hope you didn't pay for this\q"})
+(LETTERHEAD3 " ")
 (STATUS_UPGRADE_BONUS "STATUS_UPGRADE_BONUS")
 (CASH_AWARD_BLURB1 "Spend cash on bonus guitars, characters, songs and more at The Store")
 (CASH_AWARD_BLURB2 "Cash Bonuses awarded for:")
@@ -189,12 +189,7 @@
          "Dear ______________________,\n\nNo. Way! Guitar Hero Encore Deluxe, Expert, beaten?! That's rad, man. Rad.\n\nSo quick question: you got FIVE STARS on everything? If you do, check the shop. Only the BADDEST of all speed metal tracks, \qSpeed Test\q, waits for you now. Like, dude, it seriously rips. You might wanna stretch first.\n\nSeriously though, that was one bitchin' show. You're a legend.\n\nLove,\nThe GH2 Deluxe Team"
          "Dear ______________________,\n\nAnd that's it! Guitar Hero II Deluxe on Expert SLAIN. That expanded setlist takes a bit longer to work though, but there's some gems in there, yeah?\n\nSo let's talk the ultimate reward. If you've gotten FIVE STARS on every song, you should have enough money now to unlock the ultra-cruel \qSpeed Test\q. And they don't call it that for nothing! It'll test your speed, your endurance - your entire BEING. Good thing we patched out that strum limit thing, huh?\n\nLove,\nThe GH2 Deluxe Team"}})
 (unlock_profaceoff1 "Dear ____________________,")
-(unlock_profaceoff2 "CONGRATULATIONS")
-(unlock_profaceoff3 "You have unlocked PRO FACE-OFF Mode!")
+(unlock_profaceoff2 "WELCOME TO THE BIG LEAGUES")
+(unlock_profaceoff3 "Thank you for playing Guitar Hero 2 Deluxe!")
 (unlock_profaceoff4
-    {if_else $game80s
-       "So, FACE-OFF Mode is pretty cool, until your goober friend says something totally bogus about you playing the easier track and then calls you a dweeb, and you're like, \qAs IF!\q and it ends in a major spazzfest. Now you can chill because YOUR skill IS boss and you get to prove it in PRO FACE-OFF, a killer note-for-note showdown mode found in the Multiplayer menu. Heavy!\n\nHave fun,\nThe Management"
-       "You know how whenever you play FACE-OFF Mode, your buddy screams about how you got the easier track and less notes and blah blah, out comes the waaahmbulance? No more, my shredding friend.\n\nCheck out PRO FACE-OFF Mode in the Multiplayer menu and go note-for-note in the ultimate guitarmageddon.\n\nHave fun,\nThe Management"})
-(unlock_song1 "Congratulations")
-(unlock_song2 "You have unlocked:")
-(unlock_song3 "This song is now available in your set list.")
+       "This is a passion project with the goal of making the perfect version of GH2. Everything is already unlocked, all the fluff removed, bursting at the seams with many new features. Check out The GitHub readme for more detailed information.\n\nRemember, fit as many songs as you can in each song pack, more than 16 song packs will corrupt your save. I'll see you again when that happens.\n\nShred On,\nGHIIDX Team")

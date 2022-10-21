@@ -753,24 +753,3 @@
       )
    )
 }
-{new UIPanel unlock_song_panel
-   (file unlock_song.milo)}
-{new GHScreen unlock_song_screen
-   (panels GAME_PANELS unlock_song_panel helpbar)
-   (focus unlock_song_panel)
-   (in_game TRUE)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (force_exit TRUE)
-   (helpbar
-      (default
-         ((fret1 help_continue))
-      )
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $button kPad_X}
-         {synth play_sequence button_select}
-         {goto_endgame_complete}
-      }
-   )
-}

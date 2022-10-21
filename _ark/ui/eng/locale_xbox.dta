@@ -803,12 +803,6 @@
    "Spend your hard-earned cash at The Store.")
 (CASH_AWARD
    "GIG MONEY")
-(LETTERHEAD1
-   "Death Threat Records")
-(LETTERHEAD2
-   "\qWe do rock right.\q")
-(LETTERHEAD3
-   "LOS ANGELES, CALIFORNIA")
 (STATUS_UPGRADE_BONUS
    "STATUS_UPGRADE_BONUS")
 (CASH_AWARD_BLURB1
@@ -875,22 +869,6 @@
    "You milk your sponsor for:")
 (unlock_profaceoff1
    "Dear ____________________,")
-(unlock_profaceoff2
-   "CONGRATULATIONS")
-(unlock_profaceoff3
-   "You have unlocked PRO FACE-OFF Mode!")
-(unlock_profaceoff4
-   "You know how whenever you play FACE-OFF Mode, your buddy screams about how you got the easier track and less notes and blah blah, out comes the waaahmbulance? No more, my shredding friend.\n\nCheck out PRO FACE-OFF Mode in the Multiplayer menu and go note-for-note in the ultimate guitarmageddon.\n\nHave fun,\nThe Management")
-(highscore_dummy_0
-   "Finn")
-(highscore_dummy_1
-   "Alex D.")
-(highscore_dummy_2
-   "Owen")
-(highscore_dummy_3
-   "Kayley")
-(highscore_dummy_4
-   "Liana")
 (highscore_title
    "TOP ROCKERS")
 (highscore_score_fmt
