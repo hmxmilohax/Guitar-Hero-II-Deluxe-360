@@ -40,7 +40,7 @@
    {if $voidfrets
       {if_else $gh3track
          {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png}
-         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/_no_highway.png}
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/blk_keep.png}
       }
    }
    {if $darkstrums
