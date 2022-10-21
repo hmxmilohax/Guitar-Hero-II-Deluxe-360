@@ -84,7 +84,7 @@
 (multi_vs
    (num_players 2)
    (competitive TRUE)
-   (continue_screen multi_vs_selsong_screen)
+   (continue_screen sel_song_screen)
    (win_screen multi_compete_screen)
    (win_preload_panel multi_compete_panel)
    (hud_file hud_vs.milo)
@@ -93,7 +93,7 @@
 (multi_fo
    (num_players 2)
    (competitive TRUE)
-   (continue_screen multi_fo_selsong_screen)
+   (continue_screen sel_song_screen)
    (win_screen multi_compete_fo_screen)
    (win_preload_panel multi_compete_fo_panel)
    (separate_parts FALSE)
@@ -104,7 +104,7 @@
    (separate_parts FALSE)
    (score_config coop_config)
    (hud_file hud_coop.milo)
-   (continue_screen multi_coop_selsong_screen)
+   (continue_screen sel_song_screen)
    (win_screen multi_compete_coop_screen)
    (win_preload_panel multi_compete_coop_panel)
    (song_block song_coop)
