@@ -39,6 +39,11 @@
 ;gunsho hand helveticablack helveticablackcondensed helveticablack_overlay helveticathin impact
 ;impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen
 {set $namefont dyingmarker}
+;set color of the name in game
+;each value is between 0 and 1 and creates an RGB color value
+{set $namecolorr 1.0}
+{set $namecolorg 1.0}
+{set $namecolorb 1.0}
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
 ;Track/Highway/Note Speed. Each .1 is 10%
