@@ -158,7 +158,7 @@
    )
 }
 {new GHPanel name_overlay_panel
-   (file name_overlay.milo)
+   (file {sprint "name_overlay_" $namefont ".milo"})
    (enter ;when the screen is entered
       {mtv_overlay.view set_local_scale .7 1 .7} ;make the mtv overlay small
       {mtv_overlay.view set_local_pos 186 1 -345} ;move the mtv overlay to the top left corner of the screen, was -240 1 85

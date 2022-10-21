@@ -34,6 +34,11 @@
 {set $trackcamx 1.0}
 ;default name on screen in game
 {set $nametitle TRUE}
+;default font for name on screen in game
+;fonts are blockletters blockletters_fill clarendon cutout dyingmarker gh3veticablackcondensed
+;gunsho hand helveticablack helveticablackcondensed helveticablack_overlay helveticathin impact
+;impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen
+{set $namefont hand}
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
 ;Track/Highway/Note Speed. Each .1 is 10%
