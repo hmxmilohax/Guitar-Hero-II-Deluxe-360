@@ -1,6 +1,6 @@
 #define OVERSHELL_LIST_CONTENTS
 (
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_font os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_font os_fontcolor os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
@@ -90,6 +90,9 @@
       (os_font
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_font_list_screen})
+      (os_fontcolor
+         {set $modifierlistpos {sel_section.lst selected_pos}}
+         {ui push_screen overshell_fontcolor_slider_screen})
       (os_trkmod
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen})
@@ -1036,6 +1039,164 @@
       {$this display_speed_msg $trackcamx}
    )
 )
+
+#define FONTCOLOR_SLIDER_HANDLERS
+(
+   (focus gs_guitar.sld)
+   (focus_component "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {gs_band.sld set_num_steps 100}
+      {gs_guitar.sld set_num_steps 100}
+      {gs_sfx.sld set_num_steps 100} ; was 41 steps, dropped to 31 when disallowing <100%
+   )
+   (slider_changed
+      {'||'
+         {!=
+            {options get band_volume_idx}
+            {gs_guitar.sld current}
+         }
+         {!=
+            {options get guitar_volume_idx}
+            {gs_sfx.sld current}
+         }
+         {!=
+            {options get guitar_volume_idx}
+            {gs_band.sld current}
+         }
+      }
+   )
+   (enter
+      {gs_band.sld set_text RED}
+      {gs_guitar.sld set_text GREEN}
+      {gs_sfx.sld set_text BLUE}
+      {gs_guitar.sld set_current
+         {* $namecolorr 100}
+      }
+      {gs_sfx.sld set_current
+         {* $namecolorg 100}
+      }
+      {gs_band.sld set_current
+         {* $namecolorb 100}
+      }
+      {stereo.chk set_showing FALSE}
+      {$this disable stereo.chk}
+      {gs_stereo.btn set_showing FALSE}
+      {$this disable gs_stereo.btn}
+      {$this display_speed_msg $namecolorr $namecolorg $namecolorb}
+   )
+   (reset_gm_title
+      {gs_title.lbl set_localized_text GAME_MODIFIER}
+   )
+   (display_speed_msg
+      ($tspd $mspd $fps)
+      {gs_title.lbl set_localized_text
+         {sprint
+            {localize os_fontcolor}
+            "\n"
+            $namecolorr
+            " "
+            $namecolorg
+            " "
+            $namecolorb
+         }
+      }
+     {gs_title.lbl set color {pack_color $namecolorr $namecolorg $namecolorb}}
+   )
+   (set_speeds
+      {if {$this slider_changed}
+         {do
+            {set $namecolorr
+               {* 0.01 {gs_band.sld current}}
+            }
+            {set $namecolorg
+               {* 0.01 {gs_guitar.sld current}}
+            }
+            {set $namecolorb
+               {* 0.01 {gs_sfx.sld current}}
+            }
+            {$this display_speed_msg $namecolorr $namecolorg $namecolorb}
+         }
+      }
+   )
+   (slider_select_cancel
+      ($component)
+      {switch $component
+         (gs_guitar.sld {$component set_current [orig_vol]})
+         (gs_sfx.sld {$component set_current [orig_vol]})
+         (gs_band.sld {$component set_current [orig_vol]})
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $namecolorr $namecolorg $namecolorb}
+      kDataUnhandled
+   )
+   (FOCUS_MSG
+      {$this set focus_component {$new_focus name}}
+      {$this update_help_display}
+   )
+   (update_help_display
+      {if_else {$this slider_selected}
+         {helpbar set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjspd))
+         }
+         {do
+            {if_else {== [focus_component] "gs_stereo.btn"}
+               {helpbar set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))
+               }
+               {helpbar set_display
+                  ((fret1 help_select)
+                   (fret2 help_back)
+                   (strum help_updown))
+               }
+            }
+         }
+      }
+   )
+   (slider_start_msg
+      ($component)
+      {do
+         {switch $component
+            (gs_guitar.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (gs_sfx.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (gs_band.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+         }
+      }
+   )
+   (SELECT_START_MSG
+      {switch $component
+         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
+         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
+         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
+         (gs_stereo.btn {stereo.chk toggle} {set $focusmode {stereo.chk get_check}} OVERSHELL_HELP_POP_HANDLER)
+      kDataUnhandled
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $namecolorr $namecolorg $namecolorb}
+   )
+)
 #define MODIFIER_SLIDER_HANDLERS
 (
    (focus gs_guitar.sld)
@@ -1381,6 +1542,20 @@
    overshell_track_slider_screen
    (panels track_overshell_slider)
    (focus track_overshell_slider)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
+{new
+   SliderPanel
+   fontcolor_overshell_slider
+   (file overshell_slider.milo)
+   FONTCOLOR_SLIDER_HANDLERS
+}
+{new
+   GHScreen
+   overshell_fontcolor_slider_screen
+   (panels fontcolor_overshell_slider)
+   (focus fontcolor_overshell_slider)
    OVERSHELL_SCREEN_COMMON_HANDLER
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
 }
