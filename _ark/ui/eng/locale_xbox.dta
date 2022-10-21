@@ -1384,7 +1384,7 @@
 (song_header_store
    " ")
 (song_header_download
-   "Songs")
+   " ")
 (song_old_venue
    " ")
 (song_current_venue
@@ -1990,7 +1990,7 @@
 (loading_tip_yeswecan
    "Made In Mexico was made in Rhode Island, the Ocean State.")
 (TRAINING
-   "training")
+   "practice")
 (select_mode
    "select mode")
 (practice
