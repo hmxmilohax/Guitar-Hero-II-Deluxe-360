@@ -1806,6 +1806,13 @@
     OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
+   overshell_highway_list_screen
+   (panels overshell_highway_list)
+   (focus overshell_highway_list)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+{new
+   GHScreen
    overshell_font_list_screen
    (panels overshell_font_list)
    (focus overshell_font_list)
