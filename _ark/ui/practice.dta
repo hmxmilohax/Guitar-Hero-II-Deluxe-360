@@ -1,7 +1,7 @@
 {func practice_restart {meta_loading_nosave_goto practice_game_screen}} ;function to restart the practice sections
 {new MultiSelectListPanel practice_sel_section_panel
    (file
-      {if_else $game80s ;check if the 80s theme is turned on
+      {if_else {== $menutheme 80s} ;check if the 80s theme is turned on
          practice_sel_section_80s.milo ;if 80s theme, use 80s screen
          practice_sel_section.milo ;if not 80s, use standard
       }
@@ -207,7 +207,9 @@
 }
 {new GHPanel practice_end_panel
    (file practice_end_gh1.milo)
+   OVERSHELL_THEME_HANDLER
    (enter
+      {$this overshell_theme}
       {hud show_message 0 blank_message}
       {$this set_focus restart.btn}
       {do

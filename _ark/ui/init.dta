@@ -30,13 +30,45 @@
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
 
+;set menu theming
+;current themes are
+;gh1 gh2 gh3 80s gold custom
+{set $menutheme none}
+;sets custom values for custom menu theme
+;you can customize your own menu theme here
+   ;custom tile border image. must be the name of the one found in /_ark/track/custom_track_textures
+   {set $custom_os_border_image tile_custom_keep}
+   ;set a custom color in RGB for header labels
+   {set $custom_os_label_color_r 0.43} {set $custom_os_label_color_g 0.23} {set $custom_os_label_color_b 0.19}
+   ;set a custom font for headers. list of fonts can be found in the $namefont comment
+   {set $custom_os_label_font tapeworm}
+   ;sets all labels to all caps
+   {set $custom_os_label_all_caps FALSE}
+   ;sets all labels wrap width
+   {set $custom_os_wrap_width 640}
+   ;sets all labels widths
+   {set $custom_os_label_width 640}
+   ;sets all labels heights
+   {set $custom_os_label_height 30}
+   ;sets all buttons menu items font
+   {set $custom_os_button_font hand}
+   ;sets all menu item buttons to all caps
+   {set $custom_os_button_all_caps TRUE}
+   ;sets all menu item buttons standard color in RGB
+   {set $custom_os_normal_color_r 0.72} {set $custom_os_normal_color_g 0.33} {set $custom_os_normal_color_b 0.07}
+   ;sets all menu item buttons highlighter color in RGB
+   {set $custom_os_focus_color_r 1.0} {set $custom_os_focus_color_g 0.40} {set $custom_os_focus_color_b 0.00}
+   ;sets all menu item buttons disabled color in RGB
+   {set $custom_os_disabled_color_r 0.77} {set $custom_os_disabled_color_g 0.54} {set $custom_os_disabled_color_b 0.38}
+   ;sets all menu item buttons when selected color in RGB
+   {set $custom_os_selecting_color_r 1} {set $custom_os_disabled_color_g 1} {set $custom_os_disabled_color_b 1}
 ;wip track width controller
 {set $trackcamx 1.0}
 ;default name on screen in game
 {set $nametitle TRUE}
 ;default font for name on screen in game
 ;fonts are blockletters blockletters_fill clarendon cutout dyingmarker gh3veticablackcondensed
-;gunsho hand helveticablack helveticablackcondensed helveticablack_overlay helveticathin impact
+;gunsho hand helveticablack helveticablackcondensed helveticathin impact
 ;impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen
 {set $namefont dyingmarker}
 ;set color of the name in game
@@ -116,8 +148,6 @@
 {set $cheat_enabled_performance_mode FALSE}
 ;standard flaming head mode cheat
 {set $cheat_enabled_flaming_head FALSE}
-;guitar hero rocks the 80s themed menus
-{set $game80s FALSE}
 ;mock towell hyperspeed mode which cuts about 50% of the
 ;visible notes. Think reverse brutal mode
 {set $autoplay FALSE}
@@ -147,6 +177,19 @@
 {if_else $muting
 {set $mute_level -96.0}
 {set $mute_level -0.001}}
+{if_else {== $menutheme none}
+         {switch
+            {random_int 0 6}
+            (0 {set $menutheme gh2})
+            (1 {set $menutheme gold})
+            (2 {set $menutheme custom})
+            (3 {set $menutheme gh1})
+            (4 {set $menutheme 80s})
+            (5 {set $menutheme gh3} {set $gh3song TRUE} {set $gh1track false} {set $gh3track TRUE})
+            (6 {set $menutheme 80s})
+         }
+       kDataUnhandled
+      }
 ; We take advantage of the fact that Harmonix sets $first_screen as a
 ; variable by sending the player to different first screens depending on the
 ; version. Customs Edition and Expansion go to the main menu, while Mega goes

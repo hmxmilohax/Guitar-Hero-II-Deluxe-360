@@ -5,13 +5,13 @@
 (milo_tip4 "In the new Free Play mode, you can hop into any song with the guitar, guitarist, and venue of your choice.")
 #ifndef HX_XBOX
 (milo_tip5
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "No worries - \qBecause, It's Midnite\q isn't a campaign song anymore. Pays to use cut songs."
       "We've reordered the setlist to match the 360 version of Guitar Hero II. It should be a bit easier to progress now."})
 (milo_tip6 "The Extras menu in Free Play can be used to set certain cheats or game behavior without memorizing lengthy button codes.")
 #endif
 (milo_tip7
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "In our testing, the Rock for Safety Tour is the venue that runs the best on both console and emulator."
       "In our testing, the Vans Warped Tour is the venue that runs the best on both console and emulator."})
 (milo_tip8 "The new note counter will glow orange when you've yet to miss a note and turn white when your full combo is ruined.")
@@ -20,7 +20,7 @@
 (milo_tip10 "Did you forget to turn on Progressive Scan again?")
 #endif
 (milo_tip11
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "We fixed the strum limit so you don't have to. Go check out Trogdor on the OTHER setlist and see how it feels."
       "We fixed the strum limit so you don't have to. Go check out Trogdor and see how it feels."})
 (milo_tip12 "We also fixed the HOPO bug. You can quick-restart again!")
@@ -51,7 +51,7 @@
 (advanced_tip4 "Strum up and down to keep your arm from wearing out during fast passages.")
 #ifndef HX_XBOX
 (advanced_tip5
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Pick up characters, guitars, bonus songs, and more at The Store."
       "Pick up characters, outfits, guitars, bonus songs, and more at The Store."})
 #endif

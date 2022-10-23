@@ -2,7 +2,7 @@
    GHPanel
    multi_panel
    (file
-      {if_else $game80s multi_80s.milo multi.milo})
+      {if_else {== $menutheme 80s} multi_80s.milo multi.milo})
    (focus coop.btn)
    (SELECT_START_MSG
       {switch
@@ -103,7 +103,7 @@
    #ifndef 8DBUG
    #ifndef 2DBUG
    (file
-      {if_else $game80s multi_sel_character80s.milo multi_sel_character.milo})
+      {if_else {== $menutheme 80s} multi_sel_character80s.milo multi_sel_character.milo})
    #endif
    #endif
    #ifndef _SHIP
@@ -144,7 +144,7 @@
          #ifndef HX_XBOX
          #ifndef 8DBUG
          #ifndef 2DBUG
-         {if_else $game80s 80SMULTCHARACTERS MULTCHARACTERS}
+         {if_else {== $menutheme 80s} 80SMULTCHARACTERS MULTCHARACTERS}
          #endif
          #endif
          #ifndef _SHIP
@@ -192,7 +192,7 @@
       #ifndef HX_XBOX
       #ifndef 8DBUG
       #ifndef 2DBUG
-      {if_else $game80s 80SMULTCHARACTERS MULTCHARACTERS}
+      {if_else {== $menutheme 80s} 80SMULTCHARACTERS MULTCHARACTERS}
       #endif
       #endif
       #ifndef _SHIP
@@ -218,7 +218,7 @@
    #ifndef 8DBUG
    #ifndef 2DBUG
    (load_order
-      {if_else $game80s 80SMULT_LOAD_CHARACTERS MULT_LOAD_CHARACTERS})
+      {if_else {== $menutheme 80s} 80SMULT_LOAD_CHARACTERS MULT_LOAD_CHARACTERS})
    #endif
    #endif
    #ifndef _SHIP
@@ -781,12 +781,12 @@
    UIPanel
    seldiff_bg_panel
    (file
-      {if_else $game80s seldiff_bg_80s.milo seldiff_bg.milo})}
+      {if_else {== $menutheme 80s} seldiff_bg_80s.milo seldiff_bg.milo})}
 {new
    MultiSelectPanel
    seldiff0
    (file
-      {if_else $game80s seldiff0_80s.milo seldiff0.milo})
+      {if_else {== $menutheme 80s} seldiff0_80s.milo seldiff0.milo})
    (player_num 0)
    (ready_label
       "ready.lbl")
@@ -796,7 +796,7 @@
    MultiSelectPanel
    seldiff1
    (file
-      {if_else $game80s seldiff1_80s.milo seldiff1.milo})
+      {if_else {== $menutheme 80s} seldiff1_80s.milo seldiff1.milo})
    (player_num 1)
    (ready_label
       "ready.lbl")
@@ -865,7 +865,7 @@
    MultiSelectPanel
    selpart0
    (file
-      {if_else $game80s selpart0_80s.milo selpart0.milo})
+      {if_else {== $menutheme 80s} selpart0_80s.milo selpart0.milo})
    (player_num 0)
    (ready_label
       "ready.lbl")
@@ -876,7 +876,7 @@
    MultiSelectPanel
    selpart1
    (file
-      {if_else $game80s selpart1_80s.milo selpart1.milo})
+      {if_else {== $menutheme 80s} selpart1_80s.milo selpart1.milo})
    (player_num 1)
    (ready_label
       "ready.lbl")
@@ -887,7 +887,7 @@
    UIPanel
    mp_selpart_bg_panel
    (file
-      {if_else $game80s selpart_bg_80s.milo selpart_bg.milo})}
+      {if_else {== $menutheme 80s} selpart_bg_80s.milo selpart_bg.milo})}
 {new
    MultiSelectScreen
    selpart_screen

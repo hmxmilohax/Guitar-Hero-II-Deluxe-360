@@ -138,33 +138,33 @@
 
 ; Encore blurbs
 (punkencore_blurb
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "A fiend for surf punk and rapid downstrokes, Johnny Napalm spends as much time thrashing onstage as he does gettin' hassled by the 5-0. Fully chaotic and hella toxic, Johnny's all-ages shows are totally legendary."
       "Johnny embodies the true spirit of punk rock with his signature stomp and swagger. Released from lockup for \qalmost tolerable behavior,\q Johnny lurches back into the spotlight, rough and ready for action."})
 (alternaencore_blurb
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Judy Nails might look sweet onstage, but this alterna-girl is rumored to be a wild child in the wings. Having toured her teen years away, Judy is a rock and roll lifer and princess of the pedal board."
       {if_else $egg5
          "A fan of roller derby and distorted feedback, Judy Nails has been a pioneer of alternative rock since her first tour at age 17. Known for her diverse collection of LP's, Nails brings an experimental twist to heavy guitar riffs with a sly smirk."
          "A fan of distorted feedback and roller derby, Judy Nails has been a pioneer of alt-rock since her first tour at age 17. Known for her huge collection of vinyl, Judy brings a smile, and a lot of pedals, to the stage."}})
 (glamencore_blurb
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Media darling and pop culture icon, Izzy Sparks is living the rock and roll dream and every mother's nightmare. With his love of legato and leopard skin, Izzy brings metal to the mainstream masses."
       {if_else $egg5
          "A real crowd pleaser, Hair thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Hair's fan base is even bigger than his hair."
          "A real crowd pleaser, Izzy thrills all with his energetic onstage showmanship while delighting the media with his offstage debauchery. Izzy's fan base is even bigger than his hair."}})
 (gothencore_blurb
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Enigmatic and experimental, Pandora is a true trendsetter. Asked about her incomparable new-wave guitar style, Pandora explains that her solos are \qtributes to the radness of robots and plastic.\q"
       "Pandora's youth is shrouded in mystery. Some say she was born in a dimension of pure darkness. Others say she was raised in a duplex near Boise. With her blazing solos and chaotic melodies, Pandora is the Dark Princess of Rock."})
 (metalencore_blurb
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Just a city boy, born and raised in South Peoria, Axel Steel is a fan of arena rock and partyin' in the parking lot. King of the stadium show and master of the tailgate, Axel Steel is a hard-riffin' powerhouse."
       {if_else $egg5
          "Famous for his driving riffs and up-front attitude, Hazzard first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history."
          "Famous for his driving riffs and up-front attitude, Axel Steel first picked up a guitar in an attempt to quell his boredom during suspension from elementary school. The rest is history. Metal history."}})
 (grimencore_blurb
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Dudes? It just doesn't get more gnarly than Grim. With his unholy skill and blood-curdling licks, it's no wonder 40,000 are coming to see him at every show. Grim, like, totally kills."
       {if_else $egg5
          "This rock star is bad to the bone. Grim's riffs are so huge, fans are lucky just to leave the show with their souls intact. At his latest killer performance, an awestruck fan gushed, \qThe curtains flew, then he appeared!\q"

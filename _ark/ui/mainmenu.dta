@@ -28,25 +28,73 @@
 ;main.milo - GH2DX | main_egg0.milo - GH2DXCE | main_egg1.milo - GH1 | main_egg2.milo - GH80SDX | main_egg3.milo - GH3 | main_egg_final.milo - gold
 {new GHPanel main_panel ;panels come before screens in milo
     (file
-        {if_else $egg5 main_egg_final.milo
-            {if_else $egg4 main_egg3.milo
-                {if_else $egg3 main_egg2.milo
-                    {if_else $egg2 main_egg1.milo
-                        {if_else $egg1 #ifndef _ONYX main_egg0.milo #else main.milo #endif
-                            {if_else $game80s main_egg2.milo #ifndef _ONYX main.milo #else main_egg0.milo #endif}}}}}})
+       {if_else {== $menutheme gh3}
+          main_egg3.milo
+          main.milo
+       }
+    )
    (focus main_quickspin.btn) ;focus on quickplay button on enter
    (msg_last_frame 0) ;cheat messages no longer occur in DX
    (already_entered FALSE)
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
+   (rocks360_theme
+      {do
+         {mainmenu.tex set_bitmap "track/custom_track_textures/main_rt360_keep.png"}
+         {main set normal_color {pack_color 0.03 0.30 0.01}}
+         {main_buttons.view set_local_pos 0 0 -90}
+      }
+   )
+   (gh80s_theme
+      {do
+         {mainmenu.tex set_bitmap "track/custom_track_textures/main_80s_keep.png"}
+         {main set normal_color {pack_color 0.23 0.51 0.69}}
+         {main set focus_color {pack_color 0.84 0.20 0.57}}
+         {main set selecting_color {pack_color 0 0.92 0.92}}
+         {main_buttons.view set_local_pos 0 0 -100}
+      }
+   )
+   (gh1_theme
+      {do
+         {mainmenu.tex set_bitmap "track/custom_track_textures/mainmenu_gh1_keep.png"}
+         {main set normal_color {pack_color 0.81 0.81 0.81}}
+         {main set focus_color {pack_color .81 0.69 0.03}}
+         {main_career.btn set_type impact}
+         {main_quickspin.btn set_type impact}
+         {main_multiplayer.btn set_type impact}
+         {main_tutorial.btn set_type impact}
+         {main_leaderboards.btn set_type impact}
+         {main_options.btn set_type impact}
+         {main_buttons.view set_local_pos 0 0 -160}
+      }
+   )
+   (gold_theme
+      {do
+         {main_buttons.view set_local_pos 0 0 -115}
+         {mainmenu.tex set_bitmap "track/custom_track_textures/mainmenu_nohand_gold_keep.png"}
+         {main set normal_color {pack_color 0.74 0.57 0.07}}
+      }
+   )
+   (custom_theme
+      {do
+         {main_buttons.view set_local_pos 0 0 -115}
+         {mainmenu.tex set_bitmap "track/custom_track_textures/main_custom_keep.png"}
+         {main set normal_color {pack_color 0.43 0.23 0.19}}
+      }
+   )
    (enter
+         {switch
+            $menutheme
+            (gold {$this gold_theme})
+            (custom {$this custom_theme})
+            (gh1 {$this gh1_theme})
+            (80s {$this gh80s_theme})
+            (rocks360 {$this rocks360_theme})
+         }
       {if $newsave
          {set $newsave FALSE}
          {ui goto_screen unlock_pfo_screen}
       }
-      {if {! $egg4} {main_buttons.view set_local_pos 0 0 -115}}
-      {if $egg2 {main_buttons.view set_local_pos 0 0 -80}}
-      {if $game80s {main_buttons.view set_local_pos 0 0 -90}}
       {set $hardware_check FALSE}
       {main_screen save_objects "game:/hardware_check.milo"} ;streak meter only does not cause stutter when gameplay is at high fps, like in emulator. this ;creates a file we check for later to run the streak meter or not
       {if_else {load_objects "game:/hardware_check.milo"}
@@ -65,8 +113,6 @@
       {set [msg_last_frame] 0} ;resets the timeline for the cheat notification for later playback (unused)
       {gamecfg set_player 0 {profilemgr active_padnum}} ;set player 1 to the current active gamepad on xbox 260
       {content_mgr start_enumeration} ;start checking for dlc on xbox
-      ;{main_career.btn set_showing FALSE}
-      ;{$this disable main_career.btn}
       )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch $component ;switch action based on result of which button is selected

@@ -4,19 +4,19 @@
 (milo_tip3 "La notificación de Racha de Notas aparece a las 50, 100, 200, y cada 100 notas tras esto.")
 (milo_tip4 "En el nuevo Juego Libre, puedes elegir cualquier guitarra, guitarrista y escenario de tu elección.")
 (milo_tip5
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "No te preocupes - \qBecause, It's Midnite\q ya no es parte de la Campaña. Es mejor usar canciones eliminadas."
       "Hemos reordenado la setlist para que sea como la versión de Xbox 360 de Guitar Hero II. Ahora debería ser un poco más fácil progresar."})
 (milo_tip6 "El menú de Extras en Juego Libre se puede usar para activar trucos u otras cosas sin memorizar largas combinaciones de botones.")
 (milo_tip7
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Según nuestras pruebas, el Rock for Safety Tour es el escenario que mejor corre en consolas y emulador."
       "Según nuestras pruebas, el Vans Warped Tour es el escenario que mejor corre en consolas y emulador."})
 (milo_tip8 "El nuevo contador de notas brillará en naranja cuando todavía no has fallado ni una nota, y se volverá blanco cuando arruines tu Full Combo.")
 (milo_tip9 "Este es un consejo de prueba.")
 (milo_tip10 "¿Se te ha vuelto a olvidar activar el Escaneo Progresivo?")
 (milo_tip11
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Hemos arreglado el límite de rasgueos para que no lo tengas que hacer tú. Prueba Trogdor en la setlist de OTROS y comprueba cómo se siente."
       "Hemos arreglado el límite de rasgueos para que no lo tengas que hacer tú. Prueba Trogdor y comprueba cómo se siente."})
 (milo_tip12 "También hemos arreglado el bug de los HOPOs. ¡Ahora puedes volver a reiniciar rápido!")
@@ -38,7 +38,7 @@
 (advanced_tip3 "¡Lo acordes valen más puntos que las notas normales!")
 (advanced_tip4 "Si se te cansa el brazo cuando hay muchas notas seguidas, prueba a rasguear hacia arriba y hacia abajo alternativamente.")
 (advanced_tip5
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       "Consigue personajes, guitarras, canciones bonus, y más en La Tienda."
       "Consigue personajes, trajes, guitarras, canciones bonus, y más en La Tienda."})
 

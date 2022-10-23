@@ -37,23 +37,23 @@
    #define MULTCHARACTERS ((punkencore alternaencore glamencore gothencore metalencore rockabill rock deathmetal classic funk1 grimencore))
    #define 80SMULTCHARACTERS ((punkencore alternaencore glamencore gothencore metalencore rockabill rock deathmetal classic funk1 grimencore))
    #define 80SMULT_LOAD_CHARACTERS ((
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          punkencore
          punk1}
       punk2
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          alternaencore
          alterna1}
       alterna2
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          glamencore
          glam1}
       glam2
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          gothencore
          goth2}
       goth1
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          metalencore
          metal1}
       metal2
@@ -65,27 +65,27 @@
       deathmetal2
       classic
       funk1
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          grimencore
          grim}))
    #define MULT_LOAD_CHARACTERS ((
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       punkencore
       punk1}
    punk2
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       alternaencore
       alterna1}
    alterna2
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       glamencore
       glam1}
    glam2
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       gothencore
       goth2}
    goth1
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       metalencore
       metal1}
    metal2
@@ -97,7 +97,7 @@
    deathmetal2
    classic
    funk1
-   {if_else $game80s
+   {if_else {== $menutheme 80s}
       grimencore
       grim}))
 #endif

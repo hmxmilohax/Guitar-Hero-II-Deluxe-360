@@ -1,9 +1,9 @@
 {new UIPanel qp_selpart_bg_panel
-   (file {if_else $game80s ;which milo file to use based on the 80s theme flag
+   (file {if_else {== $menutheme 80s} ;which milo file to use based on the 80s theme flag
     selpart_bg_80s.milo selpart_bg.milo}) ;use 80s if 80s use gh2 if not 80s
 }
 {new GHPanel qp_selpart_panel
-   (file {if_else $game80s ;which milo file to use based on the 80s theme flag
+   (file {if_else {== $menutheme 80s} ;which milo file to use based on the 80s theme flag
       practice_selpart_80s.milo practice_selpart.milo}) ;use 80s if 80s use gh2 if not 80s
    (focus part0.btn) ;focus on the top button on first entry (guitar/lead)
    (sel_buttons part0.btn part1.btn part2.btn) ;define what buttons are available in this screen (part0 guitar/lead, part1 rhythm/bass, part2 drums)

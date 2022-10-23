@@ -1,8 +1,8 @@
 (splash_anybutton "PULSA CUALQUIER BOTÓN PARA COMENZAR")
 (splash_legal
-   {if_else $gamegh1
+   {if_else {== $menutheme gh1}
       "Guitar Hero Redux. 2021. Porteado por jnack. Modificaciones @ MiloHax.\nMuchas gracias a mariteaux por los charts y los stems diy. Y un saludo a Local H, un verdadero OG.\nCódigo original del juego © 2005-2006 Harmonix Music Systems, Inc."
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          "Guitar Hero Encore Deluxe © 2006 RedOctane, Inc.\nModificaciones © 2021 MiloHax. Ver los créditos para todos los contribuyentes.\nCódigo original del juego © 2005-2006 Harmonix Music Systems, Inc. Desarrollado por Harmonix Music Systems."
          "Guitar Hero II Deluxe © 2006 RedOctane, Inc.\nModificaciones © 2021 MiloHax. Ver los créditos para todos los contribuyentes.\nCódigo original del juego © 2005-2006 Harmonix Music Systems, Inc. Desarrollado por Harmonix Music Systems."}})
 (signin_changed_title "INICIO DE SESIÓN CAMBIADO")

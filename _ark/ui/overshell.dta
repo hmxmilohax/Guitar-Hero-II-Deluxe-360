@@ -1,3 +1,129 @@
+#define OVERSHELL_THEME_HANDLER
+(
+   (overshell_theme
+      {do
+         {switch
+            $menutheme
+            (gh2
+               {set $os_border_image tile_gh2_keep}
+               {set $os_label_color_r 1.0} {set $os_label_color_g 0.0} {set $os_label_color_b 0.0}
+               {set $os_label_font clarendon}
+               {set $os_label_all_caps TRUE}
+               {set $os_wrap_width 640}
+               {set $os_label_width 640}
+               {set $os_label_height 30}
+               {set $os_button_font helveticablack}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 1.0} {set $os_normal_color_g 1.0} {set $os_normal_color_b 1.0}
+               {set $os_focus_color_r 1.0} {set $os_focus_color_g 0.96} {set $os_focus_color_b 0.0}
+               {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 0.0} {set $os_disabled_color_b 0.0}
+            )
+            (gold
+               {set $os_border_image tile_gold_keep}
+               {set $os_label_color_r 0.94} {set $os_label_color_g 0.69} {set $os_label_color_b 0.17}
+               {set $os_label_font helveticablack}
+               {set $os_label_all_caps TRUE}
+               {set $os_wrap_width 640}
+               {set $os_label_width 640}
+               {set $os_label_height 30}
+               {set $os_button_font rockletters}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 0.74} {set $os_normal_color_g 0.57} {set $os_normal_color_b 0.07}
+               {set $os_focus_color_r 0.89} {set $os_focus_color_g 0.76} {set $os_focus_color_b 0.47}
+               {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
+            )
+            (gh3
+               {set $os_border_image tile_gh3_keep}
+               {set $os_label_color_r 0.94} {set $os_label_color_g 0.69} {set $os_label_color_b 0.17}
+               {set $os_label_font gh3veticablackcondensed}
+               {set $os_label_all_caps TRUE}
+               {set $os_wrap_width 640}
+               {set $os_label_width 640}
+               {set $os_label_height 30}
+               {set $os_button_font gh3veticablackcondensed}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 0.77} {set $os_normal_color_g 0.59} {set $os_normal_color_b 0.40}
+               {set $os_focus_color_r 0.97} {set $os_focus_color_g 1.00} {set $os_focus_color_b 0.81}
+               {set $os_disabled_color_r 0.92} {set $os_disabled_color_g 0.92} {set $os_disabled_color_b 0.92}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
+            )
+            (custom
+               {set $os_border_image $custom_os_border_image}
+               {set $os_label_color_r $custom_os_label_color_r} {set $os_label_color_g $custom_os_label_color_g} {set $os_label_color_b $custom_os_label_color_b}
+               {set $os_label_font $custom_os_label_font}
+               {set $os_label_all_caps $custom_os_label_all_caps}
+               {set $os_wrap_width $custom_os_wrap_width}
+               {set $os_label_width $custom_os_label_width}
+               {set $os_label_height $custom_os_label_height}
+               {set $os_button_font $custom_os_button_font}
+               {set $os_button_all_caps $custom_os_button_all_caps}
+               {set $os_normal_color_r $custom_os_normal_color_r} {set $os_normal_color_g $custom_os_normal_color_g} {set $custom_os_normal_color_b $custom_os_normal_color_b}
+               {set $os_focus_color_r $custom_os_focus_color_r} {set $os_focus_color_g $custom_os_focus_color_g} {set $os_focus_color_b $custom_os_focus_color_b}
+               {set $os_disabled_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
+               {set $os_selecting_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $custom_os_disabled_color_b $custom_os_disabled_color_b}
+            )
+            (gh1
+               {set $os_border_image tile_gh1_keep}
+               {set $os_label_color_r 1.0} {set $os_label_color_g 0.0} {set $os_label_color_b 0.0}
+               {set $os_label_font rokk}
+               {set $os_label_all_caps FALSE}
+               {set $os_wrap_width 640}
+               {set $os_label_width 480}
+               {set $os_label_height 20}
+               {set $os_button_font impact}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 0.81} {set $os_normal_color_g 0.81} {set $os_normal_color_b 0.81}
+               {set $os_focus_color_r 0.81} {set $os_focus_color_g 0.69} {set $os_focus_color_b 0.03}
+               {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
+            )
+            (80s
+               {set $os_border_image tile_80s_keep}
+               {set $os_label_color_r 1} {set $os_label_color_g 0.0} {set $os_label_color_b 0.91}
+               {set $os_label_font gunsho}
+               {set $os_label_all_caps TRUE}
+               {set $os_wrap_width 550}
+               {set $os_label_width 480}
+               {set $os_label_height 20}
+               {set $os_button_font blockletters}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 0.23} {set $os_normal_color_g 0.51} {set $os_normal_color_b 0.69}
+               {set $os_focus_color_r 0.84} {set $os_focus_color_g 0.20} {set $os_focus_color_b 0.57}
+               {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
+            )
+         }
+         {if_else
+            {||
+               {== {ui current_screen} overshell_slider_screen}
+               {== {ui current_screen} pause_screen}
+               {== {ui current_screen} lose_screen}
+               {== {ui current_screen} overshell_fontcolor_slider_screen}
+               {== {ui current_screen} practice_end_screen}
+               {== {ui current_screen} overshell_track_slider_screen}
+            }
+            kDataUnhandled
+            {do
+               {$this iterate UILabel $l {$l set_type $os_label_font}}
+               {$this iterate UILabel $l {$l set all_caps $os_label_all_caps}}
+               {$this iterate UILabel $l {$l set wrap_width $os_wrap_width}}
+               {$this iterate UILabel $l {$l set width $os_label_width}}
+               {$this iterate UILabel $l {$l set height $os_label_height}}
+            }
+         }
+         {$this iterate Tex $l {$l set_bitmap {sprint "track/custom_track_textures/" $os_border_image ".png"}}}
+         {$this iterate UILabel $l {$l set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}}
+         {$this iterate UIButton $b {$b set_type $os_button_font}}
+         {$this iterate UIButton $b {$b set all_caps $os_button_all_caps}}
+         {$this iterate PanelDir $u {$u set normal_color {pack_color $os_normal_color_r $os_normal_color_g $os_normal_color_b}}}
+         {$this iterate PanelDir $u {$u set focus_color {pack_color $os_focus_color_r $os_focus_color_g $os_focus_color_b}}}
+         {$this iterate PanelDir $u {$u set disabled_color {pack_color $os_disabled_color_r $os_disabled_color_g $os_disabled_color_b}}}
+         {$this iterate PanelDir $u {$u set selecting_color {pack_color $os_selecting_color_r $os_selecting_color_g $os_selecting_color_b}}}
+      }
+   )
+)
 #define OVERSHELL_SCREEN_HANDLERS ((allow_back FALSE) (animate_transition FALSE)) ;define common screen setup for all overshell screens
 #define OVERSHELL_SELECT_START_HANDLER ;define common select start handle for main overshell screen
 ((SELECT_START_MSG ;code ran when a button is selected
@@ -26,9 +152,11 @@
 ))
 {new GHPanel overshell_panel
    (file overshell_main.milo) ;main overshell milo to load
+   OVERSHELL_THEME_HANDLER
    (focus diff.btn) ;focus on difficulty select, the first button in the list
    (reset_focus TRUE)
    (enter ;when the screen is entered
+      {$this overshell_theme}
       {pause_title.lbl set_text "DELUXE SETTINGS"} ;set the header label text
    )
 }

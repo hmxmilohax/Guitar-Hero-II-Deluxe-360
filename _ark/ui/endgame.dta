@@ -488,7 +488,7 @@
    }
 {new UIPanel highscore_panel
    (file
-      {if_else $gamegh1
+      {if_else {== $menutheme gh1}
          highscore_gh1.milo
          highscore.milo
       }
@@ -709,7 +709,7 @@
 }
 {new GHPanel complete_panel
    (file
-      {if_else $gamegh1
+      {if_else {== $menutheme gh1}
          complete_gh1.milo
          complete.milo
       }

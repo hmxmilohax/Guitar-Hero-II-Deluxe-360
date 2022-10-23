@@ -8,9 +8,9 @@
 (speed_label2 "Slower")
 (speed_label3 "Slowest")
 (PRACTICE_END
-   {if_else $gamegh1
+   {if_else {== $menutheme gh1}
       "GH1DX PRACTICE"
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          "GH80SDX PRACTICE"
          "GH2DX PRACTICE"}})
 (CHANGE_SECTION "CHANGE SECTION")

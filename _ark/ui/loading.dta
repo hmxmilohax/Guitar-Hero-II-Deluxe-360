@@ -1,6 +1,6 @@
 {new UIPanel loading_panel
    (file
-      {if_else $game80s
+      {if_else {== $menutheme 80s}
          loading_80s.milo
          loading.milo})
    (enter

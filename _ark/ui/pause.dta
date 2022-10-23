@@ -1,8 +1,10 @@
 {new GHPanel pause_panel
    (file overshell_pause.milo)
    (focus lose_resume_career.btn)
+   OVERSHELL_THEME_HANDLER
    (reset_focus TRUE)
    (enter
+   {$this overshell_theme}
    {lose_info.view set_local_pos 0 200 70}
    {lose_song_data.lbl set_localized_text {game get_song_text}}
       {lose_diff_data.lbl set_text
@@ -69,7 +71,9 @@
       kDataUnhandled)}
 {new GHPanel pract_pause_panel
    (file pract_pause_gh1.milo)
+   OVERSHELL_THEME_HANDLER
    (enter
+      {$this overshell_theme}
       {do
          ($career {practice_selpart_screen get career_mode})
          {tut_pause_career_buttons.view set_showing $career}
@@ -137,8 +141,10 @@
             {ui goto_screen [next_screen]}}})}
 {new GHPanel pause_controller_panel
    (file pause_controller.milo)
+   OVERSHELL_THEME_HANDLER
    (focus resume.btn)
    (enter
+      {$this overshell_theme}
       {pause_controller_msg.lbl set_text {if_else {game multiplayer}
             controller_loss_msg_multi
             controller_loss_msg}})
@@ -170,8 +176,10 @@
          kDataUnhandled})}
 {new GHPanel multi_pause_controller_panel
    (file multi_pause_controller.milo)
+   OVERSHELL_THEME_HANDLER
    (focus quit.btn)
    (enter
+      {$this overshell_theme}
       {pause_controller_msg.lbl set_text
          {if_else {game multiplayer}
             controller_loss_msg_multi
@@ -192,7 +200,9 @@
    PAUSE_SELECT_START_HANDLER}
 {new GHPanel lose_panel
    (file lose.milo)
+   OVERSHELL_THEME_HANDLER
    (enter
+      {$this overshell_theme}
       {crowd_audio turn_off}
       {lose_song_data.lbl set_localized_text {game get_song_text}}
       {lose_diff_data.lbl set_text
@@ -236,8 +246,10 @@
    GHPanel
    pause_confirm_restart_panel
    (file pause_restart.milo)
+   OVERSHELL_THEME_HANDLER
    (focus restart.btn)
    (enter
+   {$this overshell_theme}
       {$this set_focus restart.btn})}
 {new
    GHScreen
@@ -263,8 +275,10 @@
    GHPanel
    pause_confirm_quit_panel
    (file pause_quit.milo)
+   OVERSHELL_THEME_HANDLER
    (focus quit.btn)
    (enter
+      {$this overshell_theme}
       {$this set_focus quit.btn})}
 {new
    GHScreen

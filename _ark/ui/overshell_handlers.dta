@@ -807,66 +807,41 @@
       {switch $component
        (newsong.btn
          {do
-         {set $egg1 TRUE}
-         {set $game80s FALSE}
-         {set $egg5 FALSE}
-         {set $egg4 FALSE}
-         {set $egg2 FALSE}
-         {set $gamegh1 FALSE}
+         {set $menutheme custom}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
          OVERSHELL_HELP_POP_HANDLER})
        (resume.btn
          {do
-         {set $egg1 FALSE}
-         {set $game80s FALSE}
-         {set $egg5 FALSE}
-         {set $egg4 FALSE}
-         {set $egg2 TRUE}
+         {set $menutheme gh1}
          {set $gh1track TRUE}
-         {set $gamegh1 TRUE}
          {set $gh3song FALSE}
          {set $gh3track FALSE}
          OVERSHELL_HELP_POP_HANDLER})
        (restart.btn
          {do
-         {set $egg1 FALSE}
-         {set $game80s FALSE}
-         {set $egg5 FALSE}
-         {set $egg4 FALSE}
-         {set $egg2 FALSE}
-         {set $gamegh1 FALSE}
+         {set $menutheme gh2}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
          OVERSHELL_HELP_POP_HANDLER})
       (change_speed.btn
          {do
-         {set $egg1 FALSE}
-         {set $game80s TRUE}
-         {set $egg5 FALSE}
-         {set $egg4 FALSE}
-         {set $egg2 FALSE}
-         {set $gamegh1 FALSE}
+         {set $menutheme 80s}
          {set $gh3song FALSE}
          {set $gh1track FALSE}
          {set $gh3track FALSE}
          OVERSHELL_HELP_POP_HANDLER})
       (section.btn
          {do
-         {set $egg1 FALSE}
-         {set $game80s FALSE}
-         {set $egg5 FALSE}
-         {set $egg4 TRUE}
-         {set $egg2 FALSE}
-         {set $gamegh1 FALSE}
+         {set $menutheme gh3}
          {set $gh3song TRUE}
          {set $gh3track TRUE}
          OVERSHELL_HELP_POP_HANDLER})
        (quit.btn
          {do
-         {set $egg5 TRUE}
+         {set $menutheme gold}
          OVERSHELL_HELP_POP_HANDLER})
        (extra1.btn
          {ui push_screen overshell_song_theme_screen})}
@@ -942,6 +917,7 @@
       }
    )
    (enter
+      {$this overshell_theme}
          {$this disable gs_sfx.sld}
          {$this disable gs_band.sld}
          {$this disable stereo.chk}
@@ -1068,6 +1044,7 @@
       }
    )
    (enter
+      {$this overshell_theme}
       {gs_band.sld set_text RED}
       {gs_guitar.sld set_text GREEN}
       {gs_sfx.sld set_text BLUE}
@@ -1225,6 +1202,7 @@
       }
    )
    (enter
+      {$this overshell_theme}
       {if $towel
          {$this disable gs_guitar.sld}
       }
@@ -1384,6 +1362,7 @@
             {options get fx_volume_idx}
             {gs_sfx.sld current}}})
    (enter
+      {$this overshell_theme}
       {gs_band.sld
          set_current
          {options get band_volume_idx}}
@@ -1521,6 +1500,7 @@
    SliderPanel
    overshell_slider
    (file overshell_slider.milo)
+   OVERSHELL_THEME_HANDLER
    MODIFIER_SLIDER_HANDLERS
 }
 {new
@@ -1535,6 +1515,7 @@
    SliderPanel
    track_overshell_slider
    (file overshell_slider.milo)
+   OVERSHELL_THEME_HANDLER
    TRACK_SLIDER_HANDLERS
 }
 {new
@@ -1549,6 +1530,7 @@
    SliderPanel
    fontcolor_overshell_slider
    (file overshell_slider.milo)
+   OVERSHELL_THEME_HANDLER
    FONTCOLOR_SLIDER_HANDLERS
 }
 {new
@@ -1564,7 +1546,9 @@
    overshell_track_list
    (file overshell_list.milo)
    (focus sel_section.lst)
+   OVERSHELL_THEME_HANDLER
    (enter
+      {$this overshell_theme}
       {gs_tile5.mesh set_showing FALSE}
       {sel_section.lst set_selected $trackmodifierlistpos}
       {sel_section.lst set_local_pos -140 0 35}
@@ -1587,7 +1571,9 @@
    overshell_list
    (file overshell_list.milo)
    (focus sel_section.lst)
+   OVERSHELL_THEME_HANDLER
    (enter
+   {$this overshell_theme}
    {gs_tile5.mesh set_showing FALSE}
    {sel_section.lst set_selected $modifierlistpos}
    {sel_section.lst set_local_pos -140 0 35}
@@ -1620,9 +1606,11 @@
    MultiSelectListPanel
    overshell_diff_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
    {do
+      {$this overshell_theme}
          {gs_tile5.mesh set_showing FALSE}
          {sel_section.lst set_selected $difflistpos}
          {sel_section.lst set_local_pos -140 0 35}
@@ -1642,12 +1630,14 @@
    MultiSelectListPanel
    overshell_character_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (update_char_pic
    {set $uipicturenumber {+ $uipicturenumber 1}}
             {if {> $uipicturenumber 3} {set $uipicturenumber 0}}
             {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}})
    (enter
+   {$this overshell_theme}
     {gs_background.view add_object gs_tile5.mesh}
     {gs_tile5.mesh set_local_pos 125 100 100}
     {gs_tile5.mesh set_local_scale_index 0 .9}
@@ -1689,9 +1679,11 @@
    MultiSelectListPanel
    overshell_venue_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
    {do
+      {$this overshell_theme}
          {gs_tile5.mesh set_showing FALSE}
          {sel_section.lst set_local_pos -140 0 35}
          {sel_section.lst set_data (random battle small1 small2 big theatre fest arena stone)}
@@ -1710,8 +1702,10 @@
    MultiSelectListPanel
    overshell_guitar_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
+   {$this overshell_theme}
    {sel_section.lst set_local_pos -140 0 35}
    ;{practice_sel_section.grp set_local_pos 0 0 20}
    {do
@@ -1749,9 +1743,11 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new GHPanel overshell_theme_panel
    (file overshell_theme.milo)
+   OVERSHELL_THEME_HANDLER
    (focus resume.btn)
    (reset_focus TRUE)
-   (enter 
+   (enter
+      {$this overshell_theme}
       {pause_title.lbl set_text "THEME SELECT"}
       {diff.btn set_showing FALSE}
       {extra2.btn set_showing FALSE}
@@ -1769,6 +1765,7 @@
    SliderPanel
    pause_audio_settings_panel
    (file pause_audio_settings_gh1.milo)
+   OVERSHELL_THEME_HANDLER
    AUDIO_SETTINGS_PANEL_HANDLERS}
 {new
    GHScreen
@@ -1781,8 +1778,10 @@
    MultiSelectListPanel
    overshell_highway_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
+    {$this overshell_theme}
     {gs_background.view add_object gs_tile5.mesh}
     {gs_tile5.mesh set_local_pos 125 100 100}
     {gs_tile5.mesh set_local_scale_index 0 .6}
@@ -1822,8 +1821,10 @@
    MultiSelectListPanel
    overshell_font_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
+   {$this overshell_theme}
    {gs_tile5.mesh set_showing FALSE}
    {set $fontmenu blockletters}
    {gs_title.lbl set_type $fontmenu}
@@ -1854,8 +1855,10 @@
    GHPanel
    overshell_help_panel
    (file overshell_help.milo)
+   OVERSHELL_THEME_HANDLER
    (focus quit.btn)
    (enter
+      {$this overshell_theme}
       {pause_controller_msg.lbl set_text
       "This is me warning you that
       if in game, you must back out
@@ -1877,8 +1880,10 @@
    GHPanel
    overshell_random_warn_panel
    (file overshell_help.milo)
+   OVERSHELL_THEME_HANDLER
    (focus quit.btn)
    (enter
+      {$this overshell_theme}
       {pause_controller_msg.lbl set_text
      "This only works on the song
 selection screen. Please
@@ -1899,8 +1904,10 @@ this option."}
    MultiSelectListPanel
    overshell_song_theme_list
    (file overshell_list.milo)
+   OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
+   {$this overshell_theme}
    {gs_tile5.mesh set_showing FALSE}
    {do
          {sel_section.lst set_local_pos -140 0 35}
