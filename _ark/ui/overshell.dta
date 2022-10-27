@@ -59,10 +59,10 @@
                {set $os_label_height $custom_os_label_height}
                {set $os_button_font $custom_os_button_font}
                {set $os_button_all_caps $custom_os_button_all_caps}
-               {set $os_normal_color_r $custom_os_normal_color_r} {set $os_normal_color_g $custom_os_normal_color_g} {set $custom_os_normal_color_b $custom_os_normal_color_b}
+               {set $os_normal_color_r $custom_os_normal_color_r} {set $os_normal_color_g $custom_os_normal_color_g} {set $os_normal_color_b $custom_os_normal_color_b}
                {set $os_focus_color_r $custom_os_focus_color_r} {set $os_focus_color_g $custom_os_focus_color_g} {set $os_focus_color_b $custom_os_focus_color_b}
                {set $os_disabled_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
-               {set $os_selecting_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $custom_os_disabled_color_b $custom_os_disabled_color_b}
+               {set $os_selecting_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
             )
             (gh1
                {set $os_border_image tile_gh1_keep}
