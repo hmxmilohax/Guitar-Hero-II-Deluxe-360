@@ -165,6 +165,8 @@
 {set $loopsong TRUE}
 ;gh3 song select
 {set $gh3song FALSE}
+;song progress meter update rate, in seconds
+{set $progress_rate 1}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
 {set $difflistpos 3}

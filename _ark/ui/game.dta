@@ -250,11 +250,28 @@
       {set $player2_streak 0} ;set current streak back to default
       {set_loader_period 5}
    )
+   (init_progress_handler
+      {set $song_percent 0.0} ;reset the song progress variable to 0
+      {streak_overlay_panel update_song_progress_task} ;update progress meter
+      {set $song_length {game song_duration_sec}} ;get song length
+;      {name_overlay_panel set_debug_line {sprintf "L:%0.3f S:%0.3f US:%0.3f PCT:%0.3f RPCT:%d" $song_length {taskmgr seconds} {taskmgr ui_seconds} $song_percent {player0 percent_complete}}} ;timer debug
+      {script_task ;setup script task to run at a consistent interval
+;         (delay $progress_delay)
+         (delay $progress_rate) ;rate set in ui/init.dta
+         (units kTaskSeconds)
+         (script
+            {set $song_percent {* 100 {/ {taskmgr seconds} $song_length}}} ;calculate percent complete
+;            {name_overlay_panel set_debug_line {sprintf "L:%0.3f S:%0.3f US:%0.3f PCT:%0.3f RPCT:%d" $song_length {taskmgr seconds} {taskmgr ui_seconds} $song_percent {player0 percent_complete}}} ;timer debug
+            {streak_overlay_panel update_song_progress_task} ;update progress meter
+            {streak_overlay_panel setup_next_progress_update} ;schedule next update
+         )
+      }
+   )
    (intro_start_msg ;ran in quickplay/career by default on all songs
       ($fast $encore) ;setup local variables
       {track_panel intro_start_msg} ;call the intro_start_msg code block in track_panel
       {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
-      {streak_overlay_panel init_progress_bars} ;initialize the progress meters
+      {if {! $hardware_check} {streak_overlay_panel init_progress_bars}} ;initialize the progress meters
       {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay for a few seconds
       {streak_overlay_panel show_overlay FALSE} ;hide the streak meter for a few seconds
       {switch {gamecfg get mode} ;dont keep the mtv overlay on screen for faceoff and pro faceoff
@@ -331,9 +348,9 @@
          {set $do_streak FALSE} ;set the streak meter code to enabled
          {set $do_streak TRUE}
       }
-      {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
+      {if {! $hardware_check} {streak_overlay_panel streak_lastframe}} ;should force streak overlay to appear in practice even after a run
       {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
-      {streak_overlay_panel show_overlay TRUE} ;force show streak meter
+      {if {! $hardware_check} {streak_overlay_panel show_overlay TRUE}} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
       {if {"||" $cheat_enabled_performance_mode {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
          {script_task
@@ -356,6 +373,7 @@
          {streak_overlay_panel setup_streak} ;if streak is supposed to run, setup the streak meter
       }
       {streak_overlay_panel show_overlay $do_streak} ;show the streak meter if it is allowed to run
+      {if {! $hardware_check} {$this init_progress_handler}} ;initialize progress bar handler
       kDataUnhandled
    )
    (extend_track ;ran after the intro camera shot, handles similar items to intro_skip, but this is ran when intro_skip is disabled
@@ -378,6 +396,7 @@
             {beatmatch set_music_speed 1.0} ;if music speed is set to 100%, set beatmatcher speed to 100%
          }
       }
+
       {script_task
          (delay 1.8)
          (units kTaskSeconds) ;wait 1.8 seconds
@@ -398,6 +417,7 @@
          )
       }
       {set [intro_complete] TRUE} ;this will allow the pause>restart button to restart back to the track extend, instead of the full intro shot every restart
+      {if {! $hardware_check} {$this init_progress_handler}} ;initialize progress bar handler
    )
    (music_start
       {ui music_start} ;start the music
@@ -408,7 +428,7 @@
       kDataUnhandled
    )
    (beat ;runs code every beat of the currently playing song
-      {streak_overlay_panel update_song_progress}
+;      {streak_overlay_panel update_song_progress} ;moving this to a timer
       {if $barf_cheat ;check for roxbury modifier
          {track_panel animate (range 2000 2025) (period 0.4)} ;if roxbury enabled, shake the track on beat of the song
       }
