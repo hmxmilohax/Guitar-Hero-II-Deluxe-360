@@ -372,15 +372,14 @@
 ;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
 ;   )
    (update_song_progress_task
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ $song_percent 72.0} {/ $song_percent 75.0}} .1 .1}
+      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ $song_percent 72.0} {/ $song_percent 75.0}} .1 .1} ;update scale based on percent complete
    )
    (setup_next_progress_update
       {script_task
-;         (delay $progress_delay)
          (delay $progress_rate) ;rate set in ui/init.dta
          (units kTaskSeconds)
          (script
-           {set $song_percent {* 100 {/ {taskmgr seconds} $song_length}}}
+           {set $song_percent {* 100 {/ {taskmgr seconds} $song_length}}} ;calculate percent complete
 ;      {name_overlay_panel set_debug_line {sprintf "L:%0.3f S:%0.3f US:%0.3f PCT:%0.3f RPCT:%d" $song_length {taskmgr seconds} {taskmgr ui_seconds} $song_percent {player0 percent_complete}}} ;timer debug
            {streak_overlay_panel update_song_progress_task} ;update progress bar
            {streak_overlay_panel setup_next_progress_update} ;schedule next update
