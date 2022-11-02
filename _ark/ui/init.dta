@@ -62,6 +62,24 @@
    {set $custom_os_disabled_color_r 0.77} {set $custom_os_disabled_color_g 0.54} {set $custom_os_disabled_color_b 0.38}
    ;sets all menu item buttons when selected color in RGB
    {set $custom_os_selecting_color_r 1} {set $custom_os_disabled_color_g 1} {set $custom_os_disabled_color_b 1}
+;sets custom star power color in RGB. 0.34 0.5 0.67 is default
+{set $starpowercolor_r 0.34} {set $starpowercolor_g 0.5} {set $starpowercolor_b 0.67}
+;sets custom FC streak text color in RGB. 0.79 0.51 0.07 is default
+{set $streaklabel_r 0.79} {set $streaklabel_g 0.51} {set $streaklabel_b 0.07}
+;sets custom star counter text color in RGB
+{set $starcounter_r 1} {set $starcounter_g 1} {set $starcounter_b 1}
+;sets custom score number frame color in RGB
+{set $scorenumframe_r 1} {set $scorenumframe_g 1} {set $scorenumframe_b 1}
+;sets custom gem color in RGB
+{set $customgemcolor FALSE} ; enables custom gem colors
+{set $gemcolor_r 1} {set $gemcolor_g 1} {set $gemcolor_b 1}
+;sets custom smasher color in RGB
+{set $customsmashercolor FALSE} ; enables custom gem colors
+{set $smashercolor_r 1} {set $smashercolor_g 1} {set $smashercolor_b 1}
+;sets custom track rail color in RGB
+{set $trackrailcolor_r 1} {set $trackrailcolor_g 1} {set $trackrailcolor_b 1}
+;sets custom beat line color in RGB
+{set $beatlinecolor_r 0.87} {set $beatlinecolor_g 0.87} {set $beatlinecolor_b 0.87}
 ;wip track width controller
 {set $trackcamx 1.0}
 ;default name on screen in game

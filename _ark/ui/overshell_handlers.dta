@@ -4,7 +4,7 @@
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
-(os_cloneherohud os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets)
+(os_cloneherohud os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_eyeballgems)
 )
 #define OVERSHELL_SNGTHM_CONTENTS
 (
@@ -452,6 +452,20 @@
                {do
                   {play_sfx cheat}
                   {set $voidfrets TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_eyeballgems
+            {if_else $eyeballgems
+               {do
+                  {play_sfx cheat_off}
+                  {set $eyeballgems FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $eyeballgems TRUE}
                   OVERSHELL_TRACK_RESET_HANDLER
                }
             }
