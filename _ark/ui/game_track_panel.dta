@@ -1,4 +1,20 @@
 #define TRACK_END_FRAME (1920)
+#define STAR_POWER_COLOR
+($starpowercolor_r $starpowercolor_g $starpowercolor_b)
+#define GEM_COLOR
+($gemcolor_r $gemcolor_g $gemcolor_b)
+#define SMASHER_COLOR
+($smashercolor_r $smashercolor_g $smashercolor_b)
+#define STREAK_COLOR
+($streaklabel_r $streaklabel_g $streaklabel_b)
+#define STAR_COUNTER_COLOR
+($starcounter_r $starcounter_g $starcounter_b)
+#define SCORE_NUM_FRAME_COLOR
+($scorenumframe_r $scorenumframe_g $scorenumframe_b)
+#define TRACK_RAIL_COLOR
+($trackrailcolor_r $trackrailcolor_g $trackrailcolor_b)
+#define BEATLINE_COLOR
+($beatlinecolor_r $beatlinecolor_g $beatlinecolor_b)
 #define TRACK_MODIFIER_HANDLERS
 (
 #ifndef HX_XBOX
@@ -50,8 +66,7 @@
 {if $eyeballgems
       {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/gem_eyeball_keep.png} ;eyeball gems
    }
-#define STAR_POWER_COLOR
-($starpowercolor_r $starpowercolor_g $starpowercolor_b)
+
    {{{{track_panel loaded_dir} find $tracktype} find lightning_1.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{track_panel loaded_dir} find $tracktype} find lightning_2.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{track_panel loaded_dir} find $tracktype} find lightning_trackglow.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
@@ -90,8 +105,6 @@
    {{{{track_panel loaded_dir} find $tracktype} find lightning_trackglow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the track side glow stuff because I hate it
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar.mat} set color {pack_color 0.24 0.24 0.24}} ;I dont like this bar being slightly blue
 
-#define GEM_COLOR
-($gemcolor_r $gemcolor_g $gemcolor_b)
 {if $customgemcolor
    {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;custom gem outline color
    {{{{track_panel loaded_dir} find $tracktype} find gem.mat} set color {pack_color GEM_COLOR}} ;custom gem outline color
@@ -121,8 +134,6 @@
    {{{{track_panel loaded_dir} find $tracktype} find dot_top_hopo2_yellow.mat} set color {pack_color GEM_COLOR}} ;custom gem outline color
 }
 
-#define SMASHER_COLOR
-($smashercolor_r $smashercolor_g $smashercolor_b)
 {if $customsmashercolor
    {{{{track_panel loaded_dir} find $tracktype} find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
    {{{{track_panel loaded_dir} find $tracktype} find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
@@ -150,26 +161,16 @@
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_yellow.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 }
 
-#define STREAK_COLOR
-($streaklabel_r $streaklabel_g $streaklabel_b)
    {{streak_overlay_panel find stk_campaign_line1.lbl} set color {pack_color STREAK_COLOR}} ;custom FC streak color
 
-#define STAR_COUNTER_COLOR
-($starcounter_r $starcounter_g $starcounter_b)
    {{streak_overlay_panel find star_counter.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
 
-#define SCORE_NUM_FRAME_COLOR
-($scorenumframe_r $scorenumframe_g $scorenumframe_b)
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_frame.mat} set color {pack_color SCORE_NUM_FRAME_COLOR}} ;score number frame color
 
-#define TRACK_RAIL_COLOR
-($trackrailcolor_r $trackrailcolor_g $trackrailcolor_b)
    {{{{track_panel loaded_dir} find $tracktype} find rail_light.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
    {{{{track_panel loaded_dir} find $tracktype} find track1.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
    {{{{track_panel loaded_dir} find $tracktype} find track2.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
 
-#define BEATLINE_COLOR
-($beatlinecolor_r $beatlinecolor_g $beatlinecolor_b)
    {{{{track_panel loaded_dir} find $tracktype} find bar_line5_light.lit} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find bar_line.mat} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find beat_line.mat} set color {pack_color BEATLINE_COLOR}} ;beat line

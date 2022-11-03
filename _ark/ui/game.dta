@@ -200,7 +200,7 @@
     )
     (set_line ;called in mtv overlay to apply the text to two labels at once
       ($prefix $i $text) ;setup variables
-      {{sprint $prefix $i ".lbl"} set color {pack_color $namecolorr $namecolorg $namecolorb}}
+      {{sprint $prefix $i ".lbl"} set color {pack_color $namecolor_r $namecolor_g $namecolor_b}}
       {{sprint $prefix $i ".lbl"} set_type $namefont}
       {{sprint $prefix $i "_shadow.lbl"} set_type $namefont}
       {{sprint $prefix $i ".lbl"} set_localized_text $text} ;set the main text objects

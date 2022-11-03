@@ -100,7 +100,7 @@
                {== {ui current_screen} overshell_slider_screen}
                {== {ui current_screen} pause_screen}
                {== {ui current_screen} lose_screen}
-               {== {ui current_screen} overshell_fontcolor_slider_screen}
+               {== {ui current_screen} overshell_color_slider_screen}
                {== {ui current_screen} practice_end_screen}
                {== {ui current_screen} overshell_track_slider_screen}
             }

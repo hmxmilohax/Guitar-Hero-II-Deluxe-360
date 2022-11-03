@@ -91,9 +91,9 @@
 {set $namefont dyingmarker}
 ;set color of the name in game
 ;each value is between 0 and 1 and creates an RGB color value
-{set $namecolorr 1.0}
-{set $namecolorg 1.0}
-{set $namecolorb 1.0}
+{set $namecolor_r 1.0}
+{set $namecolor_g 1.0}
+{set $namecolor_b 1.0}
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
 ;Track/Highway/Note Speed. Each .1 is 10%
@@ -187,6 +187,7 @@
 {set $progress_rate 1}
 ;do not change variables below, these are used for scripting only
 {set $dontreset FALSE}
+{set $colormenu name}
 {set $difflistpos 3}
 {set $modifierlistpos 0}
 {set $trackmodifierlistpos 0}
