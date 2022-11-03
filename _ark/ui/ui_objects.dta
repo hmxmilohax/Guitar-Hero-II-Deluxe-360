@@ -1096,10 +1096,10 @@
                      (disabled 0.7 0 0)
                      (selecting 0.7 0 0))
                   (highlight
-                     (normal 0 0 0)
-                     (focused 0 0 0)
-                     (disabled 0 0 0)
-                     (selecting 0 0 0))
+                     (normal 0.7 0 0)
+                     (focused 0.7 0 0)
+                     (disabled 0.7 0 0)
+                     (selecting 0.7 0 0))
                   (disabled
                      (normal 0.5 0.5 0.5)
                      (focused 0.5 0.5 0.5)

@@ -311,13 +311,45 @@
          {gamecfg get mode}
             (career
                {if_else {== {game get_song_index} 0}
-                  {do {game set_song {campaign pick_attract_song}} {if {== {gamecfg get_song} speedtest} {game set_song speedtest9}} {game set_career} {ui goto_screen qp_selpart_screen}}
+                  {do
+                     {game set_song {campaign pick_attract_song}}
+                     {if
+                        {||
+                            {== {game get_song} speedtest}
+                            {== {game get_song} speedtest2}
+                            {== {game get_song} speedtest3}
+                            {== {game get_song} speedtest4}
+                            {== {game get_song} speedtest5}
+                            {== {game get_song} speedtest6}
+                            {== {game get_song} speedtest7}
+                            {== {game get_song} speedtest8}
+                        }
+                        {game set_song speedtest9}
+                     }
+                     {ui goto_screen qp_selpart_screen}
+                  }
                   {ui goto_screen qp_selpart_screen}
                }
             )
             (quickplay
                {if_else {== {game get_song_index} 0}
-                  {do {game set_song {campaign pick_attract_song}} {if {== {gamecfg get_song} speedtest} {game set_song speedtest9}} {game set_career} {ui goto_screen qp_selpart_screen}}
+                  {do
+                     {game set_song {campaign pick_attract_song}}
+                     {if
+                        {||
+                            {== {game get_song} speedtest}
+                            {== {game get_song} speedtest2}
+                            {== {game get_song} speedtest3}
+                            {== {game get_song} speedtest4}
+                            {== {game get_song} speedtest5}
+                            {== {game get_song} speedtest6}
+                            {== {game get_song} speedtest7}
+                            {== {game get_song} speedtest8}
+                        }
+                        {game set_song speedtest9}
+                     }
+                     {ui goto_screen qp_selpart_screen}
+                  }
                   {ui goto_screen qp_selpart_screen}
                }
             )
@@ -325,7 +357,23 @@
             (multi_fo {ui goto_screen multi_fo_seldiff_screen})
             (practice
                {if_else {== {game get_song_index} 0}
-                  {do {game set_song {campaign pick_attract_song}} {if {== {gamecfg get_song} speedtest} {game set_song speedtest9}} {game set_career} {ui goto_screen qp_selpart_screen}}
+                  {do
+                     {game set_song {campaign pick_attract_song}}
+                     {if
+                        {||
+                            {== {game get_song} speedtest}
+                            {== {game get_song} speedtest2}
+                            {== {game get_song} speedtest3}
+                            {== {game get_song} speedtest4}
+                            {== {game get_song} speedtest5}
+                            {== {game get_song} speedtest6}
+                            {== {game get_song} speedtest7}
+                            {== {game get_song} speedtest8}
+                        }
+                        {game set_song speedtest9}
+                     }
+                     {ui goto_screen qp_selpart_screen}
+                  }
                   {ui goto_screen qp_selpart_screen}
                }
             )
