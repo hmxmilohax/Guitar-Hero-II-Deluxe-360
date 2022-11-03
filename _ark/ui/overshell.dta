@@ -106,15 +106,33 @@
             }
             kDataUnhandled
             {do
-               {$this iterate UILabel $l {$l set_type $os_label_font}}
-               {$this iterate UILabel $l {$l set all_caps $os_label_all_caps}}
-               {$this iterate UILabel $l {$l set wrap_width $os_wrap_width}}
-               {$this iterate UILabel $l {$l set width $os_label_width}}
-               {$this iterate UILabel $l {$l set height $os_label_height}}
+               {pause_title.lbl set_type $os_label_font}
+               {pause_title.lbl set all_caps $os_label_all_caps}
+               {pause_title.lbl set wrap_width $os_wrap_width}
+               {pause_title.lbl set width $os_label_width}
+               {pause_title.lbl set height $os_label_height}
+               {pause_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
+               {gs_title.lbl set_type $os_label_font}
+               {gs_title.lbl set all_caps $os_label_all_caps}
+               {gs_title.lbl set wrap_width $os_wrap_width}
+               {gs_title.lbl set width $os_label_width}
+               {gs_title.lbl set height $os_label_height}
+               {gs_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
+               {lose_title.lbl set_type $os_label_font}
+               {lose_title.lbl set all_caps $os_label_all_caps}
+               {lose_title.lbl set wrap_width $os_wrap_width}
+               {lose_title.lbl set width $os_label_width}
+               {lose_title.lbl set height $os_label_height}
+               {lose_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
+               {pause_controller_title.lbl set_type $os_label_font}
+               {pause_controller_title.lbl set all_caps $os_label_all_caps}
+               {pause_controller_title.lbl set wrap_width $os_wrap_width}
+               {pause_controller_title.lbl set width $os_label_width}
+               {pause_controller_title.lbl set height $os_label_height}
+               {pause_controller_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
             }
          }
          {$this iterate Tex $l {$l set_bitmap {sprint "track/custom_track_textures/" $os_border_image ".png"}}}
-         {$this iterate UILabel $l {$l set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}}
          {$this iterate UIButton $b {$b set_type $os_button_font}}
          {$this iterate UIButton $b {$b set all_caps $os_button_all_caps}}
          {$this iterate PanelDir $u {$u set normal_color {pack_color $os_normal_color_r $os_normal_color_g $os_normal_color_b}}}
