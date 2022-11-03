@@ -1,3 +1,84 @@
+{new GHPanel selpart_overlay_panel
+   (file mtv_overlay.milo)
+   (enter ;when the screen is entered
+      {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
+      {mtv_overlay.view set_local_pos -100 -50 80} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+;     {$this setup_text} ;run the setup_text code block below
+   )
+   (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below
+      {do
+         ($gems_hit {player0 gems_hit}) ;setup gems hit variable
+         ($gems_total {'+' $gems_hit {player0 gems_passed}}) ;setup total gems that have passed the strikeline variable
+         ($song {gamecfg get_song}) ;setup song variable
+         ($song_text {game get_song_text}) ;setup song text variable
+         ($artist_text {game get_song_artist_text}) ;setup artist variable
+         {do
+            ($prefix "mtv_campaign_line") ;setup prefix variable to switch between line numbers
+            {mtv_campaign_song_id.view set_showing TRUE} ;show the mtv overlay
+            {if_else {!= $speedmod 1} ;if song speed is set to anything other than 100%
+               {if_else {&& {== {gamecfg get mode} practice} {!= {gamecfg get practice_speed} 0}} ;now check if the game mode is practice and the practice speed is set to full speed
+                  {$this set_line $prefix 1
+                     $song_text ;if all speeds are 100% simply show the song name on line 1
+                  }
+                  {$this set_line $prefix 1
+                     {sprint
+                        $song_text
+                        " ("
+                        {int {'+' 0.5 {'*' $speedmod 100}}} ;if song speed is not 100%, do math to report the song speed as a percentage on line 1
+                        "%)"
+                     }
+                  }
+               }
+               {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
+            }
+            {$this set_line $prefix 2
+               {sprint
+                  {localize performertext}
+                  $artist_text ;the artist text line is always just "BY - ARTIST"
+               }
+            }
+            {set $mtvline3
+               {sprint "\n"}
+            }
+            {if {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
+               {set $mtvline3
+                  {sprint
+                     "\n"
+                     {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     {localize
+                        {sprint $song "_author"}
+                     }
+                     "\n"
+                  }
+               }
+            }
+            {if_else $author ;check for author variable in DLC contexts.dta
+               {set $mtvline3
+                  {sprint
+                     "\n"
+                     {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     $author
+                     "\n"
+                  }
+               }
+            }
+               {$this set_line $prefix 3
+                  {sprint $mtvline3} ;if autoplay, just put the static shit
+               }
+            }
+      }
+   )
+   (set_line ;called in mtv overlay to apply the text to two labels at once
+      ($prefix $i $text) ;setup variables
+      {{sprint $prefix $i ".lbl"} set_localized_text $text} ;set the main text objects
+      {{sprint $prefix $i "_shadow.lbl"} set_localized_text $text} ;set the shadow text objects
+   )
+   (show_overlay ;code to run to show the overlay or not based on a variable
+      ($show) ;setup variable
+      {$this set_showing $show} ;show or hide based off variable
+      {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
+   )
+}
 {new UIPanel qp_selpart_bg_panel
    (file {if_else {== $menutheme 80s} ;which milo file to use based on the 80s theme flag
     selpart_bg_80s.milo selpart_bg.milo}) ;use 80s if 80s use gh2 if not 80s
@@ -32,6 +113,7 @@
       }
    )
    (enter ;when the screen is entered
+      {selpart_overlay_panel setup_text}
       {do
          ($song {gamecfg get_song}) ;setup variable for this code block
          {switch {song_provider get_instrument $song 1} ;switch action based on result of which instrument is second in the song definition
@@ -88,7 +170,7 @@
    )
 }
 {new GHScreen qp_selpart_screen
-   (panels meta qp_selpart_panel helpbar) ;what panels are included in this screen, in reverse draw order (help bar is always on top)
+   (panels meta qp_selpart_panel selpart_overlay_panel helpbar) ;what panels are included in this screen, in reverse draw order (help bar is always on top)
    (focus qp_selpart_panel) ;which panel to set focus to
    (helpbar ;setup helpbar
       (default ((fret1 help_continue) (fret2 help_back) (strum help_updown)) ;we need continue, go back, and up down for this screen

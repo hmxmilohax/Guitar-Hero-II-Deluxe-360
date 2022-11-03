@@ -1,10 +1,6 @@
 #define SPEEDTEST_DATA
 (
    (
-      'name'
-      "Speed Test"
-   )
-   (
       'artist'
       "ExileLord"
    )
@@ -53,33 +49,73 @@
 )
 (
    'speedtest'
+   (
+      'name'
+      "Random Song"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest2'
+   (
+      'name'
+      "You shouldnt be here"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest3'
+   (
+      'name'
+      "You shouldnt be here"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest4'
+   (
+      'name'
+      "You shouldnt be here"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest5'
+   (
+      'name'
+      "You shouldnt be here"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest6'
+   (
+      'name'
+      "You shouldnt be here"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest7'
+   (
+      'name'
+      "You shouldnt be here"
+   )
    SPEEDTEST_DATA
 )
 (
    'speedtest8'
+   (
+      'name'
+      "You shouldnt be here"
+   )
+   SPEEDTEST_DATA
+)
+(
+   'speedtest9'
+   (
+      'name'
+      "Speed Test"
+   )
    SPEEDTEST_DATA
 )

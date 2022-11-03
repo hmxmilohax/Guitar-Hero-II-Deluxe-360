@@ -280,7 +280,9 @@
 (store
 (guitar)
 (skin)
-(song)
+(song
+(speedtest9
+      (price 0)))
 (character)
 (outfit)
 (video))

@@ -15,7 +15,7 @@
 (song_header_stone
    " ")
 (song_header_store
-   " ")
+   "Song Select")
 (song_header_download
    " ")
 (song_old_venue

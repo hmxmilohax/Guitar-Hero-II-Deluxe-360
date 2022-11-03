@@ -309,11 +309,26 @@
    (SELECT_START_MSG
       {switch
          {gamecfg get mode}
-            (career {ui goto_screen qp_selpart_screen})
-            (quickplay {ui goto_screen qp_selpart_screen})
+            (career
+               {if_else {== {game get_song_index} 0}
+                  {do {game set_song {campaign pick_attract_song}} {if {== {gamecfg get_song} speedtest} {game set_song speedtest9}} {game set_career} {ui goto_screen qp_selpart_screen}}
+                  {ui goto_screen qp_selpart_screen}
+               }
+            )
+            (quickplay
+               {if_else {== {game get_song_index} 0}
+                  {do {game set_song {campaign pick_attract_song}} {if {== {gamecfg get_song} speedtest} {game set_song speedtest9}} {game set_career} {ui goto_screen qp_selpart_screen}}
+                  {ui goto_screen qp_selpart_screen}
+               }
+            )
             (multi_vs kDataUnhandled)
             (multi_fo {ui goto_screen multi_fo_seldiff_screen})
-            (practice {ui goto_screen qp_selpart_screen})
+            (practice
+               {if_else {== {game get_song_index} 0}
+                  {do {game set_song {campaign pick_attract_song}} {if {== {gamecfg get_song} speedtest} {game set_song speedtest9}} {game set_career} {ui goto_screen qp_selpart_screen}}
+                  {ui goto_screen qp_selpart_screen}
+               }
+            )
             (multi_coop
                {gamecfg set_track 0 0}
                {gamecfg set_track 1 1}

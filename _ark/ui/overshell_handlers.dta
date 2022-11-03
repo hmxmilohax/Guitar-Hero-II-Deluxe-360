@@ -1,6 +1,6 @@
 #define OVERSHELL_LIST_CONTENTS
 (
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_font os_fontcolor os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
+(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_font os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
 )
 #define OVERSHELL_TRACK_CONTENTS
 (
@@ -90,9 +90,6 @@
       (os_font
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_font_list_screen})
-      (os_fontcolor
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         {ui push_screen overshell_color_slider_screen})
       (os_trkmod
          {set $modifierlistpos {sel_section.lst selected_pos}}
          {ui push_screen overshell_track_list_screen})
@@ -939,6 +936,7 @@
          {gs_band.sld set_showing FALSE}
          {stereo.chk set_showing FALSE}
          {stereo.chk set_showing FALSE}
+         {gs_stereo.btn set_text "FOCUS MODE"}
       {gs_guitar.sld set_current
          {int {+ 0.5 {/ {+ {- $trackcamx 1} 0.5} 0.1}}}
       }
@@ -1217,7 +1215,7 @@
          {do
             {if_else {== [focus_component] "gs_stereo.btn"}
                {helpbar set_display
-                  ((fret1 help_onoff)
+                  ((fret1 help_select)
                      (fret2 help_back)
                      (strum help_updown))
                }
@@ -1310,6 +1308,7 @@
          {int {- $emulatefps 1}}
       }
       {stereo.chk set_check $focusmode}
+      {gs_stereo.btn set_text "FOCUS MODE"}
       {$this display_speed_msg $trackspeed $speedmod $emulatefps}
    )
    (reset_gm_title
