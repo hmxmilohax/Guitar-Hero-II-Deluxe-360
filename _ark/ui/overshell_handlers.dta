@@ -74,7 +74,7 @@
 }
 {new
    SliderPanel ;panel type
-   color_overshell_slider ;panel name
+   overshell_color_slider ;panel name
    (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    COLOR_SLIDER_HANDLERS ;found in overshell_slider_handlers.dta
@@ -82,8 +82,8 @@
 {new
    GHScreen ;screen type
    overshell_color_slider_screen ;screen name
-   (panels color_overshell_slider) ;panels used for this screen. overshell only uses one panel
-   (focus color_overshell_slider) ;panel to focus
+   (panels overshell_color_slider) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_color_slider) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
@@ -109,17 +109,17 @@
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
-         (elm_name {set $colormenu name})
-         (elm_starpower {set $colormenu starpower})
-         (elm_streaklabel {set $colormenu streaklabel})
-         (elm_starcounter {set $colormenu starcounter})
-         (elm_scorenumframe {set $colormenu scorenumframe})
-         (elm_gemcolor {set $colormenu gemcolor})
-         (elm_smashercolor {set $colormenu smashercolor})
-         (elm_trackrailcolor {set $colormenu trackrailcolor})
-         (elm_beatlinecolor {set $colormenu beatlinecolor})
+         (elm_name {set $colormenu name}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_starpower {set $colormenu starpower}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_streaklabel {set $colormenu streaklabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_starcounter {set $colormenu starcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_scorenumframe {set $colormenu scorenumframe}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_gemcolor {set $colormenu gemcolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_smashercolor {set $colormenu smashercolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_trackrailcolor {set $colormenu trackrailcolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_beatlinecolor {set $colormenu beatlinecolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
       }
-      {color_overshell_slider set_colors} ;runs the title label color code for previewing the current color
+      {overshell_color_slider set_colors} ;runs the title label color code for previewing the current color
       {ui pop_screen} ;exit the current overshell screen
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
@@ -184,9 +184,9 @@
                }
                {do
                   {play_sfx cheat}
-                  {set $brighthopos FALSE}
-                  {set $gh1track FALSE}
-                  {set $darkstrums FALSE}
+                  {set $brighthopos FALSE} ;eyeball gems turn off all other gem types
+                  {set $gh1track FALSE} ;eyeball gems turn off all other gem types
+                  {set $darkstrums FALSE} ;eyeball gems turn off all other gem types
                   {set $eyeballgems TRUE}
                }
             }
@@ -196,13 +196,13 @@
                {do
                   {play_sfx cheat_off}
                   {set $clonehero_hud FALSE}
-                  {set $trackcamx 1.0}
+                  {set $trackcamx 1.0} ;restore the track width to the default width
                }
                {do
                   {play_sfx cheat}
                   {set $clonehero_hud TRUE}
-                  {set $trackcamx 1.3}
-                  {set $sppop FALSE}
+                  {set $trackcamx 1.3} ;I have only specifically set up one track width at this time
+                  {set $sppop FALSE} ;in clone hero hud, the animation for star power fucks up the visuals
                }
             }
          )
@@ -238,7 +238,7 @@
                }
                {do
                   {play_sfx cheat}
-                  {set $gh3track FALSE}
+                  {set $gh3track FALSE} ;gh1 track turns off gh3 track
                   {set $gh1track TRUE}
                }
             }
@@ -251,7 +251,7 @@
                }
                {do
                   {play_sfx cheat}
-                  {set $gh1track FALSE}
+                  {set $gh1track FALSE} ;gh3 track turns off gh1 track
                   {set $gh3track TRUE}
                }
             }
@@ -289,7 +289,7 @@
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {sel_section.lst set_selected $modifierlistpos}
+      {sel_section.lst set_selected $modifierlistpos} ;select our saved list position
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set alignment kTopCenter} ;ensure the list is aligned properly
@@ -311,213 +311,239 @@
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
       (os_selhw
-         {ui push_screen overshell_highway_list_screen}
-      )
-      (os_font
-         {ui push_screen overshell_font_list_screen}
-      )
-      (os_trkmod
-         {ui push_screen overshell_track_list_screen}
-      )
-      (os_sfx
-         {set $sfx {! $sfx}}
-         {if_else $sfx
-            CHEAT_POP
-         }
-      )
-      (os_sppop
-         {set $sppop {! $sppop}}
-         {if_else $sppop
-            CHEAT_POP
-         }
-      )
-      (os_whammyfx
-         {set $whammyfx {! $whammyfx}}
-         {if_else $whammyfx
-            CHEAT_POP
-         }
-      )
-      (os_muting
-         {set $muting {! $muting}}
-         {if_else $muting
-            CHEAT_POP
-         }
-      )
-      (os_epictext
-         {set $epictext {! $epictext}}
-         {if_else $epictext
-            CHEAT_POP
-         }
-      )
-      (os_autoplay
-         {set $autoplay {! $autoplay}}
-         {set $gotcha TRUE}
-         {if_else $autoplay
-            CHEAT_POP
-         }
-      )
-      (os_notestreakmod
-         {set $notestreakmod {! $notestreakmod}}
-         {if_else $notestreakmod
-            CHEAT_POP
-         }
-      )
-      (os_selecttorestart
-         {set $selecttorestart {! $selecttorestart}}
-         {if_else $selecttorestart
-            CHEAT_POP
-         }
-      )
-      (os_towel
-         {set $towel {! $towel}}
-         {if_else $towel
-            CHEAT_POP
-         }
-      )
-      (os_skipintro
-         {set $miloskipintro {! $miloskipintro}}
-         {if_else $miloskipintro
-            CHEAT_POP
-         }
-      )
-      (os_focusmode
-         {if_else $focusmode
-            {do
-               {play_sfx cheat_off}
-               {set $focusmode FALSE}
-               {set $miloskipintro FALSE}
-               {set $skipoutro FALSE}
-               {set $notestreakmod TRUE}
-               {set $sfx TRUE}
+            {ui push_screen overshell_highway_list_screen} ;we open another screen for another list
+         )
+         (os_font
+            {ui push_screen overshell_font_list_screen} ;we open another screen for another list
+         )
+         (os_trkmod
+            {ui push_screen overshell_track_list_screen} ;we open another screen for another list
+         )
+         (os_sfx
+            {set $sfx {! $sfx}} ;set the variable to the opposite of what it currently is
+            {if_else $sfx ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-            {do
-               {play_sfx cheat}
-               {set $focusmode TRUE}
-               {set $miloskipintro TRUE}
-               {set $skipoutro TRUE}
-               {set $notestreakmod FALSE}
-               {set $sfx FALSE}
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_sppop
+            {set $sppop {! $sppop}} ;set the variable to the opposite of what it currently is
+            {if_else $sppop ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-         }
-      )
-      (os_skipoutro
-         {set $skipoutro {! $skipoutro}}
-         {if_else $skipoutro
-            CHEAT_POP
-         }
-      )
-      (os_noflames
-         {set $noflames {! $noflames}}
-         {if_else $noflames
-            CHEAT_POP
-         }
-      )
-      (os_nofail
-         {set $nofail {! $nofail}}
-         {if_else $nofail
-            CHEAT_POP
-         }
-      )
-      (os_cleanmtv
-         {set $cleanmtv {! $cleanmtv}}
-         {if_else $cleanmtv
-            CHEAT_POP
-         }
-      )
-      (os_brutalmode
-         {set $brutalmode {! $brutalmode}}
-         {if_else $brutalmode
-            CHEAT_POP
-         }
-      )
-      (os_songtitle
-         {set $songtitle {! $songtitle}}
-         {if_else $songtitle
-            CHEAT_POP
-         }
-      )
-      (os_nametitle
-         {set $nametitle {! $nametitle}}
-         {if_else $nametitle
-            CHEAT_POP
-         }
-      )
-      (os_highwayshake
-         {set $highwayshake {! $highwayshake}}
-         {if_else $highwayshake
-            CHEAT_POP
-         }
-      )
-      (os_drums
-         {set $drumenabled {! $drumenabled}}
-         {if_else $drumenabled
-            CHEAT_POP
-         }
-      )
-      (os_horsehead
-         {set $cheat_enabled_horse_head_mode {! $cheat_enabled_horse_head_mode}}
-         {if_else $cheat_enabled_horse_head_mode
-            CHEAT_POP
-         }
-      )
-      (os_monkeyhead
-         {if_else {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
-            {do
-               {play_sfx cheat_off}
-               {set $cheat_crowd_heads 0}
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_whammyfx
+            {set $whammyfx {! $whammyfx}} ;set the variable to the opposite of what it currently is
+            {if_else $whammyfx ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-            {do
-               {play_sfx cheat}
-               {set $cheat_crowd_heads monkey_crowd_heads}
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_muting
+            {set $muting {! $muting}} ;set the variable to the opposite of what it currently is
+            {if_else $muting ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-         }
-      )
-      (os_eyeballhead
-         {if_else {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
-            {do
-               {play_sfx cheat_off}
-               {set $cheat_crowd_heads 0}
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_epictext
+            {set $epictext {! $epictext}} ;set the variable to the opposite of what it currently is
+            {if_else $epictext ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-            {do
-               {play_sfx cheat}
-               {set $cheat_crowd_heads eyeball_crowd_heads}
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_autoplay
+            {set $autoplay {! $autoplay}} ;set the variable to the opposite of what it currently is
+            {set $gotcha TRUE} ;sanity check if the user enabled autoplay at all this session
+            {if_else $autoplay ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-         }
-      )
-      (os_flaminghead
-         {set $cheat_enabled_flaming_head {! $cheat_enabled_flaming_head}}
-         {if_else $cheat_enabled_flaming_head
-            CHEAT_POP
-         }
-      )
-      (os_neckless
-         {set $neckless {! $neckless}}
-         {if_else $neckless
-            CHEAT_POP
-         }
-      )
-      (os_performance
-         {set $cheat_enabled_performance_mode {! $cheat_enabled_performance_mode}}
-         {if_else $cheat_enabled_performance_mode
-            CHEAT_POP
-         }
-      )
-      (os_roxbury
-         {set $barf_cheat {! $barf_cheat}}
-         {if_else $barf_cheat
-            CHEAT_POP
-         }
-      )
-   }
-   {if_else
-      {||
-         {== {$component selected_sym} os_selhw} ;check if a specific item is selected
-         {== {$component selected_sym} os_font} ;check if a specific item is selected
-         {== {$component selected_sym} os_trkmod} ;check if a specific item is selected
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_notestreakmod
+            {set $notestreakmod {! $notestreakmod}} ;set the variable to the opposite of what it currently is
+            {if_else $notestreakmod ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_selecttorestart
+            {set $selecttorestart {! $selecttorestart}} ;set the variable to the opposite of what it currently is
+            {if_else $selecttorestart ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_towel
+            {set $towel {! $towel}} ;set the variable to the opposite of what it currently is
+            {if_else $towel ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_skipintro
+            {set $miloskipintro {! $miloskipintro}} ;set the variable to the opposite of what it currently is
+            {if_else $miloskipintro ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_focusmode
+            {if_else $focusmode
+               {do
+                  {play_sfx cheat_off}
+                  {set $focusmode FALSE}
+                  {set $miloskipintro FALSE}
+                  {set $skipoutro FALSE}
+                  {set $notestreakmod TRUE}
+                  {set $sfx TRUE}
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $focusmode TRUE}
+                  {set $miloskipintro TRUE}
+                  {set $skipoutro TRUE}
+                  {set $notestreakmod FALSE}
+                  {set $sfx FALSE}
+               }
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_skipoutro
+            {set $skipoutro {! $skipoutro}} ;set the variable to the opposite of what it currently is
+            {if_else $skipoutro ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_noflames
+            {set $noflames {! $noflames}} ;set the variable to the opposite of what it currently is
+            {if_else $noflames ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_nofail
+            {set $nofail {! $nofail}} ;set the variable to the opposite of what it currently is
+            {if_else $nofail ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_cleanmtv
+            {set $cleanmtv {! $cleanmtv}} ;set the variable to the opposite of what it currently is
+            {if_else $cleanmtv ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_brutalmode
+            {set $brutalmode {! $brutalmode}} ;set the variable to the opposite of what it currently is
+            {if_else $brutalmode ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_songtitle
+            {set $songtitle {! $songtitle}} ;set the variable to the opposite of what it currently is
+            {if_else $songtitle ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_nametitle
+            {set $nametitle {! $nametitle}} ;set the variable to the opposite of what it currently is
+            {if_else $nametitle ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_highwayshake
+            {set $highwayshake {! $highwayshake}} ;set the variable to the opposite of what it currently is
+            {if_else $highwayshake ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_drums
+            {set $drumenabled {! $drumenabled}} ;set the variable to the opposite of what it currently is
+            {if_else $drumenabled ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_horsehead
+            {set $cheat_enabled_horse_head_mode {! $cheat_enabled_horse_head_mode}} ;set the variable to the opposite of what it currently is
+            {if_else $cheat_enabled_horse_head_mode ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_monkeyhead
+            {if_else
+               {|| ;or
+                  {== $cheat_crowd_heads 0}
+                  {== $cheat_crowd_heads eyeball_crowd_heads}
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $cheat_crowd_heads monkey_crowd_heads}
+               }
+               {do
+                  {play_sfx cheat_off}
+                  {set $cheat_crowd_heads 0}
+               }
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_eyeballhead
+            {if_else
+               {|| ;or
+                  {== $cheat_crowd_heads 0}
+                  {== $cheat_crowd_heads monkey_crowd_heads}
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $cheat_crowd_heads eyeball_crowd_heads}
+               }
+               {do
+                  {play_sfx cheat_off}
+                  {set $cheat_crowd_heads 0}
+               }
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_flaminghead
+            {set $cheat_enabled_flaming_head {! $cheat_enabled_flaming_head}} ;set the variable to the opposite of what it currently is
+            {if_else $cheat_enabled_flaming_head ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_neckless
+            {set $neckless {! $neckless}} ;set the variable to the opposite of what it currently is
+            {if_else $neckless ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_performance
+            {set $cheat_enabled_performance_mode {! $cheat_enabled_performance_mode}} ;set the variable to the opposite of what it currently is
+            {if_else $cheat_enabled_performance_mode ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_roxbury
+            {set $barf_cheat {! $barf_cheat}} ;set the variable to the opposite of what it currently is
+            {if_else $barf_cheat ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
       }
-      kDataUnhandled ;we dont want to run the reset handler if we go another screen level deep
-      OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
-   }
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
@@ -547,18 +573,16 @@
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
    (enter ;when the panel is entered
-   {do
       {$this overshell_theme} ;run the theme code on the current overshell screen
-         {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-         {sel_section.lst set_selected $difflistpos}
-         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
-         {sel_section.lst set_data ;set up the data for the list
-            (
-               Easy Medium Hard Expert os_leftyp1 os_leftyp2 ;we combine difficulty and lefty flip in the same spot because they would otherwise be very bare menus
-            )
-         }
-         {sel_section.lst set circular 0} ;we dont set this list to be circular because there are not enough list items to wrap
-         {gs_title.lbl set_text "DIFFICULTY"} ;set the title text for this screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_title.lbl set_text "DIFFICULTY"} ;set the title text for this screen
+      {sel_section.lst set_selected $difflistpos} ;select our saved list position
+      {sel_section.lst set circular 0} ;we dont set this list to be circular because there are not enough list items to wrap
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            Easy Medium Hard Expert os_leftyp1 os_leftyp2 ;we combine difficulty and lefty flip in the same spot because they would otherwise be very bare menus
+         )
       }
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
@@ -567,14 +591,14 @@
             {set $leftyp2 {! $leftyp2}}
             {options set_lefty 1 $leftyp2}
             {if_else $leftyp2
-               CHEAT_POP
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
          (os_leftyp1
             {set $leftyp1 {! $leftyp1}}
             {options set_lefty 0 $leftyp1}
             {if_else $leftyp1
-               CHEAT_POP
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
          (Easy
@@ -619,15 +643,6 @@
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {sel_section.lst set_data ;set up the data for the list
-         (
-            random punk1 punk2 alterna1 ;list of all available characters
-            alterna2 glam1 glam2 goth2
-            goth1 metal1 metal2 rockabill1
-            rockabill2 rock2 rock1 deathmetal1
-            deathmetal2 classic funk1 grim
-         )
-      }
       {gs_title.lbl set_text "CHARACTERS"} ;set the title label for the current screen
       {gs_background.view add_object gs_tile5.mesh} ;make sure we have the spare mesh loaded
       {gs_tile5.mesh set_local_pos 125 100 100} ;position spare image
@@ -647,6 +662,15 @@
             {$this update_char_pic} ;run update_char_pic block
             {$task sleep 1.3} ;wait
             {$task loop} ;loop task
+         )
+      }
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            random punk1 punk2 alterna1 ;list of all available characters
+            alterna2 glam1 glam2 goth2
+            goth1 metal1 metal2 rockabill1
+            rockabill2 rock2 rock1 deathmetal1
+            deathmetal2 classic funk1 grim
          )
       }
    )
@@ -703,13 +727,16 @@
    (focus sel_section.lst) ;focus the list used in the current overshell screen
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
-         {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
-         {sel_section.lst set_data ;set up the data for the list
-            (random battle small1 small2 big theatre fest arena stone)}
-         {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-         {gs_title.lbl set_text "VENUES"} ;set the title text for this screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_title.lbl set_text "VENUES"} ;set the title text for this screen
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper locatio
+      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            random battle small1 small2 big theatre fest arena stone
          )
+      }
+   )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {set $forcevenue TRUE} ;when set to true, stops the random selection performed on the song select screen
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
@@ -942,14 +969,14 @@
       {gs_tile5.mat set diffuse_tex gs_pic.tex} ;set up the material
       {set $highwaymenu _black_highway} ;set default highway for menu, usually _black_highway unless a user removes it for some reason. dont do that.
       {gs_pic.tex set_bitmap {sprint "track/surfaces/" $highwaymenu "_keep.bmp"}} ;set the preview image to the current highlighted highway
+      {gs_title.lbl set_text "SET HIGHWAY"} ;set the title text for this screen
+      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set_data ;set up the data for the list
          (
             #include ../track/surfaces/highways.dta ;nice trick to provide easy user provided highways. highways.bat in the root of the repo sets up this dta.
          )
       }
-      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {gs_title.lbl set_text "SET HIGHWAY"} ;set the title text for this screen
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {set $highway {$component selected_sym}} ;set the users desired highway
