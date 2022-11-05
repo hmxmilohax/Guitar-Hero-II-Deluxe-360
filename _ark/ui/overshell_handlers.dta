@@ -98,7 +98,7 @@
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {gs_title.lbl set_text "TRACK ELEMENT"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_trackelm}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
             elm_name elm_starpower elm_streaklabel
@@ -154,7 +154,7 @@
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set alignment kTopCenter} ;ensure the list is aligned properly
-      {gs_title.lbl set_text "TRACK MODIFIERS"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_trackmodifiers}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
             os_cloneherohud os_brighthopos os_darkstrums
@@ -165,25 +165,19 @@
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
          (os_voidfrets
-            {if_else $voidfrets
-               {do
-                  {play_sfx cheat_off}
-                  {set $voidfrets FALSE}
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $voidfrets TRUE}
-               }
+            {set $voidfrets {! $voidfrets}} ;set the variable to the opposite of what it currently is
+            {if_else $voidfrets ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
          (os_eyeballgems
             {if_else $eyeballgems
                {do
-                  {play_sfx cheat_off}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $eyeballgems FALSE}
                }
                {do
-                  {play_sfx cheat}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $brighthopos FALSE} ;eyeball gems turn off all other gem types
                   {set $gh1track FALSE} ;eyeball gems turn off all other gem types
                   {set $darkstrums FALSE} ;eyeball gems turn off all other gem types
@@ -194,12 +188,12 @@
          (os_cloneherohud
             {if_else $clonehero_hud
                {do
-                  {play_sfx cheat_off}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $clonehero_hud FALSE}
                   {set $trackcamx 1.0} ;restore the track width to the default width
                }
                {do
-                  {play_sfx cheat}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $clonehero_hud TRUE}
                   {set $trackcamx 1.3} ;I have only specifically set up one track width at this time
                   {set $sppop FALSE} ;in clone hero hud, the animation for star power fucks up the visuals
@@ -207,37 +201,25 @@
             }
          )
          (os_brighthopos
-            {if_else $brighthopos
-               {do
-                  {play_sfx cheat_off}
-                  {set $brighthopos FALSE}
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $brighthopos TRUE}
-               }
+            {set $brighthopos {! $brighthopos}} ;set the variable to the opposite of what it currently is
+            {if_else $brighthopos ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
          (os_darkstrums
-            {if_else $darkstrums
-               {do
-                  {play_sfx cheat_off}
-                  {set $darkstrums FALSE}
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $darkstrums TRUE}
-               }
+            {set $darkstrums {! $darkstrums}} ;set the variable to the opposite of what it currently is
+            {if_else $darkstrums ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
          (os_gh1track
             {if_else $gh1track
                {do
-                  {play_sfx cheat_off}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $gh1track FALSE}
                }
                {do
-                  {play_sfx cheat}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $gh3track FALSE} ;gh1 track turns off gh3 track
                   {set $gh1track TRUE}
                }
@@ -246,11 +228,11 @@
          (os_gh3track
             {if_else $gh3track
                {do
-                  {play_sfx cheat_off}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $gh3track FALSE}
                }
                {do
-                  {play_sfx cheat}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $gh1track FALSE} ;gh3 track turns off gh1 track
                   {set $gh3track TRUE}
                }
@@ -293,10 +275,10 @@
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set alignment kTopCenter} ;ensure the list is aligned properly
-      {gs_title.lbl set_text "MODIFIERS"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_modifiers}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
-            os_focusmode os_skipintro os_skipoutro
+            os_focusmode os_skipintro os_skipoutro ;all available modifiers
             os_sfx os_trkmod os_selhw os_font
             os_whammyfx os_muting os_nofail os_noflames
             os_songtitle os_nametitle os_cleanmtv
@@ -310,7 +292,7 @@
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
-      (os_selhw
+         (os_selhw
             {ui push_screen overshell_highway_list_screen} ;we open another screen for another list
          )
          (os_font
@@ -391,22 +373,22 @@
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
          )
          (os_focusmode
-            {if_else $focusmode
+            {if_else $focusmode ;check the state of focus mode
                {do
-                  {play_sfx cheat_off}
-                  {set $focusmode FALSE}
-                  {set $miloskipintro FALSE}
-                  {set $skipoutro FALSE}
-                  {set $notestreakmod TRUE}
-                  {set $sfx TRUE}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $focusmode FALSE} ;turn off focus mode
+                  {set $miloskipintro FALSE} ;restore the song intro
+                  {set $skipoutro FALSE} ;restore the song outro
+                  {set $notestreakmod TRUE} ;turn back on note streak popups
+                  {set $sfx TRUE} ;turn back on sfc
                }
                {do
-                  {play_sfx cheat}
-                  {set $focusmode TRUE}
-                  {set $miloskipintro TRUE}
-                  {set $skipoutro TRUE}
-                  {set $notestreakmod FALSE}
-                  {set $sfx FALSE}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $focusmode TRUE} ;turn on focus mode
+                  {set $miloskipintro TRUE} ;turn off song intro
+                  {set $skipoutro TRUE} ;turn off song outro
+                  {set $notestreakmod FALSE} ;turn off note streak popups
+                  {set $sfx FALSE} ;turn off sfx
                }
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
@@ -474,7 +456,7 @@
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
          )
-         (os_horsehead
+         (os_horsehead ;only available on ps2
             {set $cheat_enabled_horse_head_mode {! $cheat_enabled_horse_head_mode}} ;set the variable to the opposite of what it currently is
             {if_else $cheat_enabled_horse_head_mode ;check the state of the variable
                CHEAT_POP ;shortcut for the if else options on which sound effect to play
@@ -484,16 +466,16 @@
          (os_monkeyhead
             {if_else
                {|| ;or
-                  {== $cheat_crowd_heads 0}
-                  {== $cheat_crowd_heads eyeball_crowd_heads}
+                  {== $cheat_crowd_heads 0} ;check crowd head modifier state
+                  {== $cheat_crowd_heads eyeball_crowd_heads} ;check crowd head modifier state
                }
                {do
-                  {play_sfx cheat}
-                  {set $cheat_crowd_heads monkey_crowd_heads}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $cheat_crowd_heads monkey_crowd_heads} ;set crowd heads to monkey heads
                }
                {do
-                  {play_sfx cheat_off}
-                  {set $cheat_crowd_heads 0}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $cheat_crowd_heads 0} ;turn off crowd heads
                }
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
@@ -501,16 +483,16 @@
          (os_eyeballhead
             {if_else
                {|| ;or
-                  {== $cheat_crowd_heads 0}
-                  {== $cheat_crowd_heads monkey_crowd_heads}
+                  {== $cheat_crowd_heads 0} ;check crowd head modifier state
+                  {== $cheat_crowd_heads monkey_crowd_heads} ;check crowd head modifier state
                }
                {do
-                  {play_sfx cheat}
-                  {set $cheat_crowd_heads eyeball_crowd_heads}
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $cheat_crowd_heads eyeball_crowd_heads} ;set crowd heads to eyeball heads
                }
                {do
-                  {play_sfx cheat_off}
-                  {set $cheat_crowd_heads 0}
+                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $cheat_crowd_heads 0} ;turn off crowd heads
                }
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
@@ -575,43 +557,43 @@
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {gs_title.lbl set_text "DIFFICULTY"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_diff}} ;set the title text for this screen
       {sel_section.lst set_selected $difflistpos} ;select our saved list position
       {sel_section.lst set circular 0} ;we dont set this list to be circular because there are not enough list items to wrap
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set_data ;set up the data for the list
          (
-            Easy Medium Hard Expert os_leftyp1 os_leftyp2 ;we combine difficulty and lefty flip in the same spot because they would otherwise be very bare menus
+            easy medium hard expert os_leftyp1 os_leftyp2 ;we combine difficulty and lefty flip in the same spot because they would otherwise be very bare menus
          )
       }
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
-         (os_leftyp2
-            {set $leftyp2 {! $leftyp2}}
-            {options set_lefty 1 $leftyp2}
-            {if_else $leftyp2
-               CHEAT_POP ;shortcut for the if else options on which sound effect to play
-            }
+         (easy
+            {{game get_player_config 0} set_difficulty kDifficultyEasy} ;we only set player 1 diff. player 2 diff is selected through ui
+         )
+         (medium
+            {{game get_player_config 0} set_difficulty kDifficultyMedium} ;we only set player 1 diff. player 2 diff is selected through ui
+         )
+         (hard
+            {{game get_player_config 0} set_difficulty kDifficultyHard} ;we only set player 1 diff. player 2 diff is selected through ui
+         )
+         (expert
+            {{game get_player_config 0} set_difficulty kDifficultyExpert} ;we only set player 1 diff. player 2 diff is selected through ui
          )
          (os_leftyp1
-            {set $leftyp1 {! $leftyp1}}
-            {options set_lefty 0 $leftyp1}
+            {set $leftyp1 {! $leftyp1}} ;set var to opposite value
+            {options set_lefty 0 $leftyp1} ;set lefty flip for player 1
             {if_else $leftyp1
                CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
-         (Easy
-            {{game get_player_config 0} set_difficulty kDifficultyEasy}
-         )
-         (Medium
-            {{game get_player_config 0} set_difficulty kDifficultyMedium}
-         )
-         (Hard
-            {{game get_player_config 0} set_difficulty kDifficultyHard}
-         )
-         (Expert
-            {{game get_player_config 0} set_difficulty kDifficultyExpert}
+         (os_leftyp2
+            {set $leftyp2 {! $leftyp2}} ;set var to opposite value
+            {options set_lefty 1 $leftyp2} ;set lefty flip for player 2
+            {if_else $leftyp2
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
          )
       }
       OVERSHELL_DIFF_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
@@ -631,7 +613,7 @@
    overshell_character_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
-   (focus sel_section.lst) ;focus the list used in the current overshell screen ;focus the loaded list
+   (focus sel_section.lst) ;focus the list used in the current overshell screen
    (update_char_pic ;ran from thread_task in this panel
       {set $uipicturenumber {+ $uipicturenumber 1}} ;increase the image number for display
       {if {> $uipicturenumber 3} ;check if we reached the end of our available images
@@ -643,7 +625,7 @@
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {gs_title.lbl set_text "CHARACTERS"} ;set the title label for the current screen
+      {gs_title.lbl set_localized_text {localize os_characters}} ;set the title label for the current screen
       {gs_background.view add_object gs_tile5.mesh} ;make sure we have the spare mesh loaded
       {gs_tile5.mesh set_local_pos 125 100 100} ;position spare image
       {gs_tile5.mesh set_local_scale_index 0 .9} ;scale spare image
@@ -672,6 +654,11 @@
             rockabill2 rock2 rock1 deathmetal1
             deathmetal2 classic funk1 grim
          )
+      }
+   )
+   (exit
+      {if {exists char_pic_task} ;check if the above task is running
+         {delete char_pic_task} ;delete the task if running
       }
    )
    (SCROLL_MSG ;ran when ui elements are scrolled through
@@ -728,12 +715,12 @@
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {gs_title.lbl set_text "VENUES"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_venues}} ;set the title text for this screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper locatio
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set_data ;set up the data for the list
          (
-            random battle small1 small2 big theatre fest arena stone
+            random battle small1 small2 big theatre fest arena stone ;list of all available venues
          )
       }
    )
@@ -772,11 +759,11 @@
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {gs_title.lbl set_text "GUITARS"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_guitars}} ;set the title text for this screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_data ;set up the data for the list
          (
-             random lespaul lp_cayenne lp_goddessburst lp_zakk
+             random lespaul lp_cayenne lp_goddessburst lp_zakk ;list of all available guitars
              sg sg_white sg_gt sg_flames
              flying_v fv_v2 fv_century fv_red
              explorer exp_nat exp_sun exp_white exp_swirl
@@ -897,15 +884,24 @@
    overshell_theme_list ;panel name
    (file overshell_theme.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
-   (focus resume.btn)
-   (reset_focus TRUE)
+   (focus resume.btn) ;focus on resume button, since we dont use all of the btns
+   (reset_focus TRUE) ;make sure to bring the focus to the overshell theme panel
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
-      {pause_title.lbl set_text "THEME SELECT"} ;set the title text for this screen
-      {diff.btn set_showing FALSE}
-      {extra2.btn set_showing FALSE}
-      {$this disable diff.btn}
-      {$this disable extra2.btn})}
+      {pause_title.lbl set_localized_text {localize os_themeselect}} ;set the title text for this screen
+      {diff.btn set_showing FALSE} ;hide the extra unused button
+      {extra2.btn set_showing FALSE} ;hide the extra unused button
+      {$this disable diff.btn} ;disable the extra unused button
+      {$this disable extra2.btn} ;disable the extra unused button
+      {resume.btn set_localized_text {localize os_gh1theme}} ;set the title text for this screen
+      {restart.btn set_localized_text {localize os_gh2theme}} ;set the title text for this screen
+      {change_speed.btn set_localized_text {localize os_gh80stheme}} ;set the title text for this screen
+      {section.btn set_localized_text {localize os_gh3theme}} ;set the title text for this screen
+      {newsong.btn set_localized_text {localize os_customedtheme}} ;set the title text for this screen
+      {quit.btn set_localized_text {localize os_goldtheme}} ;set the title text for this screen
+      {extra1.btn set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
+   )
+}
 {new
    GHScreen ;screen type
    overshell_theme_list_screen ;screen name
@@ -914,43 +910,48 @@
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch $component ;run specific code based on exactly which item is selected
-         (newsong.btn
-            {set $menutheme custom}
-            {set $gh3song FALSE}
-            {set $gh1track FALSE}
-            {set $gh3track FALSE}
-         )
-         (resume.btn
+         (resume.btn ;gh1 menu theme
             {set $menutheme gh1}
             {set $gh1track TRUE}
-            {set $gh3song FALSE}
-            {set $gh3track FALSE}
+            {set $gh3song FALSE} ;turn off gh3 song select
+            {set $gh3track FALSE} ;turn off gh3 track / notes
+            OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
          )
-         (restart.btn
+         (restart.btn ;gh2 menu theme
             {set $menutheme gh2}
-            {set $gh3song FALSE}
-            {set $gh1track FALSE}
-            {set $gh3track FALSE}
+            {set $gh3song FALSE} ;turn off gh3 song select
+            {set $gh1track FALSE} ;turn off gh1 track / notes
+            {set $gh3track FALSE} ;turn off gh3 track / notes
+            OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
          )
-         (change_speed.btn
+         (change_speed.btn ;gh 80s menu theme
             {set $menutheme 80s}
-            {set $gh3song FALSE}
-            {set $gh1track FALSE}
-            {set $gh3track FALSE}
+            {set $gh3song FALSE} ;turn off gh3 song select
+            {set $gh1track FALSE} ;turn off gh1 track / notes
+            {set $gh3track FALSE} ;turn off gh3 track / notes
+            OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
          )
-         (section.btn
+         (section.btn ;gh3 menu theme
             {set $menutheme gh3}
             {set $gh3song TRUE}
             {set $gh3track TRUE}
+            OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
          )
-         (quit.btn
+         (newsong.btn ;custom edition theme / users theme
+            {set $menutheme custom}
+            {set $gh3song FALSE} ;turn off gh3 song select
+            {set $gh1track FALSE} ;turn off gh1 track / notes
+            {set $gh3track FALSE} ;turn off gh3 track / notes
+            OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
+         )
+         (quit.btn ;gold menu theme
             {set $menutheme gold}
+            OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
          )
-         (extra1.btn
-            {ui push_screen overshell_song_theme_screen}
+         (extra1.btn ;song select theme button
+            {ui push_screen overshell_song_theme_screen} ;push the song select theme screen
          )
       }
-      OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
@@ -969,7 +970,7 @@
       {gs_tile5.mat set diffuse_tex gs_pic.tex} ;set up the material
       {set $highwaymenu _black_highway} ;set default highway for menu, usually _black_highway unless a user removes it for some reason. dont do that.
       {gs_pic.tex set_bitmap {sprint "track/surfaces/" $highwaymenu "_keep.bmp"}} ;set the preview image to the current highlighted highway
-      {gs_title.lbl set_text "SET HIGHWAY"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_sethighway}} ;set the title text for this screen
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set_data ;set up the data for the list
@@ -1006,14 +1007,14 @@
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {set $fontmenu blockletters}
-      {gs_title.lbl set_type $fontmenu}
-      {gs_title.lbl set_text "SET FONT"} ;set the title text for this screen
+      {set $fontmenu blockletters} ;set the temp var to the first item in the list
+      {gs_title.lbl set_type $fontmenu} ;set the title label font to the temp var
+      {gs_title.lbl set_localized_text {localize os_setfont}} ;set the title text for this screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set_data ;set up the data for the list
          (
-             blockletters blockletters_fill clarendon cutout
+             blockletters blockletters_fill clarendon cutout ;list of all available fonts
              dyingmarker gh3veticablackcondensed gunsho hand
              helveticablack helveticablackcondensed
              helveticathin impact impactor oldenglish postertype
@@ -1048,13 +1049,7 @@
    (focus quit.btn) ;button to focus
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
-      {pause_controller_msg.lbl set_text
-         "This is me warning you that
-          if in game, you must back out
-          to the nearest loading screen
-          for most modifications to
-          properly load and enable."
-      }
+      {pause_controller_msg.lbl set_localized_text {localize os_helpmsg}} ;set the title text
       {$this set_focus quit.btn} ;focus one of the buttons for the player
       {set $helpentered TRUE} ;since we entered help once, dont show again
    )
@@ -1070,6 +1065,17 @@
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
+#define SONG_THEME_LIST_RESET_HANDLER ;sets up our function to reset the current overshell screen with new parameters, and pop up the help screen if needed
+(
+   {set $sngthmlistpos {sel_section.lst selected_pos}} ;saves the currently selected list position to temp var
+   {if_else {&& {! {$this slider_selected}} $helpentered} ;check if we are not in a slider and that the help screen has already been entered
+      {do
+         {sel_section.lst set_selected $sngthmlistpos} ;set the current position of the list back to the temp var
+         {$this reset} ;reset the panel so we see our new options reflected
+      }
+      {ui push_screen overshell_help_screen} ;push the help screen if we haven't seen it this boot cycle
+   }
+)
 {new
    MultiSelectListPanel ;panel type
    overshell_song_theme_list ;panel name
@@ -1085,53 +1091,37 @@
             os_altsong os_gh3song os_loopsong ;data for the list
          )
       }
-      {gs_title.lbl set_text "SONG LIST THEMES"} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
          (os_gh3song
-            {if_else $gh3song
-               {do
-                  {play_sfx cheat_off}
-                  {set $gh3song FALSE}
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $gh3song TRUE}
-                  {set $altsong FALSE}
-               }
+            {set $gh3song {! $gh3song}} ;set the variable to the opposite of what it currently is
+            {if_else $gh3song ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            {if $gh3song ;check var state
+               {set $altsong FALSE} ;gh3 song select turns off alt song select
             }
          )
-      (os_altsong
-         {if_else $altsong
-            {do
-               {play_sfx cheat_off}
-               {set $altsong FALSE}
+         (os_altsong
+            {set $altsong {! $altsong}} ;set the variable to the opposite of what it currently is
+            {if_else $altsong ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-            {do
-               {play_sfx cheat}
-               {set $altsong TRUE}
-               {set $gh3song FALSE}
+            {if $altsong ;check var state
+               {set $gh3song FALSE} ;alt song select turns off gh3 song select
             }
-         }
-      )
-      (os_loopsong
-         {if_else $loopsong
-            {do
-               {play_sfx cheat_off}
-               {set $loopsong FALSE}
+         )
+         (os_loopsong
+            {set $loopsong {! $loopsong}} ;set the variable to the opposite of what it currently is
+            {if_else $loopsong ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
-            {do
-               {play_sfx cheat}
-               {set $loopsong TRUE}
-            }
-         }
-      )
-   }
-   {set $sngthmlistpos {sel_section.lst selected_pos}} ;save our current list position
-   {sel_section.lst set_selected $sngthmlistpos} ;select our saved list position
-   {$this reset} ;reset the panel so we see our new options reflected
-)
+         )
+      }
+      SONG_THEME_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+   )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new

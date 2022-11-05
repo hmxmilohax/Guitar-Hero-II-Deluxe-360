@@ -2,9 +2,8 @@
 (
    (overshell_theme
       {do
-         {switch
-            $menutheme
-            (gh2
+         {switch $menutheme ;do specific theming based of which theme is selected
+            (gh2 ;set up variables for specific theme
                {set $os_border_image tile_gh2_keep}
                {set $os_label_color_r 1.0} {set $os_label_color_g 0.0} {set $os_label_color_b 0.0}
                {set $os_label_font clarendon}
@@ -19,52 +18,7 @@
                {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
                {set $os_selecting_color_r 1} {set $os_disabled_color_g 0.0} {set $os_disabled_color_b 0.0}
             )
-            (gold
-               {set $os_border_image tile_gold_keep}
-               {set $os_label_color_r 0.94} {set $os_label_color_g 0.69} {set $os_label_color_b 0.17}
-               {set $os_label_font helveticablack}
-               {set $os_label_all_caps TRUE}
-               {set $os_wrap_width 640}
-               {set $os_label_width 640}
-               {set $os_label_height 30}
-               {set $os_button_font rockletters}
-               {set $os_button_all_caps TRUE}
-               {set $os_normal_color_r 0.74} {set $os_normal_color_g 0.57} {set $os_normal_color_b 0.07}
-               {set $os_focus_color_r 0.89} {set $os_focus_color_g 0.76} {set $os_focus_color_b 0.47}
-               {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
-               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
-            )
-            (gh3
-               {set $os_border_image tile_gh3_keep}
-               {set $os_label_color_r 0.94} {set $os_label_color_g 0.69} {set $os_label_color_b 0.17}
-               {set $os_label_font gh3veticablackcondensed}
-               {set $os_label_all_caps TRUE}
-               {set $os_wrap_width 640}
-               {set $os_label_width 640}
-               {set $os_label_height 30}
-               {set $os_button_font gh3veticablackcondensed}
-               {set $os_button_all_caps TRUE}
-               {set $os_normal_color_r 0.77} {set $os_normal_color_g 0.59} {set $os_normal_color_b 0.40}
-               {set $os_focus_color_r 0.97} {set $os_focus_color_g 1.00} {set $os_focus_color_b 0.81}
-               {set $os_disabled_color_r 0.92} {set $os_disabled_color_g 0.92} {set $os_disabled_color_b 0.92}
-               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
-            )
-            (custom
-               {set $os_border_image $custom_os_border_image}
-               {set $os_label_color_r $custom_os_label_color_r} {set $os_label_color_g $custom_os_label_color_g} {set $os_label_color_b $custom_os_label_color_b}
-               {set $os_label_font $custom_os_label_font}
-               {set $os_label_all_caps $custom_os_label_all_caps}
-               {set $os_wrap_width $custom_os_wrap_width}
-               {set $os_label_width $custom_os_label_width}
-               {set $os_label_height $custom_os_label_height}
-               {set $os_button_font $custom_os_button_font}
-               {set $os_button_all_caps $custom_os_button_all_caps}
-               {set $os_normal_color_r $custom_os_normal_color_r} {set $os_normal_color_g $custom_os_normal_color_g} {set $os_normal_color_b $custom_os_normal_color_b}
-               {set $os_focus_color_r $custom_os_focus_color_r} {set $os_focus_color_g $custom_os_focus_color_g} {set $os_focus_color_b $custom_os_focus_color_b}
-               {set $os_disabled_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
-               {set $os_selecting_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
-            )
-            (gh1
+            (gh1 ;set up variables for specific theme
                {set $os_border_image tile_gh1_keep}
                {set $os_label_color_r 1.0} {set $os_label_color_g 0.0} {set $os_label_color_b 0.0}
                {set $os_label_font rokk}
@@ -79,7 +33,7 @@
                {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
                {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
             )
-            (80s
+            (80s ;set up variables for specific theme
                {set $os_border_image tile_80s_keep}
                {set $os_label_color_r 1} {set $os_label_color_g 0.0} {set $os_label_color_b 0.91}
                {set $os_label_font gunsho}
@@ -94,51 +48,96 @@
                {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
                {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
             )
+            (gh3 ;set up variables for specific theme
+               {set $os_border_image tile_gh3_keep}
+               {set $os_label_color_r 0.94} {set $os_label_color_g 0.69} {set $os_label_color_b 0.17}
+               {set $os_label_font gh3veticablackcondensed}
+               {set $os_label_all_caps TRUE}
+               {set $os_wrap_width 640}
+               {set $os_label_width 640}
+               {set $os_label_height 30}
+               {set $os_button_font gh3veticablackcondensed}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 0.77} {set $os_normal_color_g 0.59} {set $os_normal_color_b 0.40}
+               {set $os_focus_color_r 0.97} {set $os_focus_color_g 1.00} {set $os_focus_color_b 0.81}
+               {set $os_disabled_color_r 0.92} {set $os_disabled_color_g 0.92} {set $os_disabled_color_b 0.92}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
+            )
+            (gold ;set up variables for specific theme
+               {set $os_border_image tile_gold_keep}
+               {set $os_label_color_r 0.94} {set $os_label_color_g 0.69} {set $os_label_color_b 0.17}
+               {set $os_label_font helveticablack}
+               {set $os_label_all_caps TRUE}
+               {set $os_wrap_width 640}
+               {set $os_label_width 640}
+               {set $os_label_height 30}
+               {set $os_button_font rockletters}
+               {set $os_button_all_caps TRUE}
+               {set $os_normal_color_r 0.74} {set $os_normal_color_g 0.57} {set $os_normal_color_b 0.07}
+               {set $os_focus_color_r 0.89} {set $os_focus_color_g 0.76} {set $os_focus_color_b 0.47}
+               {set $os_disabled_color_r 0.36} {set $os_disabled_color_g 0.36} {set $os_disabled_color_b 0.36}
+               {set $os_selecting_color_r 1} {set $os_disabled_color_g 1} {set $os_disabled_color_b 1}
+            )
+            (custom ;set up variables for user specific theme
+               {set $os_border_image $custom_os_border_image}
+               {set $os_label_color_r $custom_os_label_color_r} {set $os_label_color_g $custom_os_label_color_g} {set $os_label_color_b $custom_os_label_color_b}
+               {set $os_label_font $custom_os_label_font}
+               {set $os_label_all_caps $custom_os_label_all_caps}
+               {set $os_wrap_width $custom_os_wrap_width}
+               {set $os_label_width $custom_os_label_width}
+               {set $os_label_height $custom_os_label_height}
+               {set $os_button_font $custom_os_button_font}
+               {set $os_button_all_caps $custom_os_button_all_caps}
+               {set $os_normal_color_r $custom_os_normal_color_r} {set $os_normal_color_g $custom_os_normal_color_g} {set $os_normal_color_b $custom_os_normal_color_b}
+               {set $os_focus_color_r $custom_os_focus_color_r} {set $os_focus_color_g $custom_os_focus_color_g} {set $os_focus_color_b $custom_os_focus_color_b}
+               {set $os_disabled_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
+               {set $os_selecting_color_r $custom_os_disabled_color_r} {set $os_disabled_color_g $custom_os_disabled_color_g} {set $os_disabled_color_b $custom_os_disabled_color_b}
+            )
          }
          {if_else
-            {||
-               {== {ui current_screen} overshell_slider_screen}
-               {== {ui current_screen} pause_screen}
-               {== {ui current_screen} lose_screen}
-               {== {ui current_screen} overshell_color_slider_screen}
-               {== {ui current_screen} practice_end_screen}
-               {== {ui current_screen} overshell_track_slider_screen}
+            {|| ;or
+               {== {ui current_screen} overshell_speed_slider_screen} ;not all fonts have numbers so we need to exclude screens that need them
+               {== {ui current_screen} pause_screen} ;not all fonts have numbers so we need to exclude screens that need them
+               {== {ui current_screen} lose_screen} ;not all fonts have numbers so we need to exclude screens that need them
+               {== {ui current_screen} overshell_color_slider_screen} ;not all fonts have numbers so we need to exclude screens that need them
+               {== {ui current_screen} practice_end_screen} ;not all fonts have numbers so we need to exclude screens that need them
+               {== {ui current_screen} overshell_track_slider_screen} ;not all fonts have numbers so we need to exclude screens that need them
             }
-            kDataUnhandled
+            kDataUnhandled ;do nothing if on any above screen
             {do
-               {pause_title.lbl set_type $os_label_font}
-               {pause_title.lbl set all_caps $os_label_all_caps}
-               {pause_title.lbl set wrap_width $os_wrap_width}
-               {pause_title.lbl set width $os_label_width}
-               {pause_title.lbl set height $os_label_height}
-               {pause_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
-               {gs_title.lbl set_type $os_label_font}
-               {gs_title.lbl set all_caps $os_label_all_caps}
-               {gs_title.lbl set wrap_width $os_wrap_width}
-               {gs_title.lbl set width $os_label_width}
-               {gs_title.lbl set height $os_label_height}
-               {gs_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
-               {lose_title.lbl set_type $os_label_font}
-               {lose_title.lbl set all_caps $os_label_all_caps}
-               {lose_title.lbl set wrap_width $os_wrap_width}
-               {lose_title.lbl set width $os_label_width}
-               {lose_title.lbl set height $os_label_height}
-               {lose_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
-               {pause_controller_title.lbl set_type $os_label_font}
-               {pause_controller_title.lbl set all_caps $os_label_all_caps}
-               {pause_controller_title.lbl set wrap_width $os_wrap_width}
-               {pause_controller_title.lbl set width $os_label_width}
-               {pause_controller_title.lbl set height $os_label_height}
-               {pause_controller_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}}
+               {pause_title.lbl set_type $os_label_font} ;set title label font for current overshell screen
+               {gs_title.lbl set_type $os_label_font} ;set title label font for current overshell screen
+               {lose_title.lbl set_type $os_label_font} ;set title label font for current overshell screen
+               {pause_controller_title.lbl set_type $os_label_font} ;set title label font for current overshell screen
             }
          }
-         {$this iterate Tex $l {$l set_bitmap {sprint "track/custom_track_textures/" $os_border_image ".png"}}}
-         {$this iterate UIButton $b {$b set_type $os_button_font}}
-         {$this iterate UIButton $b {$b set all_caps $os_button_all_caps}}
-         {$this iterate PanelDir $u {$u set normal_color {pack_color $os_normal_color_r $os_normal_color_g $os_normal_color_b}}}
-         {$this iterate PanelDir $u {$u set focus_color {pack_color $os_focus_color_r $os_focus_color_g $os_focus_color_b}}}
-         {$this iterate PanelDir $u {$u set disabled_color {pack_color $os_disabled_color_r $os_disabled_color_g $os_disabled_color_b}}}
-         {$this iterate PanelDir $u {$u set selecting_color {pack_color $os_selecting_color_r $os_selecting_color_g $os_selecting_color_b}}}
+         {pause_title.lbl set all_caps $os_label_all_caps} ;set label to all caps if var
+         {pause_title.lbl set wrap_width $os_wrap_width} ;set label wrapping width off var
+         {pause_title.lbl set width $os_label_width} ;set label width off var
+         {pause_title.lbl set height $os_label_height} ;set label height off var
+         {pause_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}} ;set label color off vars
+         {gs_title.lbl set all_caps $os_label_all_caps} ;set label to all caps if var
+         {gs_title.lbl set wrap_width $os_wrap_width} ;set label wrapping width off var
+         {gs_title.lbl set width $os_label_width} ;set label width off var
+         {gs_title.lbl set height $os_label_height} ;set label height off var
+         {gs_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}} ;set label color off vars
+         {lose_title.lbl set all_caps $os_label_all_caps} ;set label to all caps if var
+         {lose_title.lbl set wrap_width $os_wrap_width} ;set label wrapping width off var
+         {lose_title.lbl set width $os_label_width} ;set label width off var
+         {lose_title.lbl set height $os_label_height} ;set label height off var
+         {lose_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}} ;set label color off vars
+         {pause_controller_title.lbl set all_caps $os_label_all_caps} ;set label to all caps if var
+         {pause_controller_title.lbl set wrap_width $os_wrap_width} ;set label wrapping width off var
+         {pause_controller_title.lbl set width $os_label_width} ;set label width off var
+         {pause_controller_title.lbl set height $os_label_height} ;set label height off var
+         {pause_controller_title.lbl set color {pack_color $os_label_color_r $os_label_color_g $os_label_color_b}} ;set label color off vars
+         {$this iterate Tex $l {$l set_bitmap {sprint "track/custom_track_textures/" $os_border_image ".png"}}} ;sets the tiled image for overshell border
+         {$this iterate UIButton $b {$b set_type $os_button_font}} ;set buttons font based off var
+         {$this iterate UIButton $b {$b set all_caps $os_button_all_caps}} ;set buttons to all caps based off var
+         {$this iterate PanelDir $u {$u set normal_color {pack_color $os_normal_color_r $os_normal_color_g $os_normal_color_b}}} ;set whole PanelDir colors off vars
+         {$this iterate PanelDir $u {$u set focus_color {pack_color $os_focus_color_r $os_focus_color_g $os_focus_color_b}}} ;set whole PanelDir colors off vars
+         {$this iterate PanelDir $u {$u set disabled_color {pack_color $os_disabled_color_r $os_disabled_color_g $os_disabled_color_b}}} ;set whole PanelDir colors off vars
+         {$this iterate PanelDir $u {$u set selecting_color {pack_color $os_selecting_color_r $os_selecting_color_g $os_selecting_color_b}}} ;set whole PanelDir colors off vars
       }
    )
 )
@@ -147,22 +146,48 @@
    (allow_back FALSE)
    (animate_transition FALSE) ;dont animate on overshell panels
 )
-#define OVERSHELL_SELECT_START_HANDLER ;define common select start handle for main overshell screen
-((SELECT_START_MSG ;code ran when a button is selected
+{new
+   GHPanel ;panel type
+   overshell_panel ;panel name
+   (file overshell_main.milo) ;main overshell milo to load
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus diff.btn) ;focus on difficulty select, the first button in the list
+   (reset_focus TRUE) ;make sure to bring the focus to the overshell panel
+   (enter ;when the screen is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {pause_title.lbl set_localized_text {localize os_deluxesettings}} ;set the header label text
+      {diff.btn set_localized_text {localize os_diff}} ;set the button text
+      {resume.btn set_localized_text {localize os_colorselector}} ;set the button text
+      {restart.btn set_localized_text {localize os_speedsettings}} ;set the button text
+      {change_speed.btn set_localized_text {localize os_modifiers}} ;set the button text
+      {section.btn set_localized_text {localize os_venueselect}} ;set the button text
+      {newsong.btn set_localized_text {localize os_characterselect}} ;set the button text
+      {quit.btn set_localized_text {localize os_guitars}} ;set the button text
+      {extra1.btn set_localized_text {localize os_themeselect}} ;set the button text
+      {extra2.btn set_localized_text {localize os_audiooptions}} ;set the button text
+   )
+}
+{new
+   GHScreen ;screen type
+   overshell_screen ;screen name
+   (panels overshell_panel) ;what panels are included in this screen
+   (focus overshell_panel) ;what panel to focus on
+   (clear_vram TRUE) ;clear the vram when entered
+   OVERSHELL_SCREEN_COMMON_HANDLER ;setup overshell with common screen handles defined above
+   (SELECT_START_MSG ;code ran when a button is selected
       {switch $component ;run different code based on the button selected
-         (diff.btn {ui push_screen overshell_diff_list_screen})
-         (resume.btn {ui push_screen overshell_color_slider_screen})
-         (restart.btn {ui push_screen overshell_speed_slider_screen})
-         (change_speed.btn {ui push_screen overshell_modifier_list_screen})
-         (section.btn {ui push_screen overshell_venue_list_screen})
-         (newsong.btn {ui push_screen overshell_character_list_screen})
-         (quit.btn {ui push_screen overshell_guitar_list_screen})
-         (extra1.btn {ui push_screen overshell_theme_list_screen})
-         (extra2.btn {ui push_screen overshell_audio_slider_screen})}
-       kDataUnhandled
-))
-#define OVERSHELL_BUTTON_DOWN_HANDLER ;common code to run inside of overshell when a button is pressed
-((BUTTON_DOWN_MSG ;code ran when a button is pressed
+         (diff.btn {ui push_screen overshell_diff_list_screen}) ;difficulty screen
+         (resume.btn {ui push_screen overshell_color_slider_screen}) ;color selector screen
+         (restart.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
+         (change_speed.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
+         (section.btn {ui push_screen overshell_venue_list_screen}) ;venue select screen
+         (newsong.btn {ui push_screen overshell_character_list_screen}) ;character select screen
+         (quit.btn {ui push_screen overshell_guitar_list_screen}) ;guitar select screen
+         (extra1.btn {ui push_screen overshell_theme_list_screen}) ;theme select screen
+         (extra2.btn {ui push_screen overshell_audio_slider_screen}) ;audio settings screen
+      }
+   )
+   (BUTTON_DOWN_MSG ;code ran when a button is pressed
       {if {== $button kPad_Tri} ;run when pressing back
          {if_else {exists $modifier_exit} ;if a specific screen is set
             {ui goto_screen $modifier_exit} ;go to that specific screen
@@ -170,25 +195,6 @@
          }
          {ui pop_screen} ;make the current overshell screen dissappear
       }
-      kDataUnhandled
-))
-{new GHPanel overshell_panel
-   (file overshell_main.milo) ;main overshell milo to load
-   OVERSHELL_THEME_HANDLER
-   (focus diff.btn) ;focus on difficulty select, the first button in the list
-   (reset_focus TRUE)
-   (enter ;when the screen is entered
-      {$this overshell_theme}
-      {pause_title.lbl set_text "DELUXE SETTINGS"} ;set the header label text
-      {resume.btn set_text "COLOR SELECTOR"} ;set the header label text
+      kDataUnhandled ;means literally nothing. we need to tell the game to not worry if we press a button not defined in BUTTON_DOWN_MSG
    )
-}
-{new GHScreen overshell_screen
-   (panels overshell_panel) ;what panels are included in this screen
-   (focus overshell_panel) ;what panel to focus on
-   (clear_vram TRUE)
-   (enter {if {exists char_pic_task} {delete char_pic_task}})
-   OVERSHELL_SCREEN_COMMON_HANDLER ;setup overshell with common screen handles defined above
-   OVERSHELL_SELECT_START_HANDLER ;run common select start handle define above
-   OVERSHELL_BUTTON_DOWN_HANDLER ;run common button down handle define above
 }

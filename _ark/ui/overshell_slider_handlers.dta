@@ -25,9 +25,9 @@
       {$this disable gs_stereo.btn}
       {gs_stereo.btn set_showing FALSE}
       {stereo.chk set_showing FALSE}
-      {gs_band.sld set_text BAND}
-      {gs_guitar.sld set_text GUITAR}
-      {gs_sfx.sld set_text SFX}
+      {gs_band.sld set_text 'BAND'}
+      {gs_guitar.sld set_text 'GUITAR'}
+      {gs_sfx.sld set_text 'SFX'}
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_band.sld
          set_current
@@ -204,11 +204,14 @@
          {int {- $emulatefps 1}}
       }
       {stereo.chk set_check $focusmode}
-      {gs_stereo.btn set_text "FOCUS MODE"}
+      {gs_stereo.btn set_localized_text {localize sld_focus}}
       {$this display_speed_msg $trackspeed $speedmod $emulatefps}
+      {gs_band.sld set_text 'FPS'}
+      {gs_guitar.sld set_text 'TRACK SPEED'}
+      {gs_sfx.sld set_text 'SONG SPEED'}
    )
    (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
+      {gs_title.lbl set_localized_text {localize gamemodifier}}
    )
    (display_speed_msg
       ($tspd $mspd $fps)
@@ -363,14 +366,14 @@
          {gs_band.sld set_showing FALSE}
          {stereo.chk set_showing FALSE}
          {stereo.chk set_showing FALSE}
-         {gs_stereo.btn set_text "FOCUS MODE"}
+         {gs_stereo.btn set_localized_text {localize sld_focus}}
       {gs_guitar.sld set_current
          {int {+ 0.5 {/ {+ {- $trackcamx 1} 0.5} 0.1}}}
       }
       {$this display_speed_msg $trackcamx}
    )
    (reset_gm_title
-      {gs_title.lbl set_localized_text TRACK_MODIFIER}
+      {gs_title.lbl set_localized_text {localize trackmodifier}}
    )
    (display_speed_msg
       ($trackcamx)
@@ -525,9 +528,9 @@
    )
    (enter
       {$this overshell_theme} ;run the theme code on the current overshell screen
-      {gs_band.sld set_text RED}
-      {gs_guitar.sld set_text GREEN}
-      {gs_sfx.sld set_text BLUE}
+      {gs_band.sld set_text 'RED'}
+      {gs_guitar.sld set_text 'GREEN'}
+      {gs_sfx.sld set_text 'BLUE'}
       {gs_guitar.sld set_current
          {int {* COLORSWITCH_R 100}}
       }
@@ -540,13 +543,13 @@
       {stereo.chk set_showing FALSE}
       {$this disable stereo.chk}
       ;{gs_stereo.btn jitter FALSE}
-      {gs_stereo.btn set_text "PICK ELEMENT"}
+      {gs_stereo.btn set_localized_text {localize sld_pickelm}}
       ;{gs_stereo.btn set_showing FALSE}
       ;{$this disable gs_stereo.btn}
       {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
    )
    (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
+      {gs_title.lbl set_localized_text {localize gamemodifier}}
    )
    (display_color_msg
       ($tspd $mspd $fps)
