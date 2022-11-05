@@ -1,9 +1,4 @@
 #include overshell_slider_handlers.dta ;the slider handlers are a lot of script so keep it out of here
-#define OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
-(
-   (allow_back FALSE)
-   (animate_transition FALSE) ;dont animate on overshell panels
-)
 #define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 (
    (BUTTON_DOWN_MSG ;ran when any button is pressed. in this macro we only care about triangle (back)
@@ -33,68 +28,68 @@
    {play_sfx cheat_off} ;if modifier is set to false
 )
 {new
-   SliderPanel
-   overshell_speed_slider
+   SliderPanel ;panel type
+   overshell_speed_slider ;panel name
    (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    SPEED_SLIDER_HANDLERS ;found in overshell_slider_handlers.dta
 }
 {new
-   GHScreen
-   overshell_speed_slider_screen
-   (panels overshell_speed_slider)
+   GHScreen ;screen type
+   overshell_speed_slider_screen ;screen name
+   (panels overshell_speed_slider) ;panels used for this screen. overshell only uses one panel
    (focus overshell_speed_slider) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   SliderPanel
-   overshell_audio_slider
+   SliderPanel ;panel type
+   overshell_audio_slider ;panel name
    (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    OVERSHELL_AUDIO_SLIDER_HANDLERS
 }
 {new
-   GHScreen
-   overshell_audio_slider_screen
-   (panels overshell_audio_slider)
+   GHScreen ;screen type
+   overshell_audio_slider_screen ;screen name
+   (panels overshell_audio_slider) ;panels used for this screen. overshell only uses one panel
    (focus overshell_audio_slider) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   SliderPanel
-   track_overshell_slider
+   SliderPanel ;panel type
+   track_overshell_slider ;panel name
    (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    TRACK_SLIDER_HANDLERS ;found in overshell_slider_handlers.dta
 }
 {new
-   GHScreen
-   overshell_track_slider_screen
-   (panels track_overshell_slider)
+   GHScreen ;screen type
+   overshell_track_slider_screen ;screen name
+   (panels track_overshell_slider) ;panels used for this screen. overshell only uses one panel
    (focus track_overshell_slider) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   SliderPanel
-   color_overshell_slider
+   SliderPanel ;panel type
+   color_overshell_slider ;panel name
    (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    COLOR_SLIDER_HANDLERS ;found in overshell_slider_handlers.dta
 }
 {new
-   GHScreen
-   overshell_color_slider_screen
-   (panels color_overshell_slider)
+   GHScreen ;screen type
+   overshell_color_slider_screen ;screen name
+   (panels color_overshell_slider) ;panels used for this screen. overshell only uses one panel
    (focus color_overshell_slider) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   MultiSelectListPanel
-   overshell_track_element_list
+   MultiSelectListPanel ;panel type
+   overshell_track_element_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -130,9 +125,9 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_track_element_list_screen
-   (panels overshell_track_element_list)
+   GHScreen ;screen type
+   overshell_track_element_list_screen ;screen name
+   (panels overshell_track_element_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_track_element_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
@@ -149,8 +144,8 @@
       }
 )
 {new
-   MultiSelectListPanel
-   overshell_track_list
+   MultiSelectListPanel ;panel type
+   overshell_track_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -189,6 +184,9 @@
                }
                {do
                   {play_sfx cheat}
+                  {set $brighthopos FALSE}
+                  {set $gh1track FALSE}
+                  {set $darkstrums FALSE}
                   {set $eyeballgems TRUE}
                }
             }
@@ -264,9 +262,9 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_track_list_screen
-   (panels overshell_track_list)
+   GHScreen ;screen type
+   overshell_track_list_screen ;screen name
+   (panels overshell_track_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_track_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
@@ -283,8 +281,8 @@
    }
 )
 {new
-   MultiSelectListPanel
-   overshell_modifier_list
+   MultiSelectListPanel ;panel type
+   overshell_modifier_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -511,23 +509,23 @@
          }
       )
    }
+   {if_else
+      {||
+         {== {$component selected_sym} os_selhw} ;check if a specific item is selected
+         {== {$component selected_sym} os_font} ;check if a specific item is selected
+         {== {$component selected_sym} os_trkmod} ;check if a specific item is selected
+      }
+      kDataUnhandled ;we dont want to run the reset handler if we go another screen level deep
       OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+   }
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_modifier_list_screen
-   (panels overshell_modifier_list)
+   GHScreen ;screen type
+   overshell_modifier_list_screen ;screen name
+   (panels overshell_modifier_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_modifier_list) ;panel to focus
-   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
-}
-{new
-   GHScreen
-   overshell_character_list_screen
-   (panels overshell_character_list)
-   (focus overshell_character_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
@@ -543,8 +541,8 @@
    }
 )
 {new
-   MultiSelectListPanel
-   overshell_diff_list
+   MultiSelectListPanel ;panel type
+   overshell_diff_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -597,16 +595,16 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_diff_list_screen
-   (panels overshell_diff_list)
+   GHScreen ;screen type
+   overshell_diff_list_screen ;screen name
+   (panels overshell_diff_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_diff_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   MultiSelectListPanel
-   overshell_character_list
+   MultiSelectListPanel ;panel type
+   overshell_character_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen ;focus the loaded list
@@ -690,16 +688,16 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_character_list_screen
-   (panels overshell_character_list)
+   GHScreen ;screen type
+   overshell_character_list_screen ;screen name
+   (panels overshell_character_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_character_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   MultiSelectListPanel
-   overshell_venue_list
+   MultiSelectListPanel ;panel type
+   overshell_venue_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -730,16 +728,16 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_venue_list_screen
-   (panels overshell_venue_list)
+   GHScreen ;screen type
+   overshell_venue_list_screen ;screen name
+   (panels overshell_venue_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_venue_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   MultiSelectListPanel
-   overshell_guitar_list
+   MultiSelectListPanel ;panel type
+   overshell_guitar_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -860,16 +858,16 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_guitar_list_screen
-   (panels overshell_guitar_list)
+   GHScreen ;screen type
+   overshell_guitar_list_screen ;screen name
+   (panels overshell_guitar_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_guitar_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHPanel
-   overshell_theme_list
+   GHPanel ;panel type
+   overshell_theme_list ;panel name
    (file overshell_theme.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus resume.btn)
@@ -882,9 +880,9 @@
       {$this disable diff.btn}
       {$this disable extra2.btn})}
 {new
-   GHScreen
-   overshell_theme_list_screen
-   (panels overshell_theme_list)
+   GHScreen ;screen type
+   overshell_theme_list_screen ;screen name
+   (panels overshell_theme_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_theme_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
    (SELECT_START_MSG ;ran when an item on screen is selected
@@ -930,8 +928,8 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   MultiSelectListPanel
-   overshell_highway_list
+   MultiSelectListPanel ;panel type
+   overshell_highway_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -965,45 +963,37 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_highway_list_screen
-   (panels overshell_highway_list)
+   GHScreen ;screen type
+   overshell_highway_list_screen ;screen name
+   (panels overshell_highway_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_highway_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_font_list_screen
-   (panels overshell_font_list)
-   (focus overshell_font_list) ;panel to focus
-   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
-}
-{new
-   MultiSelectListPanel
-   overshell_font_list
+   MultiSelectListPanel ;panel type
+   overshell_font_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
    (enter ;when the panel is entered
-   {$this overshell_theme} ;run the theme code on the current overshell screen
-   {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-   {set $fontmenu blockletters}
-   {gs_title.lbl set_type $fontmenu}
-         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
-         {sel_section.lst set_data ;set up the data for the list
-            (
-                blockletters blockletters_fill clarendon cutout
-                dyingmarker gh3veticablackcondensed gunsho hand
-                helveticablack helveticablackcondensed
-                helveticathin impact impactor oldenglish postertype
-                receipt rockletters rokk serif tapeworm tapewormscreen
-            )
-         }
-         {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-         {gs_title.lbl set_text "SET FONT"} ;set the title text for this screen
-      )
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {set $fontmenu blockletters}
+      {gs_title.lbl set_type $fontmenu}
+      {gs_title.lbl set_text "SET FONT"} ;set the title text for this screen
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
+      {sel_section.lst set_data ;set up the data for the list
+         (
+             blockletters blockletters_fill clarendon cutout
+             dyingmarker gh3veticablackcondensed gunsho hand
+             helveticablack helveticablackcondensed
+             helveticathin impact impactor oldenglish postertype
+             receipt rockletters rokk serif tapeworm tapewormscreen
+         )
+      }
+   )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {set $namefont {$component selected_sym}} ;set the users desired font
       OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
@@ -1016,16 +1006,16 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_font_list_screen
-   (panels overshell_font_list)
+   GHScreen ;screen type
+   overshell_font_list_screen ;screen name
+   (panels overshell_font_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_font_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHPanel
-   overshell_help_panel
+   GHPanel ;panel type
+   overshell_help_panel ;panel name
    (file overshell_help.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus quit.btn) ;button to focus
@@ -1043,10 +1033,10 @@
    )
 }
 {new
-   GHScreen
-   overshell_help_screen
-   (panels overshell_help_panel)
-   (focus overshell_help_panel)
+   GHScreen ;screen type
+   overshell_help_screen ;screen name
+   (panels overshell_help_panel) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_help_panel) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    (SELECT_START_MSG ;ran when an item on screen is selected
       {ui pop_screen} ;exit the current overshell screen
@@ -1054,8 +1044,8 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   MultiSelectListPanel
-   overshell_song_theme_list
+   MultiSelectListPanel ;panel type
+   overshell_song_theme_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst) ;focus the list used in the current overshell screen
@@ -1118,9 +1108,9 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
-   GHScreen
-   overshell_song_theme_screen
-   (panels overshell_song_theme_list)
+   GHScreen ;screen type
+   overshell_song_theme_screen ;screen name
+   (panels overshell_song_theme_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_song_theme_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections

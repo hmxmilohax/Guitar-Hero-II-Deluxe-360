@@ -142,13 +142,17 @@
       }
    )
 )
-#define OVERSHELL_SCREEN_HANDLERS ((allow_back FALSE) (animate_transition FALSE)) ;define common screen setup for all overshell screens
+#define OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+(
+   (allow_back FALSE)
+   (animate_transition FALSE) ;dont animate on overshell panels
+)
 #define OVERSHELL_SELECT_START_HANDLER ;define common select start handle for main overshell screen
 ((SELECT_START_MSG ;code ran when a button is selected
       {switch $component ;run different code based on the button selected
          (diff.btn {ui push_screen overshell_diff_list_screen})
          (resume.btn {ui push_screen overshell_color_slider_screen})
-         (restart.btn {ui push_screen overshell_slider_screen})
+         (restart.btn {ui push_screen overshell_speed_slider_screen})
          (change_speed.btn {ui push_screen overshell_modifier_list_screen})
          (section.btn {ui push_screen overshell_venue_list_screen})
          (newsong.btn {ui push_screen overshell_character_list_screen})
@@ -165,7 +169,7 @@
             {ui goto_screen main_screen} ;or go to main screen
          }
          {ui pop_screen} ;make the current overshell screen dissappear
-       }
+      }
       kDataUnhandled
 ))
 {new GHPanel overshell_panel
@@ -184,7 +188,7 @@
    (focus overshell_panel) ;what panel to focus on
    (clear_vram TRUE)
    (enter {if {exists char_pic_task} {delete char_pic_task}})
-   OVERSHELL_SCREEN_HANDLERS ;setup overshell with common screen handles defined above
+   OVERSHELL_SCREEN_COMMON_HANDLER ;setup overshell with common screen handles defined above
    OVERSHELL_SELECT_START_HANDLER ;run common select start handle define above
    OVERSHELL_BUTTON_DOWN_HANDLER ;run common button down handle define above
 }
