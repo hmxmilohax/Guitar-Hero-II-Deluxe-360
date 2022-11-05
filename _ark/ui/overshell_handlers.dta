@@ -1,810 +1,95 @@
-#define OVERSHELL_TRACK_CONTENTS
-(
-(os_cloneherohud os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_eyeballgems)
-)
-#define OVERSHELL_SCREEN_COMMON_HANDLER
+#include slider_handlers.dta ;the slider handlers are a lot of script so keep it out of here
+#define OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
 (
    (allow_back FALSE)
-   (animate_transition FALSE)
+   (animate_transition FALSE) ;dont animate on overshell panels
 )
-#define OVERSHELL_TRACK_RESET_HANDLER
-(
-   {set $trackmodifierlistpos {sel_section.lst selected_pos}}
-   {if_else {&& {! {$this slider_selected}} $helpentered}
-      {
-         {do
-            {sel_section.lst set_selected $trackmodifierlistpos}
-            {$this reset}
-         }
-      }
-      {
-         {do
-            {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
-            {ui push_screen overshell_help_screen}
-         }
-      }
-   }
-)
-#define OVERSHELL_SNGTHM_RESET_HANDLER
-(
-   {
-      {do
-         {sel_section.lst set_selected $sngthmlistpos}
-         {$this reset}
-      }
-   }
-)
-#define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+#define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 (
    (BUTTON_DOWN_MSG
       {if
-         {&&
-            {! {$this slider_selected}} {== $button kPad_Tri}}
-               {ui pop_screen}
+         {&& {! {$this slider_selected}} {== $button kPad_Tri}} ;if triangle is pressed, but not when exiting a slider
+            {ui pop_screen} ;exit the current overshell screen
       }
-     kDataUnhandled
+      kDataUnhandled
    )
 )
-#define OVERSHELL_HELP_POP_HANDLER
+#define OVERSHELL_HELP_POP_HANDLER ;common script ran when exiting an overshell screen
 (
-   {if_else
-      {&&
-         {! {$this slider_selected}} $helpentered}
-      {$this reset}
-      {ui pop_screen}
-      {ui push_screen overshell_help_screen}
+   {if_else {&& {! {$this slider_selected}} $helpentered}
+      {do
+         {$this reset} ;reset the panel so we see our new options reflected
+         {ui pop_screen} ;exit the current overshell screen
+      }
+      {do
+         {$this reset} ;reset the panel so we see our new options reflected
+         {ui push_screen overshell_help_screen}
+      }
    }
 )
-#define TRACK_SLIDER_HANDLERS
-(
-   (focus gs_guitar.sld)
-   (focus_component "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_band.sld set_num_steps 60}
-      {gs_guitar.sld set_num_steps 31}
-      {gs_sfx.sld set_num_steps 41} ; was 41 steps, dropped to 31 when disallowing <100%
-   )
-   (slider_changed
-      {'||'
-         {!=
-            {options get band_volume_idx}
-            {gs_guitar.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_sfx.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_band.sld current}
-         }
-      }
-   )
-   (enter
-      {$this overshell_theme}
-         {$this disable gs_sfx.sld}
-         {$this disable gs_band.sld}
-         {$this disable stereo.chk}
-         {gs_sfx.sld set_showing FALSE}
-         {gs_band.sld set_showing FALSE}
-         {stereo.chk set_showing FALSE}
-         {stereo.chk set_showing FALSE}
-         {gs_stereo.btn set_text "FOCUS MODE"}
-      {gs_guitar.sld set_current
-         {int {+ 0.5 {/ {+ {- $trackcamx 1} 0.5} 0.1}}}
-      }
-      {$this display_speed_msg $trackcamx}
-   )
-   (reset_gm_title
-      {gs_title.lbl set_localized_text TRACK_MODIFIER}
-   )
-   (display_speed_msg
-      ($trackcamx)
-      {gs_title.lbl set_localized_text
-         {sprintf {localize width_msg}
-            {int
-               {+ 0.5 {* $trackcamx 100}}
-            }
-         }
-      }
-   )
-   (set_speeds
-      {if {$this slider_changed}
-         {do
-            {set $trackcamx
-               {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}
-            }
-            {$this display_speed_msg $trackcamx}
-         }
-      }
-   )
-   (slider_select_cancel
-      ($component)
-      {switch $component
-         (gs_guitar.sld {$component set_current [orig_vol]})
-         (gs_sfx.sld {$component set_current [orig_vol]})
-         (gs_band.sld {$component set_current [orig_vol]})
-      }
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackcamx}
-      kDataUnhandled
-   )
-   (FOCUS_MSG
-      {$this set focus_component {$new_focus name}}
-      {$this update_help_display}
-   )
-   (update_help_display
-      {if_else {$this slider_selected}
-         {helpbar set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjspd))
-         }
-         {do
-            {if_else {== [focus_component] "gs_stereo.btn"}
-               {helpbar set_display
-                  ((fret1 help_onoff)
-                     (fret2 help_back)
-                     (strum help_updown))
-               }
-               {helpbar set_display
-                  ((fret1 help_select)
-                   (fret2 help_back)
-                   (strum help_updown))
-               }
-            }
-         }
-      }
-   )
-   (slider_start_msg
-      ($component)
-      {do
-         {switch $component
-            (gs_guitar.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}}
-            )
-         kDataUnhandled
-         }
-      }
-   )
-   (SELECT_START_MSG
-      {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
-      kDataUnhandled
-      }
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackcamx}
-   )
-)
-
-#define COLORSWITCH_R
-(
-   {switch $colormenu
-      (name $namecolor_r)
-      (starpower $starpowercolor_r)
-      (streaklabel $streaklabel_r)
-      (starcounter $starcounter_r)
-      (scorenumframe $scorenumframe_r)
-      (gemcolor $gemcolor_r)
-      (smashercolor $smashercolor_r)
-      (trackrailcolor $trackrailcolor_r)
-      (beatlinecolor $beatlinecolor_r)
-   }
-)
-#define COLORSWITCH_G
-(
-   {switch $colormenu
-      (name $namecolor_g)
-      (starpower $starpowercolor_g)
-      (streaklabel $streaklabel_g)
-      (starcounter $starcounter_g)
-      (scorenumframe $scorenumframe_g)
-      (gemcolor $gemcolor_g)
-      (smashercolor $smashercolor_g)
-      (trackrailcolor $trackrailcolor_g)
-      (beatlinecolor $beatlinecolor_g)
-   }
-)
-#define COLORSWITCH_B
-(
-   {switch $colormenu
-      (name $namecolor_b)
-      (starpower $starpowercolor_b)
-      (streaklabel $streaklabel_b)
-      (starcounter $starcounter_b)
-      (scorenumframe $scorenumframe_b)
-      (gemcolor $gemcolor_b)
-      (smashercolor $smashercolor_b)
-      (trackrailcolor $trackrailcolor_b)
-      (beatlinecolor $beatlinecolor_b)
-   }
-)
-#define COLOR_SLIDER_HANDLERS
-(
-   (focus gs_guitar.sld)
-   (focus_component "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_band.sld set_num_steps 100}
-      {gs_guitar.sld set_num_steps 100}
-      {gs_sfx.sld set_num_steps 100} ; was 41 steps, dropped to 31 when disallowing <100%
-   )
-   (slider_changed
-      {'||'
-         {!=
-            {options get band_volume_idx}
-            {gs_guitar.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_sfx.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_band.sld current}
-         }
-      }
-   )
-   (enter
-      {$this overshell_theme}
-      {gs_band.sld set_text RED}
-      {gs_guitar.sld set_text GREEN}
-      {gs_sfx.sld set_text BLUE}
-      {gs_guitar.sld set_current
-         {int {* COLORSWITCH_R 100}}
-      }
-      {gs_sfx.sld set_current
-         {int {* COLORSWITCH_G 100}}
-      }
-      {gs_band.sld set_current
-         {int {* COLORSWITCH_B 100}}
-      }
-      {stereo.chk set_showing FALSE}
-      {$this disable stereo.chk}
-      ;{gs_stereo.btn jitter FALSE}
-      {gs_stereo.btn set_text "PICK ELEMENT"}
-      ;{gs_stereo.btn set_showing FALSE}
-      ;{$this disable gs_stereo.btn}
-      {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
-   )
-   (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
-   )
-   (display_color_msg
-      ($tspd $mspd $fps)
-      {gs_title.lbl set_localized_text
-         {sprint
-            {localize
-               {switch $colormenu
-                  (name "os_fontcolortitle")
-                  (starpower "os_starpower")
-                  (streaklabel "os_streaklabel")
-                  (starcounter "os_starcounter")
-                  (scorenumframe "os_scorenumframe")
-                  (gemcolor "os_gemcolor")
-                  (smashercolor "os_smashercolor")
-                  (trackrailcolor "os_trackrailcolor")
-                  (beatlinecolor "os_beatlinecolor")
-               }
-            }
-            "\n"
-            COLORSWITCH_R
-            " "
-            COLORSWITCH_G
-            " "
-            COLORSWITCH_B
-         }
-      }
-     {gs_title.lbl set color {pack_color COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}}
-   )
-   (set_colors
-      {if {$this slider_changed}
-         {do
-            {switch $colormenu
-               (name {set $namecolor_r {* 0.01 {gs_band.sld current}}})
-               (starpower {set $starpowercolor_r {* 0.01 {gs_band.sld current}}})
-               (streaklabel {set $streaklabel_r {* 0.01 {gs_band.sld current}}})
-               (starcounter {set $starcounter_r {* 0.01 {gs_band.sld current}}})
-               (scorenumframe {set $scorenumframe_r {* 0.01 {gs_band.sld current}}})
-               (gemcolor {set $customgemcolor TRUE} {set $gemcolor_r {* 0.01 {gs_band.sld current}}})
-               (smashercolor {set $customsmashercolor TRUE} {set $smashercolor_r {* 0.01 {gs_band.sld current}}})
-               (trackrailcolor {set $trackrailcolor_r {* 0.01 {gs_band.sld current}}})
-               (beatlinecolor {set $beatlinecolor_r {* 0.01 {gs_band.sld current}}})
-            }
-            {switch $colormenu
-               (name {set $namecolor_g {* 0.01 {gs_guitar.sld current}}})
-               (starpower {set $starpowercolor_g {* 0.01 {gs_guitar.sld current}}})
-               (streaklabel {set $streaklabel_g {* 0.01 {gs_guitar.sld current}}})
-               (starcounter {set $starcounter_g {* 0.01 {gs_guitar.sld current}}})
-               (scorenumframe {set $scorenumframe_g {* 0.01 {gs_guitar.sld current}}})
-               (gemcolor {set $customgemcolor TRUE} {set $gemcolor_g {* 0.01 {gs_guitar.sld current}}})
-               (smashercolor {set $customsmashercolor TRUE} {set $smashercolor_g {* 0.01 {gs_guitar.sld current}}})
-               (trackrailcolor {set $trackrailcolor_g {* 0.01 {gs_guitar.sld current}}})
-               (beatlinecolor {set $beatlinecolor_g {* 0.01 {gs_guitar.sld current}}})
-            }
-            {switch $colormenu
-               (name {set $namecolor_b {* 0.01 {gs_sfx.sld current}}})
-               (starpower {set $starpowercolor_b {* 0.01 {gs_sfx.sld current}}})
-               (streaklabel {set $streaklabel_b {* 0.01 {gs_sfx.sld current}}})
-               (starcounter {set $starcounter_b {* 0.01 {gs_sfx.sld current}}})
-               (scorenumframe {set $scorenumframe_b {* 0.01 {gs_sfx.sld current}}})
-               (gemcolor {set $customgemcolor TRUE} {set $gemcolor_b {* 0.01 {gs_sfx.sld current}}})
-               (smashercolor {set $customsmashercolor TRUE} {set $smashercolor_b {* 0.01 {gs_sfx.sld current}}})
-               (trackrailcolor {set $trackrailcolor_b {* 0.01 {gs_sfx.sld current}}})
-               (beatlinecolor {set $beatlinecolor_b {* 0.01 {gs_sfx.sld current}}})
-            }
-            {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
-         }
-      }
-   )
-   (slider_select_cancel
-      ($component)
-      {switch $component
-         (gs_guitar.sld {$component set_current [orig_vol]})
-         (gs_sfx.sld {$component set_current [orig_vol]})
-         (gs_band.sld {$component set_current [orig_vol]})
-      }
-      {$this update_help_display}
-      {$this set_colors}
-      {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
-      kDataUnhandled
-   )
-   (FOCUS_MSG
-      {$this set focus_component {$new_focus name}}
-      {$this update_help_display}
-   )
-   (update_help_display
-      {if_else {$this slider_selected}
-         {helpbar set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjspd))
-         }
-         {do
-            {if_else {== [focus_component] "gs_stereo.btn"}
-               {helpbar set_display
-                  ((fret1 help_select)
-                     (fret2 help_back)
-                     (strum help_updown))
-               }
-               {helpbar set_display
-                  ((fret1 help_select)
-                   (fret2 help_back)
-                   (strum help_updown))
-               }
-            }
-         }
-      }
-   )
-   (slider_start_msg
-      ($component)
-      {do
-         {switch $component
-            (gs_guitar.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_colors}
-               }
-            )
-            (gs_sfx.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_colors}
-               }
-            )
-            (gs_band.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_colors}
-               }
-            )
-         }
-      }
-   )
-   (SELECT_START_MSG
-      {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
-         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
-         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
-         (gs_stereo.btn {ui push_screen overshell_track_element_list_screen})
-      kDataUnhandled
-      }
-      {$this update_help_display}
-      {$this set_colors}
-      {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
-   )
-)
-#define MODIFIER_SLIDER_HANDLERS
-(
-   (focus gs_guitar.sld)
-   (focus_component "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_band.sld set_num_steps 60}
-      {gs_guitar.sld set_num_steps 31}
-      {gs_sfx.sld set_num_steps 41} ; was 41 steps, dropped to 31 when disallowing <100%
-   )
-   (slider_changed
-      {'||'
-         {!=
-            {options get band_volume_idx}
-            {gs_guitar.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_sfx.sld current}
-         }
-         {!=
-            {options get guitar_volume_idx}
-            {gs_band.sld current}
-         }
-      }
-   )
-   (enter
-      {$this overshell_theme}
-      {if $towel
-         {$this disable gs_guitar.sld}
-      }
-      {gs_guitar.sld set_current
-         {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.1}}}
-      }
-      {gs_sfx.sld set_current
-         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}
-      }
-      {gs_band.sld set_current
-         {int {- $emulatefps 1}}
-      }
-      {stereo.chk set_check $focusmode}
-      {gs_stereo.btn set_text "FOCUS MODE"}
-      {$this display_speed_msg $trackspeed $speedmod $emulatefps}
-   )
-   (reset_gm_title
-      {gs_title.lbl set_localized_text GAME_MODIFIER}
-   )
-   (display_speed_msg
-      ($tspd $mspd $fps)
-      {if_else $focusmode
-         {do
-            {set $miloskipintro TRUE} {set $skipoutro TRUE} {set $notestreakmod FALSE} {set $sfx FALSE}
-         }
-         {do
-            {set $miloskipintro FALSE} {set $skipoutro FALSE} {set $notestreakmod TRUE} {set $sfx TRUE}
-         }
-      }
-      {gs_title.lbl set_localized_text
-         {sprintf {localize speed_msg}
-            {int
-               {+ 0.5 {* $tspd 100}}
-            }
-            {int
-               {+ 0.5 {* $mspd 100}}
-            }
-            {int
-               $fps
-            }
-         }
-      }
-   )
-   (set_speeds
-      {if {$this slider_changed}
-         {do
-            {set $trackspeed
-               {- {+ 1 {* {gs_guitar.sld current} 0.1}} 0.5}
-            }
-            {set $speedmod
-               {- {+ 1 {* {gs_sfx.sld current} 0.05}} 0.5}
-            }
-            {set $emulatefps
-               {+ 1 {gs_band.sld current}}
-            }
-            {$this display_speed_msg $trackspeed $speedmod $emulatefps}
-         }
-      }
-   )
-   (slider_select_cancel
-      ($component)
-      {switch $component
-         (gs_guitar.sld {$component set_current [orig_vol]})
-         (gs_sfx.sld {$component set_current [orig_vol]})
-         (gs_band.sld {$component set_current [orig_vol]})
-      }
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspeed $speedmod $emulatefps}
-      kDataUnhandled
-   )
-   (FOCUS_MSG
-      {$this set focus_component {$new_focus name}}
-      {$this update_help_display}
-   )
-   (update_help_display
-      {if_else {$this slider_selected}
-         {helpbar set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjspd))
-         }
-         {do
-            {if_else {== [focus_component] "gs_stereo.btn"}
-               {helpbar set_display
-                  ((fret1 help_onoff)
-                     (fret2 help_back)
-                     (strum help_updown))
-               }
-               {helpbar set_display
-                  ((fret1 help_select)
-                   (fret2 help_back)
-                   (strum help_updown))
-               }
-            }
-         }
-      }
-   )
-   (slider_start_msg
-      ($component)
-      {do
-         {switch $component
-            (gs_guitar.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
-               }
-            )
-            (gs_sfx.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
-               }
-            )
-            (gs_band.sld
-               {do
-                  {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
-               }
-            )
-         }
-      }
-   )
-   (SELECT_START_MSG
-      {switch $component
-         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
-         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
-         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
-         (gs_stereo.btn {stereo.chk toggle} {set $focusmode {stereo.chk get_check}} OVERSHELL_HELP_POP_HANDLER)
-      kDataUnhandled
-      }
-      {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $trackspeed $speedmod $emulatefps}
-   )
-)
-#define SLIDER_LEVELS
-(12)
-#define AUDIO_SETTINGS_PANEL_HANDLERS
-((focus gs_band.sld)
-   (focus_component
-      "")
-   (reset_focus TRUE)
-   (orig_vol 0)
-   (finish_load
-      {gs_band.sld set_num_steps SLIDER_LEVELS}
-      {gs_guitar.sld set_num_steps SLIDER_LEVELS}
-      {gs_sfx.sld set_num_steps SLIDER_LEVELS})
-   (slider_changed
-      {'||'
-         {!=
-            {options get band_volume_idx}
-            {gs_band.sld current}}
-         {!=
-            {options get guitar_volume_idx}
-            {gs_guitar.sld current}}
-         {!=
-            {options get fx_volume_idx}
-            {gs_sfx.sld current}}})
-   (enter
-      {$this overshell_theme}
-      {gs_band.sld
-         set_current
-         {options get band_volume_idx}}
-      {gs_guitar.sld
-         set_current
-         {options get guitar_volume_idx}}
-      {gs_sfx.sld
-         set_current
-         {options get fx_volume_idx}}
-#ifndef HX_XBOX
-      {stereo.chk
-         set_check
-         {options get_stereo}}
-#endif)
-   (set_volumes
-      {if
-         {$this slider_changed}
-         {options
-            set
-            band_volume_idx
-            {gs_band.sld current}}
-         {options
-            set
-            guitar_volume_idx
-            {gs_guitar.sld current}}
-         {options
-            set
-            fx_volume_idx
-            {gs_sfx.sld current}}})
-   (slider_select_cancel
-      ($component)
-      {switch
-         $component
-         (gs_band.sld
-            {$component
-               set_current
-               [orig_vol]})
-         (gs_guitar.sld
-            {$component
-               set_current
-               [orig_vol]})
-         (gs_sfx.sld
-            {$component
-               set_current
-               [orig_vol]})}
-      {$this update_help_display}
-      kDataUnhandled)
-   (FOCUS_MSG
-      {$this
-         set
-         focus_component
-         {$new_focus name}}
-      {$this update_help_display})
-   (update_help_display
-      {if_else
-         {$this slider_selected}
-         {helpbar
-            set_display
-            ((fret1 help_confirm)
-               (fret2 help_cancel)
-               (strum help_adjvol))}
-#ifndef HX_XBOX
-         {do
-            {if_else
-               {==
-                  [focus_component]
-                  "gs_stereo.btn"}
-               {helpbar
-                  set_display
-                  ((fret1 help_onoff)
-                     (fret2 help_back)
-                     (strum help_updown))}
-               {helpbar
-                  set_display
-                  ((fret1 help_select)
-                     (fret2 help_back)
-                     (strum help_updown))}}}}
-#else
-          {helpbar
-            set_display
-            ((fret1 help_select)
-               (fret2 help_back)
-               (strum help_updown))}
-#endif)
-   (slider_start_msg
-      ($component)
-      {do
-         ($vol
-            {options
-               get_volume_from_idx
-               {$component current}})
-         {switch
-            $component
-            (gs_band.sld
-               {play_sfx
-                  slider_band
-                  (volume $vol)
-                  (stop TRUE)})
-            (gs_guitar.sld
-               {play_sfx
-                  slider_gtr
-                  (volume $vol)
-                  (stop TRUE)})
-            (gs_sfx.sld
-               {play_sfx
-                  slider_sfx
-                  (volume $vol)
-                  (stop TRUE)})}})
-   (SELECT_START_MSG
-      {switch
-         $component
-         (gs_band.sld
-            {$this
-               set
-               orig_vol
-               {gs_band.sld current}})
-         (gs_guitar.sld
-            {$this
-               set
-               orig_vol
-               {gs_guitar.sld current}})
-         (gs_sfx.sld
-            {$this
-               set
-               orig_vol
-               {gs_sfx.sld current}})
-         (gs_stereo.btn
-            {stereo.chk toggle}
-            {options
-               set_stereo
-               {stereo.chk get_check}})
-         kDataUnhandled}
-      {$this update_help_display}))
 {new
    SliderPanel
    overshell_slider
    (file overshell_slider.milo)
-   OVERSHELL_THEME_HANDLER
-   MODIFIER_SLIDER_HANDLERS
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   MODIFIER_SLIDER_HANDLERS ;found in slider_handlers.dta
 }
 {new
    GHScreen
    overshell_slider_screen
    (panels overshell_slider)
    (focus overshell_slider)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    SliderPanel
    track_overshell_slider
    (file overshell_slider.milo)
-   OVERSHELL_THEME_HANDLER
-   TRACK_SLIDER_HANDLERS
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   TRACK_SLIDER_HANDLERS ;found in slider_handlers.dta
 }
 {new
    GHScreen
    overshell_track_slider_screen
    (panels track_overshell_slider)
    (focus track_overshell_slider)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    SliderPanel
    color_overshell_slider
    (file overshell_slider.milo)
-   OVERSHELL_THEME_HANDLER
-   COLOR_SLIDER_HANDLERS
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   COLOR_SLIDER_HANDLERS ;found in slider_handlers.dta
 }
 {new
    GHScreen
    overshell_color_slider_screen
    (panels color_overshell_slider)
    (focus color_overshell_slider)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    MultiSelectListPanel
    overshell_track_element_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
       {do
-         {$this overshell_theme}
-         {gs_tile5.mesh set_showing FALSE}
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (elm_name elm_starpower elm_streaklabel
-                                    elm_starcounter elm_scorenumframe elm_gemcolor
-                                    elm_smashercolor elm_trackrailcolor elm_beatlinecolor)}
+         {$this overshell_theme} ;run the theme code on the current overshell screen
+         {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+         {sel_section.lst set_data ;set up the data for the list
+            (elm_name elm_starpower elm_streaklabel
+             elm_starcounter elm_scorenumframe elm_gemcolor
+             elm_smashercolor elm_trackrailcolor elm_beatlinecolor)
+         }
          {sel_section.lst set circular 0}
-         {gs_title.lbl set_text "TRACK ELEMENT"}
+         {gs_title.lbl set_text "TRACK ELEMENT"} ;set the title text for this screen
       }
    )
    (SELECT_START_MSG
@@ -820,32 +105,35 @@
          (elm_beatlinecolor {set $colormenu beatlinecolor})
       }
       {color_overshell_slider set_colors}
-      {ui pop_screen}
+      {ui pop_screen} ;exit the current overshell screen
    )
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    GHScreen
    overshell_track_element_list_screen
    (panels overshell_track_element_list)
    (focus overshell_track_element_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    MultiSelectListPanel
    overshell_track_list
    (file overshell_list.milo)
    (focus sel_section.lst)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (enter
-      {$this overshell_theme}
-      {gs_tile5.mesh set_showing FALSE}
-      {sel_section.lst set_selected $trackmodifierlistpos}
-      {sel_section.lst set_local_pos -140 0 35}
-      {sel_section.lst set alignment kTopCenter}
-      {gs_title.lbl set_text "TRACK MODIFIERS"}
-      {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      ;{sel_section.lst set_selected $trackmodifierlistpos}
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set alignment kTopCenter} ;ensure the list is aligned properly
+      {gs_title.lbl set_text "TRACK MODIFIERS"} ;set the title text for this screen
+      {sel_section.lst set_data ;set up the data for the list
+         (os_cloneherohud os_brighthopos os_darkstrums
+          os_gh1track os_gh3track os_voidfrets os_eyeballgems)
+      }
    )
    (SELECT_START_MSG
       {switch {$component selected_sym}
@@ -854,12 +142,10 @@
                {do
                   {play_sfx cheat_off}
                   {set $voidfrets FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $voidfrets TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
@@ -868,12 +154,10 @@
                {do
                   {play_sfx cheat_off}
                   {set $eyeballgems FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $eyeballgems TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
@@ -883,14 +167,12 @@
                   {play_sfx cheat_off}
                   {set $clonehero_hud FALSE}
                   {set $trackcamx 1.0}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $clonehero_hud TRUE}
                   {set $trackcamx 1.3}
                   {set $sppop FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
@@ -899,12 +181,10 @@
                {do
                   {play_sfx cheat_off}
                   {set $brighthopos FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $brighthopos TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
@@ -913,12 +193,10 @@
                {do
                   {play_sfx cheat_off}
                   {set $darkstrums FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $darkstrums TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
@@ -927,13 +205,11 @@
                {do
                   {play_sfx cheat_off}
                   {set $gh1track FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $gh3track FALSE}
                   {set $gh1track TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
@@ -942,28 +218,39 @@
                {do
                   {play_sfx cheat_off}
                   {set $gh3track FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
                {do
                   {play_sfx cheat}
                   {set $gh1track FALSE}
                   {set $gh3track TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
                }
             }
          )
       }
-   kDataUnhandled
+      {set $trackmodifierlistpos {sel_section.lst selected_pos}}
+      {if_else {&& {! {$this slider_selected}} $helpentered}
+         {do
+            {sel_section.lst set_selected $trackmodifierlistpos}
+            {$this reset} ;reset the panel so we see our new options reflected
+         }
+         {do
+            {sel_section.lst set_data ;set up the data for the list
+               (os_cloneherohud os_brighthopos os_darkstrums
+                os_gh1track os_gh3track os_voidfrets os_eyeballgems)
+            }
+            {ui push_screen overshell_help_screen}
+         }
+      }
    )
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    GHScreen
    overshell_track_list_screen
    (panels overshell_track_list)
    (focus overshell_track_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 #define OVERSHELL_LIST_CONTENTS
 (
@@ -985,10 +272,12 @@
    {if_else {&& {! {$this slider_selected}} $helpentered}
       {do
          {sel_section.lst set_selected $modifierlistpos}
-         {$this reset}
+         {$this reset} ;reset the panel so we see our new options reflected
       }
       {do
-         {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
+         {sel_section.lst set_data ;set up the data for the list
+            OVERSHELL_LIST_CONTENTS
+         }
          {ui push_screen overshell_help_screen}
       }
    }
@@ -1003,16 +292,18 @@
    overshell_list
    (file overshell_list.milo)
    (focus sel_section.lst)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (enter
-      {$this overshell_theme}
-      {gs_tile5.mesh set_showing FALSE}
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_selected $modifierlistpos}
-      {sel_section.lst set_local_pos -140 0 35}
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1}
-      {sel_section.lst set alignment kTopCenter}
-      {gs_title.lbl set_text "MODIFIERS"}
-      {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
+      {sel_section.lst set alignment kTopCenter} ;ensure the list is aligned properly
+      {gs_title.lbl set_text "MODIFIERS"} ;set the title text for this screen
+      {sel_section.lst set_data ;set up the data for the list
+         OVERSHELL_LIST_CONTENTS
+      }
    )
    (SELECT_START_MSG
       {switch {$component selected_sym}
@@ -1218,23 +509,23 @@
       OVERSHELL_LIST_RESET_HANDLER
       kDataUnhandled
    )
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    GHScreen
    overshell_list_screen
    (panels overshell_list)
    (focus overshell_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    GHScreen
    overshell_character_list_screen
    (panels overshell_character_list)
    (focus overshell_character_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 #define OVERSHELL_DIFF_RESET_HANDLER
 (
@@ -1242,7 +533,7 @@
    {if_else {&& {! {$this slider_selected}} $helpentered}
       {do
          {sel_section.lst set_selected $difflistpos}
-         {$this reset}
+         {$this reset} ;reset the panel so we see our new options reflected
       }
       {do
          {ui push_screen overshell_help_screen}
@@ -1253,17 +544,19 @@
    MultiSelectListPanel
    overshell_diff_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
    {do
-      {$this overshell_theme}
-         {gs_tile5.mesh set_showing FALSE}
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+         {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
          {sel_section.lst set_selected $difflistpos}
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (Easy Medium Hard Expert os_leftyp1 os_leftyp2)}
+         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+         {sel_section.lst set_data ;set up the data for the list
+            (Easy Medium Hard Expert os_leftyp1 os_leftyp2)
+         }
          {sel_section.lst set circular 0}
-         {gs_title.lbl set_text "DIFFICULTY"}
+         {gs_title.lbl set_text "DIFFICULTY"} ;set the title text for this screen
       }
    )
    (SELECT_START_MSG
@@ -1301,49 +594,63 @@
       }
       OVERSHELL_DIFF_RESET_HANDLER
    )
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    GHScreen
    overshell_diff_list_screen
    (panels overshell_diff_list)
    (focus overshell_diff_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    MultiSelectListPanel
    overshell_character_list
-   (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
-   (focus sel_section.lst)
-   (update_char_pic
-   {set $uipicturenumber {+ $uipicturenumber 1}}
-            {if {> $uipicturenumber 3} {set $uipicturenumber 0}}
-            {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}})
-   (enter
-   {$this overshell_theme}
-    {gs_background.view add_object gs_tile5.mesh}
-    {gs_tile5.mesh set_local_pos 125 100 100}
-    {gs_tile5.mesh set_local_scale_index 0 .9}
-    {gs_tile5.mesh set_local_scale_index 2 .5}
-    {gs_tile5.mat set diffuse_tex gs_pic.tex}
-    {set $uipicturenumber 0}
-    {set $charactermenu random}
-    {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}}
-    {if {exists char_pic_task} {delete char_pic_task}} ;second attempt at responsive song progress meters
-    {thread_task
-         (units kTaskUISeconds)
-         (name char_pic_task)
+   (file overshell_list.milo) ;choose the milo to load
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus sel_section.lst) ;focus the loaded list
+   (update_char_pic ;ran from thread_task in this panel
+      {set $uipicturenumber {+ $uipicturenumber 1}} ;increase the image number for display
+      {if {> $uipicturenumber 3} ;check if we reached the end of our available images
+         {set $uipicturenumber 0} ;reset displayed image back to the first one
+      }
+      {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}} ;set the new image for display
+   )
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
+      {sel_section.lst set_data ;set up the data for the list
+         (random punk1 punk2 alterna1 ;list of all available characters
+          alterna2 glam1 glam2 goth2
+          goth1 metal1 metal2 rockabill1
+          rockabill2 rock2 rock1 deathmetal1
+          deathmetal2 classic funk1 grim
+         )
+      }
+      {gs_title.lbl set_text "CHARACTERS"} ;set the title label for the current screen
+      {gs_background.view add_object gs_tile5.mesh} ;make sure we have the spare mesh loaded
+      {gs_tile5.mesh set_local_pos 125 100 100} ;position spare image
+      {gs_tile5.mesh set_local_scale_index 0 .9} ;scale spare image
+      {gs_tile5.mesh set_local_scale_index 2 .5} ;scale spare image
+      {gs_tile5.mat set diffuse_tex gs_pic.tex} ;set up the material
+      {set $uipicturenumber 0} ;set default image number
+      {set $charactermenu random} ;set default pic (we enter to random)
+      {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}} ;set the spare texture to the default pic
+      {if {exists char_pic_task} ;check if the below task is running
+         {delete char_pic_task} ;delete the task if already running
+      }
+      {thread_task ;run a new task
+         (units kTaskUISeconds) ;we are in ui so use ui seconds
+         (name char_pic_task) ;name the task for pruning later
          (script
-            {$this update_char_pic}
-            {$task sleep 1.3}
-            {$task loop}
-            )}
-   {do
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (random punk1 punk2 alterna1 alterna2 glam1 glam2 goth2 goth1 metal1 metal2 rockabill1 rockabill2 rock2 rock1 deathmetal1 deathmetal2 classic funk1 grim)}
-         {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "CHARACTERS"})
+            {$this update_char_pic} ;run update_char_pic block
+            {$task sleep 1.3} ;wait
+            {$task loop} ;loop task
+         )
+      }
+   )
    (SCROLL_MSG
       {set $uipicturenumber {+ $uipicturenumber 1}}
       {if {> $uipicturenumber 3} {set $uipicturenumber 0}}
@@ -1395,28 +702,32 @@
        (grim {game set_character grim TRUE}
        OVERSHELL_HELP_POP_HANDLER)}
       kDataUnhandled)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_character_list_screen
    (panels overshell_character_list)
    (focus overshell_character_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    MultiSelectListPanel
    overshell_venue_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
    {do
-      {$this overshell_theme}
-         {gs_tile5.mesh set_showing FALSE}
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (random battle small1 small2 big theatre fest arena stone)}
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+         {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+         {sel_section.lst set_data ;set up the data for the list
+            (random battle small1 small2 big theatre fest arena stone)}
          {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "VENUES"})
+         {gs_title.lbl set_text "VENUES"} ;set the title text for this screen
+         )
    (SELECT_START_MSG
       {set $forcevenue TRUE}
       {switch
@@ -1440,48 +751,50 @@
        (stone {game set_venue stone TRUE}
        OVERSHELL_HELP_POP_HANDLER)}
       kDataUnhandled)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_venue_list_screen
    (panels overshell_venue_list)
    (focus overshell_venue_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    MultiSelectListPanel
    overshell_guitar_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
-   {$this overshell_theme}
-   {sel_section.lst set_local_pos -140 0 35}
-   ;{practice_sel_section.grp set_local_pos 0 0 20}
-   {do
-         {gs_tile5.mesh set_showing FALSE}
-         {sel_section.lst set_data (
-         random lespaul lp_cayenne lp_goddessburst lp_zakk
-         sg sg_white sg_gt sg_flames
-         flying_v fv_v2 fv_century fv_red
-         explorer exp_nat exp_sun exp_white exp_swirl
-         lespaul_doublecut lp_dbl_resin
-         firebird fb_blue fb_ebony fb_leopard
-         epiphone_coronet coronet_cherry coronet_burst coronet_green
-         kramer_vanguard van_yellow
-         moderne mod_cherry
-         corvus cor_nat
-         es335 es_cherry
-         kramer_650 650_white
-         eds eds_white
-         lespaul_doublecut_sticker lespaul_sonex lespaul_marauder
-         epiphone_casino epiphone_sheraton chet_atkins fish_reward usa_reward
-         coffin_reward viking_reward snaketapus_reward eyeball_reward
-         battleaxe_reward log_reward scythe #ifndef HX_XBOX guitar_red_octane #endif
-         bass_musicman bass_musicman_lava bass_sg_mahogany bass_sg_cream bass_grabber_cherry
-         bass_grabber_maple bass_thunderbird_ebony bass_thunderbird_burst bass_hofner)}
-         {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "GUITARS"})
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set circular 1}
+      {gs_title.lbl set_text "GUITARS"} ;set the title text for this screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {sel_section.lst set_data ;set up the data for the list
+         (random lespaul lp_cayenne lp_goddessburst lp_zakk
+          sg sg_white sg_gt sg_flames
+          flying_v fv_v2 fv_century fv_red
+          explorer exp_nat exp_sun exp_white exp_swirl
+          lespaul_doublecut lp_dbl_resin
+          firebird fb_blue fb_ebony fb_leopard
+          epiphone_coronet coronet_cherry coronet_burst coronet_green
+          kramer_vanguard van_yellow
+          moderne mod_cherry
+          corvus cor_nat
+          es335 es_cherry
+          kramer_650 650_white
+          eds eds_white
+          lespaul_doublecut_sticker lespaul_sonex lespaul_marauder
+          epiphone_casino epiphone_sheraton chet_atkins fish_reward usa_reward
+          coffin_reward viking_reward snaketapus_reward eyeball_reward
+          battleaxe_reward log_reward scythe #ifndef HX_XBOX guitar_red_octane #endif
+          bass_musicman bass_musicman_lava bass_sg_mahogany bass_sg_cream bass_grabber_cherry
+          bass_grabber_maple bass_thunderbird_ebony bass_thunderbird_burst bass_hofner)
+      }
+   )
    (SELECT_START_MSG
       {set $forceguitar TRUE}
       {switch
@@ -1643,22 +956,24 @@
        (bass_hofner {game set_guitar bass_hofner bass_hofner}
        OVERSHELL_HELP_POP_HANDLER)}
       kDataUnhandled)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_guitar_list_screen
    (panels overshell_guitar_list)
    (focus overshell_guitar_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new GHPanel overshell_theme_panel
    (file overshell_theme.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus resume.btn)
    (reset_focus TRUE)
    (enter
-      {$this overshell_theme}
-      {pause_title.lbl set_text "THEME SELECT"}
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {pause_title.lbl set_text "THEME SELECT"} ;set the title text for this screen
       {diff.btn set_showing FALSE}
       {extra2.btn set_showing FALSE}
       {$this disable diff.btn}
@@ -1668,7 +983,7 @@
    overshell_theme_list_screen
    (panels overshell_theme_panel)
    (focus overshell_theme_panel) 
-   OVERSHELL_SCREEN_COMMON_HANDLER 
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
    (SELECT_START_MSG
       {switch $component
        (newsong.btn
@@ -1712,28 +1027,30 @@
        (extra1.btn
          {ui push_screen overshell_song_theme_screen})}
        kDataUnhandled)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    SliderPanel
    pause_audio_settings_panel
    (file pause_audio_settings_gh1.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    AUDIO_SETTINGS_PANEL_HANDLERS}
 {new
    GHScreen
    pause_audio_settings_screen
    (panels pause_audio_settings_panel)
    (focus pause_audio_settings_panel)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    MultiSelectListPanel
    overshell_highway_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
-    {$this overshell_theme}
+    {$this overshell_theme} ;run the theme code on the current overshell screen
     {gs_background.view add_object gs_tile5.mesh}
     {gs_tile5.mesh set_local_pos 125 100 100}
     {gs_tile5.mesh set_local_scale_index 0 .6}
@@ -1742,10 +1059,13 @@
     {set $highwaymenu _black_highway}
     {gs_pic.tex set_bitmap {sprint "track/surfaces/" $highwaymenu "_keep.bmp"}}
    {do
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (#include ../track/surfaces/highways.dta)}
+         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+         {sel_section.lst set_data ;set up the data for the list
+            (#include ../track/surfaces/highways.dta)
+         }
          {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "SET HIGHWAY"})
+         {gs_title.lbl set_text "SET HIGHWAY"} ;set the title text for this screen
+         )
    (SELECT_START_MSG
       {set $highway {$component selected_sym}}
       OVERSHELL_HELP_POP_HANDLER
@@ -1754,39 +1074,44 @@
       {set $highwaymenu {$component selected_sym}}
       {gs_pic.tex set_bitmap {sprint "track/surfaces/" $highwaymenu "_keep.bmp"}}
       {$this update})
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_highway_list_screen
    (panels overshell_highway_list)
    (focus overshell_highway_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_font_list_screen
    (panels overshell_font_list)
    (focus overshell_font_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    MultiSelectListPanel
    overshell_font_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
-   {$this overshell_theme}
-   {gs_tile5.mesh set_showing FALSE}
+   {$this overshell_theme} ;run the theme code on the current overshell screen
+   {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
    {set $fontmenu blockletters}
    {gs_title.lbl set_type $fontmenu}
    {do
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (blockletters blockletters_fill clarendon cutout dyingmarker
-         gh3veticablackcondensed gunsho hand helveticablack helveticablackcondensed
-         helveticathin impact impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen)}
+         {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+         {sel_section.lst set_data ;set up the data for the list
+            (blockletters blockletters_fill clarendon cutout dyingmarker
+             gh3veticablackcondensed gunsho hand helveticablack helveticablackcondensed
+             helveticathin impact impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen)}
          {sel_section.lst set circular 1}}
-         {gs_title.lbl set_text "SET FONT"})
+         {gs_title.lbl set_text "SET FONT"} ;set the title text for this screen
+      )
    (SELECT_START_MSG
       {set $namefont {$component selected_sym}}
       OVERSHELL_HELP_POP_HANDLER
@@ -1795,22 +1120,24 @@
       {set $fontmenu {$component selected_sym}}
       {gs_title.lbl set_type $fontmenu}
       {$this update})
-    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_font_list_screen
    (panels overshell_font_list)
    (focus overshell_font_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHPanel
    overshell_help_panel
    (file overshell_help.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus quit.btn)
    (enter
-      {$this overshell_theme}
+      {$this overshell_theme} ;run the theme code on the current overshell screen
       {pause_controller_msg.lbl set_text
       "This is me warning you that
       if in game, you must back out
@@ -1824,94 +1151,81 @@
    overshell_help_screen
    (panels overshell_help_panel)
    (focus overshell_help_panel)
-   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    (SELECT_START_MSG
-      {ui pop_screen})
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
-{new
-   GHPanel
-   overshell_random_warn_panel
-   (file overshell_help.milo)
-   OVERSHELL_THEME_HANDLER
-   (focus quit.btn)
-   (enter
-      {$this overshell_theme}
-      {pause_controller_msg.lbl set_text
-     "This only works on the song
-selection screen. Please
-enter the song selection
-screen before selecting
-this option."}
-      {$this set_focus quit.btn})}
-{new
-   GHScreen
-   overshell_random_warn_screen
-   (panels overshell_random_warn_panel)
-   (focus overshell_random_warn_panel)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   (SELECT_START_MSG
-      {ui pop_screen})
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+      {ui pop_screen} ;exit the current overshell screen
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    MultiSelectListPanel
    overshell_song_theme_list
    (file overshell_list.milo)
-   OVERSHELL_THEME_HANDLER
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
    (focus sel_section.lst)
    (enter
-   {$this overshell_theme}
-   {gs_tile5.mesh set_showing FALSE}
-   {do
-         {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data (os_altsong os_gh3song os_loopsong)}
-       {gs_title.lbl set_text "SONG LIST THEMES"}})
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set_data ;set up the data for the list
+         (os_altsong os_gh3song os_loopsong) ;data for the list
+      }
+      {gs_title.lbl set_text "SONG LIST THEMES"} ;set the title text for this screen
+   )
    (SELECT_START_MSG
-      {switch
-       {$component selected_sym}
-      (os_gh3song
-         {if_else $gh3song
-            {do
-            {play_sfx cheat_off}
-            {set $gh3song FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $gh3song TRUE}
-            {set $altsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})
+      {switch {$component selected_sym}
+         (os_gh3song
+            {if_else $gh3song
+               {do
+                  {play_sfx cheat_off}
+                  {set $gh3song FALSE}
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $gh3song TRUE}
+                  {set $altsong FALSE}
+               }
+            }
+         )
       (os_altsong
          {if_else $altsong
             {do
-            {play_sfx cheat_off}
-            {set $altsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
+               {play_sfx cheat_off}
+               {set $altsong FALSE}
+            }
             {do
-            {play_sfx cheat}
-            {set $altsong TRUE}
-            {set $gh3song FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})
+               {play_sfx cheat}
+               {set $altsong TRUE}
+               {set $gh3song FALSE}
+            }
+         }
+      )
       (os_loopsong
          {if_else $loopsong
             {do
-            {play_sfx cheat_off}
-            {set $loopsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
+               {play_sfx cheat_off}
+               {set $loopsong FALSE}
+            }
             {do
-            {play_sfx cheat}
-            {set $loopsong TRUE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})}
-      kDataUnhandled)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+               {play_sfx cheat}
+               {set $loopsong TRUE}
+            }
+         }
+      )
+   }
+   {do
+      {set $sngthmlistpos {sel_section.lst selected_pos}} ;save our current list position
+      {sel_section.lst set_selected $sngthmlistpos} ;select our saved list position
+      {$this reset} ;reset the panel so we see our new options reflected
+   }
+)
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 {new
    GHScreen
    overshell_song_theme_screen
    (panels overshell_song_theme_list)
    (focus overshell_song_theme_list)
-   OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
