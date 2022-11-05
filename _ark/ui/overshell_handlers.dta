@@ -1,36 +1,11 @@
-#define OVERSHELL_LIST_CONTENTS
-(
-(os_focusmode os_skipintro os_skipoutro os_sfx os_trkmod os_selhw os_font os_whammyfx os_muting os_nofail os_noflames os_songtitle os_nametitle os_cleanmtv os_brutalmode os_towel os_epictext os_notestreakmod os_sppop os_highwayshake os_selecttorestart os_drums os_monkeyhead os_eyeballhead os_flaminghead os_neckless os_performance os_autoplay os_roxbury)
-)
 #define OVERSHELL_TRACK_CONTENTS
 (
 (os_cloneherohud os_brighthopos os_darkstrums os_gh1track os_gh3track os_voidfrets os_eyeballgems)
-)
-#define OVERSHELL_SNGTHM_CONTENTS
-(
-(os_altsong os_gh3song os_loopsong)
 )
 #define OVERSHELL_SCREEN_COMMON_HANDLER
 (
    (allow_back FALSE)
    (animate_transition FALSE)
-)
-#define OVERSHELL_LIST_RESET_HANDLER
-(
-   {if_else {&& {! {$this slider_selected}} $helpentered}
-      {
-         {do
-            {sel_section.lst set_selected $modifierlistpos}
-            {$this reset}
-         }
-      }
-      {
-         {do
-            {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
-            {ui push_screen overshell_help_screen}
-         }
-      }
-   }
 )
 #define OVERSHELL_TRACK_RESET_HANDLER
 (
@@ -80,826 +55,6 @@
       {ui push_screen overshell_help_screen}
    }
 )
-#define OVERSHELL_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {switch
-       {$component selected_sym}
-      (os_selhw
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         {ui push_screen overshell_highway_list_screen})
-      (os_font
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         {ui push_screen overshell_font_list_screen})
-      (os_trkmod
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         {ui push_screen overshell_track_list_screen})
-      (os_sfx
-         {if_else $sfx
-            {do
-            {play_sfx cheat_off}
-            {set $sfx FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $sfx TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_sppop
-         {if_else $sppop
-            {do
-            {play_sfx cheat_off}
-            {set $sppop FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $sppop TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_whammyfx
-         {if_else $whammyfx
-            {do
-            {play_sfx cheat_off}
-            {set $whammyfx 0}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $whammyfx 1}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_muting
-         {if_else $muting
-            {do
-            {play_sfx cheat_off}
-            {set $muting FALSE}
-            {set $mute_level -0.001}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $muting TRUE}
-            {set $mute_level -96.0}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_epictext
-         {if_else $epictext
-            {do
-            {play_sfx cheat_off}
-            {set $epictext FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $epictext TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_autoplay
-         {if_else $autoplay
-            {do
-            {play_sfx cheat_off}
-            {set $autoplay FALSE}
-            {set $gotcha TRUE} ;failsafe check if the player used autoplay at all this boot
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $autoplay TRUE}
-            {set $gotcha TRUE} ;failsafe check if the player used autoplay at all this boot
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_notestreakmod
-         {if_else $notestreakmod
-            {do
-            {play_sfx cheat_off}
-            {set $notestreakmod FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $notestreakmod TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_selecttorestart
-         {if_else $selecttorestart
-            {do
-            {play_sfx cheat_off}
-            {set $selecttorestart FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            
-            {play_sfx cheat}
-            {set $selecttorestart TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_towel
-         {if_else $towel
-            {do
-            {play_sfx cheat_off}
-            {set $towel FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            
-            {play_sfx cheat}
-            {set $towel TRUE}
-            {set $trackspeed 1.0}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_skipintro
-         {if_else $miloskipintro
-            {do
-            {play_sfx cheat_off}
-            {set $miloskipintro FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            
-            {play_sfx cheat}
-            {set $miloskipintro TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_focusmode
-         {if_else $focusmode
-            {do
-            {play_sfx cheat_off}
-            {set $focusmode FALSE}
-            {set $miloskipintro FALSE}
-            {set $skipoutro FALSE}
-            {set $notestreakmod TRUE}
-            {set $sfx TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $focusmode TRUE}
-            {set $miloskipintro TRUE}
-            {set $skipoutro TRUE}
-            {set $notestreakmod FALSE}
-            {set $sfx FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_skipoutro
-         {if_else $skipoutro
-         {do
-         {play_sfx cheat_off}
-         {set $skipoutro FALSE}
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         OVERSHELL_LIST_RESET_HANDLER}
-         {do
-         {play_sfx cheat}
-         {set $skipoutro TRUE}
-         {set $modifierlistpos {sel_section.lst selected_pos}}
-         OVERSHELL_LIST_RESET_HANDLER}})
-       (os_noflames
-          {if_else $noflames
-            {do
-            {play_sfx cheat_off}
-            {set $noflames FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $noflames TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_nofail
-          {if_else $nofail
-            {do
-            {play_sfx cheat_off}
-            {set $nofail FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $nofail TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_cleanmtv
-          {if_else $cleanmtv
-            {do
-            {play_sfx cheat_off}
-            {set $cleanmtv FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $cleanmtv TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_brutalmode
-         {if_else $brutalmode
-            {do
-            {play_sfx cheat_off}
-            {set $brutalmode FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $brutalmode TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_songtitle
-         {if_else $songtitle
-            {do
-            {play_sfx cheat_off}
-            {set $songtitle FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $songtitle TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_nametitle
-         {if_else $nametitle
-            {do
-            {play_sfx cheat_off}
-            {set $nametitle FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $nametitle TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_highwayshake
-         {if_else $highwayshake
-            {do
-            {play_sfx cheat}
-            {set $highwayshake FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat_off}
-            {set $highwayshake TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_drums
-         {if_else $drumenabled
-            {do
-            {play_sfx cheat_off}
-            {set $drumenabled FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $drumenabled TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_horsehead
-         {if_else $cheat_enabled_horse_head_mode
-            {do
-            {play_sfx cheat_off}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            {set $cheat_enabled_horse_head_mode FALSE}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            {set $cheat_enabled_horse_head_mode TRUE}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_monkeyhead
-         {if_else 
-          {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
-            {do
-            {play_sfx cheat_off}
-            {set $cheat_crowd_heads 0}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $cheat_crowd_heads monkey_crowd_heads}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_eyeballhead
-         {if_else 
-          {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
-            {do
-            {play_sfx cheat_off}
-            {set $cheat_crowd_heads 0}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $cheat_crowd_heads eyeball_crowd_heads}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-       (os_flaminghead
-         {if_else $cheat_enabled_flaming_head
-            {do
-            {play_sfx cheat_off}
-            {set $cheat_enabled_flaming_head FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $cheat_enabled_flaming_head TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_neckless
-         {if_else $neckless
-            {do
-            {play_sfx cheat_off}
-            {set $neckless FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $neckless TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_performance
-         {if_else $cheat_enabled_performance_mode
-            {do
-            {play_sfx cheat_off}
-            {set $cheat_enabled_performance_mode FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $cheat_enabled_performance_mode TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})
-      (os_roxbury
-         {if_else $barf_cheat
-            {do
-            {play_sfx cheat_off}
-            {set $barf_cheat FALSE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $barf_cheat TRUE}
-            {set $modifierlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_LIST_RESET_HANDLER}})}
-      kDataUnhandled))
-#define OVERSHELL_TRACK_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {switch {$component selected_sym}
-         (os_voidfrets
-            {if_else $voidfrets
-               {do
-                  {play_sfx cheat_off}
-                  {set $voidfrets FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $voidfrets TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_eyeballgems
-            {if_else $eyeballgems
-               {do
-                  {play_sfx cheat_off}
-                  {set $eyeballgems FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $eyeballgems TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_cloneherohud
-         {if_else $clonehero_hud
-            {do
-            {play_sfx cheat_off}
-            {set $clonehero_hud FALSE}
-            {set $trackcamx 1.0}
-            OVERSHELL_TRACK_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $clonehero_hud TRUE}
-            {set $trackcamx 1.3}
-            {set $sppop FALSE}
-            OVERSHELL_TRACK_RESET_HANDLER}})
-         (os_brighthopos
-            {if_else $brighthopos
-               {do
-                  {play_sfx cheat_off}
-                  {set $brighthopos FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $brighthopos TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_darkstrums
-            {if_else $darkstrums
-               {do
-                  {play_sfx cheat_off}
-                  {set $darkstrums FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $darkstrums TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_gh1track
-            {if_else $gh1track
-               {do
-                  {play_sfx cheat_off}
-                  {set $gh1track FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $gh3track FALSE}
-                  {set $gh1track TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-         (os_gh3track
-            {if_else $gh3track
-               {do
-                  {play_sfx cheat_off}
-                  {set $gh3track FALSE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-               {do
-                  {play_sfx cheat}
-                  {set $gh1track FALSE}
-                  {set $gh3track TRUE}
-                  OVERSHELL_TRACK_RESET_HANDLER
-               }
-            }
-         )
-      }
-   kDataUnhandled
-   ))
-#define OVERSHELL_DIFF_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {switch
-       {$component selected_sym}
-       (os_leftyp2
-       {if_else $leftyp2
-          {do
-            {play_sfx cheat_off}
-            {set $leftyp2 FALSE}
-            {options set_lefty 1 $leftyp2}
-            {set $difflistpos {sel_section.lst selected_pos}}
-            OVERSHELL_DIFF_RESET_HANDLER}
-          {do
-            {play_sfx cheat}
-            {set $leftyp2 TRUE}
-            {options set_lefty 1 $leftyp2}
-            {set $difflistpos {sel_section.lst selected_pos}}
-            OVERSHELL_DIFF_RESET_HANDLER}})
-       (os_leftyp1
-       {if_else $leftyp1
-          {do
-            {play_sfx cheat_off}
-            {set $leftyp1 FALSE}
-            {options set_lefty 0 $leftyp1}
-            {set $difflistpos {sel_section.lst selected_pos}}
-            OVERSHELL_DIFF_RESET_HANDLER}
-          {do
-            {play_sfx cheat}
-            {set $leftyp1 TRUE}
-            {options set_lefty 0 $leftyp1}
-            {set $difflistpos {sel_section.lst selected_pos}}
-            OVERSHELL_DIFF_RESET_HANDLER}})
-       (Easy {{game get_player_config 0} set_difficulty kDifficultyEasy}
-       OVERSHELL_HELP_POP_HANDLER)
-       (Medium {{game get_player_config 0} set_difficulty kDifficultyMedium}
-       OVERSHELL_HELP_POP_HANDLER)
-       (Hard {{game get_player_config 0} set_difficulty kDifficultyHard}
-       OVERSHELL_HELP_POP_HANDLER)
-       (Expert {{game get_player_config 0} set_difficulty kDifficultyExpert}
-       OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled))
-#define OVERSHELL_CHARACTER_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {set $forcecharacter TRUE}
-      {switch
-       {$component selected_sym}
-       (random {set $forcecharacter FALSE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (punk1 {game set_character punk1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (punk2 {game set_character punk2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (alterna1 {game set_character alterna1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (alterna2 {game set_character alterna2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (glam1 {game set_character glam1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (glam2 {game set_character glam2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (goth2 {game set_character goth2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (goth1 {game set_character goth1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (metal1 {game set_character metal1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (metal2 {game set_character metal2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (rockabill1 {game set_character rockabill1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (rockabill2 {game set_character rockabill2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (rock2 {game set_character rock2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (rock1 {game set_character rock1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (deathmetal1 {game set_character deathmetal1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (deathmetal2 {game set_character deathmetal2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (classic {game set_character classic TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (funk1 {game set_character funk1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (grim {game set_character grim TRUE}
-       OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled))
-#define OVERSHELL_VENUE_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {set $forcevenue TRUE}
-      {switch
-       {$component selected_sym}
-       (random {set $forcevenue FALSE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (battle {game set_venue battle TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (small1 {game set_venue small1 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (small2 {game set_venue small2 TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (big {game set_venue big TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (theatre {game set_venue theatre TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fest {game set_venue fest TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (arena {game set_venue arena TRUE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (stone {game set_venue stone TRUE}
-       OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled))
-((SELECT_START_MSG
-      {set $forceguitar TRUE}
-      {switch
-       {$component selected_sym}
-       (random {set $forceguitar FALSE}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lespaul {game set_guitar lespaul lp_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lp_cherry {game set_guitar lespaul lp_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lp_cayenne {game set_guitar lespaul lp_cayenne}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lp_goddessburst {game set_guitar lespaul lp_goddessburst}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lp_zakk {game set_guitar lespaul lp_zakk}
-       OVERSHELL_HELP_POP_HANDLER)
-       (sg {game set_guitar sg sg_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (sg_cherry {game set_guitar sg sg_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (sg_white {game set_guitar sg sg_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (sg_gt {game set_guitar sg sg_gt}
-       OVERSHELL_HELP_POP_HANDLER)
-       (sg_flames {game set_guitar sg sg_flames}
-       OVERSHELL_HELP_POP_HANDLER)
-       (flying_v {game set_guitar flying_v fv_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fv_white {game set_guitar flying_v fv_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fv_v2 {game set_guitar flying_v fv_v2}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fv_century {game set_guitar flying_v fv_century}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fv_red {game set_guitar flying_v fv_red}
-       OVERSHELL_HELP_POP_HANDLER)
-       (explorer {game set_guitar explorer exp_ebony}
-       OVERSHELL_HELP_POP_HANDLER)
-       (exp_ebony {game set_guitar explorer exp_ebony}
-       OVERSHELL_HELP_POP_HANDLER)
-       (exp_nat {game set_guitar explorer exp_nat}
-       OVERSHELL_HELP_POP_HANDLER)
-       (exp_sun {game set_guitar explorer exp_sun}
-       OVERSHELL_HELP_POP_HANDLER)
-       (exp_white {game set_guitar explorer exp_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (exp_swirl {game set_guitar explorer exp_swirl}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lespaul_doublecut {game set_guitar lespaul_doublecut lp_dbl_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lp_dbl_yellow {game set_guitar lespaul_doublecut lp_dbl_yellow}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lp_dbl_resin {game set_guitar lespaul_doublecut lp_dbl_resin}
-       OVERSHELL_HELP_POP_HANDLER)
-       (firebird {game set_guitar firebird fb_burst}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fb_burst {game set_guitar firebird fb_burst}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fb_blue {game set_guitar firebird fb_blue}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fb_ebony {game set_guitar firebird fb_ebony}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fb_leopard {game set_guitar firebird fb_leopard}
-       OVERSHELL_HELP_POP_HANDLER)
-       (epiphone_coronet {game set_guitar epiphone_coronet coronet_brown}
-       OVERSHELL_HELP_POP_HANDLER)
-       (coronet_brown {game set_guitar epiphone_coronet coronet_brown}
-       OVERSHELL_HELP_POP_HANDLER)
-       (coronet_cherry {game set_guitar epiphone_coronet coronet_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (coronet_burst {game set_guitar epiphone_coronet coronet_burst}
-       OVERSHELL_HELP_POP_HANDLER)
-       (coronet_green {game set_guitar epiphone_coronet coronet_green}
-       OVERSHELL_HELP_POP_HANDLER)
-       (kramer_vanguard {game set_guitar kramer_vanguard van_black}
-       OVERSHELL_HELP_POP_HANDLER)
-       (van_black {game set_guitar kramer_vanguard van_black}
-       OVERSHELL_HELP_POP_HANDLER)
-       (van_yellow {game set_guitar kramer_vanguard van_yellow}
-       OVERSHELL_HELP_POP_HANDLER)
-       (moderne {game set_guitar moderne mod_nat}
-       OVERSHELL_HELP_POP_HANDLER)
-       (mod_nat {game set_guitar moderne mod_nat}
-       OVERSHELL_HELP_POP_HANDLER)
-       (mod_cherry {game set_guitar moderne mod_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (corvus {game set_guitar corvus cor_yellow}
-       OVERSHELL_HELP_POP_HANDLER)
-       (cor_yellow {game set_guitar corvus cor_yellow}
-       OVERSHELL_HELP_POP_HANDLER)
-       (cor_nat {game set_guitar corvus cor_nat}
-       OVERSHELL_HELP_POP_HANDLER)
-       (es335 {game set_guitar es335 es_maple}
-       OVERSHELL_HELP_POP_HANDLER)
-       (es_maple {game set_guitar es335 es_maple}
-       OVERSHELL_HELP_POP_HANDLER)
-       (es_cherry {game set_guitar es335 es_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (kramer_650 {game set_guitar kramer_650 650_stripe}
-       OVERSHELL_HELP_POP_HANDLER)
-       (650_stripe {game set_guitar kramer_650 650_stripe}
-       OVERSHELL_HELP_POP_HANDLER)
-       (650_white {game set_guitar kramer_650 650_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (eds {game set_guitar eds eds_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (eds_cherry {game set_guitar eds eds_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (eds_white {game set_guitar eds eds_white}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lespaul_doublecut_sticker {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lespaul_sonex {game set_guitar lespaul_sonex lp_sonex}
-       OVERSHELL_HELP_POP_HANDLER)
-       (lespaul_marauder {game set_guitar lespaul_marauder lp_marauder}
-       OVERSHELL_HELP_POP_HANDLER)
-       (epiphone_casino {game set_guitar epiphone_casino casino}
-       OVERSHELL_HELP_POP_HANDLER)
-       (epiphone_sheraton {game set_guitar epiphone_sheraton sheraton}
-       OVERSHELL_HELP_POP_HANDLER)
-       (chet_atkins {game set_guitar chet_atkins chet_orange}
-       OVERSHELL_HELP_POP_HANDLER)
-       (fish_reward {game set_guitar fish_reward fish}
-       OVERSHELL_HELP_POP_HANDLER)
-       (usa_reward {game set_guitar usa_reward usa}
-       OVERSHELL_HELP_POP_HANDLER)
-       (coffin_reward {game set_guitar coffin_reward coffin}
-       OVERSHELL_HELP_POP_HANDLER)
-       (viking_reward {game set_guitar viking_reward viking}
-       OVERSHELL_HELP_POP_HANDLER)
-       (snaketapus_reward {game set_guitar snaketapus_reward snaketapus}
-       OVERSHELL_HELP_POP_HANDLER)
-       (eyeball_reward {game set_guitar eyeball_reward eyeball}
-       OVERSHELL_HELP_POP_HANDLER)
-       (battleaxe_reward {game set_guitar battleaxe_reward battleaxe}
-       OVERSHELL_HELP_POP_HANDLER)
-       (log_reward {game set_guitar log_reward log}
-       OVERSHELL_HELP_POP_HANDLER)
-       (scythe {game set_guitar scythe scythe}
-       OVERSHELL_HELP_POP_HANDLER)
-       (guitar_red_octane {game set_guitar guitar_red_octane guitar_red_octane}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_musicman {game set_guitar bass_musicman bass_music_black}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_musicman_lava {game set_guitar bass_musicman_lava bass_music_lava}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_sg_mahogany {game set_guitar bass_sg_mahogany bass_sg_mahog}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_sg_cream {game set_guitar bass_sg_cream bass_sg_cream}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_grabber_cherry {game set_guitar bass_grabber_cherry bass_grab_cherry}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_grabber_maple {game set_guitar bass_grabber_maple bass_grab_maple}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_thunderbird_ebony {game set_guitar bass_thunderbird_ebony bass_tb_ebony}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_thunderbird_burst {game set_guitar bass_thunderbird_burst bass_tb_burst}
-       OVERSHELL_HELP_POP_HANDLER)
-       (bass_hofner {game set_guitar bass_hofner bass_hofner}
-       OVERSHELL_HELP_POP_HANDLER)}
-      kDataUnhandled))
-#define OVERSHELL_THEME_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {switch $component
-       (newsong.btn
-         {do
-         {set $menutheme custom}
-         {set $gh3song FALSE}
-         {set $gh1track FALSE}
-         {set $gh3track FALSE}
-         OVERSHELL_HELP_POP_HANDLER})
-       (resume.btn
-         {do
-         {set $menutheme gh1}
-         {set $gh1track TRUE}
-         {set $gh3song FALSE}
-         {set $gh3track FALSE}
-         OVERSHELL_HELP_POP_HANDLER})
-       (restart.btn
-         {do
-         {set $menutheme gh2}
-         {set $gh3song FALSE}
-         {set $gh1track FALSE}
-         {set $gh3track FALSE}
-         OVERSHELL_HELP_POP_HANDLER})
-      (change_speed.btn
-         {do
-         {set $menutheme 80s}
-         {set $gh3song FALSE}
-         {set $gh1track FALSE}
-         {set $gh3track FALSE}
-         OVERSHELL_HELP_POP_HANDLER})
-      (section.btn
-         {do
-         {set $menutheme gh3}
-         {set $gh3song TRUE}
-         {set $gh3track TRUE}
-         OVERSHELL_HELP_POP_HANDLER})
-       (quit.btn
-         {do
-         {set $menutheme gold}
-         OVERSHELL_HELP_POP_HANDLER})
-       (extra1.btn
-         {ui push_screen overshell_song_theme_screen})}
-       kDataUnhandled))
-#define OVERSHELL_SONG_THEME_LIST_SELECT_START_MSG
-((SELECT_START_MSG
-      {switch
-       {$component selected_sym}
-      (os_gh3song
-         {if_else $gh3song
-            {do
-            {play_sfx cheat_off}
-            {set $gh3song FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $gh3song TRUE}
-            {set $altsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})
-      (os_altsong
-         {if_else $altsong
-            {do
-            {play_sfx cheat_off}
-            {set $altsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $altsong TRUE}
-            {set $gh3song FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})
-      (os_loopsong
-         {if_else $loopsong
-            {do
-            {play_sfx cheat_off}
-            {set $loopsong FALSE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}
-            {do
-            {play_sfx cheat}
-            {set $loopsong TRUE}
-            {set $sngthmlistpos {sel_section.lst selected_pos}}
-            OVERSHELL_SNGTHM_RESET_HANDLER}})}
-      kDataUnhandled))
 #define TRACK_SLIDER_HANDLERS
 (
    (focus gs_guitar.sld)
@@ -1641,17 +796,18 @@
    OVERSHELL_THEME_HANDLER
    (focus sel_section.lst)
    (enter
-   {do
-      {$this overshell_theme}
+      {do
+         {$this overshell_theme}
          {gs_tile5.mesh set_showing FALSE}
-         ;{sel_section.lst set_selected $difflistpos}
          {sel_section.lst set_local_pos -140 0 35}
          {sel_section.lst set_data (elm_name elm_starpower elm_streaklabel
                                     elm_starcounter elm_scorenumframe elm_gemcolor
                                     elm_smashercolor elm_trackrailcolor elm_beatlinecolor)}
          {sel_section.lst set circular 0}
-         {gs_title.lbl set_text "TRACK ELEMENT"}})
-(SELECT_START_MSG
+         {gs_title.lbl set_text "TRACK ELEMENT"}
+      }
+   )
+   (SELECT_START_MSG
       {switch {$component selected_sym}
          (elm_name {set $colormenu name})
          (elm_starpower {set $colormenu starpower})
@@ -1663,17 +819,19 @@
          (elm_trackrailcolor {set $colormenu trackrailcolor})
          (elm_beatlinecolor {set $colormenu beatlinecolor})
       }
-   {color_overshell_slider set_colors}
-   {ui pop_screen}
-)
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+      {color_overshell_slider set_colors}
+      {ui pop_screen}
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
 {new
    GHScreen
    overshell_track_element_list_screen
    (panels overshell_track_element_list)
    (focus overshell_track_element_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
 {new
    MultiSelectListPanel
    overshell_track_list
@@ -1689,7 +847,114 @@
       {gs_title.lbl set_text "TRACK MODIFIERS"}
       {sel_section.lst set_data OVERSHELL_TRACK_CONTENTS}
    )
-   OVERSHELL_TRACK_LIST_SELECT_START_MSG
+   (SELECT_START_MSG
+      {switch {$component selected_sym}
+         (os_voidfrets
+            {if_else $voidfrets
+               {do
+                  {play_sfx cheat_off}
+                  {set $voidfrets FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $voidfrets TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_eyeballgems
+            {if_else $eyeballgems
+               {do
+                  {play_sfx cheat_off}
+                  {set $eyeballgems FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $eyeballgems TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_cloneherohud
+            {if_else $clonehero_hud
+               {do
+                  {play_sfx cheat_off}
+                  {set $clonehero_hud FALSE}
+                  {set $trackcamx 1.0}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $clonehero_hud TRUE}
+                  {set $trackcamx 1.3}
+                  {set $sppop FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_brighthopos
+            {if_else $brighthopos
+               {do
+                  {play_sfx cheat_off}
+                  {set $brighthopos FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $brighthopos TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_darkstrums
+            {if_else $darkstrums
+               {do
+                  {play_sfx cheat_off}
+                  {set $darkstrums FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $darkstrums TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_gh1track
+            {if_else $gh1track
+               {do
+                  {play_sfx cheat_off}
+                  {set $gh1track FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $gh3track FALSE}
+                  {set $gh1track TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+         (os_gh3track
+            {if_else $gh3track
+               {do
+                  {play_sfx cheat_off}
+                  {set $gh3track FALSE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+               {do
+                  {play_sfx cheat}
+                  {set $gh1track FALSE}
+                  {set $gh3track TRUE}
+                  OVERSHELL_TRACK_RESET_HANDLER
+               }
+            }
+         )
+      }
+   kDataUnhandled
+   )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
 }
 {new
@@ -1698,7 +963,41 @@
    (panels overshell_track_list)
    (focus overshell_track_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
+#define OVERSHELL_LIST_CONTENTS
+(
+   (
+       os_focusmode os_skipintro os_skipoutro
+       os_sfx os_trkmod os_selhw os_font
+       os_whammyfx os_muting os_nofail os_noflames
+       os_songtitle os_nametitle os_cleanmtv
+       os_brutalmode os_towel os_epictext
+       os_notestreakmod os_sppop os_highwayshake
+       os_selecttorestart os_drums os_monkeyhead
+       os_eyeballhead os_flaminghead os_neckless
+       os_performance os_autoplay os_roxbury
+    )
+)
+#define OVERSHELL_LIST_RESET_HANDLER
+(
+   {set $modifierlistpos {sel_section.lst selected_pos}}
+   {if_else {&& {! {$this slider_selected}} $helpentered}
+      {do
+         {sel_section.lst set_selected $modifierlistpos}
+         {$this reset}
+      }
+      {do
+         {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
+         {ui push_screen overshell_help_screen}
+      }
+   }
+)
+#define CHEAT_POP
+(
+   {play_sfx cheat}
+   {play_sfx cheat_off}
+)
 {new
    MultiSelectListPanel
    overshell_list
@@ -1706,35 +1005,250 @@
    (focus sel_section.lst)
    OVERSHELL_THEME_HANDLER
    (enter
-   {$this overshell_theme}
-   {gs_tile5.mesh set_showing FALSE}
-   {sel_section.lst set_selected $modifierlistpos}
-   {sel_section.lst set_local_pos -140 0 35}
-   {sel_section.lst set circular 1}
-   {sel_section.lst set alignment kTopCenter}
-   {gs_title.lbl set_text "MODIFIERS"}
-   {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
+      {$this overshell_theme}
+      {gs_tile5.mesh set_showing FALSE}
+      {sel_section.lst set_selected $modifierlistpos}
+      {sel_section.lst set_local_pos -140 0 35}
+      {sel_section.lst set circular 1}
+      {sel_section.lst set alignment kTopCenter}
+      {gs_title.lbl set_text "MODIFIERS"}
+      {sel_section.lst set_data OVERSHELL_LIST_CONTENTS}
    )
-   OVERSHELL_LIST_SELECT_START_MSG
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   (SELECT_START_MSG
+      {switch {$component selected_sym}
+      (os_selhw
+         {ui push_screen overshell_highway_list_screen}
+      )
+      (os_font
+         {ui push_screen overshell_font_list_screen}
+      )
+      (os_trkmod
+         {ui push_screen overshell_track_list_screen}
+      )
+      (os_sfx
+         {set $sfx {! $sfx}}
+         {if_else $sfx
+            CHEAT_POP
+         }
+      )
+      (os_sppop
+         {set $sppop {! $sppop}}
+         {if_else $sppop
+            CHEAT_POP
+         }
+      )
+      (os_whammyfx
+         {set $whammyfx {! $whammyfx}}
+         {if_else $whammyfx
+            CHEAT_POP
+         }
+      )
+      (os_muting
+         {set $muting {! $muting}}
+         {if_else $muting
+            CHEAT_POP
+         }
+      )
+      (os_epictext
+         {set $epictext {! $epictext}}
+         {if_else $epictext
+            CHEAT_POP
+         }
+      )
+      (os_autoplay
+         {set $autoplay {! $autoplay}}
+         {set $gotcha TRUE}
+         {if_else $autoplay
+            CHEAT_POP
+         }
+      )
+      (os_notestreakmod
+         {set $notestreakmod {! $notestreakmod}}
+         {if_else $notestreakmod
+            CHEAT_POP
+         }
+      )
+      (os_selecttorestart
+         {set $selecttorestart {! $selecttorestart}}
+         {if_else $selecttorestart
+            CHEAT_POP
+         }
+      )
+      (os_towel
+         {set $towel {! $towel}}
+         {if_else $towel
+            CHEAT_POP
+         }
+      )
+      (os_skipintro
+         {set $miloskipintro {! $miloskipintro}}
+         {if_else $miloskipintro
+            CHEAT_POP
+         }
+      )
+      (os_focusmode
+         {if_else $focusmode
+            {do
+               {play_sfx cheat_off}
+               {set $focusmode FALSE}
+               {set $miloskipintro FALSE}
+               {set $skipoutro FALSE}
+               {set $notestreakmod TRUE}
+               {set $sfx TRUE}
+            }
+            {do
+               {play_sfx cheat}
+               {set $focusmode TRUE}
+               {set $miloskipintro TRUE}
+               {set $skipoutro TRUE}
+               {set $notestreakmod FALSE}
+               {set $sfx FALSE}
+            }
+         }
+      )
+      (os_skipoutro
+         {set $skipoutro {! $skipoutro}}
+         {if_else $skipoutro
+            CHEAT_POP
+         }
+      )
+      (os_noflames
+         {set $noflames {! $noflames}}
+         {if_else $noflames
+            CHEAT_POP
+         }
+      )
+      (os_nofail
+         {set $nofail {! $nofail}}
+         {if_else $nofail
+            CHEAT_POP
+         }
+      )
+      (os_cleanmtv
+         {set $cleanmtv {! $cleanmtv}}
+         {if_else $cleanmtv
+            CHEAT_POP
+         }
+      )
+      (os_brutalmode
+         {set $brutalmode {! $brutalmode}}
+         {if_else $brutalmode
+            CHEAT_POP
+         }
+      )
+      (os_songtitle
+         {set $songtitle {! $songtitle}}
+         {if_else $songtitle
+            CHEAT_POP
+         }
+      )
+      (os_nametitle
+         {set $nametitle {! $nametitle}}
+         {if_else $nametitle
+            CHEAT_POP
+         }
+      )
+      (os_highwayshake
+         {set $highwayshake {! $highwayshake}}
+         {if_else $highwayshake
+            CHEAT_POP
+         }
+      )
+      (os_drums
+         {set $drumenabled {! $drumenabled}}
+         {if_else $drumenabled
+            CHEAT_POP
+         }
+      )
+      (os_horsehead
+         {set $cheat_enabled_horse_head_mode {! $cheat_enabled_horse_head_mode}}
+         {if_else $cheat_enabled_horse_head_mode
+            CHEAT_POP
+         }
+      )
+      (os_monkeyhead
+         {if_else {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads eyeball_crowd_heads}}
+            {do
+               {play_sfx cheat_off}
+               {set $cheat_crowd_heads 0}
+            }
+            {do
+               {play_sfx cheat}
+               {set $cheat_crowd_heads monkey_crowd_heads}
+            }
+         }
+      )
+      (os_eyeballhead
+         {if_else {'||' {$cheat_crowd_heads 0} {$cheat_crowd_heads monkey_crowd_heads}}
+            {do
+               {play_sfx cheat_off}
+               {set $cheat_crowd_heads 0}
+            }
+            {do
+               {play_sfx cheat}
+               {set $cheat_crowd_heads eyeball_crowd_heads}
+            }
+         }
+      )
+      (os_flaminghead
+         {set $cheat_enabled_flaming_head {! $cheat_enabled_flaming_head}}
+         {if_else $cheat_enabled_flaming_head
+            CHEAT_POP
+         }
+      )
+      (os_neckless
+         {set $neckless {! $neckless}}
+         {if_else $neckless
+            CHEAT_POP
+         }
+      )
+      (os_performance
+         {set $cheat_enabled_performance_mode {! $cheat_enabled_performance_mode}}
+         {if_else $cheat_enabled_performance_mode
+            CHEAT_POP
+         }
+      )
+      (os_roxbury
+         {set $barf_cheat {! $barf_cheat}}
+         {if_else $barf_cheat
+            CHEAT_POP
+         }
+      )
+   }
+      OVERSHELL_LIST_RESET_HANDLER
+      kDataUnhandled
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
 {new
    GHScreen
    overshell_list_screen
    (panels overshell_list)
    (focus overshell_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
 {new
    GHScreen
    overshell_character_list_screen
    (panels overshell_character_list)
    (focus overshell_character_list)
    OVERSHELL_SCREEN_COMMON_HANDLER
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
 #define OVERSHELL_DIFF_RESET_HANDLER
-({if_else {&& {! {$this slider_selected}} $helpentered}
-{{sel_section.lst set_selected $difflistpos} {$this reset}}
-{ui push_screen overshell_help_screen}})
+(
+   {set $difflistpos {sel_section.lst selected_pos}}
+   {if_else {&& {! {$this slider_selected}} $helpentered}
+      {do
+         {sel_section.lst set_selected $difflistpos}
+         {$this reset}
+      }
+      {do
+         {ui push_screen overshell_help_screen}
+      }
+   }
+)
 {new
    MultiSelectListPanel
    overshell_diff_list
@@ -1749,9 +1263,46 @@
          {sel_section.lst set_local_pos -140 0 35}
          {sel_section.lst set_data (Easy Medium Hard Expert os_leftyp1 os_leftyp2)}
          {sel_section.lst set circular 0}
-         {gs_title.lbl set_text "DIFFICULTY"}})
-   OVERSHELL_DIFF_LIST_SELECT_START_MSG
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
+         {gs_title.lbl set_text "DIFFICULTY"}
+      }
+   )
+   (SELECT_START_MSG
+      {switch {$component selected_sym}
+         (os_leftyp2
+            {set $leftyp2 {! $leftyp2}}
+            {options set_lefty 1 $leftyp2}
+            {if_else $leftyp2
+               CHEAT_POP
+            }
+         )
+         (os_leftyp1
+            {set $leftyp1 {! $leftyp1}}
+            {options set_lefty 0 $leftyp1}
+            {if_else $leftyp1
+               CHEAT_POP
+            }
+         )
+         (Easy
+            {{game get_player_config 0} set_difficulty kDifficultyEasy}
+            OVERSHELL_HELP_POP_HANDLER
+         )
+         (Medium
+            {{game get_player_config 0} set_difficulty kDifficultyMedium}
+            OVERSHELL_HELP_POP_HANDLER
+         )
+         (Hard
+            {{game get_player_config 0} set_difficulty kDifficultyHard}
+            OVERSHELL_HELP_POP_HANDLER
+         )
+         (Expert
+            {{game get_player_config 0} set_difficulty kDifficultyExpert}
+            OVERSHELL_HELP_POP_HANDLER
+         )
+      }
+      OVERSHELL_DIFF_RESET_HANDLER
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}
 {new
    GHScreen
    overshell_diff_list_screen
@@ -1799,7 +1350,51 @@
       {set $charactermenu {$component selected_sym}}
       {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}}
       {$this update})
-   OVERSHELL_CHARACTER_LIST_SELECT_START_MSG
+   (SELECT_START_MSG
+      {set $forcecharacter TRUE}
+      {switch
+       {$component selected_sym}
+       (random {set $forcecharacter FALSE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (punk1 {game set_character punk1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (punk2 {game set_character punk2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (alterna1 {game set_character alterna1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (alterna2 {game set_character alterna2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (glam1 {game set_character glam1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (glam2 {game set_character glam2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (goth2 {game set_character goth2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (goth1 {game set_character goth1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (metal1 {game set_character metal1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (metal2 {game set_character metal2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (rockabill1 {game set_character rockabill1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (rockabill2 {game set_character rockabill2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (rock2 {game set_character rock2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (rock1 {game set_character rock1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (deathmetal1 {game set_character deathmetal1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (deathmetal2 {game set_character deathmetal2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (classic {game set_character classic TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (funk1 {game set_character funk1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (grim {game set_character grim TRUE}
+       OVERSHELL_HELP_POP_HANDLER)}
+      kDataUnhandled)
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
@@ -1822,7 +1417,29 @@
          {sel_section.lst set_data (random battle small1 small2 big theatre fest arena stone)}
          {sel_section.lst set circular 1}}
          {gs_title.lbl set_text "VENUES"})
-   OVERSHELL_VENUE_LIST_SELECT_START_MSG
+   (SELECT_START_MSG
+      {set $forcevenue TRUE}
+      {switch
+       {$component selected_sym}
+       (random {set $forcevenue FALSE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (battle {game set_venue battle TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (small1 {game set_venue small1 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (small2 {game set_venue small2 TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (big {game set_venue big TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (theatre {game set_venue theatre TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fest {game set_venue fest TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (arena {game set_venue arena TRUE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (stone {game set_venue stone TRUE}
+       OVERSHELL_HELP_POP_HANDLER)}
+      kDataUnhandled)
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
@@ -1865,7 +1482,167 @@
          bass_grabber_maple bass_thunderbird_ebony bass_thunderbird_burst bass_hofner)}
          {sel_section.lst set circular 1}}
          {gs_title.lbl set_text "GUITARS"})
-   OVERSHELL_GUITAR_LIST_SELECT_START_MSG
+   (SELECT_START_MSG
+      {set $forceguitar TRUE}
+      {switch
+       {$component selected_sym}
+       (random {set $forceguitar FALSE}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lespaul {game set_guitar lespaul lp_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lp_cherry {game set_guitar lespaul lp_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lp_cayenne {game set_guitar lespaul lp_cayenne}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lp_goddessburst {game set_guitar lespaul lp_goddessburst}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lp_zakk {game set_guitar lespaul lp_zakk}
+       OVERSHELL_HELP_POP_HANDLER)
+       (sg {game set_guitar sg sg_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (sg_cherry {game set_guitar sg sg_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (sg_white {game set_guitar sg sg_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (sg_gt {game set_guitar sg sg_gt}
+       OVERSHELL_HELP_POP_HANDLER)
+       (sg_flames {game set_guitar sg sg_flames}
+       OVERSHELL_HELP_POP_HANDLER)
+       (flying_v {game set_guitar flying_v fv_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fv_white {game set_guitar flying_v fv_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fv_v2 {game set_guitar flying_v fv_v2}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fv_century {game set_guitar flying_v fv_century}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fv_red {game set_guitar flying_v fv_red}
+       OVERSHELL_HELP_POP_HANDLER)
+       (explorer {game set_guitar explorer exp_ebony}
+       OVERSHELL_HELP_POP_HANDLER)
+       (exp_ebony {game set_guitar explorer exp_ebony}
+       OVERSHELL_HELP_POP_HANDLER)
+       (exp_nat {game set_guitar explorer exp_nat}
+       OVERSHELL_HELP_POP_HANDLER)
+       (exp_sun {game set_guitar explorer exp_sun}
+       OVERSHELL_HELP_POP_HANDLER)
+       (exp_white {game set_guitar explorer exp_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (exp_swirl {game set_guitar explorer exp_swirl}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lespaul_doublecut {game set_guitar lespaul_doublecut lp_dbl_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lp_dbl_yellow {game set_guitar lespaul_doublecut lp_dbl_yellow}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lp_dbl_resin {game set_guitar lespaul_doublecut lp_dbl_resin}
+       OVERSHELL_HELP_POP_HANDLER)
+       (firebird {game set_guitar firebird fb_burst}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fb_burst {game set_guitar firebird fb_burst}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fb_blue {game set_guitar firebird fb_blue}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fb_ebony {game set_guitar firebird fb_ebony}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fb_leopard {game set_guitar firebird fb_leopard}
+       OVERSHELL_HELP_POP_HANDLER)
+       (epiphone_coronet {game set_guitar epiphone_coronet coronet_brown}
+       OVERSHELL_HELP_POP_HANDLER)
+       (coronet_brown {game set_guitar epiphone_coronet coronet_brown}
+       OVERSHELL_HELP_POP_HANDLER)
+       (coronet_cherry {game set_guitar epiphone_coronet coronet_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (coronet_burst {game set_guitar epiphone_coronet coronet_burst}
+       OVERSHELL_HELP_POP_HANDLER)
+       (coronet_green {game set_guitar epiphone_coronet coronet_green}
+       OVERSHELL_HELP_POP_HANDLER)
+       (kramer_vanguard {game set_guitar kramer_vanguard van_black}
+       OVERSHELL_HELP_POP_HANDLER)
+       (van_black {game set_guitar kramer_vanguard van_black}
+       OVERSHELL_HELP_POP_HANDLER)
+       (van_yellow {game set_guitar kramer_vanguard van_yellow}
+       OVERSHELL_HELP_POP_HANDLER)
+       (moderne {game set_guitar moderne mod_nat}
+       OVERSHELL_HELP_POP_HANDLER)
+       (mod_nat {game set_guitar moderne mod_nat}
+       OVERSHELL_HELP_POP_HANDLER)
+       (mod_cherry {game set_guitar moderne mod_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (corvus {game set_guitar corvus cor_yellow}
+       OVERSHELL_HELP_POP_HANDLER)
+       (cor_yellow {game set_guitar corvus cor_yellow}
+       OVERSHELL_HELP_POP_HANDLER)
+       (cor_nat {game set_guitar corvus cor_nat}
+       OVERSHELL_HELP_POP_HANDLER)
+       (es335 {game set_guitar es335 es_maple}
+       OVERSHELL_HELP_POP_HANDLER)
+       (es_maple {game set_guitar es335 es_maple}
+       OVERSHELL_HELP_POP_HANDLER)
+       (es_cherry {game set_guitar es335 es_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (kramer_650 {game set_guitar kramer_650 650_stripe}
+       OVERSHELL_HELP_POP_HANDLER)
+       (650_stripe {game set_guitar kramer_650 650_stripe}
+       OVERSHELL_HELP_POP_HANDLER)
+       (650_white {game set_guitar kramer_650 650_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (eds {game set_guitar eds eds_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (eds_cherry {game set_guitar eds eds_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (eds_white {game set_guitar eds eds_white}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lespaul_doublecut_sticker {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lespaul_sonex {game set_guitar lespaul_sonex lp_sonex}
+       OVERSHELL_HELP_POP_HANDLER)
+       (lespaul_marauder {game set_guitar lespaul_marauder lp_marauder}
+       OVERSHELL_HELP_POP_HANDLER)
+       (epiphone_casino {game set_guitar epiphone_casino casino}
+       OVERSHELL_HELP_POP_HANDLER)
+       (epiphone_sheraton {game set_guitar epiphone_sheraton sheraton}
+       OVERSHELL_HELP_POP_HANDLER)
+       (chet_atkins {game set_guitar chet_atkins chet_orange}
+       OVERSHELL_HELP_POP_HANDLER)
+       (fish_reward {game set_guitar fish_reward fish}
+       OVERSHELL_HELP_POP_HANDLER)
+       (usa_reward {game set_guitar usa_reward usa}
+       OVERSHELL_HELP_POP_HANDLER)
+       (coffin_reward {game set_guitar coffin_reward coffin}
+       OVERSHELL_HELP_POP_HANDLER)
+       (viking_reward {game set_guitar viking_reward viking}
+       OVERSHELL_HELP_POP_HANDLER)
+       (snaketapus_reward {game set_guitar snaketapus_reward snaketapus}
+       OVERSHELL_HELP_POP_HANDLER)
+       (eyeball_reward {game set_guitar eyeball_reward eyeball}
+       OVERSHELL_HELP_POP_HANDLER)
+       (battleaxe_reward {game set_guitar battleaxe_reward battleaxe}
+       OVERSHELL_HELP_POP_HANDLER)
+       (log_reward {game set_guitar log_reward log}
+       OVERSHELL_HELP_POP_HANDLER)
+       (scythe {game set_guitar scythe scythe}
+       OVERSHELL_HELP_POP_HANDLER)
+       (guitar_red_octane {game set_guitar guitar_red_octane guitar_red_octane}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_musicman {game set_guitar bass_musicman bass_music_black}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_musicman_lava {game set_guitar bass_musicman_lava bass_music_lava}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_sg_mahogany {game set_guitar bass_sg_mahogany bass_sg_mahog}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_sg_cream {game set_guitar bass_sg_cream bass_sg_cream}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_grabber_cherry {game set_guitar bass_grabber_cherry bass_grab_cherry}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_grabber_maple {game set_guitar bass_grabber_maple bass_grab_maple}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_thunderbird_ebony {game set_guitar bass_thunderbird_ebony bass_tb_ebony}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_thunderbird_burst {game set_guitar bass_thunderbird_burst bass_tb_burst}
+       OVERSHELL_HELP_POP_HANDLER)
+       (bass_hofner {game set_guitar bass_hofner bass_hofner}
+       OVERSHELL_HELP_POP_HANDLER)}
+      kDataUnhandled)
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
@@ -1892,7 +1669,49 @@
    (panels overshell_theme_panel)
    (focus overshell_theme_panel) 
    OVERSHELL_SCREEN_COMMON_HANDLER 
-   OVERSHELL_THEME_LIST_SELECT_START_MSG
+   (SELECT_START_MSG
+      {switch $component
+       (newsong.btn
+         {do
+         {set $menutheme custom}
+         {set $gh3song FALSE}
+         {set $gh1track FALSE}
+         {set $gh3track FALSE}
+         OVERSHELL_HELP_POP_HANDLER})
+       (resume.btn
+         {do
+         {set $menutheme gh1}
+         {set $gh1track TRUE}
+         {set $gh3song FALSE}
+         {set $gh3track FALSE}
+         OVERSHELL_HELP_POP_HANDLER})
+       (restart.btn
+         {do
+         {set $menutheme gh2}
+         {set $gh3song FALSE}
+         {set $gh1track FALSE}
+         {set $gh3track FALSE}
+         OVERSHELL_HELP_POP_HANDLER})
+      (change_speed.btn
+         {do
+         {set $menutheme 80s}
+         {set $gh3song FALSE}
+         {set $gh1track FALSE}
+         {set $gh3track FALSE}
+         OVERSHELL_HELP_POP_HANDLER})
+      (section.btn
+         {do
+         {set $menutheme gh3}
+         {set $gh3song TRUE}
+         {set $gh3track TRUE}
+         OVERSHELL_HELP_POP_HANDLER})
+       (quit.btn
+         {do
+         {set $menutheme gold}
+         OVERSHELL_HELP_POP_HANDLER})
+       (extra1.btn
+         {ui push_screen overshell_song_theme_screen})}
+       kDataUnhandled)
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    SliderPanel
@@ -2044,9 +1863,50 @@ this option."}
    {gs_tile5.mesh set_showing FALSE}
    {do
          {sel_section.lst set_local_pos -140 0 35}
-         {sel_section.lst set_data OVERSHELL_SNGTHM_CONTENTS}
+         {sel_section.lst set_data (os_altsong os_gh3song os_loopsong)}
        {gs_title.lbl set_text "SONG LIST THEMES"}})
-   OVERSHELL_SONG_THEME_LIST_SELECT_START_MSG
+   (SELECT_START_MSG
+      {switch
+       {$component selected_sym}
+      (os_gh3song
+         {if_else $gh3song
+            {do
+            {play_sfx cheat_off}
+            {set $gh3song FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $gh3song TRUE}
+            {set $altsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}})
+      (os_altsong
+         {if_else $altsong
+            {do
+            {play_sfx cheat_off}
+            {set $altsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $altsong TRUE}
+            {set $gh3song FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}})
+      (os_loopsong
+         {if_else $loopsong
+            {do
+            {play_sfx cheat_off}
+            {set $loopsong FALSE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}
+            {do
+            {play_sfx cheat}
+            {set $loopsong TRUE}
+            {set $sngthmlistpos {sel_section.lst selected_pos}}
+            OVERSHELL_SNGTHM_RESET_HANDLER}})}
+      kDataUnhandled)
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER}
 {new
    GHScreen
