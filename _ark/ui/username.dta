@@ -53,7 +53,7 @@
             ({==
                   $profile
                   ""}
-               {ui push_screen error_no_profile_screen})
+               {ui push_screen nameprof_screen})
             ({campaign
                   has_profile_name
                   $profile
