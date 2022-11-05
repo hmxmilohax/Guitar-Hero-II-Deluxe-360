@@ -1,6 +1,6 @@
 #define SLIDER_LEVELS
 (12)
-#define AUDIO_SETTINGS_PANEL_HANDLERS
+#define OVERSHELL_AUDIO_SLIDER_HANDLERS
 ((focus gs_band.sld)
    (focus_component
       "")
@@ -22,6 +22,12 @@
             {options get fx_volume_idx}
             {gs_sfx.sld current}}})
    (enter
+      {$this disable gs_stereo.btn}
+      {gs_stereo.btn set_showing FALSE}
+      {stereo.chk set_showing FALSE}
+      {gs_band.sld set_text BAND}
+      {gs_guitar.sld set_text GUITAR}
+      {gs_sfx.sld set_text SFX}
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_band.sld
          set_current
@@ -156,7 +162,7 @@
                {stereo.chk get_check}})
          kDataUnhandled}
       {$this update_help_display}))
-#define MODIFIER_SLIDER_HANDLERS
+#define SPEED_SLIDER_HANDLERS
 (
    (focus gs_guitar.sld)
    (focus_component "")

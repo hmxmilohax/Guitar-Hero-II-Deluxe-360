@@ -177,7 +177,7 @@
 (os_whammyfx {sprint "Whammy Effects" {if_else $whammyfx ": ON" ": OFF"}})
 (os_muting {sprint "Track Muting" {if_else $muting ": ON" ": OFF"}})
 (os_voidfrets {sprint "Void Frets" {if_else $voidfrets ": ON" ": OFF"}})
-(os_eyeball {sprint "Eyeball Gems" {if_else $eyeballgems ": ON" ": OFF"}})
+(os_eyeballgems {sprint "Eyeball Gems" {if_else $eyeballgems ": ON" ": OFF"}})
 (os_altsong {sprint "Alt Song List" {if_else $altsong ": ON" ": OFF"}})
 (os_loopsong {sprint "Looping Song List" {if_else $loopsong ": ON" ": OFF"}})
 (os_gh3song {sprint "GH3 Song List" {if_else $gh3song ": ON" ": OFF"}})

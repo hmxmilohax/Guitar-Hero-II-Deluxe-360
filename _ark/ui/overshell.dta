@@ -149,12 +149,12 @@
          (diff.btn {ui push_screen overshell_diff_list_screen})
          (resume.btn {ui push_screen overshell_color_slider_screen})
          (restart.btn {ui push_screen overshell_slider_screen})
-         (change_speed.btn {ui push_screen overshell_list_screen})
+         (change_speed.btn {ui push_screen overshell_modifier_list_screen})
          (section.btn {ui push_screen overshell_venue_list_screen})
          (newsong.btn {ui push_screen overshell_character_list_screen})
          (quit.btn {ui push_screen overshell_guitar_list_screen})
          (extra1.btn {ui push_screen overshell_theme_list_screen})
-         (extra2.btn {ui push_screen pause_audio_settings_screen})}
+         (extra2.btn {ui push_screen overshell_audio_slider_screen})}
        kDataUnhandled
 ))
 #define OVERSHELL_BUTTON_DOWN_HANDLER ;common code to run inside of overshell when a button is pressed
