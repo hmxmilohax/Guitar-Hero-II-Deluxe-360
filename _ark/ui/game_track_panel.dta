@@ -9,6 +9,8 @@
 ($streaklabel_r $streaklabel_g $streaklabel_b)
 #define STAR_COUNTER_COLOR
 ($starcounter_r $starcounter_g $starcounter_b)
+#define SCORE_NUM_COLOR
+($scorenumcolor_r $scorenumcolor_g $scorenumcolor_b)
 #define SCORE_NUM_FRAME_COLOR
 ($scorenumframe_r $scorenumframe_g $scorenumframe_b)
 #define TRACK_RAIL_COLOR
@@ -166,6 +168,28 @@
    {{streak_overlay_panel find star_counter.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
 
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_frame.mat} set color {pack_color SCORE_NUM_FRAME_COLOR}} ;score number frame color
+
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_0.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_0_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_1.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_1_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_2.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_2_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_3.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_3_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_4.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_4_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_5.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_5_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_6.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_6_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_7.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_7_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_8.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_8_keep.png"}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_9.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_9_keep.png"}} ;score number color
+   
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_0.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_1.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_2.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_3.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_4.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_5.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_6.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_7.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_8.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
+   {{{{hud loaded_dir} find BandScoreDisplay1} find score_9.mat} set color {pack_color SCORE_NUM_COLOR}} ;score number color
 
    {{{{track_panel loaded_dir} find $tracktype} find rail_light.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
    {{{{track_panel loaded_dir} find $tracktype} find track1.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color

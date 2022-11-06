@@ -7,6 +7,11 @@
 ;sets custom star counter text color in RGB
 {set $starcounter_r 1} {set $starcounter_g 1} {set $starcounter_b 1}
 
+;sets custom score number color in RGB
+{set $scorenumcolor_r 0.0} {set $scorenumcolor_g 0.0} {set $scorenumcolor_b 0.0}
+;sets custom images for score numbers if available
+{set $scorenumtype gh2}
+
 ;sets custom score number frame color in RGB
 {set $scorenumframe_r 1} {set $scorenumframe_g 1} {set $scorenumframe_b 1}
 

@@ -102,7 +102,7 @@
       {sel_section.lst set_data ;set up the data for the list
          (
             elm_name elm_starpower elm_streaklabel
-            elm_starcounter elm_scorenumframe elm_gemcolor
+            elm_starcounter elm_scorenum elm_scorenumframe elm_gemcolor
             elm_smashercolor elm_trackrailcolor elm_beatlinecolor
          )
       }
@@ -113,6 +113,7 @@
          (elm_starpower {set $colormenu starpower}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_streaklabel {set $colormenu streaklabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_starcounter {set $colormenu starcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_scorenum {set $colormenu scorenum}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_scorenumframe {set $colormenu scorenumframe}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_gemcolor {set $colormenu gemcolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_smashercolor {set $colormenu smashercolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
