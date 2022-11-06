@@ -69,3 +69,27 @@
          $component
          (continue.btn
             {ui pop_screen})})}
+#include username.dta
+#include saveload.dta
+#include loading.dta
+#include game.dta
+#include songselect.dta
+#include endgame.dta
+#include partselect.dta
+#include multiplayer.dta
+#include mainmenu.dta
+#include calibration.dta
+#include overshell.dta
+#include overshell_handlers.dta
+#include practice.dta
+#include pause.dta
+{foreach $p (pause_panel pause_controller_panel tut_pause_panel pract_pause_panel tut_pause_controller_panel lose_panel helpbar endgame_encore_panel) {$p load}}
+{meta set_defaults}
+#ifdef HX_XBOX {set $first_screen splash_screen} #endif
+{ui my_init}
+{do
+   ($cfg)
+   {if
+      {option_str budget_config $cfg}
+      {track_budget setup $cfg}
+      {set $first_screen track_budget}}}

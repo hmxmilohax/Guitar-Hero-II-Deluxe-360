@@ -1,222 +1,146 @@
-#include init_handler.dta
-#include username.dta
-#include saveload.dta
-#include loading.dta
-#include game.dta
-#include songselect.dta
-#include endgame.dta
-#include partselect.dta
-#include multiplayer.dta
-#include mainmenu.dta
-#include calibration.dta
-#include overshell.dta
-#include overshell_handlers.dta
-#include practice.dta
-#include pause.dta
-{foreach $p (pause_panel pause_controller_panel tut_pause_panel pract_pause_panel tut_pause_controller_panel lose_panel helpbar endgame_encore_panel) {$p load}}
-{meta set_defaults}
-
-
-#ifdef HX_XBOX {set $first_screen splash_screen} #endif
-{ui my_init}
-{do
-   ($cfg)
-   {if
-      {option_str budget_config $cfg}
-      {track_budget setup $cfg}
-      {set $first_screen track_budget}}}
+#include initializer.dta
+#include init_track_theme.dta
+#include init_ui_theme.dta
 ; Set various defaults on startup, including ELF specific bootups. $speedmod
 ; is the song speed, $trackspeed is the note speed, $interval refers to the
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
-
-;set menu theming
-;current themes are
-;gh1 gh2 gh3 80s gold custom
-{set $menutheme none}
-;sets custom values for custom menu theme
-;you can customize your own menu theme here
-   ;custom tile border image. must be the name of the one found in /_ark/track/custom_track_textures
-   {set $custom_os_border_image tile_custom_keep}
-   ;set a custom color in RGB for header labels
-   {set $custom_os_label_color_r 0.43} {set $custom_os_label_color_g 0.23} {set $custom_os_label_color_b 0.19}
-   ;set a custom font for headers. list of fonts can be found in the $namefont comment
-   {set $custom_os_label_font tapeworm}
-   ;sets all labels to all caps
-   {set $custom_os_label_all_caps FALSE}
-   ;sets all labels wrap width
-   {set $custom_os_wrap_width 640}
-   ;sets all labels widths
-   {set $custom_os_label_width 640}
-   ;sets all labels heights
-   {set $custom_os_label_height 30}
-   ;sets all buttons menu items font
-   {set $custom_os_button_font hand}
-   ;sets all menu item buttons to all caps
-   {set $custom_os_button_all_caps TRUE}
-   ;sets all menu item buttons standard color in RGB
-   {set $custom_os_normal_color_r 0.72} {set $custom_os_normal_color_g 0.33} {set $custom_os_normal_color_b 0.07}
-   ;sets all menu item buttons highlighter color in RGB
-   {set $custom_os_focus_color_r 1.0} {set $custom_os_focus_color_g 0.40} {set $custom_os_focus_color_b 0.00}
-   ;sets all menu item buttons disabled color in RGB
-   {set $custom_os_disabled_color_r 0.77} {set $custom_os_disabled_color_g 0.54} {set $custom_os_disabled_color_b 0.38}
-   ;sets all menu item buttons when selected color in RGB
-   {set $custom_os_selecting_color_r 1} {set $custom_os_disabled_color_g 1} {set $custom_os_disabled_color_b 1}
-;sets custom star power color in RGB. 0.34 0.5 0.67 is default
-{set $starpowercolor_r 0.34} {set $starpowercolor_g 0.5} {set $starpowercolor_b 0.67}
-;sets custom FC streak text color in RGB. 0.79 0.51 0.07 is default
-{set $streaklabel_r 0.79} {set $streaklabel_g 0.51} {set $streaklabel_b 0.07}
-;sets custom star counter text color in RGB
-{set $starcounter_r 1} {set $starcounter_g 1} {set $starcounter_b 1}
-;sets custom score number frame color in RGB
-{set $scorenumframe_r 1} {set $scorenumframe_g 1} {set $scorenumframe_b 1}
-;sets custom gem color in RGB
-{set $customgemcolor FALSE} ; enables custom gem colors
-{set $gemcolor_r 1} {set $gemcolor_g 1} {set $gemcolor_b 1}
-;sets custom smasher color in RGB
-{set $customsmashercolor FALSE} ; enables custom gem colors
-{set $smashercolor_r 1} {set $smashercolor_g 1} {set $smashercolor_b 1}
-;sets custom track rail color in RGB
-{set $trackrailcolor_r 1} {set $trackrailcolor_g 1} {set $trackrailcolor_b 1}
-;sets custom beat line color in RGB
-{set $beatlinecolor_r 0.87} {set $beatlinecolor_g 0.87} {set $beatlinecolor_b 0.87}
 ;wip track width controller
 {set $trackcamx 1.0}
-;default name on screen in game
-{set $nametitle TRUE}
-;default font for name on screen in game
-;fonts are blockletters blockletters_fill clarendon cutout dyingmarker gh3veticablackcondensed
-;gunsho hand helveticablack helveticablackcondensed helveticathin impact
-;impactor oldenglish postertype receipt rockletters rokk serif tapeworm tapewormscreen
-{set $namefont dyingmarker}
-;set color of the name in game
-;each value is between 0 and 1 and creates an RGB color value
-{set $namecolor_r 1.0}
-{set $namecolor_g 1.0}
-{set $namecolor_b 1.0}
+
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
+
 ;Track/Highway/Note Speed. Each .1 is 10%
 {set $trackspeed 1.0}
+
 ;Focus mode gives you a black background in
 ;game and turns off some additional noises
 {set $focusmode FALSE}
+
 ;Sets the song title to persist the duration
 ;of the song, or turn off after the intro
 {set $songtitle FALSE}
+
+;default name on screen in game
+{set $nametitle TRUE}
+
 ;removes notes missed - overstrums - current accuracy from mtv overlay
 {set $cleanmtv FALSE}
+
 ;turn off hit flames
 {set $noflames FALSE}
+
 ;emulate the venue fps. this is useful to lower
 ;when streaming
 {set $emulatefps 60}
+
 ;No fail mode
 {set $nofail FALSE}
+
 ;default highway image
 {set $highway none}
+
 ;Turns highway shake on or off
 {set $highwayshake TRUE}
+
 ;player 1 and player 2 lefty flip
 {set $leftyp1 FALSE}
 {set $leftyp2 FALSE}
+
 ;skips the song intro in quickplay for faster
 ;gameplay. Focus mode turns this on autopmatically
 {set $miloskipintro FALSE}
+
 ;skips the song outro in quickplay to get to the endscreen
 ;much faster. Focus mode also automatically turns this on
 {set $skipoutro FALSE}
+
 ;disables the popup for notestreaks at 50, 100, 200
 ;etc in game
 {set $notestreakmod TRUE}
+
 ;disables the star power ready popup and animation
 {set $sppop TRUE}
+
 ;mock style brutal mode. it does not move based on
 ;progression, and sustains are a bit wonky
 {set $brutalmode FALSE}
+
 ;brighter hopos if you have trouble telling them apart
 {set $brighthopos FALSE}
+
 ;darker strums if you have trouble telling them apart
 {set $darkstrums FALSE}
+
 ;gh1 style notes and "smashers" ported from ps2
 {set $gh1track FALSE}
+
 ;gh3 style "smashers" ported from pc
 {set $gh3track FALSE}
+
 ;empty "smashers," only rings until held down
 {set $voidfrets FALSE}
+
 ;mock towell hyperspeed mode which cuts about 50% of the
 ;visible notes. Think reverse brutal mode
 {set $towel FALSE}
+
 ;enables drum mapping. drums are note fully implemented on 30
 {set $rbdrum FALSE}
 {set $drumenabled FALSE}
+
 ;clone hero style in game HUD
 {set $clonehero_hud FALSE}
+
 ;show practice section names in quickplay (not implemented)
 {set $quickplaysectionnames FALSE}
+
 ;disable select to restart in practice mode
 {set $selecttorestart TRUE}
+
 ;neckless mode removes only the highway and leaves the hud.
 ;similar to performance mode
 {set $neckless FALSE}
+
 ;otherwise known as roxbury mode, this will shake the highway
 ;to the beat of the song while playing
 {set $barf_cheat FALSE}
+
 ;standard performance mode cheat
 {set $cheat_enabled_performance_mode FALSE}
+
 ;set crowd head mode. options are
 ;eyeball_crowd_heads monkey_crowd_heads
 {set $cheat_crowd_heads 0}
+
 ;standard flaming head mode cheat
 {set $cheat_enabled_flaming_head FALSE}
+
 ;mock towell hyperspeed mode which cuts about 50% of the
 ;visible notes. Think reverse brutal mode
 {set $autoplay FALSE}
+
 ;LysiX's EPIC streak and star power text popup modifications
 {set $epictext FALSE}
+
 ;sound effects
 {set $sfx TRUE}
+
 ;whammy effects, 1 for on and 0 for off
 {set $whammyfx 1}
+
 ;track muting
 {set $muting TRUE}
+
 ;alternate song select similar to og if you're not a fan of the book
 {set $altsong FALSE}
+
 ;looping song list
 {set $loopsong TRUE}
+
 ;gh3 song select
 {set $gh3song FALSE}
-;song progress meter update rate, in seconds
-{set $progress_rate 1}
-;do not change variables below, these are used for scripting only
-{set $dontreset FALSE}
-{set $colormenu name}
-{set $difflistpos 3}
-{set $modifierlistpos 0}
-{set $trackmodifierlistpos 0}
-{set $interval_p0 50}
-{set $interval_p1 50}
-{set $interval_p2 50}
-{if $clonehero_hud {set $trackcamx 1.3}}
-{if_else $muting
-{set $mute_level -96.0}
-{set $mute_level -0.001}}
-{if_else {== $menutheme none}
-         {switch
-            {random_int 0 6}
-            (0 {set $menutheme gh2})
-            (1 {set $menutheme gold})
-            (2 {set $menutheme custom})
-            (3 {set $menutheme gh1})
-            (4 {set $menutheme 80s})
-            (5 {set $menutheme gh3} {set $gh3song TRUE} {set $gh1track FALSE} {set $gh3track TRUE})
-            (6 {set $menutheme 80s})
-         }
-       kDataUnhandled
-      }
-; We take advantage of the fact that Harmonix sets $first_screen as a
-; variable by sending the player to different first screens depending on the
-; version. Customs Edition and Expansion go to the main menu, while Mega goes
-; to the theme select. DX and Encore go to the "notice" (saving/loading)
-; screen as normal.
-{ui goto_screen $first_screen}
+
+;the rest is dev code and it's moved to another file to keep this file clean
+#include init_dev.dta

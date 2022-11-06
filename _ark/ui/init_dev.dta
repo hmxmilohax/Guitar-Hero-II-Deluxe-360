@@ -1,0 +1,34 @@
+
+;do not change variables below, these are used for scripting only
+{set $progress_rate 1}
+{set $dontreset FALSE}
+{set $colormenu name}
+{set $difflistpos 3}
+{set $modifierlistpos 0}
+{set $trackmodifierlistpos 0}
+{set $interval_p0 50}
+{set $interval_p1 50}
+{set $interval_p2 50}
+{if $clonehero_hud {set $trackcamx 1.3}}
+{if_else $muting
+{set $mute_level -96.0}
+{set $mute_level -0.001}}
+{if_else {== $menutheme none}
+         {switch
+            {random_int 0 6}
+            (0 {set $menutheme gh2})
+            (1 {set $menutheme gold})
+            (2 {set $menutheme custom})
+            (3 {set $menutheme gh1})
+            (4 {set $menutheme 80s})
+            (5 {set $menutheme gh3} {set $gh3song TRUE} {set $gh1track FALSE} {set $gh3track TRUE})
+            (6 {set $menutheme 80s})
+         }
+       kDataUnhandled
+      }
+; We take advantage of the fact that Harmonix sets $first_screen as a
+; variable by sending the player to different first screens depending on the
+; version. Customs Edition and Expansion go to the main menu, while Mega goes
+; to the theme select. DX and Encore go to the "notice" (saving/loading)
+; screen as normal.
+{ui goto_screen $first_screen}
