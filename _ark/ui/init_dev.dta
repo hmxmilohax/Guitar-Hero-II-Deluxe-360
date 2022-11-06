@@ -13,6 +13,18 @@
 {if_else $muting
 {set $mute_level -96.0}
 {set $mute_level -0.001}}
+{if {! $scorenumcolor_r}
+   {set $scorenumcolor_r 0.0}
+}
+{if {! $scorenumcolor_g}
+   {set $scorenumcolor_g 0.0}
+}
+{if {! $scorenumcolor_b}
+   {set $scorenumcolor_b 0.0}
+}
+{if {! $scorenumtype}
+   {set $scorenumtype gh2}
+}
 {if_else {== $menutheme none}
          {switch
             {random_int 0 6}
