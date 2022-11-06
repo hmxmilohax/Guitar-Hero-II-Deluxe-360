@@ -1,6 +1,7 @@
 #include game_track_panel.dta
 #include game_hud_panel.dta
-{new GHPanel mtv_overlay_panel
+#define MTV_OVERLAY_PANEL_HANDLERS
+(
    (file mtv_overlay.milo)
    (enter ;when the screen is entered
       {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
@@ -96,7 +97,7 @@
                   }
                }
             }
-            {if_else {|| $cleanmtv $hardware_check $autoplay {== {gamecfg get mode} multi_coop}} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
+            {if_else {|| $cleanmtv $autoplay {== {gamecfg get mode} multi_coop}} ;check for autoplay to determine whether to do the missed/overtstrum/percentage stuff
                {$this set_line $prefix 3
                   {sprint $mtvline3} ;if autoplay, just put the static shit
                }
@@ -156,6 +157,16 @@
       {$this set_showing $show} ;show or hide based off variable
       {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
    )
+)
+{new
+   GHPanel
+   mtv_overlay_panel
+   MTV_OVERLAY_PANEL_HANDLERS
+}
+{new
+   GHPanel
+   mtv_overlay_panel_buffer
+   MTV_OVERLAY_PANEL_HANDLERS
 }
 {new GHPanel name_overlay_panel
    (file name_overlay.milo)
@@ -238,10 +249,7 @@
       {streak_overlay_panel init_progress_bars} ;initialize the progress meters
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
-      {if_else $hardware_check
-         {set $do_streak FALSE} ;set the streak meter code to enabled
-         {set $do_streak TRUE}
-      }
+      {set $do_streak TRUE}
       {set $interval_p0 50} ;set streak interval back to default
       {set $interval_p1 50} ;set streak interval back to default
       {set $interval_p2 50} ;set streak interval back to default
@@ -270,8 +278,10 @@
       ($fast $encore) ;setup local variables
       {track_panel intro_start_msg} ;call the intro_start_msg code block in track_panel
       {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
-      {if {! $hardware_check} {streak_overlay_panel init_progress_bars}} ;initialize the progress meters
+      {mtv_overlay_panel_buffer setup_text} ;hopefully initializing it here will fix the initial percentage state
+      {streak_overlay_panel init_progress_bars} ;initialize the progress meters
       {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay for a few seconds
+      {mtv_overlay_panel_buffer show_overlay FALSE} ;hide the mtv overlay for a few seconds
       {streak_overlay_panel show_overlay FALSE} ;hide the streak meter for a few seconds
       {switch {gamecfg get mode} ;dont keep the mtv overlay on screen for faceoff and pro faceoff
          (multi_vs {set $songtitle FALSE})
@@ -343,13 +353,11 @@
       {set $notesmissed 0} ;set notes missed back to default
       {set $overstrums 0} ;set overstrums back to default
       {track_panel intro_skip}
-      {if_else $hardware_check
-         {set $do_streak FALSE} ;set the streak meter code to enabled
-         {set $do_streak TRUE}
-      }
-      {if {! $hardware_check} {streak_overlay_panel streak_lastframe}} ;should force streak overlay to appear in practice even after a run
+      {set $do_streak TRUE}
+      {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {mtv_overlay_panel setup_text} ;hopefully initializing it here will fix the initial percentage state
-      {if {! $hardware_check} {streak_overlay_panel show_overlay TRUE}} ;force show streak meter
+      {mtv_overlay_panel_buffer setup_text} ;hopefully initializing it here will fix the initial percentage state
+      {streak_overlay_panel show_overlay TRUE} ;force show streak meter
       {mtv_overlay_panel show_overlay TRUE} ;force show mtv overlay
       {if {"||" $cheat_enabled_performance_mode {! $autoplay} {! $songtitle}} ;if not autoplay or if song title modifier is turned off
          {script_task
@@ -357,6 +365,7 @@
             (units kTaskSeconds) ;wait 3 seconds
             (script
                {mtv_overlay_panel show_overlay FALSE}
+               {mtv_overlay_panel_buffer show_overlay FALSE}
             )
          } ;and hide the mtv overlay
       }
@@ -372,7 +381,7 @@
          {streak_overlay_panel setup_streak} ;if streak is supposed to run, setup the streak meter
       }
       {streak_overlay_panel show_overlay $do_streak} ;show the streak meter if it is allowed to run
-      {if {! $hardware_check} {$this init_progress_handler}} ;initialize progress bar handler
+      {$this init_progress_handler} ;initialize progress bar handler
       kDataUnhandled
    )
    (extend_track ;ran after the intro camera shot, handles similar items to intro_skip, but this is ran when intro_skip is disabled
@@ -416,12 +425,13 @@
          )
       }
       {set [intro_complete] TRUE} ;this will allow the pause>restart button to restart back to the track extend, instead of the full intro shot every restart
-      {if {! $hardware_check} {$this init_progress_handler}} ;initialize progress bar handler
+      {$this init_progress_handler} ;initialize progress bar handler
    )
    (music_start
       {ui music_start} ;start the music
       {if {|| $cheat_enabled_performance_mode {! $songtitle}}
          {mtv_overlay_panel set_showing FALSE}
+         {mtv_overlay_panel_buffer set_showing FALSE}
          {name_overlay_panel set_showing FALSE}
       }
       kDataUnhandled
@@ -475,6 +485,7 @@
    (game_won_msg ;ran on song completion
       {set $author FALSE} ;we are done with the author flag for this song, reset to false
       {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay now that the song is done
+      {mtv_overlay_panel_buffer show_overlay FALSE} ;hide the mtv overlay now that the song is done
       {beatmatch set_music_speed 1.0} ;reset music speed to 1 so that the "outro" takes the right amount of time
       {if_else $skipoutro
          {do
@@ -544,6 +555,7 @@
       {track_panel set_showing FALSE} ;hide the track panel because you failed and you suck
       {name_overlay_panel set_showing FALSE}
       {mtv_overlay_panel set_showing FALSE}
+      {mtv_overlay_panel_buffer set_showing FALSE}
       {game set_realtime TRUE} ;return to default game speed
       {$this slow_music} ;slow down the music based on LOSE_MUSIC_SLOW_SEC define
       #ifdef HX_XBOX ;xbox acheivement handling
@@ -684,7 +696,7 @@
    )
 }
 #define GAME_PANELS
-(midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
+(midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel mtv_overlay_panel_buffer mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
 {new GHScreen game_screen
    (panels GAME_PANELS fade_panel) ;panels used in this screen, in draw order
    (allow_back FALSE) ;set no default back screen when this screen is loaded

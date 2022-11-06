@@ -2,7 +2,7 @@
 #define WIN_MESSAGE_SECS (5) ;originally 3
 
 ;modification for note streaks, based on Trick's work
-{if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}} $hardware_check}
+{if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}}}
    kDataUnhandled
    {func note_streak_p0
       {set $player0_streak {player0 current_streak}} ;save P1 streak for later
@@ -19,7 +19,7 @@
       }
    }
 }
-{if_else {&& {|| {== {gamecfg get mode} multi_coop} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}} $hardware_check}
+{if_else {&& {|| {== {gamecfg get mode} multi_coop} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}}}
    kDataUnhandled
    {func note_streak_p1
       {set $player1_streak {player1 current_streak}} ;save P2 streak for later
@@ -36,7 +36,7 @@
       }
    }
 }
-{if_else {&& {== {gamecfg get mode} multi_coop} $hardware_check}
+{if_else {&& {== {gamecfg get mode} multi_coop}}
    kDataUnhandled
    {func note_streak_p2
       {set $player2_streak {'+' $player2_streak 1}}
@@ -53,8 +53,6 @@
       }
    }
 }
-{if_else $hardware_check
-   kDataUnhandled
    {new
       Object
       note_streak_callback_p0
@@ -79,9 +77,29 @@
          {if {&& {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay or multi, run star counter and miss/overstrum printing
             {streak_overlay_panel update_star_progress}
             {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
-            {if_else {|| $cleanmtv $hardware_check}
+            {if_else $cleanmtv
                kDataUnhandled
-               {mtv_overlay_panel update_text} ;update MTV line 3
+               {do
+                  {if_else $p0_evenmtv
+                     {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                        (0
+                           {mtv_overlay_panel_buffer update_text}
+                           {mtv_overlay_panel set_showing FALSE}
+                           {mtv_overlay_panel_buffer set_showing TRUE}
+                        )
+                        kDataUnhandled
+                     }
+                     {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                        (0 
+                           {mtv_overlay_panel update_text}
+                           {mtv_overlay_panel_buffer set_showing FALSE}
+                           {mtv_overlay_panel set_showing TRUE}
+                        )
+                        kDataUnhandled
+                     }
+                  }
+                  {set $p0_evenmtv {! $p0_evenmtv}} ;flip even streak flag back and forth
+               }
             }
          }
       )
@@ -140,7 +158,27 @@
                      }
                      {if_else $cleanmtv
                         kDataUnhandled
-                        {mtv_overlay_panel update_text} ;update MTV line 3
+                        {do
+                           {if_else $p0_evenmtv
+                              {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                                 (0
+                                    {mtv_overlay_panel_buffer update_text}
+                                    {mtv_overlay_panel set_showing FALSE}
+                                    {mtv_overlay_panel_buffer set_showing TRUE}
+                                 )
+                                 kDataUnhandled
+                              }
+                              {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                                 (0 
+                                    {mtv_overlay_panel update_text}
+                                    {mtv_overlay_panel_buffer set_showing FALSE}
+                                    {mtv_overlay_panel set_showing TRUE}
+                                 )
+                                 kDataUnhandled
+                              }
+                           }
+                           {set $p0_evenmtv {! $p0_evenmtv}} ;flip even streak flag back and forth
+                        }
                      }
                   }
                }
@@ -199,13 +237,33 @@
                      {set $interval_p0 50}
                      {streak_overlay_panel zero_streak 0}
                      {streak_overlay_panel update_streak 0}
-                     {if_else {|| $cleanmtv $hardware_check}
+                     {if_else $cleanmtv
                         kDataUnhandled
                         {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle misses and MTV line 3
                            {set $notesmissed {+ $notesmissed 1}} ;update missed var
-                           {if_else {|| $cleanmtv $hardware_check}
+                           {if_else $cleanmtv
                               kDataUnhandled
-                              {mtv_overlay_panel update_text} ;update MTV line 3
+                              {do
+                                 {if_else $p0_evenmtv
+                                    {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                                       (0
+                                          {mtv_overlay_panel_buffer update_text}
+                                          {mtv_overlay_panel set_showing FALSE}
+                                          {mtv_overlay_panel_buffer set_showing TRUE}
+                                       )
+                                       kDataUnhandled
+                                    }
+                                    {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                                       (0 
+                                          {mtv_overlay_panel update_text}
+                                          {mtv_overlay_panel_buffer set_showing FALSE}
+                                          {mtv_overlay_panel set_showing TRUE}
+                                       )
+                                       kDataUnhandled
+                                    }
+                                 }
+                                 {set $p0_evenmtv {! $p0_evenmtv}} ;flip even streak flag back and forth
+                              }
                            }
                         }
                      }
@@ -215,9 +273,6 @@
          }
       )
    }
-}
-{if_else $hardware_check
-   kDataUnhandled
    {new
       Object
       star_progress_callback_p0
@@ -227,8 +282,7 @@
          }
       )
    }
-}
-{if_else {&& {|| {== {gamecfg get mode} multi_coop} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}} $hardware_check}
+{if_else {&& {|| {== {gamecfg get mode} multi_coop} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}}}
    kDataUnhandled
    {new
       Object
@@ -387,47 +441,30 @@
       }
    )
    (update_star_progress
+      {if_else $clonehero_hud
+         {set $starsymbol ''}
+         {set $starsymbol '©'}
+      }
+      {set $p0_avgmulti {player0 avg_multiplier}} ;store avg mult
+      {set $previntstarratingtemp {int $starratingtemp}} ;retain last value to see if it changes
       {set $starratingtemp ;calculate fractional Scorehero-style star rating
-         {if_else {< {player0 avg_multiplier} 1.2}
-            {* {player0 avg_multiplier} 2.5}
-            {+ {* {player0 avg_multiplier} 1.25} 1.5}
+         {if_else {< $p0_avgmulti 1.2}
+            {* $p0_avgmulti 2.5}
+            {+ {* $p0_avgmulti 1.25} 1.5}
          }
       }
-      {if {&& {! $autoplay} {! $clonehero_hud}}
-         {switch {int $starratingtemp} ;set string for whole part and retrieve fractional part for application to the bar 
-            (0 {do {set $starrating ' ©'} {set $starratingtempbar $starratingtemp}})
-            (1 {do {set $starrating '1©'} {set $starratingtempbar {- $starratingtemp 1.0}}})
-            (2 {do {set $starrating '2©'} {set $starratingtempbar {- $starratingtemp 2.0}}})
-            (3 {do {set $starrating '3©'} {set $starratingtempbar {- $starratingtemp 3.0}}})
-            (4 {do {set $starrating '4©'} {set $starratingtempbar {- $starratingtemp 4.0}}})
-            (5 {do {set $starrating '5©'} {set $starratingtempbar {- $starratingtemp 5.0}}})
-            (6 {do {set $starrating '6©'} {set $starratingtempbar {- $starratingtemp 6.0}}})
-            (7 {do {set $starrating '7©'} {set $starratingtempbar {- $starratingtemp 7.0}}})
-            (8 {do {set $starrating '8©'} {set $starratingtempbar {- $starratingtemp 8.0}}})
-            (9 {do {set $starrating '9©'} {set $starratingtempbar {- $starratingtemp 9.0}}})
-            {do
-               {set $starrating ' '} {set $starratingtempbar $starratingtemp}
-            }
+      {if {! $autoplay}
+         {set $intstarratingtemp {int $starratingtemp}} ;store integer star rating
+         {if_else {== $intstarratingtemp 0}
+            {set $starrating {sprint ' ' $starsymbol}} ;if it's zero, use a space and the star symbol
+            {set $starrating {sprint $intstarratingtemp $starsymbol}} ;otherwise use the digit and the star symbol
          }
+         {set $starratingtempbar {- $starratingtemp $intstarratingtemp}} ;get fractional part of star rating
       }
-      {if {&& {! $autoplay} $clonehero_hud}
-         {switch ;set string for whole part and retrieve fractional part for application to the bar
-            {int $starratingtemp}
-            (0 {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}})
-            (1 {do {set $starrating '1'} {set $starratingtempbar {- $starratingtemp 1.0}}})
-            (2 {do {set $starrating '2'} {set $starratingtempbar {- $starratingtemp 2.0}}})
-            (3 {do {set $starrating '3'} {set $starratingtempbar {- $starratingtemp 3.0}}})
-            (4 {do {set $starrating '4'} {set $starratingtempbar {- $starratingtemp 4.0}}})
-            (5 {do {set $starrating '5'} {set $starratingtempbar {- $starratingtemp 5.0}}})
-            (6 {do {set $starrating '6'} {set $starratingtempbar {- $starratingtemp 6.0}}})
-            (7 {do {set $starrating '7'} {set $starratingtempbar {- $starratingtemp 7.0}}})
-            (8 {do {set $starrating '8'} {set $starratingtempbar {- $starratingtemp 8.0}}})
-            (9 {do {set $starrating '9'} {set $starratingtempbar {- $starratingtemp 9.0}}})
-            {do {set $starrating ' '} {set $starratingtempbar $starratingtemp}}
-         }
+      {percentbar_p2.mesh set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.1}} .1 .1} ;set bar position
+      {if {!= $intstarratingtemp $previntstarratingtemp} ;check to see if integer star rating changed
+         {star_counter.lbl set_localized_text $starrating} ;if so, apply string to label
       }
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
-      {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
    )
    (animate_streak
       {script_task
@@ -626,11 +663,33 @@
    )
    (update_streak
       ($player)
-      {switch $player
-         (0 {$this set_line $stk_prefix_p0 $streakline_p0 {localize stk_format_0}})
-         (1 {$this set_line $stk_prefix_p1 $streakline_p1 {localize stk_format_1}})
-         (2 {$this set_line $stk_prefix_p0 $streakline_p2 {localize stk_format_2}})
+      {if_else $p0_evenstreak
+         {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+            (0
+               {stk_campaign_line2.lbl set_localized_text {sprint $player0_streak}}
+               {stk_campaign_line1.lbl set_showing FALSE}
+               {if_else $player0_fc
+                  {stk_campaign_line2.lbl set color {pack_color $streaklabel_r $streaklabel_g $streaklabel_b}}
+                  {stk_campaign_line2.lbl set color {pack_color 1 1 1}}
+               }
+               {stk_campaign_line2.lbl set_showing TRUE}
+            )
+            kDataUnhandled
+         }
+         {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+            (0 
+               {stk_campaign_line1.lbl set_localized_text {sprint $player0_streak}}
+               {stk_campaign_line2.lbl set_showing FALSE}
+               {if_else $player0_fc
+                  {stk_campaign_line1.lbl set color {pack_color $streaklabel_r $streaklabel_g $streaklabel_b}}
+                  {stk_campaign_line1.lbl set color {pack_color 1 1 1}}
+               }
+               {stk_campaign_line1.lbl set_showing TRUE}
+            )
+            kDataUnhandled
+         }
       }
+      {set $p0_evenstreak {! $p0_evenstreak}} ;flip even streak flag back and forth
    )
    (set_line
       ($prefix $i $text)
@@ -675,15 +734,9 @@
       {if $sppop
          {game add_sink $this star_power_ready}
       }
-      {if_else $hardware_check
-         kDataUnhandled
-         {player_matcher0 add_sink note_streak_callback_p0}
-      }
-      {if_else $hardware_check
-         kDataUnhandled
-         {if {exists player_matcher1}
-            {player_matcher1 add_sink note_streak_callback_p1}
-         }
+      {player_matcher0 add_sink note_streak_callback_p0}
+      {if {exists player_matcher1}
+         {player_matcher1 add_sink note_streak_callback_p1}
       }
       ;{player0 add_sink star_progress_callback_p0}
       {if {!= tutorial {gamecfg get mode}}
@@ -855,7 +908,7 @@
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_base_bar.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow_meter.mesh} set_showing FALSE}
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
-      {if $hardware_check {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}
    )
    (exit
       {game remove_sink $this}

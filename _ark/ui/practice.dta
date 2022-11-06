@@ -98,8 +98,8 @@
    (enter
       {section.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
       {section_shadow.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
-      {set $sectionlabelx {if_else {|| $cleanmtv $hardware_check} -295 -295}} ;set the base x position for the section label
-      {set $sectionlabely {if_else {|| $cleanmtv $hardware_check} 161 147}} ;set the base y position for the section label
+      {set $sectionlabelx {if_else $cleanmtv -295 -295}} ;set the base x position for the section label
+      {set $sectionlabely {if_else $cleanmtv 161 147}} ;set the base y position for the section label
       {section.lbl set_local_pos $sectionlabelx 0 $sectionlabely} ;setup section text label to specific position and scale as set above
       {section_shadow.lbl set_local_pos {+ $sectionlabelx 3} 1 {- $sectionlabely 3}} ;setup section text label to specific position and scale as set above
       {practice_space1.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
@@ -111,11 +111,9 @@
       }
    )
    (intro_skip
-      {if_else $hardware_check
-      {set $do_streak FALSE} ;set the streak meter code to enabled
-      {set $do_streak TRUE}}
+      {set $do_streak TRUE}
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
-      {if {! $hardware_check} {streak_overlay_panel show_overlay TRUE}} ;show the streak panel
+      {streak_overlay_panel show_overlay TRUE} ;show the streak panel
       {mtv_overlay_panel show_overlay TRUE} ;show the mtv overlay
       {script_task (delay 3) (units kTaskSeconds) ;wait 3 seconds
          (script {mtv_overlay_panel show_overlay {if_else $autoplay TRUE $songtitle}}) ;hide the mtv overlay if song title or autoplay is enabled
@@ -154,8 +152,8 @@
             ''
             
             {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-               {if_else {|| $cleanmtv $hardware_check} {sprint '\n' $sec} {sprint '\n\n' $sec}}
-               {if_else {|| $cleanmtv $hardware_check} $sec {sprint '\n' $sec}}
+               {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
+               {if_else $cleanmtv $sec {sprint '\n' $sec}}
             }
          }
       }
@@ -163,8 +161,8 @@
            {if_else {== $sec [ignore_section]}
               ''
               {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-                 {if_else {|| $cleanmtv $hardware_check} {sprint '\n' $sec} {sprint '\n\n' $sec}}
-                 {if_else {|| $cleanmtv $hardware_check} $sec {sprint '\n' $sec}}
+                 {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
+                 {if_else $cleanmtv $sec {sprint '\n' $sec}}
               }
            }
         }
