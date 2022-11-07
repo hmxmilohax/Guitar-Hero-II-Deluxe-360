@@ -205,6 +205,10 @@
       {{streak_overlay_panel find star_counter.lbl} set color {pack_color CLONE_STAR_COUNTER_COLOR}} ;custom star counter color
       {{streak_overlay_panel find star_counter.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
    }
+   {if_else $clonehero_hud
+      {{streak_overlay_panel find star_counter_2.lbl} set color {pack_color CLONE_STAR_COUNTER_COLOR}} ;custom star counter color
+      {{streak_overlay_panel find star_counter_2.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
+   }
    
    {{streak_overlay_panel find percentbar_p1.mat} set color {pack_color SONG_PROGRESS_BAR_COLOR}} ;custom song progress bar color
    

@@ -422,6 +422,7 @@
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
+      {{streak_overlay_panel find star_counter_2.lbl} set_text $starrating} ;apply string to label
    )
 ;   (update_song_progress
 ;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
@@ -464,7 +465,27 @@
       }
       {percentbar_p2.mesh set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.1}} .1 .1} ;set bar position
       {if {!= $intstarratingtemp $previntstarratingtemp} ;check to see if integer star rating changed
-         {star_counter.lbl set_localized_text $starrating} ;if so, apply string to label
+         {if_else $p0_evenstar
+         {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+            (0
+               {star_counter_2.lbl set_localized_text $starrating}
+               {star_counter.lbl set_showing FALSE}
+               ;{star_counter_2.lbl set color {pack_color 0 0 1}} ;buffer test. label is colored already
+               {star_counter_2.lbl set_showing TRUE}
+            )
+            kDataUnhandled
+         }
+         {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+            (0 
+               {star_counter.lbl set_localized_text $starrating}
+               {star_counter_2.lbl set_showing FALSE}
+               ;{star_counter.lbl set color {pack_color 1 0 0}} ;buffer test. label is colored already
+               {star_counter.lbl set_showing TRUE}
+            )
+            kDataUnhandled
+         }
+      }
+      {set $p0_evenstar {! $p0_evenstar}} ;flip even streak flag back and forth
       }
    )
    (animate_streak
@@ -842,7 +863,9 @@
       {{streak_overlay_panel find spraypaint.mesh} set_showing FALSE}
       {{streak_overlay_panel find score_frame.mesh} set_showing FALSE}
       {{streak_overlay_panel find star_counter.lbl} set_local_pos 102 0 20}
+      {{streak_overlay_panel find star_counter_2.lbl} set_local_pos 102 0 20}
       {{streak_overlay_panel find star_counter.lbl} set_local_scale .9 1 .9}
+      {{streak_overlay_panel find star_counter_2.lbl} set_local_scale .9 1 .9}
       {{streak_overlay_panel find stk_campaign_line1.lbl} set_local_pos 60 0 -3}
       {{streak_overlay_panel find stk_campaign_line2.lbl} set_local_pos 60 0 -3}
       {{streak_overlay_panel find stk_campaign_line1.lbl} set_local_scale .6 1 .6}
