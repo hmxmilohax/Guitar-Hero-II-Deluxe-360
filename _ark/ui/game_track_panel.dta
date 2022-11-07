@@ -238,6 +238,7 @@
    ;{{hud loaded_dir} iterate Mat $m {$m set color {pack_color 0.84 0.20 0.57}}}
 
    {{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
+   {{{{track_panel loaded_dir} find $tracktype} find gems.grp} set_local_scale_index 0 0.77} ;clone hero beatline fix
    {{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
    {{{{track_panel loaded_dir} find $tracktype} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
