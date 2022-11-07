@@ -394,6 +394,10 @@
       }
    )
    (enter
+      {if_else $clonehero_hud
+         {set $starsymbol ''}
+         {set $starsymbol '©'}
+      }
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 29}
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
       {if_else {|| {game is_tutorial_running} {== {gamecfg get mode} attract} $cheat_enabled_performance_mode}
@@ -406,8 +410,8 @@
             {set $starratingtemp 0}
             {set $notesmissed 0}
             {set $overstrums 0}
-            {if_else $autoplay
-               {set $starrating ' '} ;if autoplay, blank star rating
+            {if_else {|| $clonehero_hud $autoplay}
+               {set $starrating ' '} ;if autoplay or ch hud, blank star rating
                {set $starrating ' ©'} ;otherwise, set to default
             }
             {$this setup_streak}
@@ -418,9 +422,6 @@
       {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
       {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
       {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
-      {if $clonehero_hud
-         {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}
-      }
    )
 ;   (update_song_progress
 ;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
@@ -886,7 +887,7 @@
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_pos {- $clonestreakx 25} 25 -20}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_scale 1.2 1.2 1.2}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_glow.mesh} set_local_scale 1.1 1.5 .8}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos {- $clonestreakx 25} 25 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos -33 25 -20}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_scale 1.2 1.2 1.2}
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_scale .6 .6 .6}
       ;{{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_showing FALSE}

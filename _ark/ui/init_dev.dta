@@ -9,11 +9,15 @@
 {set $interval_p0 50}
 {set $interval_p1 50}
 {set $interval_p2 50}
-{if $clonehero_hud {set $trackcamx 1.3}}
 {if_else $muting
 {set $mute_level -96.0}
 {set $mute_level -0.001}}
 ;below is setting default themes if the theme dta doesnt exist
+
+{if_else $clonehero_hud
+   {set $trackcamx 1.3}
+   {set $trackcamx 1.0}
+}
 
 {if {! $starpowercolor_r}
    {set $starpowercolor_r 0.34}
@@ -85,6 +89,26 @@
    {set $scorenumcolor_b 0.0}
 }
 
+{if {! $cloneherostarcounter_r}
+   {set $cloneherostarcounter_r 0.70}
+}
+{if {! $cloneherostarcounter_g}
+   {set $cloneherostarcounter_g 0.6}
+}
+{if {! $cloneherostarcounter_b}
+   {set $cloneherostarcounter_b 0.04}
+}
+
+{if {! $cloneheroscorenumcolor_r}
+   {set $cloneheroscorenumcolor_r 1}
+}
+{if {! $cloneheroscorenumcolor_g}
+   {set $cloneheroscorenumcolor_g 1}
+}
+{if {! $cloneheroscorenumcolor_b}
+   {set $cloneheroscorenumcolor_b 1}
+}
+
 {if {! $scorenumtype}
    {set $scorenumtype gh2}
 }
@@ -107,6 +131,20 @@
 }
 {if {! $mtv_b}
    {set $mtv_b 1}
+}
+
+{if {! $notepopup_r}
+   {set $notepopup_r 1}
+}
+{if {! $notepopup_g}
+   {set $notepopup_g 1}
+}
+{if {! $notepopup_b}
+   {set $notepopup_b 1}
+}
+
+{if {! $notepopupfont}
+   {set $notepopupfont rokk}
 }
 
 {if {! $gemcolor_r}

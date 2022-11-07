@@ -2,6 +2,7 @@
 ;current themes are
 ;gh1 gh2 gh3 80s gold custom
 {set $menutheme none}
+
 ;sets custom values for custom menu theme
 ;you can customize your own menu theme here
    ;custom tile border image. must be the name of the one found in /_ark/track/custom_track_textures
@@ -30,3 +31,12 @@
    {set $custom_os_disabled_color_r 0.77} {set $custom_os_disabled_color_g 0.54} {set $custom_os_disabled_color_b 0.38}
    ;sets all menu item buttons when selected color in RGB
    {set $custom_os_selecting_color_r 1} {set $custom_os_disabled_color_g 1} {set $custom_os_disabled_color_b 1}
+
+;alternate song select similar to og if you're not a fan of the book
+{set $altsong FALSE}
+
+;looping song list
+{set $loopsong TRUE}
+
+;gh3 song select
+{set $gh3song FALSE}

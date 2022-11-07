@@ -1,3 +1,25 @@
+
+;clone hero style in game HUD
+{set $clonehero_hud FALSE}
+
+;brighter hopos if you have trouble telling them apart
+{set $brighthopos FALSE}
+
+;darker strums if you have trouble telling them apart
+{set $darkstrums FALSE}
+
+;gh1 style notes and smashers ported from ps2
+{set $gh1track FALSE}
+
+;gh3 style smashers ported from pc
+{set $gh3track FALSE}
+
+;empty smashers, only rings until held down
+{set $voidfrets FALSE}
+
+;turn off hit flames
+{set $noflames FALSE}
+
 ;sets custom star power color in RGB. 0.34 0.5 0.67 is default
 {set $starpowercolor_r 0.34} {set $starpowercolor_g 0.5} {set $starpowercolor_b 0.67}
 
@@ -19,6 +41,12 @@
 ;sets custom score number color in RGB
 {set $scorenumcolor_r 0.0} {set $scorenumcolor_g 0.0} {set $scorenumcolor_b 0.0}
 
+;sets custom star counter text in clone hero hud mode color in RGB
+{set $cloneherostarcounter_r 0.70} {set $cloneherostarcounter_g 0.6} {set $cloneherostarcounter_b 0.04}
+
+;sets custom score number in clone hero hud mode color in RGB
+{set $cloneheroscorenumcolor_r 1} {set $cloneheroscorenumcolor_g 1} {set $cloneheroscorenumcolor_b 1}
+
 ;sets custom images for score numbers if available
 {set $scorenumtype gh2}
 
@@ -27,6 +55,12 @@
 
 ;sets song/artist display text color, better known as mtv overlay
 {set $mtv_r 1} {set $mtv_g 1} {set $mtv_b 1}
+
+;sets note popup text color, better known as mtv overlay
+{set $notepopup_r 1} {set $notepopup_g 1} {set $notepopup_b 1}
+
+;sets note popup text font, better known as mtv overlay
+{set $notepopupfont rokk}
 
 ;sets custom gem color in RGB
 {set $customgemcolor FALSE} ; enables custom gem colors
