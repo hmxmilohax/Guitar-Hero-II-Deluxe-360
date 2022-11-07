@@ -486,18 +486,21 @@
       {stop_sfx sp_deployed_multi} ;stop playing sp noisess
       {stop_sfx sp_deploystart.cue} ;stop playing sp noisess
       {streak_overlay_panel show_overlay FALSE} ;hide the streak overlay
+      {name_overlay_panel set_showing FALSE}
+      {mtv_overlay_panel set_showing FALSE}
+      {mtv_overlay_panel_buffer set_showing FALSE}
       kDataUnhandled
    )
    (game_won_msg ;ran on song completion
       {set $author FALSE} ;we are done with the author flag for this song, reset to false
-      {mtv_overlay_panel show_overlay FALSE} ;hide the mtv overlay now that the song is done
-      {mtv_overlay_panel_buffer show_overlay FALSE} ;hide the mtv overlay now that the song is done
+      {name_overlay_panel set_showing FALSE}
+      {mtv_overlay_panel set_showing FALSE}
+      {mtv_overlay_panel_buffer set_showing FALSE}
       {beatmatch set_music_speed 1.0} ;reset music speed to 1 so that the "outro" takes the right amount of time
       {if_else $skipoutro
          {do
             {hud set_showing FALSE}
             {track_panel set_showing FALSE}
-            {name_overlay_panel set_showing FALSE}
             {script_task
                (delay 0.5)
                (units kTaskSeconds)
