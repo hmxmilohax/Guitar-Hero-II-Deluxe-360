@@ -7,12 +7,20 @@
 ($smashercolor_r $smashercolor_g $smashercolor_b)
 #define STREAK_COLOR
 ($streaklabel_r $streaklabel_g $streaklabel_b)
+#define STREAK_STANDARD_COLOR
+($streakstandardlabel_r $streakstandardlabel_g $streakstandardlabel_b)
+#define SONG_PROGRESS_BAR_COLOR
+($songprogressbar_r $songprogressbar_g $songprogressbar_b)
+#define STAR_PROGRESS_BAR_COLOR
+($starprogressbar_r $starprogressbar_g $starprogressbar_b)
 #define STAR_COUNTER_COLOR
 ($starcounter_r $starcounter_g $starcounter_b)
 #define SCORE_NUM_COLOR
 ($scorenumcolor_r $scorenumcolor_g $scorenumcolor_b)
 #define SCORE_NUM_FRAME_COLOR
 ($scorenumframe_r $scorenumframe_g $scorenumframe_b)
+#define MTV_OVERLAY_COLOR
+($mtv_r $mtv_g $mtv_b)
 #define TRACK_RAIL_COLOR
 ($trackrailcolor_r $trackrailcolor_g $trackrailcolor_b)
 #define BEATLINE_COLOR
@@ -163,9 +171,27 @@
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_yellow.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 }
 
-   {{streak_overlay_panel find stk_campaign_line1.lbl} set color {pack_color STREAK_COLOR}} ;custom FC streak color
 
    {{streak_overlay_panel find star_counter.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
+   
+   {{streak_overlay_panel find percentbar_p1.mat} set color {pack_color SONG_PROGRESS_BAR_COLOR}} ;custom song progress bar color
+   
+   {{streak_overlay_panel find percentbar_p2.mat} set color {pack_color STAR_PROGRESS_BAR_COLOR}} ;custom star progress bar color
+   
+   {{mtv_overlay_panel find mtv_campaign_line1.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{mtv_overlay_panel find mtv_campaign_line2.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{mtv_overlay_panel find mtv_campaign_line3.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{mtv_overlay_panel_buffer find mtv_campaign_line1.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{mtv_overlay_panel_buffer find mtv_campaign_line2.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{mtv_overlay_panel_buffer find mtv_campaign_line3.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{mtv_overlay_panel find mtv_campaign_line1.lbl} set_showing TRUE} ;custom mtv overlay color
+   {{mtv_overlay_panel find mtv_campaign_line2.lbl} set_showing TRUE} ;custom mtv overlay color
+   {{mtv_overlay_panel find mtv_campaign_line3.lbl} set_showing TRUE} ;custom mtv overlay color
+   {{mtv_overlay_panel_buffer find mtv_campaign_line1.lbl} set_showing TRUE} ;custom mtv overlay color
+   {{mtv_overlay_panel_buffer find mtv_campaign_line2.lbl} set_showing TRUE} ;custom mtv overlay color
+   {{mtv_overlay_panel_buffer find mtv_campaign_line3.lbl} set_showing TRUE} ;custom mtv overlay color
+   {mtv_overlay_panel setup_text}
+   {mtv_overlay_panel_buffer setup_text}
 
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_frame.mat} set color {pack_color SCORE_NUM_FRAME_COLOR}} ;score number frame color
 

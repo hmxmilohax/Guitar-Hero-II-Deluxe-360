@@ -461,9 +461,13 @@
 (
    {switch $colormenu
       (name $namecolor_r)
+      (mtv $mtv_r)
       (starpower $starpowercolor_r)
       (streaklabel $streaklabel_r)
+      (streakstandardlabel $streakstandardlabel_r)
       (starcounter $starcounter_r)
+      (songprogress $songprogressbar_r)
+      (starprogress $starprogressbar_r)
       (scorenum $scorenumcolor_r)
       (scorenumframe $scorenumframe_r)
       (gemcolor $gemcolor_r)
@@ -476,9 +480,13 @@
 (
    {switch $colormenu
       (name $namecolor_g)
+      (mtv $mtv_g)
       (starpower $starpowercolor_g)
       (streaklabel $streaklabel_g)
+      (streakstandardlabel $streakstandardlabel_g)
       (starcounter $starcounter_g)
+      (songprogress $songprogressbar_g)
+      (starprogress $starprogressbar_g)
       (scorenum $scorenumcolor_g)
       (scorenumframe $scorenumframe_g)
       (gemcolor $gemcolor_g)
@@ -491,9 +499,13 @@
 (
    {switch $colormenu
       (name $namecolor_b)
+      (mtv $mtv_b)
       (starpower $starpowercolor_b)
       (streaklabel $streaklabel_b)
+      (streakstandardlabel $streakstandardlabel_b)
       (starcounter $starcounter_b)
+      (songprogress $songprogressbar_b)
+      (starprogress $starprogressbar_b)
       (scorenum $scorenumcolor_b)
       (scorenumframe $scorenumframe_b)
       (gemcolor $gemcolor_b)
@@ -561,9 +573,13 @@
             {localize
                {switch $colormenu
                   (name "os_fontcolortitle")
+                  (mtv "os_mtv")
                   (starpower "os_starpower")
                   (streaklabel "os_streaklabel")
+                  (streakstandardlabel "os_streakstandardlabel")
                   (starcounter "os_starcounter")
+                  (songprogress "os_songprogress")
+                  (starprogress "os_starprogress")
                   (scorenum "os_scorenum")
                   (scorenumframe "os_scorenumframe")
                   (gemcolor "os_gemcolor")
@@ -587,9 +603,13 @@
          {do
             {switch $colormenu
                (name {set $namecolor_r {* 0.01 {gs_band.sld current}}})
+               (mtv {set $mtv_r {* 0.01 {gs_band.sld current}}})
                (starpower {set $starpowercolor_r {* 0.01 {gs_band.sld current}}})
                (streaklabel {set $streaklabel_r {* 0.01 {gs_band.sld current}}})
+               (streakstandardlabel {set $streakstandardlabel_r {* 0.01 {gs_band.sld current}}})
                (starcounter {set $starcounter_r {* 0.01 {gs_band.sld current}}})
+               (songprogress {set $songprogressbar_r {* 0.01 {gs_band.sld current}}})
+               (starprogress {set $starprogressbar_r {* 0.01 {gs_band.sld current}}})
                (scorenum {set $scorenumcolor_r {* 0.01 {gs_band.sld current}}})
                (scorenumframe {set $scorenumframe_r {* 0.01 {gs_band.sld current}}})
                (gemcolor {set $customgemcolor TRUE} {set $gemcolor_r {* 0.01 {gs_band.sld current}}})
@@ -599,9 +619,13 @@
             }
             {switch $colormenu
                (name {set $namecolor_g {* 0.01 {gs_guitar.sld current}}})
+               (mtv {set $mtv_g {* 0.01 {gs_guitar.sld current}}})
                (starpower {set $starpowercolor_g {* 0.01 {gs_guitar.sld current}}})
                (streaklabel {set $streaklabel_g {* 0.01 {gs_guitar.sld current}}})
+               (streakstandardlabel {set $streakstandardlabel_g {* 0.01 {gs_guitar.sld current}}})
                (starcounter {set $starcounter_g {* 0.01 {gs_guitar.sld current}}})
+               (songprogress {set $songprogressbar_g {* 0.01 {gs_guitar.sld current}}})
+               (starprogress {set $starprogressbar_g {* 0.01 {gs_guitar.sld current}}})
                (scorenum {set $scorenumcolor_g {* 0.01 {gs_guitar.sld current}}})
                (scorenumframe {set $scorenumframe_g {* 0.01 {gs_guitar.sld current}}})
                (gemcolor {set $customgemcolor TRUE} {set $gemcolor_g {* 0.01 {gs_guitar.sld current}}})
@@ -611,9 +635,13 @@
             }
             {switch $colormenu
                (name {set $namecolor_b {* 0.01 {gs_sfx.sld current}}})
+               (mtv {set $mtv_b {* 0.01 {gs_sfx.sld current}}})
                (starpower {set $starpowercolor_b {* 0.01 {gs_sfx.sld current}}})
                (streaklabel {set $streaklabel_b {* 0.01 {gs_sfx.sld current}}})
+               (streakstandardlabel {set $streakstandardlabel_b {* 0.01 {gs_sfx.sld current}}})
                (starcounter {set $starcounter_b {* 0.01 {gs_sfx.sld current}}})
+               (songprogress {set $songprogressbar_b {* 0.01 {gs_sfx.sld current}}})
+               (starprogress {set $starprogressbar_b {* 0.01 {gs_sfx.sld current}}})
                (scorenum {set $scorenumcolor_b {* 0.01 {gs_sfx.sld current}}})
                (scorenumframe {set $scorenumframe_b {* 0.01 {gs_sfx.sld current}}})
                (gemcolor {set $customgemcolor TRUE} {set $gemcolor_b {* 0.01 {gs_sfx.sld current}}})

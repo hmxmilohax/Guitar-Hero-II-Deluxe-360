@@ -101,9 +101,9 @@
       {gs_title.lbl set_localized_text {localize os_trackelm}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
-            elm_name elm_starpower elm_streaklabel
-            elm_starcounter elm_scorenum elm_scorenumframe elm_gemcolor
-            elm_smashercolor elm_trackrailcolor elm_beatlinecolor
+            elm_name elm_mtv elm_starpower elm_streaklabel elm_streakstandardlabel
+            elm_starcounter elm_songprogress elm_starprogress elm_scorenum elm_scorenumframe
+            elm_gemcolor elm_smashercolor elm_trackrailcolor elm_beatlinecolor
          )
       }
    )
@@ -112,7 +112,11 @@
          (elm_name {set $colormenu name}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_starpower {set $colormenu starpower}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_streaklabel {set $colormenu streaklabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_streakstandardlabel {set $colormenu streakstandardlabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_starcounter {set $colormenu starcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_songprogress {set $colormenu songprogress}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_starprogress {set $colormenu starprogress}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+         (elm_mtv {set $colormenu mtv}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_scorenum {set $colormenu scorenum}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_scorenumframe {set $colormenu scorenumframe}) ;set up a temp var for which color we will be changing in the overshell_color_slider
          (elm_gemcolor {set $colormenu gemcolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider

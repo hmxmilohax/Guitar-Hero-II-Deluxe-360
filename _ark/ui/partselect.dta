@@ -1,6 +1,10 @@
 {new GHPanel selpart_overlay_panel
    (file mtv_overlay.milo)
    (enter ;when the screen is entered
+      {{selpart_overlay_panel find mtv_campaign_line1.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{selpart_overlay_panel find mtv_campaign_line2.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {{selpart_overlay_panel find mtv_campaign_line3.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
+   {selpart_overlay_panel setup_text}
       {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
       {mtv_overlay.view set_local_pos -100 -50 80} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
 ;     {$this setup_text} ;run the setup_text code block below

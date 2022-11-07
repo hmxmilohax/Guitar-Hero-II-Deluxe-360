@@ -670,7 +670,7 @@
                {stk_campaign_line1.lbl set_showing FALSE}
                {if_else $player0_fc
                   {stk_campaign_line2.lbl set color {pack_color $streaklabel_r $streaklabel_g $streaklabel_b}}
-                  {stk_campaign_line2.lbl set color {pack_color 1 1 1}}
+                  {stk_campaign_line2.lbl set color {pack_color $streakstandardlabel_r $streakstandardlabel_g $streakstandardlabel_b}}
                }
                {stk_campaign_line2.lbl set_showing TRUE}
             )
@@ -682,7 +682,7 @@
                {stk_campaign_line2.lbl set_showing FALSE}
                {if_else $player0_fc
                   {stk_campaign_line1.lbl set color {pack_color $streaklabel_r $streaklabel_g $streaklabel_b}}
-                  {stk_campaign_line1.lbl set color {pack_color 1 1 1}}
+                  {stk_campaign_line1.lbl set color {pack_color $streakstandardlabel_r $streakstandardlabel_g $streakstandardlabel_b}}
                }
                {stk_campaign_line1.lbl set_showing TRUE}
             )

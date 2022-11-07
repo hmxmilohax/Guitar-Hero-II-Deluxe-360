@@ -13,6 +13,68 @@
 {if_else $muting
 {set $mute_level -96.0}
 {set $mute_level -0.001}}
+;below is setting default themes if the theme dta doesnt exist
+
+{if {! $starpowercolor_r}
+   {set $starpowercolor_r 0.34}
+}
+{if {! $starpowercolor_g}
+   {set $starpowercolor_g 0.5}
+}
+{if {! $starpowercolor_b}
+   {set $starpowercolor_b 0.67}
+}
+
+{if {! $streaklabel_r}
+   {set $streaklabel_r 0.79}
+}
+{if {! $streaklabel_g}
+   {set $streaklabel_g 0.51}
+}
+{if {! $streaklabel_b}
+   {set $streaklabel_b 0.07}
+}
+
+{if {! $streakstandardlabel_r}
+   {set $streakstandardlabel_r 1}
+}
+{if {! $streakstandardlabel_g}
+   {set $streakstandardlabel_g 1}
+}
+{if {! $streakstandardlabel_b}
+   {set $streakstandardlabel_b 1}
+}
+
+{if {! $starcounter_r}
+   {set $starcounter_r 1}
+}
+{if {! $starcounter_g}
+   {set $starcounter_g 1}
+}
+{if {! $starcounter_b}
+   {set $starcounter_b 1}
+}
+
+{if {! $songprogressbar_r}
+   {set $songprogressbar_r 0.47}
+}
+{if {! $songprogressbar_g}
+   {set $songprogressbar_g 0.52}
+}
+{if {! $songprogressbar_b}
+   {set $songprogressbar_b 0.81}
+}
+
+{if {! $starprogressbar_r}
+   {set $starprogressbar_r 1}
+}
+{if {! $starprogressbar_g}
+   {set $starprogressbar_g 1}
+}
+{if {! $starprogressbar_b}
+   {set $starprogressbar_b 1}
+}
+
 {if {! $scorenumcolor_r}
    {set $scorenumcolor_r 0.0}
 }
@@ -22,9 +84,171 @@
 {if {! $scorenumcolor_b}
    {set $scorenumcolor_b 0.0}
 }
+
 {if {! $scorenumtype}
    {set $scorenumtype gh2}
 }
+
+{if {! $scorenumframe_r}
+   {set $scorenumframe_r 1}
+}
+{if {! $scorenumframe_g}
+   {set $scorenumframe_g 1}
+}
+{if {! $scorenumframe_b}
+   {set $scorenumframe_b 1}
+}
+
+{if {! $mtv_r}
+   {set $mtv_r 1}
+}
+{if {! $mtv_g}
+   {set $mtv_g 1}
+}
+{if {! $mtv_b}
+   {set $mtv_b 1}
+}
+
+{if {! $gemcolor_r}
+   {set $gemcolor_r 1}
+}
+{if {! $gemcolor_g}
+   {set $gemcolor_g 1}
+}
+{if {! $gemcolor_b}
+   {set $gemcolor_b 1}
+}
+
+{if {! $smashercolor_r}
+   {set $smashercolor_r 1}
+}
+{if {! $smashercolor_g}
+   {set $smashercolor_g 1}
+}
+{if {! $smashercolor_b}
+   {set $smashercolor_b 1}
+}
+
+{if {! $trackrailcolor_r}
+   {set $trackrailcolor_r 1}
+}
+{if {! $trackrailcolor_g}
+   {set $trackrailcolor_g 1}
+}
+{if {! $trackrailcolor_b}
+   {set $trackrailcolor_b 1}
+}
+
+{if {! $beatlinecolor_r}
+   {set $beatlinecolor_r 0.87}
+}
+{if {! $beatlinecolor_g}
+   {set $beatlinecolor_g 0.87}
+}
+{if {! $beatlinecolor_b}
+   {set $beatlinecolor_b 0.87}
+}
+
+{if {! $namefont}
+   {set $namefont dyingmarker}
+}
+
+{if {! $namecolor_r}
+   {set $namecolor_r 1}
+}
+{if {! $namecolor_g}
+   {set $namecolor_g 1}
+}
+{if {! $namecolor_b}
+   {set $namecolor_b 1}
+}
+
+;below sets default ui themes if none provided
+{if {! $menutheme}
+   {set $menutheme none}
+}
+{if {! $custom_os_border_image}
+   {set $custom_os_border_image tile_custom_keep}
+}
+
+{if {! $custom_os_label_color_r}
+   {set $custom_os_label_color_r 1}
+}
+{if {! $custom_os_label_color_g}
+   {set $custom_os_label_color_g 1}
+}
+{if {! $custom_os_label_color_b}
+   {set $custom_os_label_color_b 1}
+}
+
+{if {! $custom_os_label_font}
+   {set $custom_os_label_font tapeworm}
+}
+
+{if {! $custom_os_label_all_caps}
+   {set $custom_os_label_all_caps FALSE}
+}
+
+{if {! $custom_os_wrap_width}
+   {set $custom_os_wrap_width 640}
+}
+
+{if {! $custom_os_label_width}
+   {set $custom_os_label_width 640}
+}
+
+{if {! $custom_os_label_height}
+   {set $custom_os_label_height 30}
+}
+
+{if {! $custom_os_button_font}
+   {set $custom_os_button_font hand}
+}
+
+{if {! $custom_os_button_all_caps}
+   {set $custom_os_button_all_caps TRUE}
+}
+
+{if {! $custom_os_normal_color_r}
+   {set $custom_os_normal_color_r 0.72}
+}
+{if {! $custom_os_normal_color_g}
+   {set $custom_os_normal_color_g 0.33}
+}
+{if {! $custom_os_normal_color_b}
+   {set $custom_os_normal_color_b 0.07}
+}
+
+{if {! $custom_os_focus_color_r}
+   {set $custom_os_focus_color_r 1}
+}
+{if {! $custom_os_focus_color_g}
+   {set $custom_os_focus_color_g 0.40}
+}
+{if {! $custom_os_focus_color_b}
+   {set $custom_os_focus_color_b 0}
+}
+
+{if {! $custom_os_disabled_color_r}
+   {set $custom_os_disabled_color_r 0.77}
+}
+{if {! $custom_os_disabled_color_g}
+   {set $custom_os_disabled_color_g 0.54}
+}
+{if {! $custom_os_disabled_color_b}
+   {set $custom_os_disabled_color_b 0.38}
+}
+
+{if {! $custom_os_disabled_color_r}
+   {set $custom_os_disabled_color_r 1}
+}
+{if {! $custom_os_disabled_color_g}
+   {set $custom_os_disabled_color_g 1}
+}
+{if {! $custom_os_disabled_color_b}
+   {set $custom_os_disabled_color_b 1}
+}
+;this randomizes the menu theme if none is forced by the user
 {if_else {== $menutheme none}
          {switch
             {random_int 0 6}
