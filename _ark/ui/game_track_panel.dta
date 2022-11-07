@@ -145,11 +145,21 @@
 }
 
 {if $customsmashercolor
-   {{{{track_panel loaded_dir} find $tracktype} find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
-   {{{{track_panel loaded_dir} find $tracktype} find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
-   {{{{track_panel loaded_dir} find $tracktype} find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
-   {{{{track_panel loaded_dir} find $tracktype} find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
-   {{{{track_panel loaded_dir} find $tracktype} find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;remove the track side glow stuff because I hate it
+   {{{{track_panel loaded_dir} find $tracktype} find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_add_blue.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_add_green.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_add_red.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_add_orange.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   {{{{track_panel loaded_dir} find $tracktype} find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
    {{{{track_panel loaded_dir} find $tracktype} find now_ring.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
    {{{{track_panel loaded_dir} find $tracktype} find now_ring_blue.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
    {{{{track_panel loaded_dir} find $tracktype} find now_ring_bonus.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
@@ -169,6 +179,12 @@
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_orange.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_red.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_yellow.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+   {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_blue_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+   {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_bonus_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+   {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_green_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+   {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_orange_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+   {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_red_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+   {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_yellow_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 }
 
 
@@ -177,21 +193,6 @@
    {{streak_overlay_panel find percentbar_p1.mat} set color {pack_color SONG_PROGRESS_BAR_COLOR}} ;custom song progress bar color
    
    {{streak_overlay_panel find percentbar_p2.mat} set color {pack_color STAR_PROGRESS_BAR_COLOR}} ;custom star progress bar color
-   
-   {{mtv_overlay_panel find mtv_campaign_line1.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
-   {{mtv_overlay_panel find mtv_campaign_line2.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
-   {{mtv_overlay_panel find mtv_campaign_line3.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
-   {{mtv_overlay_panel_buffer find mtv_campaign_line1.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
-   {{mtv_overlay_panel_buffer find mtv_campaign_line2.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
-   {{mtv_overlay_panel_buffer find mtv_campaign_line3.lbl} set color {pack_color MTV_OVERLAY_COLOR}} ;custom mtv overlay color
-   {{mtv_overlay_panel find mtv_campaign_line1.lbl} set_showing TRUE} ;custom mtv overlay color
-   {{mtv_overlay_panel find mtv_campaign_line2.lbl} set_showing TRUE} ;custom mtv overlay color
-   {{mtv_overlay_panel find mtv_campaign_line3.lbl} set_showing TRUE} ;custom mtv overlay color
-   {{mtv_overlay_panel_buffer find mtv_campaign_line1.lbl} set_showing TRUE} ;custom mtv overlay color
-   {{mtv_overlay_panel_buffer find mtv_campaign_line2.lbl} set_showing TRUE} ;custom mtv overlay color
-   {{mtv_overlay_panel_buffer find mtv_campaign_line3.lbl} set_showing TRUE} ;custom mtv overlay color
-   {mtv_overlay_panel setup_text}
-   {mtv_overlay_panel_buffer setup_text}
 
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_frame.mat} set color {pack_color SCORE_NUM_FRAME_COLOR}} ;score number frame color
 
@@ -243,6 +244,8 @@
    {{{{track_panel loaded_dir} find $tracktype} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
+   
+   {hud toggle_masks} ;remove the black backing on the hud elements
 #endif
    {track_panel reset} ;after setting up the track above, you have to reset the track to "apply" your changes
 )
@@ -307,6 +310,7 @@
 #endif
    (set_track_out
       {$this set_frame TRACK_END_FRAME}
+      TRACK_MODIFIER_HANDLERS
       {switch {gamecfg get mode}
          (career
             {name_overlay_panel setup_text}
@@ -483,6 +487,7 @@
          (delay 1.3)
          (units kTaskSeconds)
          (script
+            TRACK_MODIFIER_HANDLERS
             {$this play_track_sfx nowbar_1}
             {$this pop_smasher 0}
             {$this set_smasher_glowing 0 TRUE}
