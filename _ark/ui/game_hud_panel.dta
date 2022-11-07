@@ -845,11 +845,14 @@
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_scale 1 .01875 1}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_local_pos 60 0 110}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_needle.mesh} set_showing FALSE}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green.mesh} set_local_pos {- $clonecrowdx 0} {+ $clonecrowdx 0} 0}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow.mesh} set_local_pos {- $clonecrowdx 60} {+ $clonecrowdx 0} 0}
-      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red.mesh} set_local_pos {- $clonecrowdx 120} {+ $clonecrowdx 0} 0}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_green.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_yellow.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_light_red.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_pos -680 -250 30}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_scale 0 0 30}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find pause.view} set_local_scale .3 0 .21}
+      {{{{hud loaded_dir} find BandCrowdMeterDir1} find pause.view} set_local_pos -73 0 -175}
+      ;{{{{hud loaded_dir} find BandCrowdMeterDir1} find pause.view} set_local_rot_index 0 -2}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find rock_meter.view} set_local_rot 0 312 {+ $clonecrowdrot 0}}
       {{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_local_rot 0 0 90}
       ;{{{{hud loaded_dir} find BandCrowdMeterDir1} find hud_rock_2d.mesh} set_local_pos 155 -50 -47}
