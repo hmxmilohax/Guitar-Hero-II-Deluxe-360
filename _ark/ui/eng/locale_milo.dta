@@ -194,6 +194,7 @@
 (sld_green "GREEN")
 (sld_blue "BLUE")
 (sld_pickelm "PICK ELEMENT")
+(ss_choosesong "CHOOSE SONG")
 (os_cloneherohud {sprint "Clone Hero HUD" {if_else $clonehero_hud ": ON" ": OFF"}})
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})

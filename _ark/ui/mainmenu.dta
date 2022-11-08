@@ -136,7 +136,7 @@
             )
          (main_quickspin.btn
             {gamecfg set mode career} ;set to career so select song screen shows saved scores
-            {set $gh3list {random_int 1 5}} ;set the random number for one of the 4 combinations of gh3 song list screen
+            {set $gh3list {random_int 1 4}} ;set the random number for one of the 4 combinations of gh3 song list screen
             {ui goto_screen sel_song_screen} ;go to the select song screen
             kDataUnhandled)
          (main_multiplayer.btn

@@ -674,6 +674,9 @@
       #ifdef HX_XBOX {world set echo_msgs $echo_world_events} #endif ;handle world events if on xbox
    )
    (enter ;when the screen is entered
+      {if $songrandomized ;check if we entered the game from a random song
+         {set $songrandomized FALSE} ;set song randomizer back to false to return to the correct position when finished with the song
+      }
       {if $focusmode
          {crowd_audio set_enabled FALSE}} ;if focus mode is enabled, mute the crowd audio
       {if_else {game multiplayer} ;check if the game is coop/pro/faceoff

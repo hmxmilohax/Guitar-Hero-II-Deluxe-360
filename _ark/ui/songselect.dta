@@ -1,407 +1,378 @@
 {new
-   GHPanel
-   sel_song_panel
-   (file
-      {if_else $altsong sel_song_alt.milo 
-      {if_else $gh3song 
-      {do 
-         {if_else
-            {== $gh3list 1}
-         {do
-            {if_else $loopsong   
-            sel_song_gh3_loop_both.milo
-            sel_song_gh3_both.milo}}
-         {if_else
-            {== $gh3list 2}
-         {do
-            {if_else $loopsong   
-            sel_song_gh3_loop_gum.milo
-            sel_song_gh3_gum.milo}}
-         {if_else
-            {== $gh3list 3}
-         {do
-            {if_else $loopsong   
-            sel_song_gh3_loop_string.milo
-            sel_song_gh3_string.milo}}
-         {do
-            {if_else $loopsong   
-            sel_song_gh3_loop.milo
-            sel_song_gh3.milo}}}}}}
-      sel_song.milo}})
-   (metamusic_on_exit TRUE)
-   (focus ss_song.lst)
-   (joypad
-      (hold_ms 180)
-      (repeat_ms 30))
+   GHPanel ;panel type
+   sel_song_panel ;panel name
+   (file ;the milo file used for the panel
+      {if_else $gh3song ;check if gh3 song variable is active
+         {if_else $loopsong ;check if loop song variable is active
+            {switch $gh3list ;gh3 list variable is randomized elsewhere, use a specific milo based on the current var
+               (1 sel_song_gh3_loop_both.milo) ;loop song is true so use looped gh3 menus
+               (2 sel_song_gh3_loop_gum.milo) ;loop song is true so use looped gh3 menus
+               (3 sel_song_gh3_loop_string.milo) ;loop song is true so use looped gh3 menus
+            }
+            {switch $gh3list ;gh3 list variable is randomized elsewhere, use a specific milo based on the current var
+               (1 sel_song_gh3_both.milo) ;loop song is false so use normal gh3 menus
+               (2 sel_song_gh3_gum.milo) ;loop song is false so use normal gh3 menus
+               (3 sel_song_gh3_string.milo) ;loop song is false so use normal gh3 menus
+            }
+         }
+         {if_else $altsong ;if we aren't in gh3 song list, check if we should use the alt song list
+            sel_song_alt.milo ;alternate gh1 style song list
+            sel_song.milo ;gh2dx notebook style song list
+         }
+      }
+   )
+   (metamusic_on_exit TRUE) ;once we leave this screen we want to turn back on the metaloops
+   (focus ss_song.lst) ;focus on the list in this panel
+   (joypad ;change joypad default behaviors
+      (hold_ms 180) ;ms to wait before starting to scroll while holding up/down
+      (repeat_ms 30) ;once holding up/down, how fast we scroll through items in a list
+   )
    (page_down
       {$this update_pos}
-      {$this update_pos})
+      {$this update_pos}
+   )
 #ifdef HX_XBOX
-   (load
-      {profilemgr add_sink $this storage_changed}
-      {content_mgr start_enumeration})
-   (storage_changed
-      {$this clear_cache}
-      {ui goto_screen storage_changed_screen})
+   (load ;once the panel is fully loaded?
+      {profilemgr add_sink $this storage_changed} ;add a sink to check for storage being changed
+      {content_mgr start_enumeration} ;start checking for dlc
+   )
+   (storage_changed ;if storage has been changed
+      {$this clear_cache} ;clear the song cache
+      {ui goto_screen storage_changed_screen} ;go to dialog screen telling the user they fucked up
+   )
 #endif
-(random_char
-     {if {! $forcecharacter}
-       {switch $randomnumber
-       (0 {game set_character punk1 TRUE})
-       (1 {game set_character punk2 TRUE})
-       (2 {game set_character alterna1 TRUE})
-       (3 {game set_character alterna2 TRUE})
-       (4 {game set_character glam1 TRUE})
-       (5 {game set_character glam2 TRUE})
-       (6 {game set_character goth2 TRUE})
-       (7 {game set_character goth1 TRUE})
-       (8 {game set_character metal1 TRUE})
-       (9 {game set_character metal2 TRUE})
-       (10 {game set_character rockabill1 TRUE})
-       (11 {game set_character rockabill2 TRUE})
-       (12 {game set_character rock2 TRUE})
-       (13 {game set_character rock1 TRUE})
-       (14 {game set_character deathmetal1 TRUE})
-       (15 {game set_character deathmetal2 TRUE})
-       (16 {game set_character classic TRUE})
-       (17 {game set_character funk1 TRUE})
-       (18 {game set_character grim TRUE})}})
-   (random_venue
-     {if {! $forcevenue}
-       {switch $randomvenuenumber
-       (0 {game set_venue battle TRUE})
-       (1 {game set_venue small1 TRUE})
-       (2 {game set_venue small2 TRUE})
-       (3 {game set_venue big TRUE})
-       (4 {game set_venue theatre TRUE})
-       (5 {game set_venue fest TRUE})
-       (6 {game set_venue arena TRUE})
-       (7 {game set_venue stone TRUE})
-       }})
-   (random_guitar
-     {if {! $forceguitar}
-       {switch $randomguitarnumber
-       (1  {game set_guitar lespaul lp_cherry})
-       (2  {game set_guitar lespaul lp_cayenne})
-       (3  {game set_guitar lespaul lp_goddessburst})
-       (4  {game set_guitar lespaul lp_zakk})
-       (5  {game set_guitar sg sg_cherry})
-       (6  {game set_guitar sg sg_white})
-       (7  {game set_guitar sg sg_gt})
-       (8  {game set_guitar sg sg_flames})
-       (9  {game set_guitar flying_v fv_white})
-       (10 {game set_guitar flying_v fv_v2})
-       (11 {game set_guitar flying_v fv_century})
-       (12 {game set_guitar flying_v fv_red})
-       (13 {game set_guitar explorer exp_ebony})
-       (14 {game set_guitar explorer exp_nat})
-       (15 {game set_guitar explorer exp_sun})
-       (16 {game set_guitar explorer exp_white})
-       (17 {game set_guitar explorer exp_swirl})
-       (18 {game set_guitar lespaul_doublecut lp_dbl_white})
-       (19 {game set_guitar lespaul_doublecut lp_dbl_yellow})
-       (20 {game set_guitar lespaul_doublecut lp_dbl_resin})
-       (21 {game set_guitar firebird fb_burst})
-       (22 {game set_guitar firebird fb_blue})
-       (23 {game set_guitar firebird fb_ebony})
-       (24 {game set_guitar firebird fb_leopard})
-       (25 {game set_guitar epiphone_coronet coronet_brown})
-       (26 {game set_guitar epiphone_coronet coronet_cherry})
-       (27 {game set_guitar epiphone_coronet coronet_burst})
-       (28 {game set_guitar epiphone_coronet coronet_green})
-       (29 {game set_guitar kramer_vanguard van_black})
-       (30 {game set_guitar kramer_vanguard van_yellow})
-       (31 {game set_guitar moderne mod_nat})
-       (32 {game set_guitar moderne mod_cherry})
-       (33 {game set_guitar corvus cor_yellow})
-       (34 {game set_guitar corvus cor_nat})
-       (35 {game set_guitar es335 es_maple})
-       (36 {game set_guitar es335 es_cherry})
-       (37 {game set_guitar kramer_650 650_stripe})
-       (38 {game set_guitar kramer_650 650_white})
-       (39 {game set_guitar eds eds_cherry})
-       (40 {game set_guitar eds eds_white})
-       (41 {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker})
-       (42 {game set_guitar lespaul_sonex lp_sonex})
-       (43 {game set_guitar lespaul_marauder lp_marauder})
-       (44 {game set_guitar epiphone_casino casino})
-       (45 {game set_guitar epiphone_sheraton sheraton})
-       (46 {game set_guitar chet_atkins chet_orange})
-       (47 {game set_guitar fish_reward fish})
-       (48 {game set_guitar usa_reward usa})
-       (49 {game set_guitar coffin_reward coffin})
-       (50 {game set_guitar viking_reward viking})
-       (51 {game set_guitar snaketapus_reward snaketapus})
-       (52 {game set_guitar eyeball_reward eyeball})
-       (53 {game set_guitar battleaxe_reward battleaxe})
-       (54 {game set_guitar log_reward log})
-       (55 {game set_guitar scythe scythe})
-       (56 {game set_guitar guitar_red_octane guitar_red_octane})
-       (57 {game set_guitar bass_musicman bass_music_black})
-       (58 {game set_guitar bass_musicman_lava bass_music_lava})
-       (59 {game set_guitar bass_sg_mahogany bass_sg_mahog})
-       (60 {game set_guitar bass_sg_cream bass_sg_cream})
-       (61 {game set_guitar bass_grabber_cherry bass_grab_cherry})
-       (62 {game set_guitar bass_grabber_maple bass_grab_maple})
-       (63 {game set_guitar bass_thunderbird_ebony bass_tb_ebony})
-       (64 {game set_guitar bass_thunderbird_burst bass_tb_burst})
-       (65 {game set_guitar bass_hofner bass_hofner})
-       }})
-   
+   (random_char ;call to randomize the current character
+      {if {! $forcecharacter} ;check var to make sure the user hasn't picked their own character
+         {switch $randomnumber ;perform actions based on the current random number, generated via (venue_randomizer)
+            (0  {game set_character punk1 TRUE}) ;list of all valid characters
+            (1  {game set_character punk1 TRUE})
+            (2  {game set_character punk2 TRUE})
+            (3  {game set_character alterna1 TRUE})
+            (4  {game set_character alterna2 TRUE})
+            (5  {game set_character glam1 TRUE})
+            (6  {game set_character glam2 TRUE})
+            (7  {game set_character goth2 TRUE})
+            (8  {game set_character goth1 TRUE})
+            (9  {game set_character metal1 TRUE})
+            (10 {game set_character metal2 TRUE})
+            (11 {game set_character rockabill1 TRUE})
+            (12 {game set_character rockabill2 TRUE})
+            (13 {game set_character rock2 TRUE})
+            (14 {game set_character rock1 TRUE})
+            (15 {game set_character deathmetal1 TRUE})
+            (16 {game set_character deathmetal2 TRUE})
+            (17 {game set_character classic TRUE})
+            (18 {game set_character funk1 TRUE})
+            (19 {game set_character grim TRUE})
+            (20 {game set_character grim TRUE})
+         }
+      }
+   )
+   (random_venue ;call to randomize the current venue
+      {if {! $forcevenue} ;check var to make sure the user hasn't picked their own venue
+         {switch $randomvenuenumber ;perform actions based on the current random number, generated via (venue_randomizer)
+            (0 {game set_venue battle TRUE}) ;list of all valid venues
+            (1 {game set_venue battle TRUE})
+            (2 {game set_venue small1 TRUE})
+            (3 {game set_venue small2 TRUE})
+            (4 {game set_venue big TRUE})
+            (5 {game set_venue theatre TRUE})
+            (6 {game set_venue fest TRUE})
+            (7 {game set_venue arena TRUE})
+            (8 {game set_venue stone TRUE})
+            (9 {game set_venue stone TRUE})
+         }
+      }
+   )
+   (random_guitar ;call to randomize the current guitar
+      {if {! $forceguitar} ;check var to make sure the user hasn't picked their own guitar
+         {switch $randomguitarnumber ;perform actions based on the current random number, generated via (venue_randomizer)
+            (0  {game set_guitar lespaul lp_cherry}) ;list of all valid guitars. you must supply the root guitar name + the name of the skin, found in /config/guitars.dta
+            (1  {game set_guitar lespaul lp_cherry})
+            (2  {game set_guitar lespaul lp_cayenne})
+            (3  {game set_guitar lespaul lp_goddessburst})
+            (4  {game set_guitar lespaul lp_zakk})
+            (5  {game set_guitar sg sg_cherry})
+            (6  {game set_guitar sg sg_white})
+            (7  {game set_guitar sg sg_gt})
+            (8  {game set_guitar sg sg_flames})
+            (9  {game set_guitar flying_v fv_white})
+            (10 {game set_guitar flying_v fv_v2})
+            (11 {game set_guitar flying_v fv_century})
+            (12 {game set_guitar flying_v fv_red})
+            (13 {game set_guitar explorer exp_ebony})
+            (14 {game set_guitar explorer exp_nat})
+            (15 {game set_guitar explorer exp_sun})
+            (16 {game set_guitar explorer exp_white})
+            (17 {game set_guitar explorer exp_swirl})
+            (18 {game set_guitar lespaul_doublecut lp_dbl_white})
+            (19 {game set_guitar lespaul_doublecut lp_dbl_yellow})
+            (20 {game set_guitar lespaul_doublecut lp_dbl_resin})
+            (21 {game set_guitar firebird fb_burst})
+            (22 {game set_guitar firebird fb_blue})
+            (23 {game set_guitar firebird fb_ebony})
+            (24 {game set_guitar firebird fb_leopard})
+            (25 {game set_guitar epiphone_coronet coronet_brown})
+            (26 {game set_guitar epiphone_coronet coronet_cherry})
+            (27 {game set_guitar epiphone_coronet coronet_burst})
+            (28 {game set_guitar epiphone_coronet coronet_green})
+            (29 {game set_guitar kramer_vanguard van_black})
+            (30 {game set_guitar kramer_vanguard van_yellow})
+            (31 {game set_guitar moderne mod_nat})
+            (32 {game set_guitar moderne mod_cherry})
+            (33 {game set_guitar corvus cor_yellow})
+            (34 {game set_guitar corvus cor_nat})
+            (35 {game set_guitar es335 es_maple})
+            (36 {game set_guitar es335 es_cherry})
+            (37 {game set_guitar kramer_650 650_stripe})
+            (38 {game set_guitar kramer_650 650_white})
+            (39 {game set_guitar eds eds_cherry})
+            (40 {game set_guitar eds eds_white})
+            (41 {game set_guitar lespaul_doublecut_sticker lp_dbl_sticker})
+            (42 {game set_guitar lespaul_sonex lp_sonex})
+            (43 {game set_guitar lespaul_marauder lp_marauder})
+            (44 {game set_guitar epiphone_casino casino})
+            (45 {game set_guitar epiphone_sheraton sheraton})
+            (46 {game set_guitar chet_atkins chet_orange})
+            (47 {game set_guitar fish_reward fish})
+            (48 {game set_guitar usa_reward usa})
+            (49 {game set_guitar coffin_reward coffin})
+            (50 {game set_guitar viking_reward viking})
+            (51 {game set_guitar snaketapus_reward snaketapus})
+            (52 {game set_guitar eyeball_reward eyeball})
+            (53 {game set_guitar battleaxe_reward battleaxe})
+            (54 {game set_guitar log_reward log})
+            (55 {game set_guitar scythe scythe})
+            (56 {game set_guitar guitar_red_octane guitar_red_octane})
+            (57 {game set_guitar bass_musicman bass_music_black})
+            (58 {game set_guitar bass_musicman_lava bass_music_lava})
+            (59 {game set_guitar bass_sg_mahogany bass_sg_mahog})
+            (60 {game set_guitar bass_sg_cream bass_sg_cream})
+            (61 {game set_guitar bass_grabber_cherry bass_grab_cherry})
+            (62 {game set_guitar bass_grabber_maple bass_grab_maple})
+            (63 {game set_guitar bass_thunderbird_ebony bass_tb_ebony})
+            (64 {game set_guitar bass_thunderbird_burst bass_tb_burst})
+            (65 {game set_guitar bass_hofner bass_hofner})
+            (66 {game set_guitar bass_hofner bass_hofner})
+         }
+      }
+   )
+   (song_randomizer ;song randomization task
+      {if_else {== {game get_song_index} 0} ;our random ong "button" is the first song in campaign.dta, which becomes the first song on song select. song 0 will always be random song
+         {do
+            {game set_song {campaign pick_attract_song}} ;attract mode song function. It just picks a random song, repurposed for our use case
+            {set $songrandomized TRUE} ;this var will tell the panel we clicked the random button, so we can return to the random button
+            {if
+               {|| ;or
+                   {== {game get_song} speedtest} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest2} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest3} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest4} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest5} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest6} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest7} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+                   {== {game get_song} speedtest8} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
+               }
+               {game set_song speedtest9} ;this is our valid speedtest. internally this is set up as a bonus song
+            }
+            {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
+         }
+         {ui goto_screen qp_selpart_screen} ;we go to the select part screen either ways
+      }
+   )
+   (venue_randomizer
+      {if {! $forcecharacter} ;check if the user has not picked a specific character
+         {set $randomnumber {random_int 0 20}} ;random number generator on available characters
+         {$this random_char} ;run random_char block in this panel
+      }
+      {if {! $forcevenue} ;check if the user has not picked a specific venue
+         {set $randomvenuenumber {random_int 0 9}} ;random number generator on available venues
+         {$this random_venue} ;run random_venue block in this panel
+      }
+      {if {! $forceguitar} ;check if the user has not picked a specific guitar
+         {set $randomguitarnumber {random_int 0 66}} ;random number generator on available guitars
+         {$this random_guitar} ;run random_guitar block in this panel
+      }
+   )
+   (graphics_handler ;handles the graphics for the panel in various states
+      {if_else $altsong ;check if we are using alt song milo
+         {do
+            {sd_select.lbl set_local_pos 0 150 200} ;move the title label
+            {sd_select.lbl set_local_scale 5 400 5} ;scale the title label
+            {sd_select.lbl set_localized_text {localize ss_choosesong}} ;set text of the title label
+            {ss_song.lst set_local_pos 25 230 140} ;change the position of the list
+         }
+         {if_else $gh3song ;check if we are using the gh3 song list milo
+            {do
+               {if_else $loopsong ;check if we are using a looped gh3 song list milo or not
+                  {do ;if we are using loop
+                     {ss_song.lst set_local_pos 25 230 150} ;position the list
+                     {ss_song.lst set_local_scale 1 1 0.975} ;scale the list
+                  }
+                  {ss_song.lst set_local_pos 25 230 140} ;if we are not using loop song milo just set the position
+               }
+            }
+            {do
+               {cp_title.lbl set_local_pos 70 50 -15} ;move the title label
+               {cp_title.lbl set_localized_text {localize ss_choosesong}} ;set text of the title label
+               {pencil.mesh set_local_pos 250 30 -30} ;move the pencil
+               {pencil_shadow.mesh set_local_pos 180 30 -30} ;move the pencil shadow
+               {notebook.mesh set_local_scale 1.4 1 1} ;scale the notebook a little bit
+               {ss_song.lst set_local_pos 160 230 140} ;move the list
+               {ss_song.lst set_local_rot 0 4 0} ;rotate the list a little bit
+            }
+         }
+      }
+   )
    (enter ;when the screen is entered
-      {if {! $forcecharacter} {set $randomnumber {random_int 0 18}} {$this random_char}}
-      {if {! $forcevenue} {set $randomvenuenumber {random_int 0 7}} {$this random_venue}}
-      {if {! $forceguitar} {set $randomguitarnumber {random_int 0 65}} {$this random_guitar}}
-   {if_else $altsong
-   {do
-      {sd_select.lbl set_local_pos 0 150 200}
-      {sd_select.lbl set_local_scale 5 400 5}
-      {sd_select.lbl set_text "CHOOSE SONG"}
-      {ss_song.lst set_local_pos 25 230 140}}
-   {if_else $gh3song
-   {do
-      {if_else $loopsong
-      {do
-         {ss_song.lst set_local_pos 25 230 150}
-         {ss_song.lst set_local_scale 1 1 0.975}}
-      {ss_song.lst set_local_pos 25 230 140}}}
-   {do
-      {cp_title.lbl set_local_pos 70 50 -15}
-      {cp_title.lbl set_text "CHOOSE SONG"}
-      {pencil.mesh set_local_pos 250 30 -30}
-      {pencil_shadow.mesh set_local_pos 180 30 -30}
-      {notebook.mesh set_local_scale 1.4 1 1}
-      {ss_song.lst set_local_pos 160 230 140}
-      {ss_song.lst set_local_rot 0 4 0}}}}
-   {set $gameentered FALSE}
-   {ss_song.lst set circular $loopsong}
-   {set $author FALSE}
-   {{ui current_screen} turn_off_ambient}
-      {$this refresh})
+      {$this venue_randomizer} ;run the venue randomizer code block in this panel
+      {$this graphics_handler} ;run the graphics handler code block in this panel
+      {set $gameentered FALSE} ;variable setup to double check we aren't in gameplay
+      {if $songrandomized ;check variable to see if we last entered this screen from the random song button
+         {set $songrandomized FALSE} ;turn off the variable for next user song selection
+         {game set_song_index 0} ;reset the internal song selected back to 0 (random)
+         {ss_song.lst set_selected {game get_song_index}} ;set the list to the currently internally selected song
+      }
+      {ss_song.lst set circular $loopsong} ;sets the song list to loop around based off variable
+      {set $author FALSE} ;we dont use the author variable until the song is loaded, reset the variable to false
+      {{ui current_screen} turn_off_ambient} ;turn off meta music because we will be hearing song previews shortly
+      {$this refresh} ;after setting everything up, run the refresh code block
+   )
    (update_song_info
-      {ss_song.lst
-         set_selected
-         {game get_song_index}}
+      {ss_song.lst set_selected {game get_song_index}} ;select the internally selected song on the list
 #ifdef HX_XBOX
-       {if
-         {! $leaderboards_mode}
-         {meta_music stop}
-         {profilemgr disable_xmp}}
+         {profilemgr disable_xmp} ;disable the xbox guide button
+#endif
+      {meta_music stop} ;stop playing background music
+      {$this update_pos} ;run the update_pos code block
+   )
+   (exit ;when the panel is exited
+      {song_preview ''} ;reset the current song preview to nothing
+      {if [metamusic_on_exit] ;check if we are supposed to play meta music when we leave
+         {meta_music start} ;play meta music
+#ifdef HX_XBOX
+         {profilemgr enable_xmp} ;enable the xbox guide button
+#endif
+      }
+      {set [metamusic_on_exit] TRUE} ;we are supposed to be playing meta music when we leave song select screens
+#ifndef HX_XBOX
+      {song_provider set_quickplay FALSE} ;gh2dx does not use quickplay
 #else
-      {meta_music stop}
+      {song_provider set_mode kSongsCareer} ;gh2dx uses career for "quickplay"
 #endif
-      {$this update_pos})
-   (exit
-      {if {exists random_guitar_task} {delete random_guitar_task}}
-      {if {exists random_char_task} {delete random_char_task}}
-      {if {exists random_venue_task} {delete random_venue_task}}
-      {song_preview ''}
-      {if
-         [metamusic_on_exit]
-         {meta_music start}
-         #ifdef HX_XBOX {profilemgr enable_xmp} #endif}
-      {set
-         [metamusic_on_exit]
-         TRUE}
-      #ifndef HX_XBOX
-      {song_provider set_quickplay FALSE}
-      #else
-      {song_provider set_mode kSongsCareer}
-      #endif)
+   )
 #ifdef HX_XBOX
-(unload
-      {profilemgr remove_sink $this storage_changed})
+   (unload ;once the panel is removed from memory?
+      {profilemgr remove_sink $this storage_changed} ;when we leave, remove the storage_changed sink
+   )
 #endif
-   (SCROLL_MSG
-      {$this update_pos})
-   (update_pos
+   (SCROLL_MSG ;when the user changes list position
+      {$this update_pos} ;run the below update_pos code block
+   )
+   (update_pos ;called from SCROLL_MSG, update_song_info, and page_down
       {do
-         ($pos
-            {ss_song.lst selected_pos})
-         {game set_song_index $pos}
-#ifdef HX_XBOX {$this cache_song} #endif
-         {song_preview
-            {game get_song}}})
-   (beat_song
-      ($score)
-      {if
-         {$this is_up}
-         {do
-            ($index
-               {ss_song.lst selected_pos})
-            ($song
-               {song_provider get_symbol $index})
-            {campaign cheat_beat_song $song $score}
-            {$this refresh}}})
-   (beat_song
-      {if
-         {$this is_up}
-         {do
-            ($index
-               {ss_song.lst selected_pos})
-            ($song
-               {song_provider get_symbol $index})
-            {campaign beat_song $song}
-            {$this refresh}}})
-   (gold_song
-      {if
-         {$this is_up}
-         {campaign
-            cheat_gold_song
-            {song_provider
-               get_symbol
-               {ss_song.lst selected_pos}}}
-         {$this refresh}})
+         ($pos {ss_song.lst selected_pos}) ;set up local var for this code block
+         {game set_song_index $pos} ;set the internal song to the current song list position
 #ifdef HX_XBOX
-(refresh
-      {song_provider
-         set_mode
-         {switch
-            {ui current_screen}
-            (leaderboards_song_screen kSongsLeaderboards)
-            (sel_song_screen kSongsCareer)
-            kSongsQuickplay}}
-      {ss_song.lst set_provider song_provider}
-      {if
-         {&&
-            {! $leaderboards_mode}
-            {==
-               {game get_song_index}
-               -1}}
-         {game set_song_index 0}}
-      {$this update_song_info}
-      {checkmark.mesh set_showing FALSE})
+         {$this cache_song} ;ayo gh2 song cache? (idk what this does it's in code)
+#endif
+         {song_preview {game get_song}} ;call the song's music preview
+      }
+   )
+   (beat_song ;debug code block
+      ($score) ;carry through score variable from elsewhere, i'd imagine coop_max_scores?
+      {if {$this is_up} ;check if the song list is up
+         {do
+            ($index {ss_song.lst selected_pos}) ;set up local var for this code block
+            ($song {song_provider get_symbol $index}) ;set up local var for this code block
+            {campaign cheat_beat_song $song $score} ;beat the currently selected song on the list
+            {$this refresh} ;run the refresh code block in this panel
+         }
+      }
+   )
+   (gold_song ;debug code block
+      {if {$this is_up} ;check if the song list is up
+         {campaign cheat_gold_song ;campaign debug cheat
+            {song_provider get_symbol {ss_song.lst selected_pos}} ;gold star the currently selected song
+         }
+         {$this refresh} ;run the refresh code block in this panel
+      }
+   )
+   (refresh ;called from various places in the panel
+#ifdef HX_XBOX
+      {song_provider set_mode kSongsCareer} ;set the song provider mode to career
 #else
-   (refresh
-      {if
-         {!
-            {{ui current_screen}
-               sel_song_career}}
-         {song_provider set_quickplay TRUE}}
-      {ss_song.lst set_provider song_provider}
-      {if
-         {==
-            {game get_song_index}
-            -1}
-         {game set_song_index 0}}
-      {$this update_song_info})
-#endif}
+      {song_provider set_quickplay FALSE} ;set the song provider mode to career but on ps2
+#endif
+      {ss_song.lst set_provider song_provider} ;fill the song list with data from the song_provider
+      {if {== {game get_song_index} -1} ;check if we have an invalid song selection
+         {game set_song_index 0} ;reset song to song 0
+      }
+      {$this update_song_info} ;run the update_song_info code block
+      {checkmark.mesh set_showing FALSE} ;career has a checkmark for completed songs. we dont use this, hide it
+   )
+}
 {new
-   GHScreen
-   sel_song_screen
-   (panels meta sel_song_panel helpbar)
-   (focus sel_song_panel)
-   (helpbar
+   GHScreen ;screen type
+   sel_song_screen ;screen name
+   (panels meta sel_song_panel helpbar) ;panels included in this screen in draw order
+   (focus sel_song_panel) ;panel to focus
+   (helpbar ;sets up the help bar for this screen
       (default
-         ((fret1 help_continue)
+         (
+            (fret1 help_continue)
             (fret2 help_back)
-            (strum help_updown))))
-   (sel_song_career TRUE)
-   (enter {if $gh3song {helpbar set_showing FALSE}})
-   (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Tri}
-         {$this backwards_anim}
-         {synth play_sequence button_back.cue}
-         {helpbar set_showing TRUE}
-         {ui goto_screen main_screen}}
-      kDataUnhandled)
-   (SELECT_START_MSG
-      {switch
-         {gamecfg get mode}
-            (career
-               {if_else {== {game get_song_index} 0}
-                  {do
-                     {game set_song {campaign pick_attract_song}}
-                     {if
-                        {||
-                            {== {game get_song} speedtest}
-                            {== {game get_song} speedtest2}
-                            {== {game get_song} speedtest3}
-                            {== {game get_song} speedtest4}
-                            {== {game get_song} speedtest5}
-                            {== {game get_song} speedtest6}
-                            {== {game get_song} speedtest7}
-                            {== {game get_song} speedtest8}
-                        }
-                        {game set_song speedtest9}
-                     }
-                     {ui goto_screen qp_selpart_screen}
-                  }
-                  {ui goto_screen qp_selpart_screen}
-               }
-            )
-            (quickplay
-               {if_else {== {game get_song_index} 0}
-                  {do
-                     {game set_song {campaign pick_attract_song}}
-                     {if
-                        {||
-                            {== {game get_song} speedtest}
-                            {== {game get_song} speedtest2}
-                            {== {game get_song} speedtest3}
-                            {== {game get_song} speedtest4}
-                            {== {game get_song} speedtest5}
-                            {== {game get_song} speedtest6}
-                            {== {game get_song} speedtest7}
-                            {== {game get_song} speedtest8}
-                        }
-                        {game set_song speedtest9}
-                     }
-                     {ui goto_screen qp_selpart_screen}
-                  }
-                  {ui goto_screen qp_selpart_screen}
-               }
-            )
-            (multi_vs kDataUnhandled)
-            (multi_fo {ui goto_screen multi_fo_seldiff_screen})
-            (practice
-               {if_else {== {game get_song_index} 0}
-                  {do
-                     {game set_song {campaign pick_attract_song}}
-                     {if
-                        {||
-                            {== {game get_song} speedtest}
-                            {== {game get_song} speedtest2}
-                            {== {game get_song} speedtest3}
-                            {== {game get_song} speedtest4}
-                            {== {game get_song} speedtest5}
-                            {== {game get_song} speedtest6}
-                            {== {game get_song} speedtest7}
-                            {== {game get_song} speedtest8}
-                        }
-                        {game set_song speedtest9}
-                     }
-                     {ui goto_screen qp_selpart_screen}
-                  }
-                  {ui goto_screen qp_selpart_screen}
-               }
-            )
-            (multi_coop
-               {gamecfg set_track 0 0}
-               {gamecfg set_track 1 1}
-               {if_else
-                  {'||'
-                     {song_provider
-                        has_instrument
-                        {gamecfg get_song}
-                        bass}
-                     {song_provider
-                        has_instrument
-                        {gamecfg get_song}
-                        rhythm}}
-                  {ui goto_screen selpart_screen}
-                  {ui goto_screen multi_coop_seldiff_screen}
-                }
-            )
-       }
-      {sel_song_panel set metamusic_on_exit TRUE}
-      kDataUnhandled)}
-{new
-   GHScreen
-   storage_changed_screen
-   DIALOG_SCREEN
+            (strum help_updown)
+         )
+      )
+   )
+   (sel_song_career TRUE) ;gh2dx uses career mode for the song select to show scores
    (enter
-      {dialog setup mc_continue '' button1 mc_storage_changed mc_title_error})
+      {if $gh3song ;check if gh3 song select var is set
+         {helpbar set_showing FALSE} ;we don't show the help bar in gh3 song select
+      }
+   )
+   (BUTTON_DOWN_MSG ;when any button is pressed
+      {if {== $button kPad_Tri} ;check if we pressed triangle
+         {$this backwards_anim} ;animate the screen going backwards
+         {synth play_sequence button_back.cue} ;play the back button sound effect
+         {helpbar set_showing TRUE} ;show the help bar again
+         {ui goto_screen main_screen} ;go back to the main menu
+      }
+      kDataUnhandled ;don't do anything special if other buttons are pressed
+   )
    (SELECT_START_MSG
-      {ui goto_screen main_screen})}
+      {switch {gamecfg get mode} ;check which mode we are currently in
+         (career {$this song_randomizer}) ;run the song_randomizer code block, leads to qp_selpart_screen
+         (quickplay {$this song_randomizer}) ;run the song_randomizer code block, leads to qp_selpart_screen
+         (multi_vs kDataUnhandled)
+         (multi_fo {ui goto_screen multi_fo_seldiff_screen})
+         (practice {$this song_randomizer}) ;run the song_randomizer code block, leads to qp_selpart_screen
+         (multi_coop ;if the current mode is coop
+            {gamecfg set_track 0 0} ;set player 1 to the first track
+            {gamecfg set_track 1 1} ;set player 2 to the second track
+            {if_else ;check if
+               {|| ;or
+                  {song_provider has_instrument {gamecfg get_song} bass} ;if the song has bass
+                  {song_provider has_instrument {gamecfg get_song} rhythm} ;if the song has bass
+               }
+               {ui goto_screen selpart_screen} ;if the song has either bass or rhythm, go to select part screen
+               {ui goto_screen multi_coop_seldiff_screen} ;if it doesn't, go to the coop select difficulty screen
+             }
+         )
+      }
+      {sel_song_panel set metamusic_on_exit TRUE} ;once we leave the screen, make sure we play our meta music again
+      kDataUnhandled ;fail over if none of the above conditions are met
+   )
+}
+{new
+   GHScreen ;screen type
+   storage_changed_screen ;screen name
+   DIALOG_SCREEN ;dialog screen macro for milo file used and other bits
+   (enter ;when the screen is entered
+      {dialog setup mc_continue '' button1 mc_storage_changed mc_title_error} ;set up the current dialog screen
+   )
+   (SELECT_START_MSG ;when an on screen option is selected
+      {ui goto_screen main_screen} ;go back to the main menu
+   )
+}
