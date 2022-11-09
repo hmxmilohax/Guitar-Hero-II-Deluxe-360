@@ -299,8 +299,8 @@
             {endgame_percent_data.lbl set_localized_text {sprintf {localize eg_percent_format} {$player percent_hit}}}
          }
          {endgame_streak_data.lbl set_localized_text {sprintf {localize endgame_streak_format} {$player longest_streak}}}
-         {endgame_review_data.lbl set_text {sprintf $starrating}} ; Original stars font
-         {endgame_review_data_fc.lbl set_text {$player star_rating}} ; New stars FC font
+         {endgame_review_data.lbl set_text {sprint $starratingtemp ' ©'}} ; add star symbol to fractional rating
+         {endgame_review_data_fc.lbl set_text {sprint $starratingtemp ' ©'}} ; for both fc and non-fc labels
          {percentbar_p1.mesh set_local_scale {/ {$player percent_hit} 100.0} 1 1}
       }
       {endgame_review_data_fc.lbl set_showing FALSE}
