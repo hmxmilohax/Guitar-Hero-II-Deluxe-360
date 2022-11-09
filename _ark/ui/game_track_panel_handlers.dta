@@ -120,8 +120,14 @@
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar.mat} set color {pack_color 0.24 0.24 0.24}} ;I dont like this bar being slightly blue
 
    {if $customgemcolor
-      {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;custom gem color
-      {{{{track_panel loaded_dir} find $tracktype} find gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
+      {if_else {== $tracktype track_drum}
+         {{{{track_panel loaded_dir} find $tracktype} find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;custom gem color
+         {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;custom gem color
+      }
+      {if_else {== $tracktype track_drum}
+         {{{{track_panel loaded_dir} find $tracktype} find drum_gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
+         {{{{track_panel loaded_dir} find $tracktype} find gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
+      }
       {{{{track_panel loaded_dir} find $tracktype} find gem_bottom.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_tight.mat} set color {pack_color GEM_COLOR}} ;custom gem color

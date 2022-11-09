@@ -684,8 +684,10 @@
          {handle ($this single_player)} ;single player code handle
       }
       {$this set_showing {! $focusmode}} ;hide the world if focus mode is disabled?
-      {$this iterate PostProc $p
-         {$p set emulate_fps $emulatefps} ;set the venue fps to the defined fps
+      {if {< $emulatefps 60}
+         {$this iterate PostProc $p
+            {$p set emulate_fps $emulatefps} ;set the venue fps to the defined fps
+         }
       }
       {$this set_paused FALSE} ;unfreeze the world screen
    )
