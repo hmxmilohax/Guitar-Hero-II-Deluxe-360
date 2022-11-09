@@ -173,7 +173,7 @@
                    {== {game get_song} speedtest7} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
                    {== {game get_song} speedtest8} ;check if random song is an internal speedtest. the user should never play these or the save will corrupt!
                }
-               {game set_song speedtest} ;this is our valid speedtest. internally this is set up as a bonus song
+               {game set_song speedtest9} ;this is our valid speedtest. internally this is set up as a bonus song
             }
             {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
          }
