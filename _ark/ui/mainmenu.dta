@@ -83,7 +83,7 @@
       }
    )
    (enter
-       {campaign buy_item speedtest9 0}
+       ;{campaign buy_item speedtest9 0}
          {switch
             $menutheme
             (gold {$this gold_theme})
