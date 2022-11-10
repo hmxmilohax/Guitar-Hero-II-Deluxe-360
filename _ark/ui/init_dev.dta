@@ -137,6 +137,10 @@
    {set $mtv_b 1}
 }
 
+{if {! $notestreaktext1}
+   {set $notestreaktext1 ""}
+}
+
 {if {! $notestreaktext}
    {set $notestreaktext "NOTE STREAK"}
 }
