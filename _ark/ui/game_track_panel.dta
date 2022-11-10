@@ -16,7 +16,10 @@
       {if_else {== {gamecfg get_num_players} 1}
          {do
             {if_else {== {game get_track_sym 0} drum}
-               ../track/drum_panel_1p.milo
+               {if_else $cymbaltrack
+                  ../track/cymbal_panel_1p.milo
+                  ../track/drum_panel_1p.milo
+               }
             {if_else $brighthopos
                {do
                   {if_else $gh1track

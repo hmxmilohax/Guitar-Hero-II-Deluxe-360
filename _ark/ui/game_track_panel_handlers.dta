@@ -64,6 +64,9 @@
    {if {exists track_old} ;check if we are loading a specific track so we can edit files appropriately
       {set $tracktype track_old} ;set var to the loaded track
    }
+   {if {exists track_cymbal} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_cymbal} ;set var to the loaded track
+   }
    {{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}} ;hide flames particle system
    {if $noflames ;check if no fail is enabled
       {{{{track_panel loaded_dir} find $tracktype} find smash_firelight.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the texture used for flames as well
