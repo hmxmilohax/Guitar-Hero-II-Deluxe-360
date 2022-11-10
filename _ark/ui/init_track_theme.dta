@@ -59,7 +59,10 @@
 ;sets song/artist display text color, better known as mtv overlay
 {set $mtv_r 1} {set $mtv_g 1} {set $mtv_b 1}
 
-;set the text that shows when you reach a note streak interval
+;set the text that shows when you reach a note streak interval (before the number)
+{set $notestreaktext1 ""}
+
+;set the text that shows when you reach a note streak interval (after the number)
 {set $notestreaktext "NOTE STREAK"}
 
 ;sets note popup text color, better known as mtv overlay

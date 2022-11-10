@@ -58,9 +58,6 @@
 ;etc in game
 {set $notestreakmod TRUE}
 
-;LysiX's EPIC streak and star power text popup modifications
-{set $epictext FALSE}
-
 ;disables the star power ready popup and animation
 {set $sppop TRUE}
 

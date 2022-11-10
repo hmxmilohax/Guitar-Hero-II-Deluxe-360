@@ -2,21 +2,15 @@
 (note_streak_popup_p0
    {if_else $egg5
       {sprint $player0_streak " NOTES IN A ROW!"}
-   {if_else $epictext
-      {sprint "EPIC " $player0_streak " STREAK!"}
-      {sprint $player0_streak " " $notestreaktext}}})
+      {sprint $notestreaktext1 " " $player0_streak " " $notestreaktext}})
 (note_streak_popup_p1
    {if_else $egg5
       {sprint $player1_streak " NOTES IN A ROW!"}
-   {if_else $epictext
-      {sprint "EPIC " $player1_streak " STREAK!"}
-      {sprint $player1_streak " " $notestreaktext}}})
+      {sprint $notestreaktext1 " "  $player1_streak " " $notestreaktext}})
 (note_streak_popup_p2
    {if_else $egg5
       {sprint $player2_streak " NOTES IN A ROW!"}
-   {if_else $epictext
-      {sprint "EPIC " $player2_streak " STREAK!"}
-      {sprint $player2_streak " " $notestreaktext}}})
+      {sprint $notestreaktext1 " "  $player2_streak " " $notestreaktext}})
 (endgame_streak_format
    {if_else {== {gamecfg get mode} quickplay}
       {switch {game get_track_type 0}
@@ -35,9 +29,7 @@
 (stk_format_1 {sprint $player1_streak})
 (stk_format_2 {sprint $player2_streak})
 (star_ready
-   {if_else $epictext
-   "THIS IS FUCKING EPIC"
-   $starpowertext})
+   $starpowertext)
 (stk_zero "0")
 (toogle_label "AUTOPLAY")
 
@@ -225,7 +217,6 @@
 (os_autoplay {sprint "Autoplay" {if_else $autoplay ": ON" ": OFF"}})
 (os_gh3track {sprint "GH3 Frets" {if_else $gh3track ": ON" ": OFF"}})
 (os_skipoutro {sprint "Skip Outro" {if_else $skipoutro ": ON" ": OFF"}})
-(os_epictext {sprint "Epic Text Popups" {if_else $epictext ": ON" ": OFF"}})
 (os_sfx {sprint "Sound Effects" {if_else $sfx ": ON" ": OFF"}})
 (os_whammyfx {sprint "Whammy Effects" {if_else $whammyfx ": ON" ": OFF"}})
 (os_muting {sprint "Track Muting" {if_else $muting ": ON" ": OFF"}})
