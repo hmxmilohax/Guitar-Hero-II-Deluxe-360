@@ -97,8 +97,8 @@
          (restart_career.btn {$this restart})
          (section.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (section_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
-         (change_speed.btn {ui push_screen overshell_slider_screen})
-         (change_speed_career.btn {ui push_screen overshell_slider_screen})
+         (change_speed.btn {ui push_screen overshell_speed_slider_screen})
+         (change_speed_career.btn {ui push_screen overshell_speed_slider_screen})
          (newsong.btn {meta_loading_nosave_goto sel_song_screen})
          (quit_career.btn
             {meta_loading_goto main_screen})
