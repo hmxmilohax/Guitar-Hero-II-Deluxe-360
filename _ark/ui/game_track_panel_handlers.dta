@@ -287,7 +287,7 @@
    {{{{track_panel loaded_dir} find $tracktype} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
-   {{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
+   ;{{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
    
    {if {|| $nofail $clonehero_hud}
