@@ -19,6 +19,10 @@
    {set $trackcamx 1.0}
 }
 
+{if {! $starpowertext}
+   {set $starpowertext "STAR POWER READY"}
+}
+
 {if {! $starpowercolor_r}
    {set $starpowercolor_r 0.34}
 }
@@ -131,6 +135,10 @@
 }
 {if {! $mtv_b}
    {set $mtv_b 1}
+}
+
+{if {! $notestreaktext}
+   {set $notestreaktext "NOTE STREAK"}
 }
 
 {if {! $notepopup_r}

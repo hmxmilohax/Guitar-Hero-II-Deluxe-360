@@ -4,19 +4,19 @@
       {sprint $player0_streak " NOTES IN A ROW!"}
    {if_else $epictext
       {sprint "EPIC " $player0_streak " STREAK!"}
-      {sprint $player0_streak " NOTE STREAK!"}}})
+      {sprint $player0_streak " " $notestreaktext}}})
 (note_streak_popup_p1
    {if_else $egg5
       {sprint $player1_streak " NOTES IN A ROW!"}
    {if_else $epictext
       {sprint "EPIC " $player1_streak " STREAK!"}
-      {sprint $player1_streak " NOTE STREAK!"}}})
+      {sprint $player1_streak " " $notestreaktext}}})
 (note_streak_popup_p2
    {if_else $egg5
       {sprint $player2_streak " NOTES IN A ROW!"}
    {if_else $epictext
       {sprint "EPIC " $player2_streak " STREAK!"}
-      {sprint $player2_streak " NOTE STREAK!"}}})
+      {sprint $player2_streak " " $notestreaktext}}})
 (endgame_streak_format
    {if_else {== {gamecfg get mode} quickplay}
       {switch {game get_track_type 0}
@@ -37,7 +37,7 @@
 (star_ready
    {if_else $epictext
    "THIS IS FUCKING EPIC"
-   "STAR POWER READY!"})
+   $starpowertext})
 (stk_zero "0")
 (toogle_label "AUTOPLAY")
 

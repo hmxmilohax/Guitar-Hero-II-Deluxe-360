@@ -20,6 +20,9 @@
 ;turn off hit flames
 {set $noflames FALSE}
 
+;set the text that shows when you can activate star power
+{set $starpowertext "STAR POWER READY"}
+
 ;sets custom star power color in RGB. 0.34 0.5 0.67 is default
 {set $starpowercolor_r 0.34} {set $starpowercolor_g 0.5} {set $starpowercolor_b 0.67}
 
@@ -55,6 +58,9 @@
 
 ;sets song/artist display text color, better known as mtv overlay
 {set $mtv_r 1} {set $mtv_g 1} {set $mtv_b 1}
+
+;set the text that shows when you reach a note streak interval
+{set $notestreaktext "NOTE STREAK"}
 
 ;sets note popup text color, better known as mtv overlay
 {set $notepopup_r 1} {set $notepopup_g 1} {set $notepopup_b 1}
