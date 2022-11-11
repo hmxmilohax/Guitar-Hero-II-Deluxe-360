@@ -119,6 +119,13 @@
    {{{{hud loaded_dir} find BandStarMeterDir1} find lightning_top_04_0.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find star_glow.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_end_star.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
+   {if_else {&& {== $starpowercolor_r 0.34} {== $starpowercolor_g 0.5} {== $starpowercolor_b 0.67}}
+      kDataUnhandled
+      {do
+         {{{{track_panel loaded_dir} find $tracktype} find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;custom gem color
+         {{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color STAR_POWER_COLOR}} ;custom star gem color
+      }
+   }
    {{{{track_panel loaded_dir} find $tracktype} find lightning_trackglow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the track side glow stuff because I hate it
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar.mat} set color {pack_color 0.24 0.24 0.24}} ;I dont like this bar being slightly blue
 
@@ -132,7 +139,7 @@
          {{{{track_panel loaded_dir} find $tracktype} find gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       }
       {{{{track_panel loaded_dir} find $tracktype} find gem_bottom.mat} set color {pack_color GEM_COLOR}} ;custom gem color
-      {{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color GEM_COLOR}} ;custom gem color
+      ;{{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_tight.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_whammy.mat} set color {pack_color GEM_COLOR}} ;custom gem color
 
