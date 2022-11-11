@@ -1,6 +1,6 @@
 #include initializer.dta
-#include game:/theme/init_track_theme.dta
-#include game:/theme/init_ui_theme.dta
+#include game:/init_track_theme.dta
+#include game:/init_ui_theme.dta
 ; Set various defaults on startup, including ELF specific bootups. $speedmod
 ; is the song speed, $trackspeed is the note speed, $interval refers to the
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
