@@ -240,8 +240,8 @@
       {switch $component
          (restart.btn {game_restart})
          (restart_career.btn {game_restart})
-         (change_speed.btn {ui push_screen overshell_slider_screen})
-         (change_speed_career.btn {ui push_screen overshell_slider_screen})
+         (change_speed.btn {ui push_screen overshell_speed_slider_screen})
+         (change_speed_career.btn {ui push_screen overshell_speed_slider_screen})
          (new_sec.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (new_sec_career.btn {meta_loading_nosave_goto practice_sel_section_screen})
          (new_song.btn {meta_loading_nosave_goto sel_song_screen})
