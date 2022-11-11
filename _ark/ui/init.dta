@@ -61,6 +61,12 @@
 ;disables the star power ready popup and animation
 {set $sppop TRUE}
 
+;removes quarter beatlines
+{set $removequarterbeatlines TRUE}
+
+;removes quarter beatlines
+{set $removedivisionlines FALSE}
+
 ;sound effects
 {set $sfx TRUE}
 

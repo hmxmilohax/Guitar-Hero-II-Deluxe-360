@@ -31,7 +31,7 @@
 ($beatlinecolor_r $beatlinecolor_g $beatlinecolor_b)
 #define TRACK_MODIFIER_HANDLERS
 (
-#ifndef HX_XBOX
+#ifndef HX_XBOX ;lol ps2 wen
    {if_else $noflames ;check if no fail is enabled
       {{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing FALSE}} ;hide flames particle system
       {{track_panel loaded_dir} iterate ParticleSys $m {$m set_showing TRUE}} ;show flame particle system
@@ -45,7 +45,7 @@
    {{track_panel find half_beat_line3.mesh} set_local_scale $trackbeatx 1.0 1.0}
    {{track_panel find half_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
    {{track_panel find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
-#else
+#else ;xbox 360 application of custom track modifications
    {if {exists track_both} ;check if we are loading a specific track so we can edit files appropriately
       {set $tracktype track_both} ;set var to the loaded track
    }
@@ -67,23 +67,32 @@
    {if {exists track_cymbal} ;check if we are loading a specific track so we can edit files appropriately
       {set $tracktype track_cymbal} ;set var to the loaded track
    }
-   {{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}} ;hide flames particle system
-   {if $noflames ;check if no fail is enabled
-      {{{{track_panel loaded_dir} find $tracktype} find smash_firelight.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the texture used for flames as well
+   {if {exists track_gh3} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_gh3} ;set var to the loaded track
    }
-   {if $voidfrets
-      {if_else $gh3track
-         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png}
-         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/blk_keep.png}
+   
+   {if $noflames ;check if no flames is enabled
+      {{{track_panel loaded_dir} find $tracktype} iterate ParticleSys $m {$m set_showing {! $noflames}}} ;hide flames particle system
+      {{{{track_panel loaded_dir} find $tracktype} find smash_firelight.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the texture used for the little glow at the base of the flame
+   }
+   {if $voidfrets ;check if void frets are enabled
+      {if_else $gh3track ;specify texture if gh3 frets are enabled
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_off.tex} set_bitmap track/custom_track_textures/blk_keep.png} ;apply the standard void frets texture
       }
    }
-   {if $darkstrums
-      {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/gem_dark_keep.png} ;dark strum gems
+   {if $darkstrums ;check if dark strums are enabled
+      {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/gem_dark_keep.png} ;apply dark strum gems texture
    }
    {if $eyeballgems
       {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/gem_eyeball_keep.png} ;eyeball gems
    }
-
+   {{{{track_panel loaded_dir} find $tracktype} find lightning_trackglow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the track side glow stuff because I hate it
+   {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar.mat} set color {pack_color 0.24 0.24 0.24}} ;I dont like this bar being slightly blue
+   
+   ;begin custom color creation setup and application
+   
+   ;track panel star power colors
    {{{{track_panel loaded_dir} find $tracktype} find lightning_1.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{track_panel loaded_dir} find $tracktype} find lightning_2.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{track_panel loaded_dir} find $tracktype} find lightning_trackglow.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
@@ -105,6 +114,8 @@
    {{{{track_panel loaded_dir} find $tracktype} find gem_bonus_spark2.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_bonus.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_bonus_1.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
+
+   ;hud panel star power colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_star.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_star_path.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
@@ -119,97 +130,163 @@
    {{{{hud loaded_dir} find BandStarMeterDir1} find lightning_top_04_0.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find star_glow.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
    {{{{hud loaded_dir} find BandStarMeterDir1} find amp_end_star.mat} set color {pack_color STAR_POWER_COLOR}} ;sp colors
-   {if_else {&& {== $starpowercolor_r 0.34} {== $starpowercolor_g 0.5} {== $starpowercolor_b 0.67}}
-      kDataUnhandled
+
+   ;custom star power gem color
+   {if_else {&& {== $starpowercolor_r 0.34} {== $starpowercolor_g 0.5} {== $starpowercolor_b 0.67}} ;check if we are using vanilla star power color
+      kDataUnhandled ;if we are, do nothing
       {do
-         {{{{track_panel loaded_dir} find $tracktype} find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;custom gem color
-         {{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color STAR_POWER_COLOR}} ;custom star gem color
+         {{{{track_panel loaded_dir} find $tracktype} find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+         {{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color STAR_POWER_COLOR}} ;apply custom star gem color texture
       }
    }
-   {{{{track_panel loaded_dir} find $tracktype} find lightning_trackglow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the track side glow stuff because I hate it
-   {{{{hud loaded_dir} find BandStarMeterDir1} find amp_inside_bar.mat} set color {pack_color 0.24 0.24 0.24}} ;I dont like this bar being slightly blue
 
-   {if $customgemcolor
-      {if_else {== $tracktype track_drum}
-         {{{{track_panel loaded_dir} find $tracktype} find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;custom gem color
-         {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;custom gem color
+   ;custom gem colors
+   {if $customgemcolor ;check if custom gem color is enabled
+      {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
+         {do
+            {{{{track_panel loaded_dir} find $tracktype} find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
+            {{{{track_panel loaded_dir} find $tracktype} find drum_gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
+         }
+         {do
+            {{{{track_panel loaded_dir} find $tracktype} find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
+            {{{{track_panel loaded_dir} find $tracktype} find gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
+         }
       }
-      {if_else {== $tracktype track_drum}
-         {{{{track_panel loaded_dir} find $tracktype} find drum_gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
-         {{{{track_panel loaded_dir} find $tracktype} find gem.mat} set color {pack_color GEM_COLOR}} ;custom gem color
-      }
+
+      ;applys to all gems
       {{{{track_panel loaded_dir} find $tracktype} find gem_bottom.mat} set color {pack_color GEM_COLOR}} ;custom gem color
-      ;{{{{track_panel loaded_dir} find $tracktype} find star.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_tight.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_whammy.mat} set color {pack_color GEM_COLOR}} ;custom gem color
 
+      ;green gem
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_green.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_green.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_green.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_top_hopo2_green.mat} set color {pack_color GEM_COLOR}} ;custom gem color
 
+      ;red gem
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_red.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_red.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_red.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_top_hopo2_red.mat} set color {pack_color GEM_COLOR}} ;custom gem color
 
+      ;yellow gem
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_yellow.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_yellow.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_yellow.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_top_hopo2_yellow.mat} set color {pack_color GEM_COLOR}} ;custom gem color
 
+      ;blue gem
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_blue.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_blue.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_blue.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_top_hopo2_blue.mat} set color {pack_color GEM_COLOR}} ;custom gem color
 
+      ;orange gem
       {{{{track_panel loaded_dir} find $tracktype} find tail_glow_orange.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find tail_orange.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_orange.mat} set color {pack_color GEM_COLOR}} ;custom gem color
       {{{{track_panel loaded_dir} find $tracktype} find dot_top_hopo2_orange.mat} set color {pack_color GEM_COLOR}} ;custom gem color
    }
 
-   {if $customsmashercolor
-      {{{{track_panel loaded_dir} find $tracktype} find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_add_green.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+   ;custom smasher colors
+   {if $customsmashercolor ;check if custom smasher color is enabled
+      ;gh3 smasher off colors
+      {if {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find gem_smasher.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
+      }
+
+      ;green smasher
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find now_green_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_green.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_green.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_green.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_green_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_green.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_green_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 
-      {{{{track_panel loaded_dir} find $tracktype} find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_add_red.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      ;red smasher
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find now_red_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_red.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_red.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_red.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_red_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_red.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_red_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 
-      {{{{track_panel loaded_dir} find $tracktype} find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      ;yellow smasher
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find now_yellow_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_yellow.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_yellow_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_yellow.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_yellow_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 
-      {{{{track_panel loaded_dir} find $tracktype} find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_add_blue.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      ;blue smasher
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find now_blue_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_blue.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_blue.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_blue.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_blue_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_blue.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_blue_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 
-      {{{{track_panel loaded_dir} find $tracktype} find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_add_orange.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      {{{{track_panel loaded_dir} find $tracktype} find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      ;orange smasher
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find now_orange_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_orange.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_add_orange.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
+      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         {{{{track_panel loaded_dir} find $tracktype} find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+      }
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_orange.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_orange_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_orange.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_orange_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
 
+      ;bonus smasher
       {{{{track_panel loaded_dir} find $tracktype} find now_ring.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_bonus.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
       {{{{track_panel loaded_dir} find $tracktype} find now_ring_bonus_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
@@ -217,21 +294,26 @@
       {{{{track_panel loaded_dir} find $tracktype} find gem_smasher_bonus_1.mat} set color {pack_color SMASHER_COLOR}} ;custom smasher color
    }
 
-   {if_else $clonehero_hud
-      {{streak_overlay_panel find star_counter.lbl} set color {pack_color CLONE_STAR_COUNTER_COLOR}} ;custom star counter color
-      {{streak_overlay_panel find star_counter.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
+   ;star number counter customization
+   {if_else $clonehero_hud ;check if we are using the clone hero hud
+      {do
+         {{streak_overlay_panel find star_counter.lbl} set color {pack_color CLONE_STAR_COUNTER_COLOR}} ;custom clone hero star counter color. it's seperate because we use different default colors for normal and ch modes
+         {{streak_overlay_panel find star_counter_2.lbl} set color {pack_color CLONE_STAR_COUNTER_COLOR}} ;custom clone hero star counter color. it's seperate because we use different default colors for normal and ch modes
+      }
+      {do
+         {{streak_overlay_panel find star_counter.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom normal star counter color. it's seperate because we use different default colors for normal and ch modes
+         {{streak_overlay_panel find star_counter_2.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom normal star counter color. it's seperate because we use different default colors for normal and ch modes
+      }
    }
-   {if_else $clonehero_hud
-      {{streak_overlay_panel find star_counter_2.lbl} set color {pack_color CLONE_STAR_COUNTER_COLOR}} ;custom star counter color
-      {{streak_overlay_panel find star_counter_2.lbl} set color {pack_color STAR_COUNTER_COLOR}} ;custom star counter color
-   }
-   
-   {{streak_overlay_panel find percentbar_p1.mat} set color {pack_color SONG_PROGRESS_BAR_COLOR}} ;custom song progress bar color
-   
-   {{streak_overlay_panel find percentbar_p2.mat} set color {pack_color STAR_PROGRESS_BAR_COLOR}} ;custom star progress bar color
 
+   ;progress bars customization
+   {{streak_overlay_panel find percentbar_p1.mat} set color {pack_color SONG_PROGRESS_BAR_COLOR}} ;custom song progress bar color. we do use the same colors here for normal and ch modes
+   {{streak_overlay_panel find percentbar_p2.mat} set color {pack_color STAR_PROGRESS_BAR_COLOR}} ;custom star progress bar color. we do use the same colors here for normal and ch modes
+
+   ;score number frame customization
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_num_frame.mat} set color {pack_color SCORE_NUM_FRAME_COLOR}} ;score number frame color
-
+   
+   ;score number font customization
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_0.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_0_keep.png"}} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_1.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_1_keep.png"}} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_2.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_2_keep.png"}} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
@@ -242,8 +324,9 @@
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_7.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_7_keep.png"}} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_8.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_8_keep.png"}} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
    {{{{hud loaded_dir} find BandScoreDisplay1} find score_9.tex} set_bitmap {sprint "track/custom_track_textures/score_num_" $scorenumtype "_9_keep.png"}} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-   
-   {if_else $clonehero_hud
+
+   ;score number customization
+   {if_else $clonehero_hud ;because we use a different color for ch and normal modes, we have to check which mode we are in and apply a different color
       {do
          {{{{hud loaded_dir} find BandScoreDisplay1} find score_0.mat} set color {pack_color CLONE_SCORE_NUM_COLOR}} ;score number color in ch mode
          {{{{hud loaded_dir} find BandScoreDisplay1} find score_1.mat} set color {pack_color CLONE_SCORE_NUM_COLOR}} ;score number color in ch mode
@@ -270,16 +353,28 @@
       }
    }
 
+   ;rail color customization
    {{{{track_panel loaded_dir} find $tracktype} find rail_light.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
    {{{{track_panel loaded_dir} find $tracktype} find track1.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
    {{{{track_panel loaded_dir} find $tracktype} find track2.lit} set color {pack_color TRACK_RAIL_COLOR}} ;rail color
 
+   ;beatlines customization
    {{{{track_panel loaded_dir} find $tracktype} find bar_line5_light.lit} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find bar_line.mat} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find beat_line.mat} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find half_beat_line.mat} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find half_beat_line1.mat} set color {pack_color BEATLINE_COLOR}} ;beat line
    {{{{track_panel loaded_dir} find $tracktype} find quarter_beat_line.mat} set color {pack_color BEATLINE_COLOR}} ;beat line
+
+   ;remove quarter beatlines
+   {{{{track_panel loaded_dir} find $tracktype} find quarter_beat_line.mat} set alpha {! $removequarterbeatlines}} ;remove quarter beat line
+   {{{{track_panel loaded_dir} find $tracktype} find half_beat_line.mat} set alpha {! $removequarterbeatlines}} ;remove quarter beat line
+   {{{{track_panel loaded_dir} find $tracktype} find half_beat_line1.mat} set alpha {! $removequarterbeatlines}} ;remove quarter beat line
+
+   ;remove division lines
+   {if $removedivisionlines ;check if var is true
+      {{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx} ;remove division lines in a backwards ass way but whatever
+   }
 
    ;random testings, sets all in specific dirs to specific colors
    ;{{{hud loaded_dir} find BandCrowdMeterDir1} iterate Mat $m {$m set color {pack_color 0.84 0.20 0.57}}}
@@ -289,18 +384,21 @@
    ;{{{hud loaded_dir} find BandStreakDisplay1} iterate Mat $m {$m set color {pack_color 0.84 0.20 0.57}}}
    ;{{hud loaded_dir} iterate Mat $m {$m set color {pack_color 0.84 0.20 0.57}}}
 
+   ;scale the beatlines if track is in ch mode
    {if {== $trackcamx 1.3}
       {{{{track_panel loaded_dir} find $tracktype} find gems.grp} set_local_scale_index 0 0.77} ;clone hero beatline fix
    }
+
+   ;track scaling
    {{{{track_panel loaded_dir} find $tracktype} find cameras.grp} set_local_scale_index 0 $trackcamx}
    {{{{track_panel loaded_dir} find $tracktype} find reset_cams..grp} set_local_scale_index 0 $trackcamx}
    {{{{track_panel loaded_dir} find $tracktype} find beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find half_beat_line5.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find bar_line5.mesh} set_local_scale_index 0 $trackbeatx}
-   ;{{{{track_panel loaded_dir} find $tracktype} find track_lane_lines.mesh} set_local_scale_index 0 $trackbeatx}
    {{{{track_panel loaded_dir} find $tracktype} find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
-   
-   {if {|| $nofail $clonehero_hud}
+
+   ;remove the black squares behind the crowd meter and score meter
+   {if {|| $nofail $clonehero_hud} ;check if clone hero mode or no fail is enabled
       {hud toggle_masks} ;remove the black backing on the hud elements
    }
 #endif

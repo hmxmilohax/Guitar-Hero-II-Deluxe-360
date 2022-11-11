@@ -291,7 +291,8 @@
             os_sfx os_trkmod os_selhw os_font
             os_whammyfx os_muting os_nofail os_noflames
             os_songtitle os_nametitle os_cleanmtv
-            os_brutalmode os_towel
+            os_brutalmode os_towel os_quarterbeatlines
+            os_divisionlines
             os_notestreakmod os_sppop os_highwayshake
             os_selecttorestart os_drums os_monkeyhead
             os_eyeballhead os_flaminghead os_neckless
@@ -363,6 +364,20 @@
          (os_towel
             {set $towel {! $towel}} ;set the variable to the opposite of what it currently is
             {if_else $towel ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_quarterbeatlines
+            {set $removequarterbeatlines {! $removequarterbeatlines}} ;set the variable to the opposite of what it currently is
+            {if_else $removequarterbeatlines ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
+         (os_divisionlines
+            {set $removedivisionlines {! $removedivisionlines}} ;set the variable to the opposite of what it currently is
+            {if_else $removedivisionlines ;check the state of the variable
                CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
