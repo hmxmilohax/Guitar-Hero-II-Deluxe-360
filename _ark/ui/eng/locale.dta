@@ -186,7 +186,7 @@
 (mc_signin "Sign In")
 (mc_no_save "Continue Without Saving")
 (mc_overwrite "Overwrite")
-(leaderboards "leaderboards")
+(leaderboards "CALIBRATION")
 (lb_career_leaderboard "Career Score")
 (lb_campaign_leaderboard "Campaign Score")
 (lb_option1 "song:")

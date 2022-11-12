@@ -148,6 +148,7 @@
          (main_tutorial.btn
             {gamecfg set mode practice} ;set the current game mode to practice
             {gamecfg set practice_speed 0} ;we use our own speed scripting, so ensure practice speed is set to full speed
+            {set $gh3list {random_int 1 4}} ;set the random number for one of the 4 combinations of gh3 song list screen
             {ui goto_screen sel_song_screen} ;go to the select song screen
             kDataUnhandled)
          (main_leaderboards.btn
