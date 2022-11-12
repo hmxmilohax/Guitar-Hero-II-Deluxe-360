@@ -86,6 +86,7 @@
                            {mtv_overlay_panel_buffer update_text}
                            {mtv_overlay_panel set_showing FALSE}
                            {mtv_overlay_panel_buffer set_showing TRUE}
+                           {set $p0_evenmtv FALSE}
                         )
                         kDataUnhandled
                      }
@@ -94,11 +95,11 @@
                            {mtv_overlay_panel update_text}
                            {mtv_overlay_panel_buffer set_showing FALSE}
                            {mtv_overlay_panel set_showing TRUE}
+                           {set $p0_evenmtv TRUE}
                         )
                         kDataUnhandled
                      }
                   }
-                  {set $p0_evenmtv {! $p0_evenmtv}} ;flip even streak flag back and forth
                }
             }
          }
@@ -150,7 +151,7 @@
                   }
                   {set $player0_streak 0}
                   {set $interval_p0 50}
-                  {streak_overlay_panel zero_streak 0}
+;                  {streak_overlay_panel zero_streak 0}
                   {streak_overlay_panel update_streak 0}
                   {if {&& {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
                      {if {! $beforefirstnote_p0}
@@ -165,6 +166,7 @@
                                     {mtv_overlay_panel_buffer update_text}
                                     {mtv_overlay_panel set_showing FALSE}
                                     {mtv_overlay_panel_buffer set_showing TRUE}
+                                    {set $p0_evenmtv FALSE}
                                  )
                                  kDataUnhandled
                               }
@@ -173,11 +175,11 @@
                                     {mtv_overlay_panel update_text}
                                     {mtv_overlay_panel_buffer set_showing FALSE}
                                     {mtv_overlay_panel set_showing TRUE}
+                                    {set $p0_evenmtv TRUE}
                                  )
                                  kDataUnhandled
                               }
                            }
-                           {set $p0_evenmtv {! $p0_evenmtv}} ;flip even streak flag back and forth
                         }
                      }
                   }
@@ -235,7 +237,7 @@
                      }
                      {set $player0_streak 0}
                      {set $interval_p0 50}
-                     {streak_overlay_panel zero_streak 0}
+;                     {streak_overlay_panel zero_streak 0}
                      {streak_overlay_panel update_streak 0}
                      {if_else $cleanmtv
                         kDataUnhandled
@@ -250,6 +252,7 @@
                                           {mtv_overlay_panel_buffer update_text}
                                           {mtv_overlay_panel set_showing FALSE}
                                           {mtv_overlay_panel_buffer set_showing TRUE}
+                                          {set $p0_evenmtv FALSE}
                                        )
                                        kDataUnhandled
                                     }
@@ -258,11 +261,11 @@
                                           {mtv_overlay_panel update_text}
                                           {mtv_overlay_panel_buffer set_showing FALSE}
                                           {mtv_overlay_panel set_showing TRUE}
+                                          {set $p0_evenmtv TRUE}
                                        )
                                        kDataUnhandled
                                     }
                                  }
-                                 {set $p0_evenmtv {! $p0_evenmtv}} ;flip even streak flag back and forth
                               }
                            }
                         }
@@ -398,8 +401,8 @@
          {set $starsymbol ''}
          {set $starsymbol '©'}
       }
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_pos -75 -30 29}
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_pos -75 -30 62}
+      {percentbar_p2.mesh set_local_pos -75 -30 29}
+      {percentbar_p1.mesh set_local_pos -75 -30 62}
       {if_else {|| {game is_tutorial_running} {== {gamecfg get mode} attract} $cheat_enabled_performance_mode}
          {do
             {$this show_overlay FALSE}
@@ -419,16 +422,17 @@
       }
    )
    (init_progress_bars
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 80.0}} .1 .1}
-      {{streak_overlay_panel find percentbar_p2.mesh} set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
-      {{streak_overlay_panel find star_counter.lbl} set_text $starrating} ;apply string to label
-      {{streak_overlay_panel find star_counter_2.lbl} set_text $starrating} ;apply string to label
+      {percentbar_p1.mesh set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 80.0}} .1 .1}
+      {percentbar_p2.mesh set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.2}} .1 .1} ;set bar position
+      {star_counter_2.lbl set_showing FALSE}
+      {star_counter.lbl set_localized_text $starrating} ;apply string to label
+      {star_counter_2.lbl set_localized_text $starrating} ;apply string to label
    )
 ;   (update_song_progress
 ;      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ {player0 percent_complete} 72.0} {/ {player0  percent_complete} 75.0}} .1 .1}
 ;   )
    (update_song_progress_task
-      {{streak_overlay_panel find percentbar_p1.mesh} set_local_scale {if_else $clonehero_hud {/ $song_percent 72.0} {/ $song_percent 80.0}} .1 .1} ;update scale based on percent complete
+      {percentbar_p1.mesh set_local_scale {if_else $clonehero_hud {/ $song_percent 72.0} {/ $song_percent 80.0}} .1 .1} ;update scale based on percent complete
    )
    (setup_next_progress_update
       {script_task
@@ -466,26 +470,27 @@
       {percentbar_p2.mesh set_local_scale {if_else $clonehero_hud {* $starratingtempbar 1.35} {* $starratingtempbar 1.25}} .1 .1} ;set bar position
       {if {!= $intstarratingtemp $previntstarratingtemp} ;check to see if integer star rating changed
          {if_else $p0_evenstar
-         {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-            (0
-               {star_counter_2.lbl set_localized_text $starrating}
-               {star_counter.lbl set_showing FALSE}
-               ;{star_counter_2.lbl set color {pack_color 0 0 1}} ;buffer test. label is colored already
-               {star_counter_2.lbl set_showing TRUE}
-            )
-            kDataUnhandled
+            {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+               (0
+                  {star_counter_2.lbl set_localized_text $starrating}
+                  {star_counter.lbl set_showing FALSE}
+;                  {star_counter_2.lbl set color {pack_color 0 0 1}} ;buffer test. label is colored already
+                  {star_counter_2.lbl set_showing TRUE}
+                  {set $p0_evenstar FALSE}
+               )
+               kDataUnhandled
+            }
+            {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+               (0 
+                  {star_counter.lbl set_localized_text $starrating}
+                  {star_counter_2.lbl set_showing FALSE}
+;                  {star_counter.lbl set color {pack_color 1 0 0}} ;buffer test. label is colored already
+                  {star_counter.lbl set_showing TRUE}
+                  {set $p0_evenstar TRUE}
+               )
+               kDataUnhandled
+            }
          }
-         {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-            (0 
-               {star_counter.lbl set_localized_text $starrating}
-               {star_counter_2.lbl set_showing FALSE}
-               ;{star_counter.lbl set color {pack_color 1 0 0}} ;buffer test. label is colored already
-               {star_counter.lbl set_showing TRUE}
-            )
-            kDataUnhandled
-         }
-      }
-      {set $p0_evenstar {! $p0_evenstar}} ;flip even streak flag back and forth
       }
    )
    (animate_streak
@@ -641,6 +646,7 @@
       }
       {{sprint $stk_view_p0} set_showing TRUE} ; Don't worry, panel is still invisible at this point
       {{sprint $stk_prefix_p0 $streakline_p0 ".lbl"} set_showing TRUE}
+      {stk_campaign_line2.lbl set_showing FALSE}
    )
    (not_an_fc
       ($player)
@@ -689,29 +695,30 @@
          {switch $player ;streak is even, write to line 2 while 1 is showing then swap
             (0
                {stk_campaign_line2.lbl set_localized_text {sprint $player0_streak}}
-               {stk_campaign_line1.lbl set_showing FALSE}
                {if_else $player0_fc
                   {stk_campaign_line2.lbl set color {pack_color $streaklabel_r $streaklabel_g $streaklabel_b}}
                   {stk_campaign_line2.lbl set color {pack_color $streakstandardlabel_r $streakstandardlabel_g $streakstandardlabel_b}}
                }
+               {stk_campaign_line1.lbl set_showing FALSE}
                {stk_campaign_line2.lbl set_showing TRUE}
+               {set $p0_evenstreak FALSE}
             )
             kDataUnhandled
          }
          {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
             (0 
                {stk_campaign_line1.lbl set_localized_text {sprint $player0_streak}}
-               {stk_campaign_line2.lbl set_showing FALSE}
                {if_else $player0_fc
                   {stk_campaign_line1.lbl set color {pack_color $streaklabel_r $streaklabel_g $streaklabel_b}}
                   {stk_campaign_line1.lbl set color {pack_color $streakstandardlabel_r $streakstandardlabel_g $streakstandardlabel_b}}
                }
+               {stk_campaign_line2.lbl set_showing FALSE}
                {stk_campaign_line1.lbl set_showing TRUE}
+               {set $p0_evenstreak TRUE}
             )
             kDataUnhandled
          }
       }
-      {set $p0_evenstreak {! $p0_evenstreak}} ;flip even streak flag back and forth
    )
    (set_line
       ($prefix $i $text)

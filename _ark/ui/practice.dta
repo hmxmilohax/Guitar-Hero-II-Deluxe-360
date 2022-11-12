@@ -96,12 +96,20 @@
 {new GHPanel practice_panel
    (file practice_panel.milo)
    (enter
+      {section_buffer.lbl set_showing FALSE}
+      {section_shadow_buffer.lbl set_showing FALSE}
       {section.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
       {section_shadow.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
+      {section_buffer.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
+      {section_shadow_buffer.lbl set_local_scale .5 1 .5} ;setup section text label to specific position and scale
+      {section.lbl set color MTV_OVERLAY_COLOR}
+      {section_buffer.lbl set color MTV_OVERLAY_COLOR}
       {set $sectionlabelx {if_else $cleanmtv -295 -295}} ;set the base x position for the section label
       {set $sectionlabely {if_else $cleanmtv 161 147}} ;set the base y position for the section label
       {section.lbl set_local_pos $sectionlabelx 0 $sectionlabely} ;setup section text label to specific position and scale as set above
       {section_shadow.lbl set_local_pos {+ $sectionlabelx 3} 1 {- $sectionlabely 3}} ;setup section text label to specific position and scale as set above
+      {section_buffer.lbl set_local_pos $sectionlabelx 0 $sectionlabely} ;setup section text label to specific position and scale as set above
+      {section_shadow_buffer.lbl set_local_pos {+ $sectionlabelx 3} 1 {- $sectionlabely 3}} ;setup section text label to specific position and scale as set above
       {practice_space1.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
       {practice_space2.mesh set_showing {! $focusmode}} ;display or hide the background based off focus mode
       {events_parser add_sink $this section} ;add section event parser
@@ -147,30 +155,63 @@
    (click_hat {practice_hat play})
    (section
       ($sec)
-      {section.lbl set_text
-         {if_else {== $sec [ignore_section]}
-            ''
-            
-            {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-               {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
-               {if_else $cleanmtv $sec {sprint '\n' $sec}}
+      {switch $p0_evensec
+         (TRUE
+            {section_buffer.lbl set_text
+               {if_else {== $sec [ignore_section]}
+                  ''
+                  {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+                     {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
+                     {if_else $cleanmtv $sec {sprint '\n' $sec}}
+                  }
+               }
             }
-         }
+            {section_shadow_buffer.lbl set_text
+               {if_else {== $sec [ignore_section]}
+                  ''
+                  {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+                     {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
+                     {if_else $cleanmtv $sec {sprint '\n' $sec}}
+                  }
+               }
+            }
+            {section.lbl set_showing FALSE}
+            {section_shadow.lbl set_showing FALSE}
+            {section_buffer.lbl set_showing TRUE}
+            {section_shadow_buffer.lbl set_showing TRUE}
+            {set $p0_evensec FALSE}
+         )
+         (FALSE
+            {section.lbl set_text
+               {if_else {== $sec [ignore_section]}
+                  ''
+                  {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+                     {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
+                     {if_else $cleanmtv $sec {sprint '\n' $sec}}
+                  }
+               }
+            }
+            {section_shadow.lbl set_text
+               {if_else {== $sec [ignore_section]}
+                  ''
+                  {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
+                     {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
+                     {if_else $cleanmtv $sec {sprint '\n' $sec}}
+                  }
+               }
+            }
+            {section_buffer.lbl set_showing FALSE}
+            {section_shadow_buffer.lbl set_showing FALSE}
+            {section.lbl set_showing TRUE}
+            {section_shadow.lbl set_showing TRUE}
+            {set $p0_evensec TRUE}
+         )
       }
-        {section_shadow.lbl set_text
-           {if_else {== $sec [ignore_section]}
-              ''
-              {if_else {'||' $autoplay $author {!= "" {localize {sprint {gamecfg get_song} "_author"}}}}
-                 {if_else $cleanmtv {sprint '\n' $sec} {sprint '\n\n' $sec}}
-                 {if_else $cleanmtv $sec {sprint '\n' $sec}}
-              }
-           }
-        }
    )
    (keep_section_text FALSE)
    (ignore_section '')
 }
-#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel track_panel mtv_overlay_panel name_overlay_panel)
+#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel track_panel mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel)
 {new GHScreen practice_game_screen
    (panels PRACTICE_PANELS)
    (allow_back FALSE)
