@@ -733,7 +733,10 @@
 {new HudPanel hud
    (file
       {if_else
-         {&& {== {gamecfg get mode} career} $clonehero_hud}
+         {||
+           {&& {== {gamecfg get mode} career} $clonehero_hud}
+           {&& {== {gamecfg get mode} practice} $clonehero_hud}
+         }
             "../hud/hud_ch.milo"
             {sprint "../hud/" {gamecfg get hud_file}}
       }
@@ -943,6 +946,9 @@
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow_meter.mesh} set_showing FALSE}
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}
+      {if {&& {== {gamecfg get mode} practice} $clonehero_hud}
+         {$this no_fail_hud}
+      }
    )
    (exit
       {game remove_sink $this}
