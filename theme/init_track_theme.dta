@@ -82,6 +82,12 @@
 ;sets custom track rail color in RGB
 {set $trackrailcolor_r 1} {set $trackrailcolor_g 1} {set $trackrailcolor_b 1}
 
+;removes quarter beatlines
+{set $removequarterbeatlines TRUE}
+
+;removes lines between frets
+{set $removedivisionlines FALSE}
+
 ;sets custom beat line color in RGB
 {set $beatlinecolor_r 0.87} {set $beatlinecolor_g 0.87} {set $beatlinecolor_b 0.87}
 

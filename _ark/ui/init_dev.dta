@@ -189,6 +189,14 @@
    {set $trackrailcolor_b 1}
 }
 
+{if {! $removequarterbeatlines}
+   {set $removequarterbeatlines TRUE}
+}
+
+{if {! $removedivisionlines}
+   {set $removedivisionlines FALSE}
+}
+
 {if {! $beatlinecolor_r}
    {set $beatlinecolor_r 0.87}
 }
