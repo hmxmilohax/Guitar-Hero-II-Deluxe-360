@@ -653,17 +653,17 @@
       {switch $player
          (0
             {do
-               {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
-               {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
+;               {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
+;               {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
                {set $beforefirstnote_p0 FALSE}
                {set $player0_fc FALSE}
-               {set $streakline_p0 2} 
+;               {set $streakline_p0 2} 
             }
          )
          (1
             {do
-               {{sprint $stk_prefix_p1 1 ".lbl"} set_showing FALSE}
-               {{sprint $stk_prefix_p1 2 ".lbl"} set_showing TRUE}
+;               {{sprint $stk_prefix_p1 1 ".lbl"} set_showing FALSE}
+;               {{sprint $stk_prefix_p1 2 ".lbl"} set_showing TRUE}
                {set $beforefirstnote_p1 FALSE}
                {set $player1_fc FALSE}
                {set $streakline_p1 2}
@@ -671,12 +671,12 @@
          )
          (2
             {do
-               {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
-               {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
+;               {{sprint $stk_prefix_p0 1 ".lbl"} set_showing FALSE}
+;               {{sprint $stk_prefix_p0 2 ".lbl"} set_showing TRUE}
                {set $beforefirstnote_p0 FALSE}
                {set $beforefirstnote_p1 FALSE}
                {set $player2_fc FALSE}
-               {set $streakline_p2 2}
+;               {set $streakline_p2 2}
             }
          )
       }
