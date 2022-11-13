@@ -45,7 +45,7 @@
    (crowd_rating_active FALSE)
    (crowd_audio FALSE)
    (star_power_disable {if_else {|| $autoplay $drumenabled} TRUE FALSE}) ;this disables star power phrases when autoplay is enabled
-   (hud_file {if_else $autoplay hud_practice.milo hud_sp.milo}) ;this disables the rock meter and sp meter when autoplay is enabled
+   (hud_file hud_sp.milo) ;this disables the rock meter and sp meter when autoplay is enabled
    (continue_screen main_screen)
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
@@ -76,7 +76,7 @@
    (star_power_disable {if_else {|| $autoplay $drumenabled} TRUE FALSE}) ;this disables star power phrases when autoplay is enabled
    (continue_screen sel_song_screen)
    (win_preload_panel endgame_panel)
-   (hud_file {if_else $autoplay hud_practice.milo hud_sp.milo}) ;this disables the rock meter and sp meter when autoplay is enabled
+   (hud_file hud_sp.milo) ;this disables the rock meter and sp meter when autoplay is enabled
    (encore_fx TRUE)
    (update_song_leaderboard TRUE)
    (update_career_leaderboard TRUE)
