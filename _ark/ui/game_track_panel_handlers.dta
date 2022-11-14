@@ -404,7 +404,7 @@
    {{XBOX_TRACK_PANEL find track_mask.mesh} set_local_scale_index 0 $trackbeatx}
 
    ;remove the black squares behind the crowd meter and score meter
-   {if {|| $nofail $clonehero_hud} ;check if clone hero mode or no fail is enabled
+   {if {|| $nofail $autoplay $clonehero_hud} ;check if clone hero mode or no fail is enabled
       {hud toggle_masks} ;remove the black backing on the hud elements
    }
 #endif
