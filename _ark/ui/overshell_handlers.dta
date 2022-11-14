@@ -294,7 +294,7 @@
             os_brutalmode os_towel os_quarterbeatlines
             os_divisionlines
             os_notestreakmod os_sppop os_highwayshake
-            os_selecttorestart os_drums os_monkeyhead
+            os_selecttorestart os_monkeyhead ;os_drums
             os_eyeballhead os_flaminghead os_neckless
             os_performance os_autoplay os_roxbury
          )
@@ -466,13 +466,13 @@
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
          )
-         (os_drums
-            {set $drumenabled {! $drumenabled}} ;set the variable to the opposite of what it currently is
-            {if_else $drumenabled ;check the state of the variable
-               CHEAT_POP ;shortcut for the if else options on which sound effect to play
-            }
-            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
-         )
+;         (os_drums
+;            {set $drumenabled {! $drumenabled}} ;set the variable to the opposite of what it currently is
+;            {if_else $drumenabled ;check the state of the variable
+;               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+;            }
+;            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+;         )
          (os_horsehead ;only available on ps2
             {set $cheat_enabled_horse_head_mode {! $cheat_enabled_horse_head_mode}} ;set the variable to the opposite of what it currently is
             {if_else $cheat_enabled_horse_head_mode ;check the state of the variable

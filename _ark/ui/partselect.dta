@@ -102,18 +102,13 @@
             {== {song_provider get_instrument $song 1} "rhythm"} ;if the second instrument track in the song definition is rhythm
             {part0.btn set_text "sg_lead"} ;then set part 0 to be "lead" instead of "guitar"
          }
-         {if $drumenabled ;if we have drums enabled in overshell (usage of a modifier to enable this code solves debug crash)
-            {if_else
-               {== {song_provider get_instrument $song 2} "drum"} ;check if the 3rd instrument in the song definition is drum
-               {part2.btn set_text "sg_drum"} ;if it is, set the text to drum again
+         {if_else {song_provider has_instrument {gamecfg get_song} drum} ;check if there is an instrument with the name "drum"
+            {part2.btn set_text "sg_drum"} ;if there is, set the text to drum again
+            {do
                {part2.btn set_state kDisabled} ;if not, disable the button
-            }
-            {if_else {== {song_provider get_instrument $song 2} "drum"} ;check if the 3rd instrument in the song definition is drum
-               {part2.btn set_text "sg_drum"} ;if it is, set the text to drum again
                {part2.btn set_showing FALSE} ;if not, hide the button
             }
          }
-         {if {! $drumenabled} {part2.btn set_state kDisabled} {part2.btn set_showing FALSE}} ;if drum is not enabled, ensure part 2 button is disabled and hidden
       }
    )
    (enter ;when the screen is entered
