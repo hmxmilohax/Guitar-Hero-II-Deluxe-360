@@ -101,7 +101,7 @@
       ;{if {load_objects "game:/hardware_check.milo"}
          ;{set $cheat_enabled_unlock_all 1}
          ;{campaign set_all_access 1}
-         {set $disable_save 1}
+         ;{set $disable_save 1}
       ;}
       ;{{load_objects "game:/hardware_check.milo"} save_objects "game:/converted.milo"}
       {campaign set_profile_slot 0} ;attempt to set up career for quickplay

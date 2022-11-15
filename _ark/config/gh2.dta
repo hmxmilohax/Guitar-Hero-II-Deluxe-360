@@ -288,7 +288,7 @@
 (downloads)
 (tips
    #include tips.dta)
-(version "Build: 211107") ; originally from config/gh2_version.dta
+(version "Build: 3.0-alpha") ; originally from config/gh2_version.dta
 (achievements
    #include achievements.dta)
 (leaderboards
@@ -303,26 +303,34 @@
    (difficulty
    CONTEXT_DIFFICULTY
    (CONTEXT_DIFFICULTY_EASY CONTEXT_DIFFICULTY_MEDIUM CONTEXT_DIFFICULTY_HARD CONTEXT_DIFFICULTY_EXPERT))
-(difficulty_2nd
-   CONTEXT_DIFFICULTY_2ND
-   (CONTEXT_DIFFICULTY_2ND_EASY CONTEXT_DIFFICULTY_2ND_MEDIUM CONTEXT_DIFFICULTY_2ND_HARD CONTEXT_DIFFICULTY_2ND_EXPERT))
-(presence
-   (default CONTEXT_PRESENCE_RPS_SHELL)
-   (shell CONTEXT_PRESENCE_RPS_SHELL)
-   (attract CONTEXT_PRESENCE_RPS_WATCHING)
-   (watching CONTEXT_PRESENCE_RPS_WATCHING)
-   (career CONTEXT_PRESENCE_RPS_CAREER)
-   (quickplay CONTEXT_PRESENCE_RPS_QUICKPLAY)
-   (practice CONTEXT_PRESENCE_RPS_PRACTICE)
-   (tutorial CONTEXT_PRESENCE_RPS_TUTORIAL)
-   (multi_coop CONTEXT_PRESENCE_RPS_COOP)
-   (multi_fo CONTEXT_PRESENCE_RPS_PROFACEOFF)
-   (multi_vs CONTEXT_PRESENCE_RPS_FACEOFF))
-(songlist
-   CONTEXT_SONGLIST
-   (_song_not_found_ CONTEXT_SONGLIST_VAL_NULL)
-   ('speedtest' speedtest))
-(dl_songlist
-   CONTEXT_DL_SONGLIST
-   (_song_not_found_ CONTEXT_DL_SONGLIST_VAL_NULL)))
+   (difficulty_2nd
+      CONTEXT_DIFFICULTY_2ND
+      (CONTEXT_DIFFICULTY_2ND_EASY CONTEXT_DIFFICULTY_2ND_MEDIUM CONTEXT_DIFFICULTY_2ND_HARD CONTEXT_DIFFICULTY_2ND_EXPERT))
+   (presence
+      (default CONTEXT_PRESENCE_RPS_SHELL)
+      (shell CONTEXT_PRESENCE_RPS_SHELL)
+      (attract CONTEXT_PRESENCE_RPS_WATCHING)
+      (watching CONTEXT_PRESENCE_RPS_WATCHING)
+      (career CONTEXT_PRESENCE_RPS_CAREER)
+      (quickplay CONTEXT_PRESENCE_RPS_QUICKPLAY)
+      (practice CONTEXT_PRESENCE_RPS_PRACTICE)
+      (tutorial CONTEXT_PRESENCE_RPS_TUTORIAL)
+      (multi_coop CONTEXT_PRESENCE_RPS_COOP)
+      (multi_fo CONTEXT_PRESENCE_RPS_PROFACEOFF)
+      (multi_vs CONTEXT_PRESENCE_RPS_FACEOFF))
+   (songlist
+      CONTEXT_SONGLIST
+      (_song_not_found_ CONTEXT_SONGLIST_VAL_NULL)
+      (speedtest CONTEXT_SONGLIST_VAL_SPEEDTEST)
+      (speedtest2 CONTEXT_SONGLIST_VAL_SPEEDTEST2)
+      (speedtest3 CONTEXT_SONGLIST_VAL_SPEEDTEST3)
+      (speedtest4 CONTEXT_SONGLIST_VAL_SPEEDTEST4)
+      (speedtest5 CONTEXT_SONGLIST_VAL_SPEEDTEST5)
+      (speedtest6 CONTEXT_SONGLIST_VAL_SPEEDTEST6)
+      (speedtest7 CONTEXT_SONGLIST_VAL_SPEEDTEST7)
+      (speedtest8 CONTEXT_SONGLIST_VAL_SPEEDTEST8)
+      (speedtest9 CONTEXT_SONGLIST_VAL_SPEEDTEST9))
+   (dl_songlist
+      CONTEXT_DL_SONGLIST
+      (_song_not_found_ CONTEXT_DL_SONGLIST_VAL_NULL)))
 #merge ../../../system/run/config/default.dta

@@ -8,6 +8,14 @@
 ; it's not specified, and it's used for calculating star totals.
 ; DX songs
 (speedtest (57522 90429 154006 252956))
+(speedtest2 (57522 90429 154006 252956))
+(speedtest3 (57522 90429 154006 252956))
+(speedtest4 (57522 90429 154006 252956))
+(speedtest5 (57522 90429 154006 252956))
+(speedtest6 (57522 90429 154006 252956))
+(speedtest7 (57522 90429 154006 252956))
+(speedtest8 (57522 90429 154006 252956))
+(speedtest9 (57522 90429 154006 252956))
 
 ; GH1 Redux songs
 (allofthis (26087 44401 55707 62073))
