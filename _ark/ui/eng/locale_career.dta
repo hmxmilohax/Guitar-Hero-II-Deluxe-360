@@ -192,4 +192,4 @@
 (unlock_profaceoff2 "WELCOME TO THE BIG LEAGUES")
 (unlock_profaceoff3 "Thank you for playing Guitar Hero 2 Deluxe!")
 (unlock_profaceoff4
-       "This is a passion project with the goal of making the perfect version of GH2. Everything is already unlocked, all the fluff removed, bursting at the seams with many new features. Check out The GitHub readme for more detailed information.\n\nRemember, fit as many songs as you can in each song pack, more than 16 song packs will corrupt your save. I'll see you again when that happens.\n\nShred On,\nGHIIDX Team")
+       "This is a passion project with the goal of making the perfect version of GH2. Everything is already unlocked, all the fluff removed, bursting at the seams with many new features. Check out The GitHub readme for more detailed information.\n\nRemember, at over 250 songs installed, saving is disabled to prevent crashes.\n\nShred On,\nGHIIDX Team")
