@@ -110,7 +110,10 @@
       ;{campaign set_all_access 1} ;unlock all for dx
       {$this reset_player_settings} ;sets player defaults, only run onces on first entry
       {set $dontreset TRUE} ;monkey script to make the player reset not occur after first entry
-      {if {! [already_entered]} {synth play_sequence meta_lick} {$this set already_entered TRUE}} ;play a noise on first entry, and tell the game entry has occured
+      {if {! [already_entered]}
+         {play_sfx {sprint "meta_lick" {random_int 0 9}}} ;play a random noise on first entry
+         {$this set already_entered TRUE} ;tell the game entry has occured
+      }
       {game set_tutorial_running FALSE} ;ayo fuck tutorials
       {main_msg.view set_showing FALSE} ;this is the group of objects and text for vanilla cheat notifications
       {set [msg_last_frame] 0} ;resets the timeline for the cheat notification for later playback (unused)
