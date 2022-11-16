@@ -237,6 +237,9 @@
       {set $author FALSE} ;we dont use the author variable until the song is loaded, reset the variable to false
       {{ui current_screen} turn_off_ambient} ;turn off meta music because we will be hearing song previews shortly
       {$this refresh} ;after setting everything up, run the refresh code block
+      {if {>= {song_provider list_length} 249}
+         {set $disable_save 1}
+      }
    )
    (update_song_info
       {ss_song.lst set_selected {game get_song_index}} ;select the internally selected song on the list
