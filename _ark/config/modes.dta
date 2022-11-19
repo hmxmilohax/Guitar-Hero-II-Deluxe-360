@@ -44,7 +44,7 @@
    (game_over_sequence FALSE)
    (crowd_rating_active FALSE)
    (crowd_audio FALSE)
-   (star_power_disable {if_else {|| $autoplay $drumenabled} TRUE FALSE}) ;this disables star power phrases when autoplay is enabled
+   (star_power_disable {if_else {|| $autoplay {== {game get_track_sym 0} drum}} TRUE FALSE}) ;this disables star power phrases when autoplay is enabled
    (hud_file hud_sp.milo) ;this disables the rock meter and sp meter when autoplay is enabled
    (continue_screen main_screen)
    (loading_screen practice_loading_screen)
@@ -73,7 +73,7 @@
 ;we currently use career as quickplay
 (career
    (main_screen career_screen)
-   (star_power_disable {if_else {|| $autoplay $drumenabled} TRUE FALSE}) ;this disables star power phrases when autoplay is enabled
+   (star_power_disable {if_else {|| $autoplay {== {game get_track_sym 0} drum}} TRUE FALSE}) ;this disables star power phrases when autoplay is enabled
    (continue_screen sel_song_screen)
    (win_preload_panel endgame_panel)
    (hud_file hud_sp.milo) ;this disables the rock meter and sp meter when autoplay is enabled
