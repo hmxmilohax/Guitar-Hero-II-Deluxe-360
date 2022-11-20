@@ -1,0 +1,33 @@
+(WorldDir
+   (types
+      (battle2
+         WORLD_OBJECT_BASE
+         (sound
+            (bank battle_bank)
+            (crowd
+               (intro -8.0 crowd_v1_0intro
+                  (pan 34))
+               (levels
+                  (kExcitementBoot -6.0 crowd_v1_1danger
+                     (pan 3))
+                  (kExcitementBad -7.5 crowd_v1_2poor
+                     (pan 3))
+                  (kExcitementOkay -9.0 crowd_v1_3norm
+                     (pan 3))
+                  (kExcitementGreat -9.0 crowd_v1_4good
+                     (pan 3))
+                  (kExcitementPeak -6.0 crowd_v1_4good
+                     (pan 3)))
+               (encore_outro 0.0 encore_v1_outro
+                  (pan 1)
+                  (loop_ms 19469 40054))
+               (encore_intro 0.0 encore_v1_intro
+                  (pan 1))))
+         (camera_durations
+            ((kExcitementBoot 3 6)
+               (kExcitementBad 3 6)
+               (kExcitementOkay 3 5)
+               (kExcitementGreat 2 4)
+               (kExcitementPeak 2 4)))
+         (intro_camera_distance near)
+         (intro_camera_facing left))))

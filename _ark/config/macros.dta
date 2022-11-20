@@ -11,7 +11,11 @@
 (track_unfurl)
 #define TRACK_EXPLODE_SFX
 (track_exp)
-#include ../../../system/run/config/macros.dta
+#ifdef HX_XBOX
+#include ../../../system/run/config/macros_xbox.dta
+#else
+#include ../../../system/run/config/macros_ps2.dta
+#endif
 #define kTempoMedium
 (1)
 #define kTempoFast
@@ -162,6 +166,7 @@
 (component_bad_selection)
 #define SCREEN_BACK_MSG
 (screen_back)
+#ifdef HX_XBOX
 #define CHAR_ADDED_MSG
 (char_added)
 #define CHAR_REMOVED_MSG
@@ -188,6 +193,7 @@
 (_career)
 #define kLeaderboardCampaign
 (_campaign)
+#endif
 #define kMeshGem
 (0)
 #define kMeshGemGlow
@@ -202,9 +208,21 @@
 (5)
 #define kMeshStarTop
 (6)
+#ifndef HX_XBOX
+#define kPlayer1
+(0)
+#define kPlayer2
+(1)
+#define kPlayerNone
+(-1)
+#define kPlayerShared
+(-2)
+#endif
 #define WORLDEVENTS
 ((SYSTEMWORLDEVENTS chorus verse solo venue_effect excitement_bad excitement_okay excitement_great intro_skip intro_start intro_end kick_drum crash_symbal bass_hit post_switch_cam music_start game_over game_won game_lost campaign_won encore_lost crowd_update crowd_hide crowd_half_tempo crowd_double_tempo crowd_normal_tempo crowd_lighters_slow crowd_lighters_fast crowd_lighters_off build_streak single_player multi_player hit_p0_fret1 hit_p0_fret2 hit_p0_fret3 hit_p0_fret4 hit_p0_fret5 hit_p1_fret1 hit_p1_fret2 hit_p1_fret3 hit_p1_fret4 hit_p1_fret5 play_encore_fx skip_encore_fx encore_outro hit_snare hit_hihat peak_on peak_off star_power_ready star_power_start star_power_stop drummer_explode))
 #define LANGUAGES
 ((eng fre ita deu esl))
+#ifdef HX_XBOX
 #include xlast_macros.dta
+#endif
 #endif

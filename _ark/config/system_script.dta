@@ -4,7 +4,11 @@
 ; example, "animate_forever_30fps" is used for the loading screen, at least
 ; in the vanilla game, to animate the cassette with wings. Doubt you'd need
 ; anything in here.
-#include ../../../system/run/config/system_init.dta
+#ifdef HX_XBOX
+#include ../../../system/run/config/system_init_xbox.dta
+#else
+#include ../../../system/run/config/system_init_ps2.dta
+#endif
 #define FOREVER_PERIOD (604800)
 #define FOREVER_30FPS (18144000)
 #define CHEAT_DISPLAY_S (5)

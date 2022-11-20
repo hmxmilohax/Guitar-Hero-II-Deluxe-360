@@ -1,24 +1,48 @@
 #include macros.dta
 (rnd
-   (force_hd FALSE))
+   (force_hd FALSE)
+)
 (mem
    (heaps
-   (main
-      (size 50000000)))
-(pool
-   (big_hunk 3100000)
-   (small_hunk 50000)))
+#ifdef HX_XBOX
+      (main
+         (size 50000000)
+      )
+#else
+      (main
+         (size 19730000)
+      )
+      (rnd
+         (size 5900000)
+         (handle TRUE)
+      )
+#endif
+   )
+   (pool
+      (big_hunk 3100000)
+      (small_hunk 50000)
+   )
+)
 (system
+#ifdef HX_XBOX
    (ng TRUE)
+#endif
    (init
       #include system_script.dta)
+#ifndef HX_XBOX
+   (language
+      (force eng))
+#endif
    (iop_modules)
    (keyboard
       (disable TRUE))
    (multitap
       (disable TRUE))
+#ifdef HX_XBOX
    (xbox_map_file
-      "gh2_%s.map"))
+      "gh2_%s.map")
+#endif
+   )
 (synth
    #include synth.dta)
 (joypad
@@ -27,11 +51,14 @@
       (repeat_ms 30))
 (spew)
 #define NON_GAME_TIMERS
-(world hud track file_read tasks)
+(world hud track file_read #ifndef HX_XBOX end_draw #endif tasks)
 (timer NON_GAME_TIMERS game cpu gs)
 (rnd
    (title
       "Guitar Hero 2")
+#ifndef HX_XBOX
+   (show_timers FALSE)
+#endif
    (overlays
       (time
          (lines 1)
@@ -45,13 +72,24 @@
          (lines 4)
          (showing FALSE)
          (color 0 0 0 0.5))
+#ifndef HX_XBOX
+      (light_preset
+         (lines 4)
+         (showing FALSE)
+         (color 0 0 0 0.5))
+#endif
       (score
          (lines 15)
          (showing FALSE))
-      (char_status
+#ifndef HX_XBOX
+      (guitar
          (lines 1)
          (showing FALSE))
-      (char_history
+#endif
+      (#ifdef HX_XBOX char_status #else guitarist0_status #endif
+         (lines 1)
+         (showing FALSE))
+      (#ifdef HX_XBOX char_history #else guitarist0_history #endif
          (lines 3)
          (showing FALSE))
       (player0_freestyle
@@ -69,7 +107,7 @@
       (transition_test
          (lines 1)
          (showing FALSE)))
-   (gamma 0.8)
+   #ifdef HX_XBOX (gamma 0.8) #endif
    (timer_script
       {do
          ($tot 0)
@@ -89,11 +127,18 @@
 (ui
    #include ../ui/ui.dta)
 (objects ; block originally from config/objects.dta
+#ifdef HX_XBOX
    #define INIT_BAND (1)
-   #include ../char/char_objects.dta
-   #include ../world/world_objects.dta
-   #include ../ui/ui_objects.dta
-   #include ../hud/hud_objects.dta)
+#endif
+#include ../char/char_objects.dta
+#include ../world/world_objects.dta
+#include ../ui/ui_objects.dta
+#ifdef HX_XBOX
+   #include ../hud/hud_objects_xbox.dta
+#else
+   #include ../ui/ui_objects_ps2.dta
+   #include ../hud/hud_objects_ps2.dta
+#endif)
 (locale
 ../ui/eng/locale_milo.dta ../ui/eng/locale.dta ../ui/eng/locale_authors.dta
 ../ui/eng/locale_career.dta ../ui/eng/locale_chars.dta ../ui/eng/locale_drums.dta
@@ -216,8 +261,13 @@
       (volume 0.0)
       (dir)
       (events)))
+#ifdef HX_XBOX
 (star_power_fx_volume 0)
 (master_volume -2.0)
+#else
+(master_volume -1.5)
+(master_volume_mono -4.0)
+#endif
 (options_screen
    (slider -96 -28 -24 -20 -16 -12 -10 -8 -6 -4 -2 0))
 (practice_mode
@@ -285,10 +335,13 @@
 (video))
 (campaign
    #include campaign.dta)
+#ifdef HX_XBOX
 (downloads)
+#endif
 (tips
    #include tips.dta)
 (version "Build: 3.0-alpha") ; originally from config/gh2_version.dta
+#ifdef HX_XBOX
 (achievements
    #include achievements.dta)
 (leaderboards
@@ -333,4 +386,9 @@
    (dl_songlist
       CONTEXT_DL_SONGLIST
       (_song_not_found_ CONTEXT_DL_SONGLIST_VAL_NULL)))
-#merge ../../../system/run/config/default.dta
+#endif
+#ifdef HX_XBOX
+#merge ../../../system/run/config/default_xbox.dta
+#else
+#merge ../../../system/run/config/default_ps2.dta
+#endif

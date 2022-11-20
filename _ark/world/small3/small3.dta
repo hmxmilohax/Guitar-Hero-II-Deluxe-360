@@ -1,0 +1,68 @@
+(WorldDir
+   (types
+      (small3
+         WORLD_OBJECT_BASE
+         (sound
+            (bank small1_bank)
+            (crowd
+               (intro -8.0 crowd_v2_0intro
+                  (pan 1))
+               (levels
+                  (kExcitementBoot -9 crowd_v2_1danger
+                     (pan 3))
+                  (kExcitementBad -9 crowd_v2_2poor
+                     (pan 3))
+                  (kExcitementOkay -11.5 crowd_v2_3norm
+                     (pan 3))
+                  (kExcitementGreat -9 crowd_v2_4good
+                     (pan 3))
+                  (kExcitementPeak -6.0 crowd_v2_4good
+                     (pan 3)))
+               (encore_outro 0.0 encore_v2_outro
+                  (pan 1)
+                  (loop_ms 10123 24613))
+               (encore_intro 0.0 encore_v2_intro
+                  (pan 1))))
+         (camera_durations
+            ((kExcitementBoot 3 6)
+               (kExcitementBad 3 6)
+               (kExcitementOkay 3 5)
+               (kExcitementGreat 2 4)
+               (kExcitementPeak 2 4)))
+         (intro_camera_distance near)
+         (intro_camera_facing right))))
+(RndDir
+   (types
+      (bottle_throw
+         (editor
+            (start script
+               (script {$this start}))
+            (stop script
+               (script {$this stop})))
+         (start
+            {$this stop}
+            {script_task
+               (units kTaskSeconds)
+               (delay {random_float 0 10})
+               (name throw_task)
+               (script
+                  {$this set_showing TRUE}
+                  {$task set_name ""}
+                  {$this throw})})
+         (throw
+            {$this animate
+               (units kTaskSeconds)
+               (period {random_float 1.5 2.1})
+               (range 0 63)}
+            {script_task
+               (units kTaskSeconds)
+               (delay {random_float 6 10})
+               (name throw_task)
+               (script
+			      {$task set_name ""}
+                  {$this throw})})
+         (stop
+            {$this set_showing FALSE}
+            {$this stop_animation}
+            {if {exists throw_task}
+               {delete throw_task}}))))

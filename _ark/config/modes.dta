@@ -1,9 +1,11 @@
 (defaults
    (hud_file hud_blank.milo)
-   (allow_achievements TRUE)
    (skip_intro {if_else {'||' $focusmode $miloskipintro} TRUE FALSE}) ;skips the intro of the song in quickplay if focus mode or skip intro modifiers are enabled
+#ifdef HX_XBOX
+   (allow_achievements TRUE)
    (update_song_leaderboard FALSE)
    (update_career_leaderboard FALSE)
+#endif
    (crowd_rating_active {if_else $nofail FALSE TRUE}) ;locks the rock meter at 50% always when no fail modifier enabled
    (separate_parts TRUE)
    (num_players 1)
@@ -33,13 +35,17 @@
    )
 ;splash screen is skipped in dx so attract mode is not used
 (attract
+#ifdef HX_XBOX
    (allow_achievements FALSE)
+#endif
    (star_power_disable TRUE)
    (show_hud FALSE)
    (show_track FALSE)
    (force_autoplay TRUE))
 (practice
+#ifdef HX_XBOX
    (allow_achievements FALSE)
+#endif
    (skip_intro TRUE)
    (game_over_sequence FALSE)
    (crowd_rating_active FALSE)
@@ -50,6 +56,33 @@
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
    (track_surface_override {if_else {&& {== $highway none} {! $focusmode}} rosewood {if_else {&& {== $highway none} $focusmode} _black_highway $highway}}) ;this is where the magic of custom highways happen
+#ifndef HX_XBOX
+(song_block
+      ; If the game detects that a song has custom practice audio, it'll use
+      ; the song block of the speed set by the player, full, slow, slower, or
+      ; slowest. Otherwise, it just uses the full speed block and does crappy
+      ; "old-style" practice pitch correction for the slower speeds.
+      {if_else {gamecfg pre_processed_audio}
+         {switch {gamecfg get practice_speed}
+            (0 {gamecfg full_speed_block})
+            (1 song_practice_1)
+            (2 song_practice_2)
+            (3 song_practice_3)}
+         {gamecfg full_speed_block}})
+   (midi_suffix
+      ; Make sure to use the co-op MIDI if practicing rhythm
+      {if_else {== {gamecfg get_track_type 0} kTrackGuitar}
+         ''
+         COOP})
+   (full_speed_block
+      ; Make sure to use the co-op audio too
+      {if_else {== {gamecfg get_track_type 0} kTrackGuitar}
+         song
+         song_coop})
+   (pre_processed_audio
+      {!= {find_exists $syscfg songs {gamecfg get_song} practice_speeds}
+         kDataUnhandled})
+#else
    (song_block
       {if_else
          {==
@@ -63,13 +96,17 @@
             {gamecfg get_track_type 0}
             kTrackGuitar}
          ''
-         COOP}))
+         COOP})
+#endif
+)
 ;we currently use career as quickplay for dx so quickplay block is unused
 (quickplay
    (continue_screen sel_song_screen)
    (hud_file hud_sp.milo)
    (win_preload_panel endgame_panel)
-   (update_song_leaderboard TRUE))
+#ifdef HX_XBOX
+   (update_song_leaderboard TRUE)
+#endif)
 ;we currently use career as quickplay
 (career
    (main_screen career_screen)
@@ -78,8 +115,10 @@
    (win_preload_panel endgame_panel)
    (hud_file hud_sp.milo) ;this disables the rock meter and sp meter when autoplay is enabled
    (encore_fx TRUE)
+#ifdef HX_XBOX
    (update_song_leaderboard TRUE)
    (update_career_leaderboard TRUE)
+#endif
    (game_over_sequence {if_else $skipoutro FALSE TRUE})) ;set this to false if skip outro is true
 (multi_vs
    (num_players 2)

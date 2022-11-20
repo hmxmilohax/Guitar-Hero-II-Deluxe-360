@@ -1,0 +1,141 @@
+(disable FALSE)
+(deadzone 36)
+(threshold 0.75)
+(ignore 1 2 3 4 5 6 7)
+(hold_ms 500)
+(repeat_ms 50)
+(midi_joypad
+   (disable TRUE)
+   (mapping
+      (36 kPad_L2)
+      (38 kPad_L1)
+      (46 kPad_R1)
+      (48 kPad_R2)
+      (45 kPad_X))
+   (thresholds
+      (36 50))
+   (come_first FALSE))
+(controllers
+   (ro_guitar
+      (detect
+         (type kJoypadAnalog)
+         (button kPad_DLeft)))
+   (digital
+      (detect
+         (type kJoypadDigital)))
+   (analog
+      (detect
+         (type kJoypadAnalog)))
+   (dualshock
+      (detect
+         (type kJoypadDualShock))))
+(adapters
+   (map
+      ('4 axis 16 button joystick' default)
+      ('SmartJoy PLUS Adapter' smart_plus)
+      ('SmartJoy PLUS USB Adapter' smart_plus)
+      ('MP-8866 Dual USB Joypad' ro_dual)
+      ('6-button joystick' 6-button)
+      ('PSX/USB Pad Adaptor (4-axis, 12-button, POV,effects)' kiky_system_x)
+      ('TigerGame PS/PS2 Game Controller Adapter' tiger))
+   (default
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Select)
+         (9 kPad_Start)
+         (10 kPad_R3)
+         (11 kPad_L3)
+         (12 kPad_DUp)
+         (13 kPad_DRight)
+         (14 kPad_DDown)
+         (15 kPad_DLeft)))
+   (smart_plus
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Start)
+         (9 kPad_Select)
+         (10 kPad_L3)
+         (11 kPad_R3))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft)))
+   (kiky_system_x
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Select)
+         (9 kPad_Start)
+         (10 kPad_L3)
+         (11 kPad_R3))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft)))
+   (ro_dual
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L1)
+         (5 kPad_R1)
+         (6 kPad_L2)
+         (7 kPad_R2)
+         (8 kPad_Start)
+         (9 kPad_Select)
+         (10 kPad_L3)
+         (11 kPad_R3))
+      (pov
+         (0 kPad_DUp)
+         (1 kPad_DRight)
+         (2 kPad_DDown)
+         (3 kPad_DLeft)))
+   (6-button
+      (buttons
+         (0 kPad_X)
+         (1 kPad_Circle)
+         (2 kPad_Square)
+         (3 kPad_Tri)
+         (4 kPad_L2)
+         (5 kPad_R2)))
+   (tiger
+      (buttons
+         (0 kPad_Tri)
+         (1 kPad_Circle)
+         (2 kPad_X)
+         (3 kPad_Square)
+         (4 kPad_L2)
+         (5 kPad_R2)
+         (6 kPad_L1)
+         (7 kPad_R1)
+         (8 kPad_Start)
+         (9 kPad_Select)
+         (10 kPad_L3)
+         (11 kPad_R3)
+         (12 kPad_DUp)
+         (13 kPad_DRight)
+         (14 kPad_DDown)
+         (15 kPad_DLeft))))

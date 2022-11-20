@@ -443,7 +443,9 @@
                (guitar_redoctane)
                (guitar_sg)
                (guitar_sg_flame)
+               #ifdef HX_XBOX
                (guitar_sg_goddess_white)
+               #endif
                (guitar_sg_gt)
                (lespaul_wylde)
                (lespaull)
@@ -497,6 +499,9 @@
    (double_tempo
       {main.drv set_beat_scale 2}))
 (BandCharacter
+#ifndef HX_XBOX
+   (superclasses Character)
+#endif
    (types
       (guitarist
          (walk_delays
@@ -613,6 +618,17 @@
                   sync_head_bang
                   active_players_changed
                   lose_teleport}
+#ifndef HX_XBOX
+               {if
+                  {game multiplayer}
+                  {if
+                     {!=
+                        [shadow]
+                        ''}
+                     {[shadow]
+                        set_showing
+                        FALSE}}}
+#endif
                {{if_else
                      {==
                         bass
@@ -656,7 +672,11 @@
                   set
                   showing
                   FALSE}
+#ifndef HX_XBOX
+               {guitar_fire set trans_parent guitar_fire.mesh}
+#else
                {guitar_fire set_trans_parent guitar_fire.mesh}
+#endif
                {guitar_fire
                   iterate
                   ParticleSys
@@ -926,7 +946,12 @@
          ($length
             {-
                {[parser]
-                  next_start}
+#ifndef HX_XBOX
+                  next_event_beat
+#else
+                  next_start
+#endif
+               }
                {taskmgr beat}})
          {main.drv play_if_safe kBandIdle $flags kBandIdleComplete $length}})
    (game_won_msg
@@ -998,12 +1023,15 @@
          (grim_fire_off
             {handle
                (grim_fire stop)})
+#ifdef HX_XBOX
          (johnny_snot_rocket_on
             {handle
                (johnny_snot_rocket start)})
          (johnny_snot_rocket_off
             {handle
-               (johnny_snot_rocket stop)}))
+               (johnny_snot_rocket stop)})
+#endif
+      )
       (crowd
          (hand clap)
          (milo_hand clap)
@@ -1153,6 +1181,7 @@
          (start_flags kStartDrummer)
          (mode kBandIdle)
          (enter
+#ifdef HX_XBOX
             {$this
                start_at
                {waypoint_find
@@ -1160,6 +1189,7 @@
             {set
                [mode]
                kBandIdle}
+#endif
             {if
                {exists game}
                {{$this dir}
@@ -1179,11 +1209,30 @@
                   ([parser]
                      add_sink
                      $this)}
+#ifndef HX_XBOX
+            }
+            {$this
+               start_at
+               {waypoint_find
+                  [start_flags]}}
+            {set
+               [mode]
+               kBandIdle}
+            {if
+               {! $edit_mode}
                {main.drv set realign TRUE}
                {$this
                   play_clip
                   kBandIdle
-                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}})
+                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
+#else
+               {main.drv set realign TRUE}
+               {$this
+                  play_clip
+                  kBandIdle
+                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
+#endif
+         })
          (downbeat
             {if
                {<
@@ -1288,7 +1337,12 @@
                   (interact_back interact_right interact_stage))
                (help
                   "What to interact with"))))))
-(ClipCollide
+(
+#ifndef HX_XBOX
+VenueVerify
+#else
+ClipCollide
+#endif
    (init
       (type gh2))
    (editor

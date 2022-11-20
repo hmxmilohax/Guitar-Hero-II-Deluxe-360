@@ -1,0 +1,74 @@
+(WorldDir
+   (types
+      (arena2
+         WORLD_OBJECT_BASE
+         (state_chorus 0)
+         (state_peak 0)
+         (state_active 0)
+         (onscript {object ''})
+         (sparks_on
+            {if {&& [state_peak] [state_chorus]}
+               {sparks.filt animate}
+               {sparks_on.filt animate}
+               {set [onscript]
+                  {script_task
+                     (units kTaskSeconds)
+                     (delay 4)
+                     (script {sparks_bounce.filt animate})}}})
+         (sparks_off
+            {if {&& [state_peak] [state_chorus]}
+               {sparks_off.filt animate}
+               {delete [onscript]}
+               {script_task
+                  (units kTaskSeconds)
+                  (delay 4)
+                  (script {sparks_bounce_RESET.filt animate})}})
+         (chorus
+            {set [state_chorus] 1}
+            {$this sparks_on}
+            kDataUnhandled)
+         (verse
+            {$this sparks_off}
+            {set [state_chorus] 0}
+            kDataUnhandled)
+         (solo
+            {$this sparks_off}
+            {set [state_chorus] 0}
+            kDataUnhandled)
+         (peak_on
+            {set [state_peak] 1}
+            {$this sparks_on}
+            kDataUnhandled)
+         (peak_off
+            {$this sparks_off}
+            {set [state_peak] 0}
+            kDataUnhandled)
+         (sound
+            (bank arena_bank)
+            (crowd
+               (intro -8.0 crowd_v6_0intro
+                  (pan 1))
+               (levels
+                  (kExcitementBoot -12.0 crowd_v6_1danger
+                     (pan 3))
+                  (kExcitementBad -12.0 crowd_v6_2poor
+                     (pan 3))
+                  (kExcitementOkay -12.0 crowd_v6_3norm
+                     (pan 3))
+                  (kExcitementGreat -12.0 crowd_v6_4good
+                     (pan 3))
+                  (kExcitementPeak -10.5 crowd_v6_4good
+                     (pan 3)))
+               (encore_outro 0.0 encore_v7_outro
+                  (pan 1)
+                  (loop_ms 21362 32324))
+               (encore_intro 0.0 encore_v7_intro
+                  (pan 1))))
+         (camera_durations
+            ((kExcitementBoot 3 4)
+               (kExcitementBad 3 4)
+               (kExcitementOkay 2 4)
+               (kExcitementGreat 1 3)
+               (kExcitementPeak 1 3)))
+         (intro_camera_distance near)
+         (intro_camera_facing left))))

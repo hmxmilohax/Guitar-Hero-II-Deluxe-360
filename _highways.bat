@@ -10,5 +10,8 @@ move "%~dp0highways\highways.dta" "%~dp0_ark\track\surfaces\highways.dta"
 FOR /F "tokens=*" %%G IN ('dir /b *.png') DO "%~dp0dependencies/magick/magick.exe" convert "%~dp0highways/%%G" -resize 512x1024! -filter Box -define dither:diffusion-amount=50%% -dither FloydSteinberg -colors 256 -depth 8 "%~dp0highways\%%~nG.png"
 FOR /F "tokens=*" %%G IN ('dir /b *.jpg') DO "%~dp0dependencies/magick/magick.exe" convert "%~dp0highways/%%G" -resize 512x1024! -filter Box -define dither:diffusion-amount=50%% -dither FloydSteinberg -colors 256 -depth 8 "%~dp0highways\%%~nG.png"
 FOR /F "tokens=*" %%G IN ('dir /b *.bmp') DO "%~dp0dependencies/magick/magick.exe" convert "%~dp0highways/%%G" -resize 512x1024! -filter Box -define dither:diffusion-amount=50%% -dither FloydSteinberg -colors 256 -depth 8 "%~dp0highways\%%~nG.png"
+FOR /F "tokens=*" %%G IN ('dir /b *.png') DO "%~dp0dependencies/magick/magick.exe" convert "%~dp0highways/%%G" -resize 256x512! -filter Box -define dither:diffusion-amount=50%% -dither FloydSteinberg -colors 256 -depth 8 "%~dp0highways\ps2\%%~nG.png"
 FOR /F "tokens=*" %%G IN ('dir /b *.png') DO "%~dp0dependencies/superfreq.exe" png2tex "%~dp0highways/%%G" "%~dp0_ark\track\surfaces\gen\%%~nG_keep.bmp_xbox" --platform x360 --miloVersion 25
+cd "%~dp0highways/ps2"
+FOR /F "tokens=*" %%G IN ('dir /b *.png') DO "%~dp0dependencies/superfreq.exe" png2tex "%~dp0highways/ps2/%%G" "%~dp0_ark\track\surfaces\gen\%%~nG_keep.bmp_ps2" --platform ps2 --preset gh2
 pause

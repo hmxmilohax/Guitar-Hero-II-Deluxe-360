@@ -1,0 +1,644 @@
+(Anim
+   (description "Base class for animatable objects. Anim objects change their state or other objects.")
+   (allowed_dirs)
+   (editor
+      (rate int
+         (list RATE_ENUM)
+         (help "Rate to animate"))))
+(Poll
+   (description "Abstract base class for pollable RND objects")
+   (allowed_dirs)
+   (editor
+      (enter script
+         (script {$this enter}))
+      (exit script
+         (script {$this exit}))))
+(AnimFilter
+   (description "An AnimFilter object modifies the playing of another animatable object")
+   (superclasses Anim)
+   (ext filt)
+   (types)
+   (editor
+      (anim object
+         (post_sync {milo update_open_editor AnimFilter})
+         (list {$this safe_anims {milo cur_dir}})
+         (help "Animatable object that receives filtered frame"))
+      (start float
+         (help "Overriden start frame of target animation"))
+      (end float
+         (help "Overriden end frame of target animation"))
+      (offset float
+         (help "Amount to offset frame for target animation"))
+      (scale float
+         (read_only {!= [period] 0.0})
+         (help "Multiplier to speed of target animation"))
+      (period float
+         (refresh scale)
+         (help "Alternative to scale, overriden period of target animation"))
+      (type int
+         (list ANIM_ENUM)
+         (help "How to treat the frame outside of its start and end boundaries"))))
+(Blur
+   (description "A Blur object renders an object with more transparency at older positions. It is drawable and should replace the blurred object as a draw child.")
+   (superclasses Draw)
+   (ext blur)
+   (types))
+(Cam
+   (description "A Camera object is drawable and transformable. When drawn it sets up projection and clipping parameters for subsequent draw siblings.")
+   (superclasses Trans)
+   (ext cam)
+   (types)
+   (editor
+      (near_plane float
+         (long_help "The distance in world coordinates to the near clipping plane. The near/far ratio is limited to 1:1000 to preserve Z-buffer resolution."))
+      (far_plane float
+         (long_help "The distance in world coordinates to the far clipping plane. The near/far ratio is limited to 1:1000 to preserve Z-buffer resolution. Note that on the PS2, object polys are culled rather than clipped to the far plane."))
+      (y_fov float)
+      (z_range VECTOR2
+         (long_help "The part of the Z-buffer to use, in normalized coordinates. It can be useful to draw a scene where the near and far planes must exceed the 1:1000 ratio (so multiple cameras are used to draw farthest to nearest objects, each using a closer range of the z-buffer) or to leave some z-buffer for HUD overlay objects."))
+      (screen_rect RECT
+         (long_help "The area of the screen in normalized coordinates (0 to 1) to draw into."))
+      (target_tex object
+         (class Tex)
+         (long_help "An optional Texture to render into. This automatically sets or unsets the 'render' flag on the Texture object (see Tex editor).")
+         (pre_sync
+            {if [target_tex]
+               {milo record [target_tex] reset_tex_render}
+               {[target_tex] set_rendered FALSE}})
+         (post_sync
+            {if [target_tex]
+               {milo record [target_tex] set_tex_render}
+               {[target_tex] set_rendered TRUE}}))))
+(CamAnim
+   (description "A CamAnim object animates Camera properties.")
+   (superclasses Anim)
+   (ext cnm)
+   (types))
+(RenderedTex
+   (ext rndtex)
+   (types)
+   (editor
+      (proxy object
+         (class RndDir)
+         (help "Proxy Object to render to texture"))
+      (output_texture object
+         (class Tex)
+         (help "Texture to write to"))))
+(Cursor
+   (description "A Cursor object displays Text like a teletype console. <p>For each frame of animation, the mask and cursor will move to uncover one character. To animate multiple Text objects being uncovered by Cursors one after another, and to control the speed of Cursor animation, create a Scale/Offset anim filter for each Cursor object. A negative offset can delay a Cursor's animation until the Text before it has been fully uncovered.</p>")
+   (superclasses Anim Draw)
+   (ext curs)
+   (types))
+(Draw
+   (description "Base class for drawable objects. Draw objects either render polys or determine rendering state.")
+   (allowed_dirs)
+   (editor
+      (showing bool
+         (help "Whether the object and its Draw children are drawn or collided with.")
+         (post_sync {milo invalidate_listers_and_trees}))
+      (draw_order float)
+      (sphere SPHERE
+         (help "bounding sphere")
+         (long_help "Represents a bounding sphere around this object and its drawn children, which is used for culling of draw and collision commands. X, Y, Z are the sphere center in local coordinates, R is the sphere radius in world coordinates. Culling is not performed when the radius is zero. The world transform of the object must be baked into the radius."))
+      (update_sphere script
+         (help "Calculates the bounding sphere for the object.")
+         (script {$this update_sphere})
+         (refresh sphere)))
+   (views
+      (showing
+         ("Showing" [showing])
+         ("Draw Order" [draw_order]))))
+(Environ
+   (description "An environment object is drawable. When drawn it sets up dynamic lighting and fogging for subsequently drawn siblings.")
+   (ext env)
+   (types)
+   (editor
+      (lights
+         (array object
+            (class Light))
+         (help "Dynamic lights for this environment")
+         (long_help "The PS2 supports three concurrent directional lights or one point light. These have roughly the same cost, and are more expensive than just ambient and fogging."))
+      (ambient_color color
+         (help "Ambient color for this environment"))
+      (fog_enable bool
+         (help "Whether fog is enabled for this environment")
+         (refresh fog_color fog_start fog_end))
+      (fog_color color
+         (read_only {! {$this get fog_enable}})
+         (help "Fog color"))
+      (fog_start float
+         (read_only {! {$this get fog_enable}})
+         (help "Fog start distance"))
+      (fog_end float
+         (read_only {! {$this get fog_enable}})
+         (help "Fog end distance"))
+      (animate_from_preset bool
+         (help "Whether this environment should be animated by light presets"))
+      (ng
+         (indent
+            (fade_out bool
+               (help "Fade out the scene over distance"))
+            (fade_start float
+               (help "World space distance from camera to start fading"))
+            (fade_end float
+               (help "World space distance fade out completely")))
+         (help "Next-generation graphics settings"))))
+(EnvAnim
+   (description "An EnvAnim object animates Environ properties.")
+   (superclasses Anim)
+   (ext enm)
+   (types))
+(Flare
+   (description "Flare objects are particles that are rendered based on the visibility of their center.<br /> Use them to implement sun flare peeking through tree leaves and around buildings, flares on lamps and stage lights that get occluded by characters, etc.  Flares should be drawn last in a frame, and since they depend on the z-buffer for visibility testing, previously drawn translucent or cutout objects must properly use translucent or SrcAlphaCutout materials.")
+   (superclasses Draw Trans)
+   (ext flare)
+   (types))
+(Font
+   (description "Font objects determine the appearance for Text objects.")
+   (ext font)
+   (types))
+(Generator
+   (description "A Generator object flies out object instances along a path.")
+   (superclasses Anim Draw Trans)
+   (ext gen)
+   (types))
+(Group
+   (description "Represents a group of objects to which to propogate animation and messages.")
+   (superclasses Anim Draw Trans)
+   (ext grp)
+   (types)
+   (editor
+      (environ object
+         (class Environ))
+      (sort_draws script
+         (script {$this sort_draws})
+         (help "Sort objects by draw_order and material")
+         (post_sync {milo update_objects}))
+      (lod object
+         (class Draw)
+         (obj_flags no_this)
+         (help "Object to draw instead below lod_screen_size"))
+      (lod_screen_size float
+         (help "Ratio of screen height for lod"))))
+(Light
+   (description "Light objects are added to environments for drawing.")
+   (superclasses Trans)
+   (ext lit)
+   (types))
+(LightAnim
+   (description "LightAnim objects animate light object properties using keyframe interpolation.")
+   (superclasses Anim)
+   (ext lnm)
+   (types))
+(Line
+   (description "Line objects represent 3D lines with thickness, perspective, and optional end caps.")
+   (superclasses Draw Trans)
+   (ext line)
+   (types))
+(Mat
+   (description "Material objects determine texturing, blending, and the effect of lighting on drawn polys.")
+   (ext mat)
+   (types)
+   (editor
+      (color color
+         (help "Base material color"))
+      (alpha float
+         (help "Base material alpha"))
+      (use_environ bool
+         (help "Modulate with environment ambient and lights")
+         (long_help "If checked, the output color at each vertex is calculated by the equation 'color1 * ambient + color2 * dynamic' where ambient is the current environment ambient color, dynamic is the sum of the environments dynamic lights, and color1 and color2 are determined by the 'vert ambient' and 'vert dynamic' checkboxes.<br/>If not checked, the output color is just color1."))
+      (prelit bool
+         (help "Use vertex color and alpha for base or ambient"))
+      (diffuse_tex object
+         (class Tex)
+         (help "Base texture map, modulated with color and alpha")
+         (refresh intensify))
+      (intensify bool
+         (help "Double the intensity of base map")
+         (read_only {! [diffuse_tex]}))
+      (tex_wrap int
+         (list TEXWRAP_ENUM)
+         (help "Texture mapping mode")
+         (long_help "Determines behavior when tex coordinates are outside (0,1). If the corresponding texture is a front or back buffer texture, only 'Clamp' is valid; other settings are ignored."))
+      (tex_gen int
+         (list TEXGEN_ENUM)
+         (help "How to generate texture coordinates")
+         (long_help "Usually you'll make the spheremap stage additive, after a regular texturing stage. Darken and decrease contrast of the spheremap to make the surface appear less reflective. Spheremaps look best when the camera is oriented along the spheremap center direction, there will be rendering artifacts at the 180 degree point. You'll probably want two spheremaps taken an opposite angles, and apply the one that best matches the surface direction. Use 'sphere' rather than 'environ' when just the object moves, not the camera, it is much faster on the VU. 'Environ' is simpler and less correct on the PC, will require a DX9 shader to make like PS2."))
+      (tex_xfm TRANSFORM
+         (help "Transform for coordinate generation"))
+      (blend int
+         (list BLEND_ENUM)
+         (help "How to blend poly into screen"))
+      (z_mode int
+         (list ZMODE_ENUM)
+         (help "How to read and write z-buffer")
+         (long_help "The z-buffer is used to remove hidden surfaces per pixel. Transparent mode is often used with SrcAlpha or Add blending so those objects don't occlude other similar objects. All translucent objects should be drawn after opaque objects, as determined by draw child order."))
+      (alpha_cut bool
+         (help "Cut zero alpha pixels from z-buffer"))
+      (alpha_write bool
+         (help "Write pixel alpha to screen"))
+      (next_pass object
+         (class Mat)
+         (list {$this allowed_next_pass})
+         (help "Next material for object"))
+      (ng
+         (indent
+            (cull bool
+               (help "Cull backface polygons"))
+            (per_pixel_lit bool
+               (help "Use per-pixel lighting"))
+            (emissive_multiplier float
+               (help "Multiplier to apply to emission"))
+            (emissive_map object
+               (class Tex)
+               (help "Map for self illumination"))
+            (specular_rgb color
+               (help "Color to use when not driven by texture"))
+            (specular_power float
+               (help "Power to use when not driven by texture"))
+            (specular_map object
+               (class Tex)
+               (help "Texture map for specular color and power"))
+            (normal_map object
+               (class Tex)
+               (list {$this allowed_normal_map})
+               (help "Texture map to define lighting normals")
+               (long_help "Textures must contain '_norm' in the filename to be usable as a normal map."))
+            (normalize bool
+               (help "Normalize tangent-space matrix -- DO NOT USE"))
+            (custom_diffuse_map object
+               (class Tex)
+               (help "Texture map for diffuse lighting calculation"))
+            (environ_map object
+               (class CubeTex)
+               (help "Cube texture for reflections")))
+         (help "Next-generation graphics settings")))
+   (views
+      (alpha_write
+         (alpha_write {$this get alpha_write}))
+      (Diffuse_tex
+         (diffuse_tex [diffuse_tex])
+         (tex_size_kb
+            {if_else [diffuse_tex]
+               {[diffuse_tex] size_kb}
+               0}))))
+(MatAnim
+   (description "MatAnim objects animate material properties.")
+   (superclasses Anim)
+   (ext mnm)
+   (types))
+(Mem
+   (allowed_dirs)
+   (types))
+(Mesh
+   (description "A Mesh object is composed of triangle faces.")
+   (superclasses Draw Trans)
+   (ext mesh)
+   (types)
+   (views
+      (size
+         ("faces" {$this num_faces})
+         ("verts" {$this num_verts}))))
+(MeshAnim
+   (description "A MeshAnim object animates Mesh vertices. This should be done only when an effect can't be achieved with material animation, because animating vertices directly is less efficient.")
+   (superclasses Anim)
+   (ext msnm)
+   (types))
+(Morph
+   (description "A Morph object animates between multiple Mesh poses using weight keyframes. This is an expensive technique, equivalent to a MeshAnim for each active pose, so use only when skinning or a single MeshAnim isn't enough. For example, we use it for viseme-driven facial animation.")
+   (superclasses Anim)
+   (ext morph)
+   (types))
+(Movie
+   (description "A Movie object animates a compressed video through a texture. It works on Xbox and PS2 now, soon GC.")
+   (superclasses Anim)
+   (ext mov)
+   (types)
+   (editor
+      (movie_file file
+         (help "File - extension is automatically converted to platform")
+         (long_help "<p>The file extension is replaced by 'xmv' on Xbox and by 'ipu' on PS2. These files must be pregenerated according to a platform-specific process.</p><p>The IPU format is a subset of mpeg (no motion compression) that is decompressed by the IPU chip. Multiple movies can be decompressed simultaneously, each with different dimensions, frame lengths, and playback rates, but they all have to finish decompressing in one game cycle.</p><p>To make an IPU movie, start with an uncompressed AVI. Each dimension must be power-of-2, not necessarily the same (same requirement as PS2 textures). Turn it into an IPU file using run/clcomp.exe like</p><p>clcomp [avi file] [ipu file] [max frame size in bytes]</p><p>Make the max frame size as low as you can stand it. Don't worry if you get warnings like 'exceeded max frame size', that just means that clcomp compressed a frame as much as it could and it was still above the max frame size. 'Real' movies compress much better than 'graphical' movies.</p><p>Movies are decompressed into a 16-bit texture. Black pixels (r=g=b=0) are transparent (a=0), which you'll see with SrcAlph blending. Use Src blending if you don't want them to be.</p>"))
+      (stream bool
+         (help "Stream the file for this movie?")
+         (long_help "Usually a RndMovie file is loaded entirely into RAM. This streams it into an internal double buffer instead, to save RAM at the expense of disc access. Currently only works on PS2, which uses a combined 64K buffer."))
+      (loop bool
+         (help "Loop this movie?")
+         (long_help "Note that movies only play smoothly going forward; to go backward they may have to play from the beginning."))
+      (tex object
+         (class Tex)
+         (help "Texture to animate.")
+         (long_help "One animation frame plays one movie frame, use an animatable 'scale' filter to adjust playback rate."))))
+(MultiMesh
+   (description "A MultiMesh object draws a simple Mesh in many places quickly. Create a multimesh by instancing the base mesh lots of times in Max, then using the multiobject wizard.")
+   (superclasses Draw)
+   (ext mm)
+   (types))
+(ParticleSys
+   (description "A ParticleSys object generates, animates, and draws large numbers of similar sprites. Currently particles are rendered only as points on the PC.")
+   (superclasses Anim Draw Trans)
+   (ext part)
+   (types)
+   (views
+      (size
+         ("max_particles" {$this max_particles}))))
+(ParticleSysAnim
+   (description "Object that animates Particle System properties.")
+   (superclasses Anim)
+   (ext panim)
+   (types))
+(ScreenMask
+   (description "Draws full screen quad with material and color.")
+   (superclasses Draw)
+   (ext mask)
+   (types)
+   (editor
+      (mat object
+         (class Mat)
+         (help "Material to draw on full screen quad"))
+      (color color
+         (help "Color of full screen quad"))
+      (alpha float
+         (help "Translucency of full screen quad"))
+      (screen_rect RECT
+         (help "The area of the screen in normalized coordinates (0 to 1) to draw into."))
+      (use_cam_rect bool
+         (help "Use current camera screen_rect instead of the full screen"))))
+(RndDir
+   (description "A RndDir specially tracks drawable and animatable objects.")
+   (editor
+      (environ object
+         (class Environ)
+         (dir {$this dir}))
+      (test_event1 symbol
+         (list WORLDEVENTS)
+         (help "first test event"))
+      (fire_test1 script
+         (script {handle ($this [test_event1])})
+         (help "fire first test"))
+      (test_event2 symbol
+         (list WORLDEVENTS)
+         (help "second test event"))
+      (fire_test2 script
+         (script {handle ($this [test_event2])})
+         (help "fire second test"))
+      (test_event3 symbol
+         (list WORLDEVENTS)
+         (help "third test event"))
+      (fire_test3 script
+         (script {handle ($this [test_event3])})
+         (help "fire third test")))
+   (superclasses ObjectDir Anim Draw Trans Poll)
+   (types))
+(PostProc
+   (description "A PostProc drives post-processing effects.")
+   (editor
+      (bloom
+         (indent
+            (bloom_threshold_red float
+               (help "Red intensity at which to bloom"))
+            (bloom_threshold_green float
+               (help "Green intensity at which to bloom"))
+            (bloom_threshold_blue float
+               (help "Blue intensity at which to bloom"))
+            (bloom_threshold_white float
+               (help "White intensity at which to bloom"))
+            (bloom_kernel_multiplier float
+               (help "Bloom kernel multiplier"))
+            (bloom_scale float
+               (help "Bloom scale"))
+            (bloom_intensity float
+               (help "Bloom intensity"))))
+      (luminance_map object
+         (class Tex)
+         (help "Luminance map"))
+      (exposure_flicker
+         (indent
+            (darkest float
+               (help "Darkest multiplier range [0..1], 1.0 to disable"))
+            (secs_range VECTOR2
+               (help "Min & max number of seconds for a light to dark cycle"))))
+      (noise
+         (indent
+            (noise_base_scale VECTOR2
+               (help "X and Y scale of the noise map"))
+            (noise_top_scale float
+               (help "Relative size of top noise map to bottom"))
+            (noise_intensity float
+               (help "intensity of the noise [0..1], 0.0 to disable"))))
+      (color_correct
+         (indent
+            (hue float
+               (help "Hue: -180 to 180, 0.0 is neutral")
+               (range -180 180)
+               (refresh color_xfm))
+            (saturation float
+               (help "Saturation: -100 to 100, 0.0 is neutral")
+               (range -100 100)
+               (refresh color_xfm))
+            (lightness float
+               (help "Lightness: -100 to 100, 0.0 is neutral")
+               (range -100 100)
+               (refresh color_xfm))
+            (contrast float
+               (help "Contrast: -100 to 100, 0.0 is neutral")
+               (range -100 100)
+               (refresh color_xfm))
+            (brightness float
+               (help "Brightness: -100 to 100, 0.0 is neutral")
+               (range -100 100)
+               (refresh color_xfm))
+            (color_xfm
+               (indent
+                  (red_select VECTOR3
+                     (help "Color to feed red channel"))
+                  (red_bias float
+                     (help "Bias on red channel (neg lowers)"))
+                  (grn_select VECTOR3
+                     (help "Color to feed green channel"))
+                  (grn_bias float
+                     (help "Bias on green channel (neg lowers)"))
+                  (blu_select VECTOR3
+                     (help "Color to feed blue channel"))
+                  (blu_bias float
+                     (help "Bias on blue channel (neg lowers)"))))))
+      (emulate_fps float
+         (help "Frame rate to emulate, e.g. 24 for film. 0 disables emulation."))
+      (light_trail
+         (indent
+            (threshold float
+               (help "Min pixel value to leave trails [0..255]"))
+            (duration float
+               (help "Seconds for the trails to last"))))
+      (select script
+         (help "Set this as the current post processing effect for preview.")
+         (script {$this select}))
+      (unselect script
+         (help "Turn off all post-processing effects.")
+         (script {$this deselect})))
+   (types))
+(Tex
+   (description "Tex objects represent bitmaps used by materials. These can be created automatically with 'import tex' on the file menu.")
+   (ext tex)
+   (types)
+   (views
+      (size
+         ("Width" [width])
+         ("Height" [height])
+         ("Bpp" [bpp])
+         ("Size in kb" {$this size_kb}))))
+(CubeTex
+   (description "This class implements a cube map intended for environment mapping.")
+   (ext cube)
+   (types)
+   (editor
+      (right file)
+      (left file)
+      (top file)
+      (bottom file)
+      (back file)
+      (front file)))
+(Shader
+   (description "DEPRECATED: now merged into RndMat")
+   (allowed_dirs)
+   (types))
+(Set
+   (description "A group of objects to propagate animation and messages")
+   (ext set)
+   (editor
+      (objects
+         (array object
+            (list {$this allowed_objects})))
+      (highlight_objects script
+         (script {milo set_highlights {$this get_array objects}})))
+   (types
+      (Spotlights
+         (editor
+            (color color
+               (help "Color of the spotlight"))
+            (intensity float
+               (help "Intensity of the spotlight")))
+         (color 0)
+         (intensity 0))
+      ('Show set'
+         (editor (showing bool))
+         (showing TRUE))))
+(Text
+   (description "A Text object draws a 3D character string.")
+   (superclasses Draw Trans)
+   (ext txt)
+   (types))
+(Trans
+   (description "Base class for transformable objects. Trans objects have a 3D position, rotation, and scale.")
+   (ext trans)
+   (types)
+   (views
+      ('Local transform'
+         (x {elem_from_func $this get_local_pos 0})
+         (y {elem_from_func $this get_local_pos 1})
+         (z {elem_from_func $this get_local_pos 2})
+         (pitch {elem_from_func $this get_local_rot 0})
+         (roll {elem_from_func $this get_local_rot 1})
+         (yaw {elem_from_func $this get_local_rot 2})
+         ("scale x" {elem_from_func $this get_local_scale 0})
+         ("scale y" {elem_from_func $this get_local_scale 1})
+         ("scale z" {elem_from_func $this get_local_scale 2}))))
+(TransAnim
+   (description "TransAnim objects animate the position, rotation, and scale of transformable objects.")
+   (superclasses Anim)
+   (ext tnm)
+   (types)
+   (views
+      (num_keys
+         (trans {$this num_trans_keys})
+         (rot {$this num_rot_keys})
+         (scale {$this num_scale_keys})
+         ("is key owner"
+            {if_else {== $this [keys_owner]}
+               True
+               False}))))
+(TransArray
+   (description "This object points to a bunch of Transformables and sets their transforms based on various type-dependent layouts.")
+   (superclasses Poll Trans)
+   (ext tar)
+   (editor
+      (targets
+         (array object
+            (class Trans))
+         (help "Transformables we will layout, based on our type properties")))
+   (types
+      (grid
+         (editor
+            (rows int
+               (range 1 256)
+               (help "Elements along y-axis"))
+            (cols int
+               (range 1 256)
+               (help "Elements along x-axis"))
+            (row_spacing float
+               (range 0 10000)
+               (help "Spacing between rows"))
+            (col_spacing float
+               (range 0 10000)
+               (help "Spacing between columns"))
+            (row_keys
+               (array
+                  (struct
+                     (frame float
+                        (refresh row_keys))
+                     (value float
+                        (range 0 1000)))))
+            (col_keys
+               (array
+                  (struct
+                     (frame float
+                        (refresh col_keys))
+                     (value float
+                        (range 0 1000)))))
+            (row_spacing_keys
+               (array
+                  (struct
+                     (frame float
+                        (refresh row_spacing_keys))
+                     (value float
+                        (range 0 10000)))))
+            (col_spacing_keys
+               (array
+                  (struct
+                     (frame float
+                        (refresh col_spacing_keys))
+                     (value float
+                        (range 0 10000)))))))
+      (ring
+         (editor
+            (radius float
+               (range 0 10000)
+               (help "Radius of ring"))
+            (rotate bool
+               (help "Rotate each element around ring center"))
+            (invert_order bool
+               (help "Invert element placing order"))
+            (radius_keys
+               (array
+                  (struct
+                     (frame float
+                        (refresh radius_keys))
+                     (value float
+                        (range 0 10000)))))))
+      (trans_anim
+         (editor
+            (trans_anim object
+               (class TransAnim)
+               (help "TransAnim to distribute place evenly along"))
+            (start float
+               (help "Start frame of trans_anim"))
+            (end float
+               (help "End frame of trans_anim"))
+            (offset float
+               (help "Frame offset for laying out elements"))
+            (offset_keys
+               (array
+                  (struct
+                     (frame float
+                        (refresh offset_keys))
+                     (value float
+                        (range 0 100000)))))))))

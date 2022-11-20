@@ -1,0 +1,59 @@
+(TrackDir
+   (description "Base class for track system. Contains configuration for track speed, length, slot positions. Manages TrackWidget instances.")
+   (superclasses PanelDir)
+   (allowed_dirs)
+   (editor
+      (draw_group object
+         (class Group)
+         (help "Should contain everything to draw (except widget resources)"))
+      (anim_group object
+         (class Group)
+         (help "Animated at rate where frame=y positoin of now bar"))
+      (y_per_second float
+         (range 1 10000)
+         (help "World units widgets move per second"))
+      (top_y float
+         (help "Distance where widgets are pushed onto track"))
+      (bottom_y float
+         (help "Distance where widgets are pruned from track"))
+      (slots
+         (array
+            (struct
+               (x float
+                  (help "Offset from track center along x-axis"))
+               (z float
+                  (help "Offset from track center along z-axis"))))
+         (help "Offset from track center for each slot"))
+      (TrackTesting
+         (struct
+            (widget object
+               (class TrackWidget)
+               (help "Widget to test"))
+            (slot int
+               (range 0 10)
+               (help "Slot to add widgets in"))
+            (add_widget script
+               (script {$this add_test_widget
+                     [TrackTesting widget]
+                     [TrackTesting slot]})
+               (help "Add a widget instance to the top of the track")
+               (label "add"))
+            (toggle_running script
+               (script {$this toggle_running})
+               (help "Toggle running the track in test mode")
+               (label "toggle")))))
+   (types))
+(TrackWidget
+   (description "Any object that is placed on the track and scrolls towards the player. Can have any number of meshes and an environment. Drawn efficiently and pruned automatically by TrackDir.")
+   (superclasses Draw)
+   (allowed_dirs RndDir)
+   (types)
+   (ext wid)
+   (editor
+      (meshes
+         (array object
+            (class Mesh))
+         (help "Meshes used to draw widgets, drawn in order"))
+      (environ object
+         (class Environ)
+         (help "Environment used to draw widget"))))

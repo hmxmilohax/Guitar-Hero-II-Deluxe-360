@@ -1,0 +1,41 @@
+{func deg_to_rad
+   ($deg)
+   {/ {'*' $deg PI} 180}}
+{func verify_exists ($obj)
+   {if {! {exists $obj}}
+      {print "ERROR: " $obj " not found\n"}}}
+{func animate_from
+   ($taskmgr $animatable $from $period)
+   {$taskmgr anim_task
+      $animatable
+      $period
+      $from
+      {'+' $from $period}}}
+{func animate
+   ($taskmgr $animatable $period)
+   {animate_from $taskmgr
+      $animatable
+      {$animatable frame}
+      $period}}
+{func animate_to
+   ($taskmgr $animatable $to $period)
+   {$taskmgr anim_task
+      $animatable
+      $period
+      {$animatable frame}
+      $to}}
+{func toggle_showing
+   ($x)
+   {if {exists $x}
+      {$x set_showing {! {$x showing}}}}}
+{func elem_from_func
+   ($obj $func $pos)
+   {do
+      ($x)
+      ($y)
+      ($z)
+      {$obj $func $x $y $z}
+      {switch $pos
+         (0 $x)
+         (1 $y)
+         (2 $z)}}}

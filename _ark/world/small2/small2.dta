@@ -740,28 +740,28 @@
          (all_on
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script NEON_ON)})
          (all_off
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script NEON_OFF)})
          (half_on
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script NEON_HALF_ON)})
          (sweepup
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -770,7 +770,7 @@
          (sweepdown
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -779,7 +779,7 @@
          (random
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -788,7 +788,7 @@
          (triple_sweep_up
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -808,7 +808,7 @@
          (triple_sweep_down
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -828,7 +828,7 @@
          (blink
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -837,7 +837,7 @@
          (fast_blink
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -846,7 +846,7 @@
          (offset_sweepup
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script
@@ -855,7 +855,7 @@
          (bad_blue
             DELETE_TASK
             {thread_task
-               (preserve)
+               #ifdef HX_XBOX (preserve) #endif
                (name neon_task)
                (units kTaskBeats)
                (script NEON_BAD_BLUE)}))))

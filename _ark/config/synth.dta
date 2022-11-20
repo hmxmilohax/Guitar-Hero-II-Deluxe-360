@@ -2,7 +2,10 @@
 ; sfx/streams in the ark.
 ; 
 ; Enjoy the nastiest script in the entire game (and no, you can't if_else
-; these arrays, so we need to if_else the stuff IN the arrays):
+; these arrays, so we need to if_else the stuff IN the arrays)
+#ifdef HX_XBOX
+(use_xma FALSE)
+#endif
 (iop
    (max_streams 15)
    (spu_buffers 60)

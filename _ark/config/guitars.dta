@@ -6,7 +6,13 @@
          (mat guitar_lespaul_burst.mat))
       (lp_cayenne
          (outfit lp_cayenne)
-         (mat guitar_lespaul_cayenne.mat))
+         (mat
+#ifdef HX_XBOX
+         guitar_lespaul_cayenne.mat
+#else
+         lp_cayenne.mat
+#endif
+         ))
       (lp_goddessburst
          (outfit lp_goddessburst)
          (mat lp_goddessburst.mat))
@@ -18,10 +24,30 @@
    (skins
       (sg_cherry
          (outfit guitar_sg)
-         (mat guitar.mat))
+         (mat
+#ifdef HX_XBOX
+         guitar.mat
+#else
+         guitar_sg_cherry.mat
+#endif
+         )
+      )
       (sg_white
-         (outfit guitar_sg_goddess_white)
-         (mat goddess_white.mat))
+         (outfit
+#ifdef HX_XBOX
+         guitar_sg_goddess_white
+#else
+         guitar_sg
+#endif
+         )
+         (mat
+#ifdef HX_XBOX
+         goddess_white.mat
+#else
+         guitar_sg_platinum.mat
+#endif
+         )
+      )
       (sg_gt
          (outfit guitar_sg_gt)
          (mat guitar_sg_gt.mat))
@@ -138,7 +164,16 @@
          (mat guitar_es335_maple.mat))
       (es_cherry
          (outfit es335_cherry)
-         (mat es335_cherry.mat))))
+         (mat
+#ifdef HX_XBOX
+         es335_cherry.mat
+#else
+         guitar_firebird.mat
+#endif
+         )
+      )
+   )
+)
 (kramer_650
    (type guitar)
    (skins

@@ -14,18 +14,22 @@
 (crowd_face_camera FALSE)
 (next_shot
    "")
+#ifdef HX_XBOX
 (postprocess
    {object
       ""})
+#endif
 (shot_started
    {handle
       (world post_switch_cam)})
 (start_shot
+#ifdef HX_XBOX
    {if_else
       [postprocess]
       {[postprocess]
          select}
       {rnd reset_postproc}}
+#endif
    #ifndef _SHIP
    {rnd
       reflect

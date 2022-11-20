@@ -1,0 +1,33 @@
+(WorldDir
+   (types
+      (theatre2
+         WORLD_OBJECT_BASE
+         (sound
+            (bank theatre_bank)
+            (crowd
+               (intro -8.0 crowd_v4_0intro
+                  (pan 1))
+               (levels
+                  (kExcitementBoot -10.5 crowd_v4_1danger
+                     (pan 3))
+                  (kExcitementBad -10.5 crowd_v4_2poor
+                     (pan 3))
+                  (kExcitementOkay -12.0 crowd_v4_3norm
+                     (pan 3))
+                  (kExcitementGreat -9.0 crowd_v4_4good
+                     (pan 3))
+                  (kExcitementPeak -7.0 crowd_v4_4good
+                     (pan 3)))
+               (encore_outro 0.0 encore_v5_outro
+                  (pan 1)
+                  (loop_ms 16253 35874))
+               (encore_intro 0.0 encore_v5_intro
+                  (pan 1))))
+         (camera_durations
+            ((kExcitementBoot 3 6)
+               (kExcitementBad 3 6)
+               (kExcitementOkay 3 5)
+               (kExcitementGreat 2 4)
+               (kExcitementPeak 2 4)))
+         (intro_camera_distance near)
+         (intro_camera_facing right))))
