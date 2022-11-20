@@ -207,10 +207,14 @@
    )
     (set_debug_line ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
       ($text)
+      {mtv_campaign_line1.lbl set_showing FALSE}
+      {mtv_campaign_line1_shadow.lbl set_showing FALSE}
       {mtv_campaign_line1.lbl set_type postertype}
       {mtv_campaign_line1_shadow.lbl set_type postertype}
       {mtv_campaign_line1.lbl set_localized_text $text}
       {mtv_campaign_line1_shadow.lbl set_localized_text $text}
+      {mtv_campaign_line1.lbl set_showing TRUE}
+      {mtv_campaign_line1_shadow.lbl set_showing TRUE}
     )
     (set_line ;called in mtv overlay to apply the text to two labels at once
       ($prefix $i $text) ;setup variables

@@ -31,6 +31,12 @@
 (star_ready
    $starpowertext)
 (stk_zero "0")
+(eg_percent_frac
+   {if_else {== {* {/ {player0 gems_hit} {+ {player0 gems_hit} {player0 gems_passed}}} 100} {player0 percent_hit}}
+      {sprint {player0 percent_hit} "%"}
+      {sprint {* {/ {player0 gems_hit} {+ {player0 gems_hit} {player0 gems_passed}}} 100} "%"}
+   }
+)
 (toogle_label "AUTOPLAY")
 
 (blank_message "")
@@ -189,6 +195,7 @@
 (ss_choosesong "CHOOSE SONG")
 (os_cloneherohud {sprint "Clone Hero HUD" {if_else $clonehero_hud ": ON" ": OFF"}})
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
+(os_precision {sprint "Tight Speedups" {if_else $precision ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "No Fail" {if_else $nofail ": ON" ": OFF"}})
 (os_cleanmtv {sprint "Clean Song Info" {if_else $cleanmtv ": ON" ": OFF"}})
@@ -230,6 +237,7 @@
 
 ;endgame List stuff
 (endgame_focusmode "Focus Mode")
+(endgame_precision "Tight Speedup")
 (endgame_brutalmode "Brutal Mode")
 (endgame_nofail "No Fail")
 (endgame_noflames "No Flames")

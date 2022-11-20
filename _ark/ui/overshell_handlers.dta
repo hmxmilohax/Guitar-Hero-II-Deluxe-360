@@ -287,7 +287,7 @@
       {gs_title.lbl set_localized_text {localize os_modifiers}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
-            os_focusmode os_skipintro os_skipoutro ;all available modifiers
+            os_focusmode os_precision os_skipintro os_skipoutro ;all available modifiers
             os_sfx os_trkmod os_selhw os_font
             os_whammyfx os_muting os_nofail os_noflames
             os_songtitle os_nametitle os_cleanmtv
@@ -310,6 +310,13 @@
          )
          (os_trkmod
             {ui push_screen overshell_track_list_screen} ;we open another screen for another list
+         )
+         (os_precision
+            {set $precision {! $precision}} ;set the variable to the opposite of what it currently is
+            {if_else $precision ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
          )
          (os_sfx
             {set $sfx {! $sfx}} ;set the variable to the opposite of what it currently is

@@ -134,7 +134,15 @@
 #endif
 (midi_parsers #include midi_parsers.dta)
 (watcher
-   (slop 100) ; In ms, how much you can be off by and still hit the note
+   (slop 
+      {if_else {<= $speedmod 1.0}
+         100 ;if 100% or less, use stock 100ms window (which is proportional)
+         {if_else $precision
+            100 ;if precision modifier on and speedup, use stock 100ms window (which is proportional)
+            {* 100 $speedmod} ;if precision modifier off and speedup, compensate for song speed in the note window
+         }
+      }
+   )
    (cheat_error 0)
    (pitch_bend_range $whammyfx) ;was 1
    (ms_to_full_pitch_bend 1000))

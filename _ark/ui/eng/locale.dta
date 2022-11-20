@@ -285,6 +285,7 @@
 (lose_practice "PRACTICE")
 (lose_selsong "NEW SONG")
 (eg_percent_format "%d%%")
+(eg_percent_frac_format "%0.0f%%")
 (eg_score "Score")
 (eg_percent "Notes Hit")
 (eg_review "Review")

@@ -39,6 +39,12 @@
    "ESTO ES JODIDAMENTE EPICO"
    "ENERGIA ESTRELLA LISTA"})
 (stk_zero "0")
+(eg_percent_frac
+   {if_else {== {* {/ {player0 gems_hit} {+ {player0 gems_hit} {player0 gems_passed}}} 100} {player0 percent_hit}}
+      {sprint {player0 percent_hit} "%"}
+      {sprint {* {/ {player0 gems_hit} {+ {player0 gems_hit} {player0 gems_passed}}} 100} "%"}
+   }
+)
 (toogle_label "AUTOPLAY")
 
 (blank_message "")
@@ -117,6 +123,7 @@
 (os_trkmod "Modificadores de Diapasón")
 (os_cloneherohud {sprint "HUD de Clone Hero" {if_else $clonehero_hud ": ON" ": OFF"}})
 (os_focusmode {sprint "Modo Focus" {if_else $focusmode ": ON" ": OFF"}})
+(os_precision {sprint "Tight Speedups" {if_else $precision ": ON" ": OFF"}}) ;needs translating
 (os_brutalmode {sprint "Modo Brutal" {if_else $brutalmode ": ON" ": OFF"}})
 (os_nofail {sprint "Sin Fallos" {if_else $nofail ": ON" ": OFF"}})
 (os_nofail {sprint "No Flames" {if_else $noflames ": ON" ": OFF"}})
@@ -154,6 +161,7 @@
 
 ;endgame List stuff
 (endgame_focusmode "Modo Focus")
+(endgame_precision "Tight Speedup") ;needs translating
 (endgame_brutalmode "Modo Brutal")
 (endgame_nofail "Sin Fallos")
 (endgame_noflames "No Flames")

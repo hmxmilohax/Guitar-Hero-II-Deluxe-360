@@ -279,7 +279,7 @@
             {sprint {localize endgame_towel} ": " {if_else $towel "ON" "OFF"}}
             {sprint {localize endgame_noflames} ": " {if_else $noflames "ON" "OFF"}}
             {sprint {localize endgame_neckless} ": " {if_else {'||' $neckless $cheat_enabled_performance_mode} "ON" "OFF"}}
-            {sprint {localize endgame_roxbury} ": " {if_else $barf_cheat "ON" "OFF"}}
+            {sprint {localize endgame_precision} ": " {if_else $precision "ON" "OFF"}}
          )
       }
       {set $song_text1 {game get_song_text}}
@@ -292,11 +292,12 @@
       {do
          ($player player0)
          ($starrating)
+         {set $percent_hit_frac {* {/ $gems_hit $gems_total} 100}}
          {endgame_score_data.lbl set_localized_text {sprint {$player score}}}
          {endgame_streak_data.lbl set_localized_text {sprint {$player longest_streak}}}
          {if_else $player0_fc
-            {endgame_percent_data.lbl set_localized_text {sprint {localize fullcombo}}}
-            {endgame_percent_data.lbl set_localized_text {sprintf {localize eg_percent_format} {$player percent_hit}}}
+            {endgame_percent_data.lbl set_localized_text {sprint {localize fullcombo}}} ;if FC, put FC label
+            {endgame_percent_data.lbl set_text eg_percent_frac}
          }
          {endgame_streak_data.lbl set_localized_text {sprintf {localize endgame_streak_format} {$player longest_streak}}}
          {endgame_review_data.lbl set_text {sprint $starratingtemp ' ©'}} ; add star symbol to fractional rating
