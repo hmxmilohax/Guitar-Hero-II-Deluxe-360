@@ -643,7 +643,7 @@
       {if {> $uipicturenumber 3} ;check if we reached the end of our available images
          {set $uipicturenumber 0} ;reset displayed image back to the first one
       }
-      {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}} ;set the new image for display
+      {gs_pic.tex set_bitmap {sprint #ifdef HX_XBOX "ui/image/ng/photo_" #else "ui/image/og/photo_" #endif $charactermenu $uipicturenumber "_keep.bmp"}} ;set the new image for display
    )
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
@@ -657,7 +657,7 @@
       {gs_tile5.mat set diffuse_tex gs_pic.tex} ;set up the material
       {set $uipicturenumber 0} ;set default image number
       {set $charactermenu random} ;set default pic (we enter to random)
-      {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}} ;set the spare texture to the default pic
+      {gs_pic.tex set_bitmap {sprint #ifdef HX_XBOX "ui/image/ng/photo_" #else "ui/image/og/photo_" #endif $charactermenu $uipicturenumber "_keep.bmp"}} ;set the spare texture to the default pic
       {if {exists char_pic_task} ;check if the below task is running
          {delete char_pic_task} ;delete the task if already running
       }
@@ -691,7 +691,7 @@
          {set $uipicturenumber 0} ;reset displayed image back to the first one
       }
       {set $charactermenu {$component selected_sym}} ;set the temp var for the current list pos
-      {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_" $charactermenu $uipicturenumber "_keep.bmp"}} ;apply the current highlighted character preview image
+      {gs_pic.tex set_bitmap {sprint #ifdef HX_XBOX "ui/image/ng/photo_" #else "ui/image/og/photo_" #endif $charactermenu $uipicturenumber "_keep.bmp"}} ;apply the current highlighted character preview image
       {$this update} ;update the panel
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
