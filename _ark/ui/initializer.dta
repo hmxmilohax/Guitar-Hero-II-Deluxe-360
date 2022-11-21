@@ -85,7 +85,7 @@
 #include pause.dta
 {foreach $p (pause_panel pause_controller_panel tut_pause_panel pract_pause_panel tut_pause_controller_panel lose_panel helpbar endgame_encore_panel) {$p load}}
 {meta set_defaults}
-{set $first_screen splash_screen}
+#ifdef HX_XBOX {set $first_screen splash_screen} #endif
 {ui my_init}
 {do
    ($cfg)

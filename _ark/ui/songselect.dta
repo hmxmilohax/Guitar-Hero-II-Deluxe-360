@@ -218,8 +218,11 @@
                {pencil.mesh set_local_pos 250 30 -30} ;move the pencil
                {pencil_shadow.mesh set_local_pos 180 30 -30} ;move the pencil shadow
                {notebook.mesh set_local_scale 1.4 1 1} ;scale the notebook a little bit
-               {ss_song.lst set_local_pos 160 230 140} ;move the list
-               {ss_song.lst set_local_rot 0 4 0} ;rotate the list a little bit
+               {ss_song.lst set_local_pos 75 25 30} ;move the list
+               {ss_song.lst set_local_scale_index 0 .2} ;move the list
+               {ss_song.lst set_local_scale_index 2 .2} ;move the list
+               ;{ss_song.lst set_local_pos 0 0 0} ;move the list
+               {ss_song.lst set_local_rot_index 2 -2} ;rotate the lisst a little bit
             }
          }
       }
@@ -259,7 +262,7 @@
       }
       {set [metamusic_on_exit] TRUE} ;we are supposed to be playing meta music when we leave song select screens
 #ifndef HX_XBOX
-      {song_provider set_quickplay FALSE} ;gh2dx does not use quickplay
+      {song_provider set_quickplay TRUE} ;gh2dx does not use quickplay
 #else
       {song_provider set_mode kSongsCareer} ;gh2dx uses career for "quickplay"
 #endif
@@ -305,7 +308,7 @@
 #ifdef HX_XBOX
       {song_provider set_mode kSongsCareer} ;set the song provider mode to career
 #else
-      {song_provider set_quickplay FALSE} ;set the song provider mode to career but on ps2
+      {song_provider set_quickplay TRUE} ;set the song provider mode to career but on ps2
 #endif
       {ss_song.lst set_provider song_provider} ;fill the song list with data from the song_provider
       {if {== {game get_song_index} -1} ;check if we have an invalid song selection
@@ -329,7 +332,7 @@
          )
       )
    )
-   (sel_song_career TRUE) ;gh2dx uses career mode for the song select to show scores
+   (sel_song_career FALSE) ;gh2dx uses career mode for the song select to show scores
    (enter
       {if $gh3song ;check if gh3 song select var is set
          {helpbar set_showing FALSE} ;we don't show the help bar in gh3 song select
