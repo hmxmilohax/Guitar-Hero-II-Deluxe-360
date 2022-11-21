@@ -136,7 +136,6 @@
 #ifdef HX_XBOX
    #include ../hud/hud_objects_xbox.dta
 #else
-   #include ../ui/ui_objects_ps2.dta
    #include ../hud/hud_objects_ps2.dta
 #endif)
 (locale
