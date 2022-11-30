@@ -200,16 +200,16 @@
             {sd_select.lbl set_local_pos 0 150 200} ;move the title label
             {sd_select.lbl set_local_scale 5 400 5} ;scale the title label
             {sd_select.lbl set_localized_text {localize ss_choosesong}} ;set text of the title label
-            {ss_song.lst set_local_pos 25 230 140} ;change the position of the list
+            {ss_song.lst set_local_pos 15 280 170} ;change the position of the list
          }
          {if_else $gh3song ;check if we are using the gh3 song list milo
             {do
                {if_else $loopsong ;check if we are using a looped gh3 song list milo or not
                   {do ;if we are using loop
-                     {ss_song.lst set_local_pos 25 230 150} ;position the list
+                     {ss_song.lst set_local_pos 25 280 170} ;position the list
                      {ss_song.lst set_local_scale 1 1 0.975} ;scale the list
                   }
-                  {ss_song.lst set_local_pos 25 230 140} ;if we are not using loop song milo just set the position
+                  {ss_song.lst set_local_pos 25 280 170} ;if we are not using loop song milo just set the position
                }
             }
             {do
@@ -218,7 +218,7 @@
                {pencil.mesh set_local_pos 250 30 -30} ;move the pencil
                {pencil_shadow.mesh set_local_pos 180 30 -30} ;move the pencil shadow
                {notebook.mesh set_local_scale 1.4 1 1} ;scale the notebook a little bit
-               {ss_song.lst set_local_pos 75 25 30} ;move the list
+               {ss_song.lst set_local_pos 70 32 43} ;move the list
                {ss_song.lst set_local_scale_index 0 .2} ;move the list
                {ss_song.lst set_local_scale_index 2 .2} ;move the list
                ;{ss_song.lst set_local_pos 0 0 0} ;move the list
@@ -226,6 +226,7 @@
             }
          }
       }
+      {ss_song.lst set spacing 50}
    )
    (enter ;when the screen is entered
       {$this venue_randomizer} ;run the venue randomizer code block in this panel

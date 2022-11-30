@@ -15,9 +15,9 @@
 (song_header_stone
    " ")
 (song_header_store
-   "Included Song")
+   " ")
 (song_header_download
-   "Downloaded Songs")
+   " ")
 (song_old_venue
    " ")
 (song_current_venue
