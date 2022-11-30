@@ -1,3 +1,232 @@
+{new GHPanel selsong_overlay_panel
+   (file song_overlay.milo)
+   (enter ;when the screen is entered
+   ;{{selsong_overlay_panel find mtv_campaign_line1.lbl} set color MTV_OVERLAY_COLOR} ;custom mtv overlay color
+   ;{{selsong_overlay_panel find mtv_campaign_line2.lbl} set color MTV_OVERLAY_COLOR} ;custom mtv overlay color
+   ;{{selsong_overlay_panel find mtv_campaign_line3.lbl} set color MTV_OVERLAY_COLOR} ;custom mtv overlay color
+   ;{$this iterate UILabel $b {$b set wrap_width 300}} ;set label wrapping width off var
+   {$this iterate UILabel $b {$b set width 400}} ;set label width off var
+   {$this iterate UILabel $b {$b set_type helveticablackcondensed}} ;set label width off var
+   {selsong_overlay_panel setup_text}
+      {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
+      {mtv_overlay.view set_local_pos -125 -50 -80} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+      {mtv_overlay.view set_local_rot_index 1 1} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+;     {$this setup_text} ;run the setup_text code block below
+   )
+   (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below
+      {do
+         ($gems_hit {player0 gems_hit}) ;setup gems hit variable
+         ($gems_total {'+' $gems_hit {player0 gems_passed}}) ;setup total gems that have passed the strikeline variable
+         ($song {gamecfg get_song}) ;setup song variable
+         ($song_text {game get_song_text}) ;setup song text variable
+         ($artist_text {game get_song_artist_text}) ;setup artist variable
+         ;{{song_provider get_symbol {game get_song_index}}
+         {do
+            ($prefix "mtv_campaign_line") ;setup prefix variable to switch between line numbers
+            {mtv_campaign_song_id.view set_showing TRUE} ;show the mtv overlay
+            {if_else {!= $speedmod 1} ;if song speed is set to anything other than 100%
+               {if_else {&& {== {gamecfg get mode} practice} {!= {gamecfg get practice_speed} 0}} ;now check if the game mode is practice and the practice speed is set to full speed
+                  {$this set_line $prefix 1
+                     $song_text ;if all speeds are 100% simply show the song name on line 1
+                  }
+                  {$this set_line $prefix 1
+                     {sprint
+                        $song_text
+                        " ("
+                        {int {'+' 0.5 {'*' $speedmod 100}}} ;if song speed is not 100%, do math to report the song speed as a percentage on line 1
+                        "%)"
+                     }
+                  }
+               }
+               {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
+            }
+            {$this set_line $prefix 2
+                  $artist_text ;the artist text line is always just "ARTIST" on song select
+            }
+            {set $mtvline3
+               {sprint "\n"}
+            }
+            {if {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
+               {set $mtvline3
+                  {sprint
+                     {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     ": "
+                     {localize
+                        {sprint $song "_author"}
+                     }
+                     "\n"
+                  }
+               }
+            }
+            
+            {if_else $author ;check for author variable in DLC contexts.dta
+               {set $mtvline3
+                  {sprint
+                     {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     ": "
+                     $author
+                     "\n"
+                  }
+               }
+               {if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
+                  {set $mtvline3
+                     {sprint
+                        {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                        ": "
+                        {localize
+                           {sprint $song "_author"}
+                        }
+                        "\n"
+                     }
+                  }
+                  {set $mtvline3 {sprint {localize authortext} ": " {localize unknowntext} "\n"}}
+               }
+            }
+            
+            {if_else $songalbum ;check for author variable in DLC contexts.dta
+               {set $mtvline4
+                  {sprint
+                     {localize albumtext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     ": "
+                     $songalbum
+                     "\n"
+                  }
+               }
+               {set $mtvline4 {sprint {localize albumtext} ": " {localize unknowntext} "\n"}}
+            }
+            
+            {if_else $songyear ;check for author variable in DLC contexts.dta
+               {set $mtvline5
+                  {sprint
+                     {localize yeartext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     ": "
+                     $songyear
+                     "\n"
+                  }
+               }
+               {set $mtvline5 {sprint {localize yeartext} ": " {localize unknowntext} "\n"}}
+            }
+            
+            
+            {if_else $songgenre ;check for author variable in DLC contexts.dta
+               {set $mtvline6
+                  {sprint
+                     {localize genretext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     ": "
+                     $songgenre
+                     "\n"
+                  }
+               }
+               {set $mtvline6 {sprint {localize genretext} ": " {localize unknowntext} "\n"}}
+            }
+            
+            {if_else $songorigin ;check for author variable in DLC contexts.dta
+               {set $mtvline7
+                  {sprint
+                     {localize origintext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                     ": "
+                     $songorigin
+                     "\n"
+                  }
+               }
+               {set $mtvline7 {sprint {localize origintext} ": " {localize unknowntext} "\n"}}
+            }
+            
+            {if_else {song_provider has_instrument {gamecfg get_song} guitar}
+               kDataUnhandled
+               {set $songguitarrank -1}
+            }
+            {switch $songguitarrank
+               (-1 {set $mtvline8 {sprint {localize guitarpart} ": " {localize nopart}}})
+               (0 {set $mtvline8 {sprint {localize guitarpart} ": " {localize unknowntext}}})
+               (1 {set $mtvline8 {sprint {localize guitarpart} ": " {localize onestar}}})
+               (2 {set $mtvline8 {sprint {localize guitarpart} ": " {localize twostar}}})
+               (3 {set $mtvline8 {sprint {localize guitarpart} ": " {localize threestar}}})
+               (4 {set $mtvline8 {sprint {localize guitarpart} ": " {localize fourstar}}})
+               (5 {set $mtvline8 {sprint {localize guitarpart} ": " {localize fivestar}}})
+               (6 {set $mtvline8 {sprint {localize guitarpart} ": " {localize sixstar}}})
+               (7 {set $mtvline8 {sprint {localize guitarpart} ": " {localize sevenstar}}})
+            }
+            {if_else {song_provider has_instrument {gamecfg get_song} bass}
+               {switch $songbassrank
+                  (-1 {set $mtvline9 {sprint {localize basspart} ": " {localize nopart}}})
+                  (0 {set $mtvline9 {sprint {localize basspart} ": " {localize unknowntext}}})
+                  (1 {set $mtvline9 {sprint {localize basspart} ": " {localize onestar}}})
+                  (2 {set $mtvline9 {sprint {localize basspart} ": " {localize twostar}}})
+                  (3 {set $mtvline9 {sprint {localize basspart} ": " {localize threestar}}})
+                  (4 {set $mtvline9 {sprint {localize basspart} ": " {localize fourstar}}})
+                  (5 {set $mtvline9 {sprint {localize basspart} ": " {localize fivestar}}})
+                  (6 {set $mtvline9 {sprint {localize basspart} ": " {localize sixstar}}})
+                  (7 {set $mtvline9 {sprint {localize basspart} ": " {localize sevenstar}}})
+               }
+               {if_else {song_provider has_instrument {gamecfg get_song} rhythm}
+                  {switch $songrhythmrank
+                     (-1 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize nopart}}})
+                     (0 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize unknowntext}}})
+                     (1 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize onestar}}})
+                     (2 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize twostar}}})
+                     (3 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize threestar}}})
+                     (4 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize fourstar}}})
+                     (5 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize fivestar}}})
+                     (6 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize sixstar}}})
+                     (7 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize sevenstar}}})
+                  }
+                  {set $mtvline9 {sprint {localize basspart} ": " {localize nopart}}}
+               }
+            }
+            {if_else {song_provider has_instrument {gamecfg get_song} drum}
+               kDataUnhandled
+               {set $songdrumrank -1}
+            }
+            {switch $songdrumrank
+               (-1 {set $mtvline10 {sprint {localize drumpart} ": " {localize nopart}}})
+               (0 {set $mtvline10 {sprint {localize drumpart} ": " {localize unknowntext}}})
+               (1 {set $mtvline10 {sprint {localize drumpart} ": " {localize onestar}}})
+               (2 {set $mtvline10 {sprint {localize drumpart} ": " {localize twostar}}})
+               (3 {set $mtvline10 {sprint {localize drumpart} ": " {localize threestar}}})
+               (4 {set $mtvline10 {sprint {localize drumpart} ": " {localize fourstar}}})
+               (5 {set $mtvline10 {sprint {localize drumpart} ": " {localize fivestar}}})
+               (6 {set $mtvline10 {sprint {localize drumpart} ": " {localize sixstar}}})
+               (7 {set $mtvline10 {sprint {localize drumpart} ": " {localize sevenstar}}})
+            }
+               {$this set_line $prefix 3
+                  {sprint $mtvline3} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 4
+                  {sprint $mtvline4} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 5
+                  {sprint $mtvline5} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 6
+                  {sprint $mtvline6} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 7
+                  {sprint $mtvline7} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 8
+                  {sprint $mtvline8} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 9
+                  {sprint $mtvline9} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 10
+                  {sprint $mtvline10} ;if autoplay, just put the static shit
+               }
+            }
+      }
+   )
+   (set_line ;called in mtv overlay to apply the text to two labels at once
+      ($prefix $i $text) ;setup variables
+      {{sprint $prefix $i ".lbl"} set_localized_text $text} ;set the main text objects
+      {{sprint $prefix $i "_shadow.lbl"} set_localized_text $text} ;set the shadow text objects
+   )
+   (show_overlay ;code to run to show the overlay or not based on a variable
+      ($show) ;setup variable
+      {$this set_showing $show} ;show or hide based off variable
+      {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
+   )
+}
 {new
    GHPanel ;panel type
    sel_song_panel ;panel name
@@ -197,6 +426,7 @@
    (graphics_handler ;handles the graphics for the panel in various states
       {if_else $altsong ;check if we are using alt song milo
          {do
+            {selsong_overlay_panel set_showing FALSE}
             {sd_select.lbl set_local_pos 0 150 200} ;move the title label
             {sd_select.lbl set_local_scale 5 400 5} ;scale the title label
             {sd_select.lbl set_localized_text {localize ss_choosesong}} ;set text of the title label
@@ -204,6 +434,7 @@
          }
          {if_else $gh3song ;check if we are using the gh3 song list milo
             {do
+               {selsong_overlay_panel set_showing FALSE}
                {if_else $loopsong ;check if we are using a looped gh3 song list milo or not
                   {do ;if we are using loop
                      {ss_song.lst set_local_pos 25 280 170} ;position the list
@@ -213,11 +444,13 @@
                }
             }
             {do
-               {cp_title.lbl set_local_pos 70 50 -15} ;move the title label
+               {chooseprof.view set_local_pos_index 0 75}
+               {cp_title.lbl set_local_pos 60 50 -15} ;move the title label
                {cp_title.lbl set_localized_text {localize ss_choosesong}} ;set text of the title label
                {pencil.mesh set_local_pos 250 30 -30} ;move the pencil
                {pencil_shadow.mesh set_local_pos 180 30 -30} ;move the pencil shadow
                {notebook.mesh set_local_scale 1.4 1 1} ;scale the notebook a little bit
+               {notebook_cover.mesh set_local_scale 1.4 1 1} ;scale the notebook a little bit
                {ss_song.lst set_local_pos 70 32 43} ;move the list
                {ss_song.lst set_local_scale_index 0 .2} ;move the list
                {ss_song.lst set_local_scale_index 2 .2} ;move the list
@@ -229,6 +462,8 @@
       {ss_song.lst set spacing 50}
    )
    (enter ;when the screen is entered
+      {selsong_overlay_panel set_showing FALSE}
+      {selsong_overlay_panel setup_text} ;setup the mtv overlay panel for the song screen
       {$this venue_randomizer} ;run the venue randomizer code block in this panel
       {$this graphics_handler} ;run the graphics handler code block in this panel
       {set $gameentered FALSE} ;variable setup to double check we aren't in gameplay
@@ -279,11 +514,29 @@
    (update_pos ;called from SCROLL_MSG, update_song_info, and page_down
       {do
          ($pos {ss_song.lst selected_pos}) ;set up local var for this code block
+         {set $songalbum FALSE}
+         {set $songartist FALSE}
+         {set $songorigin FALSE}
+         {set $songyear FALSE}
+         {set $author FALSE}
+         {set $songgenre FALSE}
+         {set $songguitarrank 0}
+         {set $songbassrank 0}
+         {set $songdrumrank 0}
+         {set $songrhythmrank 0}
          {game set_song_index $pos} ;set the internal song to the current song list position
 #ifdef HX_XBOX
          {$this cache_song} ;ayo gh2 song cache? (idk what this does it's in code)
 #endif
          {song_preview {game get_song}} ;call the song's music preview
+         ;{set $songalbumfake {gamecfg get_song_caption {game get_song}}}
+         {if_else {== {game get_song_index} 0}
+            {selsong_overlay_panel set_showing FALSE}
+            {do
+               {selsong_overlay_panel set_showing TRUE}
+               {selsong_overlay_panel setup_text} ;setup the mtv overlay panel for the song screen
+            }
+         }
       }
    )
    (beat_song ;debug code block
@@ -322,7 +575,7 @@
 {new
    GHScreen ;screen type
    sel_song_screen ;screen name
-   (panels meta sel_song_panel helpbar) ;panels included in this screen in draw order
+   (panels meta sel_song_panel selsong_overlay_panel helpbar) ;panels included in this screen in draw order
    (focus sel_song_panel) ;panel to focus
    (helpbar ;sets up the help bar for this screen
       (default
@@ -372,6 +625,7 @@
       kDataUnhandled ;fail over if none of the above conditions are met
    )
 }
+
 {new
    GHScreen ;screen type
    storage_changed_screen ;screen name

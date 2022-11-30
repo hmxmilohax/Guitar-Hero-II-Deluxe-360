@@ -60,6 +60,7 @@
                      {sprint
                         "\n"
                         {localize authortext}
+                        ": "
                         {localize
                            {sprint $song "_author"}
                         }
@@ -71,6 +72,7 @@
                      {sprint
                         "\n"
                         {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                        ": "
                         {localize
                            {sprint $song "_author"}
                         }
@@ -85,6 +87,7 @@
                      {sprint
                         "\n"
                         {localize authortext}
+                        ": "
                         $author
                         "\n"
                         {localize autoplaytext} ;apparently we weren't showing author in autoplay, fixed
@@ -94,6 +97,7 @@
                      {sprint
                         "\n"
                         {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                        ": "
                         $author
                         "\n"
                      }
