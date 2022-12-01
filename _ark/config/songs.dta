@@ -1,14 +1,25 @@
 #define SPEEDTEST_DATA
 (
-   (
-      'artist'
-      "ExileLord"
+   (artist
+      {do
+         {set $songalbum "Unknown"}
+         {set $author "ExileLord, mariteaux"}
+         {set $songyear "2020"}
+         {set $songgenre "Heavy Metal"}
+         {set $songorigin "HalfDuck Himself"}
+         {set $songguitarrank 0}
+         {set $songbassrank 0}
+         {set $songrhythmrank 0}
+         {set $songdrumrank 0}
+         {set $songartist "HalfDuck"}
+      }
+      "HalfDuck"
    )
    (
       'song'
       (
          'name'
-         "songs/speedtest/speedtest"
+         "songs/speedtest/speedtesthalfduck"
       )
       (
          'tracks'
@@ -35,7 +46,7 @@
          'cores'
          (-1 -1 1 1 -1 -1)
       )
-      (midi_file "songs/speedtest/speedtest.mid")
+      (midi_file "songs/speedtest/speedtesthalfduck.mid")
    )
    ('anim_tempo' 'kTempoMedium')
    ('preview' 108476 138476)
@@ -115,7 +126,7 @@
    'speedtest9'
    (
       'name'
-      "Speed Test"
+      "Speed Test (HalfDuck Cover)"
    )
    SPEEDTEST_DATA
 )
