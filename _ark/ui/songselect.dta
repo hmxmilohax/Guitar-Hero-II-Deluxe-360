@@ -127,7 +127,7 @@
                (4 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize fourstar}}})
                (5 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize fivestar}}})
                (6 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize sixstar}}})
-               (7 {mtv_campaign_line8_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline8diff {sprint {localize sevenstar}}})
+               (7 {mtv_campaign_line8_diff.lbl set color {pack_color 0.71 0.16 0.18}} {set $mtvline8diff {sprint {localize sevenstar}}})
             }
             {if_else {song_provider has_instrument {gamecfg get_song} bass}
                {set $mtvline9 {sprint {localize basspart} ":"}}
@@ -146,7 +146,7 @@
                   (4 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fourstar}}})
                   (5 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fivestar}}})
                   (6 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize sixstar}}})
-                  (7 {mtv_campaign_line9_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline9diff {sprint {localize sevenstar}}})
+                  (7 {mtv_campaign_line9_diff.lbl set color {pack_color 0.71 0.16 0.18}} {set $mtvline9diff {sprint {localize sevenstar}}})
                }
                {if_else {song_provider has_instrument {gamecfg get_song} rhythm}
                   {switch $songrhythmrank
@@ -158,7 +158,7 @@
                      (4 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fourstar}}})
                      (5 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fivestar}}})
                      (6 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize sixstar}}})
-                     (7 {mtv_campaign_line9_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline9diff {sprint {localize sevenstar}}})
+                     (7 {mtv_campaign_line9_diff.lbl set color {pack_color 0.71 0.16 0.18}} {set $mtvline9diff {sprint {localize sevenstar}}})
                   }
                   {set $mtvline9diff {sprint {localize nopart}}}
                }
@@ -177,7 +177,7 @@
                (4 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize fourstar}}})
                (5 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize fivestar}}})
                (6 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize sixstar}}})
-               (7 {mtv_campaign_line10_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline10diff {sprint {localize sevenstar}}})
+               (7 {mtv_campaign_line10_diff.lbl set color {pack_color 0.71 0.16 0.18}} {set $mtvline10diff {sprint {localize sevenstar}}})
             }
             {if_else $songduration ;check for variable in custom songs.dta artist data
                {do
