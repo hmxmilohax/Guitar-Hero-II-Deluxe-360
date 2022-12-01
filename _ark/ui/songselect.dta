@@ -51,28 +51,46 @@
             {set $mtvline3
                {sprint "\n"}
             }
-            {if_else $author ;check for variable in custom songs.dta artist data
-               {set $mtvline3
-                  {sprint
-                     {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+            {set $mtvline3
+               {sprint
+                  {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
                      ": "
+               }
+            }
+            {if_else $author ;check for variable in custom songs.dta artist data
+               {set $mtvline3_auth
+                  {sprint
                      $author
                   }
                }
                {if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
-                  {set $mtvline3
+                  {set $mtvline3_auth
                      {sprint
-                        {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
-                        ": "
                         {localize
                            {sprint $song "_author"}
                         }
                      }
                   }
-                  {set $mtvline3 {sprint {localize authortext} ": " {localize unknowntext}}}
+                  {set $mtvline3_auth {sprint {localize unknowntext}}}
                }
             }
             
+            {if_else $author
+               {if_else {|| {== $author "Harmonix"} {== $author "harmonix"} {== $author "HARMONIX"}}
+                  {mtv_campaign_line3_auth.lbl set color {pack_color 0 .5 1}}
+                  {if_else {|| {== $author "Mariteaux"} {== $author "MARITEAUX"} {== $author "mariteaux"} {== $author "Exilelord, mariteaux"}}
+                     {mtv_campaign_line3_auth.lbl set color {pack_color 1 .52 .24}}
+                     {if_else {|| {== $author "Neversoft"} {== $author "NEVERSOFT"} {== $author "neversoft"}}
+                        {mtv_campaign_line3_auth.lbl set color {pack_color .78 .31 0}}
+                        {if_else {|| {== $author "Addymills"} {== $author "ADDYMILLS"} {== $author "addymills"} {== $author "AddyMills"}}
+                           {mtv_campaign_line3_auth.lbl set color {pack_color .07 .63 0}}
+                           {mtv_campaign_line3_auth.lbl set color {pack_color 1 1 1}}
+                        }
+                     }
+                  }
+               }
+               {mtv_campaign_line3_auth.lbl set color {pack_color 1 1 1}}
+            }
             {if_else $songalbum ;check for variable in custom songs.dta artist data
                {set $mtvline4
                   {sprint
@@ -230,6 +248,9 @@
             }
                {$this set_line $prefix 3
                   {sprint $mtvline3} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 3_auth
+                  {sprint $mtvline3_auth} ;if autoplay, just put the static shit
                }
                {$this set_line $prefix 4
                   {sprint $mtvline4} ;if autoplay, just put the static shit

@@ -2,13 +2,13 @@
 (
    (artist
       {do
-         {set $songalbum "Unknown"}
-         {set $author "ExileLord, mariteaux"}
+         {set $songalbum "Single"}
+         {set $author "Exilelord, mariteaux"}
          {set $songyear "2020"}
          {set $songgenre "Heavy Metal"}
-         {set $songorigin "HalfDuck Himself"}
-         {set $songguitarrank 0}
-         {set $songbassrank 0}
+         {set $songorigin "YouTube"}
+         {set $songguitarrank 7}
+         {set $songbassrank 7}
          {set $songrhythmrank 0}
          {set $songdrumrank 0}
          {set $songartist "HalfDuck"}

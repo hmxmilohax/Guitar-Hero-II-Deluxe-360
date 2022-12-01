@@ -98,12 +98,19 @@
       {do
          ($song {gamecfg get_song}) ;setup song variable for use in this block
          {part0.btn set_text {sprint "sg_" {song_provider get_instrument $song 0}}} ;for some reason hmx adds "sg_" to all their instrument localizations. set part 0 label to the 1st instrument track name
-         {part1.btn set_text {sprint "sg_" {song_provider get_instrument $song 1}}} ;set part 1 label to the 2nd instrument track name in the song definition
-         {part2.btn set_text "sg_drum"} ;always set part 2 label to sg_drum since nothing else uses this
-         {if
-            {== {song_provider get_instrument $song 1} "rhythm"} ;if the second instrument track in the song definition is rhythm
-            {part0.btn set_text "sg_lead"} ;then set part 0 to be "lead" instead of "guitar"
+         {if_else {|| {song_provider has_instrument {gamecfg get_song} bass} {song_provider has_instrument {gamecfg get_song} rhythm}}
+            {part1.btn set_text {sprint "sg_" {song_provider get_instrument $song 1}}} ;set part 1 label to the 2nd instrument track name in the song definition
+            {do
+               {part1.btn set_state kDisabled} ;if not, disable the button
+               {part1.btn set_showing FALSE} ;if not, hide the button
+            }
          }
+         {if {|| {song_provider has_instrument {gamecfg get_song} bass} {song_provider has_instrument {gamecfg get_song} rhythm}}
+            {if {== {song_provider get_instrument $song 1} "rhythm"} ;if the second instrument track in the song definition is rhythm
+               {part0.btn set_text "sg_lead"} ;then set part 0 to be "lead" instead of "guitar"
+            }
+         }
+         {part2.btn set_text "sg_drum"} ;always set part 2 label to sg_drum since nothing else uses this
          {if_else {song_provider has_instrument {gamecfg get_song} drum} ;check if there is an instrument with the name "drum"
             {part2.btn set_text "sg_drum"} ;if there is, set the text to drum again
             {do
@@ -117,9 +124,11 @@
       {selpart_overlay_panel setup_text}
       {do
          ($song {gamecfg get_song}) ;setup variable for this code block
-         {switch {song_provider get_instrument $song 1} ;switch action based on result of which instrument is second in the song definition
-            (bass {gamecfg set_track_type bass}) ;if it's bass, set the track type to bass
-            (rhythm {gamecfg set_track_type rhythm}) ;if it's rhythm, set the track type to rhythm
+         {if {|| {song_provider has_instrument {gamecfg get_song} bass} {song_provider has_instrument {gamecfg get_song} rhythm}}
+            {switch {song_provider get_instrument $song 1} ;switch action based on result of which instrument is second in the song definition
+               (bass {gamecfg set_track_type bass}) ;if it's bass, set the track type to bass
+               (rhythm {gamecfg set_track_type rhythm}) ;if it's rhythm, set the track type to rhythm
+            }
          }
          {$this set_button_text} ;run the set_button_text code block above
       }
