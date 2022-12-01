@@ -117,58 +117,67 @@
                kDataUnhandled
                {set $songguitarrank -1}
             }
+            {set $mtvline8 {sprint {localize guitarpart} ":"}}
             {switch $songguitarrank
-               (-1 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize nopart}}})
-               (0 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize unknowntext}}})
-               (1 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize onestar}}})
-               (2 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize twostar}}})
-               (3 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize threestar}}})
-               (4 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize fourstar}}})
-               (5 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize fivestar}}})
-               (6 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize sixstar}}})
-               (7 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize sevenstar}}})
+               (-1 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize nopart}}})
+               (0 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize unknowntext}}})
+               (1 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize onestar}}})
+               (2 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize twostar}}})
+               (3 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize threestar}}})
+               (4 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize fourstar}}})
+               (5 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize fivestar}}})
+               (6 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize sixstar}}})
+               (7 {mtv_campaign_line8_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline8diff {sprint {localize sevenstar}}})
+            }
+            {if_else {song_provider has_instrument {gamecfg get_song} bass}
+               {set $mtvline9 {sprint {localize basspart} ":"}}
+               {if_else {song_provider has_instrument {gamecfg get_song} rhythm}
+                  {set $mtvline9 {sprint {localize rhythmpart} ":"}}
+                  {set $mtvline9 {sprint {localize basspart} ":"}}
+               }
             }
             {if_else {song_provider has_instrument {gamecfg get_song} bass}
                {switch $songbassrank
-                  (-1 {set $mtvline9 {sprint {localize basspart} ":       " {localize nopart}}})
-                  (0 {set $mtvline9 {sprint {localize basspart} ":       " {localize unknowntext}}})
-                  (1 {set $mtvline9 {sprint {localize basspart} ":       " {localize onestar}}})
-                  (2 {set $mtvline9 {sprint {localize basspart} ":       " {localize twostar}}})
-                  (3 {set $mtvline9 {sprint {localize basspart} ":       " {localize threestar}}})
-                  (4 {set $mtvline9 {sprint {localize basspart} ":       " {localize fourstar}}})
-                  (5 {set $mtvline9 {sprint {localize basspart} ":       " {localize fivestar}}})
-                  (6 {set $mtvline9 {sprint {localize basspart} ":       " {localize sixstar}}})
-                  (7 {set $mtvline9 {sprint {localize basspart} ":       " {localize sevenstar}}})
+                  (-1 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize nopart}}})
+                  (0 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize unknowntext}}})
+                  (1 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize onestar}}})
+                  (2 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize twostar}}})
+                  (3 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize threestar}}})
+                  (4 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fourstar}}})
+                  (5 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fivestar}}})
+                  (6 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize sixstar}}})
+                  (7 {mtv_campaign_line9_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline9diff {sprint {localize sevenstar}}})
                }
                {if_else {song_provider has_instrument {gamecfg get_song} rhythm}
                   {switch $songrhythmrank
-                     (-1 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize nopart}}})
-                     (0 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize unknowntext}}})
-                     (1 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize onestar}}})
-                     (2 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize twostar}}})
-                     (3 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize threestar}}})
-                     (4 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize fourstar}}})
-                     (5 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize fivestar}}})
-                     (6 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize sixstar}}})
-                     (7 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize sevenstar}}})
+                     (-1 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize nopart}}})
+                     (0 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize unknowntext}}})
+                     (1 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize onestar}}})
+                     (2 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize twostar}}})
+                     (3 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize threestar}}})
+                     (4 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fourstar}}})
+                     (5 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize fivestar}}})
+                     (6 {mtv_campaign_line9_diff.lbl set color {pack_color 1 1 1}} {set $mtvline9diff {sprint {localize sixstar}}})
+                     (7 {mtv_campaign_line9_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline9diff {sprint {localize sevenstar}}})
                   }
-                  {set $mtvline9 {sprint {localize basspart} ":       " {localize nopart}}}
+                  {set $mtvline9diff {sprint {localize nopart}}}
                }
             }
             {if_else {song_provider has_instrument {gamecfg get_song} drum}
                kDataUnhandled
                {set $songdrumrank -1}
             }
+            {set $mtvline10 {sprint {localize drumpart} ":"}}
             {switch $songdrumrank
-               (-1 {set $mtvline10 {sprint {localize drumpart} ":    " {localize nopart}}})
-               (0 {set $mtvline10 {sprint {localize drumpart} ":    " {localize unknowntext}}})
-               (1 {set $mtvline10 {sprint {localize drumpart} ":    " {localize onestar}}})
-               (2 {set $mtvline10 {sprint {localize drumpart} ":    " {localize twostar}}})
-               (3 {set $mtvline10 {sprint {localize drumpart} ":    " {localize threestar}}})
-               (4 {set $mtvline10 {sprint {localize drumpart} ":    " {localize fourstar}}})
-               (5 {set $mtvline10 {sprint {localize drumpart} ":    " {localize fivestar}}})
-               (6 {set $mtvline10 {sprint {localize drumpart} ":    " {localize sixstar}}})
-               (7 {set $mtvline10 {sprint {localize drumpart} ":    " {localize sevenstar}}})
+               (-1 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize nopart}}})
+               (0 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize unknowntext}}})
+               (1 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize onestar}}})
+               (2 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize twostar}}})
+               (3 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize threestar}}})
+               (4 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize fourstar}}})
+               (5 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize fivestar}}})
+               (6 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize sixstar}}})
+               (7 {mtv_campaign_line10_diff.lbl set color {pack_color 0.61 0.07 0.07}} {set $mtvline10diff {sprint {localize sevenstar}}})
             }
             {if_else $songduration ;check for variable in custom songs.dta artist data
                {do
@@ -232,11 +241,20 @@
                {$this set_line $prefix 8
                   {sprint $mtvline8} ;if autoplay, just put the static shit
                }
+               {$this set_line $prefix 8_diff
+                  {sprint $mtvline8diff} ;if autoplay, just put the static shit
+               }
                {$this set_line $prefix 9
                   {sprint $mtvline9} ;if autoplay, just put the static shit
                }
+               {$this set_line $prefix 9_diff
+                  {sprint $mtvline9diff} ;if autoplay, just put the static shit
+               }
                {$this set_line $prefix 10
                   {sprint $mtvline10} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 10_diff
+                  {sprint $mtvline10diff} ;if autoplay, just put the static shit
                }
                {$this set_line $prefix 11
                   {sprint $mtvline11} ;if autoplay, just put the static shit
