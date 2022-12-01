@@ -46,26 +46,12 @@
             {set $mtvline3
                {sprint "\n"}
             }
-            {if {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
-               {set $mtvline3
-                  {sprint
-                     {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
-                     ": "
-                     {localize
-                        {sprint $song "_author"}
-                     }
-                     "\n"
-                  }
-               }
-            }
-            
-            {if_else $author ;check for author variable in DLC contexts.dta
+            {if_else $author ;check for variable in custom songs.dta artist data
                {set $mtvline3
                   {sprint
                      {localize authortext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
                      ": "
                      $author
-                     "\n"
                   }
                }
                {if_else {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
@@ -76,60 +62,55 @@
                         {localize
                            {sprint $song "_author"}
                         }
-                        "\n"
                      }
                   }
-                  {set $mtvline3 {sprint {localize authortext} ": " {localize unknowntext} "\n"}}
+                  {set $mtvline3 {sprint {localize authortext} ": " {localize unknowntext}}}
                }
             }
             
-            {if_else $songalbum ;check for author variable in DLC contexts.dta
+            {if_else $songalbum ;check for variable in custom songs.dta artist data
                {set $mtvline4
                   {sprint
                      {localize albumtext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
                      ": "
                      $songalbum
-                     "\n"
                   }
                }
-               {set $mtvline4 {sprint {localize albumtext} ": " {localize unknowntext} "\n"}}
+               {set $mtvline4 {sprint {localize albumtext} ": " {localize unknowntext}}}
             }
             
-            {if_else $songyear ;check for author variable in DLC contexts.dta
+            {if_else $songyear ;check for variable in custom songs.dta artist data
                {set $mtvline5
                   {sprint
                      {localize yeartext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
                      ": "
                      $songyear
-                     "\n"
                   }
                }
-               {set $mtvline5 {sprint {localize yeartext} ": " {localize unknowntext} "\n"}}
+               {set $mtvline5 {sprint {localize yeartext} ": " {localize unknowntext}}}
             }
             
             
-            {if_else $songgenre ;check for author variable in DLC contexts.dta
+            {if_else $songgenre ;check for variable in custom songs.dta artist data
                {set $mtvline6
                   {sprint
                      {localize genretext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
                      ": "
                      $songgenre
-                     "\n"
                   }
                }
-               {set $mtvline6 {sprint {localize genretext} ": " {localize unknowntext} "\n"}}
+               {set $mtvline6 {sprint {localize genretext} ": " {localize unknowntext}}}
             }
             
-            {if_else $songorigin ;check for author variable in DLC contexts.dta
+            {if_else $songorigin ;check for variable in custom songs.dta artist data
                {set $mtvline7
                   {sprint
                      {localize origintext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
                      ": "
                      $songorigin
-                     "\n"
                   }
                }
-               {set $mtvline7 {sprint {localize origintext} ": " {localize unknowntext} "\n"}}
+               {set $mtvline7 {sprint {localize origintext} ": " {localize unknowntext}}}
             }
             
             {if_else {song_provider has_instrument {gamecfg get_song} guitar}
@@ -137,41 +118,41 @@
                {set $songguitarrank -1}
             }
             {switch $songguitarrank
-               (-1 {set $mtvline8 {sprint {localize guitarpart} ": " {localize nopart}}})
-               (0 {set $mtvline8 {sprint {localize guitarpart} ": " {localize unknowntext}}})
-               (1 {set $mtvline8 {sprint {localize guitarpart} ": " {localize onestar}}})
-               (2 {set $mtvline8 {sprint {localize guitarpart} ": " {localize twostar}}})
-               (3 {set $mtvline8 {sprint {localize guitarpart} ": " {localize threestar}}})
-               (4 {set $mtvline8 {sprint {localize guitarpart} ": " {localize fourstar}}})
-               (5 {set $mtvline8 {sprint {localize guitarpart} ": " {localize fivestar}}})
-               (6 {set $mtvline8 {sprint {localize guitarpart} ": " {localize sixstar}}})
-               (7 {set $mtvline8 {sprint {localize guitarpart} ": " {localize sevenstar}}})
+               (-1 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize nopart}}})
+               (0 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize unknowntext}}})
+               (1 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize onestar}}})
+               (2 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize twostar}}})
+               (3 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize threestar}}})
+               (4 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize fourstar}}})
+               (5 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize fivestar}}})
+               (6 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize sixstar}}})
+               (7 {set $mtvline8 {sprint {localize guitarpart} ":    " {localize sevenstar}}})
             }
             {if_else {song_provider has_instrument {gamecfg get_song} bass}
                {switch $songbassrank
-                  (-1 {set $mtvline9 {sprint {localize basspart} ": " {localize nopart}}})
-                  (0 {set $mtvline9 {sprint {localize basspart} ": " {localize unknowntext}}})
-                  (1 {set $mtvline9 {sprint {localize basspart} ": " {localize onestar}}})
-                  (2 {set $mtvline9 {sprint {localize basspart} ": " {localize twostar}}})
-                  (3 {set $mtvline9 {sprint {localize basspart} ": " {localize threestar}}})
-                  (4 {set $mtvline9 {sprint {localize basspart} ": " {localize fourstar}}})
-                  (5 {set $mtvline9 {sprint {localize basspart} ": " {localize fivestar}}})
-                  (6 {set $mtvline9 {sprint {localize basspart} ": " {localize sixstar}}})
-                  (7 {set $mtvline9 {sprint {localize basspart} ": " {localize sevenstar}}})
+                  (-1 {set $mtvline9 {sprint {localize basspart} ":       " {localize nopart}}})
+                  (0 {set $mtvline9 {sprint {localize basspart} ":       " {localize unknowntext}}})
+                  (1 {set $mtvline9 {sprint {localize basspart} ":       " {localize onestar}}})
+                  (2 {set $mtvline9 {sprint {localize basspart} ":       " {localize twostar}}})
+                  (3 {set $mtvline9 {sprint {localize basspart} ":       " {localize threestar}}})
+                  (4 {set $mtvline9 {sprint {localize basspart} ":       " {localize fourstar}}})
+                  (5 {set $mtvline9 {sprint {localize basspart} ":       " {localize fivestar}}})
+                  (6 {set $mtvline9 {sprint {localize basspart} ":       " {localize sixstar}}})
+                  (7 {set $mtvline9 {sprint {localize basspart} ":       " {localize sevenstar}}})
                }
                {if_else {song_provider has_instrument {gamecfg get_song} rhythm}
                   {switch $songrhythmrank
-                     (-1 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize nopart}}})
-                     (0 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize unknowntext}}})
-                     (1 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize onestar}}})
-                     (2 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize twostar}}})
-                     (3 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize threestar}}})
-                     (4 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize fourstar}}})
-                     (5 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize fivestar}}})
-                     (6 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize sixstar}}})
-                     (7 {set $mtvline9 {sprint {localize rhythmpart} ": " {localize sevenstar}}})
+                     (-1 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize nopart}}})
+                     (0 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize unknowntext}}})
+                     (1 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize onestar}}})
+                     (2 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize twostar}}})
+                     (3 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize threestar}}})
+                     (4 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize fourstar}}})
+                     (5 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize fivestar}}})
+                     (6 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize sixstar}}})
+                     (7 {set $mtvline9 {sprint {localize rhythmpart} ":  " {localize sevenstar}}})
                   }
-                  {set $mtvline9 {sprint {localize basspart} ": " {localize nopart}}}
+                  {set $mtvline9 {sprint {localize basspart} ":       " {localize nopart}}}
                }
             }
             {if_else {song_provider has_instrument {gamecfg get_song} drum}
@@ -179,15 +160,59 @@
                {set $songdrumrank -1}
             }
             {switch $songdrumrank
-               (-1 {set $mtvline10 {sprint {localize drumpart} ": " {localize nopart}}})
-               (0 {set $mtvline10 {sprint {localize drumpart} ": " {localize unknowntext}}})
-               (1 {set $mtvline10 {sprint {localize drumpart} ": " {localize onestar}}})
-               (2 {set $mtvline10 {sprint {localize drumpart} ": " {localize twostar}}})
-               (3 {set $mtvline10 {sprint {localize drumpart} ": " {localize threestar}}})
-               (4 {set $mtvline10 {sprint {localize drumpart} ": " {localize fourstar}}})
-               (5 {set $mtvline10 {sprint {localize drumpart} ": " {localize fivestar}}})
-               (6 {set $mtvline10 {sprint {localize drumpart} ": " {localize sixstar}}})
-               (7 {set $mtvline10 {sprint {localize drumpart} ": " {localize sevenstar}}})
+               (-1 {set $mtvline10 {sprint {localize drumpart} ":    " {localize nopart}}})
+               (0 {set $mtvline10 {sprint {localize drumpart} ":    " {localize unknowntext}}})
+               (1 {set $mtvline10 {sprint {localize drumpart} ":    " {localize onestar}}})
+               (2 {set $mtvline10 {sprint {localize drumpart} ":    " {localize twostar}}})
+               (3 {set $mtvline10 {sprint {localize drumpart} ":    " {localize threestar}}})
+               (4 {set $mtvline10 {sprint {localize drumpart} ":    " {localize fourstar}}})
+               (5 {set $mtvline10 {sprint {localize drumpart} ":    " {localize fivestar}}})
+               (6 {set $mtvline10 {sprint {localize drumpart} ":    " {localize sixstar}}})
+               (7 {set $mtvline10 {sprint {localize drumpart} ":    " {localize sevenstar}}})
+            }
+            {if_else $songduration ;check for variable in custom songs.dta artist data
+               {do
+                  {set $songminutes {int {/ {int {/ $songduration 1000}} 60}}}
+                  {set $songseconds {- {int {/ $songduration 1000}} {* $songminutes 60}}}
+                  {set $mtvline11
+                     {sprint
+                        {localize durationtext} ; $mtvline3 will hold everything that only needs to be set one time, before the song
+                        ": "
+                        {if_else {> $songminutes 9}
+                           $songminutes
+                           {switch $songminutes
+                              (0 "00")
+                              (1 "01")
+                              (2 "02")
+                              (3 "03")
+                              (4 "04")
+                              (5 "05")
+                              (6 "06")
+                              (7 "07")
+                              (8 "08")
+                              (9 "09")
+                           }
+                        }
+                        ":"
+                        {if_else {> $songseconds 9}
+                           $songseconds
+                           {switch $songseconds
+                              (0 "00")
+                              (1 "01")
+                              (2 "02")
+                              (3 "03")
+                              (4 "04")
+                              (5 "05")
+                              (6 "06")
+                              (7 "07")
+                              (8 "08")
+                              (9 "09")
+                           }
+                        }
+                     }
+                  }
+               }
+               {set $mtvline11 {sprint {localize durationtext} ": " {localize unknowntext}}}
             }
                {$this set_line $prefix 3
                   {sprint $mtvline3} ;if autoplay, just put the static shit
@@ -212,6 +237,9 @@
                }
                {$this set_line $prefix 10
                   {sprint $mtvline10} ;if autoplay, just put the static shit
+               }
+               {$this set_line $prefix 11
+                  {sprint $mtvline11} ;if autoplay, just put the static shit
                }
             }
       }
@@ -517,6 +545,7 @@
          {set $songalbum FALSE}
          {set $songartist FALSE}
          {set $songorigin FALSE}
+         {set $songduration 0}
          {set $songyear FALSE}
          {set $author FALSE}
          {set $songgenre FALSE}

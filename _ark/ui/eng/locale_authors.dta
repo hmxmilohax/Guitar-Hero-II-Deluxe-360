@@ -11,6 +11,7 @@
 (bassdifftext "Bass")
 (drumdifftext "Drum")
 (yeartext "Year")
+(durationtext "Length")
 (nopart "No Part")
 (guitarpart "Guitar")
 (basspart "Bass")
