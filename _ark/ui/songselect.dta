@@ -9,8 +9,13 @@
    {$this iterate UILabel $b {$b set_type helveticablackcondensed}} ;set label width off var
    {selsong_overlay_panel setup_text}
       {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
-      {mtv_overlay.view set_local_pos -125 -50 -80} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
-      {mtv_overlay.view set_local_rot_index 1 1} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+      {if_else {|| $gh3song $altsong}
+         {mtv_overlay.view set_local_pos -250 -50 -100} ;move the song info overlay farther to the left
+         {do
+            {mtv_overlay.view set_local_pos -125 -50 -80} ;move the song info overlay to the bottom left corner of the screen, was -240 1 85
+            {mtv_overlay.view set_local_rot_index 1 1} ;rotate the song info overlay to match the notebook rotation
+         }
+      } 
 ;     {$this setup_text} ;run the setup_text code block below
    )
    (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below
@@ -472,7 +477,7 @@
    (graphics_handler ;handles the graphics for the panel in various states
       {if_else $altsong ;check if we are using alt song milo
          {do
-            {selsong_overlay_panel set_showing FALSE}
+            {selsong_overlay_panel set_showing TRUE}
             {sd_select.lbl set_local_pos 0 150 200} ;move the title label
             {sd_select.lbl set_local_scale 5 400 5} ;scale the title label
             {sd_select.lbl set_localized_text {localize ss_choosesong}} ;set text of the title label
@@ -480,7 +485,7 @@
          }
          {if_else $gh3song ;check if we are using the gh3 song list milo
             {do
-               {selsong_overlay_panel set_showing FALSE}
+               {selsong_overlay_panel set_showing TRUE}
                {if_else $loopsong ;check if we are using a looped gh3 song list milo or not
                   {do ;if we are using loop
                      {ss_song.lst set_local_pos 25 280 170} ;position the list
@@ -488,6 +493,8 @@
                   }
                   {ss_song.lst set_local_pos 25 280 170} ;if we are not using loop song milo just set the position
                }
+               {tape_vert3.mesh get_local_pos $tapeposx $tapeposy $tapeposz}
+               {tape_vert3.mesh set_local_pos $tapeposx $tapeposy 80}
             }
             {do
                {chooseprof.view set_local_pos_index 0 75}
