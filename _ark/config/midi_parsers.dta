@@ -782,6 +782,14 @@
          (events
             (36 ({handle (world kick_drum)}))
             (37 ({handle (world crash_symbal)}))))))
+(drummer_kick_drum_gh1
+   (type midi)
+   (eval TRUE)
+   (track_name 'TRIGGERS')
+   (mappings
+      (default
+         (events
+            (60 ({handle (world kick_drum)}))))))
 (speaker_pulse
    (type midi)
    (eval TRUE)
@@ -790,6 +798,14 @@
       (default
          (events
             (36 ({handle (world bass_hit)}))))))
+(speaker_pulse_gh1
+   (type midi)
+   (eval TRUE)
+   (track_name 'TRIGGERS')
+   (mappings
+      (default
+         (events
+            (61 ({handle (world bass_hit)}))))))
 (keyboard_parser
    (type echo)
    (track_name 'BAND KEYS')
@@ -818,6 +834,18 @@
             (48 ({handle (world do_lighting_next_keyframe)}))
             (49 ({handle (world do_lighting_prev_keyframe)}))
             (50 ({handle (world do_lighting_first_keyframe)}))))))
+(lighting_parser_gh1
+   (type midi)
+   (eval TRUE)
+   (track_name 'TRIGGERS') ;copied guitar easy chart directly to triggers
+   (start_offset -4)
+   (zero_length TRUE)
+   (mappings
+      (default
+         (events
+            (68 ({handle (world do_lighting_next_keyframe)}))
+            (70 ({handle (world do_lighting_prev_keyframe)}))
+            (69 ({handle (world do_lighting_first_keyframe)}))))))
 (effect_parser
    (type midi)
    (eval TRUE)
