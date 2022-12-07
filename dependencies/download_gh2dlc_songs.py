@@ -13,7 +13,7 @@ except ModuleNotFoundError:
 cwd = Path().absolute()
 
 # clone/pull gh2dx songs
-gh2dx_songs_source_path = cwd.joinpath("gh2dx-360-songs")
+gh2dx_songs_source_path = cwd.joinpath("gh2dlcdx-360-songs")
 
 if gh2dx_songs_source_path.exists():
     # folder exists, pull the repository
@@ -22,10 +22,10 @@ if gh2dx_songs_source_path.exists():
     origin.pull()
 else:
     # folder does not exist, clone the repository
-    repo = git.Repo.clone_from("https://github.com/hmxmilohax/gh2dx-360-songs.git", gh2dx_songs_source_path, branch="main")
+    repo = git.Repo.clone_from("https://github.com/hmxmilohax/gh2dx-360-songs.git", gh2dx_songs_source_path, branch="gh2dlcdx")
 
-gh2dx_songs_source_folder = cwd.joinpath("gh2dx-360-songs/GHIIDXDLC/songs")
-gh2dx_config_source_folder = cwd.joinpath("gh2dx-360-songs/GHIIDXDLC/config")
+gh2dx_songs_source_folder = cwd.joinpath("gh2dlcdx-360-songs/GHIIDXDLC/songs")
+gh2dx_config_source_folder = cwd.joinpath("gh2dlcdx-360-songs/GHIIDXDLC/config")
 gh2dx_customs_folder = cwd.joinpath("content/415607E7/00000002/GHIIDXDLC/songs")
 gh2dx_custom_config_folder = cwd.joinpath("content/415607E7/00000002/GHIIDXDLC/config")
 files = os.listdir(gh2dx_songs_source_path)
