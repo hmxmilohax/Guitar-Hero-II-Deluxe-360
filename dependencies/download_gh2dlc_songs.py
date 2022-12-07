@@ -4,7 +4,7 @@ import shutil
 import os
 try:
     import git
-    print("module 'git' is installed. Downloading/enabling GHIIDXDLC songs for Xenia, this may take some time.")
+    print("module 'git' is installed. Downloading GHIIDX songs repo & enabling GHIIDXDLC songs for Xenia, this will take a while...")
 except ModuleNotFoundError:
     print("module 'git' is not installed. Install it via '/dependencies/install_gitpython.bat' or 'pip install gitpython'")
     sys.exit(1)
