@@ -46,4 +46,8 @@ if os.path.exists(gh2dx_custom_config_folder):
 # Copy the source folder to the destination
 shutil.copytree(gh2dx_config_source_folder, gh2dx_custom_config_folder, ignore_dangling_symlinks=False)
 
+# Delete all .vgs files
+for path in gh2dx_customs_folder.glob('**/*.vgs'):
+    os.remove(path)
+
 print(f"Successfully downloaded GH1DX songs repo. Please rebuild in order to see them added in-game.")
