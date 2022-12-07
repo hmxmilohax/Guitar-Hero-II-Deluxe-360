@@ -1,0 +1,2 @@
+python dependencies/download_gh2dlc_songs.py
+pause
