@@ -4,7 +4,7 @@ import shutil
 import os
 try:
     import git
-    print("module 'git' is installed. Downloading GHIIDX songs repo & enabling GHIIDX songs for Xenia, this will take a while...")
+    print("module 'git' is installed. Downloading GHIIDX songs repo & enabling GHIIDX songs for Xenia, this may take some time.")
 except ModuleNotFoundError:
     print("module 'git' is not installed. Install it via '/dependencies/install_gitpython.bat' or 'pip install gitpython'")
     sys.exit(1)
@@ -13,7 +13,7 @@ except ModuleNotFoundError:
 cwd = Path().absolute()
 
 # clone/pull gh2dx songs
-gh2dx_songs_source_path = cwd.joinpath("gh2dx-360-songs")
+gh2dx_songs_source_path = cwd.joinpath("gh2dx-songs")
 
 if gh2dx_songs_source_path.exists():
     # folder exists, pull the repository
@@ -22,10 +22,10 @@ if gh2dx_songs_source_path.exists():
     origin.pull()
 else:
     # folder does not exist, clone the repository
-    repo = git.Repo.clone_from("https://github.com/hmxmilohax/gh2dx-360-songs.git", gh2dx_songs_source_path, branch="main")
+    repo = git.Repo.clone_from("https://github.com/hmxmilohax/gh2dx-songs.git", gh2dx_songs_source_path, branch="main")
 
-gh2dx_songs_source_folder = cwd.joinpath("gh2dx-360-songs/GHIIDX/songs")
-gh2dx_config_source_folder = cwd.joinpath("gh2dx-360-songs/GHIIDX/config")
+gh2dx_songs_source_folder = cwd.joinpath("gh2dx-songs/GHIIDX/songs")
+gh2dx_config_source_folder = cwd.joinpath("gh2dx-songs/GHIIDX/config")
 gh2dx_customs_folder = cwd.joinpath("content/415607E7/00000002/GHIIDX/songs")
 gh2dx_custom_config_folder = cwd.joinpath("content/415607E7/00000002/GHIIDX/config")
 files = os.listdir(gh2dx_songs_source_path)
@@ -50,4 +50,4 @@ shutil.copytree(gh2dx_config_source_folder, gh2dx_custom_config_folder, ignore_d
 for path in gh2dx_customs_folder.glob('**/*.vgs'):
     os.remove(path)
 
-print(f"Successfully downloaded GHIIDX songs repo. Please rebuild in order to see them added in-game.")
+print(f"Successfully downloaded GHIIDX songs. They will be available the next time you play.")
