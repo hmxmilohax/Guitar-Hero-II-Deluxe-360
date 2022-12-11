@@ -8,7 +8,7 @@
       {track_panel set_showing FALSE} ;because the highway legs are visible at the bottom of the screen now
       {crowd_audio turn_off}
       {set $new_venue ""}
-      {if {== career {gamecfg get mode}}
+      {if {== {gamecfg get mode} career}
          {do
             ($score {player0 score})
             ($new_cash)
@@ -25,7 +25,10 @@
       }
       {do
          ($win_screen)
-         {set $win_screen {gamecfg get win_screen}}
+         {if_else {== {gamecfg get mode} career}
+            {set $win_screen endgame_screen} ;force go to endgame screen if in career to solve invisible endgame screen bug?
+            {set $win_screen {gamecfg get win_screen}}
+         }
          {script_task
             (units kTaskUISeconds)
             (delay 0.3)
@@ -246,6 +249,8 @@
       {sel_section2.lst set_local_pos -335 230 -120}
       {sel_section.lst set_local_rot 0 -2 0}
       {sel_section2.lst set_local_rot 0 -2 0}
+      {$this disable me_morestats.btn} ;disable more stats screen for now since it's pretty fuckin broken
+      {me_morestats.btn set_text "DISABLED"} ;disable more stats screen for now since it's pretty fuckin broken
       {gamecfg foreach_player $player
          {do
             ($gems_hit {$player gems_hit})
@@ -412,7 +417,7 @@
    (focus 'ss_song.lst')
    (enter
       {gamecfg set mode practice}
-      {gamecfg set (practice_sections 0) -1} ;initializa practice sections
+      {gamecfg set (practice_sections 0) -1} ;initialize practice sections
       {gamecfg set (practice_sections 1) -1}
       {set [section] 0}
       {endgame_panel set_showing FALSE}
@@ -455,17 +460,19 @@
       }
    )
    (BUTTON_DOWN_MSG
-      {cond
-         ({== $button kPad_Tri}
-             {synth play_sequence button_select}
-             {gamecfg set mode career}
-             {ui goto_screen complete_screen}
-         )
-         ({&& {== $button kPad_Tri} {== [section] 1}}
+      {if_else {&& {== $button kPad_Tri} {== [section] 1}}
+         {do
             {set [section] 0}
             {section_provider set_start_section 0}
-            TRUE)
-         (TRUE kDataUnhandled)
+         }
+         {if_else {== $button kPad_Tri}
+            {do
+               {synth play_sequence button_select}
+               {gamecfg set mode career}
+               {ui goto_screen main_screen}
+            }
+            kDataUnhandled
+         }
       }
    )
 }

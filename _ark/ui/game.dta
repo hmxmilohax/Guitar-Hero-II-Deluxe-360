@@ -592,12 +592,7 @@
       {game set_paused TRUE} ;freeze the game screen
       {if_else [won] ;check if the song was beaten or if you failed
          {do ;if beaten
-            {ui goto_screen ;either auto restart or go to post show screen that leads to endgame
-               {if_else $auto_restart
-                  loading_screen
-                  post_show_screen
-               }
-            }
+            {ui goto_screen post_show_screen}
          }
          {do ;if failed
             {world_panel set_paused TRUE} ;freeze the world
