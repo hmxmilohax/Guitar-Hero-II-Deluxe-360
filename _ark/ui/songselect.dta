@@ -15,7 +15,7 @@
       {gs_title.lbl set_showing FALSE} ;set the title text for this screen
    )
    (set_album_art
-      ;{if_else {exists {sprint "ui/image/album_art/" {song_provider get_symbol {game get_song_index}} ".png"}}
+      ;{if_else {exists {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/gen/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
          {gs_tile.tex set_bitmap {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
       ;   {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_random3_keep.bmp"}}
       ;}
