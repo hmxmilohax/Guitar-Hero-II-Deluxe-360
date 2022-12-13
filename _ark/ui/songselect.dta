@@ -1,3 +1,26 @@
+{new
+   MultiSelectListPanel ;panel type
+   song_select_album_panel ;panel name
+   (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
+   (focus sel_section.lst) ;focus the list used in the current overshell screen
+   (enter ;when the panel is entered
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile2.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile3.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile4.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile1.mesh set_local_pos_index 0 -80} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile1.mesh set_local_pos_index 2 160} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile1.mesh set_local_scale .75 .82 .75} ;hide the spare mesh we put into the overshell list milo
+      {sel_section.lst set_showing FALSE} ;move the list to the proper location
+      {gs_title.lbl set_showing FALSE} ;set the title text for this screen
+   )
+   (set_album_art
+      ;{if_else {exists {sprint "ui/image/album_art/" {song_provider get_symbol {game get_song_index}} ".png"}}
+         {gs_tile.tex set_bitmap {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
+      ;   {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_random3_keep.bmp"}}
+      ;}
+   )
+}
 {new GHPanel selsong_overlay_panel
    (file song_overlay.milo)
    (enter ;when the screen is entered
@@ -28,6 +51,7 @@
          ;{{song_provider get_symbol {game get_song_index}}
          {do
             ($prefix "mtv_campaign_line") ;setup prefix variable to switch between line numbers
+            {song_select_album_panel set_album_art}
             {mtv_campaign_song_id.view set_showing TRUE} ;show the mtv overlay
             {if_else {!= $speedmod 1} ;if song speed is set to anything other than 100%
                {if_else {&& {== {gamecfg get mode} practice} {!= {gamecfg get practice_speed} 0}} ;now check if the game mode is practice and the practice speed is set to full speed
@@ -606,9 +630,13 @@
          {song_preview {game get_song}} ;call the song's music preview
          ;{set $songalbumfake {gamecfg get_song_caption {game get_song}}}
          {if_else {== {game get_song_index} 0}
-            {selsong_overlay_panel set_showing FALSE}
+            {do
+               {selsong_overlay_panel set_showing FALSE}
+               {song_select_album_panel set_showing FALSE}
+            }
             {do
                {selsong_overlay_panel set_showing TRUE}
+               {song_select_album_panel set_showing TRUE}
                {selsong_overlay_panel setup_text} ;setup the mtv overlay panel for the song screen
             }
          }
@@ -650,7 +678,7 @@
 {new
    GHScreen ;screen type
    sel_song_screen ;screen name
-   (panels meta sel_song_panel selsong_overlay_panel helpbar) ;panels included in this screen in draw order
+   (panels meta sel_song_panel selsong_overlay_panel song_select_album_panel helpbar) ;panels included in this screen in draw order
    (focus sel_song_panel) ;panel to focus
    (helpbar ;sets up the help bar for this screen
       (default
