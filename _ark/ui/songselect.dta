@@ -9,7 +9,8 @@
       {gs_tile3.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile4.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile1.mesh set_local_pos_index 0 -80} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_pos_index 2 160} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile1.mesh set_local_pos_index 2 155} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile1.mesh set_local_rot_index 2 -3} ;hide the spare mesh we put into the overshell list milo
       {gs_tile1.mesh set_local_scale .75 .82 .75} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_showing FALSE} ;move the list to the proper location
       {gs_title.lbl set_showing FALSE} ;set the title text for this screen
