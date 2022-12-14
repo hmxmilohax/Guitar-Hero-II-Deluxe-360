@@ -1,42 +1,40 @@
 {new
    MultiSelectListPanel ;panel type
    song_select_album_panel ;panel name
-   (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
+   (file overshell_list.milo) ;steal this milo because im too lazy to make a new one
    (focus sel_section.lst) ;focus the list used in the current overshell screen
    (enter ;when the panel is entered
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile2.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile3.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile4.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_pos_index 0 -80} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_pos_index 2 155} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_rot_index 2 4} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_scale .75 .82 .75} ;hide the spare mesh we put into the overshell list milo
-      {sel_section.lst set_showing FALSE} ;move the list to the proper location
-      {gs_title.lbl set_showing FALSE} ;set the title text for this screen
+      {gs_tile1.mesh set_local_pos_index 0 -80} ;move the mesh we want to use to the left
+      {gs_tile1.mesh set_local_pos_index 2 155} ;move the mesh we want to use up
+      {gs_tile1.mesh set_local_rot_index 1 30} ;rotate it a lil
+      {gs_tile1.mesh set_local_scale .86 .82 .86} ;scale the mesh down some
+      {sel_section.lst set_showing FALSE} ;hide the mesh lol
+      {gs_title.lbl set_showing FALSE} ;hide the text too
       {$this set_album_art}
    )
    (set_album_art
 ;      {if_else {exists {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/gen/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
          {if_else {== {game get_song_index} 0} ;check if on random
-            {gs_tile.tex set_bitmap {sprint "ui/image/ng/random.bmp"}} ;do the random text
+            {gs_tile.tex set_bitmap {sprint "ui/image/ng/random.bmp"}} ;set the random image
             {if_else {== {game get_song_index} 1} ;check if on speedtest
                {gs_tile.tex set_bitmap {sprint "ui/image/ng/speedtest.bmp"}} ;set the image to our internal speedtest
                {gs_tile.tex set_bitmap {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/" {song_provider get_symbol {game get_song_index}} ".bmp"}} ;set the image to the image located outside of the ark
             }
          }
-;         {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_random3_keep.bmp"}}
+;         {gs_tile.tex set_bitmap {sprint "ui/image/ng/photo_random3_keep.bmp"}}
 ;      }
    )
 }
 {new GHPanel selsong_overlay_panel
    (file song_overlay.milo)
    (enter ;when the screen is entered
-   ;{{selsong_overlay_panel find mtv_campaign_line1.lbl} set color MTV_OVERLAY_COLOR} ;custom mtv overlay color
-   ;{{selsong_overlay_panel find mtv_campaign_line2.lbl} set color MTV_OVERLAY_COLOR} ;custom mtv overlay color
-   ;{{selsong_overlay_panel find mtv_campaign_line3.lbl} set color MTV_OVERLAY_COLOR} ;custom mtv overlay color
-   ;{$this iterate UILabel $b {$b set wrap_width 300}} ;set label wrapping width off var
    {$this iterate UILabel $b {$b set width 400}} ;set label width off var
+   {mtv_campaign_line3_auth.lbl set width 290} ;set label width off var
+   {mtv_campaign_line3_auth_shadow.lbl set width 290} ;set label width off var
    {$this iterate UILabel $b {$b set_type helveticablackcondensed}} ;set label width off var
    {selsong_overlay_panel setup_text}
       {mtv_overlay.view set_local_scale .5 1 .5} ;make the mtv overlay small
@@ -109,7 +107,12 @@
             }
             
             {if_else $author
-               {if_else {|| {== $author "Harmonix"} {== $author "harmonix"} {== $author "HARMONIX"} {== $author "Harmonix, thardwardy"} {== $author "Harmonix, raphaelgoulart"} {== $author "Harmonix, El Fish"} {== $author "Harmonix, mariteaux"} {== $author "Harmonix, AddyMills"}}
+               {if_else {||
+                           {== $author "Harmonix"} {== $author "harmonix"} {== $author "HARMONIX"}
+                           {== $author "Harmonix, thardwardy"} {== $author "Harmonix, raphaelgoulart"}
+                           {== $author "Harmonix, El Fish"} {== $author "Harmonix, mariteaux"}
+                           {== $author "Harmonix, AddyMills"}
+                        }
                   {mtv_campaign_line3_auth.lbl set color {pack_color 0 .5 1}}
                   {if_else {|| {== $author "Mariteaux"} {== $author "MARITEAUX"} {== $author "mariteaux"} {== $author "Exilelord, mariteaux"}}
                      {mtv_campaign_line3_auth.lbl set color {pack_color 1 .52 .24}}
@@ -174,6 +177,12 @@
                {set $songguitarrank -1}
             }
             {set $mtvline8 {sprint {localize guitarpart} ":"}}
+            ;{if {! $songguitarrank} ;if we don't know the difficulty rank
+            ;   {set $songguitarrank {random_int 1 8}} ;randomize it!
+            ;}
+            {if {> $songguitarrank 7}
+               {set $songguitarrank 7}
+            }
             {switch $songguitarrank
                (-1 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize nopart}}})
                (0 {mtv_campaign_line8_diff.lbl set color {pack_color 1 1 1}} {set $mtvline8diff {sprint {localize unknowntext}}})
@@ -191,6 +200,18 @@
                   {set $mtvline9 {sprint {localize rhythmpart} ":"}}
                   {set $mtvline9 {sprint {localize basspart} ":"}}
                }
+            }
+            ;{if {! $songbassrank} ;if we don't know the difficulty rank
+            ;   {set $songbassrank {random_int 1 8}} ;randomize it!
+            ;}
+            ;{if {! $songrhythmrank} ;if we don't know the difficulty rank
+            ;   {set $songrhythmrank {random_int 1 8}} ;randomize it!
+            ;}
+            {if {> $songbassrank 7}
+               {set $songbassrank 7}
+            }
+            {if {> $songrhythmrank 7}
+               {set $songrhythmrank 7}
             }
             {if_else {song_provider has_instrument {gamecfg get_song} bass}
                {switch $songbassrank
@@ -224,6 +245,12 @@
                {set $songdrumrank -1}
             }
             {set $mtvline10 {sprint {localize drumpart} ":"}}
+            ;{if {! $songdrumrank} ;if we don't know the difficulty rank
+            ;   {set $songdrumrank {random_int 1 8}} ;randomize it!
+            ;}
+            {if {> $songdrumrank 7}
+               {set $songdrumrank 7}
+            }
             {switch $songdrumrank
                (-1 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize nopart}}})
                (0 {mtv_campaign_line10_diff.lbl set color {pack_color 1 1 1}} {set $mtvline10diff {sprint {localize unknowntext}}})
