@@ -10,16 +10,23 @@
       {gs_tile4.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile1.mesh set_local_pos_index 0 -80} ;hide the spare mesh we put into the overshell list milo
       {gs_tile1.mesh set_local_pos_index 2 155} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_rot_index 2 -3} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile1.mesh set_local_rot_index 2 4} ;hide the spare mesh we put into the overshell list milo
       {gs_tile1.mesh set_local_scale .75 .82 .75} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_showing FALSE} ;move the list to the proper location
       {gs_title.lbl set_showing FALSE} ;set the title text for this screen
+      {$this set_album_art}
    )
    (set_album_art
-      ;{if_else {exists {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/gen/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
-         {gs_tile.tex set_bitmap {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
-      ;   {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_random3_keep.bmp"}}
-      ;}
+;      {if_else {exists {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/gen/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
+         {if_else {== {game get_song_index} 0} ;check if on random
+            {gs_tile.tex set_bitmap {sprint "ui/image/ng/random.bmp"}} ;do the random text
+            {if_else {== {game get_song_index} 1} ;check if on speedtest
+               {gs_tile.tex set_bitmap {sprint "ui/image/ng/speedtest.bmp"}} ;set the image to our internal speedtest
+               {gs_tile.tex set_bitmap {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/" {song_provider get_symbol {game get_song_index}} ".bmp"}} ;set the image to the image located outside of the ark
+            }
+         }
+;         {gs_pic.tex set_bitmap {sprint "ui/image/ng/photo_random3_keep.bmp"}}
+;      }
    )
 }
 {new GHPanel selsong_overlay_panel
@@ -50,9 +57,7 @@
          ($song_text {game get_song_text}) ;setup song text variable
          ($artist_text {game get_song_artist_text}) ;setup artist variable
          ;{{song_provider get_symbol {game get_song_index}}
-         {do
             ($prefix "mtv_campaign_line") ;setup prefix variable to switch between line numbers
-            {song_select_album_panel set_album_art}
             {mtv_campaign_song_id.view set_showing TRUE} ;show the mtv overlay
             {if_else {!= $speedmod 1} ;if song speed is set to anything other than 100%
                {if_else {&& {== {gamecfg get mode} practice} {!= {gamecfg get practice_speed} 0}} ;now check if the game mode is practice and the practice speed is set to full speed
@@ -70,8 +75,11 @@
                }
                {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
             }
-            {$this set_line $prefix 2
-                  $artist_text ;the artist text line is always just "ARTIST" on song select
+            {if_else {== {game get_song_index} 0}
+               {$this set_line $prefix 2 "Let RNG Choose your fate"}
+               {$this set_line $prefix 2
+                     $artist_text ;the artist text line is always just "ARTIST" on song select
+               }
             }
             {set $mtvline3
                {sprint "\n"}
@@ -271,47 +279,65 @@
                }
                {set $mtvline11 {sprint {localize durationtext} ": " {localize unknowntext}}}
             }
-               {$this set_line $prefix 3
-                  {sprint $mtvline3} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 3_auth
-                  {sprint $mtvline3_auth} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 4
-                  {sprint $mtvline4} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 5
-                  {sprint $mtvline5} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 6
-                  {sprint $mtvline6} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 7
-                  {sprint $mtvline7} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 8
-                  {sprint $mtvline8} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 8_diff
-                  {sprint $mtvline8diff} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 9
-                  {sprint $mtvline9} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 9_diff
-                  {sprint $mtvline9diff} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 10
-                  {sprint $mtvline10} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 10_diff
-                  {sprint $mtvline10diff} ;if autoplay, just put the static shit
-               }
-               {$this set_line $prefix 11
-                  {sprint $mtvline11} ;if autoplay, just put the static shit
+               {if_else {== {game get_song_index} 0} ;check if on random
+                  {do
+                     {$this set_line $prefix 3 " "}
+                     {$this set_line $prefix 3_auth " "}
+                     {$this set_line $prefix 4 " "}
+                     {$this set_line $prefix 5 " "}
+                     {$this set_line $prefix 6 " "}
+                     {$this set_line $prefix 7 " "}
+                     {$this set_line $prefix 8 " "}
+                     {$this set_line $prefix 8_diff " "}
+                     {$this set_line $prefix 9 " "}
+                     {$this set_line $prefix 9_diff " "}
+                     {$this set_line $prefix 10 " "}
+                     {$this set_line $prefix 10_diff " "}
+                     {$this set_line $prefix 11 " "}
+                  }
+                  {do
+                     {$this set_line $prefix 3
+                     {sprint $mtvline3} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 3_auth
+                        {sprint $mtvline3_auth} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 4
+                        {sprint $mtvline4} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 5
+                        {sprint $mtvline5} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 6
+                        {sprint $mtvline6} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 7
+                        {sprint $mtvline7} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 8
+                        {sprint $mtvline8} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 8_diff
+                        {sprint $mtvline8diff} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 9
+                        {sprint $mtvline9} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 9_diff
+                        {sprint $mtvline9diff} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 10
+                        {sprint $mtvline10} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 10_diff
+                        {sprint $mtvline10diff} ;if autoplay, just put the static shit
+                     }
+                     {$this set_line $prefix 11
+                        {sprint $mtvline11} ;if autoplay, just put the static shit
+                     }
+                  }
                }
             }
-      }
    )
    (set_line ;called in mtv overlay to apply the text to two labels at once
       ($prefix $i $text) ;setup variables
@@ -630,17 +656,10 @@
 #endif
          {song_preview {game get_song}} ;call the song's music preview
          ;{set $songalbumfake {gamecfg get_song_caption {game get_song}}}
-         {if_else {== {game get_song_index} 0}
-            {do
-               {selsong_overlay_panel set_showing FALSE}
-               {song_select_album_panel set_showing FALSE}
-            }
-            {do
-               {selsong_overlay_panel set_showing TRUE}
-               {song_select_album_panel set_showing TRUE}
-               {selsong_overlay_panel setup_text} ;setup the mtv overlay panel for the song screen
-            }
-         }
+         {song_select_album_panel set_album_art}
+         {selsong_overlay_panel set_showing TRUE}
+         {song_select_album_panel set_showing TRUE}
+         {selsong_overlay_panel setup_text} ;setup the mtv overlay panel for the song screen
       }
    )
    (beat_song ;debug code block
