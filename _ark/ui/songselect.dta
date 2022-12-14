@@ -29,7 +29,9 @@
 ;      }
    )
 }
-{new GHPanel selsong_overlay_panel
+{new
+   GHPanel
+   selsong_overlay_panel
    (file song_overlay.milo)
    (enter ;when the screen is entered
    {$this iterate UILabel $b {$b set width 400}} ;set label width off var
@@ -44,7 +46,7 @@
             {mtv_overlay.view set_local_pos -125 -50 -80} ;move the song info overlay to the bottom left corner of the screen, was -240 1 85
             {mtv_overlay.view set_local_rot_index 1 1} ;rotate the song info overlay to match the notebook rotation
          }
-      } 
+      }
 ;     {$this setup_text} ;run the setup_text code block below
    )
    (setup_text ;called when mtv screen is entered, as well as several other places in the hud panel to refresh stats defined below

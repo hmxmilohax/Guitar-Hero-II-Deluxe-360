@@ -1,0 +1,2 @@
+python dependencies/download_gh2custom_songs.py
+pause
