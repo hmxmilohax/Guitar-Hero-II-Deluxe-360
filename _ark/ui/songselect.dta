@@ -109,7 +109,7 @@
             }
             
             {if_else $author
-               {if_else {|| {== $author "Harmonix"} {== $author "harmonix"} {== $author "HARMONIX"}}
+               {if_else {|| {== $author "Harmonix"} {== $author "harmonix"} {== $author "HARMONIX"} {== $author "Harmonix, thardwardy"} {== $author "Harmonix, raphaelgoulart"} {== $author "Harmonix, El Fish"} {== $author "Harmonix, mariteaux"} {== $author "Harmonix, AddyMills"}}
                   {mtv_campaign_line3_auth.lbl set color {pack_color 0 .5 1}}
                   {if_else {|| {== $author "Mariteaux"} {== $author "MARITEAUX"} {== $author "mariteaux"} {== $author "Exilelord, mariteaux"}}
                      {mtv_campaign_line3_auth.lbl set color {pack_color 1 .52 .24}}
