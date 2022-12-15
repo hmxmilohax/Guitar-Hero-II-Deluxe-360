@@ -323,15 +323,7 @@
       (grim)))
 (mc
    #include mc.dta)
-(store
-(guitar)
-(skin)
-(song
-(speedtest9
-      (price 0)))
-(character)
-(outfit)
-(video))
+(store #include store.dta)
 (campaign
    #include campaign.dta)
 #ifdef HX_XBOX

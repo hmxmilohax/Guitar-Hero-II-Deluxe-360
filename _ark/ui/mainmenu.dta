@@ -83,6 +83,11 @@
       }
    )
    (enter
+       #ifndef HX_XBOX
+       {set $cheat_enabled_unlock_all 1}
+       {campaign set_all_access 1}
+       {set $disable_save 1}
+       #endif
        {campaign buy_item speedtest9 0}
          {switch
             $menutheme
