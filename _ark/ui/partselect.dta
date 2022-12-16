@@ -180,11 +180,7 @@
    )
 }
 {new GHScreen qp_selpart_screen
-   (panels meta qp_selpart_panel
-   #ifdef HX_XBOX ;inside isnt fixed for ps2 yet
-   ;selpart_overlay_panel
-   #endif
-   helpbar) ;what panels are included in this screen, in reverse draw order (help bar is always on top)
+   (panels meta qp_selpart_panel selpart_overlay_panel helpbar) ;what panels are included in this screen, in reverse draw order (help bar is always on top)
    (focus qp_selpart_panel) ;which panel to set focus to
    (helpbar ;setup helpbar
       (default ((fret1 help_continue) (fret2 help_back) (strum help_updown)) ;we need continue, go back, and up down for this screen

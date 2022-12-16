@@ -718,11 +718,7 @@
    )
 }
 #define GAME_PANELS
-(midi_loader_panel game track_mask world_panel track_panel hud
-#ifdef HX_XBOX ;inside isnt fixed for ps2 yet
-name_overlay_panel mtv_overlay_panel_buffer
-mtv_overlay_panel
-#endif streak_overlay_panel) ;define the panels used in the game screen, in draw order
+(midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel mtv_overlay_panel_buffer mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
 {new GHScreen game_screen
    (panels GAME_PANELS
    #ifdef HX_XBOX ;inside isnt fixed for ps2 yet
