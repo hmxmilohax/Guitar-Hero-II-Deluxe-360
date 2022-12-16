@@ -727,7 +727,11 @@
 {new
    GHScreen ;screen type
    sel_song_screen ;screen name
-   (panels meta sel_song_panel selsong_overlay_panel song_select_album_panel helpbar) ;panels included in this screen in draw order
+   (panels meta sel_song_panel
+   #ifdef HX_XBOX ;inside isnt fixed for ps2 yet
+   ;selsong_overlay_panel song_select_album_panel
+   #endif
+   helpbar) ;panels included in this screen in draw order
    (focus sel_song_panel) ;panel to focus
    (helpbar ;sets up the help bar for this screen
       (default
