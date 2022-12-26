@@ -201,7 +201,7 @@ texture_cache_memory_limit_soft_lifetime = 30     	# Seconds a texture should be
 texture_dump = false                              	# Dump textures to DDS
 trace_gpu_prefix = "scratch/gpu/"                 	# Prefix path for GPU trace files.
 trace_gpu_stream = false                          	# Trace all GPU packets.
-vsync = true                                     	# Enable VSYNC.
+vsync = false                                     	# Enable VSYNC.
 vsync_interval = 16                               	# VSYNC interval. Value is frametime in milliseconds.
 
 

@@ -13,7 +13,7 @@ except ModuleNotFoundError:
 cwd = Path().absolute()
 
 # clone/pull gh2-custom songs
-gh2_custom_songs_source_path = cwd.joinpath("gh2-custom-songs")
+gh2_custom_songs_source_path = cwd.joinpath("custom-songs/gh2-custom-songs")
 
 if gh2_custom_songs_source_path.exists():
     # folder exists, pull the repository
@@ -24,10 +24,10 @@ else:
     # folder does not exist, clone the repository
     repo = git.Repo.clone_from("https://github.com/hmxmilohax/gh2-customs.git", gh2_custom_songs_source_path, branch="ps2")
 
-gh2_custom_songs_source_folder = cwd.joinpath("gh2-custom-songs/GH2CUSTOMSREPO/songs")
-gh2_custom_config_source_folder = cwd.joinpath("gh2-custom-songs/GH2CUSTOMSREPO/config")
-gh2_custom_customs_folder = cwd.joinpath("content/415607E7/00000002/GH2CUSTOMSREPO/songs")
-gh2_custom_custom_config_folder = cwd.joinpath("content/415607E7/00000002/GH2CUSTOMSREPO/config")
+gh2_custom_songs_source_folder = cwd.joinpath("custom-songs/gh2-custom-songs/GH2CUSTOMSREPO/songs")
+gh2_custom_config_source_folder = cwd.joinpath("custom-songs/gh2-custom-songs/GH2CUSTOMSREPO/config")
+gh2_custom_customs_folder = cwd.joinpath("_xenia/content/415607E7/00000002/GH2CUSTOMSREPO/songs")
+gh2_custom_custom_config_folder = cwd.joinpath("_xenia/content/415607E7/00000002/GH2CUSTOMSREPO/config")
 files = os.listdir(gh2_custom_songs_source_path)
 
 # Check if the destination folder exists

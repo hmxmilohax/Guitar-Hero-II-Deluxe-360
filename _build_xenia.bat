@@ -21,5 +21,5 @@ echo:Moving back PS2 files
 rd _temp
 echo:
 echo:Successfully built Guitar Hero II Deluxe ARK. Launching Xenia
-"%~dp0xenia_canary.exe" "%~dp0\_build\Xbox\default.xex"
+"%~dp0_xenia\xenia_canary.exe" "%~dp0\_build\Xbox\default.xex"
 pause

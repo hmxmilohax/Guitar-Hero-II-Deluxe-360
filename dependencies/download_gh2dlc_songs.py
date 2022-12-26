@@ -13,7 +13,7 @@ except ModuleNotFoundError:
 cwd = Path().absolute()
 
 # clone/pull gh2dx songs
-gh2dx_songs_source_path = cwd.joinpath("gh2dxdlc-songs")
+gh2dx_songs_source_path = cwd.joinpath("custom-songs/gh2dxdlc-songs")
 
 if gh2dx_songs_source_path.exists():
     # folder exists, pull the repository
@@ -24,10 +24,10 @@ else:
     # folder does not exist, clone the repository
     repo = git.Repo.clone_from("https://github.com/hmxmilohax/gh2dxdlc-songs.git", gh2dx_songs_source_path, branch="main")
 
-gh2dx_songs_source_folder = cwd.joinpath("gh2dxdlc-songs/GHIIDXDLC/songs")
-gh2dx_config_source_folder = cwd.joinpath("gh2dxdlc-songs/GHIIDXDLC/config")
-gh2dx_customs_folder = cwd.joinpath("content/415607E7/00000002/GHIIDXDLC/songs")
-gh2dx_custom_config_folder = cwd.joinpath("content/415607E7/00000002/GHIIDXDLC/config")
+gh2dx_songs_source_folder = cwd.joinpath("custom-songs/gh2dxdlc-songs/GHIIDXDLC/songs")
+gh2dx_config_source_folder = cwd.joinpath("custom-songs/gh2dxdlc-songs/GHIIDXDLC/config")
+gh2dx_customs_folder = cwd.joinpath("_xenia/content/415607E7/00000002/GHIIDXDLC/songs")
+gh2dx_custom_config_folder = cwd.joinpath("_xenia/content/415607E7/00000002/GHIIDXDLC/config")
 files = os.listdir(gh2dx_songs_source_path)
 
 # Check if the destination folder exists

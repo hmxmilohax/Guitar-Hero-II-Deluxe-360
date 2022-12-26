@@ -1,7 +1,7 @@
 git pull https://github.com/hmxmilohax/Guitar-Hero-II-Deluxe-360 main
 @echo off
-copy "%~dp0\theme\init_ui_theme.dta" "%~dp0\_ark\ui\" >nul
-copy "%~dp0\theme\init_track_theme.dta" "%~dp0\_ark\ui\" >nul
+copy "%~dp0\_theme\init_ui_theme.dta" "%~dp0\_ark\ui\" >nul
+copy "%~dp0\_theme\init_track_theme.dta" "%~dp0\_ark\ui\" >nul
 echo:
 echo:Temporarily moving Xbox files out of the ark path to reduce final ARK size
 @%SystemRoot%\System32\robocopy.exe "%~dp0\_ark" "%~dp0_temp\_ark" *.milo_xbox /S /MOVE /XD "%~dp0_temp\_ark" /NDL /NFL /NJH /NJS /R:0 >nul
