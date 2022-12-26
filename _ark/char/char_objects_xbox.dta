@@ -1,0 +1,1515 @@
+#include ..\config\macros.dta
+#define VISEMES_LIST
+(Neutral Eat Earth If Ox Oat Wet Size Church Fave Though Told Bump New Roar Cage)
+#define EXPRESSIONS_LIST
+(Neutral Good1 Good2 Good3 Good4 Good5 Bad1 Bad2 Bad3 EyesClosed OwFace)
+(FaceFxLipSyncServo
+   (types
+      (gh2
+         (override_expression FALSE)
+         (visemes
+            (EXPRESSIONS_LIST))
+         (last_expression -1)
+         (change_song
+            {$this set_song _blinktrack})
+         (override_expression
+            ($expressionName)
+            {$this do_expression $expressionName 1}
+            {set
+               [override_expression]
+               TRUE})
+         (resume_random_expression
+            {if
+               {==
+                  [override_expression]
+                  TRUE}
+               {set
+                  [override_expression]
+                  FALSE}
+               {$this do_pick_expression}})
+         (do_pick_expression
+            {if
+               {&&
+                  {exists game}
+                  {!
+                     [override_expression]}}
+               {switch
+                  {game get excitement}
+                  (kExcitementBoot
+                     {$this pick_bad_expression})
+                  (kExcitementBad
+                     {$this pick_bad_expression})
+                  (kExcitementOkay
+                     {$this pick_good_expression})
+                  (kExcitementGreat
+                     {$this pick_good_expression})
+                  (kExcitementPeak
+                     {$this pick_good_expression})}})
+         (pick_expression
+            {if
+               {exists expression_task}
+               {delete expression_task}}
+            {thread_task
+               (units kTaskSeconds)
+               (name expression_task)
+               (script
+                  {$this do_pick_expression}
+                  {$task
+                     sleep
+                     {random_float 1.5 2.5}}
+                  {$task loop})})
+         (pick_bad_expression
+            {do
+               ($expressionName)
+               ($rand)
+               {set
+                  $rand
+                  {random_int 1 3}}
+               {if
+                  {>=
+                     $rand
+                     [last_expression]}
+                  {'++' $rand}}
+               {set
+                  [last_expression]
+                  $rand}
+               {set
+                  $expressionName
+                  {sprint
+                     "expressionBad"
+                     $rand}}
+               {$this do_expression $expressionName 0.25}})
+         (pick_good_expression
+            {do
+               ($expressionName)
+               ($rand)
+               {set
+                  $rand
+                  {random_int 1 5}}
+               {if
+                  {>=
+                     $rand
+                     [last_expression]}
+                  {'++' $rand}}
+               {set
+                  [last_expression]
+                  $rand}
+               {set
+                  $expressionName
+                  {sprint
+                     "expressionGood"
+                     $rand}}
+               {$this do_expression $expressionName 0.25}}))
+      (singer
+         (visemes
+            (VISEMES_LIST))
+         (change_song
+            {handle
+               (game set_lipsync_song $this)}))))
+(CharClip
+   (editor
+      (flags
+         bitfield
+         (list
+            {if_else
+               {==
+                  {{$this dir}
+                     get_type}
+                  ''}
+               ()
+               {{$this dir}
+                  clip_flags}})
+         (help
+            "GH2 Clip Flags"))))
+(CharClipSet
+   (types
+      (guitarist
+         (version 15)
+         (clip_flags
+            ("kTempoMedium"
+               "kTempoFast"
+               "kWalkLeft"
+               "kWalkRight"
+               "kWalkForward"
+               "kWalkBackward"
+               "kWalkNormal"
+               "kWalkExtreme"
+               "kGuitarLeftIK"
+               "kGuitarRightIK"
+               "kSelfLoop"
+               "kStarPowerFar"
+               "kIdleComplete"))
+         (filter_clips
+            {handle
+               (game filter_clips $this)})
+         (bone_weights
+            (bone_pos_guitar.mesh 0))
+         (criteria
+            ((match
+                  ()
+                  (sync_jump sync_head_bang sync_wag)
+                  ()
+                  (intro)
+                  (walk_stop)
+                  (interact_back interact_right interact_stage))
+               (cancel))
+            ((match
+                  (win)
+                  (win_idle))
+               (restrict
+                  {&&
+                     {< $b_start 4}
+                     {< $a_end 2}}))
+            ((match
+                  (lose)
+                  (lose_idle))
+               (restrict
+                  {&&
+                     {< $b_start 4}
+                     {< $a_end 2}}))
+            ((match
+                  (win_idle)
+                  (self))
+               (restrict
+                  {&&
+                     {< $b_start 2}
+                     {< $a_end 2}}))
+            ((match
+                  (lose_idle)
+                  (self))
+               (restrict
+                  {&&
+                     {< $b_start 4}
+                     {< $a_end 2}}))
+            ((match
+                  ()
+                  (lose win win_finals win_idle lose_idle)
+                  (win lose win_finals)
+                  ())
+               (cancel))
+            ((match
+                  (extreme)
+                  (extreme))
+               (tries 3)
+               (max_error
+                  {if_else
+                     {< $try 2}
+                     18
+                     20000})
+               (restrict
+                  {&&
+                     {if_else
+                        {< $try 2}
+                        {&&
+                           {< $b_middle -2.1}
+                           {> $a_middle 2.1}}
+                        {&&
+                           {< $b_middle -1.1}
+                           {> $a_middle 1.1}}}
+                     {< $b_start 5}
+                     {< $a_end 5}
+                     {if_else
+                        {> $try 0}
+                        TRUE
+                        {&&
+                           {> $a_end 3}
+                           {> $b_start 3}}}}))
+            ((match
+                  (walk_stop)
+                  ())
+               (restrict
+                  {> $a_start 2.1})
+               (continue))
+            ((match
+                  (normal extreme idle bad star_power walk_stop sync_jump sync_wag sync_head_bang)
+                  (lose))
+               (max_error 24)
+               (max_dist 2.2)
+               (restrict
+                  {< $b_start 3}))
+            ((match
+                  (normal extreme idle bad walk_stop sync_jump sync_wag sync_head_bang)
+                  (star_power))
+               (max_dist 4)
+               (restrict
+                  {< $b_start 3}))
+            ((match
+                  (normal idle extreme sync_jump sync_wag sync_head_bang)
+                  (walk_turn))
+               (max_error 30000000)
+               (max_dist MAX_WALK_WAIT)
+               (restrict
+                  {< $b_start 1.2}))
+            ((match
+                  (walk_turn)
+                  (walk_walk))
+               (restrict
+                  {&&
+                     {> $a_start 1.3}
+                     {< $a_end 1.2}
+                     {< $b_start 2}}))
+            ((restrict
+                  {&&
+                     {< $b_start 2}
+                     {< $a_end 2}})
+               (continue))
+            ((match
+                  (walk_walk)
+                  (self))
+               (tries 2)
+               (max_error
+                  {if_else
+                     {< $try 1}
+                     18
+                     20000})
+               (restrict
+                  {&&
+                     {> $b_start 0.5}
+                     {>
+                        $delta
+                        {if_else
+                           {> $try 0}
+                           1
+                           3}}}))
+            ((match
+                  (intro)
+                  (idle)))
+            ((match
+                  (intro)
+                  ())
+               (cancel))
+            ((match
+                  ()
+                  (walk_walk walk_turn walk_stop)
+                  (walk_walk walk_turn)
+                  ()
+                  (walk_stop)
+                  (walk_walk walk_turn))
+               (cancel))))
+      (guitarist_strum
+         (version 1)
+         (clip_flags
+            ("kBassPluck"
+               "kBassSlap")))
+      (guitarist_ui
+         (version 2)
+         (clip_flags
+            ())
+         (criteria
+            ((match
+                  (ui_enter ui_loop)
+                  (ui_loop))
+               (restrict
+                  {&&
+                     {< $b_start 1}
+                     {< $a_end 1}}))))
+      (band
+         (clip_flags
+            ("kTempoMedium"
+               "kTempoFast"
+               "kBandIntro"
+               "kBandActive"
+               "kBandIdle"
+               "kBandIdleNoLoop"
+               "kBandIdleComplete"
+               "kBandIntroIdle"
+               "kBandLose"
+               "kBandWin"
+               "kSyncJump"
+               "kBandAllbeat"
+               "kBandDouble"
+               "kBandHalf"
+               "kBandNosnare"))
+         (filter_clips
+            {if
+               {exists game}
+               {$this
+                  delete_domain_any
+                  {game get_song_tempo}
+                  {'|' kTempoMedium kTempoFast}
+                  TRUE
+                  0}})
+         (version 4)
+         (criteria
+            ((match
+                  (kBandWin kBandLose)
+                  (self))
+               (restrict
+                  {&&
+                     {< $b_start 5}
+                     {< $a_end 2}}))
+            ((match
+                  (kBandIntro)
+                  (kBandIdle))
+               (restrict
+                  {&&
+                     {< $b_start 2}
+                     {< $a_end 2}}))
+            ((match
+                  (kBandIntro kBandWin kBandLose kSyncJump)
+                  ()
+                  ()
+                  (kSyncJump kBandIntro))
+               (cancel))
+            ((match
+                  ()
+                  (kBandWin kBandLose))
+               (max_dist 2.2)
+               (restrict
+                  {< $b_start 2}))
+            ((match
+                  (singer_idle_handclap singer_idle_fistpump)
+                  (self))
+               (restrict
+                  {&&
+                     {< $b_start 4}
+                     {< $a_end 4}
+                     {> $b_start 2}
+                     {> $a_end 2}}))
+            ((restrict
+                  {&&
+                     {< $b_start 2}
+                     {< $a_end 2}}))))
+      (crowd
+         (clip_flags
+            ())
+         (version 1)
+         (criteria
+            ((beat_align 1)
+               (restrict
+                  {&&
+                     {< $b_start 1}
+                     {< $a_end 2}}))))))
+(CharWalk
+   (types
+      (guitarist
+         (path_radius 12)
+         (editor
+            (path_radius
+               float
+               (help
+                  "Amount we can leave the straight line path")
+               (read_only TRUE))))))
+(CharWeightSetter
+   (editor
+      (flags
+         bitfield
+         (list
+            ("kGuitarLeftIK"
+               "kGuitarRightIK"))
+         (help
+            "Which Band clip flags to look for")))
+   (types))
+(OutfitLoader
+   (types
+      (guitar
+         (change_outfit
+            {handle
+               (game change_guitar $this)})
+         (category
+            (guitars
+               (650_stripe)
+               (650_white)
+               (bass_grab_cherry)
+               (bass_grab_maple)
+               (bass_hofner)
+               (bass_music_black)
+               (bass_music_lava)
+               (bass_sg_cream)
+               (bass_sg_mahog)
+               (bass_tb_burst)
+               (bass_tb_ebony)
+               (battleaxe)
+               (casino)
+               (chet_orange)
+               (coffin)
+               (coronet_brown)
+               (coronet_burst)
+               (coronet_cherry)
+               (coronet_green)
+               (corvus)
+               (eds)
+               (es335_cherry)
+               (es335_ebony_maple)
+               (eyeball)
+               (fb_ebony)
+               (fb_leopard)
+               (firebird)
+               (fish)
+               (flyingv_v2)
+               (fv_century)
+               (fv_red)
+               (fv_white)
+               (guitar_redoctane)
+               (guitar_sg)
+               (guitar_sg_flame)
+               (guitar_sg_goddess_white)
+               (guitar_sg_gt)
+               (lespaul_wylde)
+               (lespaull)
+               (log)
+               (lp_cayenne)
+               (lp_dbl_resin)
+               (lp_dbl_sticker)
+               (lp_dbl_white)
+               (lp_dbl_yellow)
+               (lp_goddessburst)
+               (lp_marauder)
+               (lp_sonex)
+               (moderne)
+               (scythe)
+               (sheraton)
+               (snaketapus)
+               (usa)
+               (van_black)
+               (van_yellow)
+               (viking)
+               (xplorer)
+               (xplorer_sun)
+               (air_guitar))))
+      (drummer
+         (change_outfit
+            {handle
+               (game change_drums $this)})
+         (category
+            (drums
+               (dw_arena_drums)
+               (dw_battle_drums)
+               (dw_big_drums)
+               (dw_fest_drums)
+               (dw_small1_drums)
+               (dw_small2_drums)
+               (dw_stone_drums)
+               (dw_theatre_drums))))))
+#define VISEMES_LIST
+((Neutral Eat Earth If Ox Oat Wet Size Church Fave Though Told Bump New Roar Cage))
+#define CHAR_COMMON
+((start_at
+      ($waypoint)
+      {if
+         {!= $waypoint ''}
+         {$this teleport $waypoint}
+         {waypoint_last $waypoint}})
+   (normal_tempo
+      {main.drv set_beat_scale 1})
+   (half_tempo
+      {main.drv set_beat_scale 0.5})
+   (double_tempo
+      {main.drv set_beat_scale 2}))
+(BandCharacter
+   (types
+      (guitarist
+         (walk_delays
+            FALSE
+            FALSE
+            (35 55)
+            (20 40)
+            FALSE)
+         (in_solo FALSE)
+         (in_peak FALSE)
+         (flame_hands FALSE)
+         (walkspot
+            {'|' kWalkSpot kSoloWalkSpot})
+         (max_walk_wait MAX_WALK_WAIT)
+         (interact_probs 0 0 0.5 0.8 0.8)
+         (editor
+            (face_expression_good1
+               script
+               (script
+                  {lip.servo do_expression expressionGood1 0.3}))
+            (face_expression_good2
+               script
+               (script
+                  {lip.servo do_expression expressionGood2 0.3}))
+            (face_expression_good3
+               script
+               (script
+                  {lip.servo do_expression expressionGood3 0.3}))
+            (face_expression_good4
+               script
+               (script
+                  {lip.servo do_expression expressionGood4 0.3}))
+            (face_expression_good5
+               script
+               (script
+                  {lip.servo do_expression expressionGood5 0.3}))
+            (face_expression_bad1
+               script
+               (script
+                  {lip.servo do_expression expressionBad1 0.3}))
+            (face_expression_bad2
+               script
+               (script
+                  {lip.servo do_expression expressionBad2 0.3}))
+            (face_expression_bad3
+               script
+               (script
+                  {lip.servo do_expression expressionBad3 0.3}))
+            (god_effect_start
+               script
+               (script
+                  {$this god_effect_start}))
+            (god_effect_stop
+               script
+               (script
+                  {$this god_effect_stop}))
+            (guitar_fire_start
+               script
+               (script
+                  {$this guitar_fire_start}))
+            (guitar_fire_stop
+               script
+               (script
+                  {$this guitar_fire_stop}))
+            (fire_breath_start
+               script
+               (script
+                  {$this fire_breath_start}))
+            (fire_breath_stop
+               script
+               (script
+                  {$this fire_breath_stop})))
+         (parser '')
+         (enter
+            {set
+               [in_solo]
+               FALSE}
+            {set
+               [in_peak]
+               FALSE}
+            {set
+               [flame_hands]
+               FALSE}
+            {$this show_bow FALSE}
+            {$this
+               start_at
+               {waypoint_find
+                  {if_else
+                     {== $this guitarist0}
+                     {if_else
+                        {{$this dir}
+                           exists
+                           guitarist1}
+                        kStartGuitarist0Mp
+                        kStartGuitarist0}
+                     kStartGuitarist1Mp}}}
+            {if
+               {exists game}
+               {{$this dir}
+                  add_sinks
+                  $this
+                  intro_start_msg
+                  intro_skip
+                  solo_on
+                  solo_off
+                  peak_on
+                  peak_off
+                  peak_on_player
+                  peak_off_player
+                  game_over
+                  game_outro_complete
+                  band_jump
+                  sync_wag
+                  sync_head_bang
+                  active_players_changed
+                  lose_teleport}
+               {{if_else
+                     {==
+                        bass
+                        {game
+                           get_track_sym
+                           [player_num]}}
+                     bass_strum
+                     {if_else
+                        [player_num]
+                        player1_strum
+                        player0_strum}}
+                  add_sink
+                  right_hand.drv}
+               {{if_else
+                     [player_num]
+                     player1_fret
+                     player0_fret}
+                  add_sink
+                  left_hand.drv}
+               {{if_else
+                     [player_num]
+                     player1_fret_pos
+                     player0_fret_pos}
+                  add_sink
+                  fret.ik}
+               {set
+                  [parser]
+                  {if_else
+                     [player_num]
+                     player1_parser
+                     player0_parser}}
+               {handle
+                  ([parser]
+                     add_sink
+                     $this)}}
+            {if
+               {&&
+                  {exists guitar_fire.mesh}
+                  {exists guitar_fire}}
+               {{guitar_fire find charsys_guitar_fire.mesh}
+                  set
+                  showing
+                  FALSE}
+               {guitar_fire set_trans_parent guitar_fire.mesh}
+               {guitar_fire
+                  iterate
+                  ParticleSys
+                  $part
+                  {$part set_mesh guitar_fire.mesh}}}
+            {if
+               {exists hand_flames_L}
+               {{hand_flames_L find peak_Lhand_01.part}
+                  set_relative_parent
+                  bone_pos_guitar.mesh}
+               {{hand_flames_L find peak_Lhand_02.part}
+                  set_relative_parent
+                  bone_pos_guitar.mesh}}
+            {if
+               {&&
+                  {exists cheat_headflames}
+                  {== $cheat_enabled_flaming_head 1}}
+               {cheat_headflames start}}
+            {if
+               {exists lip.servo}
+               {lip.servo pick_expression}})
+         (terminate)
+         (god_effect_start
+            {handle
+               (god_particles start)
+               (god_rays start)
+               (crowd_audio play_stream 0.0 wingame)})
+         (god_effect_stop
+            {handle
+               (god_particles stop)
+               (god_rays stop)})
+         (soul_suck_start
+            {handle
+               (soul_suck start)})
+         (soul_suck_stop
+            {handle
+               (soul_suck stop)})
+         (solo_on
+            {$this gtr_solo_on}
+            {set
+               [in_solo]
+               TRUE}
+            {$this update_hands})
+         (solo_off
+            {$this gtr_solo_off}
+            {set
+               [in_solo]
+               FALSE}
+            {$this update_hands})
+         (peak_on_player
+            ($player)
+            {if
+               {==
+                  $player
+                  [player_num]}
+               {$this peak_on}})
+         (peak_off_player
+            ($player)
+            {if
+               {==
+                  $player
+                  [player_num]}
+               {$this peak_off}})
+         (peak_on
+            {set
+               [in_peak]
+               TRUE}
+            {$this update_hands})
+         (peak_off
+            {set
+               [in_peak]
+               FALSE}
+            {$this update_hands})
+         (update_hands
+            {$this
+               hand_flames
+               {&&
+                  [in_solo]
+                  [in_peak]}})
+         (hand_flames
+            ($on)
+            {if
+               {!=
+                  $on
+                  [flame_hands]}
+               {set
+                  [flame_hands]
+                  $on}
+               {foreach
+                  $fx
+                  (hand_flames_L hand_flames_R)
+                  {if_else
+                     $on
+                     {handle
+                        ($fx start)}
+                     {handle
+                        ($fx stop)}}}})
+         (ow_face_on
+            {if
+               {exists lip.servo}
+               {lip.servo override_expression OwFace}})
+         (ow_face_off
+            {if
+               {exists lip.servo}
+               {lip.servo resume_random_expression}})
+         (guitar_fire_start
+            {handle
+               (guitar_fire start)})
+         (guitar_fire_stop
+            {handle
+               (guitar_fire stop)})
+         (fire_breath_start
+            {handle
+               (fire_breath start)})
+         (fire_breath_stop
+            {handle
+               (fire_breath stop)})
+         (start_interact
+            ($clip $frame)
+            {if
+               {exists stage_interact.way}
+               {bone.servo regulate_override $clip $frame stage_interact.way bone_L-ankle.mesh}})
+         (show_bow
+            ($show)
+            {handle
+               (violinbow.mesh set showing $show)}
+            {handle
+               (violinbow.1.mesh set showing $show)}
+            {handle
+               (violinbow.2.mesh set showing $show)})
+         (stop_interact
+            {bone.servo regulate_override '' 0 '' ''})
+         (intro_start_msg
+            ($fast $encore)
+            {if_else
+               $fast
+               {main.drv
+                  play_group
+                  idle
+                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
+               {do
+                  {main.drv play_group intro kPlayNoBlend}
+                  {main.drv
+                     play_group
+                     idle
+                     {'|' kPlayLast kPlayGraphLoop kPlayRealTime}}}}
+            {handle
+               (wings.drv
+                  play_group
+                  idle
+                  {'|' kPlayFirst kPlayGraphLoop})}
+            {if
+               {exists lip.servo}
+               {lip.servo pick_expression}})
+         (intro_skip
+            {main.drv
+               play_group
+               idle
+               {'|' kPlayFirst kPlayGraphLoop}}
+            {handle
+               (wings.drv
+                  play_group
+                  idle
+                  {'|' kPlayFirst kPlayGraphLoop})}
+            {if
+               {exists lip.servo}
+               {lip.servo pick_expression}})
+         (i_won
+            {$this
+               set_game_over
+               {if_else
+                  {gamecfg win_campaign_song}
+                  win_finals
+                  win}}
+            {handle
+               (wings.drv play_group win)})
+         (i_lost
+            {$this set_game_over lose}
+            {handle
+               (wings.drv play_group lose)})
+         (game_over
+            {if_else
+               {{$this player}
+                  won}
+               {$this i_won}
+               {$this i_lost}}
+            {{$this dir}
+               remove_sink
+               $this}
+            {{$this dir}
+               add_sink
+               $this
+               game_outro_complete}
+            {handle
+               ([parser]
+                  remove_sink
+                  $this)}
+            {$this hand_flames FALSE})
+         (game_outro_complete
+            {{$this dir}
+               remove_sink
+               $this}
+            {$this outro_complete})
+         CHAR_COMMON)))
+#define BAND_COMMON
+((mode kBandIdle)
+   (enter
+      {$this
+         start_at
+         {waypoint_find
+            [start_flags]}}
+      {set
+         [mode]
+         kBandIdle}
+      {if
+         {exists game}
+         {{$this dir}
+            add_sinks
+            $this
+            downbeat
+            game_won_msg
+            game_lost
+            game_over
+            band_jump}
+         {handle
+            ([parser]
+               add_sink
+               $this)}
+         {$this
+            play_clip
+            kBandIntro
+            {'|' kPlayNoBlend kPlayRealTime}}
+         {$this
+            play_clip
+            kBandIntroIdle
+            {'|' kPlayLast kPlayGraphLoop kPlayRealTime}}
+         {main.drv set_starved starved}})
+   (downbeat
+      {if
+         {<
+            {random_float}
+            0.2}
+         {do
+            ($flags
+               {main.drv get_first_flags})
+            {cond
+               ({& $flags kBandActive}
+                  {$this
+                     play_mode
+                     [mode]})
+               ({& $flags kBandIdle}
+                  {$this
+                     play_idle
+                     {'|' kPlayLast kPlayGraphLoop}})}}})
+   (starved
+      {do
+         ($flags
+            {main.drv get_first_flags})
+         {if
+            {& $flags kBandIdleNoLoop}
+            {$this
+               play_idle
+               {'|' kPlayLast kPlayGraphLoop}}}})
+   (play_idle
+      ($flags)
+      {do
+         ($length
+            {-
+               {[parser]
+                  next_start}
+               {taskmgr beat}})
+         {main.drv play_if_safe kBandIdle $flags kBandIdleComplete $length}})
+   (game_won_msg
+      {$this play_clip kBandWin kPlayFirst})
+   (game_lost
+      {$this play_clip kBandLose kPlayFirst})
+   (game_over
+      {{$this dir}
+         remove_sink
+         $this}
+      {handle
+         ([parser]
+            remove_sink
+            $this)})
+   (play_mode
+      ($mode)
+      {set
+         [mode]
+         $mode}
+      {$this play_clip $mode kPlayGraphLoop})
+   (play
+      {$this play_mode kBandActive})
+   (idle
+      {set
+         [mode]
+         kBandIdle}
+      {$this play_idle kPlayGraphLoop})
+   CHAR_COMMON)
+#define BAND_JUMP
+((band_jump
+      {$this play_clip kSyncJump kPlayDirty}
+      {$this
+         play_clip
+         [mode]
+         {'|' kPlayGraphLoop kPlayLast}}))
+(Character
+   (types
+      (ui
+         (animate
+            {if_else
+               {game multiplayer}
+               {do
+                  {reset_hair $this}
+                  {$this
+                     play_clip
+                     ui_loop
+                     {'|' kPlayLast kPlayGraphLoop}}}
+               {do
+                  {reset_hair $this}
+                  {$this play_clip ui_enter kPlayNoBlend}
+                  {$this
+                     play_clip
+                     ui_loop
+                     {'|' kPlayLast kPlayGraphLoop}}}})
+         (select
+            {$this
+               play_clip
+               ui_loop
+               {'|' kPlayLast kPlayGraphLoop}})
+         (store
+            {reset_hair $this}
+            {$this
+               play_clip
+               ui_loop
+               {'|' kPlayNoBlend kPlayGraphLoop}})
+         (grim_fire_on
+            {handle
+               (grim_fire start)})
+         (grim_fire_off
+            {handle
+               (grim_fire stop)})
+         (johnny_snot_rocket_on
+            {handle
+               (johnny_snot_rocket start)})
+         (johnny_snot_rocket_off
+            {handle
+               (johnny_snot_rocket stop)}))
+      (crowd
+         (hand clap)
+         (milo_hand clap)
+         (editor
+            (milo_hand
+               symbol
+               (help
+                  "which hand is showing")
+               (list
+                  (clap devil fist lighter))
+               (post_sync
+                  {$this
+                     set_hand
+                     [milo_hand]})))
+         (enter
+            {set
+               [hand]
+               clap}
+            {set
+               [milo_hand]
+               clap}
+            {hand_L-clap.mesh set_showing TRUE}
+            {hand_R-clap.mesh set_showing TRUE}
+            {hand_L-devil.mesh set_showing 0}
+            {hand_R-devil.mesh set_showing 0}
+            {hand_L-fist.mesh set_showing 0}
+            {hand_R-fist.mesh set_showing 0}
+            {hand_R-lighter.mesh set_showing 0}
+            {if
+               {exists lighter_flame}
+               {lighter_flame stop}}
+            {switch
+               $cheat_crowd_heads
+               (eyeball_crowd_heads
+                  {if
+                     {exists eye.mesh}
+                     {eye.mesh set_showing TRUE}
+                     {if
+                        {exists head.mesh}
+                        {head.mesh set_showing FALSE}}
+                     {if
+                        {exists hair.mesh}
+                        {hair.mesh set_showing FALSE}}})
+               (monkey_crowd_heads
+                  {if
+                     {exists monkey.mesh}
+                     {monkey.mesh set_showing TRUE}
+                     {if
+                        {exists head.mesh}
+                        {head.mesh set_showing FALSE}}
+                     {if
+                        {exists hair.mesh}
+                        {hair.mesh set_showing FALSE}}})})
+         (set_hand
+            ($a)
+            {if
+               {!=
+                  $a
+                  [hand]}
+               {switch
+                  [hand]
+                  (clap
+                     {hand_L-clap.mesh set_showing 0}
+                     {hand_R-clap.mesh set_showing 0})
+                  (devil
+                     {hand_L-devil.mesh set_showing 0}
+                     {hand_R-devil.mesh set_showing 0})
+                  (fist
+                     {hand_L-fist.mesh set_showing 0}
+                     {hand_R-fist.mesh set_showing 0})
+                  (lighter
+                     {hand_L-clap.mesh set_showing 0}
+                     {hand_R-lighter.mesh set_showing 0}
+                     {if
+                        {exists lighter_flame}
+                        {lighter_flame stop}})}
+               {switch
+                  $a
+                  (clap
+                     {hand_L-clap.mesh set_showing 1}
+                     {hand_R-clap.mesh set_showing 1})
+                  (devil
+                     {hand_L-devil.mesh set_showing 1}
+                     {hand_R-devil.mesh set_showing 1})
+                  (fist
+                     {hand_L-fist.mesh set_showing 1}
+                     {hand_R-fist.mesh set_showing 1})
+                  (lighter
+                     {hand_L-clap.mesh set_showing 1}
+                     {hand_R-lighter.mesh set_showing 1}
+                     {if
+                        {exists lighter_flame}
+                        {lighter_flame start}})}
+               {set
+                  [hand]
+                  $a}}))
+      (singer
+         (parser singer_parser)
+         (start_flags kStartSinger)
+         BAND_COMMON
+         BAND_JUMP)
+      (keyboardist
+         (parser keyboard_parser)
+         (start_flags kStartSinger)
+         BAND_COMMON
+         BAND_JUMP)
+      (bassist
+         (parser bassist_parser)
+         (start_flags kStartBassist)
+         BAND_COMMON
+         BAND_JUMP)
+      (drummer
+         (editor
+            (arena_drums
+               script
+               (script
+                  {$this change_drums dw_arena_drums}))
+            (battle_drums
+               script
+               (script
+                  {$this change_drums dw_battle_drums}))
+            (big_drums
+               script
+               (script
+                  {$this change_drums dw_big_drums}))
+            (fest_drums
+               script
+               (script
+                  {$this change_drums dw_fest_drums}))
+            (small1_drums
+               script
+               (script
+                  {$this change_drums dw_small1_drums}))
+            (small2_drums
+               script
+               (script
+                  {$this change_drums dw_small2_drums}))
+            (stone_drums
+               script
+               (script
+                  {$this change_drums dw_stone_drums}))
+            (theatre_drums
+               script
+               (script
+                  {$this change_drums dw_theatre_drums})))
+         (parser drummer_parser)
+         (start_flags kStartDrummer)
+         (mode kBandIdle)
+         (enter
+            {$this
+               start_at
+               {waypoint_find
+                  [start_flags]}}
+            {set
+               [mode]
+               kBandIdle}
+            {if
+               {exists game}
+               {{$this dir}
+                  add_sinks
+                  $this
+                  downbeat
+                  game_won_msg
+                  game_lost
+                  game_over
+                  kick_drum
+                  crash_symbal
+                  hit_hihat
+                  start
+                  hit_snare
+                  band_jump}
+               {handle
+                  ([parser]
+                     add_sink
+                     $this)}
+               {main.drv set realign TRUE}
+               {$this
+                  play_clip
+                  kBandIdle
+                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}})
+         (downbeat
+            {if
+               {<
+                  {random_float}
+                  0.2}
+               {if
+                  {&
+                     {main.drv get_first_flags}
+                     {'|' kBandActive kBandIdle}}
+                  {$this
+                     play_mode
+                     [mode]}}})
+         (game_won_msg
+            {main.drv set realign FALSE}
+            {$this play_clip kBandWin kPlayFirst})
+         (game_lost
+            {main.drv set realign FALSE}
+            {$this play_clip kBandLose kPlayFirst})
+         (game_over
+            {{$this dir}
+               remove_sink
+               $this}
+            {handle
+               ([parser]
+                  remove_sink
+                  $this)})
+         (play_mode
+            ($mode)
+            {set
+               [mode]
+               $mode}
+            {$this play_clip $mode kPlayGraphLoop})
+         (play
+            {$this play_mode kBandActive})
+         (idle
+            {$this play_mode kBandIdle})
+         (show_drummer
+            {$this
+               iterate
+               Mesh
+               $mesh
+               {if
+                  {strneq
+                     {$mesh name}
+                     "drummer"
+                     7}
+                  {$mesh set showing TRUE}}})
+         (hide_drummer
+            {script_task
+               (delay 0.1)
+               (units kTaskSeconds)
+               (script
+                  {$this
+                     iterate
+                     Mesh
+                     $mesh
+                     {if
+                        {strneq
+                           {$mesh name}
+                           "drummer"
+                           7}
+                        {$mesh set showing FALSE}}})})
+         CHAR_COMMON
+         (double_time
+            {$this play_mode kBandDouble})
+         (half_time
+            {$this play_mode kBandHalf})
+         (allbeat
+            {$this play_mode kBandAllbeat})
+         (nobeat
+            {$this play_mode kBandNosnare})
+         (change_drums
+            ($drums)
+            {drums.outfit select drums $drums}
+            {drums.outfit start_load}))))
+(Waypoint
+   (editor
+      (flags
+         bitfield
+         (list
+            ("kStartGuitarist0"
+               "kStartGuitarist0Mp"
+               "kStartGuitarist1Mp"
+               "kStartSinger"
+               "kStartKeyboardist"
+               "kStartBassist"
+               "kStartDrummer"
+               "kWalkSpot"
+               "kSoloWalkSpot"
+               "kEncoreWalkSpot"
+               "kWinWalkSpot"
+               "kWinGameWalkSpot"))
+         (help
+            "GH2 Waypoint Flags")))
+   (types
+      (interact
+         (clip_group interact_back)
+         (editor
+            (clip_group
+               symbol
+               (list
+                  (interact_back interact_right interact_stage))
+               (help
+                  "What to interact with"))))))
+(ClipCollide
+   (init
+      (type gh2))
+   (editor
+      (waypoint
+         object
+         (class Waypoint)
+         (list
+            {$this list_waypoints})
+         (help
+            "Waypoint to stand at")
+         (no_test))
+      (pick_character
+         string
+         (list
+            [chars])
+         (help
+            "Changes the character to one of the listed ones")
+         (no_test))
+      (mode
+         symbol
+         (list
+            [modes])
+         (help
+            "mode to run in")
+         (no_test)))
+   (types
+      (gh2
+         (chars
+            (""
+               "char/alterna1/og/alterna1.milo"
+               "char/classic/og/classic.milo"
+               "char/deathmetal1/og/deathmetal1.milo"
+               "char/funk1/og/funk1.milo"
+               "char/glam1/og/glam1.milo"
+               "char/goth1/og/goth1.milo"
+               "char/grim/og/grim.milo"
+               "char/metal1/og/metal1.milo"
+               "char/punk1/og/punk1.milo"
+               "char/rock1/og/rock1.milo"
+               "char/rockabill1/og/rockabill1.milo"))
+         (modes
+            (single multi))
+         (set_mode
+            ($mode)
+            {if_else
+               {== $mode single}
+               {handle
+                  ({$this dir}
+                     set_singleplayer)}
+               {do
+                  {handle
+                     ({$this dir}
+                        set_multiplayer)}
+                  {handle
+                     (guitarist1 set showing FALSE)}}})
+         (valid_waypoint
+            ($waypoint)
+            {if_else
+               {==
+                  [mode]
+                  single}
+               {!=
+                  0
+                  {&
+                     {$waypoint get flags}
+                     {'|' kStartGuitarist0 kWalkSpot kSoloWalkSpot kEncoreWalkSpot kWinWalkSpot kWinGameWalkSpot}}}
+               {!=
+                  0
+                  {&
+                     {$waypoint get flags}
+                     {'|' kStartGuitarist0Mp kStartGuitarist1Mp}}}})
+         (valid_clip
+            ($clip $waypoint)
+            {if_else
+               {==
+                  [mode]
+                  single}
+               {do
+                  ($name
+                     {$clip name})
+                  ($clips
+                     {$clip dir})
+                  ($win
+                     {$clips find win})
+                  ($win_idle
+                     {$clips find win_idle})
+                  ($intro
+                     {$clips find intro})
+                  ($win_game
+                     {$clips find win_finals})
+                  ($interact_back
+                     {$clips find interact_back})
+                  ($interact_right
+                     {$clips find interact_right})
+                  ($interact_stage
+                     {$clips find interact_stage})
+                  ($wf
+                     {$waypoint get flags})
+                  ($exclusions
+                     {sprint
+                        {$this venue_name}
+                        "_exclude"})
+                  ($no_wins TRUE)
+                  {if
+                     {waypoint_find kWinWalkSpot}
+                     {set $no_wins FALSE}}
+                  {&&
+                     {!
+                        {'||'
+                           {has_substr
+                              $name
+                              "walk_"}
+                           {has_substr
+                              $name
+                              "stop_"}
+                           {has_substr
+                              $name
+                              "turn_"}
+                           {has_substr
+                              $name
+                              "multi_"}}}
+                     {'||'
+                        {!
+                           {$win_game has_clip $clip}}
+                        {& $wf kWinGameWalkSpot}}
+                     {'||'
+                        {!
+                           {$intro has_clip $clip}}
+                        {& $wf kStartGuitarist0}}
+                     {'||'
+                        {!
+                           {'||'
+                              {$win has_clip $clip}
+                              {$win_idle has_clip $clip}}}
+                        {& $wf kWinWalkSpot}
+                        $no_wins}
+                     {'||'
+                        {!
+                           {$interact_back has_clip $clip}}
+                        {&&
+                           {==
+                              {$waypoint get_type}
+                              interact}
+                           {==
+                              {$waypoint get clip_group}
+                              interact_back}}}
+                     {'||'
+                        {!
+                           {$interact_right has_clip $clip}}
+                        {&&
+                           {==
+                              {$waypoint get_type}
+                              interact}
+                           {==
+                              {$waypoint get clip_group}
+                              interact_right}}}
+                     {'||'
+                        {!
+                           {$interact_stage has_clip $clip}}
+                        {&&
+                           {==
+                              {$waypoint get_type}
+                              interact}
+                           {==
+                              {$waypoint get clip_group}
+                              interact_stage}}}
+                     {'||'
+                        {!
+                           {$clips exists $exclusions}}
+                        {!
+                           {{$clips find $exclusions}
+                              has_clip
+                              $clip}}}}}
+               {do
+                  ($name
+                     {$clip name})
+                  ($clips
+                     {$clip dir})
+                  ($win_game
+                     {$clips find win_finals})
+                  ($interact_back
+                     {$clips find interact_back})
+                  ($interact_right
+                     {$clips find interact_right})
+                  ($interact_stage
+                     {$clips find interact_stage})
+                  ($exclusions
+                     {sprint
+                        {$this venue_name}
+                        "_multi_exclude"})
+                  {&&
+                     {!
+                        {'||'
+                           {has_substr
+                              $name
+                              "walk_"}
+                           {has_substr
+                              $name
+                              "stop_"}
+                           {has_substr
+                              $name
+                              "turn_"}}}
+                     {!
+                        {$win_game has_clip $clip}}
+                     {!
+                        {$interact_back has_clip $clip}}
+                     {!
+                        {$interact_right has_clip $clip}}
+                     {!
+                        {$interact_stage has_clip $clip}}
+                     {'||'
+                        {!
+                           {$clips exists $exclusions}}
+                        {!
+                           {{$clips find $exclusions}
+                              has_clip
+                              $clip}}}
+                     {'||'
+                        {!
+                           {$clips exists multi_exclude}}
+                        {!
+                           {{$clips find multi_exclude}
+                              has_clip
+                              $clip}}}}}}))))

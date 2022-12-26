@@ -443,9 +443,6 @@
                (guitar_redoctane)
                (guitar_sg)
                (guitar_sg_flame)
-               #ifdef HX_XBOX
-               (guitar_sg_goddess_white)
-               #endif
                (guitar_sg_gt)
                (lespaul_wylde)
                (lespaull)
@@ -476,13 +473,19 @@
          (category
             (drums
                (dw_arena_drums)
+			   (dw_arena2_drums)
                (dw_battle_drums)
+			   (dw_battle2_drums)
                (dw_big_drums)
                (dw_fest_drums)
+			   (dw_fest2_drums)
                (dw_small1_drums)
+               (dw_small3_drums)
                (dw_small2_drums)
+               (dw_small4_drums)
                (dw_stone_drums)
-               (dw_theatre_drums))))))
+               (dw_theatre_drums)
+               (dw_theatre2_drums))))))
 #define VISEMES_LIST
 ((Neutral Eat Earth If Ox Oat Wet Size Church Fave Though Told Bump New Roar Cage))
 #define CHAR_COMMON
@@ -499,9 +502,7 @@
    (double_tempo
       {main.drv set_beat_scale 2}))
 (BandCharacter
-#ifndef HX_XBOX
    (superclasses Character)
-#endif
    (types
       (guitarist
          (walk_delays
@@ -618,7 +619,6 @@
                   sync_head_bang
                   active_players_changed
                   lose_teleport}
-#ifndef HX_XBOX
                {if
                   {game multiplayer}
                   {if
@@ -628,7 +628,6 @@
                      {[shadow]
                         set_showing
                         FALSE}}}
-#endif
                {{if_else
                      {==
                         bass
@@ -672,11 +671,7 @@
                   set
                   showing
                   FALSE}
-#ifndef HX_XBOX
                {guitar_fire set trans_parent guitar_fire.mesh}
-#else
-               {guitar_fire set_trans_parent guitar_fire.mesh}
-#endif
                {guitar_fire
                   iterate
                   ParticleSys
@@ -946,12 +941,7 @@
          ($length
             {-
                {[parser]
-#ifndef HX_XBOX
-                  next_event_beat
-#else
-                  next_start
-#endif
-               }
+                  next_event_beat}
                {taskmgr beat}})
          {main.drv play_if_safe kBandIdle $flags kBandIdleComplete $length}})
    (game_won_msg
@@ -1022,16 +1012,7 @@
                (grim_fire start)})
          (grim_fire_off
             {handle
-               (grim_fire stop)})
-#ifdef HX_XBOX
-         (johnny_snot_rocket_on
-            {handle
-               (johnny_snot_rocket start)})
-         (johnny_snot_rocket_off
-            {handle
-               (johnny_snot_rocket stop)})
-#endif
-      )
+               (grim_fire stop)}))
       (crowd
          (hand clap)
          (milo_hand clap)
@@ -1149,10 +1130,18 @@
                script
                (script
                   {$this change_drums dw_arena_drums}))
+            (arena2_drums
+               script
+               (script
+                  {$this change_drums dw_arena2_drums}))
             (battle_drums
                script
                (script
                   {$this change_drums dw_battle_drums}))
+            (battle2_drums
+               script
+               (script
+                  {$this change_drums dw_battle2_drums}))
             (big_drums
                script
                (script
@@ -1161,14 +1150,26 @@
                script
                (script
                   {$this change_drums dw_fest_drums}))
+            (fest2_drums
+               script
+               (script
+                  {$this change_drums dw_fest2_drums}))
             (small1_drums
                script
                (script
                   {$this change_drums dw_small1_drums}))
+            (small3_drums
+               script
+               (script
+                  {$this change_drums dw_small3_drums}))
             (small2_drums
                script
                (script
                   {$this change_drums dw_small2_drums}))
+            (small4_drums
+               script
+               (script
+                  {$this change_drums dw_small4_drums}))
             (stone_drums
                script
                (script
@@ -1176,20 +1177,15 @@
             (theatre_drums
                script
                (script
-                  {$this change_drums dw_theatre_drums})))
+                  {$this change_drums dw_theatre_drums}))
+            (theatre2_drums
+               script
+               (script
+                  {$this change_drums dw_theatre2_drums})))
          (parser drummer_parser)
          (start_flags kStartDrummer)
          (mode kBandIdle)
          (enter
-#ifdef HX_XBOX
-            {$this
-               start_at
-               {waypoint_find
-                  [start_flags]}}
-            {set
-               [mode]
-               kBandIdle}
-#endif
             {if
                {exists game}
                {{$this dir}
@@ -1208,9 +1204,7 @@
                {handle
                   ([parser]
                      add_sink
-                     $this)}
-#ifndef HX_XBOX
-            }
+                     $this)}}
             {$this
                start_at
                {waypoint_find
@@ -1224,15 +1218,7 @@
                {$this
                   play_clip
                   kBandIdle
-                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
-#else
-               {main.drv set realign TRUE}
-               {$this
-                  play_clip
-                  kBandIdle
-                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
-#endif
-         })
+                  {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}})
          (downbeat
             {if
                {<
@@ -1337,12 +1323,7 @@
                   (interact_back interact_right interact_stage))
                (help
                   "What to interact with"))))))
-(
-#ifndef HX_XBOX
-VenueVerify
-#else
-ClipCollide
-#endif
+(VenueVerify
    (init
       (type gh2))
    (editor
@@ -1376,6 +1357,7 @@ ClipCollide
                "char/classic/og/classic.milo"
                "char/deathmetal1/og/deathmetal1.milo"
                "char/funk1/og/funk1.milo"
+               "char/funkgh1/og/funkgh1.milo"
                "char/glam1/og/glam1.milo"
                "char/goth1/og/goth1.milo"
                "char/grim/og/grim.milo"

@@ -130,7 +130,11 @@
 #ifdef HX_XBOX
    #define INIT_BAND (1)
 #endif
-#include ../char/char_objects.dta
+#ifdef HX_XBOX
+#include ../char/char_objects_xbox.dta
+#else
+#include ../char/char_objects_ps2.dta
+#endif
 #include ../world/world_objects.dta
 #include ../ui/ui_objects.dta
 #ifdef HX_XBOX
