@@ -215,6 +215,7 @@
 (os_darkstrums {sprint "Darker Strums" {if_else $darkstrums ": ON" ": OFF"}})
 (os_brighthopos {sprint "Brighter HOPOS" {if_else $brighthopos ": ON" ": OFF"}})
 (os_skipintro {sprint "Skip Intro" {if_else $miloskipintro ": ON" ": OFF"}})
+(os_forceencore {sprint "Force Encore" {if_else $forceencore ": ON" ": OFF"}})
 (os_towel {sprint "Towel Hyperspeed" {if_else $towel ": ON" ": OFF"}})
 (os_quarterbeatlines {sprint "Less Beat Lines" {if_else $removequarterbeatlines ": ON" ": OFF"}})
 (os_divisionlines {sprint "No Division Lines" {if_else $removedivisionlines ": ON" ": OFF"}})

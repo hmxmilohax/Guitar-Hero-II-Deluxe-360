@@ -43,7 +43,7 @@
                   $artist_text ;the artist text line is always just "BY - ARTIST"
                }
             }
-            {if_else $autoplay ;check for autoplay enabled without author variable, the author checks will override this if needed
+            {if_else {&& {! $cheat_enabled_performance_mode} $autoplay} ;check for autoplay enabled without author variable, the author checks will override this if needed
                {set $mtvline3
                   {sprint
                      "\n"
@@ -55,7 +55,7 @@
                }
             }
             {if {!= "" {localize {sprint {gamecfg get_song} "_author"}}} ; If not debug, check for author string in locale
-               {if_else $autoplay ;check for autoplay enabled and author present in locale
+               {if_else {&& {! $cheat_enabled_performance_mode} $autoplay} ;check for autoplay enabled and author present in locale
                   {set $mtvline3
                      {sprint
                         "\n"
@@ -82,7 +82,7 @@
                }
             }
             {if_else $author ;check for author variable in DLC contexts.dta
-               {if_else $autoplay ;check for autoplay enabled with author variable
+               {if_else {&& {! $cheat_enabled_performance_mode} $autoplay} ;check for autoplay enabled with author variable
                   {set $mtvline3
                      {sprint
                         "\n"
@@ -247,7 +247,7 @@
    (file "") ;ya got me, but yeah game panel doesnt load a milo
    (track_extend_sec -2) ;set the default timer for the track extend script
    (encore_unlock_check FALSE) ;encores are not available in dx 3.0
-   (encore_song FALSE) ;encores are not available in dx 3.0
+   (encore_song {if_else $forceencore TRUE FALSE}) ;encores are not available in dx 3.0
    (load {set_loader_period 13})
    (enter ;when the screen is entered
       #ifdef HX_XBOX {rnd suspend} #endif ;no idea but ps2 does not have this code

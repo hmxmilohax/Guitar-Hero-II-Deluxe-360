@@ -41,6 +41,9 @@
 ;default name on screen in game
 {set $nametitle TRUE}
 
+;forces encore into/outro cinematics
+{set $forceencore FALSE}
+
 ;emulate the venue fps. this is useful to lower
 ;when streaming
 {set $emulatefps 60}
