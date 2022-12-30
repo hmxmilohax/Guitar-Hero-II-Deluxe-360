@@ -24,11 +24,7 @@
          }
       }
       {do
-         ($win_screen)
-         {if_else {== {gamecfg get mode} career}
-            {set $win_screen endgame_screen} ;force go to endgame screen if in career to solve invisible endgame screen bug?
-            {set $win_screen {gamecfg get win_screen}}
-         }
+         {set $win_screen endgame_screen} ;force go to endgame screen if in career to solve invisible endgame screen bug?
          {script_task
             (units kTaskUISeconds)
             (delay 0.3)
@@ -36,6 +32,10 @@
          }
          {ui goto_screen $win_screen}
       }
+   )
+   (exit
+      {rnd unset_depth_of_field}
+      {world_panel set_paused TRUE}
    )
 }
 

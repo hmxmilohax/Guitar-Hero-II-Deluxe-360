@@ -1,5 +1,7 @@
 #include game_track_panel.dta
 #include game_hud_panel.dta
+#define DRUMMER_EXPLODE_DELAY
+(3.0)
 #define MTV_OVERLAY_PANEL_HANDLERS
 (
    (file mtv_overlay.milo)
@@ -250,6 +252,17 @@
    (encore_song {if_else $forceencore TRUE FALSE}) ;encores are not available in dx 3.0
    (load {set_loader_period 13})
    (enter ;when the screen is entered
+      {if_else $forceencore
+         {do
+            {set $encore TRUE}
+            {game cheat_force_encore}
+            {set {game want_encore_fx} TRUE}
+         }
+         {do
+            {set $encore FALSE}
+            {set {game want_encore_fx} FALSE}
+         }
+      }
       #ifdef HX_XBOX {rnd suspend} #endif ;no idea but ps2 does not have this code
       {set $p0_evenmtv TRUE}
       {set $p0_evenstreak TRUE}
@@ -272,6 +285,18 @@
       {set $player1_streak 0} ;set current streak back to default
       {set $player2_streak 0} ;set current streak back to default
       {set_loader_period 5}
+      {if
+         {&&
+            {==
+               {game get_venue}
+               small1}
+               {==
+                  $encore
+                  TRUE}}
+         {{{world_panel loaded_dir}
+               find
+               drummer}
+            show_drummer}}
    )
    (init_progress_handler
       {set $song_percent 0.0} ;reset the song progress variable to 0
@@ -505,6 +530,18 @@
       kDataUnhandled
    )
    (game_won_msg ;ran on song completion
+   {if_else $forceencore
+         {do
+            {set $encore TRUE}
+            {game cheat_force_encore}
+            {set {game want_encore_fx} TRUE}
+         }
+         {do
+            {set $encore FALSE}
+            {set {game want_encore_fx} FALSE}
+         }
+      }
+   ($encore)
       {set $author FALSE} ;we are done with the author flag for this song, reset to false
       {name_overlay_panel set_showing FALSE}
       {mtv_overlay_panel set_showing FALSE}
@@ -532,8 +569,28 @@
             {world_panel set_showing TRUE} ;always show the world when a song is complete
             {if_else {== {gamecfg get mode} practice} ;check if the current game mode is practice
                kDataUnhandled ;if practice mode, do nothing
-               {if_else {gamecfg get game_over_sequence} ;get the current game mode game_over_sequence
                   {do
+                     {if
+               {&&
+                  {==
+                     {game get_venue}
+                     small1}
+                     $encore
+               }
+               {do
+                  {script_task
+                     (delay DRUMMER_EXPLODE_DELAY)
+                     (units kTaskSeconds)
+                     (script
+                        {handle
+                           ($this drummer_explode)}
+                        {play_sfx drummer_exp}
+                        {handle
+                           ({{world_panel loaded_dir}
+                                 find
+                                 guitarist0}
+                              game_won_msg
+                              $encore)})}}}
                      #ifdef HX_XBOX ;xbox acheivement handling
                      {if {! {gamecfg multiplayer}} ;if singleplayer
                         {achievements submit_points {player0 score}} ;submit singleplayer score to leaderboards
@@ -558,10 +615,9 @@
                      {play_game_sfx TRACK_EXPLODE_SFX} ;track explode sound effect
                      {game set_realtime TRUE} ;return to default game speed
                      {beatmatch set_paused TRUE} ;pause the beatmatcher since it's exploded
+                     {if $encore {encore_stream play}}
                      kDataUnhandled
                   }
-                  kDataUnhandled  ;do nothing if there is no game_over_sequence defined
-               }
             }
          }
       }
