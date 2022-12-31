@@ -14,6 +14,8 @@ jobs:
           chmod +x dependencies/arkhelper
           chmod +x dependencies/dtab
           chmod +x dependencies/superfreq
+          find . -name "*.*_ps2" -type f -delete
+          find . -name "*.vgs" -type f -delete
           dependencies/arkhelper dir2ark ./_ark ./gen -e -s 4073741823
       
       - name: Upload result
@@ -35,6 +37,8 @@ jobs:
           chmod +x dependencies/arkhelper
           chmod +x dependencies/dtab
           chmod +x dependencies/superfreq
+          find . -name "*.*_ps2" -type f -delete
+          find . -name "*.vgs" -type f -delete
           sed -i -e "s/;#define FORCE_PAD (1)/#define FORCE_PAD (1)/" _ark/config/macros.dta
           dependencies/arkhelper dir2ark ./_ark ./gen -e -s 4073741823
       
