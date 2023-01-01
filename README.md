@@ -168,8 +168,9 @@ Various modifier status is reported on screen to give indication on how the play
 
 # Install
 
-NOTE: You WILL need a modded/hacked console to play this mod on console. I hope this is clear.
+NOTE: You WILL need a modded/hacked console to play this mod on real hardware. I hope this is clear.
 
+## Repo Setup
 Setting up GHIIDX 360 for the first time is meant to be as easy as possible.
 As well, it is designed to allow you to automatically receive updates as the repo is updated.
 
@@ -181,27 +182,97 @@ You can setup git with all default options, same with dot net.
 
 Once the dependencies are installed, run "_init_repo.bat" in an **empty folder**. git will pull the repo and make sure you are completely up to date.
 
-From then on simply run "_gh2.bat". This script will pull the repo again for updates, build the ARK for you, and finally, launch the game in Xenia.
-All in one script. It is recommended to always run the game with gh2.bat to ensure everything is up to date, as currently this project is highly WIP
+## Building The Ark
+
+Once the repo is copied locally to your system, simply run "_build_****.bat" depending on the build you would like. `_build_xbox.bat` will build for Xbox Hardware, and output to `_build/Xbox/`.
+
+`_build_ps2.bat` is currently in a pre alpha state, it is nowhere near stable, and is being developed along side the 360 version.
+
+Each build script will copy out the opposite platform specific files from the _ark path before building the ark to reduce the final build size.
+
+## Running in Xenia
+
+`_build_xenia.bat` will build for Xenia, output to `_build/Xbox/`, and run Xenia from `_xenia/`.
+
+`_run_xenia.bat` is also included for subsequent runs of the game in Xenia after the initial build of the ark file.
+
+It is recommended to always run the game with the build scripts to ensure everything is up to date, as currently this project is highly WIP.
+
+## Installing on Real Hardware
+
+After building the Ark, create a new folder in your Xbox 360 games folder (wherever you install your games) for Guitar Hero II Deluxe.
+
+Copy all files inside `_build/Xbox` to that folder.
+
+Guitar Hero II Deluxe 360 is a self contained game, and does not use any patches or title updates.
+
+### Custom Cover Art
+
+If using Aurora, you can also grab customized box art directly from your internet connected RGH console.
+
+* Scan/Find Guitar Hero II Deluxe in your Aurora games list
+
+* Select `Details`
+
+* Select `Preview`
+
+* Scroll left until `Download cover` is shown
+
+* Select `Download cover`
+
+* `Cover #25456` and `Cover #25581` are Guitar Hero II Deluxe Covers
+
+## Additional Information
+
+If any issues pop up in the command prompt window when trying to run the build script (typically caused by customized init.dta settings), run the `_reset.bat` in the root of the repo to restore to a clean state, then run the build script again.
+
+# Song Packs
+
+For Xenia, you can download song packs using the included scripts at the root of this repo. These scripts will automatically pull from existing repos for ports of songs, and put them where they need to go automatically. `Python`, as well as `gitpython` will need to be installed. You can install [Python](https://www.python.org/downloads/) from their website. Make sure to select `install as PATH` in the installation dialogs. You can install `gitpython` on via double clicking the `install_gitpython.bat` script in the `dependencies` folder after installing Python.
+
+* `_download_gh1dx_songs_xenia.bat` - GH1DX
+
+* `_download_gh2_custom_songs_xenia.bat` - Notable/fully authored GH2 customs repo
+
+* `_download_gh2dx_songs_xenia.bat` - GHIIDX
+
+* `_download_gh2dxdlc_songs_xenia.bat` - GHIIDXDLC
+
+* `_download_gh80sdx_songs_xenia.bat` - GH80SDX
+
+You can find Vanilla (LIVE file) song packs for `real hardware` here.
+
+* [GH1DX](https://nightly.link/hmxmilohax/gh1dx-songs/workflows/build/main)
+
+* [GHIIDX](https://nightly.link/hmxmilohax/gh2dx-songs/workflows/build/main)
+
+* [GHIIDX](https://nightly.link/hmxmilohax/gh2dx-songs/workflows/build/main)
+
+* [GH80SDX](https://nightly.link/hmxmilohax/gh80sdx-songs/workflows/build/main)
+
+* [GHIIDXDLC](https://nightly.link/hmxmilohax/gh2dxdlc-songs/workflows/build/main) 
+
+## Onyx
+
+You can also use [Onyx Music Game Toolkit](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for GH2 360.
+
+In the `Batch Process` Window, you can output to GH2 LIVE files from a ton of different source files, such as Clone Hero.
+
+Then, using the `Quick Convert` window, and `Make a pack (360 GH2/RB)` you can drag in all GH2 LIVE files you made, and convert to a single pack via the `Make LIVE pack` button for real hardware, or `Make extracted folder` for Xenia.
 
 # Songs + DLC
 
 Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Speed Test](https://www.youtube.com/watch?v=DoHeIiDHbdk).
 
-You can install song packs directly in your local copy of this repo in
+You can install song packs for Guitar Hero II Deluxe in:
 
->\content\415607E7\00000002\XXXXXX
+* Xenia: `\_xenia\content\415607E7\00000002\XXXXXX`
+* Hardware: `/Hdd1/Content/0000000000000000/415607E7/00000002`
 
-Where XXXXXX is the name of your song pack, containing both a "songs" and a "config" folder on xenia, or a singular file with no extension on hardware.
+Where XXXXXX is the name of your song pack, containing both a "songs" and a "config" folder on Xenia, or a singular LIVE file with no extension on hardware.
 con/live files are not supported in Xenia
 
 There is a max package limit of 16 song packs. The setlist has been completely reworked to allow more songs. Current song limit is unknown.
-
-You can find Vanilla (extracted) song packs for Xenia [GHIIDX](https://drive.google.com/file/d/1xwX_Dv17WDFldZ0mDWZu71FLUI-CTywx/view?usp=sharing), [GH80SDX](https://drive.google.com/file/d/1KJxH51N2yQdQXlNA9MmyrI1bGfdB6Hxz/view?usp=sharing), and [GHIIDLCDX](https://drive.google.com/file/d/12LgukgL51gesAAB7gZWGvd_ub1LP6eUe/view?usp=sharing) here.
-
-You can find Vanilla (LIVE file) song packs for real hardware [GHIIDX](https://drive.google.com/file/d/1ZKWPx4wOL-Cf_GYQ9KbOpe5528Iieao2/view?usp=sharing), [GH80SDX](https://drive.google.com/file/d/1lMEhcxgIHVjNYIrxY9A5sAOmNTU93wVC/view?usp=sharing), and [GHIIDLCDX](https://drive.google.com/file/d/1BBNtfSdQWSAbKu-yJ72MHXmVWOT2Av3d/view?usp=sharing) here.
-
-You can also use [Onyx Music Game Toolkit](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for GH2 360.
 
 # Custom Highways
 This repo also supports the import of custom highways via the use of an all in one bat file and a couple external dependencies included.
