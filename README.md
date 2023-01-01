@@ -180,11 +180,11 @@ The two exe's are a couple dependencies, [Git for Windows](https://gitforwindows
 Git is required for you to take advantage of auto updating via github pulls. Dot Net is required to build an ARK file, the archive format the game needs to run.
 You can setup git with all default options, same with dot net.
 
-Once the dependencies are installed, run "_init_repo.bat" in an **empty folder**. git will pull the repo and make sure you are completely up to date.
+Once the dependencies are installed, run `_init_repo.bat` in an **empty folder**. git will pull the repo and make sure you are completely up to date.
 
 ## Building The Ark
 
-Once the repo is copied locally to your system, simply run "_build_****.bat" depending on the build you would like. `_build_xbox.bat` will build for Xbox Hardware, and output to `_build/Xbox/`.
+Once the repo is copied locally to your system, simply run `_build_****.bat` depending on the build you would like. `_build_xbox.bat` will build for Xbox Hardware, and output to `_build/Xbox/`.
 
 `_build_ps2.bat` is currently in a pre alpha state, it is nowhere near stable, and is being developed along side the 360 version.
 
@@ -267,7 +267,7 @@ Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Spee
 You can install song packs for Guitar Hero II Deluxe in:
 
 * Xenia: `\_xenia\content\415607E7\00000002\XXXXXX`
-* Hardware: `/Hdd1/Content/0000000000000000/415607E7/00000002`
+* Hardware: `/Hdd1/Content/0000000000000000/415607E7/00000002/XXXXXX`
 
 Where XXXXXX is the name of your song pack, containing both a "songs" and a "config" folder on Xenia, or a singular LIVE file with no extension on hardware.
 con/live files are not supported in Xenia
