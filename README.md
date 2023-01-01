@@ -102,17 +102,31 @@ A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar m
 
 * Void Frets - Blacks out the inner portion of the fret smasher
 
+![void_frets](dependencies/images/void_frets.png)
+
 * Eyeball Gems - Tucked away in the vanilla files, this applies an eyeball texture to the gems.
+
+![eyeball_gems](dependencies/images/eyeball_gems.png)
 
 * Clone Hero Hud - Changes many aspects of the on screen track. Provides a Clone Hero/WoR Crowd meter, score meter, star power bar, and streak display.
 
+![clonehero_hud](dependencies/images/clonehero_hud.png)
+
 * Bright HOPOs - Applies a new texture to the hopo gems to fully white out the caps. Helps distinguish hopos from strums.
 
-* Bright HOPOs - Applies a new texture to the strum gems to darken the white portions of the gems. Helps distinguish strums from hopos.
+![bright_hopos](dependencies/images/bright_hopos.png)
+
+* Dark Strums - Applies a new texture to the strum gems to darken the white portions of the gems. Helps distinguish strums from hopos.
+
+![dark_strums](dependencies/images/dark_strums.png)
 
 * GH1 Track - Port of the Guitar Hero 1 Gems and Smashers. These will produce a stutter on first load as shaders are being generated for the 3d models.
 
+![gh1_track](dependencies/images/gh1_track.png)
+
 * GH3 Frets - Custom textured fret smashers ripped from Guitar Hero III.
+
+![gh3_frets](dependencies/images/gh3_frets.png)
 
 # In-Depth Features
 
@@ -188,6 +202,40 @@ Notes Hit Percentage now shows a more detailed readout, tracking to the hundredt
 Various modifier status is reported on screen to give indication on how the player prefers to play.
 
 ![Endgame Screen](dependencies/images/endgame.png)
+
+## Themes
+
+Theming of a good chunk of UI and Track items is supported in Guitar Hero II Deluxe.
+
+This can be accomplished by modifying `_theme/init_track_theme.dta` or `_theme/init_ui_theme.dta`.
+
+Inside both of these scripts are a variety of options to choose from and change colors for your own personalized track theme or ui theme for the game.
+
+![init_themes](dependencies/images/init_themes.png)
+
+Once done editing the dta file to your liking, or installing one found from #gh2-theme-share channel in the Milohax discord, run `_theme-dta2b.bat` from the root of the repo. Re-running Xenia will apply your changes, or, if on hardware, simply copy the two new `.dtb` files from the `_build/Xbox/gen` folder to the same location on your Xbox.
+
+The different menu themes in Guitar Hero 2 Deluxe all utilize this themeing system for their respective themes, so there is a great variety to choose from!
+
+![UI-theme](dependencies/images/theme_ui.png)
+
+![theme_track](dependencies/images/theme_track.png)
+
+## Init/Setting Custom Defaults
+
+Custom defaults, such as always setting your preferred track speed, are not saved automatically by Guitar Hero II Deluxe.
+
+Instead, you will have to manually edit a file or two and rebuild the game to save your custom modifiers.
+
+This has been setup to be as easy as possible.
+
+Simply open `_ark/ui/init.dta` and start editing to your liking. Each modifier has an associated comment paired with it to detail it's functions. Theming options can be found above, reading the `Themes` section of this readme.
+
+![init_init](dependencies/images/init_init.png)
+
+Once done, save the edited dta, and build the ark again. If playing on real hardware, you will have to transfer the entire ark to your Xbox again for the new saved settings.
+
+Editing init.dta will cause conflicts down the road if the file is changed on the repo. if you are having trouble getting new features when building the arks, run `_reset.bat` to restore the repo to a clean state, and build again.
 
 # Install
 
