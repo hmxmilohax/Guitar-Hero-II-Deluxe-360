@@ -18,9 +18,9 @@
    )
    (set_album_art
 ;      {if_else {exists {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/gen/" {song_provider get_symbol {game get_song_index}} ".bmp"}}
-         {if_else {== {game get_song_index} 0} ;check if on random
+         {if_else {== {gamecfg get_song} speedtest} ;check if on random
             {gs_tile.tex set_bitmap {sprint "ui/image/ng/random.bmp"}} ;set the random image
-            {if_else {== {game get_song_index} 1} ;check if on speedtest
+            {if_else {== {gamecfg get_song} speedtest9} ;check if on speedtest
                {gs_tile.tex set_bitmap {sprint "ui/image/ng/speedtest.bmp"}} ;set the image to our internal speedtest
                #ifdef HX_XBOX
                {gs_tile.tex set_bitmap {sprint "game:/gen/album_art/" {song_provider get_symbol {game get_song_index}} "/" {song_provider get_symbol {game get_song_index}} ".bmp"}} ;set the image to the image located outside of the ark
@@ -312,7 +312,7 @@
                }
                {set $mtvline11 {sprint {localize durationtext} ": " {localize unknowntext}}}
             }
-               {if_else {== {game get_song_index} 0} ;check if on random
+               {if_else {== {gamecfg get_song} speedtest} ;check if on random
                   {do
                      {$this set_line $prefix 3 " "}
                      {$this set_line $prefix 3_auth " "}
@@ -543,7 +543,7 @@
       }
    )
    (song_randomizer ;song randomization task
-      {if_else {== {game get_song_index} 0} ;our random ong "button" is the first song in campaign.dta, which becomes the first song on song select. song 0 will always be random song
+      {if_else {== {gamecfg get_song} speedtest} ;our random ong "button" is the first song in campaign.dta, which becomes the first song on song select. song 0 will always be random song
          {do
             {game set_song {campaign pick_attract_song}} ;attract mode song function. It just picks a random song, repurposed for our use case
             {set $songrandomized TRUE} ;this var will tell the panel we clicked the random button, so we can return to the random button
