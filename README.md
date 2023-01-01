@@ -246,8 +246,6 @@ You can find Vanilla (LIVE file) song packs for `real hardware` here.
 
 * [GHIIDX](https://nightly.link/hmxmilohax/gh2dx-songs/workflows/build/main)
 
-* [GHIIDX](https://nightly.link/hmxmilohax/gh2dx-songs/workflows/build/main)
-
 * [GH80SDX](https://nightly.link/hmxmilohax/gh80sdx-songs/workflows/build/main)
 
 * [GHIIDXDLC](https://nightly.link/hmxmilohax/gh2dxdlc-songs/workflows/build/main) 
