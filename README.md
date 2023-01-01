@@ -76,6 +76,8 @@ A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar m
 
 * Skip Outro - Skips the outro win animation when completing a song.
 
+* Force Encore - Forces the current song to act as an encore, gives unique intro camera animation.
+
 * Sound Effects - Disables certain sound effects such as the crowd in game.
 
 * Note Streak Popups - Disables the note streak interval message popups in game.
@@ -148,6 +150,29 @@ Guitar Hero II Deluxe technically uses career mode for quickplay gameplay, as su
 
 A random song button is also included on the song select screen to shuffle the library.
 
+Additionally, detailed song information in the style of RB/CH is available for DX songs out of the box. As of writing, Onyx support to output this information for dx on new conversions, is currently in development. Some specific artists, namely Harmonix and Neversoft, have custom colors for their author name.
+
+Potential detailed song information includes
+
+* Artist
+* Author
+* Album
+* Year
+* Genre
+* Origin
+* Difficulty
+* Length
+
+Previously converted tracks for gh2dx will not have this information unless manually applied.
+
+Album art is also supported.
+
+The build scripts will automatically detect album art in the `Content` directories for your song, and generate them where they need to go.
+
+These images are read from outside of the ARK as raw files. An `album_art` folder will be generated in `_build/Xbox` that contains these images for you.
+
+This support is also planned to be coming in a future Onyx update.
+
 ![Song Select](dependencies/images/songselect.png)
 
 ## Endgame Screen
@@ -163,8 +188,6 @@ Notes Hit Percentage now shows a more detailed readout, tracking to the hundredt
 Various modifier status is reported on screen to give indication on how the player prefers to play.
 
 ![Endgame Screen](dependencies/images/endgame.png)
-
-
 
 # Install
 
@@ -271,21 +294,21 @@ You can install song packs for Guitar Hero II Deluxe in:
 * Xenia: `\_xenia\content\415607E7\00000002\XXXXXX`
 * Hardware: `/Hdd1/Content/0000000000000000/415607E7/00000002/XXXXXX`
 
-Where XXXXXX is the name of your song pack, containing both a "songs" and a "config" folder on Xenia, or a singular LIVE file with no extension on hardware.
-con/live files are not supported in Xenia
+Where XXXXXX is the name of your song pack, containing both a `songs` and a `config` folder on Xenia, or a singular LIVE file with no extension on hardware. Con/live files are not supported in Xenia.
 
-There is a max package limit of 16 song packs. The setlist has been completely reworked to allow more songs. Current song limit is unknown.
+There is a max package limit of 16 song packs. The setlist has been completely reworked to allow more songs. After 250 songs loaded, saving will be automatically disabled to prevent crashes. Current max song limit is unknown.
 
 # Custom Highways
+
 This repo also supports the import of custom highways via the use of an all in one bat file and a couple external dependencies included.
 
-Simply drag in a .jpg/.png/.bmp into the "highways" folder at the root of the repo, then run "_highways.bat"
+Simply drag in a .jpg/.png/.bmp into the `highways` folder at the root of the repo, then run `_highways.bat`
 This will size your images accordingly (supports arbitrary resolutions), and convert them to the proper format for gh2 to read.
-ARK files will be generated for a list of your custom highways in game to choose from at will using the overshell (select select on most all menues)
+ARK files will be generated for a list of your custom highways in game to choose from at will using the overshell (select select on most all menus)
 
-The highway "_black_highway" is marked as the default in game. If you delete this highway from the custom highways folder, you must select your new highway in game or you will experience a crash.
+The highway `_black_highway` is marked as the default in game. If you delete this highway from the custom highways folder, you must select your new highway in game or you will experience a crash.
 
-After running "_highways.bat" you will need to run "_gh2.bat" again to build your new ARK.
+After running `_highways.bat` you will need to run `_build_****.bat` again to build your new ARK.
 
 # Included Dependencies
 
