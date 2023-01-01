@@ -228,6 +228,10 @@ If any issues pop up in the command prompt window when trying to run the build s
 
 # Song Packs
 
+Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Speed Test](https://www.youtube.com/watch?v=DoHeIiDHbdk).
+
+## Xenia
+
 For Xenia, you can download song packs using the included scripts at the root of this repo. These scripts will automatically pull from existing repos for ports of songs, and put them where they need to go automatically. `Python`, as well as `gitpython` will need to be installed. You can install [Python](https://www.python.org/downloads/) from their website. Make sure to select `install as PATH` in the installation dialogs. You can install `gitpython` on via double clicking the `install_gitpython.bat` script in the `dependencies` folder after installing Python.
 
 * `_download_gh1dx_songs_xenia.bat` - GH1DX
@@ -239,6 +243,8 @@ For Xenia, you can download song packs using the included scripts at the root of
 * `_download_gh2dxdlc_songs_xenia.bat` - GHIIDXDLC
 
 * `_download_gh80sdx_songs_xenia.bat` - GH80SDX
+
+## Real Hardware
 
 You can find Vanilla (LIVE file) song packs for `real hardware` here.
 
@@ -254,13 +260,11 @@ You can find Vanilla (LIVE file) song packs for `real hardware` here.
 
 You can also use [Onyx Music Game Toolkit](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for GH2 360.
 
-In the `Batch Process` Window, you can output to GH2 LIVE files from a ton of different source files, such as Clone Hero.
+In the `Batch Process` window, you can output to GH2 LIVE files from a ton of different source files, such as Clone Hero.
 
-Then, using the `Quick Convert` window, and `Make a pack (360 GH2/RB)` you can drag in all GH2 LIVE files you made, and convert to a single pack via the `Make LIVE pack` button for real hardware, or `Make extracted folder` for Xenia.
+Then, using the `Quick Convert` window, and `Make a pack (360 GH2/RB)` tab, you can drag in all GH2 LIVE files you made, and convert to a single pack via the `Make LIVE pack` button for real hardware, or `Make extracted folder` button for Xenia.
 
-# Songs + DLC
-
-Guitar Hero II Deluxe 360 by default only comes with one song. [Exilelord's Speed Test](https://www.youtube.com/watch?v=DoHeIiDHbdk).
+# Installing DLC
 
 You can install song packs for Guitar Hero II Deluxe in:
 
