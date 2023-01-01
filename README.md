@@ -177,15 +177,19 @@ Potential detailed song information includes
 * Difficulty
 * Length
 
+![detailed_song](dependencies/images/detailed_song.png)
+
 Previously converted tracks for gh2dx will not have this information unless manually applied.
 
-Album art is also supported.
+Album art is also supported via a bmp_xbox (512x512) or bmp_ps2 (256x256) image file in the song folder, in a `gen` subfolder. The image should be named exactly the same as the shortname of the song. Ex:
 
-The build scripts will automatically detect album art in the `Content` directories for your song, and generate them where they need to go.
+* _xenia\content\415607E7\00000002\GHIIDX\songs\arterialblack\arterialblack.bmp_xbox
 
-These images are read from outside of the ARK as raw files. An `album_art` folder will be generated in `_build/Xbox` that contains these images for you.
+The build scripts will automatically detect album art in the `/Content/` directories for your song, and generate them where they need to go.
 
-This support is also planned to be coming in a future Onyx update.
+These images are read in game from outside of the ARK as raw files. An `album_art` folder will be generated in `_build/Xbox` that contains these images for you.
+
+This image generation support is also planned to be coming in a future Onyx update.
 
 ![Song Select](dependencies/images/songselect.png)
 
@@ -213,9 +217,13 @@ Inside both of these scripts are a variety of options to choose from and change 
 
 ![init_themes](dependencies/images/init_themes.png)
 
-Once done editing the dta file to your liking, or installing one found from #gh2-theme-share channel in the Milohax discord, run `_theme-dta2b.bat` from the root of the repo. Re-running Xenia will apply your changes, or, if on hardware, simply copy the two new `.dtb` files from the `_build/Xbox/gen` folder to the same location on your Xbox.
+Once done editing the dta file to your liking, or installing one found from #gh2-theme-share channel in the Milohax discord, run `_theme-dta2b.bat` from the root of the repo.
 
-The different menu themes in Guitar Hero 2 Deluxe all utilize this themeing system for their respective themes, so there is a great variety to choose from!
+Theme dta files can be shared and transferred between installations just like clone here ini's. Just run `_theme-dta2b.bat` after aquiring your theme dta.
+
+Re-running Xenia will apply your changes, or, if on hardware, simply copy the two new `.dtb` files from the `_build/Xbox/gen` folder to the same location on your Xbox.
+
+The different menu themes in Guitar Hero 2 Deluxe all utilize this theme system for their respective themes, so there is a great variety to choose from!
 
 ![UI-theme](dependencies/images/theme_ui.png)
 
