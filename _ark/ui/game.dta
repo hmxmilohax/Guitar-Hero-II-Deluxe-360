@@ -1029,7 +1029,7 @@
          {set $slotstate_count_3 {+ $slotstate_count_3 1}}
          {if_else {exists slot_duration_task} ;check if the below task is running
             kDataUnhandled
-            {if {== $slotstate_count_2 1}
+            {if {== $slotstate_count_3 1}
                {thread_task ;run a new task
                   (units kTaskSeconds) ;we are in ui so use ui seconds
                   (name slot_duration_task) ;name the task for pruning later
@@ -1047,7 +1047,7 @@
          {set $slotstate_count_2 {+ $slotstate_count_2 1}}
          {if_else {exists slot_duration_task} ;check if the below task is running
             kDataUnhandled
-            {if {== $slotstate_count_3 1}
+            {if {== $slotstate_count_2 1}
                {thread_task ;run a new task
                   (units kTaskSeconds) ;we are in ui so use ui seconds
                   (name slot_duration_task) ;name the task for pruning later
