@@ -244,6 +244,363 @@
       {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
    )
 }
+#define SCORESPY_RESET_HANDLER
+(
+   {if {exists slot_duration_task_0} ;check if the below task is running
+      {delete slot_duration_task_0} ;delete the task if already running
+   }
+   {if {exists slot_duration_task_1} ;check if the below task is running
+      {delete slot_duration_task_1} ;delete the task if already running
+   }
+   {if {exists slot_duration_task_2} ;check if the below task is running
+      {delete slot_duration_task_2} ;delete the task if already running
+   }
+   {if {exists slot_duration_task_3} ;check if the below task is running
+      {delete slot_duration_task_3} ;delete the task if already running
+   }
+   {if {exists slot_duration_task_4} ;check if the below task is running
+      {delete slot_duration_task_4} ;delete the task if already running
+   }
+   {if {exists slot_duration_task_5} ;check if the below task is running
+      {delete slot_duration_task_5} ;delete the task if already running
+   }
+   {if {exists slot_duration_task_6} ;check if the below task is running
+      {delete slot_duration_task_6} ;delete the task if already running
+   }
+   {set $slot_duration_0 0}
+   {set $slotstate_count_0 0}
+   {set $slot_duration_1 0}
+   {set $slotstate_count_1 0}
+   {set $slot_duration_2 0}
+   {set $slotstate_count_2 0}
+   {set $slot_duration_3 0}
+   {set $slotstate_count_3 0}
+   {set $slot_duration_4 0}
+   {set $slotstate_count_4 0}
+   {set $slot_duration_5 0}
+   {set $slotstate_count_5 0}
+   {set $slot_duration_6 0}
+   {set $slotstate_count_6 0}
+   {scorespy_image_panel set_debug_line_0}
+   {scorespy_image_panel set_debug_line_1}
+   {scorespy_image_panel set_debug_line_2}
+   {scorespy_image_panel set_debug_line_3}
+   {scorespy_image_panel set_debug_line_4}
+   {scorespy_image_panel set_debug_line_5}
+   {scorespy_image_panel set_debug_line_6}
+      )
+{new
+   GHPanel ;panel type
+   scorespy_image_panel ;panel name
+      (file scorespy_viewer.milo) ;milo file used for the panel. found in /ui/gen/
+   (set_debug_line_0 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+   {if_else $scorespybuffer_0
+      {do
+         {set $scorespybuffer_0 FALSE}
+         {ss_button_0.lbl set_showing FALSE}
+         {ss_button_0.lbl set_type postertype}
+         {ss_button_0.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
+         {ss_button_0_shadow.lbl set_showing FALSE}
+         {ss_button_0_shadow.lbl set_type postertype}
+         {ss_button_0_shadow.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
+         {gs_tile0.mat set color {pack_color {if_else $slotstate_0 1 .15} {if_else $slotstate_0 1 .15} {if_else $slotstate_0 1 .15}}}
+         {ss_button_0_buffer.lbl set_showing TRUE}
+         {ss_button_0_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_0 TRUE}
+         {ss_button_0_buffer.lbl set_showing FALSE}
+         {ss_button_0_buffer.lbl set_type postertype}
+         {ss_button_0_buffer.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
+         {ss_button_0_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_0_shadow_buffer.lbl set_type postertype}
+         {ss_button_0_shadow_buffer.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
+         {gs_tile0.mat set color {pack_color {if_else $slotstate_0 1 .15} {if_else $slotstate_0 1 .15} {if_else $slotstate_0 1 .15}}}
+         {ss_button_0.lbl set_showing TRUE}
+         {ss_button_0_shadow.lbl set_showing TRUE}
+      }
+   }
+   )
+   (set_debug_line_1 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      {if_else $scorespybuffer_1
+      {do
+         {set $scorespybuffer_1 FALSE}
+         {ss_button_1.lbl set_showing FALSE}
+         {ss_button_1.lbl set_type postertype}
+         {ss_button_1.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
+         {ss_button_1_shadow.lbl set_showing FALSE}
+         {ss_button_1_shadow.lbl set_type postertype}
+         {ss_button_1_shadow.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
+         {gs_tile1.mat set color {pack_color {if_else $slotstate_1 1 .15} {if_else $slotstate_1 1 .15} {if_else $slotstate_1 1 .15}}}
+         {ss_button_1_buffer.lbl set_showing TRUE}
+         {ss_button_1_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_1 TRUE}
+         {ss_button_1_buffer.lbl set_showing FALSE}
+         {ss_button_1_buffer.lbl set_type postertype}
+         {ss_button_1_buffer.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
+         {ss_button_1_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_1_shadow_buffer.lbl set_type postertype}
+         {ss_button_1_shadow_buffer.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
+         {gs_tile1.mat set color {pack_color {if_else $slotstate_1 1 .15} {if_else $slotstate_1 1 .15} {if_else $slotstate_1 1 .15}}}
+         {ss_button_1.lbl set_showing TRUE}
+         {ss_button_1_shadow.lbl set_showing TRUE}
+      }}
+   )
+   (set_debug_line_2 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      {if_else $scorespybuffer_2
+      {do
+         {set $scorespybuffer_2 FALSE}
+         {ss_button_2.lbl set_showing FALSE}
+         {ss_button_2.lbl set_type postertype}
+         {ss_button_2.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
+         {ss_button_2_shadow.lbl set_showing FALSE}
+         {ss_button_2_shadow.lbl set_type postertype}
+         {ss_button_2_shadow.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
+         {gs_tile2.mat set color {pack_color {if_else $slotstate_2 1 .15} {if_else $slotstate_2 1 .15} {if_else $slotstate_2 1 .15}}}
+         {ss_button_2_buffer.lbl set_showing TRUE}
+         {ss_button_2_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_2 TRUE}
+         {ss_button_2_buffer.lbl set_showing FALSE}
+         {ss_button_2_buffer.lbl set_type postertype}
+         {ss_button_2_buffer.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
+         {ss_button_2_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_2_shadow_buffer.lbl set_type postertype}
+         {ss_button_2_shadow_buffer.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
+         {gs_tile2.mat set color {pack_color {if_else $slotstate_2 1 .15} {if_else $slotstate_2 1 .15} {if_else $slotstate_2 1 .15}}}
+         {ss_button_2.lbl set_showing TRUE}
+         {ss_button_2_shadow.lbl set_showing TRUE}
+      }}
+   )
+   (set_debug_line_3 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      {if_else $scorespybuffer_3
+      {do
+         {set $scorespybuffer_3 FALSE}
+         {ss_button_3.lbl set_showing FALSE}
+         {ss_button_3.lbl set_type postertype}
+         {ss_button_3.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
+         {ss_button_3_shadow.lbl set_showing FALSE}
+         {ss_button_3_shadow.lbl set_type postertype}
+         {ss_button_3_shadow.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
+         {gs_tile3.mat set color {pack_color {if_else $slotstate_3 1 .15} {if_else $slotstate_3 1 .15} {if_else $slotstate_3 1 .15}}}
+         {ss_button_3_buffer.lbl set_showing TRUE}
+         {ss_button_3_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_3 TRUE}
+         {ss_button_3_buffer.lbl set_showing FALSE}
+         {ss_button_3_buffer.lbl set_type postertype}
+         {ss_button_3_buffer.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
+         {ss_button_3_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_3_shadow_buffer.lbl set_type postertype}
+         {ss_button_3_shadow_buffer.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
+         {gs_tile3.mat set color {pack_color {if_else $slotstate_3 1 .15} {if_else $slotstate_3 1 .15} {if_else $slotstate_3 1 .15}}}
+         {ss_button_3.lbl set_showing TRUE}
+         {ss_button_3_shadow.lbl set_showing TRUE}
+      }}
+   )
+   (set_debug_line_4 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      {if_else $scorespybuffer_4
+      {do
+         {set $scorespybuffer_4 FALSE}
+         {ss_button_4.lbl set_showing FALSE}
+         {ss_button_4.lbl set_type postertype}
+         {ss_button_4.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
+         {ss_button_4_shadow.lbl set_showing FALSE}
+         {ss_button_4_shadow.lbl set_type postertype}
+         {ss_button_4_shadow.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
+         {gs_tile4.mat set color {pack_color {if_else $slotstate_4 1 .15} {if_else $slotstate_4 1 .15} {if_else $slotstate_4 1 .15}}}
+         {ss_button_4_buffer.lbl set_showing TRUE}
+         {ss_button_4_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_4 TRUE}
+         {ss_button_4_buffer.lbl set_showing FALSE}
+         {ss_button_4_buffer.lbl set_type postertype}
+         {ss_button_4_buffer.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
+         {ss_button_4_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_4_shadow_buffer.lbl set_type postertype}
+         {ss_button_4_shadow_buffer.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
+         {gs_tile4.mat set color {pack_color {if_else $slotstate_4 1 .15} {if_else $slotstate_4 1 .15} {if_else $slotstate_4 1 .15}}}
+         {ss_button_4.lbl set_showing TRUE}
+         {ss_button_4_shadow.lbl set_showing TRUE}
+      }}
+   )
+   (set_debug_line_5 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      {if_else $scorespybuffer_5
+      {do
+         {set $scorespybuffer_5 FALSE}
+         {ss_button_5.lbl set_showing FALSE}
+         {ss_button_5.lbl set_type postertype}
+         {ss_button_5.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
+         {ss_button_5_shadow.lbl set_showing FALSE}
+         {ss_button_5_shadow.lbl set_type postertype}
+         {ss_button_5_shadow.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
+         {gs_tile5.mat set color {pack_color {if_else $slotstate_5 1 .15} {if_else $slotstate_5 1 .15} {if_else $slotstate_5 1 .15}}}
+         {ss_button_5_buffer.lbl set_showing TRUE}
+         {ss_button_5_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_5 TRUE}
+         {ss_button_5_buffer.lbl set_showing FALSE}
+         {ss_button_5_buffer.lbl set_type postertype}
+         {ss_button_5_buffer.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
+         {ss_button_5_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_5_shadow_buffer.lbl set_type postertype}
+         {ss_button_5_shadow_buffer.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
+         {gs_tile5.mat set color {pack_color {if_else $slotstate_5 1 .15} {if_else $slotstate_5 1 .15} {if_else $slotstate_5 1 .15}}}
+         {ss_button_5.lbl set_showing TRUE}
+         {ss_button_5_shadow.lbl set_showing TRUE}
+      }}
+   )
+   (set_debug_line_6 ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      {if_else $scorespybuffer_6
+      {do
+         {set $scorespybuffer_6 FALSE}
+         {ss_button_6.lbl set_showing FALSE}
+         {ss_button_6.lbl set_type postertype}
+         {ss_button_6.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
+         {ss_button_6_shadow.lbl set_showing FALSE}
+         {ss_button_6_shadow.lbl set_type postertype}
+         {ss_button_6_shadow.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
+         {gs_tile6.mat set color {pack_color {if_else $slotstate_6 1 .15} {if_else $slotstate_6 1 .15} {if_else $slotstate_6 1 .15}}}
+         {ss_button_6_buffer.lbl set_showing TRUE}
+         {ss_button_6_shadow_buffer.lbl set_showing TRUE}
+      }
+      {do
+         {set $scorespybuffer_6 TRUE}
+         {ss_button_6_buffer.lbl set_showing FALSE}
+         {ss_button_6_buffer.lbl set_type postertype}
+         {ss_button_6_buffer.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
+         {ss_button_6_shadow_buffer.lbl set_showing FALSE}
+         {ss_button_6_shadow_buffer.lbl set_type postertype}
+         {ss_button_6_shadow_buffer.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
+         {gs_tile6.mat set color {pack_color {if_else $slotstate_6 1 .15} {if_else $slotstate_6 1 .15} {if_else $slotstate_6 1 .15}}}
+         {ss_button_6.lbl set_showing TRUE}
+         {ss_button_6_shadow.lbl set_showing TRUE}
+      }}
+   )
+   (enter ;when the panel is entered
+         {$this iterate UILabel $l
+            {$l set color {pack_color 1 1 1}} ;set all label colors to white
+         }
+         {ss_button_0_shadow.lbl set color {pack_color 0 0 0}} ;then set all shadow labels to black
+         {ss_button_1_shadow.lbl set color {pack_color 0 0 0}}
+         {ss_button_2_shadow.lbl set color {pack_color 0 0 0}}
+         {ss_button_3_shadow.lbl set color {pack_color 0 0 0}}
+         {ss_button_4_shadow.lbl set color {pack_color 0 0 0}}
+         {ss_button_5_shadow.lbl set color {pack_color 0 0 0}}
+         {ss_button_6_shadow.lbl set color {pack_color 0 0 0}}
+         {ss_button_0_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {ss_button_1_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {ss_button_2_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {ss_button_3_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {ss_button_4_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {ss_button_5_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {ss_button_6_shadow_buffer.lbl set color {pack_color 0 0 0}}
+         {$this iterate UILabel $l
+            {$l set width 30} ;set the width of all labels
+         }
+         {$this iterate UILabel $l
+            {$l set height 30} ;set the height of all labels
+         }
+      {if {== {gamecfg get mode} career} ;only reset scorespy if in career (practice lingers inputs)
+         SCORESPY_RESET_HANDLER
+      }
+      {gs_background.view set_local_pos_index 0 -100} ;move the group as a whole
+      {gs_background.view set_local_pos_index 2 -85} ;move the group as a whole
+      {set $sstexty 215} ;set an anchor point for the text
+      {set $sstextx -100} ;set an anchor point for the text
+      {ss_button_0.lbl set_local_pos_index 0 $sstextx} ;move all of the labels into place
+      {ss_button_1.lbl set_local_pos_index 0 {+ $sstextx 44}}
+      {ss_button_2.lbl set_local_pos_index 0 {+ $sstextx 88}}
+      {ss_button_3.lbl set_local_pos_index 0 {+ $sstextx 132}}
+      {ss_button_4.lbl set_local_pos_index 0 {+ $sstextx 176}}
+      {ss_button_5.lbl set_local_pos_index 0 {+ $sstextx 230}}
+      {ss_button_6.lbl set_local_pos_index 0 {+ $sstextx 285}}
+      {ss_button_0.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_1.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_2.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_3.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_4.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_5.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_6.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_0_buffer.lbl set_local_pos_index 0 $sstextx}
+      {ss_button_1_buffer.lbl set_local_pos_index 0 {+ $sstextx 44}}
+      {ss_button_2_buffer.lbl set_local_pos_index 0 {+ $sstextx 88}}
+      {ss_button_3_buffer.lbl set_local_pos_index 0 {+ $sstextx 132}}
+      {ss_button_4_buffer.lbl set_local_pos_index 0 {+ $sstextx 176}}
+      {ss_button_5_buffer.lbl set_local_pos_index 0 {+ $sstextx 230}}
+      {ss_button_6_buffer.lbl set_local_pos_index 0 {+ $sstextx 285}}
+      {ss_button_0_buffer.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_1_buffer.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_2_buffer.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_3_buffer.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_4_buffer.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_5_buffer.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_6_buffer.lbl set_local_pos_index 2 $sstexty}
+      {set $sstextshadowoffset 1} ;set shadow offset anchor
+      {ss_button_0_shadow.lbl set_local_pos_index 0 {+ $sstextx $sstextshadowoffset}} ;move all of the shadow labels into place
+      {ss_button_1_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 44} $sstextshadowoffset}}
+      {ss_button_2_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 88} $sstextshadowoffset}}
+      {ss_button_3_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 132} $sstextshadowoffset}}
+      {ss_button_4_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 176} $sstextshadowoffset}}
+      {ss_button_5_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 230} $sstextshadowoffset}}
+      {ss_button_6_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 285} $sstextshadowoffset}}
+      {ss_button_0_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_1_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_2_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_3_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_4_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_5_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_6_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_0_shadow_buffer.lbl set_local_pos_index 0 {+ $sstextx $sstextshadowoffset}}
+      {ss_button_1_shadow_buffer.lbl set_local_pos_index 0 {+ {+ $sstextx 44} $sstextshadowoffset}}
+      {ss_button_2_shadow_buffer.lbl set_local_pos_index 0 {+ {+ $sstextx 88} $sstextshadowoffset}}
+      {ss_button_3_shadow_buffer.lbl set_local_pos_index 0 {+ {+ $sstextx 132} $sstextshadowoffset}}
+      {ss_button_4_shadow_buffer.lbl set_local_pos_index 0 {+ {+ $sstextx 176} $sstextshadowoffset}}
+      {ss_button_5_shadow_buffer.lbl set_local_pos_index 0 {+ {+ $sstextx 230} $sstextshadowoffset}}
+      {ss_button_6_shadow_buffer.lbl set_local_pos_index 0 {+ {+ $sstextx 285} $sstextshadowoffset}}
+      {ss_button_0_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_1_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_2_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_3_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_4_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_5_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_6_shadow_buffer.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {gs_tile0.mesh set_local_scale .25 .25 .25} ;shrink the fret images
+      {gs_tile1.mesh set_local_scale .25 .25 .25}
+      {gs_tile2.mesh set_local_scale .25 .25 .25}
+      {gs_tile3.mesh set_local_scale .25 .25 .25}
+      {gs_tile4.mesh set_local_scale .25 .25 .25}
+      {gs_tile5.mesh set_local_scale .25 .25 .25}
+      {gs_tile6.mesh set_local_scale .25 .25 .25}
+      {gs_tile0.mesh set_local_pos_index 0 0} ;move the fret images into place
+      {gs_tile1.mesh set_local_pos_index 0 20}
+      {gs_tile2.mesh set_local_pos_index 0 40}
+      {gs_tile3.mesh set_local_pos_index 0 60}
+      {gs_tile4.mesh set_local_pos_index 0 80}
+      {gs_tile5.mesh set_local_pos_index 0 105}
+      {gs_tile6.mesh set_local_pos_index 0 130}
+      {gs_tile0.mesh set_showing TRUE} ;force show all fret images
+      {gs_tile1.mesh set_showing TRUE}
+      {gs_tile2.mesh set_showing TRUE}
+      {gs_tile3.mesh set_showing TRUE}
+      {gs_tile4.mesh set_showing TRUE}
+      {gs_tile5.mesh set_showing TRUE}
+      {gs_tile6.mesh set_showing TRUE}
+   )
+}
 {new MidiLoaderPanel midi_loader_panel} ;oh yeah look at all these options we have here...
 {new GamePanel game
    (file "") ;ya got me, but yeah game panel doesnt load a milo
@@ -448,7 +805,6 @@
             {beatmatch set_music_speed 1.0} ;if music speed is set to 100%, set beatmatcher speed to 100%
          }
       }
-
       {script_task
          (delay 1.8)
          (units kTaskSeconds) ;wait 1.8 seconds
@@ -527,6 +883,11 @@
       {name_overlay_panel set_showing FALSE}
       {mtv_overlay_panel set_showing FALSE}
       {mtv_overlay_panel_buffer set_showing FALSE}
+      {scorespy_image_panel set_showing FALSE}
+      {if_else {== practice {gamecfg get mode}}
+         kDataUnhandled
+         SCORESPY_RESET_HANDLER
+      }
       kDataUnhandled
    )
    (game_won_msg ;ran on song completion
@@ -542,6 +903,7 @@
          }
       }
    ($encore)
+      {scorespy_image_panel set_showing FALSE}
       {set $author FALSE} ;we are done with the author flag for this song, reset to false
       {name_overlay_panel set_showing FALSE}
       {mtv_overlay_panel set_showing FALSE}
@@ -634,6 +996,7 @@
       {name_overlay_panel set_showing FALSE}
       {mtv_overlay_panel set_showing FALSE}
       {mtv_overlay_panel_buffer set_showing FALSE}
+      {scorespy_image_panel set_showing FALSE}
       {game set_realtime TRUE} ;return to default game speed
       {$this slow_music} ;slow down the music based on LOSE_MUSIC_SLOW_SEC define
       #ifdef HX_XBOX ;xbox acheivement handling
@@ -773,8 +1136,194 @@
       {meta_loading_goto main_screen} ;go to main screen, previously splash screen
    )
 }
+#define SLOT_TASK_HANDLERS
+(
+   (slot_duration_0
+      {if $slotstate_0
+         {set $slot_duration_0 {+ $slot_duration_0 0.034}}
+         {scorespy_image_panel set_debug_line_0}
+      }
+   )
+   (slot_duration_1
+      {if $slotstate_1
+         {set $slot_duration_1 {+ $slot_duration_1 0.034}}
+         {scorespy_image_panel set_debug_line_1}
+      }
+   )
+   (slot_duration_2
+      {if $slotstate_2
+         {set $slot_duration_2 {+ $slot_duration_2 0.034}}
+         {scorespy_image_panel set_debug_line_2}
+      }
+   )
+   (slot_duration_3
+      {if $slotstate_3
+         {set $slot_duration_3 {+ $slot_duration_3 0.034}}
+         {scorespy_image_panel set_debug_line_3}
+      }
+   )
+   (slot_duration_4
+      {if $slotstate_4
+         {set $slot_duration_4 {+ $slot_duration_4 0.034}}
+         {scorespy_image_panel set_debug_line_4}
+      }
+   )
+   (slot_duration_5
+      {if $slotstate_5
+         {set $slot_duration_5 {+ $slot_duration_5 0.034}}
+         {scorespy_image_panel set_debug_line_5}
+      }
+   )
+   (slot_duration_6
+      {if $slotstate_6
+         {set $slot_duration_6 {+ $slot_duration_6 0.034}}
+         {scorespy_image_panel set_debug_line_6}
+      }
+   )
+)
+#define SLOT_BUTTON_DOWN_HANDLE
+   (
+      {if {== $button kPad_X} ;if is pressed
+         {set $slotstate_0 TRUE}
+         {set $slotstate_count_0 {+ $slotstate_count_0 1}}
+         {if {== $slotstate_count_0 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_0) ;name the task for pruning later
+               (script
+                  {$this slot_duration_0} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+      {if {== $button kPad_Tri} ;if is pressed
+         {set $slotstate_1 TRUE}
+         {set $slotstate_count_1 {+ $slotstate_count_1 1}}
+         {if {== $slotstate_count_1 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_1) ;name the task for pruning later
+               (script
+                  {$this slot_duration_1} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+      {if {== $button kPad_Circle} ;if is pressed
+         {set $slotstate_3 TRUE}
+         {set $slotstate_count_3 {+ $slotstate_count_3 1}}
+         {if {== $slotstate_count_3 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_3) ;name the task for pruning later
+               (script
+                  {$this slot_duration_3} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+      {if {== $button kPad_Square} ;if is pressed
+         {set $slotstate_2 TRUE}
+         {set $slotstate_count_2 {+ $slotstate_count_2 1}}
+         {if {== $slotstate_count_2 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_2) ;name the task for pruning later
+               (script
+                  {$this slot_duration_2} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+      {if {== $button kPad_L1} ;if is pressed
+         {set $slotstate_4 TRUE}
+         {set $slotstate_count_4 {+ $slotstate_count_4 1}}
+         {if {== $slotstate_count_4 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_4) ;name the task for pruning later
+               (script
+                  {$this slot_duration_4} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+      {if {== $button kPad_DUp} ;if is pressed
+         {if {! $slotstate_5} {set $slotstate_count_5 {+ $slotstate_count_5 1}}}
+         {set $slotstate_5 TRUE}
+         {if {== $slotstate_count_5 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_5) ;name the task for pruning later
+               (script
+                  {$this slot_duration_5} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+      {if {== $button kPad_DDown} ;if is pressed
+         {if {! $slotstate_6} {set $slotstate_count_6 {+ $slotstate_count_6 1}}}
+         {set $slotstate_6 TRUE}
+         {if {== $slotstate_count_6 1}
+            {thread_task ;run a new task
+               (units kTaskSeconds) ;we are in ui so use ui seconds
+               (name slot_duration_task_6) ;name the task for pruning later
+               (script
+                  {$this slot_duration_6} ;run update_char_pic block
+                  {$task sleep 0.034} ;wait
+                  {$task loop} ;loop task
+               )
+            }
+         }
+      }
+   )
+#define SLOT_BUTTON_UP_HANDLE
+(
+   (BUTTON_UP_MSG
+      {if {== $button kPad_X} ;if is pressed
+         {set $slotstate_0 FALSE}
+         {scorespy_image_panel set_debug_line_0}
+      }
+      {if {== $button kPad_Tri} ;if is pressed
+         {set $slotstate_1 FALSE}
+         {scorespy_image_panel set_debug_line_1}
+      }
+      {if {== $button kPad_Circle} ;if is pressed
+         {set $slotstate_2 FALSE}
+         {scorespy_image_panel set_debug_line_2}
+      }
+      {if {== $button kPad_Square} ;if is pressed
+         {set $slotstate_3 FALSE}
+         {scorespy_image_panel set_debug_line_3}
+      }
+      {if {== $button kPad_L1} ;if is pressed
+         {set $slotstate_4 FALSE}
+         {scorespy_image_panel set_debug_line_4}
+      }
+      {if {== $button kPad_DUp} ;if is pressed
+         {set $slotstate_5 FALSE}
+         {scorespy_image_panel set_debug_line_5}
+      }
+      {if {== $button kPad_DDown} ;if is pressed
+         {set $slotstate_6 FALSE}
+         {scorespy_image_panel set_debug_line_6}
+      }
+   )
+)
 #define GAME_PANELS
-(midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel mtv_overlay_panel_buffer mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
+(midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel scorespy_image_panel mtv_overlay_panel_buffer mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
 {new GHScreen game_screen
    (panels GAME_PANELS
    #ifdef HX_XBOX ;inside isnt fixed for ps2 yet
@@ -784,12 +1333,15 @@
    (animate_transition FALSE) ;do not animate to this screen, cut to it
    (in_game TRUE) ;defines this screen as one that runs during game logic
    (attract_mode FALSE) ;attract mode is not used in dx 3.0
+   SLOT_TASK_HANDLERS ;scorespy task handlers
    (BUTTON_DOWN_MSG ;code to run when a specific button is pressed
       {if {== $button kPad_Start} ;if start is pressed
          {game set_paused TRUE} ;freeze the game
          {ui goto_screen pause_screen} ;open the pause screen
       }
+      SLOT_BUTTON_DOWN_HANDLE ;scorespy button down macros
    )
+   SLOT_BUTTON_UP_HANDLE ;scorespy button up macros
    (TRANSITION_COMPLETE_MSG ;run when the pause screen is closed
       {if $game_unpause_on_enter ;check if we are entering the game from the pause screen
          {game set_paused FALSE} ;unfreeze the game
@@ -799,6 +1351,7 @@
    )
 #ifdef HX_XBOX
    (enter
+      {scorespy_image_panel set_showing TRUE}
       {track_mask set_showing TRUE} ;show the track mask, only runs on xbox
    )
 #endif

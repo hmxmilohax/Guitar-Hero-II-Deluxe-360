@@ -265,7 +265,10 @@
          $component
          (restart.btn
             {[pause_screen]
-               restart})
+               restart}
+               {if {== {gamecfg get mode} career} ;if we aren't in practice mode
+                  SCORESPY_RESET_HANDLER ;reset scorespy buttons pressed
+               })
          (cancel.btn
             {ui
                goto_screen
