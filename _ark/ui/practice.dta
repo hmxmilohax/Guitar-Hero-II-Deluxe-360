@@ -8,7 +8,7 @@
    )
    (focus sel_section.lst) ;focus the section list
    (enter ;when the screen is entered
-      SCORESPY_RESET_HANDLER
+      POORSPY_RESET_HANDLER
       {gamecfg set (practice_sections 0) -1} ;reset the starting section
       {gamecfg set (practice_sections 1) -1} ;reset the ending section
       {sel_section.lst set_provider {game practice_section_provider}} ;provide the section data to the list
@@ -212,13 +212,13 @@
    (keep_section_text FALSE)
    (ignore_section '')
 }
-#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel scorespy_image_panel track_panel mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel)
+#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel poorspy_image_panel poorspy_image_panel_buffer track_panel mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel)
 {new GHScreen practice_game_screen
    (panels PRACTICE_PANELS)
    (allow_back FALSE)
    (animate_transition FALSE)
    (in_game TRUE)
-   SLOT_TASK_HANDLERS ;scorespy task calls
+   SLOT_TASK_HANDLERS ;poorspy task calls
    (BUTTON_DOWN_MSG
       {switch
          $button
@@ -234,18 +234,13 @@
             {ui goto_screen pract_pause_screen}
           )
        }
-       SLOT_BUTTON_DOWN_HANDLE ;scorespy task calls
+       SLOT_BUTTON_DOWN_HANDLE ;poorspy task calls
    )
-   SLOT_BUTTON_UP_HANDLE ;scorespy task calls
+   SLOT_BUTTON_UP_HANDLE ;poorspy task calls
    (enter
-      {practice_panel update}
-      {scorespy_image_panel set_debug_line_0}
-      {scorespy_image_panel set_debug_line_1}
-      {scorespy_image_panel set_debug_line_2}
-      {scorespy_image_panel set_debug_line_3}
-      {scorespy_image_panel set_debug_line_4}
-      {scorespy_image_panel set_debug_line_5}
-      {scorespy_image_panel set_debug_line_6}
+      POORSPY_RESET_HANDLER
+      {poorspy_image_panel set_showing {! $autoplay}}
+      {poorspy_image_panel_buffer set_showing {! $autoplay}}
    )
    (TRANSITION_COMPLETE_MSG
       {if

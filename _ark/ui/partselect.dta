@@ -121,7 +121,7 @@
       }
    )
    (enter ;when the screen is entered
-      SCORESPY_RESET_HANDLER ;reset scorespy buttons pressed
+      POORSPY_RESET_HANDLER ;reset poorspy buttons pressed
       {selpart_overlay_panel setup_text}
       {do
          ($song {gamecfg get_song}) ;setup variable for this code block

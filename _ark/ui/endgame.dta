@@ -735,6 +735,7 @@
          (comp_restart.btn 
             {complete_panel set showing FALSE}
             {helpbar set showing FALSE}
+            POORSPY_RESET_HANDLER
             {game_restart_fast}
          )
          (comp_quit.btn {autosave_goto main_screen})
