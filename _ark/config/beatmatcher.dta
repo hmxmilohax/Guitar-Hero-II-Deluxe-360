@@ -79,7 +79,7 @@
       (force_mercury kPad_Select)
       (mercury_switch kPad_RStickUp)))
 #else
-#ifdef FORCE_PAD
+#ifndef FORCE_PAD
 (controller
 (joypad
    (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4)
