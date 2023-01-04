@@ -83,7 +83,7 @@
 {set $trackrailcolor_r 1} {set $trackrailcolor_g 1} {set $trackrailcolor_b 1}
 
 ;sets custom color for poorspy strum indicators
-{set $poorspystrum_r 0.768627451} {set $poorspystrum_g 0.0} {set $poorspystrum_b 0.9745098039}
+{set $poorspystrum_r 0.4392156863} {set $poorspystrum_g 0.0} {set $poorspystrum_b 0.5568627451}
 
 ;removes quarter beatlines
 {set $removequarterbeatlines TRUE}

@@ -308,13 +308,13 @@
 }
 
 {if {! $poorspystrum_r}
-   {set $poorspystrum_r 0.768627451}
+   {set $poorspystrum_r 0.4392156863}
 }
 {if {! $poorspystrum_g}
    {set $poorspystrum_g 0.0}
 }
 {if {! $poorspystrum_b}
-   {set $poorspystrum_b 0.9745098039}
+   {set $poorspystrum_b 0.5568627451}
 }
 
 ;this randomizes the menu theme if none is forced by the user
