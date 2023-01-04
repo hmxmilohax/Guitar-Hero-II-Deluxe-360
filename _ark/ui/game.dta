@@ -271,66 +271,53 @@
    (file poorspy_viewer.milo) ;milo file used for the panel. found in /ui/gen/
    (set_debug_line ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
       {if_else $autoplay
+         kDataUnhandled
          {do
-            {poorspy_image_panel set_showing FALSE}
-            {poorspy_image_panel_buffer set_showing FALSE}
-         }
-         {do
-            {ss_button_0.lbl set_type postertype}
+            
             {ss_button_0.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
-            {ss_button_0_shadow.lbl set_type postertype}
             {ss_button_0_shadow.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
             {gs_tile0.mat set color {pack_color {if_else $slotstate_0 1 .15} {if_else $slotstate_0 1 .15} {if_else $slotstate_0 1 .15}}}
-            {ss_button_1.lbl set_type postertype}
             {ss_button_1.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
-            {ss_button_1_shadow.lbl set_type postertype}
             {ss_button_1_shadow.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
             {gs_tile1.mat set color {pack_color {if_else $slotstate_1 1 .15} {if_else $slotstate_1 1 .15} {if_else $slotstate_1 1 .15}}}
-            {ss_button_2.lbl set_type postertype}
             {ss_button_2.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
-            {ss_button_2_shadow.lbl set_type postertype}
             {ss_button_2_shadow.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
             {gs_tile2.mat set color {pack_color {if_else $slotstate_2 1 .15} {if_else $slotstate_2 1 .15} {if_else $slotstate_2 1 .15}}}
-            {ss_button_3.lbl set_type postertype}
             {ss_button_3.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
-            {ss_button_3_shadow.lbl set_type postertype}
             {ss_button_3_shadow.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
             {gs_tile3.mat set color {pack_color {if_else $slotstate_3 1 .15} {if_else $slotstate_3 1 .15} {if_else $slotstate_3 1 .15}}}
-            {ss_button_4.lbl set_type postertype}
             {ss_button_4.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
-            {ss_button_4_shadow.lbl set_type postertype}
             {ss_button_4_shadow.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
             {gs_tile4.mat set color {pack_color {if_else $slotstate_4 1 .15} {if_else $slotstate_4 1 .15} {if_else $slotstate_4 1 .15}}}
-            {ss_button_5.lbl set_type postertype}
             {ss_button_5.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
-            {ss_button_5_shadow.lbl set_type postertype}
             {ss_button_5_shadow.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
             {gs_tile5.mat set color {pack_color {if_else $slotstate_5 1 .15} {if_else $slotstate_5 1 .15} {if_else $slotstate_5 1 .15}}}
-            {ss_button_6.lbl set_type postertype}
             {ss_button_6.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
-            {ss_button_6_shadow.lbl set_type postertype}
             {ss_button_6_shadow.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
             {gs_tile6.mat set color {pack_color {if_else $slotstate_6 1 .15} {if_else $slotstate_6 1 .15} {if_else $slotstate_6 1 .15}}}
          }
       }
    )
    (enter ;when the panel is entered
-         {$this iterate UILabel $l
-            {$l set color {pack_color 1 1 1}} ;set all label colors to white
-         }
-         {ss_button_0_shadow.lbl set color {pack_color 0 0 0}} ;then set all shadow labels to black
-         {ss_button_1_shadow.lbl set color {pack_color 0 0 0}}
-         {ss_button_2_shadow.lbl set color {pack_color 0 0 0}}
-         {ss_button_3_shadow.lbl set color {pack_color 0 0 0}}
-         {ss_button_4_shadow.lbl set color {pack_color 0 0 0}}
-         {ss_button_5_shadow.lbl set color {pack_color 0 0 0}}
-         {ss_button_6_shadow.lbl set color {pack_color 0 0 0}}
-         {$this iterate UILabel $l
-            {$l set width 30} ;set the width of all labels
-         }
-         {$this iterate UILabel $l
-            {$l set height 30} ;set the height of all labels
-         }
+      {$this iterate UILabel $l
+         {$l set color {pack_color 1 1 1}} ;set all label colors to white
+      }
+      {$this iterate UILabel $l
+         {$l set_type postertype} ;set all label colors to white
+      }
+      {$this iterate UILabel $l
+         {$l set width 30} ;set the width of all labels
+      }
+      {$this iterate UILabel $l
+         {$l set height 30} ;set the height of all labels
+      }
+      {ss_button_0_shadow.lbl set color {pack_color 0 0 0}} ;then set all shadow labels to black
+      {ss_button_1_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_2_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_3_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_4_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_5_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_6_shadow.lbl set color {pack_color 0 0 0}}
       {if {== {gamecfg get mode} career} ;only reset poorspy if in career (practice lingers inputs)
          POORSPY_RESET_HANDLER
       }
@@ -942,25 +929,25 @@
 (
    (slot_duration
       {if $slotstate_0
-         {set $slot_duration_0 {+ $slot_duration_0 0.034}}
+         {set $slot_duration_0 {+ $slot_duration_0 0.051}}
       }
       {if $slotstate_1
-         {set $slot_duration_1 {+ $slot_duration_1 0.034}}
+         {set $slot_duration_1 {+ $slot_duration_1 0.051}}
       }
       {if $slotstate_2
-         {set $slot_duration_2 {+ $slot_duration_2 0.034}}
+         {set $slot_duration_2 {+ $slot_duration_2 0.051}}
       }
       {if $slotstate_3
-         {set $slot_duration_3 {+ $slot_duration_3 0.034}}
+         {set $slot_duration_3 {+ $slot_duration_3 0.051}}
       }
       {if $slotstate_4
-         {set $slot_duration_4 {+ $slot_duration_4 0.034}}
+         {set $slot_duration_4 {+ $slot_duration_4 0.051}}
       }
       {if $slotstate_5
-         {set $slot_duration_5 {+ $slot_duration_5 0.034}}
+         {set $slot_duration_5 {+ $slot_duration_5 0.051}}
       }
       {if $slotstate_6
-         {set $slot_duration_6 {+ $slot_duration_6 0.034}}
+         {set $slot_duration_6 {+ $slot_duration_6 0.051}}
       }
       {if {! $autoplay}
          {if_else $p0_evenpoorspy
@@ -999,7 +986,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
@@ -1017,7 +1004,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
@@ -1035,7 +1022,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
@@ -1053,7 +1040,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
@@ -1071,7 +1058,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
@@ -1089,7 +1076,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
@@ -1107,7 +1094,7 @@
                   (name slot_duration_task) ;name the task for pruning later
                   (script
                      {$this slot_duration} ;run update_char_pic block
-                     {$task sleep 0.034} ;wait
+                     {$task sleep 0.051} ;wait
                      {$task loop} ;loop task
                   )
                }
