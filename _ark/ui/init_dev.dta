@@ -306,6 +306,17 @@
 {if {! $custom_os_disabled_color_b}
    {set $custom_os_disabled_color_b 1}
 }
+
+{if {! $poorspystrum_r}
+   {set $poorspystrum_r 0.768627451}
+}
+{if {! $poorspystrum_g}
+   {set $poorspystrum_g 0.0}
+}
+{if {! $poorspystrum_b}
+   {set $poorspystrum_b 0.9745098039}
+}
+
 ;this randomizes the menu theme if none is forced by the user
 {if_else {== $menutheme none}
          {switch
