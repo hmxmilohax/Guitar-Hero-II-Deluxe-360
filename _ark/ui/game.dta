@@ -273,42 +273,34 @@
       {if_else $autoplay
          kDataUnhandled
          {do
-            
             {ss_button_0.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
             {ss_button_0_shadow.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
-            {if_else $customsmashercolor
-            {gs_tile0.mat set color {pack_color {if_else $slotstate_0 $smashercolor_r {* $smashercolor_r .15}} {if_else $slotstate_0 $smashercolor_g {* $smashercolor_g .15}} {if_else $slotstate_0 $smashercolor_b {* $smashercolor_b .15}}}}
-            {gs_tile0.mat set color {pack_color {if_else $slotstate_0 0.09411764706 0.01411764706} {if_else $slotstate_0 0.6784313725 0.1017647059} 0.0}}}
+            {gs_tile0.mat set alpha {if_else $slotstate_0 $poorspyon $poorspyoff}}
             {ss_button_1.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
             {ss_button_1_shadow.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
-            {if_else $customsmashercolor
-            {gs_tile1.mat set color {pack_color {if_else $slotstate_1 $smashercolor_r {* $smashercolor_r .15}} {if_else $slotstate_1 $smashercolor_g {* $smashercolor_g .15}} {if_else $slotstate_1 $smashercolor_b {* $smashercolor_b .15}}}}
-            {gs_tile1.mat set color {pack_color {if_else $slotstate_1 0.631372549 0.09470588235} {if_else $slotstate_1 0.01960784314 0.002941176471} {if_else $slotstate_1 0.1176470588 0.01764705882}}}}
+            {gs_tile1.mat set alpha {if_else $slotstate_1 $poorspyon $poorspyoff}}
             {ss_button_2.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
             {ss_button_2_shadow.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
-            {if_else $customsmashercolor
-            {gs_tile2.mat set color {pack_color {if_else $slotstate_2 $smashercolor_r {* $smashercolor_r .15}} {if_else $slotstate_2 $smashercolor_g {* $smashercolor_g .15}} {if_else $slotstate_2 $smashercolor_b {* $smashercolor_b .15}}}}
-            {gs_tile2.mat set color {pack_color {if_else $slotstate_2 0.8823529412 0.1323529412} {if_else $slotstate_2 0.8 0.12} {if_else $slotstate_2 0.007843137255 0.001176470588}}}}
+            {gs_tile2.mat set alpha {if_else $slotstate_2 $poorspyon $poorspyoff}}
             {ss_button_3.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
             {ss_button_3_shadow.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
-            {if_else $customsmashercolor
-            {gs_tile3.mat set color {pack_color {if_else $slotstate_3 $smashercolor_r {* $smashercolor_r .15}} {if_else $slotstate_3 $smashercolor_g {* $smashercolor_g .15}} {if_else $slotstate_3 $smashercolor_b {* $smashercolor_b .15}}}}
-            {gs_tile3.mat set color {pack_color {if_else $slotstate_3 0.01960784314 0.002941176471} {if_else $slotstate_3 0.1882352941 0.02823529412} {if_else $slotstate_3 0.631372549 0.09470588235}}}}
+            {gs_tile3.mat set alpha {if_else $slotstate_3 $poorspyon $poorspyoff}}
             {ss_button_4.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
             {ss_button_4_shadow.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
-            {if_else $customsmashercolor
-            {gs_tile4.mat set color {pack_color {if_else $slotstate_4 $smashercolor_r {* $smashercolor_r .15}} {if_else $slotstate_4 $smashercolor_g {* $smashercolor_g .15}} {if_else $slotstate_4 $smashercolor_b {* $smashercolor_b .15}}}}
-            {gs_tile4.mat set color {pack_color {if_else $slotstate_4 0.6901960784 0.1035294118} {if_else $slotstate_4 0.3960784314 0.05941176471} 0.0}}}
+            {gs_tile4.mat set alpha {if_else $slotstate_4 $poorspyon $poorspyoff}}
             {ss_button_5.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
             {ss_button_5_shadow.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
-            {gs_tile5.mat set color {pack_color {if_else $slotstate_5 $poorspystrum_r {* $poorspystrum_r .15}} {if_else $slotstate_5 $poorspystrum_g {* $poorspystrum_g .15}} {if_else $slotstate_5 $poorspystrum_b {* $poorspystrum_b .15}}}}
+            {gs_tile5.mat set alpha {if_else $slotstate_5 $poorspyon $poorspyoff}}
             {ss_button_6.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
             {ss_button_6_shadow.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
-            {gs_tile6.mat set color {pack_color {if_else $slotstate_6 $poorspystrum_r {* $poorspystrum_r .15}} {if_else $slotstate_6 $poorspystrum_g {* $poorspystrum_g .15}} {if_else $slotstate_6 $poorspystrum_b {* $poorspystrum_b .15}}}}
+            {gs_tile6.mat set alpha {if_else $slotstate_6 $poorspyon $poorspyoff}}
+
          }
       }
    )
    (enter ;when the panel is entered
+      {set $poorspyon 0.55}
+      {set $poorspyoff 0.25}
       {$this iterate UILabel $l
          {$l set color {pack_color 1 1 1}} ;set all label colors to white
       }
@@ -385,6 +377,29 @@
       {gs_tile4.mesh set_showing TRUE}
       {gs_tile5.mesh set_showing TRUE}
       {gs_tile6.mesh set_showing TRUE}
+      {if_else $customsmashercolor
+               {gs_tile0.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
+               {gs_tile0.mat set color {pack_color 0.09411764706 0.6784313725 0.0}}
+            }
+      {if_else $customsmashercolor
+               {gs_tile1.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
+               {gs_tile1.mat set color {pack_color 0.631372549 0.01960784314 0.1176470588}}
+            }
+      {if_else $customsmashercolor
+               {gs_tile2.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
+               {gs_tile2.mat set color {pack_color 0.8823529412 0.8 0.12}}
+            }
+      {if_else $customsmashercolor
+               {gs_tile3.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
+               {gs_tile3.mat set color {pack_color 0.01960784314 0.1882352941 0.631372549}}
+            }
+      {if_else $customsmashercolor
+               {gs_tile4.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
+               {gs_tile4.mat set color {pack_color 0.6901960784 0.3960784314 0.0}}
+            }
+      {gs_tile5.mat set color {pack_color $poorspystrum_r $poorspystrum_g $poorspystrum_b}}
+      {gs_tile6.mat set color {pack_color $poorspystrum_r $poorspystrum_g $poorspystrum_b}}
+      {$this set_debug_line}
    )
 )
 {new
@@ -1168,7 +1183,7 @@
 #ifdef HX_XBOX
    (enter
       {poorspy_image_panel set_showing {! $autoplay}}
-      {poorspy_image_panel_buffer set_showing {! $autoplay}}
+      {poorspy_image_panel_buffer set_showing FALSE}
       {track_mask set_showing TRUE} ;show the track mask, only runs on xbox
    )
 #endif

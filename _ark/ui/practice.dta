@@ -240,7 +240,7 @@
    (enter
       POORSPY_RESET_HANDLER
       {poorspy_image_panel set_showing {! $autoplay}}
-      {poorspy_image_panel_buffer set_showing {! $autoplay}}
+      {poorspy_image_panel_buffer set_showing FALSE}
    )
    (TRANSITION_COMPLETE_MSG
       {if
