@@ -263,13 +263,13 @@
    {set $slotstate_count_5 0}
    {set $slot_duration_6 0}
    {set $slotstate_count_6 0}
-   {poorspy_image_panel set_debug_line}
-   {poorspy_image_panel_buffer set_debug_line}
+   {poorspy_image_panel poorspy_lbl_update}
+   {poorspy_image_panel_buffer poorspy_lbl_update}
 )
 #define POORSPY_PANEL_HANDLER
 (
    (file poorspy_viewer.milo) ;milo file used for the panel. found in /ui/gen/
-   (set_debug_line ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+   (poorspy_lbl_update ;for debug use, usage: {name_overlay_panel poorspy_lbl_update {sprint "whatever you want" $includingvars "will work"}}
       {if_else $autoplay
          kDataUnhandled
          {do
