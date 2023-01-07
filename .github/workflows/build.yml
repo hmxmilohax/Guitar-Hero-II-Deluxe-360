@@ -28,7 +28,7 @@ jobs:
           name: GH2DX-Xbox
           path: |
             gen
-            default.xex
+            _build/default.xex
             
   build_xbox_force_guitar:
     runs-on: ubuntu-latest
@@ -56,4 +56,4 @@ jobs:
           name: GH2DX-Xbox-force-all-as-guitar-controller
           path: |
             gen
-            default.xex
+            _build/default.xex
