@@ -168,6 +168,7 @@
          (
             os_cloneherohud os_brighthopos os_darkstrums
             os_gh1track os_gh3track os_voidfrets os_eyeballgems
+            os_poorspytex
          )
       }
    )
@@ -244,6 +245,24 @@
                   {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $gh1track FALSE} ;gh3 track turns off gh1 track
                   {set $gh3track TRUE}
+               }
+            }
+         )
+         (os_poorspytex
+            {if_else {== $poorspybuttontype gh2}
+               {do
+                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
+                  {set $poorspybuttontype scorespy}
+               }
+               {if_else {== $poorspybuttontype scorespy}
+                  {do
+                     {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
+                     {set $poorspybuttontype xplorer} ;gh3 track turns off gh1 track
+                  }
+                  {do
+                     {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
+                     {set $poorspybuttontype gh2} ;gh3 track turns off gh1 track
+                  }
                }
             }
          )

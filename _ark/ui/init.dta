@@ -21,6 +21,14 @@
 ;game and turns off some additional noises
 {set $focusmode FALSE}
 
+;set the texture of the poorspy buttons
+;available - gh2 scorespy xplorer
+{set $poorspybuttontype xplorer}
+
+;set the texture of the poorspy strums
+;available - gh2
+{set $poorspystrumtype gh2}
+
 ;The game now adjusts the note window to compensate for speedups.
 ;To turn this off and go back to the old default, set this to TRUE
 {set $precision FALSE}

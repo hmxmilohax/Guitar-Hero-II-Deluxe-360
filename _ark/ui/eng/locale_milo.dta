@@ -211,6 +211,7 @@
 (os_eyeballhead {sprint "Eyeball Head" {if_else {== $cheat_crowd_heads eyeball_crowd_heads} ": ON" ": OFF"}})
 (os_flaminghead {sprint "Flaming Head" {if_else $cheat_enabled_flaming_head ": ON" ": OFF"}})
 (os_neckless {sprint "Neckless" {if_else $neckless ": ON" ": OFF"}})
+(os_poorspytex {sprint "Poorspy Tex" ": " $poorspybuttontype})
 (os_performance {sprint "Performance Mode" {if_else $cheat_enabled_performance_mode ": ON" ": OFF"}})
 (os_roxbury {sprint "Roxbury Mode" {if_else $barf_cheat ": ON" ": OFF"}})
 (os_gh1track {sprint "GH1 Notes" {if_else $gh1track ": ON" ": OFF"}})

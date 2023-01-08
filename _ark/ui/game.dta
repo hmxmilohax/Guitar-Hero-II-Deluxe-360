@@ -299,7 +299,7 @@
       }
    )
    (enter ;when the panel is entered
-      {set $poorspyon 0.55}
+      {set $poorspyon 0.75}
       {set $poorspyoff 0.25}
       {set $scorespyupdatesec {if_else $focusmode 0.026 0.051}}
       {$this iterate UILabel $l
@@ -378,6 +378,8 @@
       {gs_tile4.mesh set_showing TRUE}
       {gs_tile5.mesh set_showing TRUE}
       {gs_tile6.mesh set_showing TRUE}
+      {ss_button_0.tex set_bitmap {sprint "track/custom_track_textures/ss_button_" $poorspybuttontype "_keep.png"}}
+      {ss_button_5.tex set_bitmap {sprint "track/custom_track_textures/ss_strum_" $poorspystrumtype "_keep.png"}}
       {if_else $customsmashercolor
                {gs_tile0.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
                {gs_tile0.mat set color {pack_color 0.09411764706 0.6784313725 0.0}}
