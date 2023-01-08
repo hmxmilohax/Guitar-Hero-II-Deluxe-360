@@ -1,0 +1,627 @@
+#define POORSPY_RESET_HANDLER
+(
+   {if {exists slot_duration_task} ;check if the below task is running
+      {delete slot_duration_task} ;delete the task if already running
+   }
+   {set $slot_duration_0 0}
+   {set $slotstate_count_0 0}
+   {set $slot_duration_1 0}
+   {set $slotstate_count_1 0}
+   {set $slot_duration_2 0}
+   {set $slotstate_count_2 0}
+   {set $slot_duration_3 0}
+   {set $slotstate_count_3 0}
+   {set $slot_duration_4 0}
+   {set $slotstate_count_4 0}
+   {set $slot_duration_5 0}
+   {set $slotstate_count_5 0}
+   {set $slot_duration_6 0}
+   {set $slotstate_count_6 0}
+   {poorspy_image_panel poorspy_lbl_update}
+   {poorspy_image_panel_buffer poorspy_lbl_update}
+)
+#define POORSPY_PANEL_HANDLER
+(
+   (file poorspy_viewer.milo) ;milo file used for the panel. found in /ui/gen/
+   (poorspy_lbl_update ;for debug use, usage: {name_overlay_panel poorspy_lbl_update {sprint "whatever you want" $includingvars "will work"}}
+      {if_else $autoplay
+         kDataUnhandled
+         {do
+            {ss_button_0.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
+            {ss_button_0_shadow.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
+            {gs_tile0.mat set alpha {if_else $slotstate_0 $poorspyon $poorspyoff}}
+            {ss_button_1.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
+            {ss_button_1_shadow.lbl set_text {sprint $slotstate_count_1 "\n" $slot_duration_1}}
+            {gs_tile1.mat set alpha {if_else $slotstate_1 $poorspyon $poorspyoff}}
+            {ss_button_2.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
+            {ss_button_2_shadow.lbl set_text {sprint $slotstate_count_2 "\n" $slot_duration_2}}
+            {gs_tile2.mat set alpha {if_else $slotstate_2 $poorspyon $poorspyoff}}
+            {ss_button_3.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
+            {ss_button_3_shadow.lbl set_text {sprint $slotstate_count_3 "\n" $slot_duration_3}}
+            {gs_tile3.mat set alpha {if_else $slotstate_3 $poorspyon $poorspyoff}}
+            {ss_button_4.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
+            {ss_button_4_shadow.lbl set_text {sprint $slotstate_count_4 "\n" $slot_duration_4}}
+            {gs_tile4.mat set alpha {if_else $slotstate_4 $poorspyon $poorspyoff}}
+            {ss_button_5.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
+            {ss_button_5_shadow.lbl set_text {sprint $slotstate_count_5 "\n" $slot_duration_5}}
+            {gs_tile5.mat set alpha {if_else $slotstate_5 $poorspyon $poorspyoff}}
+            {ss_button_6.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
+            {ss_button_6_shadow.lbl set_text {sprint $slotstate_count_6 "\n" $slot_duration_6}}
+            {gs_tile6.mat set alpha {if_else $slotstate_6 $poorspyon $poorspyoff}}
+
+         }
+      }
+   )
+   (enter ;when the panel is entered
+      {set $poorspyon 0.75}
+      {set $poorspyoff 0.25}
+      {set $scorespyupdatesec {if_else $focusmode 0.026 0.051}}
+      {$this iterate UILabel $l
+         {$l set color {pack_color 1 1 1}} ;set all label colors to white
+      }
+      {$this iterate UILabel $l
+         {$l set_type postertype} ;set all label colors to white
+      }
+      {$this iterate UILabel $l
+         {$l set width 30} ;set the width of all labels
+      }
+      {$this iterate UILabel $l
+         {$l set height 30} ;set the height of all labels
+      }
+      {ss_button_0_shadow.lbl set color {pack_color 0 0 0}} ;then set all shadow labels to black
+      {ss_button_1_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_2_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_3_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_4_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_5_shadow.lbl set color {pack_color 0 0 0}}
+      {ss_button_6_shadow.lbl set color {pack_color 0 0 0}}
+      {if {== {gamecfg get mode} career} ;only reset poorspy if in career (practice lingers inputs)
+         POORSPY_RESET_HANDLER
+      }
+      {gs_background.view set_local_pos_index 0 -100} ;move the group as a whole
+      {gs_background.view set_local_pos_index 2 -85} ;move the group as a whole
+      {set $sstexty 215} ;set an anchor point for the text
+      {set $sstextx -100} ;set an anchor point for the text
+      {ss_button_0.lbl set_local_pos_index 0 $sstextx} ;move all of the labels into place
+      {ss_button_1.lbl set_local_pos_index 0 {+ $sstextx 44}}
+      {ss_button_2.lbl set_local_pos_index 0 {+ $sstextx 88}}
+      {ss_button_3.lbl set_local_pos_index 0 {+ $sstextx 132}}
+      {ss_button_4.lbl set_local_pos_index 0 {+ $sstextx 176}}
+      {ss_button_5.lbl set_local_pos_index 0 {+ $sstextx 230}}
+      {ss_button_6.lbl set_local_pos_index 0 {+ $sstextx 285}}
+      {ss_button_0.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_1.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_2.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_3.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_4.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_5.lbl set_local_pos_index 2 $sstexty}
+      {ss_button_6.lbl set_local_pos_index 2 $sstexty}
+      {set $sstextshadowoffset 1} ;set shadow offset anchor
+      {ss_button_0_shadow.lbl set_local_pos_index 0 {+ $sstextx $sstextshadowoffset}} ;move all of the shadow labels into place
+      {ss_button_1_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 44} $sstextshadowoffset}}
+      {ss_button_2_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 88} $sstextshadowoffset}}
+      {ss_button_3_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 132} $sstextshadowoffset}}
+      {ss_button_4_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 176} $sstextshadowoffset}}
+      {ss_button_5_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 230} $sstextshadowoffset}}
+      {ss_button_6_shadow.lbl set_local_pos_index 0 {+ {+ $sstextx 285} $sstextshadowoffset}}
+      {ss_button_0_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_1_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_2_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_3_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_4_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_5_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {ss_button_6_shadow.lbl set_local_pos_index 2 {- $sstexty $sstextshadowoffset}}
+      {gs_tile0.mesh set_local_scale .25 .25 .25} ;shrink the fret images
+      {gs_tile1.mesh set_local_scale .25 .25 .25}
+      {gs_tile2.mesh set_local_scale .25 .25 .25}
+      {gs_tile3.mesh set_local_scale .25 .25 .25}
+      {gs_tile4.mesh set_local_scale .25 .25 .25}
+      {gs_tile5.mesh set_local_scale .25 .25 .25}
+      {gs_tile6.mesh set_local_scale .25 .25 .25}
+      {gs_tile0.mesh set_local_pos_index 0 0} ;move the fret images into place
+      {gs_tile1.mesh set_local_pos_index 0 20}
+      {gs_tile2.mesh set_local_pos_index 0 40}
+      {gs_tile3.mesh set_local_pos_index 0 60}
+      {gs_tile4.mesh set_local_pos_index 0 80}
+      {gs_tile5.mesh set_local_pos_index 0 105}
+      {gs_tile6.mesh set_local_pos_index 0 130}
+      {gs_tile0.mesh set_showing TRUE} ;force show all fret images
+      {gs_tile1.mesh set_showing TRUE}
+      {gs_tile2.mesh set_showing TRUE}
+      {gs_tile3.mesh set_showing TRUE}
+      {gs_tile4.mesh set_showing TRUE}
+      {gs_tile5.mesh set_showing TRUE}
+      {gs_tile6.mesh set_showing TRUE}
+      {ss_button_0.tex set_bitmap {sprint "track/custom_track_textures/ss_button_" $poorspybuttontype "_keep.png"}}
+      {ss_button_5.tex set_bitmap {sprint "track/custom_track_textures/ss_strum_" $poorspystrumtype "_keep.png"}}
+      {if_else $customsmashercolor
+         {gs_tile0.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile0.mat set color SMASHER1_COLOR}
+            {gs_tile0.mat set color {pack_color 0.09411764706 0.6784313725 0.0}}
+         }
+      }
+      {if_else $customsmashercolor
+         {gs_tile1.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile1.mat set color SMASHER2_COLOR}
+            {gs_tile1.mat set color {pack_color 0.631372549 0.01960784314 0.1176470588}}
+         }
+      }
+      {if_else $customsmashercolor
+         {gs_tile2.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile2.mat set color SMASHER3_COLOR}
+            {gs_tile2.mat set color {pack_color 0.8823529412 0.8 0.12}}
+         }
+      }
+      {if_else $customsmashercolor
+         {gs_tile3.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile3.mat set color SMASHER4_COLOR}
+            {gs_tile3.mat set color {pack_color 0.01960784314 0.1882352941 0.631372549}}
+         }
+      }
+      {if_else $customsmashercolor
+         {gs_tile4.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile4.mat set color SMASHER5_COLOR}
+            {gs_tile4.mat set color {pack_color 0.6901960784 0.3960784314 0.0}}
+         }
+      }
+      {gs_tile5.mat set color {pack_color $poorspystrum_r $poorspystrum_g $poorspystrum_b}}
+      {gs_tile6.mat set color {pack_color $poorspystrum_r $poorspystrum_g $poorspystrum_b}}
+      {$this poorspy_lbl_update}
+   )
+)
+{new
+   GHPanel ;panel type
+   poorspy_image_panel_buffer ;panel name
+   POORSPY_PANEL_HANDLER
+}
+{new
+   GHPanel ;panel type
+   poorspy_image_panel ;panel name
+   POORSPY_PANEL_HANDLER
+}
+#define SLOT_TASK_HANDLERS
+(
+   (slot_duration
+      {if $slotstate_0
+         {set $slot_duration_0 {+ $slot_duration_0 $scorespyupdatesec}}
+      }
+      {if $slotstate_1
+         {set $slot_duration_1 {+ $slot_duration_1 $scorespyupdatesec}}
+      }
+      {if $slotstate_2
+         {set $slot_duration_2 {+ $slot_duration_2 $scorespyupdatesec}}
+      }
+      {if $slotstate_3
+         {set $slot_duration_3 {+ $slot_duration_3 $scorespyupdatesec}}
+      }
+      {if $slotstate_4
+         {set $slot_duration_4 {+ $slot_duration_4 $scorespyupdatesec}}
+      }
+      {if $slotstate_5
+         {set $slot_duration_5 {+ $slot_duration_5 $scorespyupdatesec}}
+      }
+      {if $slotstate_6
+         {set $slot_duration_6 {+ $slot_duration_6 $scorespyupdatesec}}
+      }
+      {if {! $autoplay}
+         {if_else $p0_evenpoorspy
+            {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+               (0
+                  {poorspy_image_panel_buffer poorspy_lbl_update}
+                  {poorspy_image_panel set_showing FALSE}
+                  {poorspy_image_panel_buffer set_showing TRUE}
+                  {set $p0_evenpoorspy FALSE}
+               )
+               kDataUnhandled
+            }
+            {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+               (0 
+                  {poorspy_image_panel poorspy_lbl_update}
+                  {poorspy_image_panel_buffer set_showing FALSE}
+                  {poorspy_image_panel set_showing TRUE}
+                  {set $p0_evenpoorspy TRUE}
+               )
+               kDataUnhandled
+            }
+         }
+      }
+   )
+)
+#define SLOT_0_HANDLE
+(
+         {set $slotstate_0 TRUE}
+         {set $slotstate_count_0 {+ $slotstate_count_0 1}}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_0 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_1_HANDLE
+(
+         {set $slotstate_1 TRUE}
+         {set $slotstate_count_1 {+ $slotstate_count_1 1}}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_1 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_2_HANDLE
+(
+         {set $slotstate_2 TRUE}
+         {set $slotstate_count_2 {+ $slotstate_count_2 1}}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_2 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_3_HANDLE
+(
+         {set $slotstate_3 TRUE}
+         {set $slotstate_count_3 {+ $slotstate_count_3 1}}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_3 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_4_HANDLE
+(
+         {set $slotstate_4 TRUE}
+         {set $slotstate_count_4 {+ $slotstate_count_4 1}}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_4 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_5_HANDLE
+(
+         {if {! $slotstate_5} {set $slotstate_count_5 {+ $slotstate_count_5 1}}}
+         {set $slotstate_5 TRUE}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_5 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_6_HANDLE
+(
+         {if {! $slotstate_6} {set $slotstate_count_6 {+ $slotstate_count_6 1}}}
+         {set $slotstate_6 TRUE}
+         {if_else {exists slot_duration_task} ;check if the below task is running
+            kDataUnhandled
+            {if {== $slotstate_count_6 1}
+               {thread_task ;run a new task
+                  (units kTaskSeconds) ;we are in ui so use ui seconds
+                  (name slot_duration_task) ;name the task for pruning later
+                  (script
+                     {$this slot_duration} ;run update_char_pic block
+                     {$task sleep $scorespyupdatesec} ;wait
+                     {$task loop} ;loop task
+                  )
+               }
+            }
+         }
+)
+#define SLOT_BUTTON_DOWN_HANDLE
+   (
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L2 #else kPad_X #endif}}
+         SLOT_0_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_L2 #else kPad_X #endif}}
+         SLOT_0_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_X #else kPad_X #endif}}
+         SLOT_0_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_X #endif}}
+         SLOT_0_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_X #else kPad_X #endif}}
+         SLOT_0_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_X #else kPad_X #endif}}
+         SLOT_0_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_Tri #endif}}
+         SLOT_1_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_Tri #endif}}
+         SLOT_1_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_Tri #endif}}
+         SLOT_1_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_Circle #else kPad_Tri #endif}}
+         SLOT_1_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_Tri #else kPad_Tri #endif}}
+         SLOT_1_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_Tri #else kPad_Tri #endif}}
+         SLOT_1_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R1 #else kPad_Circle #endif}}
+         SLOT_2_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_R1 #else kPad_Circle #endif}}
+         SLOT_2_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R1 #else kPad_Circle #endif}}
+         SLOT_2_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_Tri #else kPad_Circle #endif}}
+         SLOT_2_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_Circle #else kPad_Square #endif}}
+         SLOT_2_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_Square #else kPad_Square #endif}}
+         SLOT_2_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_Square #endif}}
+         SLOT_3_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_Square #endif}}
+         SLOT_3_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_Square #endif}}
+         SLOT_3_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_X #else kPad_Square #endif}}
+         SLOT_3_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_Square #else kPad_Circle #endif}}
+         SLOT_3_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_Circle #else kPad_Circle #endif}}
+         SLOT_3_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_X #else kPad_L1 #endif}}
+         SLOT_4_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_X #else kPad_L1 #endif}}
+         SLOT_4_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L2 #else kPad_L1 #endif}}
+         SLOT_4_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_Square #else kPad_L1 #endif}}
+         SLOT_4_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_L1 #endif}}
+         SLOT_4_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_L1 #endif}}
+         SLOT_4_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button kPad_DUp}}
+         SLOT_5_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button kPad_DUp}}
+         SLOT_5_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button kPad_DDown}}
+         SLOT_5_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button kPad_DUp}}
+         SLOT_5_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button kPad_DUp}}
+         SLOT_5_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button kPad_DUp}}
+         SLOT_5_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button kPad_DDown}}
+         SLOT_6_HANDLE
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button kPad_DDown}}
+         SLOT_6_HANDLE
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button kPad_DUp}}
+         SLOT_6_HANDLE
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button kPad_DDown}}
+         SLOT_6_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button kPad_DDown}}
+         SLOT_6_HANDLE
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button kPad_DDown}}
+         SLOT_6_HANDLE
+      }
+   )
+#define SLOT_BUTTON_UP_HANDLE
+(
+   (BUTTON_UP_MSG
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L2 #else kPad_X #endif}}
+         {set $slotstate_0 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_L2 #else kPad_X #endif}}
+         {set $slotstate_0 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_X #else kPad_X #endif}}
+         {set $slotstate_0 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_X #endif}}
+         {set $slotstate_0 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_X #else kPad_X #endif}}
+         {set $slotstate_0 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_X #else kPad_X #endif}}
+         {set $slotstate_0 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_Tri #endif}}
+         {set $slotstate_1 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_Tri #endif}}
+         {set $slotstate_1 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_Tri #endif}}
+         {set $slotstate_1 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_Circle #else kPad_Tri #endif}}
+         {set $slotstate_1 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_Tri #else kPad_Tri #endif}}
+         {set $slotstate_1 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_Tri #else kPad_Tri #endif}}
+         {set $slotstate_1 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R1 #else kPad_Circle #endif}}
+         {set $slotstate_2 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_R1 #else kPad_Circle #endif}}
+         {set $slotstate_2 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R1 #else kPad_Circle #endif}}
+         {set $slotstate_2 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_Tri #else kPad_Circle #endif}}
+         {set $slotstate_2 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_Circle #else kPad_Square #endif}}
+         {set $slotstate_2 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_Circle #else kPad_Circle #endif}}
+         {set $slotstate_2 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_Square #endif}}
+         {set $slotstate_3 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_R2 #else kPad_Square #endif}}
+         {set $slotstate_3 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_Square #endif}}
+         {set $slotstate_3 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_X #else kPad_Square #endif}}
+         {set $slotstate_3 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_Square #else kPad_Circle #endif}}
+         {set $slotstate_3 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_Square #else kPad_Square #endif}}
+         {set $slotstate_3 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button #ifndef FORCE_PAD kPad_X #else kPad_L1 #endif}}
+         {set $slotstate_4 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button #ifndef FORCE_PAD kPad_X #else kPad_L1 #endif}}
+         {set $slotstate_4 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button #ifndef FORCE_PAD kPad_L2 #else kPad_L1 #endif}}
+         {set $slotstate_4 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button #ifndef FORCE_PAD kPad_Square #else kPad_L1 #endif}}
+         {set $slotstate_4 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_L1 #endif}}
+         {set $slotstate_4 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button #ifndef FORCE_PAD kPad_L1 #else kPad_L1 #endif}}
+         {set $slotstate_4 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button kPad_DUp}}
+         {set $slotstate_5 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button kPad_DUp}}
+         {set $slotstate_5 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button kPad_DDown}}
+         {set $slotstate_5 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button kPad_DUp}}
+         {set $slotstate_5 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button kPad_DUp}}
+         {set $slotstate_5 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button kPad_DUp}}
+         {set $slotstate_5 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad_guitar} {== $button kPad_DDown}}
+         {set $slotstate_6 FALSE}
+      }
+      {if {&& {== {game get_controller 0} joypad} {== $button kPad_DDown}}
+         {set $slotstate_6 FALSE}
+      }
+      {if {&& {== {game get_controller 0} lefty_joypad_guitar} {== $button kPad_DUp}}
+         {set $slotstate_6 FALSE}
+      }
+      {if {&& {== {game get_controller 0} guitar} {== $button kPad_DDown}}
+         {set $slotstate_6 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox} {== $button kPad_DDown}}
+         {set $slotstate_6 FALSE}
+      }
+      {if {&& {== {game get_controller 0} hx_guitar_xbox_new} {== $button kPad_DDown}}
+         {set $slotstate_6 FALSE}
+      }
+   )
+)
