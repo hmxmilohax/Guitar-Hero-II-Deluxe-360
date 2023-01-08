@@ -3,8 +3,28 @@
 ({pack_color $starpowercolor_r $starpowercolor_g $starpowercolor_b})
 #define GEM_COLOR
 ({pack_color $gemcolor_r $gemcolor_g $gemcolor_b})
+#define GEM1_COLOR
+({pack_color $gem1color_r $gem1color_g $gem1color_b})
+#define GEM2_COLOR
+({pack_color $gem2color_r $gem2color_g $gem2color_b})
+#define GEM3_COLOR
+({pack_color $gem3color_r $gem3color_g $gem3color_b})
+#define GEM4_COLOR
+({pack_color $gem4color_r $gem4color_g $gem4color_b})
+#define GEM5_COLOR
+({pack_color $gem5color_r $gem5color_g $gem5color_b})
 #define SMASHER_COLOR
 ({pack_color $smashercolor_r $smashercolor_g $smashercolor_b})
+#define SMASHER1_COLOR
+({pack_color $smasher1color_r $smasher1color_g $smasher1color_b})
+#define SMASHER2_COLOR
+({pack_color $smasher2color_r $smasher2color_g $smasher2color_b})
+#define SMASHER3_COLOR
+({pack_color $smasher3color_r $smasher3color_g $smasher3color_b})
+#define SMASHER4_COLOR
+({pack_color $smasher4color_r $smasher4color_g $smasher4color_b})
+#define SMASHER5_COLOR
+({pack_color $smasher5color_r $smasher5color_g $smasher5color_b})
 #define STREAK_COLOR
 ({pack_color $streaklabel_r $streaklabel_g $streaklabel_b})
 #define STREAK_STANDARD_COLOR
@@ -137,167 +157,341 @@
    {{XBOX_STAR_METER find star_glow.mat} set color STAR_POWER_COLOR} ;sp colors
    {{XBOX_STAR_METER find amp_end_star.mat} set color STAR_POWER_COLOR} ;sp colors
 
-   ;custom star power gem color
-   {if_else {&& {== $starpowercolor_r 0.34} {== $starpowercolor_g 0.5} {== $starpowercolor_b 0.67}} ;check if we are using vanilla star power color
-      kDataUnhandled ;if we are, do nothing
-      {do
-         {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
-         {{XBOX_TRACK_PANEL find star.mat} set color STAR_POWER_COLOR} ;apply custom star gem color texture
-      }
-   }
-
    ;custom gem colors
-   {if $customgemcolor ;check if custom gem color is enabled
-      {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
-         {do
-            {{XBOX_TRACK_PANEL find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
-            {{XBOX_TRACK_PANEL find drum_gem.mat} set color GEM_COLOR} ;custom gem color
+   {if_else $customgemcolor ;check if custom gem color is enabled
+      {do
+         {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
+            {do
+               {{XBOX_TRACK_PANEL find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
+               {{XBOX_TRACK_PANEL find green_drum_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find red_drum_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find yellow_drum_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find blue_drum_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find orange_drum_gem.mat} set color GEM_COLOR} ;custom gem color
+            }
+            {do
+               {if_else $gh1track
+                  {do
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gh1_hop_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
+                  }
+                  {do
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+                  }
+               }
+               {{XBOX_TRACK_PANEL find green_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find red_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find yellow_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find blue_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find orange_gem.mat} set color GEM_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find green_star.mat} set color GEM_COLOR} ;apply custom star gem color
+               {{XBOX_TRACK_PANEL find red_star.mat} set color GEM_COLOR} ;apply custom star gem color
+               {{XBOX_TRACK_PANEL find yellow_star.mat} set color GEM_COLOR} ;apply custom star gem color
+               {{XBOX_TRACK_PANEL find blue_star.mat} set color GEM_COLOR} ;apply custom star gem color
+               {{XBOX_TRACK_PANEL find orange_star.mat} set color GEM_COLOR} ;apply custom star gem color
+            }
          }
-         {do
-            {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-            {{XBOX_TRACK_PANEL find gem.mat} set color GEM_COLOR} ;custom gem color
+
+         ;applys to all gems
+         {{XBOX_TRACK_PANEL find gem_bottom.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_glow_tight.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_glow_whammy.mat} set color GEM_COLOR} ;custom gem color
+
+         ;green gem
+         {{XBOX_TRACK_PANEL find tail_glow_green.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_green.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_green.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_top_hopo2_green.mat} set color GEM_COLOR} ;custom gem color
+
+         ;red gem
+         {{XBOX_TRACK_PANEL find tail_glow_red.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_red.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_red.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_top_hopo2_red.mat} set color GEM_COLOR} ;custom gem color
+
+         ;yellow gem
+         {{XBOX_TRACK_PANEL find tail_glow_yellow.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_yellow.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_yellow.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_top_hopo2_yellow.mat} set color GEM_COLOR} ;custom gem color
+
+         ;blue gem
+         {{XBOX_TRACK_PANEL find tail_glow_blue.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_blue.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_blue.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_top_hopo2_blue.mat} set color GEM_COLOR} ;custom gem color
+
+         ;orange gem
+         {{XBOX_TRACK_PANEL find tail_glow_orange.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find tail_orange.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_orange.mat} set color GEM_COLOR} ;custom gem color
+         {{XBOX_TRACK_PANEL find dot_top_hopo2_orange.mat} set color GEM_COLOR} ;custom gem color
+      }
+      {if $newcustomgemcolor
+         {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
+            {do
+               {{XBOX_TRACK_PANEL find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
+               {{XBOX_TRACK_PANEL find green_drum_gem.mat} set color GEM1_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find red_drum_gem.mat} set color GEM2_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find yellow_drum_gem.mat} set color GEM3_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find blue_drum_gem.mat} set color GEM4_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find orange_drum_gem.mat} set color GEM5_COLOR} ;custom gem color
+            }
+            {do
+               {if_else $gh1track
+                  {do
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gh1_hop_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
+                  }
+                  {do
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+                  }
+               }
+
+               ;green gem
+               {{XBOX_TRACK_PANEL find tail_glow_green.mat} set color GEM1_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find tail_green.mat} set color GEM1_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_green.mat} set color GEM1_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_top_hopo2_green.mat} set color GEM1_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find green_gem.mat} set color GEM1_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find green_star.mat} set color GEM1_COLOR} ;apply custom star gem color
+
+               ;red gem
+               {{XBOX_TRACK_PANEL find tail_glow_red.mat} set color GEM2_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find tail_red.mat} set color GEM2_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_red.mat} set color GEM2_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_top_hopo2_red.mat} set color GEM2_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find red_gem.mat} set color GEM2_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find red_star.mat} set color GEM2_COLOR} ;apply custom star gem color
+
+               ;yellow gem
+               {{XBOX_TRACK_PANEL find tail_glow_yellow.mat} set color GEM3_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find tail_yellow.mat} set color GEM3_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_yellow.mat} set color GEM3_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_top_hopo2_yellow.mat} set color GEM3_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find yellow_gem.mat} set color GEM3_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find yellow_star.mat} set color GEM3_COLOR} ;apply custom star gem color
+
+               ;blue gem
+               {{XBOX_TRACK_PANEL find tail_glow_blue.mat} set color GEM4_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find tail_blue.mat} set color GEM4_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_blue.mat} set color GEM4_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_top_hopo2_blue.mat} set color GEM4_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find blue_gem.mat} set color GEM4_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find blue_star.mat} set color GEM4_COLOR} ;apply custom star gem color
+
+               ;orange gem
+               {{XBOX_TRACK_PANEL find tail_glow_orange.mat} set color GEM5_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find tail_orange.mat} set color GEM5_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_orange.mat} set color GEM5_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find dot_top_hopo2_orange.mat} set color GEM5_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find orange_gem.mat} set color GEM5_COLOR} ;custom gem color
+               {{XBOX_TRACK_PANEL find orange_star.mat} set color GEM5_COLOR} ;apply custom star gem color
+            }
          }
       }
-
-      ;applys to all gems
-      {{XBOX_TRACK_PANEL find gem_bottom.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_glow_tight.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_glow_whammy.mat} set color GEM_COLOR} ;custom gem color
-
-      ;green gem
-      {{XBOX_TRACK_PANEL find tail_glow_green.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_green.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_green.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_top_hopo2_green.mat} set color GEM_COLOR} ;custom gem color
-
-      ;red gem
-      {{XBOX_TRACK_PANEL find tail_glow_red.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_red.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_red.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_top_hopo2_red.mat} set color GEM_COLOR} ;custom gem color
-
-      ;yellow gem
-      {{XBOX_TRACK_PANEL find tail_glow_yellow.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_yellow.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_yellow.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_top_hopo2_yellow.mat} set color GEM_COLOR} ;custom gem color
-
-      ;blue gem
-      {{XBOX_TRACK_PANEL find tail_glow_blue.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_blue.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_blue.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_top_hopo2_blue.mat} set color GEM_COLOR} ;custom gem color
-
-      ;orange gem
-      {{XBOX_TRACK_PANEL find tail_glow_orange.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find tail_orange.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_orange.mat} set color GEM_COLOR} ;custom gem color
-      {{XBOX_TRACK_PANEL find dot_top_hopo2_orange.mat} set color GEM_COLOR} ;custom gem color
    }
 
    ;custom smasher colors
-   {if $customsmashercolor ;check if custom smasher color is enabled
-      ;gh3 smasher off colors
-      {if {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find gem_smasher.mat} set color SMASHER_COLOR} ;custom smasher color
-      }
+   {if_else $customsmashercolor ;check if custom smasher color is enabled
+      {do
+         ;gh3 smasher off colors
+         {if {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find gem_smasher.mat} set color SMASHER_COLOR} ;custom smasher color
+         }
 
-      ;green smasher
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_add_green.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_add_green.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {{XBOX_TRACK_PANEL find now_ring_green.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_green_1.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_green.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_green_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         ;green smasher
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_add_green.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_add_green.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {{XBOX_TRACK_PANEL find now_ring_green.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_green_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_green.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_green_1.mat} set color SMASHER_COLOR} ;custom smasher color
 
-      ;red smasher
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_add_red.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_add_red.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {{XBOX_TRACK_PANEL find now_ring_red.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_red_1.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_red.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_red_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         ;red smasher
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_add_red.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_add_red.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {{XBOX_TRACK_PANEL find now_ring_red.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_red_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_red.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_red_1.mat} set color SMASHER_COLOR} ;custom smasher color
 
-      ;yellow smasher
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {{XBOX_TRACK_PANEL find now_ring_yellow.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_yellow_1.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_yellow.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_yellow_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         ;yellow smasher
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {{XBOX_TRACK_PANEL find now_ring_yellow.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_yellow_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_yellow.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_yellow_1.mat} set color SMASHER_COLOR} ;custom smasher color
 
-      ;blue smasher
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_add_blue.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_add_blue.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {{XBOX_TRACK_PANEL find now_ring_blue.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_blue_1.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_blue.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_blue_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         ;blue smasher
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_add_blue.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_add_blue.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {{XBOX_TRACK_PANEL find now_ring_blue.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_blue_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_blue.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_blue_1.mat} set color SMASHER_COLOR} ;custom smasher color
 
-      ;orange smasher
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_add_orange.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_add_orange.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-         {{XBOX_TRACK_PANEL find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-         {{XBOX_TRACK_PANEL find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
-      }
-      {{XBOX_TRACK_PANEL find now_ring_orange.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_orange_1.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_orange.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_orange_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         ;orange smasher
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_add_orange.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_add_orange.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+            {{XBOX_TRACK_PANEL find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+         }
+         {{XBOX_TRACK_PANEL find now_ring_orange.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_orange_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_orange.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_orange_1.mat} set color SMASHER_COLOR} ;custom smasher color
 
-      ;bonus smasher
-      {{XBOX_TRACK_PANEL find now_ring.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_bonus.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find now_ring_bonus_1.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_bonus.mat} set color SMASHER_COLOR} ;custom smasher color
-      {{XBOX_TRACK_PANEL find gem_smasher_bonus_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         ;bonus smasher
+         {{XBOX_TRACK_PANEL find now_ring.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_bonus.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find now_ring_bonus_1.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_bonus.mat} set color SMASHER_COLOR} ;custom smasher color
+         {{XBOX_TRACK_PANEL find gem_smasher_bonus_1.mat} set color SMASHER_COLOR} ;custom smasher color
+      }
+      {if $newcustomsmashercolor
+         {do
+            ;green smasher
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_add_green.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_add_green.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_green.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {{XBOX_TRACK_PANEL find now_ring_green.mat} set color SMASHER1_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find now_ring_green_1.mat} set color SMASHER1_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_green.mat} set color SMASHER1_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_green_1.mat} set color SMASHER1_COLOR} ;custom smasher color
+
+            ;red smasher
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_add_red.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_add_red.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_red.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {{XBOX_TRACK_PANEL find now_ring_red.mat} set color SMASHER2_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find now_ring_red_1.mat} set color SMASHER2_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_red.mat} set color SMASHER2_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_red_1.mat} set color SMASHER2_COLOR} ;custom smasher color
+
+            ;yellow smasher
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_add_yellow.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_yellow.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {{XBOX_TRACK_PANEL find now_ring_yellow.mat} set color SMASHER3_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find now_ring_yellow_1.mat} set color SMASHER3_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_yellow.mat} set color SMASHER3_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_yellow_1.mat} set color SMASHER3_COLOR} ;custom smasher color
+
+            ;blue smasher
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_add_blue.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_add_blue.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_blue.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {{XBOX_TRACK_PANEL find now_ring_blue.mat} set color SMASHER4_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find now_ring_blue_1.mat} set color SMASHER4_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_blue.mat} set color SMASHER4_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_blue_1.mat} set color SMASHER4_COLOR} ;custom smasher color
+
+            ;orange smasher
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_add_orange.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_add_orange.tex} set_bitmap track/custom_track_textures/smasher_add_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
+               {{XBOX_TRACK_PANEL find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_on_gh3_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+               {{XBOX_TRACK_PANEL find smasher_orange.tex} set_bitmap track/custom_track_textures/smasher_white_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            }
+            {{XBOX_TRACK_PANEL find now_ring_orange.mat} set color SMASHER5_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find now_ring_orange_1.mat} set color SMASHER5_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_orange.mat} set color SMASHER5_COLOR} ;custom smasher color
+            {{XBOX_TRACK_PANEL find gem_smasher_orange_1.mat} set color SMASHER5_COLOR} ;custom smasher color
+         }
+      }
    }
 
    ;star number counter customization

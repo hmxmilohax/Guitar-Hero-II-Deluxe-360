@@ -381,25 +381,40 @@
       {ss_button_0.tex set_bitmap {sprint "track/custom_track_textures/ss_button_" $poorspybuttontype "_keep.png"}}
       {ss_button_5.tex set_bitmap {sprint "track/custom_track_textures/ss_strum_" $poorspystrumtype "_keep.png"}}
       {if_else $customsmashercolor
-               {gs_tile0.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
-               {gs_tile0.mat set color {pack_color 0.09411764706 0.6784313725 0.0}}
-            }
+         {gs_tile0.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile0.mat set color SMASHER1_COLOR}
+            {gs_tile0.mat set color {pack_color 0.09411764706 0.6784313725 0.0}}
+         }
+      }
       {if_else $customsmashercolor
-               {gs_tile1.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
-               {gs_tile1.mat set color {pack_color 0.631372549 0.01960784314 0.1176470588}}
-            }
+         {gs_tile1.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile1.mat set color SMASHER2_COLOR}
+            {gs_tile1.mat set color {pack_color 0.631372549 0.01960784314 0.1176470588}}
+         }
+      }
       {if_else $customsmashercolor
-               {gs_tile2.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
-               {gs_tile2.mat set color {pack_color 0.8823529412 0.8 0.12}}
-            }
+         {gs_tile2.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile2.mat set color SMASHER3_COLOR}
+            {gs_tile2.mat set color {pack_color 0.8823529412 0.8 0.12}}
+         }
+      }
       {if_else $customsmashercolor
-               {gs_tile3.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
-               {gs_tile3.mat set color {pack_color 0.01960784314 0.1882352941 0.631372549}}
-            }
+         {gs_tile3.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile3.mat set color SMASHER4_COLOR}
+            {gs_tile3.mat set color {pack_color 0.01960784314 0.1882352941 0.631372549}}
+         }
+      }
       {if_else $customsmashercolor
-               {gs_tile4.mat set color {pack_color $smashercolor_r $smashercolor_g $smashercolor_b}}
-               {gs_tile4.mat set color {pack_color 0.6901960784 0.3960784314 0.0}}
-            }
+         {gs_tile4.mat set color SMASHER_COLOR}
+         {if_else $newcustomsmashercolor
+            {gs_tile4.mat set color SMASHER5_COLOR}
+            {gs_tile4.mat set color {pack_color 0.6901960784 0.3960784314 0.0}}
+         }
+      }
       {gs_tile5.mat set color {pack_color $poorspystrum_r $poorspystrum_g $poorspystrum_b}}
       {gs_tile6.mat set color {pack_color $poorspystrum_r $poorspystrum_g $poorspystrum_b}}
       {$this poorspy_lbl_update}

@@ -326,7 +326,7 @@
             (2 {set $menutheme custom})
             (3 {set $menutheme gh1})
             (4 {set $menutheme 80s})
-            (5 {set $menutheme gh3} {set $gh3song TRUE} {set $gh1track FALSE} {set $gh3track TRUE})
+            (5 {set $menutheme gh3} {set $gh3song TRUE})
             (6 {set $menutheme 80s})
          }
        kDataUnhandled
