@@ -231,9 +231,9 @@
          {track_panel set_showing FALSE}
          {if_else $focusmode TRACK_SP_START kDataUnhandled}
          {track_panel set_showing TRUE}
-      ;{{$this track}
-      ;   set_bonus_gems
-      ;   TRUE}
+      {{$this track}
+         set_bonus_gems
+         TRUE}
       {handle
          (game star_power_start $player_num)}
          )
@@ -245,9 +245,9 @@
          {track_panel set_showing FALSE}
          {if_else $focusmode TRACK_SP_STOP kDataUnhandled}
          {track_panel set_showing TRUE}
-      ;{{$this track}
-      ;   set_bonus_gems
-      ;   FALSE}
+      {{$this track}
+         set_bonus_gems
+         FALSE}
       {handle
          (game star_power_stop $player_num)})
    (depleted)))
