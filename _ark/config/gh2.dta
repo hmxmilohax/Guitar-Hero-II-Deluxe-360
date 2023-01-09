@@ -229,68 +229,7 @@
       {handle
          (world play_sfx crowd_upto_good)}
          {track_panel set_showing FALSE}
-         {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
-            {do
-               {{XBOX_TRACK_PANEL find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
-               {{XBOX_TRACK_PANEL find green_drum_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find red_drum_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find yellow_drum_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find blue_drum_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find orange_drum_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-            }
-            {do
-               {if_else $gh1track
-                  {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gh1_hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
-                  }
-                  {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
-                  }
-               }
-
-               ;green gem
-               {{XBOX_TRACK_PANEL find tail_glow_green.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_green.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_green.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_green.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find green_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find green_star.mat} set color STAR_POWER_COLOR} ;apply custom star gem color
-
-               ;red gem
-               {{XBOX_TRACK_PANEL find tail_glow_red.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_red.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_red.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_red.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find red_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find red_star.mat} set color STAR_POWER_COLOR} ;apply custom star gem color
-
-               ;yellow gem
-               {{XBOX_TRACK_PANEL find tail_glow_yellow.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_yellow.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_yellow.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_yellow.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find yellow_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find yellow_star.mat} set color STAR_POWER_COLOR} ;apply custom star gem color
-
-               ;blue gem
-               {{XBOX_TRACK_PANEL find tail_glow_blue.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_blue.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_blue.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_blue.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find blue_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find blue_star.mat} set color STAR_POWER_COLOR} ;apply custom star gem color
-
-               ;orange gem
-               {{XBOX_TRACK_PANEL find tail_glow_orange.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_orange.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_orange.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_orange.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find orange_gem.mat} set color STAR_POWER_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find orange_star.mat} set color STAR_POWER_COLOR} ;apply custom star gem color
-            }
-         }
+         {if_else $focusmode TRACK_SP_START kDataUnhandled}
          {track_panel set_showing TRUE}
       ;{{$this track}
       ;   set_bonus_gems
@@ -304,68 +243,7 @@
       {{$this player_matcher}
          on_stop_starpower}
          {track_panel set_showing FALSE}
-      {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
-            {do
-               {{XBOX_TRACK_PANEL find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
-               {{XBOX_TRACK_PANEL find green_drum_gem.mat} set color GEM1_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find red_drum_gem.mat} set color GEM2_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find yellow_drum_gem.mat} set color GEM3_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find blue_drum_gem.mat} set color GEM4_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find orange_drum_gem.mat} set color GEM5_COLOR} ;custom gem color
-            }
-            {do
-               {if_else $gh1track
-                  {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gh1_hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
-                  }
-                  {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
-                  }
-               }
-
-               ;green gem
-               {{XBOX_TRACK_PANEL find tail_glow_green.mat} set color GEM1_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_green.mat} set color GEM1_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_green.mat} set color GEM1_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_green.mat} set color GEM1_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find green_gem.mat} set color GEM1_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find green_star.mat} set color GEM1_COLOR} ;apply custom star gem color
-
-               ;red gem
-               {{XBOX_TRACK_PANEL find tail_glow_red.mat} set color GEM2_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_red.mat} set color GEM2_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_red.mat} set color GEM2_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_red.mat} set color GEM2_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find red_gem.mat} set color GEM2_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find red_star.mat} set color GEM2_COLOR} ;apply custom star gem color
-
-               ;yellow gem
-               {{XBOX_TRACK_PANEL find tail_glow_yellow.mat} set color GEM3_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_yellow.mat} set color GEM3_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_yellow.mat} set color GEM3_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_yellow.mat} set color GEM3_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find yellow_gem.mat} set color GEM3_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find yellow_star.mat} set color GEM3_COLOR} ;apply custom star gem color
-
-               ;blue gem
-               {{XBOX_TRACK_PANEL find tail_glow_blue.mat} set color GEM4_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_blue.mat} set color GEM4_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_blue.mat} set color GEM4_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_blue.mat} set color GEM4_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find blue_gem.mat} set color GEM4_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find blue_star.mat} set color GEM4_COLOR} ;apply custom star gem color
-
-               ;orange gem
-               {{XBOX_TRACK_PANEL find tail_glow_orange.mat} set color GEM5_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find tail_orange.mat} set color GEM5_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_orange.mat} set color GEM5_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find dot_top_hopo2_orange.mat} set color GEM5_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find orange_gem.mat} set color GEM5_COLOR} ;custom gem color
-               {{XBOX_TRACK_PANEL find orange_star.mat} set color GEM5_COLOR} ;apply custom star gem color
-            }
-         }
+         {if_else $focusmode TRACK_SP_STOP kDataUnhandled}
          {track_panel set_showing TRUE}
       ;{{$this track}
       ;   set_bonus_gems
