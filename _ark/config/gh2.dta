@@ -228,9 +228,9 @@
          (world stop_sfx crowd_upto_good)}
       {handle
          (world play_sfx crowd_upto_good)}
-      ;{{$this track}
-      ;   set_bonus_gems
-      ;   TRUE}
+      {{$this track}
+         set_bonus_gems
+         TRUE}
       {handle
          (game star_power_start $player_num)}
          )
