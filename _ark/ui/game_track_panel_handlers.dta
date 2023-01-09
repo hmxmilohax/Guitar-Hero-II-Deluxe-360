@@ -122,30 +122,6 @@
 )
 #define TRACK_SP_STOP
 (
-         {if {exists track_both} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_both} ;set var to the loaded track
-   }
-   {if {exists track_bright} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_bright} ;set var to the loaded track
-   }
-   {if {exists track_dark} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_dark} ;set var to the loaded track
-   }
-   {if {exists track_drum} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_drum} ;set var to the loaded track
-   }
-   {if {exists track_new} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_new} ;set var to the loaded track
-   }
-   {if {exists track_old} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_old} ;set var to the loaded track
-   }
-   {if {exists track_cymbal} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_cymbal} ;set var to the loaded track
-   }
-   {if {exists track_gh3} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_gh3} ;set var to the loaded track
-   }
          {if_else {== $tracktype track_drum} ;check if we are currently using the drum track
             {do
                {{XBOX_TRACK_PANEL find drum_gem.tex} set_bitmap track/custom_track_textures/drum_gem_material_keep.png} ;apply drum custom gem color texture
@@ -226,31 +202,6 @@
    {{track_panel find half_beat_line4.mesh} set_local_scale $trackbeatx 1.0 1.0}
    {{track_panel find half_beat_line5.mesh} set_local_scale $trackbeatx 1.0 1.0}
 #else ;xbox 360 application of custom track modifications
-   {if {exists track_both} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_both} ;set var to the loaded track
-   }
-   {if {exists track_bright} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_bright} ;set var to the loaded track
-   }
-   {if {exists track_dark} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_dark} ;set var to the loaded track
-   }
-   {if {exists track_drum} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_drum} ;set var to the loaded track
-   }
-   {if {exists track_new} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_new} ;set var to the loaded track
-   }
-   {if {exists track_old} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_old} ;set var to the loaded track
-   }
-   {if {exists track_cymbal} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_cymbal} ;set var to the loaded track
-   }
-   {if {exists track_gh3} ;check if we are loading a specific track so we can edit files appropriately
-      {set $tracktype track_gh3} ;set var to the loaded track
-   }
-   
    {if $noflames ;check if no flames is enabled
       {XBOX_TRACK_PANEL iterate ParticleSys $m {$m set_showing {! $noflames}}} ;hide flames particle system
       {{XBOX_TRACK_PANEL find smash_firelight.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the texture used for the little glow at the base of the flame

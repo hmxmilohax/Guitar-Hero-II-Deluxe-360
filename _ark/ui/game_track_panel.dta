@@ -206,6 +206,30 @@
       }
    )
    (enter
+      {if {exists track_both} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_both} ;set var to the loaded track
+   }
+   {if {exists track_bright} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_bright} ;set var to the loaded track
+   }
+   {if {exists track_dark} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_dark} ;set var to the loaded track
+   }
+   {if {exists track_drum} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_drum} ;set var to the loaded track
+   }
+   {if {exists track_new} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_new} ;set var to the loaded track
+   }
+   {if {exists track_old} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_old} ;set var to the loaded track
+   }
+   {if {exists track_cymbal} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_cymbal} ;set var to the loaded track
+   }
+   {if {exists track_gh3} ;check if we are loading a specific track so we can edit files appropriately
+      {set $tracktype track_gh3} ;set var to the loaded track
+   }
       {name_overlay_panel show_overlay FALSE}
       {game add_sink $this blow_streak}
    )
