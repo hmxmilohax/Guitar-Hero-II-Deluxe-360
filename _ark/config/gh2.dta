@@ -228,11 +228,12 @@
          (world stop_sfx crowd_upto_good)}
       {handle
          (world play_sfx crowd_upto_good)}
-      {{$this track}
-         set_bonus_gems
-         TRUE}
+      ;{{$this track}
+      ;   set_bonus_gems
+      ;   TRUE}
       {handle
-         (game star_power_start $player_num)})
+         (game star_power_start $player_num)}
+         )
    (stop_using
       ($player_num)
       {if $sfx {play_game_sfx_player sp_depleted sp_depleted_multi $player_num}}
