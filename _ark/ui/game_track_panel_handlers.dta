@@ -73,8 +73,8 @@
                      {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
                   }
                   {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_base_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_base_keep.png} ;apply custom star gem color texture
                   }
                }
 
@@ -138,8 +138,8 @@
                      {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
                   }
                   {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_base_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_base_keep.png} ;apply custom star gem color texture
                   }
                }
 
@@ -206,18 +206,6 @@
       {XBOX_TRACK_PANEL iterate ParticleSys $m {$m set_showing {! $noflames}}} ;hide flames particle system
       {{XBOX_TRACK_PANEL find smash_firelight.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the texture used for the little glow at the base of the flame
    }
-   {if $voidfrets ;check if void frets are enabled
-      {if_else $gh3track ;specify texture if gh3 frets are enabled
-         {{XBOX_TRACK_PANEL find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
-         {{XBOX_TRACK_PANEL find smasher_off.tex} set_bitmap track/custom_track_textures/blk_keep.png} ;apply the standard void frets texture
-      }
-   }
-   {if $darkstrums ;check if dark strums are enabled
-      {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_dark_keep.png} ;apply dark strum gems texture
-   }
-   {if $eyeballgems
-      {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_eyeball_keep.png} ;eyeball gems
-   }
    {{XBOX_TRACK_PANEL find lightning_trackglow.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;remove the track side glow stuff because I hate it
    {{XBOX_STAR_METER find amp_inside_bar.mat} set color {pack_color 0.24 0.24 0.24}} ;I dont like this bar being slightly blue
    
@@ -281,8 +269,8 @@
                      {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
                   }
                   {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_base_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_base_keep.png} ;apply custom star gem color texture
                   }
                }
                {{XBOX_TRACK_PANEL find green_gem.mat} set color GEM_COLOR} ;custom gem color
@@ -350,8 +338,8 @@
                      {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/gh1_stargem_material_keep.png} ;apply custom star gem color texture
                   }
                   {do
-                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/hop_keep.png} ;apply standard custom gem color texture
-                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_material_keep.png} ;apply custom star gem color texture
+                     {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_base_keep.png} ;apply standard custom gem color texture
+                     {{XBOX_TRACK_PANEL find stargem.tex} set_bitmap track/custom_track_textures/stargem_base_keep.png} ;apply custom star gem color texture
                   }
                }
 
@@ -597,6 +585,19 @@
             {{XBOX_TRACK_PANEL find gem_smasher_orange_1.mat} set color SMASHER5_COLOR} ;custom smasher color
          }
       }
+   }
+
+   {if $voidfrets ;check if void frets are enabled
+      {if_else $gh3track ;specify texture if gh3 frets are enabled
+         {{XBOX_TRACK_PANEL find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+         {{XBOX_TRACK_PANEL find smasher_off.tex} set_bitmap track/custom_track_textures/blk_keep.png} ;apply the standard void frets texture
+      }
+   }
+   {if $darkstrums ;check if dark strums are enabled
+      {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_dark_keep.png} ;apply dark strum gems texture
+   }
+   {if $eyeballgems
+      {{XBOX_TRACK_PANEL find gem.tex} set_bitmap track/custom_track_textures/gem_eyeball_keep.png} ;eyeball gems
    }
 
    ;star number counter customization
