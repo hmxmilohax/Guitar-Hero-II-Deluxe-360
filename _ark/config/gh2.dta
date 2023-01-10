@@ -229,7 +229,7 @@
       {handle
          (world play_sfx crowd_upto_good)}
          {track_panel set_showing FALSE}
-         {if $focusmode TRACK_SP_START}
+         TRACK_SP_START
          {track_panel set_showing TRUE}
       {{$this track}
          set_bonus_gems
@@ -243,7 +243,7 @@
       {{$this player_matcher}
          on_stop_starpower}
          {track_panel set_showing FALSE}
-         {if $focusmode TRACK_SP_STOP}
+         TRACK_SP_STOP
          {track_panel set_showing TRUE}
       {{$this track}
          set_bonus_gems
