@@ -650,6 +650,48 @@
                   {if_else {> $mp.length 0.3}
                      (strum_open)
                      (strum_open)})))))
+(player0_solo
+   (type midi)
+   (eval TRUE)
+   (track_name
+    {if_else {game multiplayer}
+       {if_else {game multiplayer_vs}
+          'PART GUITAR VS1'
+          {switch {game get_track_sym 0}
+             (bass 'PART BASS')
+             (drum 'PART GUITAR')
+             (rhythm 'PART RHYTHM')
+             (guitar 'PART GUITAR COOP')}}
+          ''}
+       {switch
+          {game get_track_sym 0}
+          (bass 'PART BASS')
+          (guitar 'PART GUITAR')
+          (drum 'PART GUITAR')
+          (lead 'PART GUITAR')
+          (rhythm 'PART RHYTHM')})
+   (mappings
+      (default
+         (events
+            (116 ({set $p0_solo {! $p0_solo}}))))))
+(player1_solo
+   (type midi)
+   (eval TRUE)
+   (track_name
+    {if_else {game multiplayer}
+         {if_else {game multiplayer_vs}
+            'PART GUITAR VS2'
+            {switch {game get_track_sym 1}
+               (bass 'PART BASS')
+               (drum 'PART GUITAR')
+               (rhythm 'PART RHYTHM')
+               (guitar 'PART GUITAR COOP')}}
+            ''}
+    'PART GUITAR')
+   (mappings
+      (default
+         (events
+            (116 ({set $p1_solo {! $p1_solo}}))))))
 (player0_fret_pos
    (type midi)
    (inverted TRUE)
