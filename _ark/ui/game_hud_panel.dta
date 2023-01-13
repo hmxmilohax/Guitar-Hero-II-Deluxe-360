@@ -66,6 +66,10 @@
             (multi_coop {note_streak_p2})
             (practice {note_streak_p0})
          }
+         {if_else $p0_solo
+         {hud solo_show}
+         {hud solo_hide}
+         }
          {if $do_streak
             {do
                {if_else {== {gamecfg get mode} multi_coop}
@@ -747,6 +751,18 @@
       {youwin.mesh set_local_scale_index 2 .5}
       {youwin_eng.tex set_bitmap "track/custom_track_textures/youlose_keep.png"}
       {$this set_win_showing TRUE}
+   )
+   (solo_show
+      {youwin.mesh set_local_pos_index 2 100}
+      {youwin.mesh set_local_scale_index 0 1.4}
+      {youwin.mesh set_local_scale_index 2 .5}
+      {youwin_eng.tex set_bitmap "track/custom_track_textures/solopoc_keep.png"}
+      {$this set_win_showing TRUE}
+   )
+   (solo_hide
+            {$this set_win_showing FALSE}
+            {youwin_eng.tex set_bitmap "track/custom_track_textures/youwin_eng_keep.png"}
+            {youwin.mesh set_local_pos_index 2 15} 
    )
    (trogdor_hide
       {script_task
