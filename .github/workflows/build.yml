@@ -17,12 +17,12 @@ jobs:
           find . -name "*.*_ps2" -type f -delete
           find . -name "*.vgs" -type f -delete
           dependencies/arkhelper dir2ark ./_ark ./_build/Xbox/gen -e -s 4073741823
-          dependencies/dtab -b _theme/init_track_theme.dta _theme/init_track_theme.dtb
-          dependencies/dtab -b _theme/init_ui_theme.dta _theme/init_ui_theme.dtb
-          dependencies/dtab -b _theme/init.dta _theme/init.dtb
-          dependencies/dtab -e _theme/init_ui_theme.dtb _build/Xbox/gen/init_ui_theme.dtb
-          dependencies/dtab -e _theme/init_track_theme.dtb _build/Xbox/gen/init_track_theme.dtb
-          dependencies/dtab -e _theme/init.dtb _build/Xbox/gen/init.dtb
+          dependencies/dtab -b _init/init_track_init.dta _init/init_track_init.dtb
+          dependencies/dtab -b _init/init_ui_init.dta _init/init_ui_init.dtb
+          dependencies/dtab -b _init/init.dta _init/init.dtb
+          dependencies/dtab -e _init/init_ui_init.dtb _build/Xbox/gen/init_ui_init.dtb
+          dependencies/dtab -e _init/init_track_init.dtb _build/Xbox/gen/init_track_init.dtb
+          dependencies/dtab -e _init/init.dtb _build/Xbox/gen/init.dtb
       
       - name: Upload result
         uses: actions/upload-artifact@v2
@@ -47,12 +47,12 @@ jobs:
           find . -name "*.vgs" -type f -delete
           sed -i -e "s/;#define FORCE_PAD (1)/#define FORCE_PAD (1)/" _ark/config/macros.dta
           dependencies/arkhelper dir2ark ./_ark ./_build/Xbox/gen -e -s 4073741823
-          dependencies/dtab -b _theme/init_track_theme.dta _theme/init_track_theme.dtb
-          dependencies/dtab -b _theme/init_ui_theme.dta _theme/init_ui_theme.dtb
-          dependencies/dtab -b _theme/init.dta _theme/init.dtb
-          dependencies/dtab -e _theme/init_ui_theme.dtb _build/Xbox/gen/init_ui_theme.dtb
-          dependencies/dtab -e _theme/init_track_theme.dtb _build/Xbox/gen/init_track_theme.dtb
-          dependencies/dtab -e _theme/init.dtb _build/Xbox/gen/init.dtb
+          dependencies/dtab -b _init/init_track_init.dta _init/init_track_init.dtb
+          dependencies/dtab -b _init/init_ui_init.dta _init/init_ui_init.dtb
+          dependencies/dtab -b _init/init.dta _init/init.dtb
+          dependencies/dtab -e _init/init_ui_init.dtb _build/Xbox/gen/init_ui_init.dtb
+          dependencies/dtab -e _init/init_track_init.dtb _build/Xbox/gen/init_track_init.dtb
+          dependencies/dtab -e _init/init.dtb _build/Xbox/gen/init.dtb
       
       - name: Upload result
         uses: actions/upload-artifact@v2
