@@ -133,9 +133,9 @@
             {$this set_showing FALSE}
             {helpbar set_showing FALSE}
             {set $disable_save 1}
-            ;{set $focusmode TRUE}
+            {set $focusmode TRUE}
             {script_task ;setup script task to run at a consistent interval
-               (delay 5.0) ;rate set in ui/init.dta
+               (delay 2.0) ;rate set in ui/init.dta
                (units kTaskUISeconds)
                (script
                   {ui goto_screen sel_song_screen}
