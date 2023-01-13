@@ -1,16 +1,9 @@
-#include initializer.dta
-#ifdef HX_XBOX
-#include game:/init_track_theme.dta
-#include game:/init_ui_theme.dta
-#include game:/init_fastsong.dta
-#else
-#include ui/init_track_theme.dta
-#include ui/init_ui_theme.dta
-#endif
 ; Set various defaults on startup, including ELF specific bootups. $speedmod
 ; is the song speed, $trackspeed is the note speed, $interval refers to the
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
+
+{set $fastsong trogdor}
 
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
@@ -126,6 +119,3 @@
 
 ;show practice section names in quickplay (not implemented)
 {set $quickplaysectionnames FALSE}
-
-;the rest is dev code and it's moved to another file to keep this file clean
-#include init_dev.dta
