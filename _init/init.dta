@@ -3,7 +3,7 @@
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
 
-{set $fastsong trogdor}
+{set $fastsong none}
 
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
