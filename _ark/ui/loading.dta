@@ -1,3 +1,17 @@
+{new UIPanel fake_loading_panel
+   (file
+      {if_else {== $menutheme 80s}
+         loading_80s.milo
+         loading.milo})
+   (enter
+      {tip.lbl set_localized_text {tips random_tip}}
+      {{game get_bank_loader} reset}
+      {meta set won_campaign FALSE}
+      {script_task
+         (units kTaskUISeconds)
+         (script
+            {animate_forever_30fps $this flyingtape2.grp}
+            {animate_forever_30fps $this loading_word.grp})})}
 {new UIPanel loading_panel
    (file
       {if_else {== $menutheme 80s}
@@ -19,7 +33,9 @@
    (enter
       {$this reset_ambient})
    (TRANSITION_COMPLETE_MSG
-      {ui goto_screen game_screen})}
+         {ui goto_screen game_screen}
+   )
+}
 {new GHScreen practice_loading_screen
    (panels loading_panel)
    (allow_back FALSE)

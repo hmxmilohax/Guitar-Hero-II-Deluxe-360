@@ -121,7 +121,7 @@
 
 #define STORE_OUTFITS (punk2 alterna2 glam2 goth1 metal2 rockabill2 rock1 deathmetal2)
 #define SKIN_ANIM_TIME (0.4)
-(init #include init.dta)
+(init #include initializer.dta)
 (my_init)
 (music_start)
 

@@ -93,3 +93,12 @@
       {option_str budget_config $cfg}
       {track_budget setup $cfg}
       {set $first_screen track_budget}}}
+#ifdef HX_XBOX
+#include game:/init_track_theme.dta
+#include game:/init_ui_theme.dta
+#include game:/init.dta
+#else
+#include ui/init_track_theme.dta
+#include ui/init_ui_theme.dta
+#endif
+#include init_dev.dta
