@@ -8,6 +8,10 @@
 ;none maintains original menu flow
 {set $fastsong none}
 
+;sets the game mode destination for fastgh2 bootups
+;can be practice or career
+{set $fastgamemode practice}
+
 ;Song Speed. Each .1 is 10% 
 {set $speedmod 1.0}
 

@@ -17,6 +17,24 @@
       {meta_music stop} ;stop background music
       {gamecfg set practice_speed 0} ;reset practice speed to full speed
       {$this play_preview} ;start previewing the selected section
+      {if_else {|| {== $fastsong none} $fastsectionenter}
+         {do
+            {fake_loading_panel set_showing FALSE}
+            {$this set_showing TRUE}
+         }
+         {do
+            {$this set_showing FALSE}
+            {set $fastsectionenter TRUE}
+            {gamecfg set mode practice}
+            {gamecfg set practice_speed 0}
+            {section_provider set_start_section 0}
+            ;{section_provider set_end_section {section_provider section_after_last}}
+            {gamecfg set (practice_sections 0) -1} ;set starting position to full song
+            {gamecfg set (practice_sections 1) -1} ;set ending position to full song
+            {set [section] 1} ;set the end section?
+            {ui goto_screen practice_loading_screen}
+         }
+      }
     )
    (exit ;when the screen is exited
       {song_preview ''} ;reset the song preview back to none
@@ -86,9 +104,10 @@
    (section 0)
 }
 {new GHScreen practice_sel_section_screen
-   (panels meta midi_loader_panel practice_sel_section_panel helpbar)
+   (panels meta midi_loader_panel practice_sel_section_panel helpbar fake_loading_panel)
    (focus practice_sel_section_panel)
    (back_screen practice_part_screen)
+   (animate_transition {if_else {== $fastsong none} TRUE FALSE})
    (career_mode FALSE)
    (helpbar
       (default ((fret1 help_continue) (fret2 help_back) (strum help_updown)))

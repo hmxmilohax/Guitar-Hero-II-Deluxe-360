@@ -649,7 +649,16 @@
             {game set_song $fastsong}
             {$this venue_randomizer}
             {gamecfg set_track 0 0}
-            {ui goto_screen loading_screen}
+            {if_else {== $fastgamemode practice}
+               {do
+                  {gamecfg set mode practice}
+                  {ui goto_screen practice_sel_section_screen}
+               }
+               {do
+                  {gamecfg set mode career}
+                  {ui goto_screen loading_screen}
+               }
+            }
          }
       }
    )
