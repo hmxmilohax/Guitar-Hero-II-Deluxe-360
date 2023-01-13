@@ -638,6 +638,20 @@
       {if {>= {song_provider list_length} 249}
          {set $disable_save 1}
       }
+      {if_else {== $fastsong none}
+         {do
+            {fake_loading_panel set_showing FALSE}
+         }
+         {do
+            {$this set_showing FALSE}
+            {selsong_overlay_panel set_showing FALSE}
+            {song_select_album_panel set_showing FALSE}
+            {game set_song $fastsong}
+            {$this venue_randomizer}
+            {gamecfg set_track 0 0}
+            {ui goto_screen loading_screen}
+         }
+      }
    )
    (update_song_info
       {ss_song.lst set_selected {game get_song_index}} ;select the internally selected song on the list
@@ -732,7 +746,8 @@
 {new
    GHScreen ;screen type
    sel_song_screen ;screen name
-   (panels meta sel_song_panel selsong_overlay_panel song_select_album_panel helpbar) ;panels included in this screen in draw order
+   (animate_transition {if_else {== $fastsong none} TRUE FALSE})
+   (panels meta sel_song_panel selsong_overlay_panel song_select_album_panel helpbar fake_loading_panel) ;panels included in this screen in draw order
    (focus sel_song_panel) ;panel to focus
    (helpbar ;sets up the help bar for this screen
       (default

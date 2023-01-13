@@ -2,6 +2,7 @@
 #ifdef HX_XBOX
 #include game:/init_track_theme.dta
 #include game:/init_ui_theme.dta
+#include game:/init_fastsong.dta
 #else
 #include ui/init_track_theme.dta
 #include ui/init_ui_theme.dta

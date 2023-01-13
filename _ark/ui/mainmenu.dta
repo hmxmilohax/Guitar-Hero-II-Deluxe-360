@@ -115,7 +115,7 @@
       ;{campaign set_all_access 1} ;unlock all for dx
       {$this reset_player_settings} ;sets player defaults, only run onces on first entry
       {set $dontreset TRUE} ;monkey script to make the player reset not occur after first entry
-      {if {! [already_entered]}
+      {if {&& {== $fastsong none} {! [already_entered]}}
          {play_sfx {sprint "meta_lick" {random_int 0 9}}} ;play a random noise on first entry
          {$this set already_entered TRUE} ;tell the game entry has occured
       }
@@ -124,7 +124,26 @@
       {set [msg_last_frame] 0} ;resets the timeline for the cheat notification for later playback (unused)
       {gamecfg set_player 0 {profilemgr active_padnum}} ;set player 1 to the current active gamepad on xbox 260
       {content_mgr start_enumeration} ;start checking for dlc on xbox
-      )
+      {if {== $fastsong none}
+         {fake_loading_panel set_showing FALSE}
+      }
+      {if_else {== $fastsong none}
+         {fake_loading_panel set_showing FALSE}
+         {do
+            {$this set_showing FALSE}
+            {helpbar set_showing FALSE}
+            {set $disable_save 1}
+            ;{set $focusmode TRUE}
+            {script_task ;setup script task to run at a consistent interval
+               (delay 5.0) ;rate set in ui/init.dta
+               (units kTaskUISeconds)
+               (script
+                  {ui goto_screen sel_song_screen}
+               )
+            }
+         }
+      }
+   )
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch $component ;switch action based on result of which button is selected
          (main_career.btn
@@ -195,8 +214,9 @@
     )
 }
 {new GHScreen main_screen
-   (panels meta main_panel helpbar) ;what panels are included in this screen, in draw order (help bar is always on top)
+   (panels meta main_panel helpbar fake_loading_panel) ;what panels are included in this screen, in draw order (help bar is always on top)
    (focus main_panel) ;which panel to set focus to
+   (animate_transition {if_else {== $fastsong none} TRUE FALSE})
    (helpbar ;setup helpbar
       (default ((fret1 help_continue) (strum help_updown))) ;we only need continue and up down for help
    )
