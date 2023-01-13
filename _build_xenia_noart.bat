@@ -26,6 +26,6 @@ echo:
 if %FAILED_ARK_BUILD% neq 1 (echo:Successfully built Guitar Hero II Deluxe ARK.)
 if %FAILED_ARK_BUILD% neq 1 (echo:)
 if %FAILED_ARK_BUILD% neq 0 (echo:Error building ARK or init files. Check your modifications or run _git_reset.bat to rebase your repo.)
-if %FAILED_ARK_BUILD% neq 1 (echo:Launching Xenia &"%~dp0\_xenia\xenia_canary" "%~dp0\_build\xbox\default.xex")
+if %FAILED_ARK_BUILD% neq 1 (echo:Launching Xenia & START "" "%~dp0\_xenia\xenia_canary" "%~dp0\_build\xbox\default.xex")
 echo:
 if %FAILED_ARK_BUILD% neq 0 (pause)
