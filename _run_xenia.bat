@@ -1,3 +1,4 @@
+@echo OFF
 FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse main`) DO (
 SET localcommit=%%F
 )
