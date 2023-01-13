@@ -1,6 +1,11 @@
 #define METER_END_FRAME (480)
 #define WIN_MESSAGE_SECS (5) ;originally 3
-
+#define SOLO_MATH
+(
+;{sprint "Notes Hit: " $p0_solo_notes_hit "\nNotes Missed: " $p0_solo_notes_missed "\nNotes Total: " $p0_solo_notes_total "\n" 
+{sprint {int {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 100}} "%"}
+;}
+)
 ;modification for note streaks, based on Trick's work
 {if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}}}
    kDataUnhandled
@@ -67,8 +72,43 @@
             (practice {note_streak_p0})
          }
          {if_else $p0_solo
-         {hud solo_show}
-         {hud solo_hide}
+            {do
+               {set $p0_solo_notes_hit {+ $p0_solo_notes_hit 1}}
+               {set $p0_solo_notes_total {+ $p0_solo_notes_total 1}}
+               {if_else $p0_evensolo
+                  {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                     (0
+                        {solo_overlay_panel_buffer set_solo_line SOLO_MATH}
+                        {solo_overlay_panel set_showing FALSE}
+                        {solo_overlay_panel_buffer set_showing TRUE}
+                        {set $p0_evensolo FALSE}
+                     )
+                     kDataUnhandled
+                  }
+                  {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                     (0 
+                        {solo_overlay_panel set_solo_line SOLO_MATH}
+                        {solo_overlay_panel_buffer set_showing FALSE}
+                        {solo_overlay_panel set_showing TRUE}
+                        {set $p0_evensolo TRUE}
+                     )
+                     kDataUnhandled
+                  }
+               }
+               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+            }
+            {do
+               {set $p0_solo_notes_missed 0}
+               {set $p0_solo_notes_hit 0}
+               {set $p0_solo_notes_total 0}
+               {solo_overlay_panel set_showing FALSE}
+               {solo_overlay_panel_buffer set_showing FALSE}
+               {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
+               {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
+               {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
+            }
          }
          {if $do_streak
             {do
@@ -80,29 +120,29 @@
          }
          {if {&& {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay or multi, run star counter and miss/overstrum printing
             {streak_overlay_panel update_star_progress}
-            {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
-            {if_else $cleanmtv
-               kDataUnhandled
-               {do
-                  {if_else $p0_evenmtv
-                     {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-                        (0
-                           {mtv_overlay_panel_buffer update_text}
-                           {mtv_overlay_panel set_showing FALSE}
-                           {mtv_overlay_panel_buffer set_showing TRUE}
-                           {set $p0_evenmtv FALSE}
-                        )
-                        kDataUnhandled
-                     }
-                     {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-                        (0 
-                           {mtv_overlay_panel update_text}
-                           {mtv_overlay_panel_buffer set_showing FALSE}
-                           {mtv_overlay_panel set_showing TRUE}
-                           {set $p0_evenmtv TRUE}
-                        )
-                        kDataUnhandled
-                     }
+         }
+         {set $beforefirstnote_p0 FALSE} ;just hit a note, so not before the first one anymore
+         {if_else $cleanmtv
+            kDataUnhandled
+            {do
+               {if_else $p0_evenmtv
+                  {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                     (0
+                        {mtv_overlay_panel_buffer update_text}
+                        {mtv_overlay_panel set_showing FALSE}
+                        {mtv_overlay_panel_buffer set_showing TRUE}
+                        {set $p0_evenmtv FALSE}
+                     )
+                     kDataUnhandled
+                  }
+                  {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                     (0 
+                        {mtv_overlay_panel update_text}
+                        {mtv_overlay_panel_buffer set_showing FALSE}
+                        {mtv_overlay_panel set_showing TRUE}
+                        {set $p0_evenmtv TRUE}
+                     )
+                     kDataUnhandled
                   }
                }
             }
@@ -157,7 +197,7 @@
                   {set $interval_p0 50}
 ;                  {streak_overlay_panel zero_streak 0}
                   {streak_overlay_panel update_streak 0}
-                  {if {&& {! $autoplay} {== {gamecfg get mode} career}} ;if not autoplay, handle overstrums and MTV line 3
+                  {if {! $autoplay} ;if not autoplay, handle overstrums and MTV line 3
                      {if {! $beforefirstnote_p0}
                         {set $overstrums {+ $overstrums 1}} ;update overstrum var
                      }
@@ -214,6 +254,45 @@
             {achievements submit faileasy} ;pop up achievement
             {hud trogdor_hide}
          }
+         {if_else $p0_solo
+            {do
+               {set $p0_solo_notes_missed {+ $p0_solo_notes_missed 1}}
+               {set $p0_solo_notes_total {+ $p0_solo_notes_total 1}}
+               {if_else $p0_evensolo
+                  {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                     (0
+                        {solo_overlay_panel_buffer set_solo_line SOLO_MATH}
+                        {solo_overlay_panel set_showing FALSE}
+                        {solo_overlay_panel_buffer set_showing TRUE}
+                        {set $p0_evensolo FALSE}
+                     )
+                     kDataUnhandled
+                  }
+                  {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                     (0 
+                        {solo_overlay_panel set_solo_line SOLO_MATH}
+                        {solo_overlay_panel_buffer set_showing FALSE}
+                        {solo_overlay_panel set_showing TRUE}
+                        {set $p0_evensolo TRUE}
+                     )
+                     kDataUnhandled
+                  }
+               }
+               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+            }
+            {do
+               {set $p0_solo_notes_missed 0}
+               {set $p0_solo_notes_hit 0}
+               {set $p0_solo_notes_total 0}
+               {solo_overlay_panel set_showing FALSE}
+               {solo_overlay_panel_buffer set_showing FALSE}
+               {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
+               {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
+               {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
+            }
+         }
          {if $do_streak
             {do
                {set $beforefirstnote_p0 FALSE}
@@ -245,7 +324,7 @@
                      {streak_overlay_panel update_streak 0}
                      {if_else $cleanmtv
                         kDataUnhandled
-                        {if {|| {! $autoplay} {== {gamecfg get mode} multi_coop}} ;if not autoplay, handle misses and MTV line 3
+                        {if {! $autoplay} ;if not autoplay, handle misses and MTV line 3
                            {set $notesmissed {+ $notesmissed 1}} ;update missed var
                            {if_else $cleanmtv
                               kDataUnhandled

@@ -245,6 +245,48 @@
       {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
    )
 }
+#define SOLO_OVERLAY_PANEL_HANDLERS
+(
+   (file solo_overlay.milo)
+   (enter ;when the screen is entered
+      {gs_background.view set_local_scale .7 1 .4}
+      {gs_background.view set_local_pos_index 2 65}
+      {mtv_overlay.view set_local_scale 1.1 1 1.1} ;make the mtv overlay small
+      {mtv_overlay.view set_local_pos 300 1 -85} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+      {mtv_campaign_line1.lbl set alignment kMiddleCenter}
+      {mtv_campaign_line1_shadow.lbl set alignment kMiddleCenter}
+      {mtv_campaign_line1.lbl set width 150.0}
+      {mtv_campaign_line1.lbl set height 300.0}
+      {mtv_campaign_line1_shadow.lbl set width 150.0}
+      {mtv_campaign_line1_shadow.lbl set height 300.0}
+      {gs_tile.tex set_bitmap {sprint "track/custom_track_textures/tile_beta_keep.png"}}
+      {gs_tile1.mat set alpha 0.6}
+      {gs_tile2.mat set alpha 0.6}
+      {gs_tile3.mat set alpha 0.6}
+      {gs_tile4.mat set alpha 0.6}
+   )
+    (set_solo_line ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+      ($text)
+      
+      {mtv_campaign_line1.lbl set_localized_text $text}
+      {mtv_campaign_line1_shadow.lbl set_localized_text $text}
+    )
+   (show_overlay ;code to run to show the overlay or not based on a variable
+      ($show) ;setup variable
+      {$this set_showing $show} ;show or hide based off variable
+      {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
+   )
+)
+{new
+   GHPanel
+   solo_overlay_panel
+   SOLO_OVERLAY_PANEL_HANDLERS
+}
+{new
+   GHPanel
+   solo_overlay_panel_buffer
+   SOLO_OVERLAY_PANEL_HANDLERS
+}
 {new MidiLoaderPanel midi_loader_panel} ;oh yeah look at all these options we have here...
 {new GamePanel game
    (file "") ;ya got me, but yeah game panel doesnt load a milo
@@ -265,6 +307,14 @@
          }
       }
       #ifdef HX_XBOX {rnd suspend} #endif ;no idea but ps2 does not have this code
+      {set $p0_soloreset_hit FALSE}
+      {set $p0_soloreset_miss FALSE}
+      {set $p0_solo_notes_hit 0}
+      {set $p0_solo_notes_missed 0}
+      {set $p0_solo_notes_total 0}
+      {set $p0_solo FALSE}
+      {solo_overlay_panel set_showing FALSE}
+      {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_evenmtv TRUE}
       {set $p0_evenstreak TRUE}
       {set $p0_evenstar TRUE}
@@ -385,6 +435,14 @@
       kDataUnhandled
    )
    (intro_skip ;ran in practice mode or when intro skip/focus mode modifier is enabled. skips the intro camera shot and track extension
+      {set $p0_soloreset_hit FALSE}
+      {set $p0_soloreset_miss FALSE}
+      {set $p0_solo_notes_hit 0}
+      {set $p0_solo_notes_missed 0}
+      {set $p0_solo_notes_total 0}
+      {set $p0_solo FALSE}
+      {solo_overlay_panel set_showing FALSE}
+      {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_evenmtv FALSE}
       {set $p0_evenstreak FALSE}
       {set $p0_evenstar FALSE}
@@ -430,6 +488,14 @@
       kDataUnhandled
    )
    (extend_track ;ran after the intro camera shot, handles similar items to intro_skip, but this is ran when intro_skip is disabled
+      {set $p0_soloreset_hit FALSE}
+      {set $p0_soloreset_miss FALSE}
+      {set $p0_solo_notes_hit 0}
+      {set $p0_solo_notes_missed 0}
+      {set $p0_solo_notes_total 0}
+      {set $p0_solo FALSE}
+      {solo_overlay_panel set_showing FALSE}
+      {solo_overlay_panel_buffer set_showing FALSE}
       {world_panel set_showing {! $focusmode}} ;show the world panel or not if focus mode
       {if $focusmode
          {world do_force_shot lighter} ;if focus mode, force a specific camera shot available in all venues
@@ -517,6 +583,14 @@
       kDataUnhandled
    )
    (game_over ;ran when song failed
+      {set $p0_soloreset_hit FALSE}
+      {set $p0_soloreset_miss FALSE}
+      {set $p0_solo_notes_hit 0}
+      {set $p0_solo_notes_missed 0}
+      {set $p0_solo_notes_total 0}
+      {solo_overlay_panel set_showing FALSE}
+      {solo_overlay_panel_buffer set_showing FALSE}
+      {set $p0_solo FALSE}
       {$this foreach_player $p
          {$p on_game_over}
       }
@@ -536,6 +610,12 @@
       kDataUnhandled
    )
    (game_won_msg ;ran on song completion
+   {set $p0_soloreset_hit FALSE}
+   {set $p0_soloreset_miss FALSE}
+   {set $p0_solo_notes_hit 0}
+   {set $p0_solo_notes_missed 0}
+   {set $p0_solo_notes_total 0}
+   {set $p0_solo FALSE}
    {if_else $forceencore
          {do
             {set $encore TRUE}
@@ -631,6 +711,14 @@
       }
    )
    (game_lost ;run when the song is failed
+      {set $p0_soloreset_hit FALSE}
+      {set $p0_soloreset_miss FALSE}
+      {set $p0_solo_notes_hit 0}
+      {set $p0_solo_notes_missed 0}
+      {set $p0_solo_notes_total 0}
+      {solo_overlay_panel set_showing FALSE}
+      {solo_overlay_panel_buffer set_showing FALSE}
+      {set $p0_solo FALSE}
       {set $author FALSE} ;set the author to false to be set again if restarted
       {if {&& $focusmode {'||' {== {gamecfg get mode} career} {== {gamecfg get mode} quickplay} {== {gamecfg get mode} multi_coop}}} ;if focus mode and game mode is career or quickplay or coop
          {if {exists world}
@@ -784,7 +872,7 @@
    )
 }
 #define GAME_PANELS
-(midi_loader_panel game track_mask world_panel track_panel hud name_overlay_panel poorspy_image_panel poorspy_image_panel_buffer mtv_overlay_panel_buffer mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
+(midi_loader_panel game track_mask world_panel track_panel hud solo_overlay_panel solo_overlay_panel_buffer name_overlay_panel poorspy_image_panel poorspy_image_panel_buffer mtv_overlay_panel_buffer mtv_overlay_panel streak_overlay_panel) ;define the panels used in the game screen, in draw order
 {new GHScreen game_screen
    (panels GAME_PANELS
    #ifdef HX_XBOX ;inside isnt fixed for ps2 yet

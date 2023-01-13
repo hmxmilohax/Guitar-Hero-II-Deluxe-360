@@ -139,6 +139,14 @@
       }
    )
    (intro_skip
+      {set $p0_soloreset_hit FALSE}
+      {set $p0_soloreset_miss FALSE}
+      {set $p0_solo_notes_hit 0}
+      {set $p0_solo_notes_missed 0}
+      {set $p0_solo_notes_total 0}
+      {set $p0_solo FALSE}
+      {solo_overlay_panel set_showing FALSE}
+      {solo_overlay_panel_buffer set_showing FALSE}
       {set $do_streak TRUE}
       {streak_overlay_panel streak_lastframe} ;should force streak overlay to appear in practice even after a run
       {streak_overlay_panel show_overlay TRUE} ;show the streak panel
@@ -231,7 +239,7 @@
    (keep_section_text FALSE)
    (ignore_section '')
 }
-#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel poorspy_image_panel poorspy_image_panel_buffer track_panel mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel)
+#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel poorspy_image_panel poorspy_image_panel_buffer track_panel solo_overlay_panel solo_overlay_panel_buffer mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel)
 {new GHScreen practice_game_screen
    (panels PRACTICE_PANELS)
    (allow_back FALSE)
