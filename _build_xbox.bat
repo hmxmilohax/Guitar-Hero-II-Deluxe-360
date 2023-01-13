@@ -17,6 +17,10 @@ echo:Building Xbox ARK
 "%~dp0dependencies/arkhelper" dir2ark "%~dp0\_ark" "%~dp0\_build\Xbox\gen" -e -s 4073741823 >nul
 if %errorlevel% neq 0 (set FAILED_ARK_BUILD=1)
 echo:
+echo:Writing init files
+call _init-dta2b >nul 2>&1
+if %errorlevel% neq 0 (set FAILED_ARK_BUILD=1)
+echo:
 echo:Moving back PS2 files
 echo:
 @%SystemRoot%\System32\robocopy.exe "%~dp0_temp\_ark" "%~dp0\_ark" *.milo_ps2 /S /MOVE /XD "%~dp0_ark" /NDL /NFL /NJH /NJS /R:0 >nul
@@ -25,6 +29,6 @@ echo:
 @%SystemRoot%\System32\robocopy.exe "%~dp0_temp\_ark" "%~dp0\_ark" *.vgs /S /MOVE /XD "%~dp0_ark" /NDL /NFL /NJH /NJS /R:0 >nul
 rd _temp
 if %FAILED_ARK_BUILD% neq 1 (echo:Successfully built Guitar Hero II Deluxe ARK. You may find the files needed to place on your Xbox 360 in /_build/Xbox/)
-if %FAILED_ARK_BUILD% neq 0 (echo:Error building ARK. Check your modifications or run _git_reset.bat to rebase your repo.)
+if %FAILED_ARK_BUILD% neq 0 (echo:Error building ARK or init files. Check your modifications or run _git_reset.bat to rebase your repo.)
 echo:
 pause

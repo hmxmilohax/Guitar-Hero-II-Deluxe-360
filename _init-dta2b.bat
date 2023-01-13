@@ -7,4 +7,3 @@
 del "%~dp0\_init\init_ui_theme.dtb"
 del "%~dp0\_init\init_track_theme.dtb"
 del "%~dp0\_init\init.dtb"
-pause
