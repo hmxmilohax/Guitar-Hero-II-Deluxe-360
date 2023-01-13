@@ -3,6 +3,9 @@
 ; streak popups, and $rbdrum is pademu drum input mapping, which we want off
 ; by default.
 
+;forces a specific song, and skips menus to load directly into the song
+;accepts song shortnames only. ex: lesstalkmorerokk, o1756201957_beforeiforget
+;none maintains original menu flow
 {set $fastsong none}
 
 ;Song Speed. Each .1 is 10% 

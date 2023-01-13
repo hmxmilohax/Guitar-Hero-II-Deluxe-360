@@ -24,7 +24,7 @@
 {set $starpowertext "STAR POWER READY"}
 
 ;sets custom star power color in RGB. 0.34 0.5 0.67 is default
-{set $starpowercolor_r 0.76} {set $starpowercolor_g .40} {set $starpowercolor_b 0.53}
+{set $starpowercolor_r 0.34} {set $starpowercolor_g 0.5} {set $starpowercolor_b 0.67}
 
 ;sets custom FC streak text color in RGB. 0.79 0.51 0.07 is default
 {set $streaklabel_r 0.79} {set $streaklabel_g 0.51} {set $streaklabel_b 0.07}
@@ -74,19 +74,19 @@
 
 ;sets custom gem color per fret in RGB
 {set $newcustomgemcolor TRUE} ; enables custom gem colors
-{set $gem1color_r 1} {set $gem1color_g 0.01} {set $gem1color_b 0.01} ; default green
-{set $gem2color_r 0.95} {set $gem2color_g 0.16} {set $gem2color_b 0.24} ; default red
-{set $gem3color_r 1.0} {set $gem3color_g 0.29} {set $gem3color_b 0.38} ; default yellow
-{set $gem4color_r 0.99} {set $gem4color_g 0.35} {set $gem4color_b 0.50} ; default blue
-{set $gem5color_r 1.0} {set $gem5color_g 0.63} {set $gem5color_b 0.64} ; default orange
+{set $gem1color_r 0.14} {set $gem1color_g 0.80} {set $gem1color_b 0.06} ; default green
+{set $gem2color_r 1.0} {set $gem2color_g 0.01} {set $gem2color_b 0.01} ; default red
+{set $gem3color_r 1.0} {set $gem3color_g 0.93} {set $gem3color_b 0.12} ; default yellow
+{set $gem4color_r 0.29} {set $gem4color_g 0.46} {set $gem4color_b 0.67} ; default blue
+{set $gem5color_r 1.0} {set $gem5color_g 0.54} {set $gem5color_b 0.09} ; default orange
 
 ;sets custom smasher color in RGB
 {set $newcustomsmashercolor TRUE} ; enables custom smasher colors
-{set $smasher1color_r 1} {set $smasher1color_g 0.01} {set $smasher1color_b 0.01} ; default green
-{set $smasher2color_r 0.95} {set $smasher2color_g 0.16} {set $smasher2color_b 0.24} ; default red
-{set $smasher3color_r 1.0} {set $smasher3color_g 0.29} {set $smasher3color_b 0.38} ; default yellow
-{set $smasher4color_r 0.99} {set $smasher4color_g 0.35} {set $smasher4color_b 0.50} ; default blue
-{set $smasher5color_r 1.0} {set $smasher5color_g 0.63} {set $smasher5color_b 0.64} ; default orange
+{set $smasher1color_r 0.14} {set $smasher1color_g 0.80} {set $smasher1color_b 0.06} ; default green
+{set $smasher2color_r 1.0} {set $smasher2color_g 0.01} {set $smasher2color_b 0.01} ; default red
+{set $smasher3color_r 1.0} {set $smasher3color_g 0.93} {set $smasher3color_b 0.12} ; default yellow
+{set $smasher4color_r 0.29} {set $smasher4color_g 0.46} {set $smasher4color_b 0.67} ; default blue
+{set $smasher5color_r 1.0} {set $smasher5color_g 0.54} {set $smasher5color_b 0.09} ; default orange
 
 ;sets custom track rail color in RGB
 {set $trackrailcolor_r 1} {set $trackrailcolor_g 1} {set $trackrailcolor_b 1}
