@@ -1,8 +1,11 @@
 @echo OFF
-FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse main`) DO (
-SET localcommit=%%F
+IF EXIST ".git\refs\heads\main" (
+set /p localcommit=<.git\refs\heads\main
 )
-FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse origin/main`) DO (
+IF EXIST ".git\refs\heads\master" (
+set /p localcommit=<.git\refs\heads\master
+)
+FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse HEAD`) DO (
 SET origincommit=%%F
 )
 echo:local commit = %localcommit% / latest commit = %origincommit%
