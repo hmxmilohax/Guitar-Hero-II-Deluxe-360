@@ -673,51 +673,7 @@
    (mappings
       (default
          (events
-            (116 
-               ({do
-                  {set $p0_solo {! $p0_solo}}
-                  {if_else $p0_solo
-                     {do
-                        {if_else $p0_evensolo
-                           {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-                              (0
-                                 {solo_overlay_panel_buffer set_solo_line "100%"}
-                                 {solo_overlay_panel set_showing FALSE}
-                                 {solo_overlay_panel_buffer set_showing TRUE}
-                                 {set $p0_evensolo FALSE}
-                              )
-                              kDataUnhandled
-                           }
-                           {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-                              (0 
-                                 {solo_overlay_panel set_solo_line "100%"}
-                                 {solo_overlay_panel_buffer set_showing FALSE}
-                                 {solo_overlay_panel set_showing TRUE}
-                                 {set $p0_evensolo TRUE}
-                              )
-                              kDataUnhandled
-                           }
-                        }
-                        {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-                        {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-                        {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-                     }
-                     {do
-                        {set $p0_solo_notes_missed 0}
-                        {set $p0_solo_notes_hit 0}
-                        {set $p0_solo_notes_total 0}
-                        {solo_overlay_panel set_showing FALSE}
-                        {solo_overlay_panel_buffer set_showing FALSE}
-                        {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
-                        {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
-                        {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
-                     }}
-               })
-            )
-         )
-      )
-   )
-)
+            (116 ({set $p0_solo {! $p0_solo}}))))))
 (player1_solo
    (type midi)
    (eval TRUE)
