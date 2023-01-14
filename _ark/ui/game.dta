@@ -346,7 +346,6 @@
       {set $solo_award_points 0}
       {set $p0_fakescore 0}
       {set $p0_solo FALSE}
-      {set $p0_solo_ended FALSE}
       {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
@@ -478,7 +477,6 @@
       {set $solo_award_points 0}
       {set $p0_fakescore 0}
       {set $p0_solo FALSE}
-      {set $p0_solo_ended FALSE}
       {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
@@ -535,7 +533,6 @@
       {set $solo_award_points 0}
       {set $p0_fakescore 0}
       {set $p0_solo FALSE}
-      {set $p0_solo_ended FALSE}
       {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
@@ -633,7 +630,6 @@
       {set $p0_solo_notes_total 0}
       {set $solo_award_points 0}
       ;{set $p0_fakescore 0}
-      {set $p0_solo_ended FALSE}
       {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
@@ -666,7 +662,6 @@
    ;{streak_overlay_panel wipe_score}
    ;{set $p0_fakescore 0}
    {set $p0_solo FALSE}
-   {set $p0_solo_ended FALSE}
    {if_else $forceencore
          {do
             {set $encore TRUE}
@@ -773,7 +768,6 @@
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_solo FALSE}
-      {set $p0_solo_ended FALSE}
       {set $author FALSE} ;set the author to false to be set again if restarted
       {if {&& $focusmode {'||' {== {gamecfg get mode} career} {== {gamecfg get mode} quickplay} {== {gamecfg get mode} multi_coop}}} ;if focus mode and game mode is career or quickplay or coop
          {if {exists world}

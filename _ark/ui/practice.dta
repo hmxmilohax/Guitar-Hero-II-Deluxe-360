@@ -148,7 +148,6 @@
       {set $p0_fakescore 0}
       {streak_overlay_panel wipe_score}
       {set $p0_solo FALSE}
-      {set $p0_solo_ended FALSE}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {set $do_streak TRUE}

@@ -54,8 +54,8 @@
    {sprint
       ;{int {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 100}}
       ;"%"
-      {localize $solo_award}
-      "\n"
+      ;{localize $solo_award}
+      ;"\n"
       $solo_award_points
       " PTS"
    }
@@ -128,7 +128,7 @@
          ;{XBOX_SCORE_METER set score 42069}
          ;{XBOX_SCORE_METER reload}
          {set $p0_fakescore {+ {player0 score} $solo_award_points}}
-         {if_else $p0_solo
+         {if $p0_solo
             {do
                {set $p0_solo_notes_hit {+ $p0_solo_notes_hit 1}}
                {set $p0_solo_notes_total {+ $p0_solo_notes_total 1}}
@@ -156,52 +156,6 @@
                      kDataUnhandled
                   }
                }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.0 1.0 0.80}} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.0 1.0 0.80}} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.0 1.0 0.80}} ;rail color
-            }
-            {do
-               {if $p0_solo_ended
-                  {set $p0_solo_ended FALSE}
-                  CALC_BONUS
-                  {thread_task
-                     (delay 5) ;rate set in ui/init.dta
-                     (units kTaskSeconds)
-                     (script
-                        {if_else $p0_evensolo
-                           {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-                              (0
-                                 {solo_overlay_panel_buffer set_solo_line SET_BONUS}
-                                 {set $solo_award_points 0}
-                                 {solo_overlay_panel set_showing FALSE}
-                                 {solo_overlay_panel_buffer set_showing TRUE}
-                                 {set $p0_evensolo FALSE}
-                              )
-                              kDataUnhandled
-                           }
-                           {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-                              (0 
-                                 {solo_overlay_panel set_solo_line SET_BONUS}
-                                 {set $solo_award_points 0}
-                                 {solo_overlay_panel_buffer set_showing FALSE}
-                                 {solo_overlay_panel set_showing TRUE}
-                                 {set $p0_evensolo TRUE}
-                              )
-                              kDataUnhandled
-                           }
-                        }
-                        {$task sleep 5.0}
-                        {solo_overlay_panel set_showing FALSE}
-                        {solo_overlay_panel_buffer set_showing FALSE}
-                        {set $p0_solo_notes_missed 0}
-                        {set $p0_solo_notes_hit 0}
-                        {set $p0_solo_notes_total 0}
-                     )
-                  }
-               }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
             }
          }
          {if $do_streak
@@ -348,7 +302,7 @@
             {achievements submit faileasy} ;pop up achievement
             {hud trogdor_hide}
          }
-         {if_else $p0_solo
+         {if $p0_solo
             {do
                {set $p0_solo_notes_missed {+ $p0_solo_notes_missed 1}}
                {set $p0_solo_notes_total {+ $p0_solo_notes_total 1}}
@@ -372,52 +326,6 @@
                      kDataUnhandled
                   }
                }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-            }
-            {do
-               {if $p0_solo_ended
-                  {set $p0_solo_ended FALSE}
-                  CALC_BONUS
-                  {thread_task
-                     (delay 1) ;rate set in ui/init.dta
-                     (units kTaskSeconds)
-                     (script
-                        {if_else $p0_evensolo
-                           {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-                              (0
-                                 {solo_overlay_panel_buffer set_solo_line SET_BONUS}
-                                 {set $solo_award_points 0}
-                                 {solo_overlay_panel set_showing FALSE}
-                                 {solo_overlay_panel_buffer set_showing TRUE}
-                                 {set $p0_evensolo FALSE}
-                              )
-                              kDataUnhandled
-                           }
-                           {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-                              (0 
-                                 {solo_overlay_panel set_solo_line SET_BONUS}
-                                 {set $solo_award_points 0}
-                                 {solo_overlay_panel_buffer set_showing FALSE}
-                                 {solo_overlay_panel set_showing TRUE}
-                                 {set $p0_evensolo TRUE}
-                              )
-                              kDataUnhandled
-                           }
-                        }
-                        {$task sleep 5.0}
-                        {solo_overlay_panel set_showing FALSE}
-                        {solo_overlay_panel_buffer set_showing FALSE}
-                        {set $p0_solo_notes_missed 0}
-                        {set $p0_solo_notes_hit 0}
-                        {set $p0_solo_notes_total 0}
-                     )
-                  }
-               }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
             }
          }
          {if $do_streak
