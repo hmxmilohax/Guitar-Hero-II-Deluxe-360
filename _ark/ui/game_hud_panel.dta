@@ -6,6 +6,60 @@
 {sprint {int {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 100}} "%"}
 ;}
 )
+#define CALC_BONUS
+(
+   {set $solo_percent {int {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 100}}}
+   {if {&& {>= $solo_percent 0} {< $solo_percent 60}}
+      {set $solo_award solo_bad}
+      {set $solo_award_points 0}
+   }
+   {if {&& {>= $solo_percent 60} {< $solo_percent 70}}
+      {set $solo_award solo_meh}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 60} $p0_solo_notes_hit}}}
+   }
+   {if {&& {>= $solo_percent 70} {< $solo_percent 80}}
+      {set $solo_award solo_okay}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 70} $p0_solo_notes_hit}}}
+   }
+   {if {&& {>= $solo_percent 80} {< $solo_percent 90}}
+      {set $solo_award solo_solid}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 80} $p0_solo_notes_hit}}}
+   }
+   {if {&& {>= $solo_percent 90} {< $solo_percent 95}}
+      {set $solo_award solo_great}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 90} $p0_solo_notes_hit}}}
+   }
+   {if {&& {>= $solo_percent 95} {< $solo_percent 99}}
+      {set $solo_award solo_awesome}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 95} $p0_solo_notes_hit}}}
+   }
+   {if {== $p0_solo_notes_missed 1}
+      {set $solo_award solo_awesomechoke}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 99} $p0_solo_notes_hit}}}
+   }
+   {if {== $solo_percent 100}
+      {set $solo_award solo_perfect}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 100} $p0_solo_notes_hit}}}
+   }
+   {if {== $solo_percent 69}
+      {set $solo_award solo_nice}
+      {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 69} $p0_solo_notes_hit}}}
+   }
+   {set $p0_fakescore {+ {player0 score} $solo_award_points}}
+   {{{hud loaded_dir} find BandScoreDisplay1} set score {+ {player0 score} $solo_award_points}}
+)
+#define SET_BONUS
+(
+   
+   {sprint
+      ;{int {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 100}}
+      ;"%"
+      {localize $solo_award}
+      "\n"
+      $solo_award_points
+      " PTS"
+   }
+)
 ;modification for note streaks, based on Trick's work
 {if_else {&& {|| {== {gamecfg get mode} career} {== {gamecfg get mode} practice} {== {gamecfg get mode} multi_vs} {== {gamecfg get mode} multi_fo}}}
    kDataUnhandled
@@ -71,6 +125,9 @@
             (multi_coop {note_streak_p2})
             (practice {note_streak_p0})
          }
+         ;{XBOX_SCORE_METER set score 42069}
+         ;{XBOX_SCORE_METER reload}
+         {set $p0_fakescore {+ {player0 score} $solo_award_points}}
          {if_else $p0_solo
             {do
                {set $p0_solo_notes_hit {+ $p0_solo_notes_hit 1}}
@@ -81,6 +138,8 @@
                         {solo_overlay_panel_buffer set_solo_line SOLO_MATH}
                         {solo_overlay_panel set_showing FALSE}
                         {solo_overlay_panel_buffer set_showing TRUE}
+                        {solo_overlay_panel_buffer bounce}
+                        {solo_overlay_panel bounce}
                         {set $p0_evensolo FALSE}
                      )
                      kDataUnhandled
@@ -90,21 +149,56 @@
                         {solo_overlay_panel set_solo_line SOLO_MATH}
                         {solo_overlay_panel_buffer set_showing FALSE}
                         {solo_overlay_panel set_showing TRUE}
+                        {solo_overlay_panel_buffer bounce}
+                        {solo_overlay_panel bounce}
                         {set $p0_evensolo TRUE}
                      )
                      kDataUnhandled
                   }
                }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
+               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.0 1.0 0.80}} ;rail color
+               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.0 1.0 0.80}} ;rail color
+               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.0 1.0 0.80}} ;rail color
             }
             {do
-               {set $p0_solo_notes_missed 0}
-               {set $p0_solo_notes_hit 0}
-               {set $p0_solo_notes_total 0}
-               {solo_overlay_panel set_showing FALSE}
-               {solo_overlay_panel_buffer set_showing FALSE}
+               {if $p0_solo_ended
+                  {set $p0_solo_ended FALSE}
+                  CALC_BONUS
+                  {thread_task
+                     (delay 5) ;rate set in ui/init.dta
+                     (units kTaskSeconds)
+                     (script
+                        {if_else $p0_evensolo
+                           {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                              (0
+                                 {solo_overlay_panel_buffer set_solo_line SET_BONUS}
+                                 {set $solo_award_points 0}
+                                 {solo_overlay_panel set_showing FALSE}
+                                 {solo_overlay_panel_buffer set_showing TRUE}
+                                 {set $p0_evensolo FALSE}
+                              )
+                              kDataUnhandled
+                           }
+                           {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                              (0 
+                                 {solo_overlay_panel set_solo_line SET_BONUS}
+                                 {set $solo_award_points 0}
+                                 {solo_overlay_panel_buffer set_showing FALSE}
+                                 {solo_overlay_panel set_showing TRUE}
+                                 {set $p0_evensolo TRUE}
+                              )
+                              kDataUnhandled
+                           }
+                        }
+                        {$task sleep 5.0}
+                        {solo_overlay_panel set_showing FALSE}
+                        {solo_overlay_panel_buffer set_showing FALSE}
+                        {set $p0_solo_notes_missed 0}
+                        {set $p0_solo_notes_hit 0}
+                        {set $p0_solo_notes_total 0}
+                     )
+                  }
+               }
                {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
                {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
                {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
@@ -283,11 +377,44 @@
                {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
             }
             {do
-               {set $p0_solo_notes_missed 0}
-               {set $p0_solo_notes_hit 0}
-               {set $p0_solo_notes_total 0}
-               {solo_overlay_panel set_showing FALSE}
-               {solo_overlay_panel_buffer set_showing FALSE}
+               {if $p0_solo_ended
+                  {set $p0_solo_ended FALSE}
+                  CALC_BONUS
+                  {thread_task
+                     (delay 1) ;rate set in ui/init.dta
+                     (units kTaskSeconds)
+                     (script
+                        {if_else $p0_evensolo
+                           {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+                              (0
+                                 {solo_overlay_panel_buffer set_solo_line SET_BONUS}
+                                 {set $solo_award_points 0}
+                                 {solo_overlay_panel set_showing FALSE}
+                                 {solo_overlay_panel_buffer set_showing TRUE}
+                                 {set $p0_evensolo FALSE}
+                              )
+                              kDataUnhandled
+                           }
+                           {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+                              (0 
+                                 {solo_overlay_panel set_solo_line SET_BONUS}
+                                 {set $solo_award_points 0}
+                                 {solo_overlay_panel_buffer set_showing FALSE}
+                                 {solo_overlay_panel set_showing TRUE}
+                                 {set $p0_evensolo TRUE}
+                              )
+                              kDataUnhandled
+                           }
+                        }
+                        {$task sleep 5.0}
+                        {solo_overlay_panel set_showing FALSE}
+                        {solo_overlay_panel_buffer set_showing FALSE}
+                        {set $p0_solo_notes_missed 0}
+                        {set $p0_solo_notes_hit 0}
+                        {set $p0_solo_notes_total 0}
+                     )
+                  }
+               }
                {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
                {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
                {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
@@ -523,7 +650,6 @@
          (units kTaskSeconds)
          (script
            {set $song_percent {* 100 {/ {taskmgr seconds} $song_length}}} ;calculate percent complete
-;      {name_overlay_panel set_debug_line {sprintf "L:%0.3f S:%0.3f US:%0.3f PCT:%0.3f RPCT:%d" $song_length {taskmgr seconds} {taskmgr ui_seconds} $song_percent {player0 percent_complete}}} ;timer debug
            {streak_overlay_panel update_song_progress_task} ;update progress bar
            {streak_overlay_panel setup_next_progress_update} ;schedule next update
          )
@@ -616,6 +742,60 @@
    )
    (streak_lastframe
       {stk_campaign_song_id.view set_frame METER_END_FRAME}
+   )
+   (wipe_score
+      {stk_campaign_line3.lbl set_local_pos_index 0 40}
+      {stk_campaign_line3.lbl set_local_pos_index 1 -80}
+      {stk_campaign_line3.lbl set_local_pos_index 2 -50}
+      {stk_campaign_line3.lbl set color {pack_color 0 0 0}}
+      {stk_campaign_line3.lbl set width 1500}
+      {stk_campaign_line3.lbl set wrap_width 1500}
+      {stk_campaign_line3.lbl set height 700}
+      {stk_campaign_line3.lbl set_type impactor}
+      {$this set_score_line}
+      {stk_campaign_line3.lbl set_localized_text "0"}
+      {{XBOX_SCORE_METER find score_0.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_1.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_2.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_3.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_4.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_5.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_6.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_7.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_8.mat} set alpha 0} ;score number color in ch mode
+      {{XBOX_SCORE_METER find score_9.mat} set alpha 0} ;score number color in ch mode
+   )
+   (set_score_line
+      ($text)
+      ;{name_overlay_panel set_debug_line {sprint {player0 score}}}
+      {stk_campaign_line3.lbl set_showing FALSE}
+      {set $score_millions {int {/ $p0_fakescore 1000000}}}
+      {set $score_thousands
+         {if_else {>= $score_millions 1}
+            {int {- {/ $p0_fakescore 1000} {* $score_millions 1000}}}
+            {int {/ $p0_fakescore 1000}}
+         }
+      }
+      {set $score_hundreds
+         {if_else {>= $score_millions 1}
+            {- {- $p0_fakescore {* $score_thousands 1000}} {* $score_millions 1000000}}
+            {- $p0_fakescore {* $score_thousands 1000}}
+         }
+      }
+      {if_else {< $score_millions 1}
+         {if_else {< $score_thousands 1}
+            {if_else {< $score_hundreds 100}
+               {if_else {< $score_hundreds 10}
+                  {stk_campaign_line3.lbl set_localized_text {sprintf "%01d" $score_hundreds}}
+                  {stk_campaign_line3.lbl set_localized_text {sprintf "%02d" $score_hundreds}}
+               }
+               {stk_campaign_line3.lbl set_localized_text {sprintf "%03d" $score_hundreds}}
+            }
+            {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d" $score_thousands $score_hundreds}}
+         }
+         {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d %03d" $score_millions $score_thousands $score_hundreds}}
+      }
+      {stk_campaign_line3.lbl set_showing TRUE}
    )
    (setup_streak
       {stk_campaign_song_id.view set_showing FALSE}

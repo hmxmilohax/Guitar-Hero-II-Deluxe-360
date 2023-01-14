@@ -673,7 +673,17 @@
    (mappings
       (default
          (events
-            (116 ({set $p0_solo {! $p0_solo}}))))))
+            (116 (
+                    {do
+                       {set $p0_solo {! $p0_solo}}
+                       {if {! $p0_solo} {set $p0_solo_ended TRUE}}
+                     }
+                  )
+            )
+         )
+      )
+   )
+)
 (player1_solo
    (type midi)
    (eval TRUE)

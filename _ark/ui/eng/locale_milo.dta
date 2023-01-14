@@ -268,3 +268,13 @@
 (os_ce "GH2DX Custom Edition")
 (os_egg5 "All Eggs Unlocked")
 (os_sngthm "Song List Themes")
+
+;solo awards
+(solo_bad "Bad Solo")
+(solo_meh "Meh Solo")
+(solo_okay "Okay Solo")
+(solo_good "Bad Solo")
+(solo_awesome "Awesome Solo")
+(solo_awesomechoke "Awesome Choke")
+(solo_perfect "Perfect Solo!")
+(solo_nice "Nice.")
