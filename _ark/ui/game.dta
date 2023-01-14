@@ -280,6 +280,12 @@
       {thread_task
          (units kTaskSeconds)
          (script
+         {mtv_overlay.view set_local_scale 1.21 1 1.21}
+         {mtv_overlay.view set_local_pos 330 1 -102}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.43 1 1.43}
+         {mtv_overlay.view set_local_pos 390 1 -136}
+         {$task sleep 0.016}
          {mtv_overlay.view set_local_scale 1.375 1 1.375}
          {mtv_overlay.view set_local_pos 375 1 -127.5}
          {$task sleep 0.016}
