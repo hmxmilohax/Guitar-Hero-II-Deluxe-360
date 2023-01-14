@@ -276,6 +276,29 @@
       {$this set_showing $show} ;show or hide based off variable
       {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
    )
+   (bounce
+      {thread_task
+         (units kTaskSeconds)
+         (script
+         {mtv_overlay.view set_local_scale 1.375 1 1.375}
+         {mtv_overlay.view set_local_pos 375 1 -127.5}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.32 1 1.32}
+         {mtv_overlay.view set_local_pos 360 1 -119}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.265 1 1.265}
+         {mtv_overlay.view set_local_pos 345 1 -110.5}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.21 1 1.21}
+         {mtv_overlay.view set_local_pos 330 1 -102}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.155 1 1.155}
+         {mtv_overlay.view set_local_pos 315 1 -93.5}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.1 1 1.1}
+         {mtv_overlay.view set_local_pos 300 1 -85}
+      )}
+   )
 )
 {new
    GHPanel
