@@ -71,7 +71,7 @@
             (multi_coop {note_streak_p2})
             (practice {note_streak_p0})
          }
-         {if_else $p0_solo
+         {if $p0_solo
             {do
                {set $p0_solo_notes_hit {+ $p0_solo_notes_hit 1}}
                {set $p0_solo_notes_total {+ $p0_solo_notes_total 1}}
@@ -81,6 +81,8 @@
                         {solo_overlay_panel_buffer set_solo_line SOLO_MATH}
                         {solo_overlay_panel set_showing FALSE}
                         {solo_overlay_panel_buffer set_showing TRUE}
+                        {solo_overlay_panel_buffer bounce}
+                        {solo_overlay_panel bounce}
                         {set $p0_evensolo FALSE}
                      )
                      kDataUnhandled
@@ -90,24 +92,13 @@
                         {solo_overlay_panel set_solo_line SOLO_MATH}
                         {solo_overlay_panel_buffer set_showing FALSE}
                         {solo_overlay_panel set_showing TRUE}
+                        {solo_overlay_panel bounce}
+                        {solo_overlay_panel_buffer bounce}
                         {set $p0_evensolo TRUE}
                      )
                      kDataUnhandled
                   }
                }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-            }
-            {do
-               {set $p0_solo_notes_missed 0}
-               {set $p0_solo_notes_hit 0}
-               {set $p0_solo_notes_total 0}
-               {solo_overlay_panel set_showing FALSE}
-               {solo_overlay_panel_buffer set_showing FALSE}
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
             }
          }
          {if $do_streak
@@ -254,7 +245,7 @@
             {achievements submit faileasy} ;pop up achievement
             {hud trogdor_hide}
          }
-         {if_else $p0_solo
+         {if $p0_solo
             {do
                {set $p0_solo_notes_missed {+ $p0_solo_notes_missed 1}}
                {set $p0_solo_notes_total {+ $p0_solo_notes_total 1}}
@@ -278,19 +269,6 @@
                      kDataUnhandled
                   }
                }
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color {pack_color 0.87 0.24 0.24}} ;rail color
-            }
-            {do
-               {set $p0_solo_notes_missed 0}
-               {set $p0_solo_notes_hit 0}
-               {set $p0_solo_notes_total 0}
-               {solo_overlay_panel set_showing FALSE}
-               {solo_overlay_panel_buffer set_showing FALSE}
-               {{XBOX_TRACK_PANEL find rail_light.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track1.lit} set color TRACK_RAIL_COLOR} ;rail color
-               {{XBOX_TRACK_PANEL find track2.lit} set color TRACK_RAIL_COLOR} ;rail color
             }
          }
          {if $do_streak
