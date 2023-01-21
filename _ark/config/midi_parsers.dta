@@ -673,7 +673,7 @@
    (mappings
       (default
          (events
-            (116 ({set $p0_solo {! $p0_solo}}))))))
+            (115 ({set $p0_solo {! $p0_solo}}))))))
 (player1_solo
    (type midi)
    (eval TRUE)
