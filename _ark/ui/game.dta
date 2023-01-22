@@ -343,6 +343,7 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $tracked_solo_award 0}
       {set $solo_award_points 0}
       {set $p0_fakescore 0}
       {set $p0_solo FALSE}
@@ -474,6 +475,7 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $tracked_solo_award 0}
       {set $solo_award_points 0}
       {set $p0_fakescore 0}
       {set $p0_solo FALSE}
@@ -530,6 +532,7 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $tracked_solo_award 0}
       {set $solo_award_points 0}
       {set $p0_fakescore 0}
       {set $p0_solo FALSE}
@@ -628,6 +631,7 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $tracked_solo_award 0}
       {set $solo_award_points 0}
       ;{set $p0_fakescore 0}
       {streak_overlay_panel wipe_score}
@@ -658,6 +662,7 @@
    {set $p0_solo_notes_hit 0}
    {set $p0_solo_notes_missed 0}
    {set $p0_solo_notes_total 0}
+   {set $tracked_solo_award 0}
    {set $solo_award_points 0}
    ;{streak_overlay_panel wipe_score}
    ;{set $p0_fakescore 0}
@@ -762,6 +767,7 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $tracked_solo_award 0}
       {set $solo_award_points 0}
       {streak_overlay_panel wipe_score}
       ;{set $p0_fakescore 0}

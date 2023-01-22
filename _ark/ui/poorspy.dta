@@ -208,8 +208,13 @@
       {if $slotstate_6
          {set $slot_duration_6 {+ $slot_duration_6 $scorespyupdatesec}}
       }
+      {if $solo_awarded
+         {set $solo_awarded FALSE}
+         {set $tracked_solo_award {+ $tracked_solo_award $solo_award_points}}
+         {set $solo_award_points 0}
+      }
       {if {! $beforefirstnote_p0}
-         {set $p0_fakescore {+ {player0 score} $solo_award_points}}
+         {set $p0_fakescore {+ {player0 score} $tracked_solo_award}}
          {streak_overlay_panel set_score_line}
       }
       {if {! $autoplay}

@@ -45,6 +45,7 @@
       {set $solo_award solo_nice}
       {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 69} $p0_solo_notes_hit}}}
    }
+   {set $solo_awarded TRUE}
    ;{set $p0_fakescore {+ {player0 score} $solo_award_points}}
    ;{{{hud loaded_dir} find BandScoreDisplay1} set score {+ {player0 score} $solo_award_points}}
 )
