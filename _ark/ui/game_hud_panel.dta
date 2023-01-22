@@ -919,18 +919,6 @@
       {youwin_eng.tex set_bitmap "track/custom_track_textures/youlose_keep.png"}
       {$this set_win_showing TRUE}
    )
-   (solo_show
-      {youwin.mesh set_local_pos_index 2 100}
-      {youwin.mesh set_local_scale_index 0 1.4}
-      {youwin.mesh set_local_scale_index 2 .5}
-      {youwin_eng.tex set_bitmap "track/custom_track_textures/solopoc_keep.png"}
-      {$this set_win_showing TRUE}
-   )
-   (solo_hide
-            {$this set_win_showing FALSE}
-            {youwin_eng.tex set_bitmap "track/custom_track_textures/youwin_eng_keep.png"}
-            {youwin.mesh set_local_pos_index 2 15} 
-   )
    (trogdor_hide
       {script_task
          (delay WIN_MESSAGE_SECS)
