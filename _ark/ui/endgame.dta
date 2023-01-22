@@ -10,7 +10,7 @@
       {set $new_venue ""}
       {if {== {gamecfg get mode} career}
          {do
-            ($score {player0 score})
+            ($score $p0_fakescore)
             ($new_cash)
             ($new_cash_reason)
             ($new_status)
@@ -298,7 +298,7 @@
          ($player player0)
          ($starrating)
          {set $percent_hit_frac {* {/ $gems_hit $gems_total} 100}}
-         {endgame_score_data.lbl set_localized_text {sprint {$player score}}}
+         {endgame_score_data.lbl set_localized_text {sprint $p0_fakescore}}
          {endgame_streak_data.lbl set_localized_text {sprint {$player longest_streak}}}
          {if_else $player0_fc
             {endgame_percent_data.lbl set_localized_text {sprint {localize fullcombo}}} ;if FC, put FC label
@@ -517,7 +517,7 @@
          }
       }
       {do
-         ($score {player0 score})
+         ($score $p0_fakescore)
          ($index {get_highscore_index $score})
          {$this fill_scores
             $index
@@ -588,7 +588,7 @@
                {set [active_ten] 0}
                {$this set_text_entry -1}
                {hs_start.lbl set_showing FALSE}
-               {highscores add {$ten get_text} {player0 score}}
+               {highscores add {$ten get_text} $p0_fakescore}
             }
             {do
                {set [active_ten] $ten}
@@ -687,7 +687,7 @@
                )
                {if [okay_to_add_score]
                   {set [okay_to_add_score] FALSE}
-                  {highscores add $text {player0 score}}
+                  {highscores add $text $p0_fakescore}
                   {highscores set_default_name $text}
                }
             }

@@ -252,12 +252,14 @@
       {gs_background.view set_local_scale .7 1 .4}
       {gs_background.view set_local_pos_index 2 65}
       {mtv_overlay.view set_local_scale 1.1 1 1.1} ;make the mtv overlay small
-      {mtv_overlay.view set_local_pos 300 1 -85} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
+      {mtv_overlay.view set_local_pos 297 1 -85} ;move the mtv overlay to the top left corner of the screen, was -240 1 85
       {mtv_campaign_line1.lbl set alignment kMiddleCenter}
       {mtv_campaign_line1_shadow.lbl set alignment kMiddleCenter}
-      {mtv_campaign_line1.lbl set width 150.0}
+      ;{mtv_campaign_line1.lbl set wrap_width 90.0}
+      {mtv_campaign_line1.lbl set width 90.0}
       {mtv_campaign_line1.lbl set height 300.0}
-      {mtv_campaign_line1_shadow.lbl set width 150.0}
+      ;{mtv_campaign_line1_shadow.lbl set wrap_width 90.0}
+      {mtv_campaign_line1_shadow.lbl set width 90.0}
       {mtv_campaign_line1_shadow.lbl set height 300.0}
       {gs_tile.tex set_bitmap {sprint "track/custom_track_textures/tile_beta_keep.png"}}
       {gs_tile1.mat set alpha 0.6}
@@ -265,12 +267,41 @@
       {gs_tile3.mat set alpha 0.6}
       {gs_tile4.mat set alpha 0.6}
    )
-    (set_solo_line ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
+   (set_solo_line ;for debug use, usage: {name_overlay_panel set_debug_line {sprint "whatever you want" $includingvars "will work"}}
       ($text)
       
       {mtv_campaign_line1.lbl set_localized_text $text}
       {mtv_campaign_line1_shadow.lbl set_localized_text $text}
-    )
+   )
+   (bounce
+      {thread_task
+         (units kTaskSeconds)
+         (script
+         {mtv_overlay.view set_local_scale 1.21 1 1.21}
+         {mtv_overlay.view set_local_pos 330 1 -102}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.43 1 1.43}
+         {mtv_overlay.view set_local_pos 390 1 -136}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.375 1 1.375}
+         {mtv_overlay.view set_local_pos 375 1 -127.5}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.32 1 1.32}
+         {mtv_overlay.view set_local_pos 360 1 -119}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.265 1 1.265}
+         {mtv_overlay.view set_local_pos 345 1 -110.5}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.21 1 1.21}
+         {mtv_overlay.view set_local_pos 330 1 -102}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.155 1 1.155}
+         {mtv_overlay.view set_local_pos 315 1 -93.5}
+         {$task sleep 0.016}
+         {mtv_overlay.view set_local_scale 1.1 1 1.1}
+         {mtv_overlay.view set_local_pos 300 1 -85}
+      )}
+   )
    (show_overlay ;code to run to show the overlay or not based on a variable
       ($show) ;setup variable
       {$this set_showing $show} ;show or hide based off variable
@@ -312,7 +343,10 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $solo_award_points 0}
+      {set $p0_fakescore 0}
       {set $p0_solo FALSE}
+      {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_evenmtv TRUE}
@@ -440,7 +474,10 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $solo_award_points 0}
+      {set $p0_fakescore 0}
       {set $p0_solo FALSE}
+      {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_evenmtv FALSE}
@@ -493,7 +530,10 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $solo_award_points 0}
+      {set $p0_fakescore 0}
       {set $p0_solo FALSE}
+      {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {world_panel set_showing {! $focusmode}} ;show the world panel or not if focus mode
@@ -588,6 +628,9 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $solo_award_points 0}
+      ;{set $p0_fakescore 0}
+      {streak_overlay_panel wipe_score}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_solo FALSE}
@@ -615,6 +658,9 @@
    {set $p0_solo_notes_hit 0}
    {set $p0_solo_notes_missed 0}
    {set $p0_solo_notes_total 0}
+   {set $solo_award_points 0}
+   ;{streak_overlay_panel wipe_score}
+   ;{set $p0_fakescore 0}
    {set $p0_solo FALSE}
    {if_else $forceencore
          {do
@@ -681,7 +727,7 @@
                               $encore)})}}}
                      #ifdef HX_XBOX ;xbox acheivement handling
                      {if {! {gamecfg multiplayer}} ;if singleplayer
-                        {achievements submit_points {player0 score}} ;submit singleplayer score to leaderboards
+                        {achievements submit_points $p0_fakescore} ;submit singleplayer score to leaderboards
                      }
                      {if {== {player0 percent_hit} 100}
                         {achievements submit perfect}
@@ -716,6 +762,9 @@
       {set $p0_solo_notes_hit 0}
       {set $p0_solo_notes_missed 0}
       {set $p0_solo_notes_total 0}
+      {set $solo_award_points 0}
+      {streak_overlay_panel wipe_score}
+      ;{set $p0_fakescore 0}
       {solo_overlay_panel set_showing FALSE}
       {solo_overlay_panel_buffer set_showing FALSE}
       {set $p0_solo FALSE}
