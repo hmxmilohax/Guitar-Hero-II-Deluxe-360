@@ -208,7 +208,10 @@
       {if $slotstate_6
          {set $slot_duration_6 {+ $slot_duration_6 $scorespyupdatesec}}
       }
-      {streak_overlay_panel set_score_line {sprint $p0_fakescore}}
+      {if {! $beforefirstnote_p0}
+         {set $p0_fakescore {+ {player0 score} $solo_award_points}}
+         {streak_overlay_panel set_score_line}
+      }
       {if {! $autoplay}
          {if_else $p0_evenpoorspy
             {switch $player ;streak is even, write to line 2 while 1 is showing then swap

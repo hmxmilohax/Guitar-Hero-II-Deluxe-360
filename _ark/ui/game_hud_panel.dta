@@ -45,8 +45,8 @@
       {set $solo_award solo_nice}
       {set $solo_award_points {int {* {* {/ $p0_solo_notes_hit $p0_solo_notes_total} 69} $p0_solo_notes_hit}}}
    }
-   {set $p0_fakescore {+ {player0 score} $solo_award_points}}
-   {{{hud loaded_dir} find BandScoreDisplay1} set score {+ {player0 score} $solo_award_points}}
+   ;{set $p0_fakescore {+ {player0 score} $solo_award_points}}
+   ;{{{hud loaded_dir} find BandScoreDisplay1} set score {+ {player0 score} $solo_award_points}}
 )
 #define SET_BONUS
 (
@@ -127,7 +127,6 @@
          }
          ;{XBOX_SCORE_METER set score 42069}
          ;{XBOX_SCORE_METER reload}
-         {set $p0_fakescore {+ {player0 score} $solo_award_points}}
          {if $p0_solo
             {do
                {set $p0_solo_notes_hit {+ $p0_solo_notes_hit 1}}
@@ -660,8 +659,17 @@
       {stk_campaign_line3.lbl set wrap_width 1500}
       {stk_campaign_line3.lbl set height 700}
       {stk_campaign_line3.lbl set_type impactor}
+      {stk_campaign_line4.lbl set_local_pos_index 0 40}
+      {stk_campaign_line4.lbl set_local_pos_index 1 -80}
+      {stk_campaign_line4.lbl set_local_pos_index 2 -50}
+      {stk_campaign_line4.lbl set color {pack_color 0 0 0}}
+      {stk_campaign_line4.lbl set width 1500}
+      {stk_campaign_line4.lbl set wrap_width 1500}
+      {stk_campaign_line4.lbl set height 700}
+      {stk_campaign_line4.lbl set_type impactor}
       {$this set_score_line}
       {stk_campaign_line3.lbl set_localized_text "0"}
+      {stk_campaign_line4.lbl set_localized_text "0"}
       {{XBOX_SCORE_METER find score_0.mat} set alpha 0} ;score number color in ch mode
       {{XBOX_SCORE_METER find score_1.mat} set alpha 0} ;score number color in ch mode
       {{XBOX_SCORE_METER find score_2.mat} set alpha 0} ;score number color in ch mode
@@ -674,9 +682,56 @@
       {{XBOX_SCORE_METER find score_9.mat} set alpha 0} ;score number color in ch mode
    )
    (set_score_line
+      {if_else $p0_evenscore
+         {switch $player ;streak is even, write to line 2 while 1 is showing then swap
+            (0
+               {$this set_score_line_handler}
+               {if_else {< $score_millions 1}
+                  {if_else {< $score_thousands 1}
+                     {if_else {< $score_hundreds 100}
+                        {if_else {< $score_hundreds 10}
+                           {stk_campaign_line4.lbl set_localized_text {sprintf "%01d" $score_hundreds}}
+                           {stk_campaign_line4.lbl set_localized_text {sprintf "%02d" $score_hundreds}}
+                        }
+                        {stk_campaign_line4.lbl set_localized_text {sprintf "%03d" $score_hundreds}}
+                     }
+                     {stk_campaign_line4.lbl set_localized_text {sprintf "%d %03d" $score_thousands $score_hundreds}}
+                  }
+                  {stk_campaign_line4.lbl set_localized_text {sprintf "%d %03d %03d" $score_millions $score_thousands $score_hundreds}}
+               }
+               {stk_campaign_line3.lbl set_showing FALSE}
+               {stk_campaign_line4.lbl set_showing TRUE}
+               {set $p0_evenscore FALSE}
+            )
+            kDataUnhandled
+         }
+         {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
+            (0
+               {$this set_score_line_handler}
+               {if_else {< $score_millions 1}
+                  {if_else {< $score_thousands 1}
+                     {if_else {< $score_hundreds 100}
+                        {if_else {< $score_hundreds 10}
+                           {stk_campaign_line3.lbl set_localized_text {sprintf "%01d" $score_hundreds}}
+                           {stk_campaign_line3.lbl set_localized_text {sprintf "%02d" $score_hundreds}}
+                        }
+                        {stk_campaign_line3.lbl set_localized_text {sprintf "%03d" $score_hundreds}}
+                     }
+                     {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d" $score_thousands $score_hundreds}}
+                  }
+                  {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d %03d" $score_millions $score_thousands $score_hundreds}}
+               }
+               {stk_campaign_line4.lbl set_showing FALSE}
+               {stk_campaign_line3.lbl set_showing TRUE}
+               {set $p0_evenscore TRUE}
+            )
+            kDataUnhandled
+         }
+      }
+   )
+   (set_score_line_handler
       ($text)
       ;{name_overlay_panel set_debug_line {sprint {player0 score}}}
-      {stk_campaign_line3.lbl set_showing FALSE}
       {set $score_millions {int {/ $p0_fakescore 1000000}}}
       {set $score_thousands
          {if_else {>= $score_millions 1}
@@ -690,20 +745,19 @@
             {- $p0_fakescore {* $score_thousands 1000}}
          }
       }
-      {if_else {< $score_millions 1}
-         {if_else {< $score_thousands 1}
-            {if_else {< $score_hundreds 100}
-               {if_else {< $score_hundreds 10}
-                  {stk_campaign_line3.lbl set_localized_text {sprintf "%01d" $score_hundreds}}
-                  {stk_campaign_line3.lbl set_localized_text {sprintf "%02d" $score_hundreds}}
-               }
-               {stk_campaign_line3.lbl set_localized_text {sprintf "%03d" $score_hundreds}}
-            }
-            {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d" $score_thousands $score_hundreds}}
-         }
-         {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d %03d" $score_millions $score_thousands $score_hundreds}}
-      }
-      {stk_campaign_line3.lbl set_showing TRUE}
+     ; {if_else {< $score_millions 1}
+     ;    {if_else {< $score_thousands 1}
+     ;       {if_else {< $score_hundreds 100}
+     ;          {if_else {< $score_hundreds 10}
+     ;             {stk_campaign_line3.lbl set_localized_text {sprintf "%01d" $score_hundreds}}
+     ;             {stk_campaign_line3.lbl set_localized_text {sprintf "%02d" $score_hundreds}}
+     ;          }
+     ;          {stk_campaign_line3.lbl set_localized_text {sprintf "%03d" $score_hundreds}}
+     ;       }
+     ;       {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d" $score_thousands $score_hundreds}}
+     ;    }
+     ;    {stk_campaign_line3.lbl set_localized_text {sprintf "%d %03d %03d" $score_millions $score_thousands $score_hundreds}}
+     ; }
    )
    (setup_streak
       {stk_campaign_song_id.view set_showing FALSE}
