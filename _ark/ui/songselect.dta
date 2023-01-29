@@ -621,6 +621,7 @@
    )
    (enter ;when the screen is entered
       POORSPY_RESET_HANDLER  ;reset poorspy buttons pressed
+      {set $bestpracticepercent 0}
       {selsong_overlay_panel set_showing FALSE}
       {selsong_overlay_panel setup_text} ;setup the mtv overlay panel for the song screen
       {$this venue_randomizer} ;run the venue randomizer code block in this panel

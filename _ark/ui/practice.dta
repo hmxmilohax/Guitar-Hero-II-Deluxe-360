@@ -1,4 +1,71 @@
 {func practice_restart {meta_loading_nosave_goto practice_game_screen}} ;function to restart the practice sections
+#define REAPPLY_BEST_PERCENT_HANDLER
+(
+   {data}
+)
+#define BEST_PERCENT_PANEL_HANDLER
+(
+   (file name_overlay.milo)
+   (enter ;when the screen is entered
+      {mtv_overlay.view set_local_scale .7 1 .7} ;make the best overlay small
+      {mtv_overlay.view set_local_pos -20 1 93} ;move the best overlay to the top left corner of the screen, was -240 1 85
+      {$this setup_text} ;run the setup_text code block below
+   )
+   (setup_text ;called when best screen is entered, as well as several other places in the hud panel to refresh stats defined below
+      {do
+         ($prefix "mtv_campaign_line") ;setup prefix variable to switch between line numbers
+         {mtv_campaign_song_id.view set_showing TRUE} ;show the best overlay
+		 {if_else $autoplay ;check for autoplay enabled without author variable, the author checks will override this if needed
+            {set $bestline1
+               {localize autoplaytext}
+            }
+            {set $bestline1
+               {sprint {localize besttext} ": " $bestpracticepercent "%"}
+            }
+         }
+		 {$this set_line $prefix 1
+            {if_else $bestpracticepercent $bestline1 {sprint " "}}
+         }
+         {$this set_line $prefix 2
+            {sprint
+               "\n\n\n\n\n" ;we dont use this line so erase it
+            }
+         }
+         {$this set_line $prefix 3
+            {sprint
+               "\n\n\n\n\n" ;we dont use this line so erase it
+            }
+         }
+      }
+   )
+    (set_line ;called in mtv overlay to apply the text to two labels at once
+      ($prefix $i $text) ;setup variables
+      {{sprint $prefix $i ".lbl"} set color {pack_color $namecolor_r $namecolor_g $namecolor_b}}
+      {{sprint $prefix $i ".lbl"} set_type $namefont}
+      {{sprint $prefix $i "_shadow.lbl"} set_type $namefont}
+      {{sprint $prefix $i ".lbl"} set_localized_text $text} ;set the main text objects
+      {{sprint $prefix $i ".lbl"} set alignment kMiddleCenter}
+      {{sprint $prefix $i ".lbl"} set width 640.0}
+      {{sprint $prefix $i "_shadow.lbl"} set_localized_text $text} ;set the shadow text objects
+      {{sprint $prefix $i "_shadow.lbl"} set alignment kMiddleCenter}
+      {{sprint $prefix $i "_shadow.lbl"} set width 640.0}
+      {mtv_campaign_line2.lbl set_showing FALSE}
+      {mtv_campaign_line2_shadow.lbl set_showing FALSE}
+      {mtv_campaign_line3.lbl set_showing FALSE}
+      {mtv_campaign_line3_shadow.lbl set_showing FALSE}
+   )
+   (show_overlay ;code to run to show the overlay or not based on a variable
+      ($show) ;setup variable
+      {$this set_showing $show} ;show or hide based off variable
+      {$this set_paused FALSE} ;we refresh the mtv overlay alot, so we never want it paused
+   )
+)
+{new GHPanel best_percent_panel
+   BEST_PERCENT_PANEL_HANDLER
+}
+{new GHPanel best_percent_panel_buffer
+   BEST_PERCENT_PANEL_HANDLER
+}
 {new MultiSelectListPanel practice_sel_section_panel
    (file
       {if_else {== $menutheme 80s} ;check if the 80s theme is turned on
@@ -9,6 +76,7 @@
    (focus sel_section.lst) ;focus the section list
    (enter ;when the screen is entered
       POORSPY_RESET_HANDLER
+	  {set $bestpracticepercent 0}
       {gamecfg set (practice_sections 0) -1} ;reset the starting section
       {gamecfg set (practice_sections 1) -1} ;reset the ending section
       {sel_section.lst set_provider {game practice_section_provider}} ;provide the section data to the list
@@ -243,7 +311,7 @@
    (keep_section_text FALSE)
    (ignore_section '')
 }
-#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel poorspy_image_panel poorspy_image_panel_buffer track_panel solo_overlay_panel solo_overlay_panel_buffer mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel)
+#define PRACTICE_PANELS (practice_panel game hud streak_overlay_panel poorspy_image_panel poorspy_image_panel_buffer track_panel solo_overlay_panel solo_overlay_panel_buffer mtv_overlay_panel_buffer mtv_overlay_panel name_overlay_panel best_percent_panel best_percent_panel_buffer)
 {new GHScreen practice_game_screen
    (panels PRACTICE_PANELS)
    (allow_back FALSE)
@@ -298,6 +366,13 @@
                "AUTOPLAY"
                {sprintf $pat $perc $hits $tot}
             }
+         }
+         {if {> $perc $bestpracticepercent}
+            {do
+               {set $bestpracticepercent $perc}
+               {best_percent_panel setup_text}
+               {best_percent_panel_buffer setup_text}
+			}
          }
       }
       {do
