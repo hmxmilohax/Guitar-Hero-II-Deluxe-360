@@ -406,6 +406,7 @@
 {new GHScreen practice_end_screen
    (panels PRACTICE_PANELS practice_end_panel helpbar)
    (focus practice_end_panel)
+   (animate_transition FALSE)
    (clear_vram TRUE)
    (in_game TRUE)
    OVERSHELL_SCREEN_HANDLERS
