@@ -1,3 +1,26 @@
+#define PART_CHECKER_HANDLER
+(
+   {set $numofinst 0}
+   {if {song_provider has_instrument {gamecfg get_song} guitar}
+      {set $numofinst {+ $numofinst 1}}
+   }
+   {if {song_provider has_instrument {gamecfg get_song} drum}
+      {set $numofinst {+ $numofinst 1}}
+   }
+   {if {song_provider has_instrument {gamecfg get_song} bass}
+      {set $numofinst {+ $numofinst 1}}
+   }
+   {if {song_provider has_instrument {gamecfg get_song} rhythm}
+      {set $numofinst {+ $numofinst 1}}
+   }
+   {if_else {> $numofinst 1}
+      {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
+      {do
+	     {gamecfg set_track 0 0}
+		 {ui goto_screen loading_screen} ;if we only have one part, just go to the loading screen
+      }
+   }
+)
 {new
    MultiSelectListPanel ;panel type
    song_select_album_panel ;panel name
@@ -560,9 +583,9 @@
                }
                {game set_song speedtest9} ;this is our valid speedtest. internally this is set up as a bonus song
             }
-            {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
+            PART_CHECKER_HANDLER
          }
-         {ui goto_screen qp_selpart_screen} ;we go to the select part screen either ways
+         PART_CHECKER_HANDLER
       }
    )
    (venue_randomizer
