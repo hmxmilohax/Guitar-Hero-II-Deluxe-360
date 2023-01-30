@@ -583,9 +583,11 @@
                }
                {game set_song speedtest9} ;this is our valid speedtest. internally this is set up as a bonus song
             }
-            PART_CHECKER_HANDLER
+            ;PART_CHECKER_HANDLER
+			{ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
          }
-         PART_CHECKER_HANDLER
+         ;PART_CHECKER_HANDLER
+		 {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
       }
    )
    (venue_randomizer
