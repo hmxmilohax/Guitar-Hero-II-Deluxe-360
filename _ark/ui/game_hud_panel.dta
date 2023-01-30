@@ -128,28 +128,6 @@
          }
          ;{XBOX_SCORE_METER set score 42069}
          ;{XBOX_SCORE_METER reload}
-         {if {== {gamecfg get mode} practice}
-            {if_else $p0_evenbest
-               {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-                  (0
-                     {best_percent_panel_buffer setup_text}
-                     {best_percent_panel set_showing FALSE}
-                     {best_percent_panel_buffer set_showing TRUE}
-                     {set $p0_evenbest FALSE}
-                  )
-                  kDataUnhandled
-               }
-               {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-                  (0 
-                     {best_percent_panel setup_text}
-                     {best_percent_panel_buffer set_showing FALSE}
-                     {best_percent_panel set_showing TRUE}
-                     {set $p0_evenbest TRUE}
-                  )
-                  kDataUnhandled
-               }
-            }
-         }
          {if $p0_solo
             {do
                {set $p0_solo_notes_hit {+ $p0_solo_notes_hit 1}}
@@ -241,28 +219,6 @@
             {hud trogdor_show}
             {achievements submit faileasy} ;pop up achievement
             {hud trogdor_hide}
-         }
-         {if {== {gamecfg get mode} practice}
-            {if_else $p0_evenbest
-               {switch $player ;streak is even, write to line 2 while 1 is showing then swap
-                  (0
-                     {best_percent_panel_buffer setup_text}
-                     {best_percent_panel set_showing FALSE}
-                     {best_percent_panel_buffer set_showing TRUE}
-                     {set $p0_evenbest FALSE}
-                  )
-                  kDataUnhandled
-               }
-               {switch $player ;streak is odd, write to line 1 while 2 is showing then swap
-                  (0 
-                     {best_percent_panel setup_text}
-                     {best_percent_panel_buffer set_showing FALSE}
-                     {best_percent_panel set_showing TRUE}
-                     {set $p0_evenbest TRUE}
-                  )
-                  kDataUnhandled
-               }
-            }
          }
          {if_else $do_streak
             {if_else {== {gamecfg get mode} multi_coop}
