@@ -149,6 +149,8 @@
                         {mtv_campaign_line3_auth.lbl set color {pack_color .78 .31 0}}
                         {if_else {|| {== $author "Addymills"} {== $author "ADDYMILLS"} {== $author "addymills"} {== $author "AddyMills"}}
                            {mtv_campaign_line3_auth.lbl set color {pack_color .07 .63 0}}
+							{if_else {|| {== $author "HeatherMoontail"} {== $author "heathermoontail"} {== $author "Heathermoontail"} {== $author "HEATHERMOONTAIL"} {== $author "Heather"} {== $author "heather"} {== $author "HEATHER"}}
+								{mtv_campaign_line3_auth.lbl set color {pack_color 1 0 .60}}
                            {mtv_campaign_line3_auth.lbl set color {pack_color 1 1 1}}
                         }
                      }
