@@ -56,7 +56,7 @@
       "Pick up characters, outfits, guitars, bonus songs, and more at The Store."})
 #endif
 
-; More advanced tips (but these we wrote too :marf:)
+; More advanced tips (but these we wrote too)
 #ifndef HX_XBOX
 (advanced_tip6 "Try the debug executable if you're so inclined - it adds a ton of fun and useful diagnostic tools and cheats for testing your mods and getting around the game quickly.")
 #endif
@@ -77,5 +77,5 @@
 (multi_coop_tip9 "When someone calls a \qBand Meeting\q it's usually not a good thing.")
 
 ; New song tips
-(loading_tip_greengrass "If you've got what it takes, FC this song (with Focus Mode off!) and send a video in MiloHax. Conquer the strum limit. Don't let this port be in vain :marfpeek:")
+(loading_tip_greengrass "If you've got what it takes, FC this song (with Focus Mode off!) and send a video in MiloHax. Conquer the strum limit. Don't let this port be in vain")
 (loading_tip_speedtest "\qwhy speed test\q\n - ExileLord, 2021")

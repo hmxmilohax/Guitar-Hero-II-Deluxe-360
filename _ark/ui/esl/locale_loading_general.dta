@@ -42,7 +42,7 @@
       "Consigue personajes, guitarras, canciones bonus, y más en La Tienda."
       "Consigue personajes, trajes, guitarras, canciones bonus, y más en La Tienda."})
 
-; More advanced tips (but these we wrote too :marf:)
+; More advanced tips (but these we wrote too)
 (advanced_tip6 "Prueba el ejecutable debug si te apetece - añade un montón de herramientas de diagnóstico muy útiles, y trucos para probar tus mods y navegar por el juego más rápidamente.")
 (advanced_tip7 "Si tocas una nota en el último momento tras activar la Energía Estrella, harás algo llamado \qsqueeze\q que te permite sumarla a tu combo de Energía Estrella y conseguirás puntos extra por ella.")
 (advanced_tip8 "Modo Focus, disponible en el menú de Modificadores, remplaza el escenario con un vacío negro, que mejora la velocidad y el rendimiento del juego si hace falta.")
@@ -61,5 +61,5 @@
 (multi_coop_tip9 "Cuando alguien convoca una \qReunión de Banda\q no suele ser por algo bueno.")
 
 ; New song tips
-(loading_tip_greengrass "Si crees tener lo que hace falta, consigue FC de esta canción (¡sin el Modo Focus!) y manda un vídeo en MiloHax. Conquista el límite de rasgueos. No dejes que este port sea en vano :marfpeek:")
+(loading_tip_greengrass "Si crees tener lo que hace falta, consigue FC de esta canción (¡sin el Modo Focus!) y manda un vídeo en MiloHax. Conquista el límite de rasgueos. No dejes que este port sea en vano")
 (loading_tip_speedtest "\qwhy speed test\q\n - ExileLord, 2021")
