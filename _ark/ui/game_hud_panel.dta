@@ -518,7 +518,7 @@
    (enter
       {if_else $clonehero_hud
          {set $starsymbol ''}
-         {set $starsymbol 'Â©'}
+         {set $starsymbol '©'}
       }
       {percentbar_p2.mesh set_local_pos -75 -30 29}
       {percentbar_p1.mesh set_local_pos -75 -30 62}
@@ -534,7 +534,7 @@
             {set $overstrums 0}
             {if_else {|| $clonehero_hud $autoplay}
                {set $starrating ' '} ;if autoplay or ch hud, blank star rating
-               {set $starrating ' Â©'} ;otherwise, set to default
+               {set $starrating ' ©'} ;otherwise, set to default
             }
             {$this setup_streak}
          }
@@ -567,7 +567,7 @@
    (update_star_progress
       {if_else $clonehero_hud
          {set $starsymbol ''}
-         {set $starsymbol 'Â©'}
+         {set $starsymbol '©'}
       }
       {set $p0_avgmulti {player0 avg_multiplier}} ;store avg mult
       {set $previntstarratingtemp {int $starratingtemp}} ;retain last value to see if it changes
