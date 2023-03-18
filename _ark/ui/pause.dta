@@ -5,6 +5,7 @@
    (reset_focus TRUE)
    (enter
    {$this overshell_theme}
+   (lose_title.lbl set_localized_text {sprintf {localize pausetitle}})
    {lose_info.view set_local_pos 0 200 70}
    {lose_song_data.lbl set_localized_text {game get_song_text}}
       {lose_diff_data.lbl set_text

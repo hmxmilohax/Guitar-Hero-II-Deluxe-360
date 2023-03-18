@@ -279,7 +279,7 @@
 (lose_diff "DIFFICULTY:")
 (lose_diff2 "DIFFICULTY")
 (lose_resume "RESUME")
-(lose_title "PAUSED")
+(lose_title "SONG FAILED")
 (lose_quit "EXIT")
 (lose_restart "RETRY")
 (lose_practice "PRACTICE")
