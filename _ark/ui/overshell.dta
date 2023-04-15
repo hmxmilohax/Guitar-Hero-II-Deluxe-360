@@ -183,7 +183,7 @@
    (SELECT_START_MSG ;code ran when a button is selected
       {switch $component ;run different code based on the button selected
          (diff.btn {ui push_screen overshell_diff_list_screen}) ;difficulty screen
-         (resume.btn {ui push_screen os_modifiers}) ;modifiers screen
+         (resume.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
          (restart.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
          (change_speed.btn {ui push_screen overshell_appearence_screen}) ;appearence screen
          (section.btn {ui push_screen overshell_background_screen}) ;background screen
