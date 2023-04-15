@@ -3,7 +3,7 @@
 {set $clonehero_hud FALSE}
 
 ;brighter hopos if you have trouble telling them apart
-{set $brighthopos FALSE}
+{set $brighthopos TRUE}
 
 ;darker strums if you have trouble telling them apart
 {set $darkstrums FALSE}
