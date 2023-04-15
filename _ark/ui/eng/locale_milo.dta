@@ -53,7 +53,7 @@
 (gm_blue "BLUE")
 (GM_BLACK_BACKGD "FOCUS MODE")
 (gamemodifier "GAME MODIFIERS")
-(trackmodifier "TRACK MODIFIERS")
+(trackmodifier "TRACK OPTIONS")
 (help_adjspd "ADJUST SPEED")
 (help_adjspd "ADJUST COLOR")
 (conceived_by "as diabolically conceived by")
