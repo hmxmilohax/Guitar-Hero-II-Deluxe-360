@@ -151,24 +151,23 @@
    overshell_panel ;panel name
    (file overshell_main.milo) ;main overshell milo to load
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
-   (focus diff.btn) ;focus on difficulty select, the first button in the list
+   (focus resume.btn) ;focus on difficulty select, the first button in the list
    (reset_focus TRUE) ;make sure to bring the focus to the overshell panel
    (enter ;when the screen is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {pause_title.lbl set_localized_text {localize os_deluxesettings}} ;set the header label text
-      {diff.btn set_localized_text {localize os_gameplay}} ;set the button text
-      {resume.btn set_localized_text {localize os_modifiers}} ;set the button text
-      {restart.btn set_localized_text {localize os_speedsettings}} ;set the button text
-      {change_speed.btn set_localized_text {localize os_appearence}} ;set the button text
-      {section.btn set_localized_text {localize os_background}} ;set the button text
-      {newsong.btn set_localized_text {localize os_options}} ;set the button text
-      {$this disable quit.btn} ;hide unused button
-      {quit.btn set_showing FALSE}
+      {resume.btn set_localized_text {localize os_gameplay}} ;set the button text
+      {restart.btn set_localized_text {localize os_modifiers}} ;set the button text
+      {change_speed.btn set_localized_text {localize os_speedsettings}} ;set the button text
+      {section.btn set_localized_text {localize os_appearance}} ;set the button text
+      {newsong.btn set_localized_text {localize os_background}} ;set the button text
+      {quit.btn set_localized_text {localize os_options}} ;set the button text
+      {$this disable diff.btn} ;hide unused button
+      {diff.btn set_showing FALSE}
       {$this disable extra1.btn} ;hide unused button
       {extra1.btn set_showing FALSE}
       {$this disable extra2.btn} ;hide unused button
       {extra2.btn set_showing FALSE}
-   ;   {quit.btn set_localized_text {localize seven}} ;set the button text
    ;   {extra1.btn set_localized_text {localize eight}} ;set the button text
    ;   {extra2.btn set_localized_text {localize nine}} ;set the button text
    )
@@ -182,13 +181,13 @@
    OVERSHELL_SCREEN_COMMON_HANDLER ;setup overshell with common screen handles defined above
    (SELECT_START_MSG ;code ran when a button is selected
       {switch $component ;run different code based on the button selected
-         (diff.btn {ui push_screen overshell_diff_list_screen}) ;difficulty screen
-         (resume.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
-         (restart.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
-         (change_speed.btn {ui push_screen overshell_appearence_screen}) ;appearence screen
-         (section.btn {ui push_screen overshell_background_screen}) ;background screen
-         (newsong.btn {ui push_screen overshell_options_screen}) ;options screen
-      ;   (quit.btn {ui push_screen overshell_guitar_list_screen}) ;guitar select screen
+         (resume.btn {ui push_screen overshell_diff_list_screen}) ;difficulty screen
+         (restart.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
+         (change_speed.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
+         (section.btn {ui push_screen overshell_appearance_screen}) ;appearance screen
+         (newsong.btn {ui push_screen overshell_background_screen}) ;background screen
+      ;   (newsong.btn {ui push_screen overshell_options_screen}) ;options screen
+         (quit.btn {ui push_screen overshell_options_screen}) ;guitar select screen
       ;   (extra1.btn {ui push_screen overshell_theme_list_screen}) ;theme select screen
       ;   (extra2.btn {ui push_screen overshell_audio_slider_screen}) ;audio settings screen
       }

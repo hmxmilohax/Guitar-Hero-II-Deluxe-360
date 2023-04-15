@@ -153,6 +153,67 @@
       }
 )
 {new
+   GHPanel ;panel type
+   overshell_appearance_list ;panel name
+   (file overshell_theme.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus resume.btn) ;focus on resume button, since we dont use all of the btns
+   (reset_focus TRUE) ;make sure to bring the focus to the overshell theme panel
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {pause_title.lbl set_localized_text {localize os_appearance}} ;set the title text for this screen
+      {diff.btn set_showing FALSE} ;hide the extra unused button
+      {extra2.btn set_showing FALSE} ;hide the extra unused button
+      {$this disable diff.btn} ;disable the extra unused button
+      {$this disable extra2.btn} ;disable the extra unused button
+      {resume.btn set_localized_text {localize os_trkmod}} ;set the title text for this screen
+      {restart.btn set_localized_text {localize os_selhw}} ;set the title text for this screen
+      {change_speed.btn set_localized_text {localize os_font}} ;set the title text for this screen
+      {section.btn set_localized_text {localize os_themeselect}} ;set the title text for this screen
+      {newsong.btn set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
+      {$this disable quit.btn} ;hide unused btn
+      {quit.btn set_showing FALSE}
+   ;   {quit.btn set_localized_text {localize os_goldtheme}} ;set the title text for this screen
+      {$this disable extra1.btn} ;hide unused btn
+      {extra1.btn set_showing FALSE}
+   ;   {extra1.btn set_localized_text {localize os_songlistthemeslbl}} ;set the title text for this screen
+   )
+}
+{new
+   GHScreen ;screen type
+   overshell_appearance_screen ;screen name
+   (panels overshell_appearance_list) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_appearance_list) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
+   (SELECT_START_MSG ;ran when an item on screen is selected
+      {switch $component ;run specific code based on exactly which item is selected
+         (resume.btn ;gh1 menu theme
+            {ui push_screen overshell_track_list_screen} ;we open another screen for another list
+         )
+         (restart.btn ;gh2 menu theme
+            {ui push_screen overshell_highway_list_screen} ;we open another screen for another list
+         )
+         (change_speed.btn ;gh 80s menu theme
+            {ui push_screen overshell_font_list_screen} ;we open another screen for another list
+         )
+         (section.btn ;gh3 menu theme
+            {ui push_screen overshell_theme_list_screen} ;we open another screen for another list
+         )
+         (newsong.btn ;custom edition theme / users theme
+            {ui push_screen overshell_song_theme_screen} ;we open another screen for another list
+         )
+      ;   (quit.btn ;gold menu theme
+      ;      {set $menutheme gold}
+      ;      OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
+      ;   )
+      ;   (extra1.btn ;song select theme button
+      ;      {ui push_screen overshell_song_theme_screen} ;push the song select theme screen
+      ;   )
+      }
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
    MultiSelectListPanel ;panel type
    overshell_track_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
@@ -307,7 +368,7 @@
       {sel_section.lst set_data ;set up the data for the list
          (
             os_focusmode os_precision os_skipintro os_skipoutro ;all available modifiers
-            os_forceencore os_sfx os_trkmod os_selhw os_font
+            os_forceencore os_sfx
             os_whammyfx os_muting os_nofail os_noflames
             os_songtitle os_nametitle os_cleanmtv
             os_brutalmode os_towel os_quarterbeatlines
@@ -321,15 +382,6 @@
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
-         (os_selhw
-            {ui push_screen overshell_highway_list_screen} ;we open another screen for another list
-         )
-         (os_font
-            {ui push_screen overshell_font_list_screen} ;we open another screen for another list
-         )
-         (os_trkmod
-            {ui push_screen overshell_track_list_screen} ;we open another screen for another list
-         )
          (os_precision
             {set $precision {! $precision}} ;set the variable to the opposite of what it currently is
             {if_else $precision ;check the state of the variable
@@ -938,7 +990,7 @@
    (reset_focus TRUE) ;make sure to bring the focus to the overshell theme panel
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
-      {pause_title.lbl set_localized_text {localize os_themeselect}} ;set the title text for this screen
+      {pause_title.lbl set_localized_text {localize os_themeselectlbl}} ;set the title text for this screen
       {diff.btn set_showing FALSE} ;hide the extra unused button
       {extra2.btn set_showing FALSE} ;hide the extra unused button
       {$this disable diff.btn} ;disable the extra unused button
@@ -949,7 +1001,9 @@
       {section.btn set_localized_text {localize os_gh3theme}} ;set the title text for this screen
       {newsong.btn set_localized_text {localize os_customedtheme}} ;set the title text for this screen
       {quit.btn set_localized_text {localize os_goldtheme}} ;set the title text for this screen
-      {extra1.btn set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
+      {$this disable extra1.btn} ;hide unused btn
+      {extra1.btn set_showing FALSE}
+   ;   {extra1.btn set_localized_text {localize os_songlistthemeslbl}} ;set the title text for this screen
    )
 }
 {new
@@ -998,9 +1052,9 @@
             {set $menutheme gold}
             OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
          )
-         (extra1.btn ;song select theme button
-            {ui push_screen overshell_song_theme_screen} ;push the song select theme screen
-         )
+      ;   (extra1.btn ;song select theme button
+      ;      {ui push_screen overshell_song_theme_screen} ;push the song select theme screen
+      ;   )
       }
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
@@ -1141,7 +1195,7 @@
             os_altsong os_gh3song os_loopsong ;data for the list
          )
       }
-      {gs_title.lbl set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_songlistthemeslbl}} ;set the title text for this screen
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
