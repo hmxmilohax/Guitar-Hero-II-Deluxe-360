@@ -30,6 +30,9 @@
 ;available - gh2
 {set $poorspystrumtype gh2}
 
+;skip part/difficulty select
+{set $diffseen FALSE}
+
 ;The game now adjusts the note window to compensate for speedups.
 ;To turn this off and go back to the old default, set this to TRUE
 {set $precision FALSE}
