@@ -1,0 +1,45 @@
+{new
+   GHPanel
+   manage_gig_panel
+   (file {if_else {== $menutheme 80s} ;which milo file to use based on the 80s theme flag
+    manage_gig_80s.milo manage_gig.milo}) ;use 80s if 80s use gh2 if not 80s
+   (focus speed0.btn)
+   (set_button_text
+	{if_else {> $numofinst 1}
+		{speed2.btn set_state kDisabled}
+		{speed2.btn set_showing TRUE}})
+   (enter
+      {$this disable speed0.btn}
+      {speed0.btn set_showing FALSE}
+      {$this disable speed4.btn}
+      {speed4.btn set_showing FALSE})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (speed1.btn
+            {ui goto_screen loading_screen}) ;start song when pressed
+         (speed2.btn
+            {ui goto_screen qp_selpart_screen}) ;select instrument
+         (speed3.btn
+            {ui goto_screen qp_diff_screen}) ;select difficulty
+         (speed4.btn
+            {ui push_screen overshell_screen})})} ;open overshell (crashes on close)
+{new
+   GHScreen
+   manage_gig_screen
+   (panels meta manage_gig_panel helpbar)
+   (focus manage_gig_panel)
+   (enter
+	  {$this set_button_text})
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {ui goto_screen sel_song_screen}}
+      kDataUnhandled)}

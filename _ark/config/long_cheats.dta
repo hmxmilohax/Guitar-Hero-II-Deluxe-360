@@ -10,6 +10,9 @@
                {== {ui current_screen} complete_screen}
                {== {ui current_screen} highscore_screen}
                {== {ui current_screen} qp_selpart_screen}
+               {== {ui current_screen} qp_diff_screen}
+               {== {ui current_screen} manage_gig_screen}
+               {== {ui current_screen} practice_diff_screen}
                {== {ui current_screen} sel_song_screen}
                {== {ui current_screen} practice_end_screen}
                {== {ui current_screen} practice_sel_section_screen}

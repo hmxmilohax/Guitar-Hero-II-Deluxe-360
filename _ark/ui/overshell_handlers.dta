@@ -214,6 +214,73 @@
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
+   GHPanel ;panel type
+   overshell_options_list ;panel name
+   (file overshell_theme.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus resume.btn) ;focus on resume button, since we dont use all of the btns
+   (reset_focus TRUE) ;make sure to bring the focus to the overshell theme panel
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {pause_title.lbl set_localized_text {localize os_options}} ;set the title text for this screen
+      {diff.btn set_showing FALSE} ;hide the extra unused button
+      {extra2.btn set_showing FALSE} ;hide the extra unused button
+      {$this disable diff.btn} ;disable the extra unused button
+      {$this disable extra2.btn} ;disable the extra unused button
+      {resume.btn set_localized_text {localize os_username}} ;set the title text for this screen
+      {restart.btn set_localized_text {localize os_audiooptions}} ;set the title text for this screen
+      {change_speed.btn set_localized_text {localize os_calibration}} ;set the title text for this screen
+      {section.btn set_localized_text {localize os_handedness}} ;set the title text for this screen
+      {newsong.btn set_localized_text {localize os_credits}} ;set the title text for this screen
+      {$this disable quit.btn} ;hide unused btn
+      {quit.btn set_showing FALSE}
+   ;   {quit.btn set_localized_text {localize os_goldtheme}} ;set the title text for this screen
+      {$this disable extra1.btn} ;hide unused btn
+      {extra1.btn set_showing FALSE}
+   ;   {extra1.btn set_localized_text {localize os_songlistthemeslbl}} ;set the title text for this screen
+   )
+}
+{new
+   GHScreen ;screen type
+   overshell_options_screen ;screen name
+   (panels overshell_options_list) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_options_list) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
+   (SELECT_START_MSG ;ran when an item on screen is selected
+      {switch $component ;run specific code based on exactly which item is selected
+         (resume.btn ;username
+            {ui pop_screen}
+            {ui pop_screen}
+            {ui goto_screen manage_band_screen} ;we open another screen for another list
+         )
+         (restart.btn ;audio options
+            {ui push_screen overshell_audio_slider_screen} ;we open another screen for another list
+         )
+         (change_speed.btn ;calibration
+            {ui pop_screen}
+            {ui pop_screen}
+            {ui goto_screen lag_screen} ;we open another screen for another list
+         )
+         (section.btn ;handedness
+            {ui push_screen overshell_handedness_screen} ;we open another screen for another list
+         )
+         (newsong.btn ;credits
+            {ui pop_screen}
+            {ui pop_screen}
+            {ui goto_screen credits_screen} ;we open another screen for another list
+         )
+      ;   (quit.btn ;gold menu theme
+      ;      {set $menutheme gold}
+      ;      OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
+      ;   )
+      ;   (extra1.btn ;song select theme button
+      ;      {ui push_screen overshell_song_theme_screen} ;push the song select theme screen
+      ;   )
+      }
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
    MultiSelectListPanel ;panel type
    overshell_track_list ;panel name
    (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
@@ -707,6 +774,54 @@
    overshell_diff_list_screen ;screen name
    (panels overshell_diff_list) ;panels used for this screen. overshell only uses one panel
    (focus overshell_diff_list) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
+   MultiSelectListPanel ;panel type
+   overshell_handedness_list ;panel name
+   (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus sel_section.lst) ;focus the list used in the current overshell screen
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+   ;   {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_title.lbl set_localized_text {localize os_handedness}} ;set the title text for this screen
+      {sel_section.lst set_selected $handlistpos} ;select our saved list position
+      {sel_section.lst set circular 0} ;we dont set this list to be circular because there are not enough list items to wrap
+      {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            os_leftyp1 os_leftyp2
+         )
+      }
+   )
+   (SELECT_START_MSG ;ran when an item on screen is selected
+      {switch {$component selected_sym} ;run specific code based on exactly which item is selected
+         (os_leftyp1
+            {set $leftyp1 {! $leftyp1}} ;set var to opposite value
+            {options set_lefty 0 $leftyp1} ;set lefty flip for player 1
+            {if_else $leftyp1
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+         )
+         (os_leftyp2
+            {set $leftyp2 {! $leftyp2}} ;set var to opposite value
+            {options set_lefty 1 $leftyp2} ;set lefty flip for player 2
+            {if_else $leftyp2
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+         )
+      }
+      OVERSHELL_DIFF_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
+   GHScreen ;screen type
+   overshell_handedness_screen ;screen name
+   (panels overshell_handedness_list) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_handedness_list) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
