@@ -38,6 +38,8 @@ A specific build of [x360ce 3.2](https://www.x360ce.com/) that supports guitar m
 
 * Feature complete on both Xbox 360 Hardware and Xenia Emulator.
 
+* No overscan by default (requires separate XEX)
+
 * PS2 port in the works (currently unplayable).
 
 # Modifiers
@@ -284,6 +286,8 @@ After building the Ark, create a new folder in your Xbox 360 games folder (where
 Copy all files inside `_build/Xbox` to that folder.
 
 Guitar Hero II Deluxe 360 is a self contained game, and does not use any patches or title updates.
+
+If you wish to have video overscan, use `default-overscan.xex`.
 
 ### Custom Cover Art
 
