@@ -44,6 +44,21 @@
 }
 {new
    SliderPanel ;panel type
+   overshell_lag_slider ;panel name
+   (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   LAG_SLIDER_HANDLERS ;found in overshell_slider_handlers.dta
+}
+{new
+   GHScreen ;screen type
+   overshell_lag_screen ;screen name
+   (panels overshell_lag_slider) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_lag_slider) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
+   SliderPanel ;panel type
    overshell_audio_slider ;panel name
    (file overshell_slider.milo) ;milo file used for the panel. found in /ui/gen/
    OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
@@ -171,12 +186,9 @@
       {change_speed.btn set_localized_text {localize os_font}} ;set the title text for this screen
       {section.btn set_localized_text {localize os_themeselect}} ;set the title text for this screen
       {newsong.btn set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
-      {$this disable quit.btn} ;hide unused btn
-      {quit.btn set_showing FALSE}
-   ;   {quit.btn set_localized_text {localize os_goldtheme}} ;set the title text for this screen
+      {quit.btn set_localized_text {localize os_colorselector}} ;set the title text for this screen
       {$this disable extra1.btn} ;hide unused btn
       {extra1.btn set_showing FALSE}
-   ;   {extra1.btn set_localized_text {localize os_songlistthemeslbl}} ;set the title text for this screen
    )
 }
 {new
@@ -187,28 +199,72 @@
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch $component ;run specific code based on exactly which item is selected
-         (resume.btn ;gh1 menu theme
+         (resume.btn ;track options
             {ui push_screen overshell_track_list_screen} ;we open another screen for another list
          )
-         (restart.btn ;gh2 menu theme
+         (restart.btn ;highway select
             {ui push_screen overshell_highway_list_screen} ;we open another screen for another list
          )
-         (change_speed.btn ;gh 80s menu theme
+         (change_speed.btn ;name font
             {ui push_screen overshell_font_list_screen} ;we open another screen for another list
          )
-         (section.btn ;gh3 menu theme
+         (section.btn ;menu themes
             {ui push_screen overshell_theme_list_screen} ;we open another screen for another list
          )
-         (newsong.btn ;custom edition theme / users theme
+         (newsong.btn ;song list themes
             {ui push_screen overshell_song_theme_screen} ;we open another screen for another list
          )
-      ;   (quit.btn ;gold menu theme
-      ;      {set $menutheme gold}
-      ;      OVERSHELL_HELP_POP_HANDLER ;run help screen macro if havent entered help screen
-      ;   )
-      ;   (extra1.btn ;song select theme button
-      ;      {ui push_screen overshell_song_theme_screen} ;push the song select theme screen
-      ;   )
+         (quit.btn ;color selector
+            {ui push_screen overshell_color_slider_screen}
+         )
+      }
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
+   GHPanel ;panel type
+   overshell_managegig_list ;panel name
+   (file overshell_theme.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus resume.btn) ;focus on resume button, since we dont use all of the btns
+   (reset_focus TRUE) ;make sure to bring the focus to the overshell theme panel
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {pause_title.lbl set_localized_text {localize os_background}} ;set the title text for this screen
+      {diff.btn set_showing FALSE} ;hide the extra unused button
+      {extra2.btn set_showing FALSE} ;hide the extra unused button
+      {$this disable diff.btn} ;disable the extra unused button
+      {$this disable extra2.btn} ;disable the extra unused button
+      {resume.btn set_localized_text {localize os_venues}} ;set the title text for this screen
+      {restart.btn set_localized_text {localize os_characters}} ;set the title text for this screen
+      {change_speed.btn set_localized_text {localize os_guitars}} ;set the title text for this screen
+      {$this disable section.btn} ;hide unused btn
+      {section.btn set_showing FALSE}
+      {$this disable newsong.btn} ;hide unused btn
+      {newsong.btn set_showing FALSE}
+      {$this disable quit.btn} ;hide unused btn
+      {quit.btn set_showing FALSE}
+      {$this disable extra1.btn} ;hide unused btn
+      {extra1.btn set_showing FALSE}
+   )
+}
+{new
+   GHScreen ;screen type
+   overshell_managegig_screen ;screen name
+   (panels overshell_managegig_list) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_managegig_list) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens 
+   (SELECT_START_MSG ;ran when an item on screen is selected
+      {switch $component ;run specific code based on exactly which item is selected
+         (resume.btn ;venue select
+            {ui push_screen overshell_venue_list_screen} ;we open another screen for another list
+         )
+         (restart.btn ;character select
+            {ui push_screen overshell_character_list_screen} ;we open another screen for another list
+         )
+         (change_speed.btn ;guitar select
+            {ui push_screen overshell_guitar_list_screen} ;we open another screen for another list
+         )
       }
    )
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
@@ -257,9 +313,7 @@
             {ui push_screen overshell_audio_slider_screen} ;we open another screen for another list
          )
          (change_speed.btn ;calibration
-            {ui pop_screen}
-            {ui pop_screen}
-            {ui goto_screen lag_screen} ;we open another screen for another list
+            {ui push_screen overshell_lag_screen} ;we open another screen for another list
          )
          (section.btn ;handedness
             {ui push_screen overshell_handedness_screen} ;we open another screen for another list
@@ -785,7 +839,7 @@
    (focus sel_section.lst) ;focus the list used in the current overshell screen
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
-   ;   {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_title.lbl set_localized_text {localize os_handedness}} ;set the title text for this screen
       {sel_section.lst set_selected $handlistpos} ;select our saved list position
       {sel_section.lst set circular 0} ;we dont set this list to be circular because there are not enough list items to wrap
@@ -842,7 +896,7 @@
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {gs_title.lbl set_localized_text {localize os_characters}} ;set the title label for the current screen
+      {gs_title.lbl set_localized_text {localize os_characterselect}} ;set the title label for the current screen
       {gs_background.view add_object gs_tile5.mesh} ;make sure we have the spare mesh loaded
       {gs_tile5.mesh set_local_pos 125 100 100} ;position spare image
       {gs_tile5.mesh set_local_scale_index 0 .9} ;scale spare image
@@ -932,7 +986,7 @@
    (enter ;when the panel is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {gs_title.lbl set_localized_text {localize os_venues}} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_venueselect}} ;set the title text for this screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper locatio
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
       {sel_section.lst set_data ;set up the data for the list
@@ -976,7 +1030,7 @@
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {sel_section.lst set_local_pos -140 0 35} ;move the list to the proper location
       {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
-      {gs_title.lbl set_localized_text {localize os_guitars}} ;set the title text for this screen
+      {gs_title.lbl set_localized_text {localize os_guitarselect}} ;set the title text for this screen
       {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {sel_section.lst set_data ;set up the data for the list
          (

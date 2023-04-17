@@ -183,7 +183,7 @@
          (restart.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
          (change_speed.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
          (section.btn {ui push_screen overshell_appearance_screen}) ;appearance screen
-         (newsong.btn {ui push_screen overshell_background_screen}) ;background screen
+         (newsong.btn {ui push_screen overshell_managegig_screen}) ;manage gig screen
          (quit.btn {ui push_screen overshell_options_screen}) ;guitar select screen
          (extra1.btn {$this disable overshell_panel} {overshell_panel set_showing FALSE} {ui goto_screen credits_screen}) ;theme select screen
       ;   (extra2.btn {ui push_screen overshell_audio_slider_screen}) ;audio settings screen
