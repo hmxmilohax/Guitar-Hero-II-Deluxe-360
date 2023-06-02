@@ -155,19 +155,22 @@
    (reset_focus TRUE) ;make sure to bring the focus to the overshell panel
    (enter ;when the screen is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
+      {pause_title.lbl set_local_pos 0 0 105} ;move the label to the proper location
+      {pause_buttons.view set_local_pos 0 125 50} ;move the buttons to the proper location
       {pause_title.lbl set_localized_text {localize os_deluxesettings}} ;set the header label text
-      {resume.btn set_localized_text {localize os_gameplay}} ;set the button text
-      {restart.btn set_localized_text {localize os_modifiers}} ;set the button text
-      {change_speed.btn set_localized_text {localize os_speedsettings}} ;set the button text
-      {section.btn set_localized_text {localize os_appearance}} ;set the button text
-      {newsong.btn set_localized_text {localize os_background}} ;set the button text
-      {quit.btn set_localized_text {localize os_options}} ;set the button text
-      {extra1.btn set_localized_text {localize os_credits}} ;set the button text
+      {resume.btn set_localized_text {localize os_modifiers}} ;set the button text
+      {restart.btn set_localized_text {localize os_speedsettings}} ;set the button text
+      {change_speed.btn set_localized_text {localize os_appearance}} ;set the button text
+      {section.btn set_localized_text {localize os_background}} ;set the button text
+      {newsong.btn set_localized_text {localize os_handedness}} ;set the button text
       {$this disable diff.btn} ;hide unused button
       {diff.btn set_showing FALSE}
+      {$this disable quit.btn} ;hide unused button
+      {quit.btn set_showing FALSE}
+      {$this disable extra1.btn} ;hide unused button
+      {extra1.btn set_showing FALSE}
       {$this disable extra2.btn} ;hide unused button
       {extra2.btn set_showing FALSE}
-   ;   {extra2.btn set_localized_text {localize nine}} ;set the button text
    )
 }
 {new
@@ -179,14 +182,11 @@
    OVERSHELL_SCREEN_COMMON_HANDLER ;setup overshell with common screen handles defined above
    (SELECT_START_MSG ;code ran when a button is selected
       {switch $component ;run different code based on the button selected
-         (resume.btn {ui push_screen overshell_diff_list_screen}) ;difficulty screen
-         (restart.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
-         (change_speed.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
-         (section.btn {ui push_screen overshell_appearance_screen}) ;appearance screen
-         (newsong.btn {ui push_screen overshell_managegig_screen}) ;manage gig screen
-         (quit.btn {ui push_screen overshell_options_screen}) ;guitar select screen
-         (extra1.btn {$this disable overshell_panel} {overshell_panel set_showing FALSE} {ui goto_screen credits_screen}) ;theme select screen
-      ;   (extra2.btn {ui push_screen overshell_audio_slider_screen}) ;audio settings screen
+         (resume.btn {ui push_screen overshell_modifier_list_screen}) ;modifiers screen
+         (restart.btn {ui push_screen overshell_speed_slider_screen}) ;speed settings screen
+         (change_speed.btn {ui push_screen overshell_appearance_screen}) ;appearance screen
+         (section.btn {ui push_screen overshell_managegig_screen}) ;manage gig screen
+         (newsong.btn {ui push_screen overshell_handedness_screen}) ;handedness screen
       }
    )
    (BUTTON_DOWN_MSG ;code ran when a button is pressed

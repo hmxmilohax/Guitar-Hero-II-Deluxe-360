@@ -28,14 +28,16 @@
             {if_else $diffseen
             {ui goto_screen manage_gig_screen}
             {ui goto_screen loading_screen}}
-            {set $diffseen TRUE}}}
+            ;{set $diffseen TRUE}
+            }}
       kDataUnhandled)
    (SELECT_START_MSG
                {do
          {if_else $diffseen
          {ui goto_screen manage_gig_screen}
          {ui goto_screen loading_screen}}
-         {set $diffseen TRUE}}
+         ;{set $diffseen TRUE}
+         }
       kDataUnhandled)}
 {new
    GHPanel

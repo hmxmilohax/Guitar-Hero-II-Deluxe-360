@@ -1,7 +1,7 @@
 ;set menu theming
 ;current themes are
 ;gh1 gh2 gh3 80s gold custom
-{set $menutheme none}
+{set $menutheme gh2}
 
 ;sets custom values for custom menu theme
 ;you can customize your own menu theme here
