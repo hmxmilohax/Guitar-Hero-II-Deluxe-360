@@ -108,3 +108,11 @@
 #include ui/init_ui_theme.dta
 #endif
 #include init_dev.dta
+
+;DEV OPTIONS BELOW, DO NOT MODIFY
+
+;skip part/difficulty select
+{set $diffseen FALSE}
+
+;skip help screen
+{set $helpentered TRUE}
