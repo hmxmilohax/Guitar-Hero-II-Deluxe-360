@@ -146,7 +146,7 @@
                profile_slot
                [profile_slot]}
             {nameprof_screen set back_screen manage_band_screen}
-            {nameprof_screen set next_screen main_screen}
+            {nameprof_screen set next_screen options_screen}
             {nameprof_screen
                set
                initial_text
@@ -162,7 +162,7 @@
       {if
          {== $button kPad_Tri}
          {$this backwards_anim}
-         {ui goto_screen main_screen}}
+         {ui goto_screen options_screen}}
       kDataUnhandled)}
 #define MAX_NUM_PROFILES
 (8)
@@ -230,11 +230,11 @@
          {if_else
             {!
                {campaign is_empty_profile $index}}
-            {ui goto_screen main_screen}
+            {ui goto_screen options_screen}
             {do
                {nameprof_screen set profile_slot $index}
                {nameprof_screen set back_screen chooseprof_screen}
-               {nameprof_screen set next_screen main_screen}
+               {nameprof_screen set next_screen options_screen}
                {nameprof_screen set is_editing FALSE}
                {ui goto_screen nameprof_screen}}}}
       kDataUnhandled)
@@ -243,5 +243,5 @@
          {== $button kPad_Tri}
          {$this backwards_anim}
          {synth play_sequence button_back.cue}
-         {ui goto_screen main_screen}}
+         {ui goto_screen options_screen}}
       kDataUnhandled)}

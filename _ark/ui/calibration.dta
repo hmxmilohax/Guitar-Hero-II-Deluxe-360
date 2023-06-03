@@ -1,43 +1,10 @@
 {new
-   CreditsPanel
-   credits_panel
-   (file credits.milo)
-   (enter
-      {meta_music stop}
-#ifdef HX_XBOX {profilemgr disable_xmp} #endif)
-   (exit
-      {meta_music start}
-#ifdef HX_XBOX {profilemgr disable_xmp} #endif)}
-{new
-   GHScreen
-   credits_screen
-   (panels meta credits_panel helpbar)
-   (focus credits_panel)
-   (helpbar
-      (default
-         ((fret2 help_back))))
-   (SCROLL_MSG
-      {do
-         ($new_scroll_pos
-            {{credits_panel find credits.lst}
-               selected_pos})
-         {if
-            {==
-               {'+' 1 $new_scroll_pos}
-               {$this num_lines}}
-#ifdef HX_XBOX {achievements submit credits} #endif
-            {$this go_back}}}
-      kDataUnhandled)
-   (go_back
-      {$this backwards_anim}
-      {ui goto_screen options_screen})}
-{new
    LagPanel
    lag_panel
    (file lag.milo)
    (focus autocalibrate.btn)
    (from_panel
-      "main_panel")
+      "")
    (state init)
    (lag 0)
    (hits
@@ -173,9 +140,9 @@
                {if_else
                   {==
                      [from_panel]
-                     main_panel}
-                  {ui goto_screen main_screen}
-                  {ui goto_screen pause_video_settings_screen}})
+                     video_settings_panel}
+                  {ui goto_screen options_screen}
+                  {ui goto_screen options_screen}})
             kDataUnhandled}})
    (SELECT_START_MSG
       {switch
@@ -343,8 +310,6 @@
    (focus lag_panel)
    (clear_vram TRUE)
    (enter
-      {game80s.btn set_state kDisabled}
-      {game80s.btn set_showing FALSE}
       {hud set_showing FALSE}
       {track_panel set_showing FALSE}
       {world_panel set_showing FALSE})}

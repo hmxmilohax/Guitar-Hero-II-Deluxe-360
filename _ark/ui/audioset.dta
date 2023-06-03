@@ -1,0 +1,188 @@
+#define SLIDER_LEVELS
+(12)
+#define AUDIO_SETTINGS_PANEL_HANDLERS
+((focus gs_band.sld)
+   (focus_component
+      "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {gs_band.sld set_num_steps SLIDER_LEVELS}
+      {gs_guitar.sld set_num_steps SLIDER_LEVELS}
+      {gs_sfx.sld set_num_steps SLIDER_LEVELS})
+   (slider_changed
+      {'||'
+         {!=
+            {options get band_volume_idx}
+            {gs_band.sld current}}
+         {!=
+            {options get guitar_volume_idx}
+            {gs_guitar.sld current}}
+         {!=
+            {options get fx_volume_idx}
+            {gs_sfx.sld current}}})
+   (enter
+      {if {== $menutheme 80s}
+         {$this disable stereo.chk}
+         {stereo.chk set_showing FALSE}
+         {$this disable gs_stereo.btn}
+         {gs_stereo.btn set_showing FALSE}}
+      {if {== $menutheme gh1}
+         {$this disable stereo.chk}
+         {stereo.chk set_showing FALSE}
+         {$this disable gs_stereo.btn}
+         {gs_stereo.btn set_showing FALSE}}
+      {gs_band.sld
+         set_current
+         {options get band_volume_idx}}
+      {gs_guitar.sld
+         set_current
+         {options get guitar_volume_idx}}
+      {gs_sfx.sld
+         set_current
+         {options get fx_volume_idx}})
+   (set_volumes
+      {if
+         {$this slider_changed}
+         {options
+            set
+            band_volume_idx
+            {gs_band.sld current}}
+         {options
+            set
+            guitar_volume_idx
+            {gs_guitar.sld current}}
+         {options
+            set
+            fx_volume_idx
+            {gs_sfx.sld current}}})
+   (slider_select_cancel
+      ($component)
+      {switch
+         $component
+         (gs_band.sld
+            {$component
+               set_current
+               [orig_vol]})
+         (gs_guitar.sld
+            {$component
+               set_current
+               [orig_vol]})
+         (gs_sfx.sld
+            {$component
+               set_current
+               [orig_vol]})}
+      {$this update_help_display}
+      kDataUnhandled)
+   (FOCUS_MSG
+      {$this
+         set
+         focus_component
+         {$new_focus name}}
+      {$this update_help_display})
+   (update_help_display
+      {if_else
+         {$this slider_selected}
+         {helpbar
+            set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjvol))}
+         {helpbar
+            set_display
+            ((fret1 help_select)
+               (fret2 help_back)
+               (strum help_updown))}})
+   (slider_start_msg
+      ($component)
+      {do
+         ($vol
+            {options
+               get_volume_from_idx
+               {$component current}})
+         {switch
+            $component
+            (gs_band.sld
+               {play_sfx
+                  slider_band
+                  (volume $vol)
+                  (stop TRUE)})
+            (gs_guitar.sld
+               {play_sfx
+                  slider_gtr
+                  (volume $vol)
+                  (stop TRUE)})
+            (gs_sfx.sld
+               {play_sfx
+                  slider_sfx
+                  (volume $vol)
+                  (stop TRUE)})}})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (gs_band.sld
+            {$this
+               set
+               orig_vol
+               {gs_band.sld current}})
+         (gs_guitar.sld
+            {$this
+               set
+               orig_vol
+               {gs_guitar.sld current}})
+         (gs_sfx.sld
+            {$this
+               set
+               orig_vol
+               {gs_sfx.sld current}})
+         kDataUnhandled}
+      {$this update_help_display}))
+{new
+   SliderPanel
+   audio_settings_panel
+   (file
+      {if_else {== $menutheme gh1}
+         game_settings_gh1.milo
+            {if_else {== $menutheme 80s}
+               game_settings_80s.milo
+               game_settings.milo}})
+   AUDIO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   audio_settings_screen
+   (panels meta audio_settings_panel helpbar)
+   (focus audio_settings_panel)
+   (allow_back FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {!
+               {audio_settings_panel slider_selected}}
+            {== $button kPad_Tri}}
+         {$this backwards_anim}
+         {synth play_sequence button_back.cue}
+         {$this set_volumes}
+         {autosave_goto options_screen}}
+      kDataUnhandled)}
+{new
+   SliderPanel
+   pause_audio_settings_panel
+   (file pause_audio_settings.milo)
+   AUDIO_SETTINGS_PANEL_HANDLERS}
+{new
+   GHScreen
+   pause_audio_settings_screen
+   (panels GAME_PANELS pause_audio_settings_panel helpbar)
+   (focus pause_audio_settings_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {!
+               {pause_audio_settings_panel slider_selected}}
+            {== $button kPad_Tri}}
+         {$this set_volumes}
+         {ui goto_screen pause_screen}}
+      kDataUnhandled)}

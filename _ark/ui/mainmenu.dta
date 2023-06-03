@@ -33,7 +33,7 @@
           main.milo
        }
     )
-   (focus main_quickspin.btn) ;focus on quickplay button on enter
+   (focus main_career.btn) ;focus on quickplay button on enter
    (msg_last_frame 0) ;cheat messages no longer occur in DX
    (already_entered FALSE)
    (memcard_flow_entered FALSE)
@@ -83,6 +83,7 @@
       }
    )
    (enter
+       {$this disable main_quickspin.btn} ;disable multiplayer (broken)
        #ifndef HX_XBOX
        {set $cheat_enabled_unlock_all 1}
        {campaign set_all_access 1}
@@ -147,32 +148,15 @@
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {switch $component ;switch action based on result of which button is selected
          (main_career.btn
-            {gamecfg set mode career}
-            {if_else
-               {>
-                  {campaign num_profiles}
-                  0}
-               {ui goto_screen manage_band_screen}
-               {do
-                  {nameprof_screen set back_screen main_screen}
-                  {nameprof_screen set is_editing FALSE}
-                  {nameprof_screen set profile_slot 0}
-                  {nameprof_screen set next_screen main_screen}
-                  {ui goto_screen nameprof_screen}}}
-            ;{game set_song {campaign pick_attract_song}} {game set_career} {ui goto_screen loading_screen}
-            ;{{load_objects "game:/test.milo"} save_objects "game:/converted.milo"} ;test code for milo conversion. input milo must be named as test.milo_xbox
-            ;{ui goto_screen nameprof_screen} ;name profile screen for highscores (career)
-            )
-         (main_quickspin.btn
             {gamecfg set mode career} ;set to career so select song screen shows saved scores
             {set $gh3list {random_int 1 4}} ;set the random number for one of the 4 combinations of gh3 song list screen
             {ui goto_screen sel_song_screen} ;go to the select song screen
             kDataUnhandled)
-         (main_multiplayer.btn
+         (main_quickspin.btn
             {set $gh3list {random_int 1 5}}
             {ui goto_screen multi_controller_select_screen} ;go to the controller configuration screen for multiplayer (xbox only)
             kDataUnhandled)
-         (main_tutorial.btn
+         (main_multiplayer.btn
             {gamecfg set mode practice} ;set the current game mode to practice
             {gamecfg set practice_speed 0} ;we use our own speed scripting, so ensure practice speed is set to full speed
             {set $gh3list {random_int 1 4}} ;set the random number for one of the 4 combinations of gh3 song list screen
@@ -180,6 +164,9 @@
             kDataUnhandled)
          (main_leaderboards.btn
             {ui goto_screen lag_screen} ;go directly to the calibration screen
+            kDataUnhandled)
+         (main_tutorial.btn
+            {ui goto_screen options_screen} ;go directly to the options menu
             kDataUnhandled)
          (main_options.btn
             {ui goto_screen credits_screen} ;go directly to the credits screen

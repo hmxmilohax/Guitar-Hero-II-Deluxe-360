@@ -1,0 +1,44 @@
+{new
+   GHPanel
+   mem_card_panel
+   (file mem_card.milo)
+   (focus save_bands.btn)}
+{new
+   GHScreen
+   mem_card_screen
+   (panels meta mem_card_panel helpbar)
+   (focus mem_card_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown)))
+      (autosave.btn
+         ((fret1 help_onoff)
+            (fret2 help_back)
+            (strum help_updown))))
+   (enter
+      {{mem_card_panel find autosave.chk}
+         set_check
+         $autosave})
+   (SELECT_START_MSG
+      {switch
+         $component
+         (autosave.btn
+            {{mem_card_panel find autosave.chk}
+               toggle}
+            {set
+               $autosave
+               {{mem_card_panel find autosave.chk}
+                  get_check}}
+            {if
+               $autosave
+               {set $mc_return_screen $this}
+               {ui goto_screen enable_autosave_screen}})
+         (save_bands.btn
+            {set $mc_return_screen $this}
+            {ui goto_screen normal_save_screen})
+         (load_bands.btn
+            {set $mc_return_screen $this}
+            {goto_load})}
+      kDataUnhandled)}
