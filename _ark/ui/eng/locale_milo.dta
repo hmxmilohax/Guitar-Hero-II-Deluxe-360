@@ -170,6 +170,7 @@
 (os_appearance "APPEARANCE")
 (os_background "MANAGE GIG")
 (os_options "OPTIONS")
+(os_debug "DEBUG MENU")
 (os_audiooptions "SET AUDIO")
 (os_handedness "HANDEDNESS")
 (os_username "USERNAME")

@@ -163,6 +163,7 @@
       {change_speed.btn set_localized_text {localize os_appearance}} ;set the button text
       {section.btn set_localized_text {localize os_background}} ;set the button text
       {newsong.btn set_localized_text {localize os_handedness}} ;set the button text
+      {extra1.btn set_localized_text {localize os_debug}} ;set the button text
       {$this disable diff.btn} ;hide unused button
       {diff.btn set_showing FALSE}
       {$this disable quit.btn} ;hide unused button
@@ -187,6 +188,7 @@
          (change_speed.btn {ui push_screen overshell_appearance_screen}) ;appearance screen
          (section.btn {ui push_screen overshell_managegig_screen}) ;manage gig screen
          (newsong.btn {ui push_screen overshell_handedness_screen}) ;handedness screen
+         (extra1.btn {ui push_screen overshell_debug_screen}) ;debug screen
       }
    )
    (BUTTON_DOWN_MSG ;code ran when a button is pressed
