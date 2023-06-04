@@ -2,7 +2,7 @@
    (file overshell_pause.milo)
    (focus lose_resume_career.btn)
    OVERSHELL_THEME_HANDLER
-   (reset_focus TRUE)
+   ;(reset_focus TRUE)
    (enter
    {$this overshell_theme}
    (lose_title.lbl set_localized_text {sprintf {localize pausetitle}})
@@ -51,14 +51,18 @@
       {switch $component
          (lose_resume_career.btn {$this resume})
          (lose_restart_career.btn
-         {pause_confirm_restart_screen set pause_screen $this}
-         {ui goto_screen pause_confirm_restart_screen})
-         (lose_diff_career.btn {ui push_screen overshell_diff_list_screen})
-         (lose_practice_career.btn {$this goto_practice_mode})
-         (lose_selsong_career.btn {meta_loading_goto sel_song_screen})
+            {pause_confirm_restart_screen set pause_screen $this}
+            {ui goto_screen pause_confirm_restart_screen})
+         (lose_practice_career.btn 
+            {set $modifier_exit {ui current_screen}}
+            {ui push_screen overshell_screen})
+         (lose_diff_career.btn {$this goto_practice_mode})
+         (lose_selsong_career.btn 
+            {pause_confirm_newsong_screen set pause_screen $this}
+            {ui goto_screen pause_confirm_newsong_screen})
          (lose_quit_career.btn
-         {pause_confirm_quit_screen set pause_screen $this}
-         {ui goto_screen pause_confirm_quit_screen})}))
+            {pause_confirm_quit_screen set pause_screen $this}
+            {ui goto_screen pause_confirm_quit_screen})}))
 {new GHScreen pause_screen
    (panels GAME_PANELS pause_panel)
    (focus pause_panel)
@@ -143,7 +147,7 @@
 {new GHPanel pause_controller_panel
    (file pause_controller.milo)
    OVERSHELL_THEME_HANDLER
-   (focus resume.btn)
+   ;(focus resume.btn)
    (enter
       {$this overshell_theme}
       {pause_controller_msg.lbl set_text {if_else {game multiplayer}
@@ -248,10 +252,10 @@
    pause_confirm_restart_panel
    (file pause_restart.milo)
    OVERSHELL_THEME_HANDLER
-   (focus restart.btn)
+   (focus cancel.btn)
    (enter
    {$this overshell_theme}
-      {$this set_focus restart.btn})}
+      {$this set_focus cancel.btn})}
 {new
    GHScreen
    pause_confirm_restart_screen
@@ -274,16 +278,22 @@
             {ui
                goto_screen
                [pause_screen]})
-         kDataUnhandled})}
+         kDataUnhandled})
+   (BUTTON_DOWN_MSG ;code ran when a button is pressed
+      {if {== $button kPad_Tri} ;run when pressing back
+         {ui pop_screen} ;make the current overshell screen dissappear
+      }
+      kDataUnhandled ;means literally nothing. we need to tell the game to not worry if we press a button not defined in BUTTON_DOWN_MSG
+   )}
 {new
    GHPanel
    pause_confirm_quit_panel
    (file pause_quit.milo)
    OVERSHELL_THEME_HANDLER
-   (focus quit.btn)
+   (focus cancel.btn)
    (enter
       {$this overshell_theme}
-      {$this set_focus quit.btn})}
+      {$this set_focus cancel.btn})}
 {new
    GHScreen
    pause_confirm_quit_screen
@@ -302,4 +312,44 @@
             {ui
                goto_screen
                [pause_screen]})
-         kDataUnhandled})}
+         kDataUnhandled})
+   (BUTTON_DOWN_MSG ;code ran when a button is pressed
+      {if {== $button kPad_Tri} ;run when pressing back
+         {ui pop_screen} ;make the current overshell screen dissappear
+      }
+      kDataUnhandled ;means literally nothing. we need to tell the game to not worry if we press a button not defined in BUTTON_DOWN_MSG
+   )}
+{new
+   GHPanel
+   pause_confirm_newsong_panel
+   (file pause_quit.milo)
+   OVERSHELL_THEME_HANDLER
+   (focus cancel.btn)
+   (enter
+      {$this overshell_theme}
+      {$this set_focus cancel.btn})}
+{new
+   GHScreen
+   pause_confirm_newsong_screen
+   (panels GAME_PANELS pause_confirm_newsong_panel)
+   (focus pause_confirm_newsong_panel)
+   (in_game TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (pause_screen pause_screen)
+   (SELECT_START_MSG
+      {switch
+         $component
+         (quit.btn
+            {meta_loading_nosave_goto sel_song_screen})
+         (cancel.btn
+            {ui
+               goto_screen
+               [pause_screen]})
+         kDataUnhandled})
+   (BUTTON_DOWN_MSG ;code ran when a button is pressed
+      {if {== $button kPad_Tri} ;run when pressing back
+         {ui pop_screen} ;make the current overshell screen dissappear
+      }
+      kDataUnhandled ;means literally nothing. we need to tell the game to not worry if we press a button not defined in BUTTON_DOWN_MSG
+   )}

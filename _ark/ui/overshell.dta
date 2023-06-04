@@ -156,7 +156,7 @@
    (enter ;when the screen is entered
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {pause_title.lbl set_local_pos 0 0 105} ;move the label to the proper location
-      {pause_buttons.view set_local_pos 0 125 50} ;move the buttons to the proper location
+      {pause_buttons.view set_local_pos 0 0 37} ;move the buttons to the proper location
       {pause_title.lbl set_localized_text {localize os_deluxesettings}} ;set the header label text
       {resume.btn set_localized_text {localize os_modifiers}} ;set the button text
       {restart.btn set_localized_text {localize os_speedsettings}} ;set the button text
