@@ -84,6 +84,7 @@
    )
    (enter
        {$this disable main_quickspin.btn} ;disable multiplayer (broken)
+       {set $iamingamenow FALSE}
        #ifndef HX_XBOX
        {set $cheat_enabled_unlock_all 1}
        {campaign set_all_access 1}

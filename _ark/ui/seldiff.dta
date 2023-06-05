@@ -36,6 +36,7 @@
          {if_else $diffseen
          {ui goto_screen manage_gig_screen}
          {ui goto_screen loading_screen}}
+         {set $iamingamenow TRUE}
          ;{set $diffseen TRUE}
          }
       kDataUnhandled)}

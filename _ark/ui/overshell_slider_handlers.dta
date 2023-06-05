@@ -194,6 +194,9 @@
       {if $towel
          {$this disable gs_guitar.sld}
       }
+      {if $iamingamenow
+         {$this disable gs_sfx.sld}
+      }
       {gs_guitar.sld set_current
          {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.1}}}
       }

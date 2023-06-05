@@ -655,6 +655,7 @@
       {ss_song.lst set spacing 50}
    )
    (enter ;when the screen is entered
+      {set $iamingamenow FALSE}
       POORSPY_RESET_HANDLER  ;reset poorspy buttons pressed
       {set $bestpracticepercent 0}
       {selsong_overlay_panel set_showing FALSE}
