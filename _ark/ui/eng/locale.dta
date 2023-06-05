@@ -58,7 +58,7 @@
 (name_band "SET USERNAME")
 (BAND_NAME_EXPLAIN "This is also your SAVE GAME name")
 (HOW_TO_END "Press START button to accept name and continue")
-(HOW_TO_EDIT "You can edit this name later from the main menu")
+(HOW_TO_EDIT "You can edit this name later from the options menu")
 (choose_band "CHOOSE BAND")
 (no_profile "NO BAND")
 (no_profile_msg "Please enter a BAND NAME.")
