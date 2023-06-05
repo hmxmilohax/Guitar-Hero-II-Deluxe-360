@@ -19,7 +19,6 @@ clock_source_raw = false                          	# Use the RDTSC instruction a
 cpu = "any"                                       	# CPU backend [any, x64].
 debug_symbol_loader = false                       	# Enable dbghelp debug logging and validation.
 debugprint_trap_log = false                       	# Log debugprint traps to the active debugger
-disable_global_lock = false                       	# Disables global lock usage in guest code. Does not affect host code.
 disable_instruction_infocache = false             	# Disables caching records of called instructions/mmio accesses.
 disable_prefetch_and_cachecontrol = true          	# Disables translating ppc prefetch/cache flush instructions to host prefetch/cacheflush instructions. This may improve performance as these instructions were written with the Xbox 360's cache in mind, and modern processors do their own automatic prefetching.
 disassemble_functions = false                     	# Disassemble functions during generation.
@@ -34,6 +33,7 @@ ignore_undefined_externs = true                   	# Don't exit when an undefine
 inline_loadclock = false                          	# Directly read cached guest clock without calling the LoadClock method (it gets repeatedly updated by calls from other threads)
 inline_mmio_access = true                         	# Inline constant MMIO loads and stores.
 load_module_map = ""                              	# Loads a .map for symbol names and to diff with the generated symbol database.
+no_reserved_ops = false                           	# For testing whether a game may have races with a broken reserved load/store impl
 no_round_to_single = false                        	# Not for users, breaks games. Skip rounding double values to single precision and back
 permit_float_constant_evaluation = false          	# Allow float constant evaluation, may produce incorrect results and break games math
 pvr = 7407360                                     	# Processor version and revision number.
@@ -80,7 +80,6 @@ d3d12_pipeline_creation_threads = -1              	# Number of threads used for 
 d3d12_queue_priority = 1                          	# Graphics (direct) command queue scheduling priority, 0 - normal, 1 - high, 2 - global realtime (requires administrator privileges, may impact system responsibility)
 d3d12_readback_memexport = false                  	# Read data written by memory export in shaders on the CPU. This may be needed in some games (but many only access exported data on the GPU, and this flag isn't needed to handle such behavior), but causes mid-frame synchronization, so it has a huge performance impact.
 d3d12_readback_resolve = false                    	# Read render-to-texture results on the CPU. This may be needed in some games, for instance, for screenshots in saved games, but causes mid-frame synchronization, so it has a huge performance impact.
-d3d12_remove_retc_from_geometry_shader = false    	# [ONLY FOR AMD 7900 Series GPU] Workaround for broken Geometry Shader. Warning! Might cause issues and hardlocks!
 d3d12_submit_on_primary_buffer_end = true         	# Submit the command list when a PM4 primary buffer ends if it's possible to submit immediately to try to reduce frame latency.
 d3d12_tessellation_wireframe = false              	# Display tessellated surfaces as wireframe for debugging.
 d3d12_tiled_shared_memory = true                  	# Enable tiled resources for shared memory emulation. Disabling them increases video memory usage - a 512 MB buffer is created - but allows graphics debuggers that don't support tiled resources to work.
@@ -179,6 +178,7 @@ depth_float24_round = false                       	# Whether to round to the nea
 depth_transfer_not_equal_test = true              	# When transferring data between depth render targets, use the "not equal" test to avoid writing rewriting depth via shader depth output if it's the same as the one currently in the depth buffer in case of round trips of the data.
                                                   	# Settings this to true may make transfer round trips more friendly to depth compression depending on how the GPU implements it (as arbitrary depth output may result in it being disabled completely), which is beneficial to subsequent rendering, while setting this to false may reduce bandwidth usage during transfers as the previous depth won't need to be read.
 
+disassemble_pm4 = false                           	# Only does anything in debug builds, if set will disassemble and log all PM4 packets sent to the CP.
 draw_resolution_scale_x = 1                       	# Integer pixel width scale used for scaling the rendering resolution opaquely to the game.
                                                   	# 1, 2 and 3 may be supported, but support of anything above 1 depends on the device properties, such as whether it supports sparse binding / tiled resources, the number of virtual address bits per resource, and other factors.
                                                   	# Various effects and parts of game rendering pipelines may work incorrectly as pixels become ambiguous from the game's perspective and because half-pixel offset (which normally doesn't affect coverage when MSAA isn't used) becomes full-pixel.
@@ -210,6 +210,8 @@ gpu = "vulkan"                                    	# Graphics system. Use: [any,
 gpu_allow_invalid_fetch_constants = false         	# Allow texture and vertex fetch constants with invalid type - generally unsafe because the constant may contain completely invalid values, but may be used to bypass fetch constant type errors in certain games until the real reason why they're invalid is found.
 half_pixel_offset = true                          	# Enable support of vertex half-pixel offset (D3D9 PA_SU_VTX_CNTL PIX_CENTER). Generally games are aware of the half-pixel offset, and having this enabled is the correct behavior (disabling this may significantly break post-processing in some games), but in certain games it might have been ignored, resulting in slight blurriness of UI textures, for instance, when they are read between texels rather than at texel centers, or the leftmost/topmost pixels may not be fully covered when MSAA is used with fullscreen passes.
 ignore_32bit_vertex_index_support = false         	# For host graphics API downlevel testing only (useful only for Qualcomm Adreno 4xx-level host GPU testing), force indirection or pre-masking and pre-swapping of 32-bit vertex indices as if the host only supports 24-bit indices.
+log_guest_driven_gpu_register_written_values = false	# Only does anything in debug builds, if set will log every write to a gpu register done by a guest. Does not log writes that are done by the CP on its own, just ones the guest makes or instructs it to make.
+log_ringbuffer_kickoff_initiator_bts = false      	# Only does anything in debug builds, if set will log the pseudo-stacktrace of the guest thread that wrote the new read position.
 mrt_edram_used_range_clamp_to_min = true          	# With host render targets, if multiple render targets are bound, estimate the EDRAM range modified in any of them to be not bigger than the distance between any two render targets in the EDRAM, rather than allowing the last one claim the rest of the EDRAM.
                                                   	# Has effect primarily on draws without viewport clipping.
                                                   	# Setting this to false results in higher accuracy in rare cases, but may increase the amount of copying that needs to be done sometimes.
@@ -331,6 +333,7 @@ enable_console = false                            	# Open a console window with 
 flush_log = true                                  	# Flush log file after each log line batch.
 log_file = ""                                     	# Logs are written to the given file
 log_level = 2                                     	# Maximum level to be logged. (0=error, 1=warning, 2=info, 3=debug)
+log_mask = 0                                      	# Disables specific categorizes for more granular debug logging. Kernel = 1, Apu = 2, Cpu = 4.
 log_string_format_kernel_calls = false            	# Log kernel calls with the kHighFrequency tag.
 log_to_debugprint = false                         	# Dump the log to DebugPrint.
 log_to_stdout = true                              	# Write log output to stdout
@@ -362,7 +365,7 @@ font_size = 12                                    	# Allows user to set custom f
 headless = false                                  	# Don't display any UI, using defaults for prompts as needed.
 imgui_debug = false                               	# Show ImGui debugging tools.
 profiler_dpi_scaling = false                      	# Apply window DPI scaling to the profiler.
-show_achievement_notification = true              	# Show achievement notification on screen.
+show_achievement_notification = false             	# Show achievement notification on screen.
 show_profiler = false                             	# Show profiling UI by default.
 
 

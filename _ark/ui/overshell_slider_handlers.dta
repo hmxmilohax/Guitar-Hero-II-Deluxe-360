@@ -206,8 +206,8 @@
       {stereo.chk set_check $focusmode}
       {gs_stereo.btn set_localized_text {localize sld_focus}}
       {$this display_speed_msg $trackspeed $speedmod $emulatefps}
-      {gs_band.sld set_text 'FPS'}
-      {gs_guitar.sld set_text 'TRACK SPEED'}
+      {gs_band.sld set_text 'VENUE FPS'}
+      {gs_guitar.sld set_text 'NOTE SPEED'}
       {gs_sfx.sld set_text 'SONG SPEED'}
    )
    (reset_gm_title
@@ -328,6 +328,169 @@
       {$this update_help_display}
       {$this set_speeds}
       {$this display_speed_msg $trackspeed $speedmod $emulatefps}
+   )
+)
+#define LAG_SLIDER_HANDLERS
+(
+   (focus gs_guitar.sld)
+   (focus_component "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {do
+         ($levels
+            {options get_num_sync_levels})
+         ($max_sec
+            {options get_max_sync_offset})
+         ($step_val
+            {options get_sync_offset_step})
+         {gs_guitar.sld set_num_steps $levels}
+         {sync_help.lbl
+            set_localized_text
+            {sprintf
+               {localize os_videolag}
+               $max_sec
+               $step_val}}})
+   (slider_changed
+      {'||'
+         {!=
+            {options get band_volume_idx}
+            {gs_guitar.sld current}
+         }
+         {!=
+            {options get guitar_volume_idx}
+            {gs_sfx.sld current}
+         }
+         {!=
+            {options get guitar_volume_idx}
+            {gs_band.sld current}
+         }
+      }
+   )
+   (enter
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_guitar.sld
+         set_current
+         {int
+            {options get_sync_offset}}
+      }
+      {gs_sfx.sld set_current
+         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}
+      }
+      {gs_band.sld set_current
+         {int {- $emulatefps 1}}
+      }
+      {stereo.chk set_check $focusmode}
+      {gs_stereo.btn set_localized_text {localize sld_overscan}}
+      {$this display_speed_msg $levels $speedmod $emulatefps}
+      {$this disable gs_sfx.sld}
+      {gs_sfx.sld set_showing FALSE}
+      {gs_band.sld set_text 'NOTHING'}
+      {gs_guitar.sld set_text 'VIDEO LAG'}
+   )
+   (reset_gm_title
+      {gs_title.lbl set_localized_text {localize gamemodifier}}
+   )
+   (display_speed_msg
+      ($levels $mspd $fps)
+      {gs_title.lbl set_localized_text
+         {sprintf {localize lag_msg}
+            {int
+               {+ 1 {* $levels 100}}
+            }
+            {int
+               {+ 0.5 {* $mspd 100}}
+            }
+            {int
+               $fps
+            }
+         }
+      }
+   )
+   (set_sync
+      {if
+         {!=
+            {options get_sync_offset}
+            {gs_guitar.sld current}}
+         {options
+            set_sync_offset
+            {gs_guitar.sld current}}}
+   )
+   (slider_select_cancel
+      ($component)
+      {switch $component
+         (gs_guitar.sld {$component set_current [orig_vol]})
+         (gs_sfx.sld {$component set_current [orig_vol]})
+         (gs_band.sld {$component set_current [orig_vol]})
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $levels $speedmod $emulatefps}
+      kDataUnhandled
+   )
+   (FOCUS_MSG
+      {$this set focus_component {$new_focus name}}
+      {$this update_help_display}
+   )
+   (update_help_display
+      {if_else {$this slider_selected}
+         {helpbar set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjspd))
+         }
+         {do
+            {if_else {== [focus_component] "gs_stereo.btn"}
+               {helpbar set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))
+               }
+               {helpbar set_display
+                  ((fret1 help_select)
+                   (fret2 help_back)
+                   (strum help_updown))
+               }
+            }
+         }
+      }
+   )
+   (slider_start_msg
+      ($component)
+      {do
+         {switch $component
+            (gs_guitar.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_sync}
+               }
+            )
+            (gs_sfx.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (gs_band.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+         }
+      }
+   )
+   (SELECT_START_MSG
+      {switch $component
+         (gs_guitar.sld {$this set orig_vol {gs_guitar.sld current}})
+         (gs_sfx.sld {$this set orig_vol {gs_sfx.sld current}})
+         (gs_band.sld {$this set orig_vol {gs_band.sld current}})
+         (gs_stereo.btn {stereo.chk toggle} {profile_mgr set_overscan {! {profile_mgr get_overscan}}})
+      kDataUnhandled
+      }
+      {$this update_help_display}
+      {$this set_sync}
+      {$this display_speed_msg $levels $speedmod $emulatefps}
    )
 )
 #define TRACK_SLIDER_HANDLERS

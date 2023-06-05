@@ -1,0 +1,132 @@
+#define OVERSHELL_LIST_RESET_HANDLER ;sets up our function to reset the current overshell screen with new parameters, and pop up the help screen if needed
+(
+   {set $debugpos {sel_section.lst selected_pos}} ;saves the currently selected list position to temp var
+   {if_else {&& {! {$this slider_selected}} $helpentered} ;check if we are not in a slider and that the help screen has already been entered
+      {do
+         {sel_section.lst set_selected $debugpos} ;set the current position of the list back to the temp var
+         {$this reset} ;reset the panel so we see our new options reflected
+      }
+      {ui push_screen overshell_help_screen} ;push the help screen if we haven't seen it this boot cycle
+   }
+)
+{new
+   MultiSelectListPanel ;panel type
+   overshell_debug ;panel name
+   (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus sel_section.lst) ;focus the list used in the current overshell screen
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {sel_section.lst set_selected $debugpos} ;select our saved list position
+      {sel_section.lst set_local_pos -140 0 60} ;move the list to the proper location
+      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
+      {sel_section.lst set alignment kTopCenter} ;ensure the list is aligned properly
+      {gs_title.lbl set_localized_text {localize os_debug}} ;set the title text for this screen
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            "Display Current Lighting State"
+            "Empty Star Power"
+            "Hide Gems"
+            "Hide Track Surface"
+            "Hide Nowbar"
+            "Toggle Mask"
+            "Toggle Scoring Debug"
+            "Test Screen Transitions"
+            "Show World Events"
+            "Pause Time"
+            "Fake Player 1 using Joypad 1"
+            "Fake Player 2 using Joypad 1"
+            "Display Character LOD"
+            "Beat Song with High Score"
+            "Beat Song with Best Score"
+            "Cycle Character Drivers"
+            "From Game, Win with 3 Stars"
+            "(META) Add $100 (GAME) Win with 4 Stars"
+            "From Game, Win with 5 Stars"
+            "unlock all achievements"
+            "Force Encore"
+            "Stretch Background"
+            "Use Older (Red) Guitar Prototype"
+            "(META) Audio Mode (GAME) Show/Hide Arena"
+            "(META) Access All (GAME) Toggle Crowd Audio"
+            "(META) Beat Song (GAME) Toggle Click Track"
+            "Barf Cheat"
+            "Camera Overlay"
+            "Next Alphabetical Camera"
+            "Hold Camera on Current Shot"
+            "Toggle Dual Perspective"
+            "Lower Excitement Level"
+            "Raise Excitement Level"
+            "Hide the Fretboard"
+            "Toggle Free Camera"
+            "Display Walkspots"
+            "Display Mercury Switch Status"
+            "Hide HUD & Fretboard"
+            "Hide HUD Only"
+            "Display Lighting Info"
+            "Enable/Disable Lighting Presets"
+            "Guitarist Walk to Random Spot"
+            "Teleport Guitarist to Next Walkspot"
+            "Show 3 Most Recent Guitarist Animations"
+            "Automatically Lose"
+            "toggle limiter"
+            "Disable Crowd Meter"
+            "Mute Global"
+            "Toggle Normalization"
+            "Toggle Auto-Solo"
+            "Save Objects"
+            "Toggle Autoplay"
+            "Cycle Track Speed"
+            "Toggle Solo Quantize"
+            "(Meta) Print Current Screen"
+            "Reload Song"
+            "Reload Track"
+            "Display Score Info"
+            "Fill StarPower Meter"
+            "Show Song Time"
+            "Show Timers"
+            "Next Tutorial Lesson"
+            "Previous Tutorial Lesson"
+            "Show Current Version"
+            "Automatically Win"
+            "Toggle Walking On/Off"
+            "Toggle Cam"
+            "Toggle Shuttle - Left Analog Scrolls Time"
+            "Skip Tutorial VoiceOver"
+            
+         )
+      }
+   )
+   (SELECT_START_MSG ;ran when an item on screen is selected
+      {switch {$component selected_sym} ;run specific code based on exactly which item is selected
+         ("Display Current Lighting State"
+            {toggle_lights_debug}
+         )
+         ("Empty Star Power"
+            {cheat_empty_star_power}
+         )
+         ("Hide Gems"
+            {track_panel toggle_gems}
+         )
+         ("Hide Track Surface"
+            {track_panel toggle_surface}
+         )
+         ("Hide Nowbar"
+            {track_panel toggle_nowbar}
+         )
+         ("Hide Nowbar"
+            {track_panel toggle_nowbar}
+         )
+      }
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
+   GHScreen ;screen type
+   overshell_debug_screen ;screen name
+   (panels overshell_debug) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_debug) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}

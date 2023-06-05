@@ -1,0 +1,56 @@
+{new
+   UIPanel
+   options_panel
+   (file
+      {if_else {== $menutheme gh1}
+         options_gh1.milo
+            {if_else {== $menutheme 80s}
+               options_80s.milo
+               options.milo}})
+   (focus op_audio.btn)
+   (enter
+      {op_title.lbl set_localized_text {localize dx_options}} ;set the label text
+      ;{$this disable op_bonus.btn} ;hide unused btn
+      ;{op_bonus.btn set_showing FALSE}
+      {$this disable op_credit.btn} ;hide unused btn
+      {op_credit.btn set_showing FALSE}
+   )
+   (SELECT_START_MSG
+      {switch
+         $component
+         (op_audio.btn
+         ;   {gamecfg set mode career}
+            {if_else
+               {>
+                  {campaign num_profiles}
+                  0}
+               {ui goto_screen manage_band_screen}
+               {do
+                  {nameprof_screen set back_screen main_screen}
+                  {nameprof_screen set is_editing FALSE}
+                  {nameprof_screen set profile_slot 0}
+                  {nameprof_screen set next_screen main_screen}
+                  {ui goto_screen nameprof_screen}}}
+         )
+         (video_settings.btn
+            {ui goto_screen audio_settings_screen})
+         (op_data.btn
+            {ui goto_screen lag_screen})
+         (memory_card.btn
+            {ui goto_screen mem_card_screen})
+         (op_bonus.btn
+            {set $modifier_exit {ui current_screen}}
+            {ui push_screen overshell_screen})
+         (op_credit.btn
+            {ui goto_screen credits_screen})}
+      kDataUnhandled)}
+{new
+   GHScreen
+   options_screen
+   (panels meta options_panel helpbar)
+   (focus options_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))}

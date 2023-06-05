@@ -1,0 +1,66 @@
+{new
+   GHPanel
+   sel_diff_qp_panel
+	(file {if_else {== $menutheme 80s} ;which milo file to use based on the 80s theme flag
+    sel_diff_qp_80s.milo sel_diff_qp.milo}) ;use 80s if 80s use gh2 if not 80s
+   SEL_DIFFICULTY_COMMON
+   (enter
+      {$this update_focus})
+   (last_difficulty
+      {game get_difficulty 0})
+   (update_difficulty)}
+{new
+   GHScreen
+   qp_diff_screen
+   (panels meta sel_diff_qp_panel helpbar)
+   (focus sel_diff_qp_panel)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Tri}
+         {do
+            {$this backwards_anim}
+            {synth play_sequence button_back.cue}
+            {if_else $diffseen
+            {ui goto_screen manage_gig_screen}
+            {ui goto_screen loading_screen}}
+            ;{set $diffseen TRUE}
+            }}
+      kDataUnhandled)
+   (SELECT_START_MSG
+               {do
+         {if_else $diffseen
+         {ui goto_screen manage_gig_screen}
+         {ui goto_screen loading_screen}}
+         ;{set $diffseen TRUE}
+         }
+      kDataUnhandled)}
+{new
+   GHPanel
+   sel_diff_practice_panel
+   (file {if_else {== $menutheme 80s} ;which milo file to use based on the 80s theme flag
+    sel_diff_practice_80s.milo sel_diff_practice.milo}) ;use 80s if 80s use gh2 if not 80s
+   SEL_DIFFICULTY_COMMON
+   (enter
+      {$this update_focus})
+   (last_difficulty
+      {game get_difficulty 0})
+   (update_difficulty)}
+{new
+   GHScreen
+   practice_diff_screen
+   (panels meta sel_diff_practice_panel helpbar)
+   (focus sel_diff_practice_panel)
+   (back_screen practice_selpart_screen)
+   (helpbar
+      (default
+         ((fret1 help_continue)
+            (fret2 help_back)
+            (strum help_updown))))
+   (SELECT_START_MSG
+      {ui goto_screen practice_sel_section_screen}
+      kDataUnhandled)}

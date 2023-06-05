@@ -137,8 +137,8 @@
    (SELECT_START_MSG ;what to do when a button is pressed or a menu item is selected
       {if {== $component part0.btn}
          {switch {gamecfg get mode}
-            (career {gamecfg set_track 0 0})
-            (quickplay {gamecfg set_track 0 0})
+            (career {gamecfg set_track 0 0} {if_else $diffseen {ui goto_screen manage_gig_screen} {ui goto_screen qp_diff_screen}}) ;go to titty screen if a song has been played this session, if not go to part select
+            (quickplay {gamecfg set_track 0 0} {ui goto_screen qp_diff_screen})
             (multi_vs
                {gamecfg set_track 0 0}
                {gamecfg set_track 1 0}
@@ -147,13 +147,13 @@
                {gamecfg set_track 0 0}
                {gamecfg set_track 1 0}
             )
-            (practice {gamecfg set_track 0 0})
+            (practice {gamecfg set_track 0 0} {if_else $diffseen {ui goto_screen manage_gig_screen} {ui goto_screen practice_diff_screen}})
          }
       }
       {if {== $component part1.btn}
          {switch {gamecfg get mode}
-            (career {gamecfg set_track 0 1})
-            (quickplay {gamecfg set_track 0 1})
+            (career {gamecfg set_track 0 1} {if_else $diffseen {ui goto_screen manage_gig_screen} {ui goto_screen qp_diff_screen}}) ;go to titty screen if a song has been played this session, if not go to part select
+            (quickplay {gamecfg set_track 0 1} {ui goto_screen qp_diff_screen})
             (multi_vs
                {gamecfg set_track 0 1}
                {gamecfg set_track 1 1}
@@ -162,15 +162,15 @@
                {gamecfg set_track 0 1}
                {gamecfg set_track 1 1}
             )
-            (practice {gamecfg set_track 0 1})
+            (practice {gamecfg set_track 0 1} {if_else $diffseen {ui goto_screen manage_gig_screen} {ui goto_screen practice_diff_screen}}) ;go to titty screen if a song has been played this session, if not go to difficulty
          }
       }
       {if {== $component part2.btn}
       {gamecfg set_track 0 2} {set $roygb TRUE} ;if part 2 button is selected, set player 0 to the third instrument in the song definition. also set roygb colors to true since this is drums
       }
       {switch {gamecfg get mode} ;switch action based on result of which game mode is currently being used
-          (career {ui goto_screen loading_screen}) ;dx uses career for quickplay, if career, go to the loading screen
-          (practice {ui goto_screen practice_sel_section_screen}) ;if practice, go to the select section screen
+          (career {if_else $diffseen {ui goto_screen manage_gig_screen} {ui goto_screen qp_diff_screen}}) ;go to titty screen if a song has been played this session, if not go to part select
+          (practice {if_else $diffseen {ui goto_screen manage_gig_screen} {ui goto_screen practice_diff_screen}}) ;if practice, go to the select section screen
           (multi_fo
              {ui goto_screen multi_fo_seldiff_screen}
           )

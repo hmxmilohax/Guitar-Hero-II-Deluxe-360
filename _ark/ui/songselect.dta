@@ -17,8 +17,12 @@
       {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
       {do
 	     {gamecfg set_track 0 0}
-		 {ui goto_screen loading_screen} ;if we only have one part, just go to the loading screen
+		 {ui goto_screen manage_gig_screen} ;if we only have one part, just go to the loading screen
       }
+   }
+   {if_else $diffseen
+      {ui goto_screen manage_gig_screen}
+	   {ui goto_screen qp_selpart_screen}
    }
 )
 {new
@@ -586,10 +590,14 @@
                {game set_song speedtest9} ;this is our valid speedtest. internally this is set up as a bonus song
             }
             ;PART_CHECKER_HANDLER
-			{ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
+         {if_else $diffseen
+         {ui goto_screen manage_gig_screen}
+			{ui goto_screen qp_selpart_screen}} ;we go to the select part screen either way
          }
          ;PART_CHECKER_HANDLER
-		 {ui goto_screen qp_selpart_screen} ;we go to the select part screen either way
+       {if_else $diffseen
+       {ui goto_screen manage_gig_screen}
+		 {ui goto_screen qp_selpart_screen}} ;we go to the select part screen either way
       }
    )
    (venue_randomizer
@@ -684,7 +692,7 @@
                }
                {do
                   {gamecfg set mode career}
-                  {ui goto_screen loading_screen}
+                  {ui goto_screen manage_gig_screen}
                }
             }
          }
@@ -825,9 +833,11 @@
                   {song_provider has_instrument {gamecfg get_song} bass} ;if the song has bass
                   {song_provider has_instrument {gamecfg get_song} rhythm} ;if the song has bass
                }
+               {if_else $diffseen
                {ui goto_screen selpart_screen} ;if the song has either bass or rhythm, go to select part screen
+               {ui goto_screen manage_gig_screen}}
                {ui goto_screen multi_coop_seldiff_screen} ;if it doesn't, go to the coop select difficulty screen
-             }
+            }
          )
       }
       {sel_song_panel set metamusic_on_exit TRUE} ;once we leave the screen, make sure we play our meta music again
