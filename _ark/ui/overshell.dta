@@ -172,6 +172,8 @@
       {extra1.btn set_showing FALSE}
       {$this disable extra2.btn} ;hide unused button
       {extra2.btn set_showing FALSE}
+      {if $focusmode
+         {$this disable section.btn}}
    )
 }
 {new

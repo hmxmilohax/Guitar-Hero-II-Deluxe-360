@@ -608,16 +608,12 @@
                   {set $focusmode FALSE} ;turn off focus mode
                   {set $miloskipintro FALSE} ;restore the song intro
                   {set $skipoutro FALSE} ;restore the song outro
-                  {set $notestreakmod TRUE} ;turn back on note streak popups
-                  {set $sfx TRUE} ;turn back on sfc
                }
                {do
                   {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
                   {set $focusmode TRUE} ;turn on focus mode
                   {set $miloskipintro TRUE} ;turn off song intro
                   {set $skipoutro TRUE} ;turn off song outro
-                  {set $notestreakmod FALSE} ;turn off note streak popups
-                  {set $sfx FALSE} ;turn off sfx
                }
             }
             OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed

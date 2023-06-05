@@ -217,10 +217,10 @@
       ($tspd $mspd $fps)
       {if_else $focusmode
          {do
-            {set $miloskipintro TRUE} {set $skipoutro TRUE} {set $notestreakmod FALSE} {set $sfx FALSE}
+            {set $miloskipintro TRUE} {set $skipoutro TRUE}
          }
          {do
-            {set $miloskipintro FALSE} {set $skipoutro FALSE} {set $notestreakmod TRUE} {set $sfx TRUE}
+            {set $miloskipintro FALSE} {set $skipoutro FALSE}
          }
       }
       {gs_title.lbl set_localized_text
