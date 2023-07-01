@@ -355,7 +355,7 @@
       {sel_section.lst set_data ;set up the data for the list
          (
             os_cloneherohud os_brighthopos os_darkstrums
-            os_gh1track os_gh3track os_voidfrets os_eyeballgems
+            os_gh1track os_gh3track os_voidfrets os_eyeballgems os_poorspyenabled
             os_poorspytex
          )
       }
@@ -365,6 +365,13 @@
          (os_voidfrets
             {set $voidfrets {! $voidfrets}} ;set the variable to the opposite of what it currently is
             {if_else $voidfrets ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+         )
+         (os_poorspyenabled
+            {set $poorspyenabled {! $poorspyenabled}} ;set the variable to the opposite of what it currently is
+            {if $autoplay {set $poorspyenabled FALSE}} ; force poorspy off if autoplay is on
+            {if_else $poorspyenabled ;check the state of the variable
                CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
@@ -546,6 +553,7 @@
          )
          (os_autoplay
             {set $autoplay {! $autoplay}} ;set the variable to the opposite of what it currently is
+            {set $poorspyenabled {if_else $autoplay FALSE TRUE}}
             {set $gotcha TRUE} ;sanity check if the user enabled autoplay at all this session
             {if_else $autoplay ;check the state of the variable
                CHEAT_POP ;shortcut for the if else options on which sound effect to play

@@ -24,7 +24,7 @@
 (
    (file poorspy_viewer.milo) ;milo file used for the panel. found in /ui/gen/
    (poorspy_lbl_update ;for debug use, usage: {name_overlay_panel poorspy_lbl_update {sprint "whatever you want" $includingvars "will work"}}
-      {if_else $autoplay
+      {if_else {|| {! $poorspyenabled} $autoplay}
          kDataUnhandled
          {do
             {ss_button_0.lbl set_text {sprint $slotstate_count_0 "\n" $slot_duration_0}}
@@ -217,13 +217,13 @@
          {set $p0_fakescore {+ {player0 score} $tracked_solo_award}}
          {streak_overlay_panel set_score_line}
       }
-      {if {! $autoplay}
+      {if {|| $poorspyenabled {! $autoplay}}
          {if_else $p0_evenpoorspy
             {switch $player ;streak is even, write to line 2 while 1 is showing then swap
                (0
                   {poorspy_image_panel_buffer poorspy_lbl_update}
                   {poorspy_image_panel set_showing FALSE}
-                  {poorspy_image_panel_buffer set_showing TRUE}
+                  {poorspy_image_panel_buffer set_showing $poorspyenabled}
                   {set $p0_evenpoorspy FALSE}
                )
                kDataUnhandled
@@ -232,7 +232,7 @@
                (0 
                   {poorspy_image_panel poorspy_lbl_update}
                   {poorspy_image_panel_buffer set_showing FALSE}
-                  {poorspy_image_panel set_showing TRUE}
+                  {poorspy_image_panel set_showing $poorspyenabled}
                   {set $p0_evenpoorspy TRUE}
                )
                kDataUnhandled

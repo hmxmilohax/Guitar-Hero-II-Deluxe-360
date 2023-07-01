@@ -956,6 +956,7 @@
 #ifdef HX_XBOX
    (enter
       {poorspy_image_panel set_showing {! $autoplay}}
+      {poorspy_image_panel set_showing $poorspyenabled}
       {poorspy_image_panel_buffer set_showing FALSE}
       {track_mask set_showing TRUE} ;show the track mask, only runs on xbox
    )

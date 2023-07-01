@@ -213,6 +213,7 @@
 (sld_pickelm "PICK ELEMENT")
 (ss_choosesong "CHOOSE SONG")
 (os_cloneherohud {sprint "Clone Hero HUD" {if_else $clonehero_hud ": ON" ": OFF"}})
+(os_poorspyenabled {sprint "Poorspy" {if_else $poorspyenabled ": ON" ": OFF"}})
 (os_focusmode {sprint "Focus Mode" {if_else $focusmode ": ON" ": OFF"}})
 (os_precision {sprint "Tight Speedups" {if_else $precision ": ON" ": OFF"}})
 (os_brutalmode {sprint "Brutal Mode" {if_else $brutalmode ": ON" ": OFF"}})

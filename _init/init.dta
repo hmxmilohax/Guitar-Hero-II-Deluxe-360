@@ -22,6 +22,9 @@
 ;game and turns off some additional noises
 {set $focusmode FALSE}
 
+;enable poorspy
+{set $poorspyenabled TRUE}
+
 ;set the texture of the poorspy buttons
 ;available - gh2 scorespy xplorer
 {set $poorspybuttontype xplorer}
