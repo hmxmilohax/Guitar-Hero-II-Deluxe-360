@@ -145,13 +145,6 @@ Each `.dta` file handles different things
 
 After you have made your edits run `_init-dta2b.bat` and if needed copy the files from _build/Xbox/gen to /gen on your install.
 
-![init_init](dependencies/images/init_init.png)
-
-
-Once done, save the edited dta, and build the ark again. If playing on real hardware, you will have to transfer the entire ark to your Xbox again for the new saved settings.
-
-Editing init.dta will cause conflicts down the road if the file is changed on the repo. if you are having trouble getting new features when building the arks, run `_reset.bat` to restore the repo to a clean state, and build again.
-
 # 🔨 Building (Advanced)
 
 ### Installing Python (Required)
