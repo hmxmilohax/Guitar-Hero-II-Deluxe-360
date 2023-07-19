@@ -31,11 +31,7 @@
 > Forces all instruments to be Guitar controllers since Xenia UWP does not support them at the moment.
 
 <br/>
-Continue to: 
-    - [Installing on Xbox 360](#-installing-on-xbox-360)
-    - [Installing on Xbox Series X/S](#-installing-on-xbox-series-xs-xenia-uwp)
-    - [Xenia (Advanced)](#-installing-on-xenia-advanced)
-    
+
 # 📩 How to Install
 
 ## 📩 Installing on Xbox 360
@@ -73,7 +69,7 @@ Continue to:
 
 ## 🎵 Additional Songs
 
-You can find song packs compatible with Guitar Hero II Deluxe 360  on [**This Spreadsheet**](https://docs.google.com/spreadsheets/d/1-3lo2ASxM-3yVr_JH14F7-Lc1v2_FcS5Rv_yDCANEmk/edit#gid=159080071).
+You can find song packs compatible with Guitar Hero II Deluxe 360 on [**This Spreadsheet**](https://docs.google.com/spreadsheets/d/1-3lo2ASxM-3yVr_JH14F7-Lc1v2_FcS5Rv_yDCANEmk/edit#gid=159080071).
 
 You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for Guitar Hero II Deluxe 360, and vice versa. Converting custom songs from games like Clone Hero is a breeze.
 
@@ -97,6 +93,21 @@ You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite
 
 * If you're on Xbox Series X/S, copy the entire `content` folder to your USB drive.
   * Click `Yes` to overwrite the files if it asks you to.
+
+## 🎨 Custom Textures
+
+By default, *Guitar Hero II Deluxe 360* contains a variety of custom textures, found in the `Deluxe Settings` menu in-game, as well as a way to import your own with relative ease.
+
+### Importing Your Own Textures
+
+*Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
+
+* Copy any `.jpg`, `.png`, or `.bmp` file into `\custom_textures\***\`, then navigate back to `windows_bats` and run `process_textures_***.bat`.
+  * These will make them show up in game, resize your images accordingly (including those with arbitrary resolutions), and convert them to the proper format for *Guitar Hero II Deluxe 360* to read.
+
+***You will need to rebuild Guitar Hero II Deluxe 360 in order for these to take effect.***
+
+<br/>
 
 # 🔨 Building (Advanced)
 
