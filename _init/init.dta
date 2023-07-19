@@ -16,7 +16,7 @@
 {set $speedmod 1.0}
 
 ;Track/Highway/Note Speed. Each .1 is 10%
-{set $trackspeed 1.0}
+{set $trackspeed 1.45}
 
 ;Focus mode gives you a black background in
 ;game and turns off some additional noises
