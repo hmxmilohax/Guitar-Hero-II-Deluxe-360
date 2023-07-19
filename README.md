@@ -40,6 +40,20 @@
 
 * Download [Guitar Hero II Deluxe 360 (Standard)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
   * **Copy the contents of it to an empty folder** (we recommend using FTP to do so).
+  
+  If using Aurora, you can also grab customized box art directly from your internet connected RGH console.
+
+* Scan/Find Guitar Hero II Deluxe in your Aurora games list
+
+* Select `Details`
+
+* Select `Preview`
+
+* Scroll left until `Download cover` is shown
+
+* Select `Download cover`
+
+* `Cover #25456` and `Cover #25581` are Guitar Hero II Deluxe Covers
 
 ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
 
@@ -112,7 +126,7 @@ By default, *Guitar Hero II Deluxe 360* contains a variety of custom textures, f
 
 *Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
 
-* Copy any `.jpg`, `.png`, or `.bmp` file into `\custom_track_textures\***\`, then and run `textures-custom_track_textures_***.bat`.
+* Copy any `.jpg`, `.png`, or `.bmp` file into `\custom_track_textures\`, then and run `textures-custom_track_textures.bat`.
   * These will make them show up in game, resize your images accordingly (including those with arbitrary resolutions), and convert them to the proper format for *Guitar Hero II Deluxe 360* to read.
 
 ***You will need to rebuild Guitar Hero II Deluxe 360 in order for these to take effect.***
@@ -447,47 +461,6 @@ Once done, save the edited dta, and build the ark again. If playing on real hard
 
 Editing init.dta will cause conflicts down the road if the file is changed on the repo. if you are having trouble getting new features when building the arks, run `_reset.bat` to restore the repo to a clean state, and build again.
 
-# Install
-
-NOTE: You WILL need a modded/hacked console to play this mod on real hardware. I hope this is clear.
-
-## Repo Setup
-Setting up GHIIDX 360 for the first time is meant to be as easy as possible.
-As well, it is designed to allow you to automatically receive updates as the repo is updated.
-
-Simply go to the Releases of this repo and grab all three files. (two .exe, one .bat)
-
-The two exe's are a couple dependencies, [Git for Windows](https://gitforwindows.org/), and [Dot Net 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime).
-Git is required for you to take advantage of auto updating via github pulls. Dot Net is required to build an ARK file, the archive format the game needs to run.
-You can setup git with all default options, same with dot net.
-
-Once the dependencies are installed, run `_init_repo.bat` in an **empty folder**. git will pull the repo and make sure you are completely up to date.
-
-## Building The Ark
-
-Once the repo is copied locally to your system, simply run `_build_****.bat` depending on the build you would like. `_build_xbox.bat` will build for Xbox Hardware, and output to `_build/Xbox/`.
-
-`_build_ps2.bat` is currently in a pre alpha state, it is nowhere near stable, and is being developed along side the 360 version.
-
-Each build script will copy out the opposite platform specific files from the _ark path before building the ark to reduce the final build size.
-
-## Running in Xenia
-
-`_build_xenia.bat` will build for Xenia, output to `_build/Xbox/`, and run Xenia from `_xenia/`.
-
-`_run_xenia.bat` is also included for subsequent runs of the game in Xenia after the initial build of the ark file.
-
-It is recommended to always run the game with the build scripts to ensure everything is up to date, as currently this project is highly WIP.
-
-## Installing on Real Hardware
-
-After building the Ark, create a new folder in your Xbox 360 games folder (wherever you install your games) for Guitar Hero II Deluxe.
-
-Copy all files inside `_build/Xbox` to that folder.
-
-Guitar Hero II Deluxe 360 is a self contained game, and does not use any patches or title updates.
-
-If you wish to have video overscan, use `default-overscan.xex`.
 
 ### Custom Cover Art
 
