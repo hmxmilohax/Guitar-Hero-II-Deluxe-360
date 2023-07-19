@@ -2,7 +2,7 @@
 
 <img src="dependencies/art/gh2dx_logo.png" width="100%" alt="Header PNG">
 
-## *Guitar Hero II Deluxe 360* is a Massive Quality-of-Life Overhaul Mod for Xbox 360
+## *Guitar Hero II Deluxe* is a Massive Quality-of-Life Overhaul Mod for Xbox 360
 
 ### With features like an FC and streak indicator, custom track and menu themes, an increased song limit, and no strum limit, *Guitar Hero II Deluxe 360* makes the experience as definitive as possible!
 
