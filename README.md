@@ -14,6 +14,27 @@
 <img src="dependencies/images/gh2dx.gif" width="100%" alt="RB3DX">
 
 </div>
+<br/>
+
+# 📥 Downloads
+
+*Guitar Hero II Deluxe recieves very frequent updates. You can click the `Watch` button (All Activity) to be notified about any updates that occur.*
+
+## Xbox 360
+![last updated:](https://img.shields.io/github/last-commit/hmxmilohax/Guitar-Hero-II-Deluxe-360?label=last%20updated%3A)
+### 📥 [Rock Band 3 Deluxe (Standard) for Xbox 360](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
+
+<br/>
+
+
+
+
+
+
+
+
+
+
 
 ## Introduction
 
