@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="dependencies/images/header.png">
+<img src="dependencies/art/gh2dx_logo.png" width="100%" alt="Header PNG">
 
 ## *Guitar Hero II Deluxe 360* is a Massive Quality-of-Life Overhaul Mod for Xbox 360
 
