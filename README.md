@@ -12,7 +12,7 @@
 
 <br/>
 
-<img src="dependencies/images/gh2dx.gif" width="100%" alt="RB3DX">
+<img src="dependencies/images/preview.gif" width="100%" alt="GH2DX360">
 
 </div>
 <br/>
@@ -22,11 +22,11 @@
 *Guitar Hero II Deluxe recieves very frequent updates. You can click the `Watch` button (All Activity) to be notified about any updates that occur.*
 
 ![last updated:](https://img.shields.io/github/last-commit/hmxmilohax/Guitar-Hero-II-Deluxe-360?label=last%20updated%3A)
-### 📥 [Guitar Hero II Deluxe 360 (Standard)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
+### 📥 [Guitar Hero II Deluxe 360 (Standard)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox-force-all-as-guitar-controller.zip)
 
 > The standard install, typical for most users.
 
-📥 [GH2DX360 (Series X/S Xenia)](https://nightly.link/hmxmilohax/rock-band-3-deluxe/workflows/build/main/RB3DX-Xbox-Base-Force-Guitar-Controller.zip)
+📥 [GH2DX360 (Series X/S Xenia)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox-force-all-as-guitar-controller.zip)
 
 > Forces all instruments to be Guitar controllers since Xenia UWP does not support them at the moment.
 
