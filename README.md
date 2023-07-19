@@ -40,7 +40,7 @@
 
 * Download [Guitar Hero II Deluxe 360 (Standard)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
   * **Copy the contents of it to an empty folder** (we recommend using FTP to do so).
-  
+
   If using Aurora, you can also grab customized box art directly from your internet connected RGH console.
 
 * Scan/Find Guitar Hero II Deluxe in your Aurora games list
@@ -57,6 +57,8 @@
 
 ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
 
+<br/>
+
 ## 📩 Installing on Xbox Series X/S ([Xenia UWP](https://github.com/SirMangler/xenia/releases))
 
 **NOTE: You WILL need an Xbox Series X/S running in [Developer Mode](https://learn.microsoft.com/en-us/windows/uwp/xbox-apps/devkit-activation). We hope this is clear.**
@@ -68,7 +70,10 @@
 
   ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
 
-  ## 📩 Installing on Xenia (Advanced)
+<br/>
+
+
+## 📩 Installing on Xenia (Advanced)
 
 *Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
 
@@ -80,6 +85,8 @@
   * If your controller is mapped and recognized and still doesn't register any inputs, unplug it from your PC and plug it back in while Xenia is still open.
     
     ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
+
+<br/>
 
 ## 🎵 Additional Songs
 
@@ -97,6 +104,8 @@ You can also find the song packs for the original games here:
 
 You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for Guitar Hero II Deluxe 360, and vice versa. Converting custom songs from games like Clone Hero is a breeze.
 
+<br/>
+
 ### 🎵 Installing Songs on Xbox 360
 
 * Download an Xbox 360 song pack of your choice.
@@ -105,6 +114,8 @@ You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite
 <img src="dependencies/images/360_dlcinstall.png" width="50%" alt="360 DLC Install">
 
 ***Note: Only 16 packs can be installed at one time***
+
+<br/>
 
 ### 🎵 Installing Songs on Xenia (Desktop and UWP)
 
@@ -117,6 +128,8 @@ You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite
 
 * If you're on Xbox Series X/S, copy the entire `content` folder to your USB drive.
   * Click `Yes` to overwrite the files if it asks you to.
+
+<br/>
 
 ## 🎨 Custom Textures
 
@@ -158,6 +171,8 @@ Each `.dta` file handles different things
 > Backups of the original themes
 
 After you have made your edits run `_init-dta2b.bat` and if needed copy the files from _build/Xbox/gen to /gen on your install.
+
+<br/>
 
 # 🔨 Building (Advanced)
 
