@@ -109,7 +109,7 @@ You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite
 * Download an Xbox 360 song pack of your choice.
 * Copy it to its respective folder.
 
-<img src="dependencies/images/360_dlcinstall.png" width="50%" alt="360 DLC Install">
+<img src="dependencies/images/360dlcinstall.png" width="50%" alt="360 DLC Install">
 
 ***Note: Only 16 packs can be installed at one time***
 
