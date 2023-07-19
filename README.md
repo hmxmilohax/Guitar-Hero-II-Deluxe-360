@@ -112,7 +112,7 @@ By default, *Guitar Hero II Deluxe 360* contains a variety of custom textures, f
 
 *Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
 
-* Copy any `.jpg`, `.png`, or `.bmp` file into `\custom_textures\***\`, then navigate back to `windows_bats` and run `process_textures_***.bat`.
+* Copy any `.jpg`, `.png`, or `.bmp` file into `\custom_track_textures\***\`, then and run `textures-custom_track_textures_***.bat`.
   * These will make them show up in game, resize your images accordingly (including those with arbitrary resolutions), and convert them to the proper format for *Guitar Hero II Deluxe 360* to read.
 
 ***You will need to rebuild Guitar Hero II Deluxe 360 in order for these to take effect.***
