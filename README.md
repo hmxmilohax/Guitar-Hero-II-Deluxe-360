@@ -1,6 +1,19 @@
-# Guitar-Hero-II-Deluxe-360
+<div align="center">
 
-![Header Image](dependencies/header.png)
+<img src="dependencies/images/header.png" width="100%" alt="Header GIF">
+
+## *Guitar Hero II Deluxe 360* is a Massive Quality-of-Life Overhaul Mod for Xbox 360
+
+### With features like an FC and streak indicator, custom track and menu themes, an increased song limit, and no strum limit, *Guitar Hero II Deluxe 360* makes the experience as definitive as possible!
+
+### 👉 See [Full Feature List] 
+### 📥 [Download Now!](https://github.com/hmxmilohax/rock-band-3-deluxe#%EF%B8%8F-what-youll-need)
+
+<br/>
+
+<img src="dependencies/images/gh2dx.gif" width="100%" alt="RB3DX">
+
+</div>
 
 ## Introduction
 
