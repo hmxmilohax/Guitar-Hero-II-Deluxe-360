@@ -77,7 +77,7 @@
 
 *Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
 
-* Then, **navigate to `windows_bats`** if you're on Windows or **`user_scripts`** if you're on Linux and **run `build_xenia` to automatically update, build, and run Rock Band 3 Deluxe.**
+* Then, **navigate to `windows_bats`** if you're on Windows or **`user_scripts`** if you're on Linux and **run `build_xenia` to automatically update, build, and run Guitar Hero II Deluxe 360*.**
   * *You need to run this script every time in order to play and update the game. `run_xenia` will run the game only and won't update and build it unless a new update is available, so you can use that if `build_xenia` takes too long.*
 
 * If your controller does not respond, navigate to the `_xenia` folder and **map your controller with x360ce**.
@@ -198,12 +198,12 @@ After you have made your edits run `_init-dta2b.bat` and if needed copy the file
 
 ![Repo Folder](dependencies/images/repofolder.png)
 
-### ✅ ***The Rock Band 3 Deluxe repo is now set up!***
+### ✅ ***The Guitar Hero II Deluxe 360* repo is now set up!***
 
 From here, you can make any personal modifications to the game or build it yourself.
 
 * Navigate to `windows_bats` if you're on Windows or `user_scripts` if you're on Linux.
-  * Run the `build_` script for your platform of choice to build *Rock Band 3 Deluxe*.
+  * Run the `build_` script for your platform of choice to build *Guitar Hero II Deluxe 360**.
   * Built contents will be in the `_build` folder on the root of the repo.
 
 You can now return to [**Installing on Xenia (Advanced)**](#-installing-on-xenia-advanced) or [**Custom Textures**](#-custom-textures).
