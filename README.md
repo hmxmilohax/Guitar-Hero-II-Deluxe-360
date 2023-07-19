@@ -25,7 +25,7 @@
 
 > The standard install, typical for most users.
 
-📥 [GH2DX360 (Series X/S Xenia) for Xbox 360](https://nightly.link/hmxmilohax/rock-band-3-deluxe/workflows/build/main/RB3DX-Xbox-Base-Force-Guitar-Controller.zip)
+📥 [GH2DX360 (Series X/S Xenia)](https://nightly.link/hmxmilohax/rock-band-3-deluxe/workflows/build/main/RB3DX-Xbox-Base-Force-Guitar-Controller.zip)
 
 > Forces all instruments to be Guitar controllers since Xenia UWP does not support them at the moment.
 
@@ -37,8 +37,22 @@
 
 **NOTE: You WILL need a HACKED/MODDED (RGH or JTAG) Xbox 360 in order to play this mod on console. We hope this is clear.**
 
-* Download [**Guitar Hero II Deluxe 360**](#Downloads)
-  * **Copy the contents of it to where your copy of Rock Band 3 is installed** (we recommend using FTP to do so).
+* Download Guitar Hero II Deluxe 360 Standard
+  * **Copy the contents of it to an empty folder** (we recommend using FTP to do so).
+
+### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
+
+## 📩 Installing on Xbox Series X/S ([Xenia UWP](https://github.com/SirMangler/xenia/releases))
+
+**NOTE: You WILL need an Xbox Series X/S running in [Developer Mode](https://learn.microsoft.com/en-us/windows/uwp/xbox-apps/devkit-activation). We hope this is clear.**
+
+* **Extract and copy your vanilla copy of Guitar Hero II Deluxe 360** to your USB drive.
+
+* Download Guitar Hero II Deluxe 360. Xenia UWP currently does not have guitar support so you need to download one of the `Series X/S Xenia` versions.
+  * **Copy the contents of it and paste Guitar Hero II Deluxe 360 to your USB drive.
+
+  ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
+
 
 
 
