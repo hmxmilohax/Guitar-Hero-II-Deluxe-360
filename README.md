@@ -20,9 +20,14 @@
 
 *Guitar Hero II Deluxe recieves very frequent updates. You can click the `Watch` button (All Activity) to be notified about any updates that occur.*
 
-## Xbox 360
 ![last updated:](https://img.shields.io/github/last-commit/hmxmilohax/Guitar-Hero-II-Deluxe-360?label=last%20updated%3A)
-### 📥 [Rock Band 3 Deluxe (Standard) for Xbox 360](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
+### 📥 [Guitar Hero II Deluxe 360 (Standard)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
+
+> The standard install, typical for most users.
+
+📥 [GH2DX360 (Series X/S Xenia) for Xbox 360](https://nightly.link/hmxmilohax/rock-band-3-deluxe/workflows/build/main/RB3DX-Xbox-Base-Force-Guitar-Controller.zip)
+
+> Forces all instruments to be Guitar controllers since Xenia UWP does not support them at the moment.
 
 <br/>
 
