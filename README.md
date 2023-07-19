@@ -37,7 +37,7 @@
 
 **NOTE: You WILL need a HACKED/MODDED (RGH or JTAG) Xbox 360 in order to play this mod on console. We hope this is clear.**
 
-* Download Guitar Hero II Deluxe 360 Standard
+* Download [Guitar Hero II Deluxe 360 (Standard)](https://nightly.link/hmxmilohax/Guitar-Hero-II-Deluxe-360/workflows/build/main/GH2DX-Xbox.zip)
   * **Copy the contents of it to an empty folder** (we recommend using FTP to do so).
 
 ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
@@ -46,12 +46,52 @@
 
 **NOTE: You WILL need an Xbox Series X/S running in [Developer Mode](https://learn.microsoft.com/en-us/windows/uwp/xbox-apps/devkit-activation). We hope this is clear.**
 
-* **Extract and copy your vanilla copy of Guitar Hero II Deluxe 360** to your USB drive.
+* **Extract and copy your copy of Guitar Hero II Deluxe 360** to your USB drive.
 
-* Download Guitar Hero II Deluxe 360. Xenia UWP currently does not have guitar support so you need to download one of the `Series X/S Xenia` versions.
-  * **Copy the contents of it and paste Guitar Hero II Deluxe 360 to your USB drive.
+* Download Guitar Hero II Deluxe 360. Xenia UWP currently does not have guitar support so you need to download the `Series X/S Xenia` versions.
+  * Copy the contents of it and paste Guitar Hero II Deluxe 360 to your USB drive.
 
   ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
+
+  ## 📩 Installing on Xenia (Advanced)
+
+*Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
+
+* Then, **navigate to `windows_bats`** if you're on Windows or **`user_scripts`** if you're on Linux and **run `build_xenia` to automatically update, build, and run Rock Band 3 Deluxe.**
+  * *You need to run this script every time in order to play and update the game. `run_xenia` will run the game only and won't update and build it unless a new update is available, so you can use that if `build_xenia` takes too long.*
+
+* If your controller does not respond, navigate to the `_xenia` folder and **map your controller with x360ce**.
+  * When it asks you to create `xinput1_3.dll`, create it and **rename it to `xinput1_4.dll`**.
+  * If your controller is mapped and recognized and still doesn't register any inputs, unplug it from your PC and plug it back in while Xenia is still open.
+    
+    ### ✅ ***Guitar Hero II Deluxe 360 is now installed!***
+
+## 🎵 Additional Songs
+
+You can find song packs compatible with Guitar Hero II Deluxe 360  on [**This Spreadsheet**](https://docs.google.com/spreadsheets/d/1-3lo2ASxM-3yVr_JH14F7-Lc1v2_FcS5Rv_yDCANEmk/edit#gid=159080071).
+
+You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for Guitar Hero II Deluxe 360, and vice versa. Converting custom songs from games like Clone Hero is a breeze.
+
+### 🎵 Installing Songs on Xbox 360
+
+* Download an Xbox 360 song pack of your choice.
+* Copy it to its respective folder.
+
+<img src="dependencies/images/360_dlcinstall.png" width="50%" alt="360 DLC Install">
+
+***Note: Only 16 packs can be installed at one time***
+
+### 🎵 Installing Songs on Xenia (Desktop and UWP)
+
+* Download an Xbox 360 song pack of your choice.
+* Open Xenia, navigate to `File > Install Content`, and select your song pack(s) of choice. You can select more than one at a time.
+
+***Note: Only 16 packs can be installed at one time***
+
+![Xenia Songs](dependencies/images/xenia_installcontent.png)
+
+* If you're on Xbox Series X/S, copy the entire `content` folder to your USB drive.
+  * Click `Yes` to overwrite the files if it asks you to.
 
 
 
