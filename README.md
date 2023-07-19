@@ -32,6 +32,7 @@
 <br/>
 
 # 📩 How to Install
+
 ## 📩 Installing on Xbox 360
 
 **NOTE: You WILL need a HACKED/MODDED (RGH or JTAG) Xbox 360 in order to play this mod on console. We hope this is clear.**
@@ -39,7 +40,7 @@
 * **Install your vanilla copy of Rock Band 3** to your console's hard drive.
   * In case anything goes wrong, we recommend that you **rename `default.xex` to `default_vanilla.xex`**.
 
-* Download [**Guitar Hero II Deluxe 360**](### 📥 [Guitar Hero II Deluxe 360 (Standard). 
+* Download [**Guitar Hero II Deluxe 360**](###-📥-[Guitar-Hero II-Deluxe 360-(Standard). 
   * **Copy the contents of it to where your copy of Rock Band 3 is installed** (we recommend using FTP to do so).
   * Select `Yes` to overwrite the files if it asks you to.
 
