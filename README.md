@@ -8,7 +8,7 @@
 
 ### 👉 See [Full Feature List](https://github.com/hmxmilohax/Guitar-Hero-II-Deluxe-360/blob/main/dependencies/features.md#features)
 
-### 📥 [Download Now!](https://github.com/hmxmilohax/rock-band-3-deluxe#%EF%B8%8F-what-youll-need)
+### 📥 [Download Now!](Guitar-Hero-II-Deluxe-360/#%EF%B8%8F-Downloads)
 
 <br/>
 
@@ -70,6 +70,16 @@
 ## 🎵 Additional Songs
 
 You can find song packs compatible with Guitar Hero II Deluxe 360 on [**This Spreadsheet**](https://docs.google.com/spreadsheets/d/1-3lo2ASxM-3yVr_JH14F7-Lc1v2_FcS5Rv_yDCANEmk/edit#gid=159080071).
+
+You can also find the song packs for the original games here:
+
+* [GH1DX](https://nightly.link/hmxmilohax/gh1dx-songs/workflows/build/main)
+
+* [GHIIDX](https://nightly.link/hmxmilohax/gh2dx-songs/workflows/build/main)
+
+* [GH80SDX](https://nightly.link/hmxmilohax/gh80sdx-songs/workflows/build/main)
+
+* [GHIIDXDLC](https://nightly.link/hmxmilohax/gh2dxdlc-songs/workflows/build/main) 
 
 You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite-customs) to generate your own custom song packs for Guitar Hero II Deluxe 360, and vice versa. Converting custom songs from games like Clone Hero is a breeze.
 
