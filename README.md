@@ -119,6 +119,39 @@ By default, *Guitar Hero II Deluxe 360* contains a variety of custom textures, f
 
 <br/>
 
+## 📝 Setting Custom Default Settings
+
+Custom default settings, such as always setting your preferred track speed, are not saved automatically by Guitar Hero II Deluxe.
+You will have to manually edit a file or two and rebuild the game to save your Custom settings.
+
+*Follow [**Building (Advanced)**](#-building-advanced) first in order to properly follow this guide.*
+
+* Navigate to `_init`
+    * Open chosen `.dta` file in a text editor
+
+Each `.dta` file handles different things
+
+`init.dta`
+> Handles modifers
+
+`init_track_theme.dta`
+> Handles color information for the main guitar scene
+
+`init_ui_theme.dta`
+> Handles various information about the menus
+
+`init_track_theme_template.dta` and `init_ui_theme_template.dta`
+> Backups of the original themes
+
+After you have made your edits run `_init-dta2b.bat` and if needed copy the files from _build/Xbox/gen to /gen on your install.
+
+![init_init](dependencies/images/init_init.png)
+
+
+Once done, save the edited dta, and build the ark again. If playing on real hardware, you will have to transfer the entire ark to your Xbox again for the new saved settings.
+
+Editing init.dta will cause conflicts down the road if the file is changed on the repo. if you are having trouble getting new features when building the arks, run `_reset.bat` to restore the repo to a clean state, and build again.
+
 # 🔨 Building (Advanced)
 
 ### Installing Python (Required)
