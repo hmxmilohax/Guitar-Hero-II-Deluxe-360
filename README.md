@@ -4,7 +4,7 @@
 
 ## *Guitar Hero II Deluxe 360* is a Massive Quality-of-Life Overhaul Mod for Xbox 360
 
-### With features like an FC and streak indicator, custom track and menu themes, an increased song limit, and no strum limit, *Guitar Hero II Deluxe 360* makes the experience as definitive as possible!
+### With features like an FC and streak indicators, custom track and menu themes, an increased song limit, and no strum limit, *Guitar Hero II Deluxe 360* makes the experience as definitive as possible!
 
 ### 👉 See [Full Feature List] 
 ### 📥 [Download Now!](https://github.com/hmxmilohax/rock-band-3-deluxe#%EF%B8%8F-what-youll-need)
@@ -30,6 +30,18 @@
 > Forces all instruments to be Guitar controllers since Xenia UWP does not support them at the moment.
 
 <br/>
+
+# 📩 How to Install
+## 📩 Installing on Xbox 360
+
+**NOTE: You WILL need a HACKED/MODDED (RGH or JTAG) Xbox 360 in order to play this mod on console. We hope this is clear.**
+
+* **Install your vanilla copy of Rock Band 3** to your console's hard drive.
+  * In case anything goes wrong, we recommend that you **rename `default.xex` to `default_vanilla.xex`**.
+
+* Download [**Guitar Hero II Deluxe 360**](### 📥 [Guitar Hero II Deluxe 360 (Standard). 
+  * **Copy the contents of it to where your copy of Rock Band 3 is installed** (we recommend using FTP to do so).
+  * Select `Yes` to overwrite the files if it asks you to.
 
 
 
