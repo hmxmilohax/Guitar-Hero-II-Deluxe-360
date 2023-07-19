@@ -4,9 +4,10 @@
 
 ## *Guitar Hero II Deluxe 360* is a Massive Quality-of-Life Overhaul Mod for Xbox 360
 
-### With features like an FC and streak indicators, custom track and menu themes, an increased song limit, and no strum limit, *Guitar Hero II Deluxe 360* makes the experience as definitive as possible!
+### With features like an FC and streak indicator, custom track and menu themes, an increased song limit, and no strum limit, *Guitar Hero II Deluxe 360* makes the experience as definitive as possible!
 
-### 👉 See [Full Feature List] 
+### 👉 See [Full Feature List](https://github.com/hmxmilohax/Guitar-Hero-II-Deluxe-360/blob/main/dependencies/features.md#features)
+
 ### 📥 [Download Now!](https://github.com/hmxmilohax/rock-band-3-deluxe#%EF%B8%8F-what-youll-need)
 
 <br/>
@@ -30,7 +31,11 @@
 > Forces all instruments to be Guitar controllers since Xenia UWP does not support them at the moment.
 
 <br/>
-
+Continue to: 
+    - [Installing on Xbox 360](#-installing-on-xbox-360)
+    - [Installing on Xbox Series X/S](#-installing-on-xbox-series-xs-xenia-uwp)
+    - [Xenia (Advanced)](#-installing-on-xenia-advanced)
+    
 # 📩 How to Install
 
 ## 📩 Installing on Xbox 360
@@ -93,6 +98,51 @@ You can also use [**Onyx Music Game Toolkit**](https://github.com/mtolly/onyxite
 * If you're on Xbox Series X/S, copy the entire `content` folder to your USB drive.
   * Click `Yes` to overwrite the files if it asks you to.
 
+# 🔨 Building (Advanced)
+
+### Installing Python (Required)
+
+* Head to the [**Python downloads**](https://www.python.org/downloads/), download and install Python (version 3.9 or later).
+  * ***Select "Add python.exe to PATH"*** on the installer.
+
+![Python PATH](dependencies/images/pythonpath.png)
+
+### Initializing the Repo
+
+* Go to the **[Releases](https://github.com/hmxmilohax/Guitar-Hero-II-Deluxe-360/releases)** of this repo and **download `_init_repo.py`**.
+  * Make a new **empty** folder, **put `_init_repo.py` in the folder, and run it**. This will pull the repo down for you and make sure you're completely up to date. **This will take some time.**
+
+### ***The folder should look like this once it's done:***
+
+![Repo Folder](dependencies/images/repofolder.png)
+
+### ✅ ***The Rock Band 3 Deluxe repo is now set up!***
+
+From here, you can make any personal modifications to the game or build it yourself.
+
+* Navigate to `windows_bats` if you're on Windows or `user_scripts` if you're on Linux.
+  * Run the `build_` script for your platform of choice to build *Rock Band 3 Deluxe*.
+  * Built contents will be in the `_build` folder on the root of the repo.
+
+You can now return to [**Installing on Xenia (Advanced)**](#-installing-on-xenia-advanced) or [**Custom Textures**](#-custom-textures).
+
+<br/>
+
+# 🖥️ Dependencies
+
+[Git for Windows](https://gitforwindows.org/) - CLI application to allow auto updating gh2 repo files
+
+[Dot Net 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime) - Needed to run ArkHelper
+
+[x360ce 3.2](https://www.x360ce.com/) - Specific build to emulate a Xinput device
+
+[Mackiloha](https://github.com/PikminGuts92/Mackiloha) - ArkHelper for building GH2 ARK - Superfreq for building .bmp_xbox highway images
+
+[dtab](https://github.com/mtolly/dtab) - For serializing GH2 dtb files
+
+[Xenia 930fe2c_canary_experimental](https://github.com/xenia-canary/xenia-canary/releases/tag/930fe2c) - Xbox 360 emulator specific build with a config option that fixes GH2 audio sync
+
+[ImageMagick](https://imagemagick.org/script/download.php) - For converting highways to standard sizes
 
 
 
