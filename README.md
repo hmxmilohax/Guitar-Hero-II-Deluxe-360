@@ -331,13 +331,13 @@ For Xenia, you can download song packs using the included scripts at the root of
 
 You can find Vanilla (LIVE file) song packs for `real hardware` here.
 
-* [GH1DX](https://nightly.link/hmxmilohax/gh1dx-songs/workflows/build/main)
+* [GH1DX](https://nightly.link/Milohax-archive/gh1dx-songs/workflows/build/main/GH1DX-Xbox_songs.zip)
 
-* [GHIIDX](https://nightly.link/hmxmilohax/gh2dx-songs/workflows/build/main)
+* [GHIIDX](https://nightly.link/Milohax-archive/gh2dx-songs/workflows/build/main/GH2DX-Xbox_songs.zip)
 
-* [GH80SDX](https://nightly.link/hmxmilohax/gh80sdx-songs/workflows/build/main)
+* [GH80SDX](https://nightly.link/Milohax-archive/gh80sdx-songs/workflows/build/main/GH80SDX-Xbox_songs.zip)
 
-* [GHIIDXDLC](https://nightly.link/hmxmilohax/gh2dxdlc-songs/workflows/build/main) 
+* [GHIIDXDLC](https://nightly.link/Milohax-archive/gh2dxdlc-songs/workflows/build/main/GHIIDXDLC-Xbox_songs.zip) 
 
 ## Onyx
 
