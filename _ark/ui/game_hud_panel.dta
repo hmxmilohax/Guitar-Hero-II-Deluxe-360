@@ -653,22 +653,48 @@
       {stk_campaign_song_id.view set_frame METER_END_FRAME}
    )
    (wipe_score
-      {stk_campaign_line3.lbl set_local_pos_index 0 40}
-      {stk_campaign_line3.lbl set_local_pos_index 1 -80}
-      {stk_campaign_line3.lbl set_local_pos_index 2 -50}
-      {stk_campaign_line3.lbl set color {pack_color 0 0 0}}
-      {stk_campaign_line3.lbl set width 1500}
-      {stk_campaign_line3.lbl set wrap_width 1500}
-      {stk_campaign_line3.lbl set height 700}
-      {stk_campaign_line3.lbl set_type impactor}
-      {stk_campaign_line4.lbl set_local_pos_index 0 40}
-      {stk_campaign_line4.lbl set_local_pos_index 1 -80}
-      {stk_campaign_line4.lbl set_local_pos_index 2 -50}
-      {stk_campaign_line4.lbl set color {pack_color 0 0 0}}
-      {stk_campaign_line4.lbl set width 1500}
-      {stk_campaign_line4.lbl set wrap_width 1500}
-      {stk_campaign_line4.lbl set height 700}
-      {stk_campaign_line4.lbl set_type impactor}
+      {if_else $clonehero_hud
+         {do
+            {stk_campaign_line3.lbl set_local_pos_index 0 38}
+            {stk_campaign_line3.lbl set_local_pos_index 1 -80}
+            {stk_campaign_line3.lbl set_local_pos_index 2 38}
+            {stk_campaign_line3.lbl set_local_scale_index 0 .5}
+            {stk_campaign_line3.lbl set_local_scale_index 2 .5}
+            {stk_campaign_line3.lbl set color CLONE_SCORE_NUM_COLOR}
+            {stk_campaign_line3.lbl set width 1500}
+            {stk_campaign_line3.lbl set wrap_width 1500}
+            {stk_campaign_line3.lbl set height 700}
+            {stk_campaign_line3.lbl set_type impactor}
+            {stk_campaign_line4.lbl set_local_pos_index 0 38}
+            {stk_campaign_line4.lbl set_local_pos_index 1 -80}
+            {stk_campaign_line4.lbl set_local_pos_index 2 38}
+            {stk_campaign_line4.lbl set_local_scale_index 0 .5}
+            {stk_campaign_line4.lbl set_local_scale_index 2 .5}
+            {stk_campaign_line4.lbl set color CLONE_SCORE_NUM_COLOR}
+            {stk_campaign_line4.lbl set width 1500}
+            {stk_campaign_line4.lbl set wrap_width 1500}
+            {stk_campaign_line4.lbl set height 700}
+            {stk_campaign_line4.lbl set_type impactor}
+         }
+         {do
+            {stk_campaign_line3.lbl set_local_pos_index 0 40}
+            {stk_campaign_line3.lbl set_local_pos_index 1 -80}
+            {stk_campaign_line3.lbl set_local_pos_index 2 -50}
+            {stk_campaign_line3.lbl set color SCORE_NUM_COLOR}
+            {stk_campaign_line3.lbl set width 1500}
+            {stk_campaign_line3.lbl set wrap_width 1500}
+            {stk_campaign_line3.lbl set height 700}
+            {stk_campaign_line3.lbl set_type impactor}
+            {stk_campaign_line4.lbl set_local_pos_index 0 40}
+            {stk_campaign_line4.lbl set_local_pos_index 1 -80}
+            {stk_campaign_line4.lbl set_local_pos_index 2 -50}
+            {stk_campaign_line4.lbl set color SCORE_NUM_COLOR}
+            {stk_campaign_line4.lbl set width 1500}
+            {stk_campaign_line4.lbl set wrap_width 1500}
+            {stk_campaign_line4.lbl set height 700}
+            {stk_campaign_line4.lbl set_type impactor}
+         }
+      }
       {$this set_score_line}
       {stk_campaign_line3.lbl set_localized_text "0"}
       {stk_campaign_line4.lbl set_localized_text "0"}
