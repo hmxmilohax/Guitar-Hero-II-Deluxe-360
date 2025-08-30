@@ -382,6 +382,6 @@ After running `_highways.bat` you will need to run `_build_****.bat` again to bu
 
 [dtab](https://github.com/mtolly/dtab) - For serializing GH2 dtb files
 
-[Xenia 930fe2c_canary_experimental](https://github.com/xenia-canary/xenia-canary/releases/tag/930fe2c) - Xbox 360 emulator specific build with a config option that fixes GH2 audio sync
+[Xenia 930fe2c_canary_experimental](https://github.com/xenia-canary/xenia-canary/releases/tag/930fe2c) - Xbox 360 emulator specific build with a config option that fixes GH2 audio sync 
 
 [ImageMagick](https://imagemagick.org/script/download.php) - For converting highways to standard sizes
