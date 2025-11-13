@@ -340,20 +340,8 @@
    (reset_focus TRUE)
    (orig_vol 0)
    (finish_load
-      {do
-         ($levels
-            {options get_num_sync_levels})
-         ($max_sec
-            {options get_max_sync_offset})
-         ($step_val
-            {options get_sync_offset_step})
-         {gs_guitar.sld set_num_steps $levels}
-         {sync_help.lbl
-            set_localized_text
-            {sprintf
-               {localize os_videolag}
-               $max_sec
-               $step_val}}})
+      {gs_guitar.sld set_num_steps 601}
+      {gs_band.sld set_num_steps 601})
    (slider_changed
       {'||'
          {!=
@@ -374,38 +362,33 @@
       {$this overshell_theme} ;run the theme code on the current overshell screen
       {gs_guitar.sld
          set_current
-         {int
-            {options get_sync_offset}}
-      }
-      {gs_sfx.sld set_current
-         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}
+         {int {+ {* {options get_sync_offset} -1} 300}}
       }
       {gs_band.sld set_current
-         {int {- $emulatefps 1}}
+         {int {+ $audiolag 300}}
       }
-      {stereo.chk set_check $focusmode}
-      {gs_stereo.btn set_localized_text {localize sld_overscan}}
-      {$this display_speed_msg $levels $speedmod $emulatefps}
+      {$this display_speed_msg $audiolag {* {options get_sync_offset} -1}}
       {$this disable gs_sfx.sld}
+      {$this disable gs_stereo.btn}
+      {$this disable stereo.chk}
+      {stereo.chk set_showing FALSE}
       {gs_sfx.sld set_showing FALSE}
-      {gs_band.sld set_text 'NOTHING'}
-      {gs_guitar.sld set_text 'VIDEO LAG'}
+      {gs_stereo.btn set_showing FALSE}
+      {gs_band.sld set_text 'AUDIO LAG'}
+      {gs_guitar.sld set_text 'INPUT OFFSET'}
    )
    (reset_gm_title
       {gs_title.lbl set_localized_text {localize gamemodifier}}
    )
    (display_speed_msg
-      ($levels $mspd $fps)
+      ($levels $mspd)
       {gs_title.lbl set_localized_text
          {sprintf {localize lag_msg}
             {int
-               {+ 1 {* $levels 100}}
+               $levels
             }
             {int
-               {+ 0.5 {* $mspd 100}}
-            }
-            {int
-               $fps
+               $mspd
             }
          }
       }
@@ -415,9 +398,13 @@
          {!=
             {options get_sync_offset}
             {gs_guitar.sld current}}
-         {options
-            set_sync_offset
-            {gs_guitar.sld current}}}
+         {options set_sync_offset
+            {* {- {gs_guitar.sld current} 300} -1}
+         }
+         {set $newlag {options get_sync_offset}}
+      }
+      {set $audiolag {- {gs_band.sld current} 300}}
+      {$this display_speed_msg $audiolag {* {options get_sync_offset} -1}}
    )
    (slider_select_cancel
       ($component)
@@ -427,8 +414,8 @@
          (gs_band.sld {$component set_current [orig_vol]})
       }
       {$this update_help_display}
-      {$this set_speeds}
-      {$this display_speed_msg $levels $speedmod $emulatefps}
+      {$this set_sync}
+      {$this display_speed_msg $audiolag {* {options get_sync_offset} -1}}
       kDataUnhandled
    )
    (FOCUS_MSG
@@ -471,13 +458,13 @@
             (gs_sfx.sld
                {do
                   {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
+                  {$this set_sync}
                }
             )
             (gs_band.sld
                {do
                   {play_sfx button_error (volume 1) (stop TRUE)}
-                  {$this set_speeds}
+                  {$this set_sync}
                }
             )
          }
@@ -493,7 +480,7 @@
       }
       {$this update_help_display}
       {$this set_sync}
-      {$this display_speed_msg $levels $speedmod $emulatefps}
+      {$this display_speed_msg $audiolag {* {options get_sync_offset} -1}}
    )
 )
 #define TRACK_SLIDER_HANDLERS

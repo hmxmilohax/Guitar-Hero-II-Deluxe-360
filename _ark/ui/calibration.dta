@@ -59,7 +59,7 @@
                {sprintf
                   {localize lag_setting}
                   {int
-                     [lag]}}}
+                     $newlag}}}
             {autocalibrate.btn set text_token lag_button_calibrate})
          (calibrating
             {instructions.lbl set text_token lag_measuring}
@@ -80,7 +80,7 @@
                {sprintf
                   {localize lag_measured}
                   {int
-                     [lag]}}}
+                     $newlag}}}
             {autocalibrate.btn set text_token lag_button_recalibrate})
          (failure
             {instructions.lbl set text_token lag_info_failure}
@@ -90,7 +90,7 @@
                {sprintf
                   {localize lag_setting}
                   {int
-                     [lag]}}}
+                     $newlag}}}
             {autocalibrate.btn set text_token lag_button_recalibrate})})
    (set_state
       ($s)
@@ -105,7 +105,7 @@
          set_localized
          ""}
       {set
-         [lag]
+         $newlag
          {-
             0
             {options get_sync_offset}}}
@@ -117,11 +117,7 @@
          [seconds]
          {array 0}})
    (exit
-      {options
-         set_sync_offset
-         {-
-            0
-            [lag]}})
+      {options set_sync_offset $newlag})
    (BUTTON_DOWN_MSG
       {if_else
          {==
@@ -151,10 +147,7 @@
             {$this set_state calibrating}
             {$this start_countdown})
          (reset_to_zero.btn
-            {set
-               [lag]
-               0.0}
-            {$this set_state init})})
+            {ui push_screen overshell_lag_screen})})
    (play_sync_animation
       {lag animate})
    (start_countdown
@@ -267,7 +260,7 @@
                ""}
             {$task sleep 0.6}
             {set
-               [lag]
+               $newlag
                {$this
                   calculate_lag
                   [window]
@@ -277,23 +270,23 @@
             {if_else
                {&&
                   {>
-                     [lag]
+                     $newlag
                      [min_avg]}
                   {<
-                     [lag]
+                     $newlag
                      [max_avg]}}
                {set $success TRUE}
                {set $success FALSE}}
             {if
                {'||'
                   {<
-                     [lag]
+                     $newlag
                      0}
                   {>=
-                     [lag]
+                     $newlag
                      [max_avg]}}
                {set
-                  [lag]
+                  $newlag
                   0}}
             {$this
                set_state
