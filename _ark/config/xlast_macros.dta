@@ -1,3 +1,5 @@
+#define audio_lag
+(2181444000)
 #define TITLEID_GUITAR_HERO_II
 (1096157159)
 #define CONTEXT_SONGLIST

@@ -44,7 +44,7 @@
 (cheat_neckless "Neckless Mode")
 (speed_msg "NOTES: %d%%  SONG: %d%%\n FPS: %dFPS")
 (speed_msg "NOTES:%d%%  SONG: %d%%\n FPS: %dFPS")
-(lag_msg "AUDIO LAG:%d ms\nINPUT OFFSET: %d ms")
+(lag_msg "AUDIO LAG: %d ms\nVIDEO LAG: %d ms")
 (lag_button_reset "Calibrate Manually")
 (width_msg "WIDTH: %d%%")
 (gm_tspd "VENUE FPS")

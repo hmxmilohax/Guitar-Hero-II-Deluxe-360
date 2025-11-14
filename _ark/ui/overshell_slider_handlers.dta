@@ -333,6 +333,7 @@
       {$this display_speed_msg $trackspeed $speedmod $emulatefps}
    )
 )
+{load_objects "ui/calibration.milo"}
 #define LAG_SLIDER_HANDLERS
 (
    (focus gs_guitar.sld)
@@ -375,7 +376,7 @@
       {gs_sfx.sld set_showing FALSE}
       {gs_stereo.btn set_showing FALSE}
       {gs_band.sld set_text 'AUDIO LAG'}
-      {gs_guitar.sld set_text 'INPUT OFFSET'}
+      {gs_guitar.sld set_text 'VIDEO LAG'}
    )
    (reset_gm_title
       {gs_title.lbl set_localized_text {localize gamemodifier}}
@@ -404,6 +405,7 @@
          {set $newlag {options get_sync_offset}}
       }
       {set $audiolag {- {gs_band.sld current} 300}}
+      {set_audio_lag {* {- $audiolag {* {options get_sync_offset} -1}} -1.0}}
       {$this display_speed_msg $audiolag {* {options get_sync_offset} -1}}
    )
    (slider_select_cancel
