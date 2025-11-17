@@ -43,7 +43,7 @@
 (lag_title "HDTV Lag")
 (lag_button_calibrate "Calibrate")
 (lag_button_recalibrate "Recalibrate")
-(lag_button_reset "Reset to 0 ms")
+(lag_button_reset "Calibrate Manually")
 (lag_setting "Current Lag Offset is %d ms")
 (lag_measured "Your new Lag Offset is %d ms")
 (lag_measuring "Calibrating...")
