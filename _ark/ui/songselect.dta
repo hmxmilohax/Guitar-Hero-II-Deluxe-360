@@ -35,9 +35,17 @@
       {gs_tile2.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile3.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
       {gs_tile4.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {gs_tile1.mesh set_local_pos_index 0 -80} ;move the mesh we want to use to the left
-      {gs_tile1.mesh set_local_pos_index 2 155} ;move the mesh we want to use up
-      {gs_tile1.mesh set_local_rot_index 1 30} ;rotate it a lil
+      {if_else {|| $gh3song $altsong}
+         {do
+            {gs_tile1.mesh set_local_pos_index 0 -143.5} ;move the mesh we want to use to the left
+            {gs_tile1.mesh set_local_pos_index 2 140} ;move the mesh we want to use up
+         }
+         {do
+            {gs_tile1.mesh set_local_pos_index 0 -80} ;move the mesh we want to use to the left
+            {gs_tile1.mesh set_local_pos_index 2 155} ;move the mesh we want to use up
+            {gs_tile1.mesh set_local_rot_index 1 30} ;rotate it a lil
+         }
+      }
       {gs_tile1.mesh set_local_scale .86 .82 .86} ;scale the mesh down some
       {sel_section.lst set_showing FALSE} ;hide the mesh lol
       {gs_title.lbl set_showing FALSE} ;hide the text too
