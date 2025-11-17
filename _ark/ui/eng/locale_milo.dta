@@ -132,7 +132,7 @@
 (os_starprogress "STAR PROGRESS COLOR")
 (os_mtv "SONG NAME COLOR")
 (os_starcounter "STAR COUNTER COLOR")
-(os_starcounter "CLONE HERO STAR COLOR")
+(os_cloneherostarcounter "CLONE HERO STARS COLOR")
 (os_scorenum "SCORE NUMBER COLOR")
 (os_cloneheroscorenum "CLONE HERO SCORE COLOR")
 (os_scorenumframe "SCORE FRAME COLOR")

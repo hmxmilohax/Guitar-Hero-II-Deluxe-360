@@ -402,7 +402,7 @@
          {options set_sync_offset
             {* {- {gs_guitar.sld current} 300} -1}
          }
-         {set $newlag {options get_sync_offset}}
+         {set $videolag {options get_sync_offset}}
       }
       {set $audiolag {- {gs_band.sld current} 300}}
       {set_audio_lag {* {- $audiolag {* {options get_sync_offset} -1}} -1.0}}
@@ -736,9 +736,9 @@
    (reset_focus TRUE)
    (orig_vol 0)
    (finish_load
-      {gs_band.sld set_num_steps 100}
-      {gs_guitar.sld set_num_steps 100}
-      {gs_sfx.sld set_num_steps 100} ; was 41 steps, dropped to 31 when disallowing <100%
+      {gs_band.sld set_num_steps 101}
+      {gs_guitar.sld set_num_steps 101}
+      {gs_sfx.sld set_num_steps 101}
    )
    (slider_changed
       {'||'
@@ -807,6 +807,7 @@
                   (smashercolor "os_smashercolor")
                   (trackrailcolor "os_trackrailcolor")
                   (beatlinecolor "os_beatlinecolor")
+                  (psstrum "os_psstrumcolor")
                }
             }
             "\n"

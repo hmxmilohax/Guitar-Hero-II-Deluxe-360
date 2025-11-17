@@ -176,6 +176,9 @@
       {if $focusmode
          {$this disable section.btn}}
    )
+   (exit
+      SAVE_DX_SETTINGS
+   )
 }
 {new
    GHScreen ;screen type

@@ -203,7 +203,10 @@
          (kMCNoDeviceFound
             {ui goto_screen startup_load_storage_pulled_screen})
          (kMCNoError
-            {goto_post_startup_load})
+            {goto_post_startup_load}
+            {options set_sync_offset $videolag}
+            {set_audio_lag {* {- $audiolag {* {options get_sync_offset} -1}} -1.0}}
+         )
          (kMCCorrupt
             {ui goto_screen startup_load_corrupt_screen})
          {ui goto_screen load_failed_screen}})}

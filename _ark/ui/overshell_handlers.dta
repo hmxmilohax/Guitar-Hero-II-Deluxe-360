@@ -177,50 +177,6 @@
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
-{new
-   MultiSelectListPanel ;panel type
-   overshell_gem_element_list ;panel name
-   (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
-   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
-   (focus sel_section.lst) ;focus the list used in the current overshell screen
-   (enter ;when the panel is entered
-      {$this overshell_theme} ;run the theme code on the current overshell screen
-      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
-      {sel_section.lst set_local_pos -140 0 60} ;move the list to the proper location
-      {sel_section.lst set circular 0} ;set the list to wrap around when the end is reached
-      {if_else {== $colormenu gemcolor}
-         {gs_title.lbl set_localized_text {localize os_gemcolor}} ;set the title text for this screen
-         {gs_title.lbl set_localized_text {localize os_smashercolor}} ;set the title text for this screen
-      }
-      {sel_section.lst set_data ;set up the data for the list
-         (
-            gem_green gem_red gem_yellow gem_blue gem_orange
-         )
-      }
-   )
-   (SELECT_START_MSG ;ran when an item on screen is selected
-      {switch {$component selected_sym} ;run specific code based on exactly which item is selected
-         (gem_green {set $gemcolor green})
-         (gem_red {set $gemcolor red})
-         (gem_yellow {set $gemcolor yellow})
-         (gem_blue {set $gemcolor blue})
-         (gem_orange {set $gemcolor orange})
-      }
-      {set $gemcolentered TRUE}
-      {overshell_color_slider update_sliders} ;runs the color slider code for previewing the current color
-      {overshell_color_slider set_colors} ;runs the title label color code for previewing the current color
-      {ui pop_screen} ;exit the current and previous overshell screen
-   )
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
-}
-{new
-   GHScreen ;screen type
-   overshell_gem_element_list_screen ;screen name
-   (panels overshell_gem_element_list) ;panels used for this screen. overshell only uses one panel
-   (focus overshell_gem_element_list) ;panel to focus
-   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
-}
 #define OVERSHELL_LIST_RESET_HANDLER ;sets up our function to reset the current overshell screen with new parameters, and pop up the help screen if needed
 (
    {set $trackmodifierlistpos {sel_section.lst selected_pos}} ;saves the currently selected list position to temp var

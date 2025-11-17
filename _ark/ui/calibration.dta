@@ -59,7 +59,7 @@
                {sprintf
                   {localize lag_setting}
                   {int
-                     $newlag}}}
+                     $videolag}}}
             {autocalibrate.btn set text_token lag_button_calibrate})
          (calibrating
             {instructions.lbl set text_token lag_measuring}
@@ -80,7 +80,7 @@
                {sprintf
                   {localize lag_measured}
                   {int
-                     $newlag}}}
+                     $videolag}}}
             {autocalibrate.btn set text_token lag_button_recalibrate})
          (failure
             {instructions.lbl set text_token lag_info_failure}
@@ -90,7 +90,7 @@
                {sprintf
                   {localize lag_setting}
                   {int
-                     $newlag}}}
+                     $videolag}}}
             {autocalibrate.btn set text_token lag_button_recalibrate})})
    (set_state
       ($s)
@@ -105,7 +105,7 @@
          set_localized
          ""}
       {set
-         $newlag
+         $videolag
          {-
             0
             {options get_sync_offset}}}
@@ -117,7 +117,7 @@
          [seconds]
          {array 0}})
    (exit
-      {options set_sync_offset $newlag})
+      {options set_sync_offset $videolag})
    (BUTTON_DOWN_MSG
       {if_else
          {==
@@ -260,7 +260,7 @@
                ""}
             {$task sleep 0.6}
             {set
-               $newlag
+               $videolag
                {$this
                   calculate_lag
                   [window]
@@ -270,23 +270,23 @@
             {if_else
                {&&
                   {>
-                     $newlag
+                     $videolag
                      [min_avg]}
                   {<
-                     $newlag
+                     $videolag
                      [max_avg]}}
                {set $success TRUE}
                {set $success FALSE}}
             {if
                {'||'
                   {<
-                     $newlag
+                     $videolag
                      0}
                   {>=
-                     $newlag
+                     $videolag
                      [max_avg]}}
                {set
-                  $newlag
+                  $videolag
                   0}}
             {$this
                set_state

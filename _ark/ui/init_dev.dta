@@ -1,5 +1,5 @@
-
 ;do not change variables below, these are used for scripting only
+{set $fastsong none}
 {set $progress_rate 1}
 {set $dontreset FALSE}
 {set $colormenu name}

@@ -29,3 +29,5 @@ _xenia/content/415607E7/00000001/2deluxe/2deluxe.dat
 .DS_Store
 _ark/.DS_Store
 
+/_xenia/content
+_build/Xbox/gen/dxsettings.milo_xbox
