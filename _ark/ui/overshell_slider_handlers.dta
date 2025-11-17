@@ -628,10 +628,27 @@
       (cloneheroscorenum $cloneheroscorenumcolor_r)
       (scorenum $scorenumcolor_r)
       (scorenumframe $scorenumframe_r)
-      (gemcolor $gemcolor_r)
-      (smashercolor $smashercolor_r)
+      (gemcolor 
+         {switch $gemcolor
+            (green $gem1color_r)
+            (red $gem2color_r)
+            (yellow $gem3color_r)
+            (blue $gem4color_r)
+            (orange $gem5color_r)
+         }
+      )
+      (smashercolor
+         {switch $gemcolor
+            (green $smasher1color_r)
+            (red $smasher2color_r)
+            (yellow $smasher3color_r)
+            (blue $smasher4color_r)
+            (orange $smasher5color_r)
+         }
+      )
       (trackrailcolor $trackrailcolor_r)
       (beatlinecolor $beatlinecolor_r)
+      (psstrum $poorspystrum_r)
    }
 )
 #define COLORSWITCH_G
@@ -650,10 +667,27 @@
       (scorenum $scorenumcolor_g)
       (cloneheroscorenum $cloneheroscorenumcolor_g)
       (scorenumframe $scorenumframe_g)
-      (gemcolor $gemcolor_g)
-      (smashercolor $smashercolor_g)
+      (gemcolor 
+         {switch $gemcolor
+            (green $gem1color_g)
+            (red $gem2color_g)
+            (yellow $gem3color_g)
+            (blue $gem4color_g)
+            (orange $gem5color_g)
+         }
+      )
+      (smashercolor
+         {switch $gemcolor
+            (green $smasher1color_g)
+            (red $smasher2color_g)
+            (yellow $smasher3color_g)
+            (blue $smasher4color_g)
+            (orange $smasher5color_g)
+         }
+      )
       (trackrailcolor $trackrailcolor_g)
       (beatlinecolor $beatlinecolor_g)
+      (psstrum $poorspystrum_g)
    }
 )
 #define COLORSWITCH_B
@@ -672,10 +706,27 @@
       (scorenum $scorenumcolor_b)
       (cloneheroscorenum $cloneheroscorenumcolor_b)
       (scorenumframe $scorenumframe_b)
-      (gemcolor $gemcolor_b)
-      (smashercolor $smashercolor_b)
+      (gemcolor 
+         {switch $gemcolor
+            (green $gem1color_b)
+            (red $gem2color_b)
+            (yellow $gem3color_b)
+            (blue $gem4color_b)
+            (orange $gem5color_b)
+         }
+      )
+      (smashercolor
+         {switch $gemcolor
+            (green $smasher1color_b)
+            (red $smasher2color_b)
+            (yellow $smasher3color_b)
+            (blue $smasher4color_b)
+            (orange $smasher5color_b)
+         }
+      )
       (trackrailcolor $trackrailcolor_b)
       (beatlinecolor $beatlinecolor_b)
+      (psstrum $poorspystrum_b)
    }
 )
 #define COLOR_SLIDER_HANDLERS
@@ -710,15 +761,7 @@
       {gs_band.sld set_text 'RED'}
       {gs_guitar.sld set_text 'GREEN'}
       {gs_sfx.sld set_text 'BLUE'}
-      {gs_guitar.sld set_current
-         {int {* COLORSWITCH_R 100}}
-      }
-      {gs_sfx.sld set_current
-         {int {* COLORSWITCH_G 100}}
-      }
-      {gs_band.sld set_current
-         {int {* COLORSWITCH_B 100}}
-      }
+      {$this update_sliders}
       {stereo.chk set_showing FALSE}
       {$this disable stereo.chk}
       ;{gs_stereo.btn jitter FALSE}
@@ -726,6 +769,17 @@
       ;{gs_stereo.btn set_showing FALSE}
       ;{$this disable gs_stereo.btn}
       {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
+   )
+   (update_sliders
+      {gs_band.sld set_current
+         {int {* COLORSWITCH_R 100}}
+      }
+      {gs_guitar.sld set_current
+         {int {* COLORSWITCH_G 100}}
+      }
+      {gs_sfx.sld set_current
+         {int {* COLORSWITCH_B 100}}
+      }
    )
    (reset_gm_title
       {gs_title.lbl set_localized_text {localize gamemodifier}}
@@ -782,10 +836,27 @@
                (scorenum {set $scorenumcolor_r {* 0.01 {gs_band.sld current}}})
                (cloneheroscorenum {set $cloneheroscorenumcolor_r {* 0.01 {gs_band.sld current}}})
                (scorenumframe {set $scorenumframe_r {* 0.01 {gs_band.sld current}}})
-               (gemcolor {set $customgemcolor TRUE} {set $gemcolor_r {* 0.01 {gs_band.sld current}}})
-               (smashercolor {set $customsmashercolor TRUE} {set $smashercolor_r {* 0.01 {gs_band.sld current}}})
+               (gemcolor {set $newcustomgemcolor TRUE}
+                  {switch $gemcolor
+                     (green {set $gem1color_r {* 0.01 {gs_band.sld current}}})
+                     (red {set $gem2color_r {* 0.01 {gs_band.sld current}}})
+                     (yellow {set $gem3color_r {* 0.01 {gs_band.sld current}}})
+                     (blue {set $gem4color_r {* 0.01 {gs_band.sld current}}})
+                     (orange {set $gem5color_r {* 0.01 {gs_band.sld current}}})
+                  }
+               )
+               (smashercolor 
+                  {switch $gemcolor
+                     (green {set $smasher1color_r {* 0.01 {gs_band.sld current}}})
+                     (red {set $smasher2color_r {* 0.01 {gs_band.sld current}}})
+                     (yellow {set $smasher3color_r {* 0.01 {gs_band.sld current}}})
+                     (blue {set $smasher4color_r {* 0.01 {gs_band.sld current}}})
+                     (orange {set $smasher5color_r {* 0.01 {gs_band.sld current}}})
+                  }
+               )
                (trackrailcolor {set $trackrailcolor_r {* 0.01 {gs_band.sld current}}})
                (beatlinecolor {set $beatlinecolor_r {* 0.01 {gs_band.sld current}}})
+               (psstrum {set $poorspystrum_r {* 0.01 {gs_band.sld current}}})
             }
             {switch $colormenu
                (name {set $namecolor_g {* 0.01 {gs_guitar.sld current}}})
@@ -801,10 +872,27 @@
                (scorenum {set $scorenumcolor_g {* 0.01 {gs_guitar.sld current}}})
                (cloneheroscorenum {set $cloneheroscorenumcolor_g {* 0.01 {gs_guitar.sld current}}})
                (scorenumframe {set $scorenumframe_g {* 0.01 {gs_guitar.sld current}}})
-               (gemcolor {set $customgemcolor TRUE} {set $gemcolor_g {* 0.01 {gs_guitar.sld current}}})
-               (smashercolor {set $customsmashercolor TRUE} {set $smashercolor_g {* 0.01 {gs_guitar.sld current}}})
+               (gemcolor {set $newcustomgemcolor TRUE}
+                  {switch $gemcolor
+                     (green {set $gem1color_g {* 0.01 {gs_guitar.sld current}}})
+                     (red {set $gem2color_g {* 0.01 {gs_guitar.sld current}}})
+                     (yellow {set $gem3color_g {* 0.01 {gs_guitar.sld current}}})
+                     (blue {set $gem4color_g {* 0.01 {gs_guitar.sld current}}})
+                     (orange {set $gem5color_g {* 0.01 {gs_guitar.sld current}}})
+                  }
+               )
+               (smashercolor 
+                  {switch $gemcolor
+                     (green {set $smasher1color_g {* 0.01 {gs_guitar.sld current}}})
+                     (red {set $smasher2color_g {* 0.01 {gs_guitar.sld current}}})
+                     (yellow {set $smasher3color_g {* 0.01 {gs_guitar.sld current}}})
+                     (blue {set $smasher4color_g {* 0.01 {gs_guitar.sld current}}})
+                     (orange {set $smasher5color_g {* 0.01 {gs_guitar.sld current}}})
+                  }
+               )
                (trackrailcolor {set $trackrailcolor_g {* 0.01 {gs_guitar.sld current}}})
                (beatlinecolor {set $beatlinecolor_g {* 0.01 {gs_guitar.sld current}}})
+               (psstrum {set $poorspystrum_g {* 0.01 {gs_guitar.sld current}}})
             }
             {switch $colormenu
                (name {set $namecolor_b {* 0.01 {gs_sfx.sld current}}})
@@ -820,10 +908,27 @@
                (scorenum {set $scorenumcolor_b {* 0.01 {gs_sfx.sld current}}})
                (cloneheroscorenum {set $cloneheroscorenumcolor_b {* 0.01 {gs_sfx.sld current}}})
                (scorenumframe {set $scorenumframe_b {* 0.01 {gs_sfx.sld current}}})
-               (gemcolor {set $customgemcolor TRUE} {set $gemcolor_b {* 0.01 {gs_sfx.sld current}}})
-               (smashercolor {set $customsmashercolor TRUE} {set $smashercolor_b {* 0.01 {gs_sfx.sld current}}})
+               (gemcolor {set $newcustomgemcolor TRUE}
+                  {switch $gemcolor
+                     (green {set $gem1color_b {* 0.01 {gs_sfx.sld current}}})
+                     (red {set $gem2color_b {* 0.01 {gs_sfx.sld current}}})
+                     (yellow {set $gem3color_b {* 0.01 {gs_sfx.sld current}}})
+                     (blue {set $gem4color_b {* 0.01 {gs_sfx.sld current}}})
+                     (orange {set $gem5color_b {* 0.01 {gs_sfx.sld current}}})
+                  }
+               )
+               (smashercolor 
+                  {switch $gemcolor
+                     (green {set $smasher1color_b {* 0.01 {gs_sfx.sld current}}})
+                     (red {set $smasher2color_b {* 0.01 {gs_sfx.sld current}}})
+                     (yellow {set $smasher3color_b {* 0.01 {gs_sfx.sld current}}})
+                     (blue {set $smasher4color_b {* 0.01 {gs_sfx.sld current}}})
+                     (orange {set $smasher5color_b {* 0.01 {gs_sfx.sld current}}})
+                  }
+               )
                (trackrailcolor {set $trackrailcolor_b {* 0.01 {gs_sfx.sld current}}})
                (beatlinecolor {set $beatlinecolor_b {* 0.01 {gs_sfx.sld current}}})
+               (psstrum {set $poorspystrum_b {* 0.01 {gs_sfx.sld current}}})
             }
             {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
          }
