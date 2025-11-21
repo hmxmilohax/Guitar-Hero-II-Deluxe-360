@@ -1176,7 +1176,7 @@
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_pos {- $clonestreakx 25} 25 -20}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_local_scale 1.2 1.2 1.2}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_mult_glow.mesh} set_local_scale 1.1 1.5 .8}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos -33 25 -20}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_pos {- $clonestreakx 25} 25 -20}
       {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_local_scale 1.2 1.2 1.2}
       {{{{hud loaded_dir} find BandStreakDisplay1} find hud1_score_meter0.view} set_local_scale .6 .6 .6}
       ;{{{{hud loaded_dir} find BandStreakDisplay1} find score_shell.mesh} set_showing FALSE}
@@ -1198,7 +1198,7 @@
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_base_bar.mesh} set_showing FALSE}
       {{{{hud loaded_dir} find BandStarMeterDir1} find amp_tube_glow_meter.mesh} set_showing FALSE}
       {{{hud loaded_dir} find spraypaint.mesh} set_showing FALSE}
-      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing FALSE}
+      {{{{hud loaded_dir} find BandStreakDisplay1} find score_shell_fc.mesh} set_showing TRUE}
       {if {&& {== {gamecfg get mode} practice} $clonehero_hud}
          {$this no_fail_hud}
       }

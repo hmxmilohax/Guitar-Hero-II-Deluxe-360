@@ -317,6 +317,10 @@
    {set $poorspystrum_b 0.5568627451}
 }
 
+{if {! $poorspystrumtype}
+   {set $poorspystrumtype gh2}
+}
+
 ;this randomizes the menu theme if none is forced by the user
 {if_else {== $menutheme none}
          {switch
