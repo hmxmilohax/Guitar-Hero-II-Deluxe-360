@@ -822,7 +822,7 @@
       {gs_title.lbl set_localized_text {localize os_trackmodifiers}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
-            os_cloneherohud os_brighthopos os_hopocolors os_darkstrums os_gemcolors
+            os_cloneherohud os_brighthopos os_darkstrums os_gemcolors
             os_gh1track os_gh3track os_smashercolors os_voidfrets os_eyeballgems os_poorspyenabled
             os_poorspytex
          )
@@ -885,30 +885,10 @@
                }
             }
          )
-         (os_hopocolors
-            {if_else $hopocolors
-               {do
-                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
-                  {set $hopocolors FALSE}
-               }
-               {do
-                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
-                  {set $brighthopos FALSE} ;colored hopos turns off bright hopos
-                  {set $hopocolors TRUE}
-               }
-            }
-         )
          (os_brighthopos
-            {if_else $brighthopos
-               {do
-                  {play_sfx cheat_off} ;since we aren't setup very well to use the macro, call the sfx directly
-                  {set $brighthopos FALSE}
-               }
-               {do
-                  {play_sfx cheat} ;since we aren't setup very well to use the macro, call the sfx directly
-                  {set $hopocolors FALSE} ;bright hopos turns off colored hopos
-                  {set $brighthopos TRUE}
-               }
+            {set $brighthopos {! $brighthopos}} ;set the variable to the opposite of what it currently is
+            {if_else $brighthopos ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
             }
          )
          (os_darkstrums
