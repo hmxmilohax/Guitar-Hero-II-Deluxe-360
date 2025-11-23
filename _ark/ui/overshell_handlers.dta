@@ -375,14 +375,26 @@
       {gs_title.lbl set_localized_text {localize os_trackmodifiers}} ;set the title text for this screen
       {sel_section.lst set_data ;set up the data for the list
          (
-            os_cloneherohud os_brighthopos os_darkstrums
-            os_gh1track os_gh3track os_voidfrets os_eyeballgems os_poorspyenabled
+            os_cloneherohud os_brighthopos os_darkstrums os_gemcolors
+            os_gh1track os_gh3track os_smashercolors os_voidfrets os_eyeballgems os_poorspyenabled
             os_poorspytex
          )
       }
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
+         (os_gemcolors
+            {set $newcustomgemcolor {! $newcustomgemcolor}} ;set the variable to the opposite of what it currently is
+            {if_else $newcustomgemcolor ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+         )
+         (os_smashercolors
+            {set $newcustomsmashercolor {! $newcustomsmashercolor}} ;set the variable to the opposite of what it currently is
+            {if_else $newcustomsmashercolor ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+         )
          (os_voidfrets
             {set $voidfrets {! $voidfrets}} ;set the variable to the opposite of what it currently is
             {if_else $voidfrets ;check the state of the variable

@@ -90,7 +90,7 @@
    {set $mtv_r {$dxsettings get mtv_r}}
    {set $mtv_g {$dxsettings get mtv_g}}
    {set $mtv_b {$dxsettings get mtv_b}}
-   {set $newcustomgemcolor TRUE} ; enables custom gem colors
+   {set $newcustomgemcolor {$dxsettings get newcustomgemcolor}} ; enables custom gem colors
    {set $gem1color_r {$dxsettings get gem1color_r}}
    {set $gem1color_g {$dxsettings get gem1color_g}}
    {set $gem1color_b {$dxsettings get gem1color_b}}
@@ -106,7 +106,7 @@
    {set $gem5color_r {$dxsettings get gem5color_r}}
    {set $gem5color_g {$dxsettings get gem5color_g}}
    {set $gem5color_b {$dxsettings get gem5color_b}}
-   {set $newcustomsmashercolor TRUE} ; enables custom smasher colors
+   {set $newcustomsmashercolor {$dxsettings get newcustomsmashercolor}} ; enables custom smasher colors
    {set $smasher1color_r {$dxsettings get smasher1color_r}}
    {set $smasher1color_g {$dxsettings get smasher1color_g}}
    {set $smasher1color_b {$dxsettings get smasher1color_b}}
@@ -222,6 +222,7 @@
    {dxsettings set mtv_r $mtv_r}
    {dxsettings set mtv_g $mtv_g}
    {dxsettings set mtv_b $mtv_b}
+   {dxsettings set newcustomgemcolor $newcustomgemcolor}
    {dxsettings set gem1color_r $gem1color_r}
    {dxsettings set gem1color_g $gem1color_g}
    {dxsettings set gem1color_b $gem1color_b}
@@ -237,6 +238,7 @@
    {dxsettings set gem5color_r $gem5color_r}
    {dxsettings set gem5color_g $gem5color_g}
    {dxsettings set gem5color_b $gem5color_b}
+   {dxsettings set newcustomsmashercolor $newcustomsmashercolor}
    {dxsettings set smasher1color_r $smasher1color_r}
    {dxsettings set smasher1color_g $smasher1color_g}
    {dxsettings set smasher1color_b $smasher1color_b}
