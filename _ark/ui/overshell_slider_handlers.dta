@@ -766,6 +766,7 @@
       {$this disable stereo.chk}
       ;{gs_stereo.btn jitter FALSE}
       {gs_stereo.btn set_localized_text {localize sld_pickelm}}
+      {gs_stereo.btn set_local_pos_index 0 -115}
       ;{gs_stereo.btn set_showing FALSE}
       ;{$this disable gs_stereo.btn}
       {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
@@ -846,7 +847,7 @@
                      (orange {set $gem5color_r {* 0.01 {gs_band.sld current}}})
                   }
                )
-               (smashercolor 
+               (smashercolor {set $newcustomsmashercolor TRUE}
                   {switch $gemcolor
                      (green {set $smasher1color_r {* 0.01 {gs_band.sld current}}})
                      (red {set $smasher2color_r {* 0.01 {gs_band.sld current}}})
@@ -882,7 +883,7 @@
                      (orange {set $gem5color_g {* 0.01 {gs_guitar.sld current}}})
                   }
                )
-               (smashercolor 
+               (smashercolor {set $newcustomsmashercolor TRUE}
                   {switch $gemcolor
                      (green {set $smasher1color_g {* 0.01 {gs_guitar.sld current}}})
                      (red {set $smasher2color_g {* 0.01 {gs_guitar.sld current}}})
@@ -918,7 +919,7 @@
                      (orange {set $gem5color_b {* 0.01 {gs_sfx.sld current}}})
                   }
                )
-               (smashercolor 
+               (smashercolor {set $newcustomsmashercolor TRUE}
                   {switch $gemcolor
                      (green {set $smasher1color_b {* 0.01 {gs_sfx.sld current}}})
                      (red {set $smasher2color_b {* 0.01 {gs_sfx.sld current}}})

@@ -177,6 +177,449 @@
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
    OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
+#define COPYFROM_SWITCH_R
+(
+   {switch $colorcopyfrom
+      (name $namecolor_r)
+      (mtv $mtv_r)
+      (notepopup $notepopup_r)
+      (starpower $starpowercolor_r)
+      (streaklabel $streaklabel_r)
+      (streakstandardlabel $streakstandardlabel_r)
+      (starcounter $starcounter_r)
+      (cloneherostarcounter $cloneherostarcounter_r)
+      (songprogress $songprogressbar_r)
+      (starprogress $starprogressbar_r)
+      (cloneheroscorenum $cloneheroscorenumcolor_r)
+      (scorenum $scorenumcolor_r)
+      (scorenumframe $scorenumframe_r)
+      (gemcolor 
+         {switch $gemcolorcopyfrom
+            (green $gem1color_r)
+            (red $gem2color_r)
+            (yellow $gem3color_r)
+            (blue $gem4color_r)
+            (orange $gem5color_r)
+         }
+      )
+      (smashercolor
+         {switch $gemcolorcopyfrom
+            (green $smasher1color_r)
+            (red $smasher2color_r)
+            (yellow $smasher3color_r)
+            (blue $smasher4color_r)
+            (orange $smasher5color_r)
+         }
+      )
+      (trackrailcolor $trackrailcolor_r)
+      (beatlinecolor $beatlinecolor_r)
+      (psstrum $poorspystrum_r)
+   }
+)
+
+#define COPYFROM_SWITCH_G
+(
+   {switch $colorcopyfrom
+      (name $namecolor_g)
+      (mtv $mtv_g)
+      (notepopup $notepopup_g)
+      (starpower $starpowercolor_g)
+      (streaklabel $streaklabel_g)
+      (streakstandardlabel $streakstandardlabel_g)
+      (starcounter $starcounter_g)
+      (cloneherostarcounter $cloneherostarcounter_g)
+      (songprogress $songprogressbar_g)
+      (starprogress $starprogressbar_g)
+      (scorenum $scorenumcolor_g)
+      (cloneheroscorenum $cloneheroscorenumcolor_g)
+      (scorenumframe $scorenumframe_g)
+      (gemcolor 
+         {switch $gemcolorcopyfrom
+            (green $gem1color_g)
+            (red $gem2color_g)
+            (yellow $gem3color_g)
+            (blue $gem4color_g)
+            (orange $gem5color_g)
+         }
+      )
+      (smashercolor
+         {switch $gemcolorcopyfrom
+            (green $smasher1color_g)
+            (red $smasher2color_g)
+            (yellow $smasher3color_g)
+            (blue $smasher4color_g)
+            (orange $smasher5color_g)
+         }
+      )
+      (trackrailcolor $trackrailcolor_g)
+      (beatlinecolor $beatlinecolor_g)
+      (psstrum $poorspystrum_g)
+   }
+)
+#define COPYFROM_SWITCH_B
+(
+   {switch $colorcopyfrom
+      (name $namecolor_b)
+      (mtv $mtv_b)
+      (notepopup $notepopup_b)
+      (starpower $starpowercolor_b)
+      (streaklabel $streaklabel_b)
+      (streakstandardlabel $streakstandardlabel_b)
+      (starcounter $starcounter_b)
+      (cloneherostarcounter $cloneherostarcounter_b)
+      (songprogress $songprogressbar_b)
+      (starprogress $starprogressbar_b)
+      (scorenum $scorenumcolor_b)
+      (cloneheroscorenum $cloneheroscorenumcolor_b)
+      (scorenumframe $scorenumframe_b)
+      (gemcolor 
+         {switch $gemcolorcopyfrom
+            (green $gem1color_b)
+            (red $gem2color_b)
+            (yellow $gem3color_b)
+            (blue $gem4color_b)
+            (orange $gem5color_b)
+         }
+      )
+      (smashercolor
+         {switch $gemcolorcopyfrom
+            (green $smasher1color_b)
+            (red $smasher2color_b)
+            (yellow $smasher3color_b)
+            (blue $smasher4color_b)
+            (orange $smasher5color_b)
+         }
+      )
+      (trackrailcolor $trackrailcolor_b)
+      (beatlinecolor $beatlinecolor_b)
+      (psstrum $poorspystrum_b)
+   }
+)
+#define COPY_COLORS
+(
+   {switch $colorcopyto
+      (name
+         {set $namecolor_r COPYFROM_SWITCH_R}
+         {set $namecolor_g COPYFROM_SWITCH_G}
+         {set $namecolor_b COPYFROM_SWITCH_B}
+      )
+      (mtv
+         {set $mtv_r COPYFROM_SWITCH_R}
+         {set $mtv_g COPYFROM_SWITCH_G}
+         {set $mtv_b COPYFROM_SWITCH_B}
+      )
+      (notepopup
+         {set $notepopup_r COPYFROM_SWITCH_R}
+         {set $notepopup_g COPYFROM_SWITCH_G}
+         {set $notepopup_b COPYFROM_SWITCH_B}
+      )
+      (starpower
+         {set $starpowercolor_r COPYFROM_SWITCH_R}
+         {set $starpowercolor_g COPYFROM_SWITCH_G}
+         {set $starpowercolor_b COPYFROM_SWITCH_B}
+      )
+      (streaklabel
+         {set $streaklabel_r COPYFROM_SWITCH_R}
+         {set $streaklabel_g COPYFROM_SWITCH_G}
+         {set $streaklabel_b COPYFROM_SWITCH_B}
+      )
+      (streakstandardlabel
+         {set $streakstandardlabel_r COPYFROM_SWITCH_R}
+         {set $streakstandardlabel_g COPYFROM_SWITCH_G}
+         {set $streakstandardlabel_b COPYFROM_SWITCH_B}
+      )
+      (starcounter
+         {set $starcounter_r COPYFROM_SWITCH_R}
+         {set $starcounter_g COPYFROM_SWITCH_G}
+         {set $starcounter_b COPYFROM_SWITCH_B}
+      )
+      (cloneherostarcounter
+         {set $cloneherostarcounter_r COPYFROM_SWITCH_R}
+         {set $cloneherostarcounter_g COPYFROM_SWITCH_G}
+         {set $cloneherostarcounter_b COPYFROM_SWITCH_B}
+      )
+      (songprogress
+         {set $songprogressbar_r COPYFROM_SWITCH_R}
+         {set $songprogressbar_g COPYFROM_SWITCH_G}
+         {set $songprogressbar_b COPYFROM_SWITCH_B}
+      )
+      (starprogress
+         {set $starprogressbar_r COPYFROM_SWITCH_R}
+         {set $starprogressbar_g COPYFROM_SWITCH_G}
+         {set $starprogressbar_b COPYFROM_SWITCH_B}
+      )
+      (scorenum
+         {set $scorenumcolor_r COPYFROM_SWITCH_R}
+         {set $scorenumcolor_g COPYFROM_SWITCH_G}
+         {set $scorenumcolor_b COPYFROM_SWITCH_B}
+      )
+      (cloneheroscorenum
+         {set $cloneheroscorenumcolor_r COPYFROM_SWITCH_R}
+         {set $cloneheroscorenumcolor_g COPYFROM_SWITCH_G}
+         {set $cloneheroscorenumcolor_b COPYFROM_SWITCH_B}
+      )
+      (scorenumframe
+         {set $scorenumframe_r COPYFROM_SWITCH_R}
+         {set $scorenumframe_g COPYFROM_SWITCH_G}
+         {set $scorenumframe_b COPYFROM_SWITCH_B}
+      )
+      (gemcolor
+         {switch $gemcolorcopyto
+            (green
+               {set $gem1color_r COPYFROM_SWITCH_R}
+               {set $gem1color_g COPYFROM_SWITCH_G}
+               {set $gem1color_b COPYFROM_SWITCH_B}
+            )
+            (red
+               {set $gem2color_r COPYFROM_SWITCH_R}
+               {set $gem2color_g COPYFROM_SWITCH_G}
+               {set $gem2color_b COPYFROM_SWITCH_B}
+            )
+            (yellow
+               {set $gem3color_r COPYFROM_SWITCH_R}
+               {set $gem3color_g COPYFROM_SWITCH_G}
+               {set $gem3color_b COPYFROM_SWITCH_B}
+            )
+            (blue
+               {set $gem4color_r COPYFROM_SWITCH_R}
+               {set $gem4color_g COPYFROM_SWITCH_G}
+               {set $gem4color_b COPYFROM_SWITCH_B}
+            )
+            (orange
+               {set $gem5color_r COPYFROM_SWITCH_R}
+               {set $gem5color_g COPYFROM_SWITCH_G}
+               {set $gem5color_b COPYFROM_SWITCH_B}
+            )
+         }
+      )
+      (smashercolor 
+         {switch $gemcolorcopyto
+            (green
+               {set $smasher1color_r COPYFROM_SWITCH_R}
+               {set $smasher1color_g COPYFROM_SWITCH_G}
+               {set $smasher1color_b COPYFROM_SWITCH_B}
+            )
+            (red
+               {set $smasher2color_r COPYFROM_SWITCH_R}
+               {set $smasher2color_g COPYFROM_SWITCH_G}
+               {set $smasher2color_b COPYFROM_SWITCH_B}
+            )
+            (yellow
+               {set $smasher3color_r COPYFROM_SWITCH_R}
+               {set $smasher3color_g COPYFROM_SWITCH_G}
+               {set $smasher3color_b COPYFROM_SWITCH_B}
+            )
+            (blue
+               {set $smasher4color_r COPYFROM_SWITCH_R}
+               {set $smasher4color_g COPYFROM_SWITCH_G}
+               {set $smasher4color_b COPYFROM_SWITCH_B}
+            )
+            (orange
+               {set $smasher5color_r COPYFROM_SWITCH_R}
+               {set $smasher5color_g COPYFROM_SWITCH_G}
+               {set $smasher5color_b COPYFROM_SWITCH_B}
+            )
+         }
+      )
+      (trackrailcolor
+         {set $trackrailcolor_r COPYFROM_SWITCH_R}
+         {set $trackrailcolor_g COPYFROM_SWITCH_G}
+         {set $trackrailcolor_b COPYFROM_SWITCH_B}
+      )
+      (beatlinecolor
+         {set $beatlinecolor_r COPYFROM_SWITCH_R}
+         {set $beatlinecolor_g COPYFROM_SWITCH_G}
+         {set $beatlinecolor_b COPYFROM_SWITCH_B}
+      )
+      (psstrum
+         {set $poorspystrum_r COPYFROM_SWITCH_R}
+         {set $poorspystrum_g COPYFROM_SWITCH_G}
+         {set $poorspystrum_b COPYFROM_SWITCH_B}
+      )
+   }
+)
+{new
+   MultiSelectListPanel ;panel type
+   overshell_copy_color_list ;panel name
+   (file overshell_list.milo) ;milo file used for the panel. found in /ui/gen/
+   OVERSHELL_THEME_HANDLER ;make sure the theme coding is loaded into this panel
+   (focus sel_section.lst) ;focus the list used in the current overshell screen
+   (enter ;when the panel is entered
+      {$this overshell_theme} ;run the theme code on the current overshell screen
+      {gs_tile5.mesh set_showing FALSE} ;hide the spare mesh we put into the overshell list milo
+      {sel_section.lst set_local_pos -140 0 60} ;move the list to the proper location
+      {gs_title.lbl set_localized_text {localize os_copyfrom}} ;set the title text for this screen
+      {$this element_list}
+   )
+   (element_list
+      {sel_section.lst set circular 1} ;set the list to wrap around when the end is reached
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            elm_name elm_mtv elm_starpower elm_streaklabel elm_streakstandardlabel
+            elm_starcounter elm_cloneherostarcounter elm_songprogress elm_starprogress
+            elm_scorenum elm_cloneheroscorenum elm_scorenumframe elm_psstrumcolor elm_gemcolor ;elm_popup
+            elm_smashercolor elm_trackrailcolor elm_beatlinecolor
+         )
+      }
+   )
+   (gem_element_list
+      {sel_section.lst set circular 0} ;set the list to wrap around when the end is reached
+      {sel_section.lst set_data ;set up the data for the list
+         (
+            gem_green gem_red gem_yellow gem_blue gem_orange
+         )
+      }
+   )
+   (SELECT_START_MSG ;ran when an item on screen is selected
+      {if_else {|| {! $colorcopyfrom} {&& {|| {== $colorcopyfrom gemcolor} {== $colorcopyfrom smashercolor}} {! $gemcolorcopyfrom}}}
+         {do
+            {switch {$component selected_sym} ;run specific code based on exactly which item is selected
+               (elm_name {set $colorcopyfrom name}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_starpower {set $colorcopyfrom starpower}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_streaklabel {set $colorcopyfrom streaklabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_streakstandardlabel {set $colorcopyfrom streakstandardlabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_starcounter {set $colorcopyfrom starcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_cloneherostarcounter {set $colorcopyfrom cloneherostarcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_songprogress {set $colorcopyfrom songprogress}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_starprogress {set $colorcopyfrom starprogress}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_mtv {set $colorcopyfrom mtv}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_popup {set $colorcopyfrom notepopup}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_cloneheroscorenum {set $colorcopyfrom cloneheroscorenum}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_scorenum {set $colorcopyfrom scorenum}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_scorenumframe {set $colorcopyfrom scorenumframe}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_gemcolor {set $colorcopyfrom gemcolor} {$this gem_element_list}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_smashercolor {set $colorcopyfrom smashercolor} {$this gem_element_list}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_trackrailcolor {set $colorcopyfrom trackrailcolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_beatlinecolor {set $colorcopyfrom beatlinecolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+               (elm_psstrumcolor {set $colorcopyfrom psstrum})
+               (gem_green {set $gemcolorcopyfrom green}
+                  {gs_title.lbl set_localized_text {localize os_copyto}} ;set the title text for this screen
+                  {$this element_list}
+               )
+               (gem_red {set $gemcolorcopyfrom red}
+                  {gs_title.lbl set_localized_text {localize os_copyto}} ;set the title text for this screen
+                  {$this element_list}
+               )
+               (gem_yellow {set $gemcolorcopyfrom yellow}
+                  {gs_title.lbl set_localized_text {localize os_copyto}} ;set the title text for this screen
+                  {$this element_list}
+               )
+               (gem_blue {set $gemcolorcopyfrom blue}
+                  {gs_title.lbl set_localized_text {localize os_copyto}} ;set the title text for this screen
+                  {$this element_list}
+               )
+               (gem_orange {set $gemcolorcopyfrom orange}
+                  {gs_title.lbl set_localized_text {localize os_copyto}} ;set the title text for this screen
+                  {$this element_list}
+               )
+            }
+            {if {&& {! {== $colorcopyfrom gemcolor}} {! {== $colorcopyfrom smashercolor}}}
+               {gs_title.lbl set_localized_text {localize os_copyto}} ;set the title text for this screen
+               {$this element_list}
+            }
+         }
+         {switch {$component selected_sym} ;run specific code based on exactly which item is selected
+            (elm_name {set $colorcopyto name}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_starpower {set $colorcopyto starpower}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_streaklabel {set $colorcopyto streaklabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_streakstandardlabel {set $colorcopyto streakstandardlabel}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_starcounter {set $colorcopyto starcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_cloneherostarcounter {set $colorcopyto cloneherostarcounter}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_songprogress {set $colorcopyto songprogress}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_starprogress {set $colorcopyto starprogress}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_mtv {set $colorcopyto mtv}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_popup {set $colorcopyto notepopup}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_cloneheroscorenum {set $colorcopyto cloneheroscorenum}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_scorenum {set $colorcopyto scorenum}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_scorenumframe {set $colorcopyto scorenumframe}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_gemcolor {set $colorcopyto gemcolor} {$this gem_element_list}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_smashercolor {set $colorcopyto smashercolor} {$this gem_element_list}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_trackrailcolor {set $colorcopyto trackrailcolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_beatlinecolor {set $colorcopyto beatlinecolor}) ;set up a temp var for which color we will be changing in the overshell_color_slider
+            (elm_psstrumcolor {set $colorcopyto psstrum})
+            (gem_green
+               {set $gemcolorcopyto green}
+               COPY_COLORS
+               {set $colorcopyto FALSE}
+               {set $colorcopyfrom FALSE}
+               {set $gemcolorcopyto FALSE}
+               {set $gemcolorcopyfrom FALSE}
+               {ui pop_screen} ;exit the current overshell screen
+            )
+            (gem_red
+               {set $gemcolorcopyto red}
+               COPY_COLORS
+               {set $colorcopyto FALSE}
+               {set $colorcopyfrom FALSE}
+               {set $gemcolorcopyto FALSE}
+               {set $gemcolorcopyfrom FALSE}
+               {ui pop_screen} ;exit the current overshell screen
+            )
+            (gem_yellow
+               {set $gemcolorcopyto yellow}
+               COPY_COLORS
+               {set $colorcopyto FALSE}
+               {set $colorcopyfrom FALSE}
+               {set $gemcolorcopyto FALSE}
+               {set $gemcolorcopyfrom FALSE}
+               {ui pop_screen} ;exit the current overshell screen
+            )
+            (gem_blue
+               {set $gemcolorcopyto blue}
+               COPY_COLORS
+               {set $colorcopyto FALSE}
+               {set $colorcopyfrom FALSE}
+               {set $gemcolorcopyto FALSE}
+               {set $gemcolorcopyfrom FALSE}
+               {ui pop_screen} ;exit the current overshell screen
+            )
+            (gem_orange
+               {set $gemcolorcopyto orange}
+               COPY_COLORS
+               {set $colorcopyto FALSE}
+               {set $colorcopyfrom FALSE}
+               {set $gemcolorcopyto FALSE}
+               {set $gemcolorcopyfrom FALSE}
+               {ui pop_screen} ;exit the current overshell screen
+            )
+         }
+      }
+
+      {if_else {&& $colorcopyto {! {|| {== $colorcopyto gemcolor} {== $colorcopyto smashercolor}}}}
+         {do
+            COPY_COLORS
+            {set $colorcopyto FALSE}
+            {set $colorcopyfrom FALSE}
+            {set $gemcolorcopyto FALSE}
+            {set $gemcolorcopyfrom FALSE}
+            {ui pop_screen} ;exit the current overshell screen
+         }
+         {if $gemcolorcopyto
+            COPY_COLORS
+            {set $colorcopyto FALSE}
+            {set $colorcopyfrom FALSE}
+            {set $gemcolorcopyto FALSE}
+            {set $gemcolorcopyfrom FALSE}
+            {ui pop_screen} ;exit the current overshell screen
+         }
+      }
+   )
+   (exit
+      {set $colorcopyto FALSE}
+      {set $colorcopyfrom FALSE}
+      {set $gemcolorcopyto FALSE}
+      {set $gemcolorcopyfrom FALSE}
+   )
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
+{new
+   GHScreen ;screen type
+   overshell_copy_color_list_screen ;screen name
+   (panels overshell_copy_color_list) ;panels used for this screen. overshell only uses one panel
+   (focus overshell_copy_color_list) ;panel to focus
+   OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+}
 #define OVERSHELL_LIST_RESET_HANDLER ;sets up our function to reset the current overshell screen with new parameters, and pop up the help screen if needed
 (
    {set $trackmodifierlistpos {sel_section.lst selected_pos}} ;saves the currently selected list position to temp var
@@ -210,8 +653,9 @@
       {section.btn set_localized_text {localize os_themeselect}} ;set the title text for this screen
       {newsong.btn set_localized_text {localize os_songlistthemes}} ;set the title text for this screen
       {quit.btn set_localized_text {localize os_colorselector}} ;set the title text for this screen
-      {$this disable extra1.btn} ;hide unused btn
-      {extra1.btn set_showing FALSE}
+      {extra1.btn set_localized_text {localize os_copycolor}}
+      ;{$this disable extra1.btn} ;hide unused btn
+      ;{extra1.btn set_showing FALSE}
    )
 }
 {new
@@ -239,6 +683,9 @@
          )
          (quit.btn ;color selector
             {ui push_screen overshell_color_slider_screen}
+         )
+         (extra1.btn
+            {ui push_screen overshell_copy_color_list_screen}
          )
       }
    )
