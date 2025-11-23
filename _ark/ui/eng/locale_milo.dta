@@ -244,6 +244,7 @@
 (os_gh1track {sprint "GH1 Notes" {if_else $gh1track ": ON" ": OFF"}})
 (os_darkstrums {sprint "Darker Strums" {if_else $darkstrums ": ON" ": OFF"}})
 (os_brighthopos {sprint "Brighter HOPOS" {if_else $brighthopos ": ON" ": OFF"}})
+(os_hopocolors {sprint "Colored HOPOS" {if_else $hopocolors ": ON" ": OFF"}})
 (os_skipintro {sprint "Skip Intro" {if_else $miloskipintro ": ON" ": OFF"}})
 (os_forceencore {sprint "Force Encore" {if_else $forceencore ": ON" ": OFF"}})
 (os_towel {sprint "Towel Hyperspeed" {if_else $towel ": ON" ": OFF"}})

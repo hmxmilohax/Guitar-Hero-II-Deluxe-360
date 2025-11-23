@@ -52,6 +52,7 @@
    {set $autoplay {$dxsettings get autoplay}}
    {set $clonehero_hud {$dxsettings get clonehero_hud}}
    {set $brighthopos {$dxsettings get brighthopos}}
+   {set $hopocolors {$dxsettings get hopocolors}}
    {set $darkstrums {$dxsettings get darkstrums}}
    {set $gh1track {$dxsettings get gh1track}}
    {set $gh3track {$dxsettings get gh3track}}
@@ -184,6 +185,7 @@
    {dxsettings set autoplay $autoplay}
    {dxsettings set clonehero_hud $clonehero_hud}
    {dxsettings set brighthopos $brighthopos}
+   {dxsettings set hopocolors $hopocolors}
    {dxsettings set darkstrums $darkstrums}
    {dxsettings set gh1track $gh1track}
    {dxsettings set gh3track $gh3track}
