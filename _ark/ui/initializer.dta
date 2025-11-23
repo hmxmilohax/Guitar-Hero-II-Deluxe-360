@@ -110,6 +110,42 @@
       #include game:/init_track_theme.dta
       #include game:/init_ui_theme.dta
       #include game:/init.dta
+      {if {&& $customgemcolor {! $newcustomgemcolor}}
+         {set $newcustomgemcolor TRUE}
+         {set $gem1color_r $gemcolor_r}
+         {set $gem1color_g $gemcolor_g}
+         {set $gem1color_b $gemcolor_b}
+         {set $gem2color_r $gemcolor_r}
+         {set $gem2color_g $gemcolor_g}
+         {set $gem2color_b $gemcolor_b}
+         {set $gem3color_r $gemcolor_r}
+         {set $gem3color_g $gemcolor_g}
+         {set $gem3color_b $gemcolor_b}
+         {set $gem4color_r $gemcolor_r}
+         {set $gem4color_g $gemcolor_g}
+         {set $gem4color_b $gemcolor_b}
+         {set $gem5color_r $gemcolor_r}
+         {set $gem5color_g $gemcolor_g}
+         {set $gem5color_b $gemcolor_b}
+      }
+      {if {&& $customsmashercolor {! $newcustomsmashercolor}}
+         {set $newcustomsmashercolor TRUE}
+         {set $smasher1color_r $smashercolor_r}
+         {set $smasher1color_g $smashercolor_g}
+         {set $smasher1color_b $smashercolor_b}
+         {set $smasher2color_r $smashercolor_r}
+         {set $smasher2color_g $smashercolor_g}
+         {set $smasher2color_b $smashercolor_b}
+         {set $smasher3color_r $smashercolor_r}
+         {set $smasher3color_g $smashercolor_g}
+         {set $smasher3color_b $smashercolor_b}
+         {set $smasher4color_r $smashercolor_r}
+         {set $smasher4color_g $smashercolor_g}
+         {set $smasher4color_b $smashercolor_b}
+         {set $smasher5color_r $smashercolor_r}
+         {set $smasher5color_g $smashercolor_g}
+         {set $smasher5color_b $smashercolor_b}
+      }
       SAVE_DX_SETTINGS
    }
 }
