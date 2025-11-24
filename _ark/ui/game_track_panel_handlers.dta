@@ -418,7 +418,7 @@
       {do
          ;green smasher
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-            {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_normal_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
             {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
          }
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
@@ -436,7 +436,7 @@
 
          ;red smasher
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-            {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_normal_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
             {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
          }
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
@@ -454,7 +454,7 @@
 
          ;yellow smasher
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-            {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_normal_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
             {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
          }
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
@@ -472,7 +472,7 @@
 
          ;blue smasher
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-            {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_normal_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
             {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
          }
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
@@ -490,7 +490,7 @@
 
          ;orange smasher
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
-            {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/_no_highway.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
+            {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_normal_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
             {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/now_add_keep.png} ;editing a mat color is not good if the texture already has a color. resolve this by setting a new tex
          }
          {if_else {== $tracktype track_gh3} ;check if we are using the gh3 frets track
@@ -510,7 +510,22 @@
 
    {if $voidfrets ;check if void frets are enabled
       {if_else $gh3track ;specify texture if gh3 frets are enabled
-         {{XBOX_TRACK_PANEL find smasher_off.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+         {if_else $newcustomsmashercolor
+            {do
+               {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_keep.png} ;apply the gh3 void frets texture
+            }
+            {do
+               {{XBOX_TRACK_PANEL find now_green_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_green_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_red_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_red_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_yellow_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_yellow_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_blue_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_blue_keep.png} ;apply the gh3 void frets texture
+               {{XBOX_TRACK_PANEL find now_orange_add.tex} set_bitmap track/custom_track_textures/smasher_off_gh3_orange_keep.png} ;apply the gh3 void frets texture
+            }
+         }
          {{XBOX_TRACK_PANEL find smasher_off.tex} set_bitmap track/custom_track_textures/blk_keep.png} ;apply the standard void frets texture
       }
    }
