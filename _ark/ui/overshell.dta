@@ -194,7 +194,16 @@
          (change_speed.btn {ui push_screen overshell_appearance_screen}) ;appearance screen
          (section.btn {ui push_screen overshell_managegig_screen}) ;manage gig screen
          (newsong.btn {ui push_screen overshell_handedness_screen}) ;handedness screen
-         (quit.btn {ui push_screen overshell_lag_screen}) ;lag screen
+         (quit.btn 
+            {lag_panel set from_panel ""}
+            {if_else {|| {== $modifier_exit pause_screen} {== $modifier_exit pause_controller_screen} {== $modifier_exit practice_pause_controller_screen} {== $modifier_exit multi_pause_controller_screen}}
+               {ui goto_screen pause_lag_screen}
+               {do
+                  {ui goto_screen lag_screen}
+                  {meta_music stop}
+               }
+            }
+         ) ;lag screen
          (extra1.btn {ui push_screen overshell_debug_screen}) ;debug screen
       }
    )

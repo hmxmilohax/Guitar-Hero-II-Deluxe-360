@@ -313,3 +313,36 @@
 
 ;extras
 (random "[RANDOM]")
+
+(lag_title "HDTV Lag")
+(lag_button_calibrate "Calibrate")
+(lag_button_recalibrate "Recalibrate")
+(lag_button_reset "Reset to 0 ms")
+(lag_setting "Current Lag Offset is %d ms")
+(lag_measured "Your new Lag Offset is %d ms")
+(lag_measuring "Calibrating...")
+(lag_info_why
+   "Some HDTV's have an audio/video delay that makes playing difficult.  If you're ready to blame your TV, try calibrating."
+)
+(lag_info_howto
+   "Calibrate by strumming your guitar to the beat of the notes crossing the target."
+)
+(lag_info_failure
+   "We couldn't get a good reading for calibration.  Let's do another take."
+)
+(lag_success "Calibration Successful")
+(lag_3 "3")
+(lag_2 "2")
+(lag_1 "1")
+(lag_go "GO!")
+
+(lag_audio_setting "Audio: %d ms")
+(lag_video_setting "Video: %d ms")
+
+(lag_info_howto_manual "Strum up or down to change the offset.")
+
+(lag_audio_test "Audio Test")
+(lag_info_howto_audio_test "Strum to the beat of the audible beeps.")
+
+(lag_video_test "Video Test")
+(lag_info_howto_video_test "Strum when the circle hits the target.")

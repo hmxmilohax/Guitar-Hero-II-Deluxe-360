@@ -1,162 +1,253 @@
-{new
-   LagPanel
+{func set_calibration
+   {do
+      {options set_sync_offset {* -1.0 $videolag}} ; input offset (hit window, aka lag compensation)
+      {set $audio_offset {* -1.0 {- $audiolag $videolag}}} ; a/v offset (audio adjustment)
+      {if {! $audio_offset_set_once}
+         {set $audio_offset_set_once TRUE}
+         {set $audio_offset_setter {load_objects "ui/audio_lag.milo"}}
+      }
+      {set_audio_lag $audio_offset}
+   }
+}
+{new LagPanel
    lag_panel
    (file lag.milo)
    (focus autocalibrate.btn)
-   (from_panel
-      "")
+   (from_panel "")
    (state init)
-   (lag 0)
-   (hits
-      ())
-   (seconds
-      ())
+   (hits ())
+   (seconds ())
    (window 50)
-   (min_hits 7)
-   (min_avg -100)
-   (max_avg 250)
+   (min_hits 11)   ; vanilla: 7
+   (min_avg -500)  ; vanilla: -100
+   (max_avg 500)   ; vanilla: 250
    (update_groups
       {cond
-         ({==
-               [state]
-               calibrating}
-            {buttons.grp set showing FALSE})
+         ({== [state] calibrating}
+            {buttons.grp set showing FALSE}
+            #ifdef HX_EE
+            {btn3.btn set showing FALSE}  ; ps2 doesn't support adding to grps
+            #endif
+         )
          (TRUE
-            {buttons.grp set showing TRUE})})
+            {buttons.grp set showing TRUE}
+            #ifdef HX_EE
+            {btn3.btn set showing TRUE}  ; ps2 doesn't support adding to grps
+            #endif
+         )
+      }
+   )
    (update_helpbar
       {do
          ($array)
-         {set
-            $array
-            ()}
+         {set $array ()}
          {resize $array 0}
          {cond
-            ({==
-                  [state]
-                  calibrating}
-               {push_back
-                  $array
-                  (strum help_hitonchange)})
+            ({== [state] calibrating}
+               {push_back $array (strum help_hitonchange)}
+            )
+            ({'||' {== [state] adjusting_audio} {== [state] adjusting_video}}
+               {push_back $array (fret1 help_accept)}
+               {push_back $array (fret2 help_cancel)}
+               {push_back $array (start help_reset)}  ; use start instead of fret3, it has a fucked texture that i can't replace
+               {push_back $array (strum help_adjsync)}
+            )
             (TRUE
-               {push_back
-                  $array
-                  (fret1 help_select)}
-               {push_back
-                  $array
-                  (fret2 help_back)}
-               {push_back
-                  $array
-                  (strum help_updown)})}
-         {helpbar set_display $array}})
+               {push_back $array (fret1 help_select)}
+               {push_back $array (fret2 help_back)}
+               {push_back $array (strum help_updown)}
+            )
+         }
+         {helpbar set_display $array}
+      }
+   )
    (update_text
-      {switch
-         [state]
+      {switch [state]
          (init
             {instructions.lbl set text_token lag_info_why}
-            {instructions2.lbl set text_token lag_info_howto}
-            {setting.lbl
-               set_localized
-               {sprintf
-                  {localize lag_setting}
-                  {int
-                     $videolag}}}
-            {autocalibrate.btn set text_token lag_button_calibrate})
+            {instructions2.lbl set text_token ""}
+            {setting.lbl set_showing FALSE}
+            {autocalibrate.btn set text_token lag_button_calibrate}
+            {$this enable autocalibrate.btn}
+            {reset_to_zero.btn set text_token {sprintf {localize lag_audio_setting} {int $audiolag}}}
+            {$this enable reset_to_zero.btn}
+            {btn3.btn set text_token {sprintf {localize lag_video_setting} {int $videolag}}}
+            {$this enable btn3.btn}
+         )
          (calibrating
             {instructions.lbl set text_token lag_measuring}
-            {instructions2.lbl
-               set
-               text_token
-               ""}
-            {setting.lbl
-               set_localized_text
-               ""})
+            {instructions2.lbl set text_token ""}
+         )
          (success
+            {set $videolag $videolag_dirty}  ; apply video cal
             {instructions.lbl set text_token lag_success}
-            {instructions2.lbl
-               set_localized
-               ""}
-            {setting.lbl
-               set_localized
-               {sprintf
-                  {localize lag_measured}
-                  {int
-                     $videolag}}}
-            {autocalibrate.btn set text_token lag_button_recalibrate})
+            {instructions2.lbl set_localized ""}
+            {autocalibrate.btn set text_token lag_button_recalibrate}
+            {reset_to_zero.btn set text_token {sprintf {localize lag_audio_setting} {int $audiolag}}}
+            {btn3.btn set text_token {sprintf {localize lag_video_setting} {int $videolag}}}
+         )
          (failure
             {instructions.lbl set text_token lag_info_failure}
-            {instructions2.lbl set text_token lag_info_howto}
-            {setting.lbl
-               set_localized
-               {sprintf
-                  {localize lag_setting}
-                  {int
-                     $videolag}}}
-            {autocalibrate.btn set text_token lag_button_recalibrate})})
+            {instructions2.lbl set text_token ""}
+            {autocalibrate.btn set text_token lag_button_recalibrate}
+            {reset_to_zero.btn set text_token {sprintf {localize lag_audio_setting} {int $audiolag}}}
+            {btn3.btn set text_token {sprintf {localize lag_video_setting} {int $videolag}}}
+         )
+         (adjusting_audio
+            {$this disable autocalibrate.btn}
+            {$this disable btn3.btn}
+            {reset_to_zero.btn set text_token {sprintf {localize lag_audio_setting} {int $audiolag}}}
+         )
+         (adjusting_video
+            {$this disable autocalibrate.btn}
+            {$this disable reset_to_zero.btn}
+            {btn3.btn set text_token {sprintf {localize lag_video_setting} {int $videolag}}}
+         )
+      }
+   )
    (set_state
       ($s)
-      {set
-         [state]
-         $s}
+      {set [state] $s}
       {$this update_groups}
       {$this update_helpbar}
-      {$this update_text})
+      {$this update_text}
+   )
    (enter
-      {countdown.lbl
-         set_localized
-         ""}
-      {set
-         $videolag
-         {-
-            0
-            {options get_sync_offset}}}
+
+      ; new objects
+      {new BandButton btn3.btn}
+      {btn3.btn copy reset_to_zero.btn kCopyShallow}
+      #ifdef HX_XBOX
+      {buttons.grp add_object btn3.btn}  ; ps2 doesn't support adding to grps
+      #endif
+      {reset_to_zero.btn set nav_down btn3.btn}
+      {btn3.btn set_local_pos -237 0 -130}
+      {$this sync_objects}
+
+      {countdown.lbl set_localized ""}
       {$this set_state init}
-      {set
-         [hits]
-         {array 0}}
-      {set
-         [seconds]
-         {array 0}})
-   (exit
-      {options set_sync_offset $videolag})
+      {set [hits] {array 0}}
+      {set [seconds] {array 0}}
+   )
+   (exit {set_calibration} SAVE_DX_SETTINGS)  ; apply settings and write the milo
    (BUTTON_DOWN_MSG
-      {if_else
-         {==
-            [state]
-            calibrating}
-         {if
-            {'||'
-               {== $button kPad_DDown}
-               {== $button kPad_DUp}}
-            {push_back
-               [hits]
-               {taskmgr ui_seconds}}}
-         {switch
-            $button
+      {if {== [state] adjusting_audio}
+         {if {== $button kPad_DDown}
+            {synth play_sequence button_toggle}
+            {set $audiolag {- $audiolag 1.0}}
+            {if {< $audiolag [min_avg]}
+               {set $audiolag [min_avg]}
+            }
+         }
+         {if {== $button kPad_DUp}
+            {synth play_sequence button_toggle}
+            {set $audiolag {+ $audiolag 1.0}}
+            {if {> $audiolag [max_avg]}
+               {set $audiolag [max_avg]}
+            }
+         }
+         {if {== $button #ifdef HX_XBOX kPad_Square #else kPad_Circle #endif}
+            {play_sfx button_error}
+            {set $audiolag 0}
+         }
+         {$this update_text}
+      }
+      {if {== [state] adjusting_video}
+         {if {== $button kPad_DDown}
+            {synth play_sequence button_toggle}
+            {set $videolag {- $videolag 1.0}}
+            {if {< $videolag [min_avg]}
+               {set $videolag [min_avg]}
+            }
+         }
+         {if {== $button kPad_DUp}
+            {synth play_sequence button_toggle}
+            {set $videolag {+ $videolag 1.0}}
+            {if {> $videolag [max_avg]}
+               {set $videolag [max_avg]}
+            }
+         }
+         {if {== $button #ifdef HX_XBOX kPad_Square #else kPad_Circle #endif}
+            {play_sfx button_error}
+            {set $videolag 0}
+         }
+         {$this update_text}
+      }
+      {if_else {== [state] calibrating}
+         {if {'||' {== $button kPad_DDown} {== $button kPad_DUp}}
+            {push_back [hits] {taskmgr ui_seconds}}
+         }
+         {switch $button
+            ; to support cancelling, pressing red reverts to last
             (kPad_Tri
-               {if_else
-                  {==
-                     [from_panel]
-                     video_settings_panel}
-                  {ui goto_screen options_screen}
-                  {ui goto_screen options_screen}})
-            kDataUnhandled}})
+               {if_else {'||' {== [state] adjusting_audio} {== [state] adjusting_video}}
+                  {do
+                     {if {== [state] adjusting_audio}
+                        {set $audiolag $audiolag_last}
+                     }
+                     {if {== [state] adjusting_video}
+                        {set $videolag $videolag_last}
+                     }
+                     {$this set_state init}
+                     {synth play_sequence button_back.cue}
+                  }
+                  {do
+                     ; set focus to the top button on exit so it doesnt crash on re-enter
+                     {$this set_focus autocalibrate.btn}
+                     {reset_to_zero.btn set nav_down autocalibrate.btn}
+                     {if {! {|| {== $modifier_exit pause_screen} {== $modifier_exit pause_controller_screen} {== $modifier_exit practice_pause_controller_screen} {== $modifier_exit multi_pause_controller_screen}}}
+                        {meta_music start}
+                     }
+                     {if_else {== [from_panel] options_panel}
+                        {ui goto_screen options_screen}
+                        {ui goto_screen overshell_screen}
+                     }
+                  }
+               }
+            )
+            kDataUnhandled
+         }
+      }
+   )
    (SELECT_START_MSG
-      {switch
-         $component
+      {switch $component
          (autocalibrate.btn
             {$this set_state calibrating}
-            {$this start_countdown})
+            {$this start_audio_countdown}
+         )
          (reset_to_zero.btn
-            {ui push_screen overshell_lag_screen})})
-   (play_sync_animation
-      {lag animate})
-   (start_countdown
+            {if_else {== [state] adjusting_audio}
+               {$this set_state init}
+               {do
+                  {set $audiolag_last $audiolag}
+                  {$this set_state adjusting_audio}
+               }
+            }
+         )
+         (btn3.btn
+            {if_else {== [state] adjusting_video}
+               {$this set_state init}
+               {do
+                  {set $videolag_last $videolag}
+                  {$this set_state adjusting_video}
+               }
+            }
+         )
+      }
+   )
+   (play_sync_animation {lag animate})
+
+   ; ---------- AUDIO TEST ----------
+   (start_audio_countdown
       {set $lag_aniamte_thread_wait TRUE}
       {set $lag_animate_thread_loop TRUE}
       {thread_task
          (units kTaskUISeconds)
          (script
-            {set $success TRUE}
+            ; yes hmx actually did it like this
+            {instructions.lbl set text_token lag_audio_test}
+            {instructions2.lbl set text_token lag_info_howto_audio_test}
+            {$task sleep 2}
             {countdown.lbl set text_token lag_3}
             {practice_hat play}
             {$task sleep 0.133}
@@ -172,137 +263,278 @@
             {practice_hat play}
             {countdown.lbl set text_token lag_go}
             {$task sleep 0.133}
-            {resize
-               [hits]
-               0}
-            {resize
-               [seconds]
-               0}
-            {$this play_sync_animation}
+            {resize [hits] 0}
+            {resize [seconds] 0}
+            {set $audiolag_dirty 0}  ; clear old result
+
+            ; up num of hits to 16 (previously 11)
+
+            ;{$this play_sync_animation}
             {$task sleep 0.6}
             {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            ;{$this play_sync_animation}
+            {$task sleep 0.6}
+            {sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+
+
+
+            {countdown.lbl set_localized ""}
+            {$task sleep 0.6}
+
+            ; apply cal to temp var
+            ; ps2 audio skew results: 27.15, 28.18, 22.98, 26.10, 26.10, 27.15, 29.24, 28.19, 29.19, 29.24, 25.06, 24.01, 25.06, 24.02, 25.06, 31.33, 29.22, 28.18, 28.19, 25.06
+            ; 360 audio skew results: 41.61, 41.60, 42.65, 48.89, 49.93, 44.73,        46.83, 43.68, 46.80,        48.88, 46.83, 44.71, 44.74, 44.74, 45.77, 43.69,        45.78
+            ; excluded numbers are outliers
+            {set $audiolag_dirty
+               {* {int {- {$this calculate_lag [window] [min_hits] [hits] [seconds]} #ifdef HX_XBOX 37.403529411765 #else 42.9355 #endif}} 1.0} ; ensure a rounded float
+            }
+
+            ; proceed if successful
+            {if_else {&& {> $audiolag_dirty [min_avg]} {< $audiolag_dirty [max_avg]}}
+               {$this start_video_countdown}
+               {do
+                  {set $audiolag_dirty 0}
+                  {play_sfx button_error}
+                  {$this set_state failure}
+               }
+            }
+         )
+      }
+   )
+
+   ; ---------- VIDEO TEST ----------
+   (start_video_countdown
+      {set $audiolag $audiolag_dirty}  ; apply audio cal
+      {set $lag_aniamte_thread_wait TRUE}
+      {set $lag_animate_thread_loop TRUE}
+      {thread_task
+         (units kTaskUISeconds)
+         (script
+            ; yes hmx actually did it like this
+            {synth play_sequence button_toggle}
+            {instructions.lbl set text_token lag_video_test}
+            {instructions2.lbl set text_token lag_info_howto_video_test}
+            {$task sleep 2}
+            {countdown.lbl set text_token lag_3}
+            {practice_hat play}
+            {$task sleep 0.133}
+            {$task sleep 0.6}
+            {practice_hat play}
+            {countdown.lbl set text_token lag_2}
+            {$task sleep 0.133}
+            {$task sleep 0.6}
+            {practice_hat play}
+            {countdown.lbl set text_token lag_1}
+            {$task sleep 0.133}
+            {$task sleep 0.6}
+            {practice_hat play}
+            {countdown.lbl set text_token lag_go}
+            {$task sleep 0.133}
+            {resize [hits] 0}
+            {resize [seconds] 0}
+            {set $videolag_dirty 0}  ; clear old result
+
+            ; up num of hits to 16 (previously 11)
+
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
             {$this play_sync_animation}
             {$task sleep 0.6}
-            {sync_click.cue play}
-            {push_back
-               [seconds]
-               {taskmgr ui_seconds}}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
             {$task sleep 0.133}
-            {countdown.lbl
-               set_localized
-               ""}
+            {$this play_sync_animation}
             {$task sleep 0.6}
-            {set
-               $videolag
-               {$this
-                  calculate_lag
-                  [window]
-                  [min_hits]
-                  [hits]
-                  [seconds]}}
-            {if_else
-               {&&
-                  {>
-                     $videolag
-                     [min_avg]}
-                  {<
-                     $videolag
-                     [max_avg]}}
-               {set $success TRUE}
-               {set $success FALSE}}
-            {if
-               {'||'
-                  {<
-                     $videolag
-                     0}
-                  {>=
-                     $videolag
-                     [max_avg]}}
-               {set
-                  $videolag
-                  0}}
-            {$this
-               set_state
-               {if_else $success success failure}})})}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+            {$this play_sync_animation}
+            {$task sleep 0.6}
+            ;{sync_click.cue play}
+            {push_back [seconds] {taskmgr ui_seconds}}
+            {$task sleep 0.133}
+
+
+
+            {countdown.lbl set_localized ""}
+            {$task sleep 0.6}
+
+            ; apply cal to temp var
+            ; ps2 video skew results: 21.91, 20.87, 23.99, 21.91, 22.96,        26.07, 21.91, 23.99, 26.09, 22.94, 18.77, 28.16,         26.09, 20.86, 22.96, 23.99, 25.04, 22.97
+            ; 360 video skew results: 6.24,  -7.30, 3.12,  2.08, -5.22,  -0.02, 3.12,  -3.13, -0.01, 1.03,  -7.32, -3.13, -1.03, -6.26, -3.12, -3.12,  1.04,  -5.20, -5.21, -7.32
+            ; excluded numbers are outliers
+            {set $videolag_dirty     ;i'm so sorry                                                                               PLUS        MINUS
+               {* {int {#ifdef HX_XBOX + #else - #endif {$this calculate_lag [window] [min_hits] [hits] [seconds]} #ifdef HX_XBOX 7.962 #else 12.415555555556 #endif}} 1.0} ; ensure a rounded float
+            }
+
+
+            ; proceed if successful
+            {if_else {&& {> $videolag_dirty [min_avg]} {< $videolag_dirty [max_avg]}}
+               {do
+                  {synth play_sequence button_toggle}
+                  {$this set_state success}
+               }
+               {do
+                  {set $videolag_dirty 0}
+                  {play_sfx button_error}
+                  {$this set_state failure}
+               }
+            }
+         )
+      }
+   )
+}
 {new
    GHScreen
    lag_screen
    (panels lag_panel helpbar)
    (focus lag_panel)}
-{new
-   GHScreen
+{new GHScreen
    pause_lag_screen
-   (panels GAME_PANELS lag_panel helpbar)
+   (panels GAME_PANELS fade_panel lag_panel helpbar)
    (focus lag_panel)
    (clear_vram TRUE)
    (enter
+      {set $cal_from_pause TRUE}
       {hud set_showing FALSE}
       {track_panel set_showing FALSE}
-      {world_panel set_showing FALSE})}
+      {world_panel set_showing FALSE}
+   )
+}

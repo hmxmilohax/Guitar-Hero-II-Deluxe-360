@@ -35,6 +35,7 @@
          (video_settings.btn
             {ui goto_screen audio_settings_screen})
          (op_data.btn
+            {lag_panel set from_panel $this}
             {ui goto_screen lag_screen})
          (memory_card.btn
             {ui goto_screen mem_card_screen})

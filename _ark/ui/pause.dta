@@ -49,7 +49,15 @@
 #define PAUSE_SELECT_START_HANDLER
 ((SELECT_START_MSG
       {switch $component
-         (lose_resume_career.btn {$this resume})
+         (lose_resume_career.btn
+            {if_else $cal_from_pause
+               {do
+                  {$this restart}
+                  {set $cal_from_pause FALSE}
+               }
+               {$this resume}
+            }
+         )
          (lose_restart_career.btn
             {pause_confirm_restart_screen set pause_screen $this}
             {ui goto_screen pause_confirm_restart_screen})
