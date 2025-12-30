@@ -31,3 +31,5 @@ _ark/.DS_Store
 
 /_xenia/content
 _build/Xbox/gen/dxsettings.milo_xbox
+_build/Xbox/gen/dxuitheme.milo_xbox
+_build/Xbox/gen/dxtracktheme.milo_xbox

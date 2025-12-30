@@ -1,3 +1,194 @@
+{func force_all_as_guitar
+   ($bool)
+   {if_else $bool
+      {do
+         ;first is the device mapping
+         {resize {find $syscfg joypad controllers} 1}
+         #ifdef HX_XBOX
+         {push_back {find $syscfg joypad controllers}
+            (ro_guitar_xbox
+               (detect)
+               (ignore_buttons kPad_L2 kPad_R2))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (analog
+               (detect)
+               (ignore_buttons kPad_L2 kPad_R2))
+         }
+         #endif
+         #ifdef HX_EE
+         {push_back {find $syscfg joypad controllers}
+            (ro_guitar (detect))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (digital (detect))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (analog (detect))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (dualshock (detect))
+         }
+         #endif
+         ;below is the button mapping
+         {resize {find $syscfg beatmatcher controller} 1}
+         {push_back {find $syscfg beatmatcher controller}
+            (joypad_guitar
+               (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4)
+               (force_mercury kPad_Select)
+               (dpad_for_navigation FALSE)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (lefty_joypad_guitar
+               (slots kPad_X 0 kPad_R2 1 kPad_R1 2 kPad_L1 3 kPad_L2 4)
+               (force_mercury kPad_Select)
+               (dpad_for_navigation FALSE)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (guitar
+               (slots kPad_R2 0 kPad_Circle 1 kPad_Tri 2 kPad_X 3 kPad_Square 4)
+               (force_mercury kPad_Select)
+            )
+         }
+         #ifdef HX_EE
+         {push_back {find $syscfg beatmatcher controller}
+            (joypad
+               (slots kPad_R2 0 kPad_Circle 1 kPad_Tri 2 kPad_X 3 kPad_Square 4)
+               (force_mercury kPad_Select)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (guitar_xbox
+               (slots kPad_X 0 kPad_Tri 1 kPad_Square 2 kPad_Circle 3 kPad_L1 4)
+               (force_mercury kPad_Select)
+               (mercury_switch kPad_RStickUp)
+            )
+         }
+         #endif
+         #ifdef HX_XBOX
+         {push_back {find $syscfg beatmatcher controller}
+            (joypad
+               (slots kPad_X 0 kPad_Tri 1 kPad_Circle 2 kPad_Square 3 kPad_L1 4)
+               (controller_style ro_xbox)
+               (force_mercury kPad_Select)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (hx_guitar_xbox
+               (slots kPad_X 0 kPad_Tri 1 kPad_Square 2 kPad_Circle 3 kPad_L1 4)
+               (controller_style ro_xbox)
+               (force_mercury kPad_Select)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (hx_guitar_xbox_new
+               (slots kPad_X 0 kPad_Tri 1 kPad_Circle 2 kPad_Square 3 kPad_L1 4)
+               (controller_style ro_xbox)
+               (force_mercury kPad_Select)
+            )
+         }
+         #endif
+      }
+      {do
+         ;first is the device mapping
+         {resize {find $syscfg joypad controllers} 1}
+         #ifdef HX_XBOX
+         {push_back {find $syscfg joypad controllers}
+            (ro_guitar_xbox
+               (detect
+                  (type kJoypadXboxGuitar))
+                  (ignore_buttons kPad_L2 kPad_R2))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (analog
+               (detect
+                  (type kJoypadAnalog))
+                  (bidirectional TRUE))
+         }
+         #endif
+         #ifdef HX_EE
+         {push_back {find $syscfg joypad controllers}
+            (ro_guitar
+               (detect
+                  (type kJoypadAnalog)
+                  (button kPad_DLeft)))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (digital
+               (detect
+                  (type kJoypadDigital)))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (analog
+               (detect
+                  (type kJoypadAnalog)))
+         }
+         {push_back {find $syscfg joypad controllers}
+            (dualshock
+               (detect
+                  (type kJoypadDualShock)))
+         }
+         #endif
+         ;below is the button mapping
+         {resize {find $syscfg beatmatcher controller} 1}
+         {push_back {find $syscfg beatmatcher controller}
+            (joypad
+               (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4)
+               (force_mercury kPad_Select)
+               (dpad_for_navigation FALSE)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (joypad_guitar
+               (slots kPad_L2 0 kPad_L1 1 kPad_R1 2 kPad_R2 3 kPad_X 4)
+               (force_mercury kPad_Select)
+               (dpad_for_navigation FALSE)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (lefty_joypad_guitar
+               (slots kPad_X 0 kPad_R2 1 kPad_R1 2 kPad_L1 3 kPad_L2 4)
+               (force_mercury kPad_Select)
+               (dpad_for_navigation FALSE)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (guitar
+               (slots kPad_R2 0 kPad_Circle 1 kPad_Tri 2 kPad_X 3 kPad_Square 4)
+               (force_mercury kPad_Select)
+            )
+         }
+         #ifdef HX_EE
+         {push_back {find $syscfg beatmatcher controller}
+            (guitar_xbox
+               (slots kPad_X 0 kPad_Tri 1 kPad_Square 2 kPad_Circle 3 kPad_L1 4)
+               (force_mercury kPad_Select)
+               (mercury_switch kPad_RStickUp)
+            )
+         }
+         #endif
+         #ifdef HX_XBOX
+         {push_back {find $syscfg beatmatcher controller}
+            (hx_guitar_xbox
+               (slots kPad_X 0 kPad_Tri 1 kPad_Square 2 kPad_Circle 3 kPad_L1 4)
+               (controller_style ro_xbox)
+               (force_mercury kPad_Select)
+            )
+         }
+         {push_back {find $syscfg beatmatcher controller}
+            (hx_guitar_xbox_new
+               (slots kPad_X 0 kPad_Tri 1 kPad_Circle 2 kPad_Square 3 kPad_L1 4)
+               (controller_style ro_xbox)
+               (force_mercury kPad_Select)
+            )
+         }
+         #endif
+      }
+   }
+}
+
 {new
    HelpBarPanel
    helpbar
@@ -112,6 +303,7 @@
             LOAD_DX_UI_THEME
          }
          {do
+            LOAD_LEGACY_DX_SETTINGS
             SAVE_DX_UI_THEME
          }
       }
@@ -120,6 +312,7 @@
             LOAD_DX_TRACK_THEME
          }
          {do
+            LOAD_LEGACY_DX_SETTINGS
             SAVE_DX_TRACK_THEME
          }
       }
@@ -128,6 +321,11 @@
       #include game:/init_track_theme.dta
       #include game:/init_ui_theme.dta
       #include game:/init.dta
+      #ifdef FORCE_PAD
+         {set $force_all_as_guitar TRUE}
+      #else
+         {set $force_all_as_guitar FALSE}
+      #endif
       {if {&& $customgemcolor {! $newcustomgemcolor}}
          {set $newcustomgemcolor TRUE}
          {set $gem1color_r $gemcolor_r}
@@ -169,6 +367,7 @@
       SAVE_DX_TRACK_THEME
    }
 }
+{force_all_as_guitar $force_all_as_guitar}
 {delete $dxsettings}
 {delete $dxuitheme}
 {delete $dxtracktheme}

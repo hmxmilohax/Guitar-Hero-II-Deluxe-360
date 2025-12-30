@@ -36,38 +36,3 @@ jobs:
           path: |
             _build/Xbox/gen
             _build/Xbox/default.xex
-            
-  build_xbox_force_guitar:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up .NET 6.0
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '6.0.x'
-
-      - name: Build ARK
-        run: |
-          chmod +x dependencies/arkhelper
-          chmod +x dependencies/dtab
-          chmod +x dependencies/superfreq
-          find . -name "*.*_ps2" -type f -delete
-          find . -name "*.vgs" -type f -delete
-          sed -i -e "s/;#define FORCE_PAD (1)/#define FORCE_PAD (1)/" _ark/config/macros.dta
-          dependencies/arkhelper dir2ark ./_ark ./_build/Xbox/gen -e -s 4073741823
-          dependencies/dtab -b _init/init_track_theme.dta _init/init_track_theme.dtb
-          dependencies/dtab -b _init/init_ui_theme.dta _init/init_ui_theme.dtb
-          dependencies/dtab -b _init/init.dta _init/init.dtb
-          dependencies/dtab -e _init/init_ui_theme.dtb _build/Xbox/gen/init_ui_theme.dtb
-          dependencies/dtab -e _init/init_track_theme.dtb _build/Xbox/gen/init_track_theme.dtb
-          dependencies/dtab -e _init/init.dtb _build/Xbox/gen/init.dtb
-      
-      - name: Upload result
-        uses: actions/upload-artifact@v4
-        with:
-          name: GH2DX-Xbox-force-all-as-guitar-controller
-          path: |
-            _build/Xbox/gen
-            _build/Xbox/default.xex

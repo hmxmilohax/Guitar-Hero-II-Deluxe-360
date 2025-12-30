@@ -990,12 +990,20 @@
             os_notestreakmod os_sppop os_highwayshake
             os_selecttorestart os_monkeyhead ;os_drums
             os_eyeballhead os_flaminghead os_neckless
-            os_performance os_autoplay os_roxbury
+            os_performance os_autoplay os_roxbury os_forceguitar
          )
       }
    )
    (SELECT_START_MSG ;ran when an item on screen is selected
       {switch {$component selected_sym} ;run specific code based on exactly which item is selected
+         (os_forceguitar
+            {set $force_all_as_guitar {! $force_all_as_guitar}} ;set the variable to the opposite of what it currently is
+            {if_else $force_all_as_guitar ;check the state of the variable
+               CHEAT_POP ;shortcut for the if else options on which sound effect to play
+            }
+            {force_all_as_guitar $force_all_as_guitar}
+            OVERSHELL_LIST_RESET_HANDLER ;resets the current overshell screen with new parameters, and pop up the help screen if needed
+         )
          (os_precision
             {set $precision {! $precision}} ;set the variable to the opposite of what it currently is
             {if_else $precision ;check the state of the variable
