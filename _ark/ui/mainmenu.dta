@@ -183,7 +183,6 @@
             )
    (reset_player_settings ;runs on entry to main screen
    {if {! $dontreset} ;monkey script to make sure the contents only run the first time main screen is entered
-      {set $songtitle TRUE} ;default song title always on as there is a ton of information in mtv overlay
       {{game get_player_config 0} set_difficulty kDifficultyExpert} ;default player 1 to expert
       {game set_guitar_index 1} ;set the default guitar to the red sg
       {do ($player2_config {game get_player_config 1}) ;set up player 2 variable for use in the next lines
