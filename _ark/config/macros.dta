@@ -19,14 +19,9 @@
    {set $speedmod {$dxsettings get speedmod}}
    {set $trackspeed {$dxsettings get trackspeed}}
    {set $focusmode {$dxsettings get focusmode}}
-   {set $poorspyenabled {$dxsettings get poorspyenabled}}
-   {set $poorspybuttontype {$dxsettings get poorspybuttontype}}
    {set $precision {$dxsettings get precision}}
-   {set $highway {$dxsettings get highway}}
-   {set $highwayshake {$dxsettings get highwayshake}}
    {set $songtitle {$dxsettings get songtitle}}
    {set $cleanmtv {$dxsettings get cleanmtv}}
-   {set $nametitle {$dxsettings get nametitle}}
    {set $forceencore {$dxsettings get forceencore}}
    {set $emulatefps {$dxsettings get emulatefps}}
    {set $nofail {$dxsettings get nofail}}
@@ -35,8 +30,6 @@
    {set $leftyp2 {$dxsettings get leftyp2}}
    {set $miloskipintro {$dxsettings get miloskipintro}}
    {set $skipoutro {$dxsettings get skipoutro}}
-   {set $noflames {$dxsettings get noflames}}
-   {set $eyeballgems {$dxsettings get eyeballgems}}
    {set $notestreakmod {$dxsettings get notestreakmod}}
    {set $sppop {$dxsettings get sppop}}
    {set $sfx {$dxsettings get sfx}}
@@ -44,103 +37,11 @@
    {set $muting {$dxsettings get muting}}
    {set $brutalmode {$dxsettings get brutalmode}}
    {set $towel {$dxsettings get towel}}
-   {set $barf_cheat {$dxsettings get barf_cheat}}
    {set $neckless {$dxsettings get neckless}}
    {set $cheat_enabled_performance_mode {$dxsettings get cheat_enabled_performance_mode}}
    {set $cheat_crowd_heads {$dxsettings get cheat_crowd_heads}}
    {set $cheat_enabled_flaming_head {$dxsettings get cheat_enabled_flaming_head}}
    {set $autoplay {$dxsettings get autoplay}}
-   {set $clonehero_hud {$dxsettings get clonehero_hud}}
-   {set $brighthopos {$dxsettings get brighthopos}}
-   {set $darkstrums {$dxsettings get darkstrums}}
-   {set $gh1track {$dxsettings get gh1track}}
-   {set $gh3track {$dxsettings get gh3track}}
-   {set $voidfrets {$dxsettings get voidfrets}}
-   {set $noflames {$dxsettings get noflames}}
-   {set $starpowercolor_r {$dxsettings get starpowercolor_r}}
-   {set $starpowercolor_g {$dxsettings get starpowercolor_g}}
-   {set $starpowercolor_b {$dxsettings get starpowercolor_b}}
-   {set $streaklabel_r {$dxsettings get streaklabel_r}}
-   {set $streaklabel_g {$dxsettings get streaklabel_g}}
-   {set $streaklabel_b {$dxsettings get streaklabel_b}}
-   {set $streakstandardlabel_r {$dxsettings get streakstandardlabel_r}}
-   {set $streakstandardlabel_g {$dxsettings get streakstandardlabel_g}}
-   {set $streakstandardlabel_b {$dxsettings get streakstandardlabel_b}}
-   {set $starcounter_r {$dxsettings get starcounter_r}}
-   {set $starcounter_g {$dxsettings get starcounter_g}}
-   {set $starcounter_b {$dxsettings get starcounter_b}}
-   {set $songprogressbar_r {$dxsettings get songprogressbar_r}}
-   {set $songprogressbar_g {$dxsettings get songprogressbar_g}}
-   {set $songprogressbar_b {$dxsettings get songprogressbar_b}}
-   {set $starprogressbar_r {$dxsettings get starprogressbar_r}}
-   {set $starprogressbar_g {$dxsettings get starprogressbar_g}}
-   {set $starprogressbar_b {$dxsettings get starprogressbar_b}}
-   {set $scorenumcolor_r {$dxsettings get scorenumcolor_r}}
-   {set $scorenumcolor_g {$dxsettings get scorenumcolor_g}}
-   {set $scorenumcolor_b {$dxsettings get scorenumcolor_b}}
-   {set $cloneherostarcounter_r {$dxsettings get cloneherostarcounter_r}}
-   {set $cloneherostarcounter_g {$dxsettings get cloneherostarcounter_g}}
-   {set $cloneherostarcounter_b {$dxsettings get cloneherostarcounter_b}}
-   {set $cloneheroscorenumcolor_r {$dxsettings get cloneheroscorenumcolor_r}}
-   {set $cloneheroscorenumcolor_g {$dxsettings get cloneheroscorenumcolor_g}}
-   {set $cloneheroscorenumcolor_b {$dxsettings get cloneheroscorenumcolor_b}}
-   {set $scorenumframe_r {$dxsettings get scorenumframe_r}}
-   {set $scorenumframe_g {$dxsettings get scorenumframe_g}}
-   {set $scorenumframe_b {$dxsettings get scorenumframe_b}}
-   {set $mtv_r {$dxsettings get mtv_r}}
-   {set $mtv_g {$dxsettings get mtv_g}}
-   {set $mtv_b {$dxsettings get mtv_b}}
-   {set $newcustomgemcolor {$dxsettings get newcustomgemcolor}} ; enables custom gem colors
-   {set $gem1color_r {$dxsettings get gem1color_r}}
-   {set $gem1color_g {$dxsettings get gem1color_g}}
-   {set $gem1color_b {$dxsettings get gem1color_b}}
-   {set $gem2color_r {$dxsettings get gem2color_r}}
-   {set $gem2color_g {$dxsettings get gem2color_g}}
-   {set $gem2color_b {$dxsettings get gem2color_b}}
-   {set $gem3color_r {$dxsettings get gem3color_r}}
-   {set $gem3color_g {$dxsettings get gem3color_g}}
-   {set $gem3color_b {$dxsettings get gem3color_b}}
-   {set $gem4color_r {$dxsettings get gem4color_r}}
-   {set $gem4color_g {$dxsettings get gem4color_g}}
-   {set $gem4color_b {$dxsettings get gem4color_b}}
-   {set $gem5color_r {$dxsettings get gem5color_r}}
-   {set $gem5color_g {$dxsettings get gem5color_g}}
-   {set $gem5color_b {$dxsettings get gem5color_b}}
-   {set $newcustomsmashercolor {$dxsettings get newcustomsmashercolor}} ; enables custom smasher colors
-   {set $smasher1color_r {$dxsettings get smasher1color_r}}
-   {set $smasher1color_g {$dxsettings get smasher1color_g}}
-   {set $smasher1color_b {$dxsettings get smasher1color_b}}
-   {set $smasher2color_r {$dxsettings get smasher2color_r}}
-   {set $smasher2color_g {$dxsettings get smasher2color_g}}
-   {set $smasher2color_b {$dxsettings get smasher2color_b}}
-   {set $smasher3color_r {$dxsettings get smasher3color_r}}
-   {set $smasher3color_g {$dxsettings get smasher3color_g}}
-   {set $smasher3color_b {$dxsettings get smasher3color_b}}
-   {set $smasher4color_r {$dxsettings get smasher4color_r}}
-   {set $smasher4color_g {$dxsettings get smasher4color_g}}
-   {set $smasher4color_b {$dxsettings get smasher4color_b}}
-   {set $smasher5color_r {$dxsettings get smasher5color_r}}
-   {set $smasher5color_g {$dxsettings get smasher5color_g}}
-   {set $smasher5color_b {$dxsettings get smasher5color_b}}
-   {set $trackrailcolor_r {$dxsettings get trackrailcolor_r}}
-   {set $trackrailcolor_g {$dxsettings get trackrailcolor_g}}
-   {set $trackrailcolor_b {$dxsettings get trackrailcolor_b}}
-   {set $poorspystrum_r {$dxsettings get poorspystrum_r}}
-   {set $poorspystrum_g {$dxsettings get poorspystrum_g}}
-   {set $poorspystrum_b {$dxsettings get poorspystrum_b}}
-   {set $removequarterbeatlines {$dxsettings get removequarterbeatlines}}
-   {set $removedivisionlines {$dxsettings get removedivisionlines}}
-   {set $beatlinecolor_r {$dxsettings get beatlinecolor_r}}
-   {set $beatlinecolor_g {$dxsettings get beatlinecolor_g}}
-   {set $beatlinecolor_b {$dxsettings get beatlinecolor_b}}
-   {set $namefont {$dxsettings get namefont}}
-   {set $namecolor_r {$dxsettings get namecolor_r}}
-   {set $namecolor_g {$dxsettings get namecolor_g}}
-   {set $namecolor_b {$dxsettings get namecolor_b}}
-   {set $menutheme {$dxsettings get menutheme}}
-   {set $altsong {$dxsettings get altsong}}
-   {set $loopsong {$dxsettings get loopsong}}
-   {set $gh3song {$dxsettings get gh3song}}
    {set $audiolag {$dxsettings get audiolag}}
    {set $videolag {$dxsettings get videolag}}
 )
@@ -151,14 +52,9 @@
    {dxsettings set speedmod $speedmod}
    {dxsettings set trackspeed $trackspeed}
    {dxsettings set focusmode $focusmode}
-   {dxsettings set poorspyenabled $poorspyenabled}
-   {dxsettings set poorspybuttontype $poorspybuttontype}
    {dxsettings set precision $precision}
-   {dxsettings set highway $highway}
-   {dxsettings set highwayshake $highwayshake}
    {dxsettings set songtitle $songtitle}
    {dxsettings set cleanmtv $cleanmtv}
-   {dxsettings set nametitle $nametitle}
    {dxsettings set forceencore $forceencore}
    {dxsettings set emulatefps $emulatefps}
    {dxsettings set nofail $nofail}
@@ -167,8 +63,6 @@
    {dxsettings set leftyp2 $leftyp2}
    {dxsettings set miloskipintro $miloskipintro}
    {dxsettings set skipoutro $skipoutro}
-   {dxsettings set noflames $noflames}
-   {dxsettings set eyeballgems $eyeballgems}
    {dxsettings set notestreakmod $notestreakmod}
    {dxsettings set sppop $sppop}
    {dxsettings set sfx $sfx}
@@ -176,107 +70,233 @@
    {dxsettings set muting $muting}
    {dxsettings set brutalmode $brutalmode}
    {dxsettings set towel $towel}
-   {dxsettings set barf_cheat $barf_cheat}
    {dxsettings set neckless $neckless}
    {dxsettings set cheat_enabled_performance_mode $cheat_enabled_performance_mode}
    {dxsettings set cheat_crowd_heads $cheat_crowd_heads}
    {dxsettings set cheat_enabled_flaming_head $cheat_enabled_flaming_head}
    {dxsettings set autoplay $autoplay}
-   {dxsettings set clonehero_hud $clonehero_hud}
-   {dxsettings set brighthopos $brighthopos}
-   {dxsettings set darkstrums $darkstrums}
-   {dxsettings set gh1track $gh1track}
-   {dxsettings set gh3track $gh3track}
-   {dxsettings set voidfrets $voidfrets}
-   {dxsettings set noflames $noflames}
-   {dxsettings set starpowercolor_r $starpowercolor_r}
-   {dxsettings set starpowercolor_g $starpowercolor_g}
-   {dxsettings set starpowercolor_b $starpowercolor_b}
-   {dxsettings set streaklabel_r $streaklabel_r}
-   {dxsettings set streaklabel_g $streaklabel_g}
-   {dxsettings set streaklabel_b $streaklabel_b}
-   {dxsettings set streakstandardlabel_r $streakstandardlabel_r}
-   {dxsettings set streakstandardlabel_g $streakstandardlabel_g}
-   {dxsettings set streakstandardlabel_b $streakstandardlabel_b}
-   {dxsettings set starcounter_r $starcounter_r}
-   {dxsettings set starcounter_g $starcounter_g}
-   {dxsettings set starcounter_b $starcounter_b}
-   {dxsettings set songprogressbar_r $songprogressbar_r}
-   {dxsettings set songprogressbar_g $songprogressbar_g}
-   {dxsettings set songprogressbar_b $songprogressbar_b}
-   {dxsettings set starprogressbar_r $starprogressbar_r}
-   {dxsettings set starprogressbar_g $starprogressbar_g}
-   {dxsettings set starprogressbar_b $starprogressbar_b}
-   {dxsettings set scorenumcolor_r $scorenumcolor_r}
-   {dxsettings set scorenumcolor_g $scorenumcolor_g}
-   {dxsettings set scorenumcolor_b $scorenumcolor_b}
-   {dxsettings set cloneherostarcounter_r $cloneherostarcounter_r}
-   {dxsettings set cloneherostarcounter_g $cloneherostarcounter_g}
-   {dxsettings set cloneherostarcounter_b $cloneherostarcounter_b}
-   {dxsettings set cloneheroscorenumcolor_r $cloneheroscorenumcolor_r}
-   {dxsettings set cloneheroscorenumcolor_g $cloneheroscorenumcolor_g}
-   {dxsettings set cloneheroscorenumcolor_b $cloneheroscorenumcolor_b}
-   {dxsettings set scorenumframe_r $scorenumframe_r}
-   {dxsettings set scorenumframe_g $scorenumframe_g}
-   {dxsettings set scorenumframe_b $scorenumframe_b}
-   {dxsettings set mtv_r $mtv_r}
-   {dxsettings set mtv_g $mtv_g}
-   {dxsettings set mtv_b $mtv_b}
-   {dxsettings set newcustomgemcolor $newcustomgemcolor}
-   {dxsettings set gem1color_r $gem1color_r}
-   {dxsettings set gem1color_g $gem1color_g}
-   {dxsettings set gem1color_b $gem1color_b}
-   {dxsettings set gem2color_r $gem2color_r}
-   {dxsettings set gem2color_g $gem2color_g}
-   {dxsettings set gem2color_b $gem2color_b}
-   {dxsettings set gem3color_r $gem3color_r}
-   {dxsettings set gem3color_g $gem3color_g}
-   {dxsettings set gem3color_b $gem3color_b}
-   {dxsettings set gem4color_r $gem4color_r}
-   {dxsettings set gem4color_g $gem4color_g}
-   {dxsettings set gem4color_b $gem4color_b}
-   {dxsettings set gem5color_r $gem5color_r}
-   {dxsettings set gem5color_g $gem5color_g}
-   {dxsettings set gem5color_b $gem5color_b}
-   {dxsettings set newcustomsmashercolor $newcustomsmashercolor}
-   {dxsettings set smasher1color_r $smasher1color_r}
-   {dxsettings set smasher1color_g $smasher1color_g}
-   {dxsettings set smasher1color_b $smasher1color_b}
-   {dxsettings set smasher2color_r $smasher2color_r}
-   {dxsettings set smasher2color_g $smasher2color_g}
-   {dxsettings set smasher2color_b $smasher2color_b}
-   {dxsettings set smasher3color_r $smasher3color_r}
-   {dxsettings set smasher3color_g $smasher3color_g}
-   {dxsettings set smasher3color_b $smasher3color_b}
-   {dxsettings set smasher4color_r $smasher4color_r}
-   {dxsettings set smasher4color_g $smasher4color_g}
-   {dxsettings set smasher4color_b $smasher4color_b}
-   {dxsettings set smasher5color_r $smasher5color_r}
-   {dxsettings set smasher5color_g $smasher5color_g}
-   {dxsettings set smasher5color_b $smasher5color_b}
-   {dxsettings set trackrailcolor_r $trackrailcolor_r}
-   {dxsettings set trackrailcolor_g $trackrailcolor_g}
-   {dxsettings set trackrailcolor_b $trackrailcolor_b}
-   {dxsettings set poorspystrum_r $poorspystrum_r}
-   {dxsettings set poorspystrum_g $poorspystrum_g}
-   {dxsettings set poorspystrum_b $poorspystrum_b}
-   {dxsettings set removequarterbeatlines $removequarterbeatlines}
-   {dxsettings set removedivisionlines $removedivisionlines}
-   {dxsettings set beatlinecolor_r $beatlinecolor_r}
-   {dxsettings set beatlinecolor_g $beatlinecolor_g}
-   {dxsettings set beatlinecolor_b $beatlinecolor_b}
-   {dxsettings set namefont $namefont}
-   {dxsettings set namecolor_r $namecolor_r}
-   {dxsettings set namecolor_g $namecolor_g}
-   {dxsettings set namecolor_b $namecolor_b}
-   {dxsettings set menutheme $menutheme}
-   {dxsettings set altsong $altsong}
-   {dxsettings set loopsong $loopsong}
-   {dxsettings set gh3song $gh3song}
    {dxsettings set audiolag $audiolag}
    {dxsettings set videolag $videolag}
    {dxsettings save_objects "GAME:/dxsettings.milo"}
    {delete dxsettings}
+)
+
+#define LOAD_DX_UI_THEME
+(
+   {set $menutheme {$dxuitheme get menutheme}}
+   {set $altsong {$dxuitheme get altsong}}
+   {set $loopsong {$dxuitheme get loopsong}}
+   {set $gh3song {$dxuitheme get gh3song}}
+)
+
+#define SAVE_DX_UI_THEME
+(
+   {new ObjectDir dxuitheme}
+   {dxuitheme set menutheme $menutheme}
+   {dxuitheme set altsong $altsong}
+   {dxuitheme set loopsong $loopsong}
+   {dxuitheme set gh3song $gh3song}
+   {dxuitheme save_objects "GAME:/dxuitheme.milo"}
+   {delete dxuitheme}
+)
+
+#define LOAD_DX_TRACK_THEME
+(
+   {set $poorspyenabled {$dxtracktheme get poorspyenabled}}
+   {set $poorspybuttontype {$dxtracktheme get poorspybuttontype}}
+   {set $highway {$dxtracktheme get highway}}
+   {set $highwayshake {$dxtracktheme get highwayshake}}
+   {set $nametitle {$dxtracktheme get nametitle}}
+   {set $noflames {$dxtracktheme get noflames}}
+   {set $eyeballgems {$dxtracktheme get eyeballgems}}
+   {set $barf_cheat {$dxtracktheme get barf_cheat}}
+   {set $clonehero_hud {$dxtracktheme get clonehero_hud}}
+   {set $brighthopos {$dxtracktheme get brighthopos}}
+   {set $darkstrums {$dxtracktheme get darkstrums}}
+   {set $gh1track {$dxtracktheme get gh1track}}
+   {set $gh3track {$dxtracktheme get gh3track}}
+   {set $voidfrets {$dxtracktheme get voidfrets}}
+   {set $starpowercolor_r {$dxtracktheme get starpowercolor_r}}
+   {set $starpowercolor_g {$dxtracktheme get starpowercolor_g}}
+   {set $starpowercolor_b {$dxtracktheme get starpowercolor_b}}
+   {set $streaklabel_r {$dxtracktheme get streaklabel_r}}
+   {set $streaklabel_g {$dxtracktheme get streaklabel_g}}
+   {set $streaklabel_b {$dxtracktheme get streaklabel_b}}
+   {set $streakstandardlabel_r {$dxtracktheme get streakstandardlabel_r}}
+   {set $streakstandardlabel_g {$dxtracktheme get streakstandardlabel_g}}
+   {set $streakstandardlabel_b {$dxtracktheme get streakstandardlabel_b}}
+   {set $starcounter_r {$dxtracktheme get starcounter_r}}
+   {set $starcounter_g {$dxtracktheme get starcounter_g}}
+   {set $starcounter_b {$dxtracktheme get starcounter_b}}
+   {set $songprogressbar_r {$dxtracktheme get songprogressbar_r}}
+   {set $songprogressbar_g {$dxtracktheme get songprogressbar_g}}
+   {set $songprogressbar_b {$dxtracktheme get songprogressbar_b}}
+   {set $starprogressbar_r {$dxtracktheme get starprogressbar_r}}
+   {set $starprogressbar_g {$dxtracktheme get starprogressbar_g}}
+   {set $starprogressbar_b {$dxtracktheme get starprogressbar_b}}
+   {set $scorenumcolor_r {$dxtracktheme get scorenumcolor_r}}
+   {set $scorenumcolor_g {$dxtracktheme get scorenumcolor_g}}
+   {set $scorenumcolor_b {$dxtracktheme get scorenumcolor_b}}
+   {set $cloneherostarcounter_r {$dxtracktheme get cloneherostarcounter_r}}
+   {set $cloneherostarcounter_g {$dxtracktheme get cloneherostarcounter_g}}
+   {set $cloneherostarcounter_b {$dxtracktheme get cloneherostarcounter_b}}
+   {set $cloneheroscorenumcolor_r {$dxtracktheme get cloneheroscorenumcolor_r}}
+   {set $cloneheroscorenumcolor_g {$dxtracktheme get cloneheroscorenumcolor_g}}
+   {set $cloneheroscorenumcolor_b {$dxtracktheme get cloneheroscorenumcolor_b}}
+   {set $scorenumframe_r {$dxtracktheme get scorenumframe_r}}
+   {set $scorenumframe_g {$dxtracktheme get scorenumframe_g}}
+   {set $scorenumframe_b {$dxtracktheme get scorenumframe_b}}
+   {set $mtv_r {$dxtracktheme get mtv_r}}
+   {set $mtv_g {$dxtracktheme get mtv_g}}
+   {set $mtv_b {$dxtracktheme get mtv_b}}
+   {set $newcustomgemcolor {$dxtracktheme get newcustomgemcolor}} ; enables custom gem colors
+   {set $gem1color_r {$dxtracktheme get gem1color_r}}
+   {set $gem1color_g {$dxtracktheme get gem1color_g}}
+   {set $gem1color_b {$dxtracktheme get gem1color_b}}
+   {set $gem2color_r {$dxtracktheme get gem2color_r}}
+   {set $gem2color_g {$dxtracktheme get gem2color_g}}
+   {set $gem2color_b {$dxtracktheme get gem2color_b}}
+   {set $gem3color_r {$dxtracktheme get gem3color_r}}
+   {set $gem3color_g {$dxtracktheme get gem3color_g}}
+   {set $gem3color_b {$dxtracktheme get gem3color_b}}
+   {set $gem4color_r {$dxtracktheme get gem4color_r}}
+   {set $gem4color_g {$dxtracktheme get gem4color_g}}
+   {set $gem4color_b {$dxtracktheme get gem4color_b}}
+   {set $gem5color_r {$dxtracktheme get gem5color_r}}
+   {set $gem5color_g {$dxtracktheme get gem5color_g}}
+   {set $gem5color_b {$dxtracktheme get gem5color_b}}
+   {set $newcustomsmashercolor {$dxtracktheme get newcustomsmashercolor}} ; enables custom smasher colors
+   {set $smasher1color_r {$dxtracktheme get smasher1color_r}}
+   {set $smasher1color_g {$dxtracktheme get smasher1color_g}}
+   {set $smasher1color_b {$dxtracktheme get smasher1color_b}}
+   {set $smasher2color_r {$dxtracktheme get smasher2color_r}}
+   {set $smasher2color_g {$dxtracktheme get smasher2color_g}}
+   {set $smasher2color_b {$dxtracktheme get smasher2color_b}}
+   {set $smasher3color_r {$dxtracktheme get smasher3color_r}}
+   {set $smasher3color_g {$dxtracktheme get smasher3color_g}}
+   {set $smasher3color_b {$dxtracktheme get smasher3color_b}}
+   {set $smasher4color_r {$dxtracktheme get smasher4color_r}}
+   {set $smasher4color_g {$dxtracktheme get smasher4color_g}}
+   {set $smasher4color_b {$dxtracktheme get smasher4color_b}}
+   {set $smasher5color_r {$dxtracktheme get smasher5color_r}}
+   {set $smasher5color_g {$dxtracktheme get smasher5color_g}}
+   {set $smasher5color_b {$dxtracktheme get smasher5color_b}}
+   {set $trackrailcolor_r {$dxtracktheme get trackrailcolor_r}}
+   {set $trackrailcolor_g {$dxtracktheme get trackrailcolor_g}}
+   {set $trackrailcolor_b {$dxtracktheme get trackrailcolor_b}}
+   {set $poorspystrum_r {$dxtracktheme get poorspystrum_r}}
+   {set $poorspystrum_g {$dxtracktheme get poorspystrum_g}}
+   {set $poorspystrum_b {$dxtracktheme get poorspystrum_b}}
+   {set $removequarterbeatlines {$dxtracktheme get removequarterbeatlines}}
+   {set $removedivisionlines {$dxtracktheme get removedivisionlines}}
+   {set $beatlinecolor_r {$dxtracktheme get beatlinecolor_r}}
+   {set $beatlinecolor_g {$dxtracktheme get beatlinecolor_g}}
+   {set $beatlinecolor_b {$dxtracktheme get beatlinecolor_b}}
+   {set $namefont {$dxtracktheme get namefont}}
+   {set $namecolor_r {$dxtracktheme get namecolor_r}}
+   {set $namecolor_g {$dxtracktheme get namecolor_g}}
+   {set $namecolor_b {$dxtracktheme get namecolor_b}}
+)
+
+#define SAVE_DX_TRACK_THEME
+(
+   {new ObjectDir dxtracktheme}
+   {dxtracktheme set poorspyenabled $poorspyenabled}
+   {dxtracktheme set poorspybuttontype $poorspybuttontype}
+   {dxtracktheme set highway $highway}
+   {dxtracktheme set highwayshake $highwayshake}
+   {dxtracktheme set nametitle $nametitle}
+   {dxtracktheme set noflames $noflames}
+   {dxtracktheme set eyeballgems $eyeballgems}
+   {dxtracktheme set barf_cheat $barf_cheat}
+   {dxtracktheme set clonehero_hud $clonehero_hud}
+   {dxtracktheme set brighthopos $brighthopos}
+   {dxtracktheme set darkstrums $darkstrums}
+   {dxtracktheme set gh1track $gh1track}
+   {dxtracktheme set gh3track $gh3track}
+   {dxtracktheme set voidfrets $voidfrets}
+   {dxtracktheme set starpowercolor_r $starpowercolor_r}
+   {dxtracktheme set starpowercolor_g $starpowercolor_g}
+   {dxtracktheme set starpowercolor_b $starpowercolor_b}
+   {dxtracktheme set streaklabel_r $streaklabel_r}
+   {dxtracktheme set streaklabel_g $streaklabel_g}
+   {dxtracktheme set streaklabel_b $streaklabel_b}
+   {dxtracktheme set streakstandardlabel_r $streakstandardlabel_r}
+   {dxtracktheme set streakstandardlabel_g $streakstandardlabel_g}
+   {dxtracktheme set streakstandardlabel_b $streakstandardlabel_b}
+   {dxtracktheme set starcounter_r $starcounter_r}
+   {dxtracktheme set starcounter_g $starcounter_g}
+   {dxtracktheme set starcounter_b $starcounter_b}
+   {dxtracktheme set songprogressbar_r $songprogressbar_r}
+   {dxtracktheme set songprogressbar_g $songprogressbar_g}
+   {dxtracktheme set songprogressbar_b $songprogressbar_b}
+   {dxtracktheme set starprogressbar_r $starprogressbar_r}
+   {dxtracktheme set starprogressbar_g $starprogressbar_g}
+   {dxtracktheme set starprogressbar_b $starprogressbar_b}
+   {dxtracktheme set scorenumcolor_r $scorenumcolor_r}
+   {dxtracktheme set scorenumcolor_g $scorenumcolor_g}
+   {dxtracktheme set scorenumcolor_b $scorenumcolor_b}
+   {dxtracktheme set cloneherostarcounter_r $cloneherostarcounter_r}
+   {dxtracktheme set cloneherostarcounter_g $cloneherostarcounter_g}
+   {dxtracktheme set cloneherostarcounter_b $cloneherostarcounter_b}
+   {dxtracktheme set cloneheroscorenumcolor_r $cloneheroscorenumcolor_r}
+   {dxtracktheme set cloneheroscorenumcolor_g $cloneheroscorenumcolor_g}
+   {dxtracktheme set cloneheroscorenumcolor_b $cloneheroscorenumcolor_b}
+   {dxtracktheme set scorenumframe_r $scorenumframe_r}
+   {dxtracktheme set scorenumframe_g $scorenumframe_g}
+   {dxtracktheme set scorenumframe_b $scorenumframe_b}
+   {dxtracktheme set mtv_r $mtv_r}
+   {dxtracktheme set mtv_g $mtv_g}
+   {dxtracktheme set mtv_b $mtv_b}
+   {dxtracktheme set newcustomgemcolor $newcustomgemcolor}
+   {dxtracktheme set gem1color_r $gem1color_r}
+   {dxtracktheme set gem1color_g $gem1color_g}
+   {dxtracktheme set gem1color_b $gem1color_b}
+   {dxtracktheme set gem2color_r $gem2color_r}
+   {dxtracktheme set gem2color_g $gem2color_g}
+   {dxtracktheme set gem2color_b $gem2color_b}
+   {dxtracktheme set gem3color_r $gem3color_r}
+   {dxtracktheme set gem3color_g $gem3color_g}
+   {dxtracktheme set gem3color_b $gem3color_b}
+   {dxtracktheme set gem4color_r $gem4color_r}
+   {dxtracktheme set gem4color_g $gem4color_g}
+   {dxtracktheme set gem4color_b $gem4color_b}
+   {dxtracktheme set gem5color_r $gem5color_r}
+   {dxtracktheme set gem5color_g $gem5color_g}
+   {dxtracktheme set gem5color_b $gem5color_b}
+   {dxtracktheme set newcustomsmashercolor $newcustomsmashercolor}
+   {dxtracktheme set smasher1color_r $smasher1color_r}
+   {dxtracktheme set smasher1color_g $smasher1color_g}
+   {dxtracktheme set smasher1color_b $smasher1color_b}
+   {dxtracktheme set smasher2color_r $smasher2color_r}
+   {dxtracktheme set smasher2color_g $smasher2color_g}
+   {dxtracktheme set smasher2color_b $smasher2color_b}
+   {dxtracktheme set smasher3color_r $smasher3color_r}
+   {dxtracktheme set smasher3color_g $smasher3color_g}
+   {dxtracktheme set smasher3color_b $smasher3color_b}
+   {dxtracktheme set smasher4color_r $smasher4color_r}
+   {dxtracktheme set smasher4color_g $smasher4color_g}
+   {dxtracktheme set smasher4color_b $smasher4color_b}
+   {dxtracktheme set smasher5color_r $smasher5color_r}
+   {dxtracktheme set smasher5color_g $smasher5color_g}
+   {dxtracktheme set smasher5color_b $smasher5color_b}
+   {dxtracktheme set trackrailcolor_r $trackrailcolor_r}
+   {dxtracktheme set trackrailcolor_g $trackrailcolor_g}
+   {dxtracktheme set trackrailcolor_b $trackrailcolor_b}
+   {dxtracktheme set poorspystrum_r $poorspystrum_r}
+   {dxtracktheme set poorspystrum_g $poorspystrum_g}
+   {dxtracktheme set poorspystrum_b $poorspystrum_b}
+   {dxtracktheme set removequarterbeatlines $removequarterbeatlines}
+   {dxtracktheme set removedivisionlines $removedivisionlines}
+   {dxtracktheme set beatlinecolor_r $beatlinecolor_r}
+   {dxtracktheme set beatlinecolor_g $beatlinecolor_g}
+   {dxtracktheme set beatlinecolor_b $beatlinecolor_b}
+   {dxtracktheme set namefont $namefont}
+   {dxtracktheme set namecolor_r $namecolor_r}
+   {dxtracktheme set namecolor_g $namecolor_g}
+   {dxtracktheme set namecolor_b $namecolor_b}
+   {dxtracktheme save_objects "GAME:/dxtracktheme.milo"}
+   {delete dxtracktheme}
 )
 
 #else

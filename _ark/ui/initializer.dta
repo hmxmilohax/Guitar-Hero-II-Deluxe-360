@@ -102,9 +102,27 @@
 
 #ifdef HX_XBOX
 {set $dxsettings {load_objects "GAME:/dxsettings.milo"}}
+{set $dxuitheme {load_objects "GAME:/dxuitheme.milo"}}
+{set $dxtracktheme {load_objects "GAME:/dxtracktheme.milo"}}
 {if_else $dxsettings
    {do
       LOAD_DX_SETTINGS
+      {if_else $dxuitheme
+         {do
+            LOAD_DX_UI_THEME
+         }
+         {do
+            SAVE_DX_UI_THEME
+         }
+      }
+      {if_else $dxtracktheme
+         {do
+            LOAD_DX_TRACK_THEME
+         }
+         {do
+            SAVE_DX_TRACK_THEME
+         }
+      }
    }
    {do
       #include game:/init_track_theme.dta
@@ -147,9 +165,13 @@
          {set $smasher5color_b $smashercolor_b}
       }
       SAVE_DX_SETTINGS
+      SAVE_DX_UI_THEME
+      SAVE_DX_TRACK_THEME
    }
 }
 {delete $dxsettings}
+{delete $dxuitheme}
+{delete $dxtracktheme}
 #include init_extras.dta
 #else
 #include ui/init_track_theme.dta

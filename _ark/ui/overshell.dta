@@ -178,6 +178,8 @@
    )
    (exit
       SAVE_DX_SETTINGS
+      SAVE_DX_UI_THEME
+      SAVE_DX_TRACK_THEME
    )
 }
 {new
