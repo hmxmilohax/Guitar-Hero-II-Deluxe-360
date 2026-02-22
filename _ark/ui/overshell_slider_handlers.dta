@@ -729,6 +729,56 @@
       (psstrum $poorspystrum_b)
    }
 )
+#define OVERSHELL_COLOR_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+(
+   (BUTTON_DOWN_MSG ;ran when any button is pressed. in this macro we only care about triangle (back)
+      {if
+         {&& {! {$this slider_selected}} {== $button kPad_Tri}} ;if triangle is pressed, but not when exiting a slider
+            {ui pop_screen} ;exit the current overshell screen
+      }
+      {if {== $button kPad_Square}
+            {switch $colormenu
+               (name {set $namecolor_r 1.0} {set $namecolor_g 1.0} {set $namecolor_b 1.0})
+               (mtv {set $mtv_r 1} {set $mtv_g 1} {set $mtv_b 1})
+               (notepopup {set $notepopup_r 1} {set $notepopup_g 1} {set $notepopup_b 1})
+               (starpower {set $starpowercolor_r 0.34} {set $starpowercolor_g 0.5} {set $starpowercolor_b 0.67})
+               (streaklabel {set $streaklabel_r 0.79} {set $streaklabel_g 0.51} {set $streaklabel_b 0.07})
+               (streakstandardlabel {set $streakstandardlabel_r 1} {set $streakstandardlabel_g 1} {set $streakstandardlabel_b 1})
+               (starcounter {set $starcounter_r 1} {set $starcounter_g 1} {set $starcounter_b 1})
+               (cloneherostarcounter {set $cloneherostarcounter_r 0.70} {set $cloneherostarcounter_g 0.6} {set $cloneherostarcounter_b 0.04})
+               (songprogress {set $songprogressbar_r 0.47} {set $songprogressbar_g 0.52} {set $songprogressbar_b 0.81})
+               (starprogress {set $starprogressbar_r 0.81} {set $starprogressbar_g 0.58} {set $starprogressbar_b 0.31})
+               (scorenum {set $scorenumcolor_r 0.0} {set $scorenumcolor_g 0.0} {set $scorenumcolor_b 0.0})
+               (cloneheroscorenum {set $cloneheroscorenumcolor_r 1} {set $cloneheroscorenumcolor_g 1} {set $cloneheroscorenumcolor_b 1})
+               (scorenumframe {set $scorenumframe_r 1} {set $scorenumframe_g 1} {set $scorenumframe_b 1})
+               (gemcolor {set $newcustomgemcolor FALSE}
+                  {switch $gemcolor
+                     (green {set $gem1color_r 0.14} {set $gem1color_g 0.80} {set $gem1color_b 0.06})
+                     (red {set $gem2color_r 1.0} {set $gem2color_g 0.01} {set $gem2color_b 0.01})
+                     (yellow {set $gem3color_r 1.0} {set $gem3color_g 0.93} {set $gem3color_b 0.12})
+                     (blue {set $gem4color_r 0.29} {set $gem4color_g 0.46} {set $gem4color_b 0.67})
+                     (orange {set $gem5color_r 1.0} {set $gem5color_g 0.54} {set $gem5color_b 0.09})
+                  }
+               )
+               (smashercolor {set $newcustomsmashercolor FALSE}
+                  {switch $gemcolor
+                     (green {set $smasher1color_r 0.14} {set $smasher1color_g 0.80} {set $smasher1color_b 0.06})
+                     (red {set $smasher2color_r 1.0} {set $smasher2color_g 0.01} {set $smasher2color_b 0.01})
+                     (yellow {set $smasher3color_r 1.0} {set $smasher3color_g 0.93} {set $smasher3color_b 0.12})
+                     (blue {set $smasher4color_r 0.29} {set $smasher4color_g 0.46} {set $smasher4color_b 0.67})
+                     (orange {set $smasher5color_r 1.0} {set $smasher5color_g 0.54} {set $smasher5color_b 0.09})
+                  }
+               )
+               (trackrailcolor {set $trackrailcolor_r 1} {set $trackrailcolor_g 1} {set $trackrailcolor_b 1})
+               (beatlinecolor {set $beatlinecolor_r 0.87} {set $beatlinecolor_g 0.87} {set $beatlinecolor_b 0.87})
+               (psstrum {set $poorspystrum_r 0.44} {set $poorspystrum_g 0.0} {set $poorspystrum_b 0.56})
+            }
+         {$this update_sliders}
+         {$this display_color_msg COLORSWITCH_R COLORSWITCH_G COLORSWITCH_B}
+      }
+      kDataUnhandled ;means literally nothing. we need to tell the game to not worry if we press a button not defined in BUTTON_DOWN_MSG
+   )
+)
 #define COLOR_SLIDER_HANDLERS
 (
    (focus gs_guitar.sld)
@@ -964,11 +1014,13 @@
                {helpbar set_display
                   ((fret1 help_select)
                      (fret2 help_back)
+                     (start help_reset)
                      (strum help_updown))
                }
                {helpbar set_display
                   ((fret1 help_select)
                    (fret2 help_back)
+                   (start help_reset)
                    (strum help_updown))
                }
             }

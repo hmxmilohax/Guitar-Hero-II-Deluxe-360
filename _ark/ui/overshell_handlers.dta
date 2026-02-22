@@ -100,7 +100,7 @@
    (panels overshell_color_slider) ;panels used for this screen. overshell only uses one panel
    (focus overshell_color_slider) ;panel to focus
    OVERSHELL_SCREEN_COMMON_HANDLER ;common overshell screen setup for all overshell screens
-   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
+   OVERSHELL_COLOR_BUTTON_DOWN_HANDLER ;common script ran in all overshells to handle selections
 }
 {new
    MultiSelectListPanel ;panel type
