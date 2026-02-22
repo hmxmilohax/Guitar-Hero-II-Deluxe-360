@@ -535,7 +535,11 @@
          {{stats_provider num_data} $pos}}})
        {stats_sections.lst set_local_pos 0 20 $frame}})
     (SCROLL_MSG
-      {$this update_pos})
+      {if {> {stats_provider num_data} 30}
+         {$this stop_scrolling}
+         {$this update_pos}
+      }
+      )
    (update_singleplayer_stats
       {do
          ($avg_multi {max 1 {player0 avg_multiplier}})
@@ -573,20 +577,28 @@
          {receipt_scroll.tnm stop_animation}
          {set [is_scrolling] FALSE}})
    (BUTTON_DOWN_MSG
-      ;{if {is_updown_button $button}
-      ;   {$this stop_scrolling}
-      ;   {receipt_scroll.tnm animate
-      ;      (dest
-      ;         {if_else {== $button kPad_DDown}
-      ;            {'*' 2 {stats_provider num_data}}
-      ;            0})
-      ;      (units kTaskUISeconds)}
-      ;   {set [is_scrolling] TRUE}}
-      kDataUnhandled)
+      {if {&& {<= {stats_provider num_data} 30} {is_updown_button $button}}
+         {$this stop_scrolling}
+         {receipt_scroll.tnm animate
+            (dest
+               {if_else {== $button kPad_DDown}
+                  {'*' 2 {stats_provider num_data}}
+                  0
+               }
+            )
+            (units kTaskUISeconds)
+         }
+         {set [is_scrolling] TRUE}
+      }
+      kDataUnhandled
+   )
    (BUTTON_UP_MSG
       {if {is_updown_button $button}
-         {$this stop_scrolling}}
-      kDataUnhandled)}
+         {$this stop_scrolling}
+      }
+      kDataUnhandled
+   )
+}
 {new GHScreen endgame_stats_screen
    (panels GAME_PANELS endgame_stats_panel helpbar)
    (focus endgame_stats_panel)
